@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Diseños experimentales y cuasiexperimentales"
+  author: "Ignacio Spiousas - Conicet/UdeSA"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.
+    right: |
+      Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - intro_R.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

@@ -1,0 +1,21 @@
+---
+freeze: true
+---
+
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+# Lo que hay que saber antes de encarar el libro {#sec-intro_R}
+
+## Repaso de conceptos básicos de probabilidad y estadística
+
+## R y el tidyverse
+
+### Tidy data
+
+### Verbos de dplyr
+
+### ggplot2 o como hacer figuras que sean la envidia de tu compañero de escritorio

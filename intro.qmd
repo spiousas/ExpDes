@@ -43,7 +43,7 @@ Los grupos serán integrados al comienzo de la cursada por un máximo de 3 estud
 
 La nota final corresponderá a un promedio ponderado de las cinco instancias de evaluación:
 
-::: {.callout-note}
+::: callout-note
 **Nota final = 0.35 \* Primer examen parcial + 0.35 \* Segundo examen parcial + 0.15 \* Trabajo de medio término + 0.15 \* Trabajo final**
 :::
 

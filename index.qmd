@@ -1,28 +1,67 @@
 # Prefacio {.unnumbered}
 
-Este libro es un resumen de los contenidos mínimos de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la [Universidad de San Andrés](https://udesa.edu.ar/) (Victoria, Argentina).
-
-Bajo nigún concepto este libro contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada para profundizar los temas.
+Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la [Universidad de San Andrés](https://udesa.edu.ar/) (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.
 
 ## Lo que vas a aprender
 
+El objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.
+
+Se espera que los lectores sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y "apta para todo público". Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental "ideal" (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.
+
+::: {.callout-tip icon="false"}
+## SIGA SIGA...
+
+Si bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.
+:::
+
 ## ¿Cómo se organiza este libro?
+
+El libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.
+
+### Probabilidad y estadística
+
+Esta sección cuenta con dos capítulos: 
+
+### Dieseño experimental
+
+### Diseño cuasi experimental
+
+### Ejemplos de aplicación
 
 ## Que no vas a aprender en este libro
 
+Este libro no es un libro de inferencia estadística y no vamos a hablar de *tests* estadísticos sino en el contexto de una pregunta científica y de un diseño experimental en particular. Existen cientos de libros que desarrollan en detalle estos contenidos 
+
 ## Prerequisitos
+
+Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.
+
+::: {.callout-warning icon="false"}
+## DON'T PANIC
+
+El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R. 
+:::
 
 ### Instalación de R y RStudio
 
-To download R, go to CRAN, the comprehensive R archive network, https://cloud.r-project.org. A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions that require you to re-install all your packages, but putting it off only makes it worse. We recommend R 4.2.0 or later for this book.
+Lo primero que hay que hacer para poder correr scripts de R es, como
+resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema
+operativo en este [link](http://mirror.fcaglp.unlp.edu.ar/CRAN/) y
+siguiendo los pasos de la instalación.
 
-RStudio
-RStudio is an integrated development environment, or IDE, for R programming, which you can download from https://posit.co/download/rstudio-desktop/. RStudio is updated a couple of times a year, and it will automatically let you know when a new version is out, so there’s no need to check back. It’s a good idea to upgrade regularly to take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 2022.02.0.
-
-When you start RStudio, Figure 2, you’ll see two key regions in the interface: the console pane and the output pane. For now, all you need to know is that you type the R code in the console pane and press enter to run it. You’ll learn more as we go along!1
+Pueden bajar la versión gratuita de RStudio del siguiente
+[link](https://www.rstudio.com/products/rstudio/download/#download). En
+caso de que el link no haya detectado correctamente el sistema
+operativo, en la sección *All Installers* pueden seleccionarlo
+manualmente. Una vez descargado el instalador sólo hay que seguir los
+pasos de la intalación.
 
 ## Agradecimientos
 
+## Contacto
+
+Ante cualquier duda pueden contactarme vía e-mail a [ispiousas\@udesa.edu.ar](mailto:ispiousas@udesa.edu.ar).
+
 ## Licencia
 
-This website is and will always be free, licensed under the [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.
+This website is and will always be free, licensed under the \[CC BY-NC-ND 3.0 License\]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.

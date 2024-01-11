@@ -14,9 +14,7 @@ book:
       Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.
   chapters:
     - index.qmd
-    - intro.qmd
     - intro_R.qmd
-    - summary.qmd
     - references.qmd
 
 bibliography: references.bib

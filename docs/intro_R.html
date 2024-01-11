@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ignacio Spiousas - Conicet/UdeSA">
 
-<title>Diseños experimentales y cuasiexperimentales</title>
+<title>Diseños experimentales y cuasiexperimentales - 2&nbsp; Lo que hay que saber antes de encarar el libro</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_R.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Diseños experimentales y cuasiexperimentales</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lo que hay que saber antes de encarar el libro</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -102,12 +102,22 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo que hay que saber antes de encarar el libro</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Diseños experimentales y cuasi-experimentales - Otoño 2024</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lo que hay que saber antes de encarar el libro</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -124,17 +134,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio">Prefacio</a>
+  <li><a href="#repaso-de-conceptos-básicos-de-probabilidad-y-estadística" id="toc-repaso-de-conceptos-básicos-de-probabilidad-y-estadística" class="nav-link active" data-scroll-target="#repaso-de-conceptos-básicos-de-probabilidad-y-estadística"><span class="toc-section-number">2.1</span>  Repaso de conceptos básicos de probabilidad y estadística</a></li>
+  <li><a href="#r-y-el-tidyverse" id="toc-r-y-el-tidyverse" class="nav-link" data-scroll-target="#r-y-el-tidyverse"><span class="toc-section-number">2.2</span>  R y el tidyverse</a>
   <ul class="collapse">
-  <li><a href="#lo-que-vas-a-aprender" id="toc-lo-que-vas-a-aprender" class="nav-link" data-scroll-target="#lo-que-vas-a-aprender">Lo que vas a aprender</a></li>
-  <li><a href="#cómo-se-organiza-este-libro" id="toc-cómo-se-organiza-este-libro" class="nav-link" data-scroll-target="#cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</a></li>
-  <li><a href="#que-no-vas-a-aprender-en-este-libro" id="toc-que-no-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#que-no-vas-a-aprender-en-este-libro">Que no vas a aprender en este libro</a></li>
-  <li><a href="#prerequisitos" id="toc-prerequisitos" class="nav-link" data-scroll-target="#prerequisitos">Prerequisitos</a>
-  <ul class="collapse">
-  <li><a href="#instalación-de-r-y-rstudio" id="toc-instalación-de-r-y-rstudio" class="nav-link" data-scroll-target="#instalación-de-r-y-rstudio">Instalación de R y RStudio</a></li>
-  </ul></li>
-  <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
-  <li><a href="#licencia" id="toc-licencia" class="nav-link" data-scroll-target="#licencia">Licencia</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"><span class="toc-section-number">2.2.1</span>  Tidy data</a></li>
+  <li><a href="#verbos-de-dplyr" id="toc-verbos-de-dplyr" class="nav-link" data-scroll-target="#verbos-de-dplyr"><span class="toc-section-number">2.2.2</span>  Verbos de dplyr</a></li>
+  <li><a href="#ggplot2-o-como-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" id="toc-ggplot2-o-como-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="nav-link" data-scroll-target="#ggplot2-o-como-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="toc-section-number">2.2.3</span>  ggplot2 o como hacer figuras que sean la envidia de tu compañero de escritorio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -144,19 +149,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Diseños experimentales y cuasiexperimentales</h1>
+<h1 class="title"><span id="sec-intro_R" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lo que hay que saber antes de encarar el libro</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ignacio Spiousas - Conicet/UdeSA </p>
-          </div>
-  </div>
     
     
   </div>
@@ -164,34 +163,25 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="prefacio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefacio</h1>
-<p>Este libro es un resumen de los contenidos mínimos de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la <a href="https://udesa.edu.ar/">Universidad de San Andrés</a> (Victoria, Argentina).</p>
-<p>Bajo nigún concepto este libro contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada para profundizar los temas.</p>
-<section id="lo-que-vas-a-aprender" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-vas-a-aprender">Lo que vas a aprender</h2>
+<div class="cell">
+
+</div>
+<p>Para seguir este libro es neceario tener claros algunos conceptos de probabilidad y estadística así como un manejo básico de R y de los paquetes del tidyverse.</p>
+<p>A continuación comenzaremos con un breve repaso de probabilidad y estadística en el que definiremos una variable aleatoria, sus métricas…</p>
+<section id="repaso-de-conceptos-básicos-de-probabilidad-y-estadística" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="repaso-de-conceptos-básicos-de-probabilidad-y-estadística"><span class="header-section-number">2.1</span> Repaso de conceptos básicos de probabilidad y estadística</h2>
 </section>
-<section id="cómo-se-organiza-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</h2>
+<section id="r-y-el-tidyverse" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r-y-el-tidyverse"><span class="header-section-number">2.2</span> R y el tidyverse</h2>
+<p>En la gran mayoría de las XXX de este libro vamos a</p>
+<section id="tidy-data" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">2.2.1</span> Tidy data</h3>
 </section>
-<section id="que-no-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="que-no-vas-a-aprender-en-este-libro">Que no vas a aprender en este libro</h2>
+<section id="verbos-de-dplyr" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="verbos-de-dplyr"><span class="header-section-number">2.2.2</span> Verbos de dplyr</h3>
 </section>
-<section id="prerequisitos" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisitos">Prerequisitos</h2>
-<section id="instalación-de-r-y-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="instalación-de-r-y-rstudio">Instalación de R y RStudio</h3>
-<p>To download R, go to CRAN, the comprehensive R archive network, https://cloud.r-project.org. A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions that require you to re-install all your packages, but putting it off only makes it worse. We recommend R 4.2.0 or later for this book.</p>
-<p>RStudio RStudio is an integrated development environment, or IDE, for R programming, which you can download from https://posit.co/download/rstudio-desktop/. RStudio is updated a couple of times a year, and it will automatically let you know when a new version is out, so there’s no need to check back. It’s a good idea to upgrade regularly to take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 2022.02.0.</p>
-<p>When you start RStudio, Figure 2, you’ll see two key regions in the interface: the console pane and the output pane. For now, all you need to know is that you type the R code in the console pane and press enter to run it. You’ll learn more as we go along!1</p>
-</section>
-</section>
-<section id="agradecimientos" class="level2">
-<h2 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h2>
-</section>
-<section id="licencia" class="level2">
-<h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
-<p>This website is and will always be free, licensed under the [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.</p>
+<section id="ggplot2-o-como-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="ggplot2-o-como-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="header-section-number">2.2.3</span> ggplot2 o como hacer figuras que sean la envidia de tu compañero de escritorio</h3>
 
 
 </section>
@@ -298,10 +288,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Diseños experimentales y cuasi-experimentales - Otoño 2024</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_R.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lo que hay que saber antes de encarar el libro</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

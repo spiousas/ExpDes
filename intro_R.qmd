@@ -1,14 +1,21 @@
+# Lo que hay que saber antes de encarar el libro {#sec-intro_R}
+
 ```{r}
 #| echo: false
 
 source("_common.R")
 ```
 
-# Lo que hay que saber antes de encarar el libro {#sec-intro_R}
+Para seguir este libro es neceario tener claros algunos conceptos de probabilidad y estadística así como un manejo básico de R y de los paquetes del tidyverse.
+
+A continuación comenzaremos con un breve repaso de probabilidad y estadística en el que definiremos una variable aleatoria, sus métricas...
+
 
 ## Repaso de conceptos básicos de probabilidad y estadística
 
 ## R y el tidyverse
+
+En la gran mayoría de las XXX de este libro vamos a 
 
 ### Tidy data
 

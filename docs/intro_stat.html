@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ignacio Spiousas - Conicet/UdeSA">
 
-<title>Diseños experimentales y cuasiexperimentales</title>
+<title>Diseños experimentales y cuasiexperimentales - 2&nbsp; Repaso de probabilidad y estadística</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_R.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./intro_R.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Diseños experimentales y cuasiexperimentales</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -102,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -129,22 +129,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio">Prefacio</a>
-  <ul class="collapse">
-  <li><a href="#lo-que-vas-a-aprender-en-este-libro" id="toc-lo-que-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</a></li>
-  <li><a href="#cómo-se-organiza-este-libro" id="toc-cómo-se-organiza-este-libro" class="nav-link" data-scroll-target="#cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</a>
-  <ul class="collapse">
-  <li><a href="#probabilidad-y-estadística" id="toc-probabilidad-y-estadística" class="nav-link" data-scroll-target="#probabilidad-y-estadística">Probabilidad y estadística</a></li>
-  <li><a href="#dieseño-experimental" id="toc-dieseño-experimental" class="nav-link" data-scroll-target="#dieseño-experimental">Dieseño experimental</a></li>
-  <li><a href="#diseño-cuasi-experimental" id="toc-diseño-cuasi-experimental" class="nav-link" data-scroll-target="#diseño-cuasi-experimental">Diseño cuasi experimental</a></li>
-  <li><a href="#ejemplos-de-aplicación" id="toc-ejemplos-de-aplicación" class="nav-link" data-scroll-target="#ejemplos-de-aplicación">Ejemplos de aplicación</a></li>
-  </ul></li>
-  <li><a href="#lo-que-no-vas-a-aprender-en-este-libro" id="toc-lo-que-no-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</a></li>
-  <li><a href="#prerequisitos" id="toc-prerequisitos" class="nav-link" data-scroll-target="#prerequisitos">Prerequisitos</a></li>
-  <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
-  <li><a href="#contacto" id="toc-contacto" class="nav-link" data-scroll-target="#contacto">Contacto</a></li>
-  <li><a href="#licencia" id="toc-licencia" class="nav-link" data-scroll-target="#licencia">Licencia</a></li>
-  </ul></li>
+  <li><a href="#teoría-básica-de-probabilidad" id="toc-teoría-básica-de-probabilidad" class="nav-link active" data-scroll-target="#teoría-básica-de-probabilidad"><span class="toc-section-number">2.1</span>  Teoría básica de probabilidad</a></li>
+  <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="toc-section-number">2.2</span>  Población y muestra</a></li>
+  <li><a href="#eventos-y-probabilidad-condicional" id="toc-eventos-y-probabilidad-condicional" class="nav-link" data-scroll-target="#eventos-y-probabilidad-condicional"><span class="toc-section-number">2.3</span>  Eventos y probabilidad condicional</a></li>
+  <li><a href="#tablas-de-contingencia" id="toc-tablas-de-contingencia" class="nav-link" data-scroll-target="#tablas-de-contingencia"><span class="toc-section-number">2.4</span>  Tablas de contingencia</a></li>
+  <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="toc-section-number">2.5</span>  Esperanza</a></li>
+  <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="toc-section-number">2.6</span>  Varianza y covarianza</a></li>
   </ul>
 </nav>
     </div>
@@ -153,19 +143,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Diseños experimentales y cuasiexperimentales</h1>
+<h1 class="title"><span id="sec-intro_stat" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ignacio Spiousas - Conicet/UdeSA </p>
-          </div>
-  </div>
     
     
   </div>
@@ -173,78 +157,30 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="prefacio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefacio</h1>
-<p>Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la <a href="https://udesa.edu.ar/">Universidad de San Andrés</a> (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.</p>
-<section id="lo-que-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</h2>
-<p>El objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.</p>
-<p>Se espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y “apta para todo público”. Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental “ideal” (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.</p>
-<div class="callout-tip callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="cell">
+
 </div>
-<div class="callout-caption-container flex-fill">
-SIGA SIGA…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Si bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.</p>
-</div>
-</div>
+<section id="teoría-básica-de-probabilidad" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="teoría-básica-de-probabilidad"><span class="header-section-number">2.1</span> Teoría básica de probabilidad</h2>
 </section>
-<section id="cómo-se-organiza-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</h2>
-<p>El libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.</p>
-<section id="probabilidad-y-estadística" class="level3">
-<h3 class="anchored" data-anchor-id="probabilidad-y-estadística">Probabilidad y estadística</h3>
-<p>Esta sección cuenta con dos capítulos:</p>
+<section id="población-y-muestra" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.2</span> Población y muestra</h2>
+<p>Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.</p>
 </section>
-<section id="dieseño-experimental" class="level3">
-<h3 class="anchored" data-anchor-id="dieseño-experimental">Dieseño experimental</h3>
+<section id="eventos-y-probabilidad-condicional" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="eventos-y-probabilidad-condicional"><span class="header-section-number">2.3</span> Eventos y probabilidad condicional</h2>
+<p>Acá agregar lo de árboles y diagramas.</p>
 </section>
-<section id="diseño-cuasi-experimental" class="level3">
-<h3 class="anchored" data-anchor-id="diseño-cuasi-experimental">Diseño cuasi experimental</h3>
+<section id="tablas-de-contingencia" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="tablas-de-contingencia"><span class="header-section-number">2.4</span> Tablas de contingencia</h2>
 </section>
-<section id="ejemplos-de-aplicación" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplos-de-aplicación">Ejemplos de aplicación</h3>
+<section id="esperanza" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="esperanza"><span class="header-section-number">2.5</span> Esperanza</h2>
 </section>
-</section>
-<section id="lo-que-no-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</h2>
-<p>Este libro no es un libro de inferencia estadística y no vamos a hablar de <em>tests</em> estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro <strong>NO</strong> es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.</p>
-</section>
-<section id="prerequisitos" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisitos">Prerequisitos</h2>
-<p>Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.</p>
-<div class="callout-warning callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-DON’T PANIC
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.</p>
-</div>
-</div>
-</section>
-<section id="agradecimientos" class="level2">
-<h2 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h2>
-</section>
-<section id="contacto" class="level2">
-<h2 class="anchored" data-anchor-id="contacto">Contacto</h2>
-<p>Ante cualquier duda pueden contactarme vía e-mail a <a href="mailto:ispiousas@udesa.edu.ar">ispiousas@udesa.edu.ar</a>.</p>
-</section>
-<section id="licencia" class="level2">
-<h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
-<p>This website is and will always be free, licensed under the [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.</p>
+<section id="varianza-y-covarianza" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="varianza-y-covarianza"><span class="header-section-number">2.6</span> Varianza y covarianza</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -348,10 +284,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./intro_R.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_R.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

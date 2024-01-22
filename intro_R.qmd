@@ -1,24 +1,33 @@
-# Lo que hay que saber antes de encarar el libro {#sec-intro_R}
+# R y el tidyverse {#sec-intro_R}
 
-```{r}
-#| echo: false
+En la gran mayoría de las ejemplos y ejercicios de este libro vamos a usar una computadora (te quiero mucho Skynet ♥️). Con ella nos vamos a comunicar utilizando un lenguaje de programación muy popular en el campo de la estadística: R[@R2023]. Por eso mi recomendación es que lo que primero tenés que hacer es instalar R y RStudio. RStudio es una interfaz **muy** popular utilizada para, mayormente, programar en R. En el recuadro siguiente van a encontrar información de cómo instalar ambas cosas.
 
-source("_common.R")
-```
+::: callout-tip
+## Instalación de R y RStudio
 
-Para seguir este libro es neceario tener claros algunos conceptos de probabilidad y estadística así como un manejo básico de R y de los paquetes del tidyverse.
+Lo primero que hay que hacer para poder correr scripts de R es, como resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema operativo en este [link](http://mirror.fcaglp.unlp.edu.ar/CRAN/) y siguiendo los pasos de la instalación.
 
-A continuación comenzaremos con un breve repaso de probabilidad y estadística en el que definiremos una variable aleatoria, sus métricas...
+Pueden bajar la versión gratuita de RStudio del siguiente [link](https://www.rstudio.com/products/rstudio/download/#download). En caso de que el link no haya detectado correctamente el sistema operativo, en la sección *All Installers* pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.
+:::
 
+Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base[^intro_r-1], la propuesta es utilizar los paquetes y funciones del *Tidyverse*. El *Tidyverse* es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos[@wickham2019welcome]. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.
 
-## Repaso de conceptos básicos de probabilidad y estadística
-
-## R y el tidyverse
-
-En la gran mayoría de las XXX de este libro vamos a 
+[^intro_r-1]: Es decir, sin tener que cargar ningún paquete de funciones adicional.
 
 ### Tidy data
 
-### Verbos de dplyr
+Lo primero que tenemos que pe
 
-### ggplot2 o como hacer figuras que sean la envidia de tu compañero de escritorio
+### Introducción al Tidyverse
+
+Como contamos más arriba, el Tidyverse es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades[^intro_r-2] pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete *{readr}*, los verbos de *{dplyr}* para manipularlos, las funciones de *{tidyR}* para acomodarlos y el poderosísimo *{ggplot2}* para visualizarlos.
+
+[^intro_r-2]: Si quieren profundizar puede ir a ver este fantástico libro [@wickham2023r].
+
+#### Cargando datos con readr
+
+#### Dplyr y sus verbos
+
+#### TidyR, el paquete para ordenar tus datos
+
+#### ggplot2 o cómo hacer figuras que sean la envidia de tu compañero de escritorio

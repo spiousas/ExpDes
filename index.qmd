@@ -2,11 +2,11 @@
 
 Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la [Universidad de San Andrés](https://udesa.edu.ar/) (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.
 
-## Lo que vas a aprender
+## Lo que vas a aprender en este libro
 
 El objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.
 
-Se espera que los lectores sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y "apta para todo público". Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental "ideal" (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.
+Se espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y "apta para todo público". Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental "ideal" (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.
 
 ::: {.callout-tip icon="false"}
 ## SIGA SIGA...
@@ -20,7 +20,7 @@ El libro se organiza en cuatro grandes secciones: Probabilidad y estadística, d
 
 ### Probabilidad y estadística
 
-Esta sección cuenta con dos capítulos: 
+Esta sección cuenta con dos capítulos:
 
 ### Dieseño experimental
 
@@ -28,9 +28,9 @@ Esta sección cuenta con dos capítulos:
 
 ### Ejemplos de aplicación
 
-## Que no vas a aprender en este libro
+## Lo que NO vas a aprender en este libro
 
-Este libro no es un libro de inferencia estadística y no vamos a hablar de *tests* estadísticos sino en el contexto de una pregunta científica y de un diseño experimental en particular. Existen cientos de libros que desarrollan en detalle estos contenidos 
+Este libro no es un libro de inferencia estadística y no vamos a hablar de *tests* estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro **NO** es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.
 
 ## Prerequisitos
 
@@ -39,22 +39,8 @@ Para sacarle el jugo a los contenidos de este libro hace falta tener conocimient
 ::: {.callout-warning icon="false"}
 ## DON'T PANIC
 
-El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R. 
+El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.
 :::
-
-### Instalación de R y RStudio
-
-Lo primero que hay que hacer para poder correr scripts de R es, como
-resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema
-operativo en este [link](http://mirror.fcaglp.unlp.edu.ar/CRAN/) y
-siguiendo los pasos de la instalación.
-
-Pueden bajar la versión gratuita de RStudio del siguiente
-[link](https://www.rstudio.com/products/rstudio/download/#download). En
-caso de que el link no haya detectado correctamente el sistema
-operativo, en la sección *All Installers* pueden seleccionarlo
-manualmente. Una vez descargado el instalador sólo hay que seguir los
-pasos de la intalación.
 
 ## Agradecimientos
 

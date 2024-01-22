@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Diseños experimentales y cuasiexperimentales",
     "section": "",
-    "text": "Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la Universidad de San Andrés (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.\n\n\nEl objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.\nSe espera que los lectores sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y “apta para todo público”. Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental “ideal” (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.\n\n\n\n\n\n\nSIGA SIGA…\n\n\n\nSi bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.\n\n\n\n\n\nEl libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.\n\n\nEsta sección cuenta con dos capítulos:\n\n\n\n\n\n\n\n\n\n\n\n\n\nEste libro no es un libro de inferencia estadística y no vamos a hablar de tests estadísticos sino en el contexto de una pregunta científica y de un diseño experimental en particular. Existen cientos de libros que desarrollan en detalle estos contenidos\n\n\n\nPara sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.\n\n\n\n\n\n\nDON’T PANIC\n\n\n\nEl libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.\n\n\n\n\nLo primero que hay que hacer para poder correr scripts de R es, como resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema operativo en este link y siguiendo los pasos de la instalación.\nPueden bajar la versión gratuita de RStudio del siguiente link. En caso de que el link no haya detectado correctamente el sistema operativo, en la sección All Installers pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.\n\n\n\n\n\n\n\nAnte cualquier duda pueden contactarme vía e-mail a ispiousas@udesa.edu.ar.\n\n\n\nThis website is and will always be free, licensed under the [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}."
+    "text": "Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la Universidad de San Andrés (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.\n\n\nEl objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.\nSe espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y “apta para todo público”. Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental “ideal” (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.\n\n\n\n\n\n\nSIGA SIGA…\n\n\n\nSi bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.\n\n\n\n\n\nEl libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.\n\n\nEsta sección cuenta con dos capítulos:\n\n\n\n\n\n\n\n\n\n\n\n\n\nEste libro no es un libro de inferencia estadística y no vamos a hablar de tests estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro NO es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.\n\n\n\nPara sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.\n\n\n\n\n\n\nDON’T PANIC\n\n\n\nEl libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.\n\n\n\n\n\n\n\n\nAnte cualquier duda pueden contactarme vía e-mail a ispiousas@udesa.edu.ar.\n\n\n\nThis website is and will always be free, licensed under the [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}."
   },
   {
     "objectID": "intro_R.html",
     "href": "intro_R.html",
-    "title": "2  Lo que hay que saber antes de encarar el libro",
+    "title": "1  R y el tidyverse",
     "section": "",
-    "text": "Para seguir este libro es neceario tener claros algunos conceptos de probabilidad y estadística así como un manejo básico de R y de los paquetes del tidyverse.\nA continuación comenzaremos con un breve repaso de probabilidad y estadística en el que definiremos una variable aleatoria, sus métricas…"
+    "text": "Instalación de R y RStudio\n\n\n\nLo primero que hay que hacer para poder correr scripts de R es, como resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema operativo en este link y siguiendo los pasos de la instalación.\nPueden bajar la versión gratuita de RStudio del siguiente link. En caso de que el link no haya detectado correctamente el sistema operativo, en la sección All Installers pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.\n\n\nSi bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base1, la propuesta es utilizar los paquetes y funciones del Tidyverse. El Tidyverse es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos(Wickham et al. 2019). Tranquilos que en la sección siguiente se va a ir aclarando la cosa.\n\n1.0.1 Tidy data\nUn poco la explicación del curso con Pablo.\n\n\n1.0.2 Verbos de dplyr\nComo contamos más arriba, el Tidyverse es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades2 pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete readr.\n\n\n1.0.3 ggplot2 o como hacer figuras que sean la envidia de tu compañero de escritorio\n\n\n\n\nR Core Team. 2023. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the Tidyverse.” Journal of Open Source Software 4 (43): 1686.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science. \" O’Reilly Media, Inc.\".\n\n\n\n\n\n\nEs decir, sin tener que cargar ningún paquete de funciones adicional.↩︎\nSi quieren profundizar puede ir a ver este fantástico libro (Wickham, Çetinkaya-Rundel, and Grolemund 2023).↩︎"
   },
   {
     "objectID": "intro_R.html#repaso-de-conceptos-básicos-de-probabilidad-y-estadística",
@@ -103,5 +103,110 @@
     "title": "References",
     "section": "",
     "text": "Herzog, Michael H, Gregory Francis, and Aaron Clarke. 2019.\nUnderstanding Statistics and Experimental Design: How to Not Lie\nwith Statistics. Springer Nature.\n\n\nReichardt, Charles S. 2019. Quasi-Experimentation: A Guide to Design\nand Analysis. Guilford Publications."
+  },
+  {
+    "objectID": "intro_stat.html#r-y-el-tidyverse",
+    "href": "intro_stat.html#r-y-el-tidyverse",
+    "title": "1  Repase de probabilidad y estadística",
+    "section": "1.1 R y el tidyverse",
+    "text": "1.1 R y el tidyverse\nEn la gran mayoría de las XXX de este libro vamos a\n\n1.1.1 Tidy data\n\n\n1.1.2 Verbos de dplyr\n\n\n1.1.3 ggplot2 o como hacer figuras que sean la envidia de tu compañero de escritorio"
+  },
+  {
+    "objectID": "intro_stat.html#teoría-básica-de-probabilidad",
+    "href": "intro_stat.html#teoría-básica-de-probabilidad",
+    "title": "2  Repaso de probabilidad y estadística",
+    "section": "2.1 Teoría básica de probabilidad",
+    "text": "2.1 Teoría básica de probabilidad"
+  },
+  {
+    "objectID": "intro_stat.html#eventos-y-probabilidad-condicional",
+    "href": "intro_stat.html#eventos-y-probabilidad-condicional",
+    "title": "2  Repaso de probabilidad y estadística",
+    "section": "2.3 Eventos y probabilidad condicional",
+    "text": "2.3 Eventos y probabilidad condicional\nAcá agregar lo de árboles y diagramas."
+  },
+  {
+    "objectID": "intro_stat.html#tablas-de-contingencia",
+    "href": "intro_stat.html#tablas-de-contingencia",
+    "title": "2  Repaso de probabilidad y estadística",
+    "section": "2.4 Tablas de contingencia",
+    "text": "2.4 Tablas de contingencia"
+  },
+  {
+    "objectID": "intro_stat.html#esperanza",
+    "href": "intro_stat.html#esperanza",
+    "title": "2  Repaso de probabilidad y estadística",
+    "section": "2.5 Esperanza",
+    "text": "2.5 Esperanza"
+  },
+  {
+    "objectID": "intro_stat.html#varianza-y-covarianza",
+    "href": "intro_stat.html#varianza-y-covarianza",
+    "title": "2  Repaso de probabilidad y estadística",
+    "section": "2.6 Varianza y covarianza",
+    "text": "2.6 Varianza y covarianza"
+  },
+  {
+    "objectID": "index.html#lo-que-vas-a-aprender-en-este-libro",
+    "href": "index.html#lo-que-vas-a-aprender-en-este-libro",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "Lo que vas a aprender en este libro",
+    "text": "Lo que vas a aprender en este libro\nEl objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.\nSe espera que los lectores sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y “apta para todo público”. Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental “ideal” (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.\n\n\n\n\n\n\nSIGA SIGA…\n\n\n\nSi bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía."
+  },
+  {
+    "objectID": "index.html#cómo-se-organiza-este-libro",
+    "href": "index.html#cómo-se-organiza-este-libro",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "¿Cómo se organiza este libro?",
+    "text": "¿Cómo se organiza este libro?\nEl libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.\n\nProbabilidad y estadística\nEsta sección cuenta con dos capítulos:\n\n\nDieseño experimental\n\n\nDiseño cuasi experimental\n\n\nEjemplos de aplicación"
+  },
+  {
+    "objectID": "index.html#lo-que-no-vas-a-aprender-en-este-libro",
+    "href": "index.html#lo-que-no-vas-a-aprender-en-este-libro",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "Lo que NO vas a aprender en este libro",
+    "text": "Lo que NO vas a aprender en este libro\nEste libro no es un libro de inferencia estadística y no vamos a hablar de tests estadísticos sino en el contexto de una pregunta científica y de un diseño experimental en particular. Es decir, este libro NO es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos entre los cuales puedo recomendar XXX"
+  },
+  {
+    "objectID": "index.html#prerequisitos",
+    "href": "index.html#prerequisitos",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "Prerequisitos",
+    "text": "Prerequisitos\nPara sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.\n\n\n\n\n\n\nDON’T PANIC\n\n\n\nEl libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.\n\n\n\nInstalación de R y RStudio\nLo primero que hay que hacer para poder correr scripts de R es, como resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema operativo en este link y siguiendo los pasos de la instalación.\nPueden bajar la versión gratuita de RStudio del siguiente link. En caso de que el link no haya detectado correctamente el sistema operativo, en la sección All Installers pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación."
+  },
+  {
+    "objectID": "index.html#agradecimientos",
+    "href": "index.html#agradecimientos",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "Agradecimientos",
+    "text": "Agradecimientos"
+  },
+  {
+    "objectID": "index.html#contacto",
+    "href": "index.html#contacto",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "Contacto",
+    "text": "Contacto\nAnte cualquier duda pueden contactarme vía e-mail a ispiousas@udesa.edu.ar."
+  },
+  {
+    "objectID": "index.html#licencia",
+    "href": "index.html#licencia",
+    "title": "Diseños experimentales y cuasiexperimentales",
+    "section": "Licencia",
+    "text": "Licencia\nThis website is and will always be free, licensed under the [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}."
+  },
+  {
+    "objectID": "intro_stat.html#población-y-muestra",
+    "href": "intro_stat.html#población-y-muestra",
+    "title": "2  Repaso de probabilidad y estadística",
+    "section": "2.2 Población y muestra",
+    "text": "2.2 Población y muestra\nAcá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística."
+  },
+  {
+    "objectID": "intro_R.html#footnotes",
+    "href": "intro_R.html#footnotes",
+    "title": "1  R y el tidyverse",
+    "section": "",
+    "text": "Es decir, sin tener que cargar ningún paquete de funciones adicional.↩︎\nSi quieren profundizar puede ir a ver este fantástico libro (Wickham, Çetinkaya-Rundel, and Grolemund 2023).↩︎"
   }
 ]

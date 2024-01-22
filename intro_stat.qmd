@@ -1,0 +1,23 @@
+# Repaso de probabilidad y estadística {#sec-intro_stat}
+
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+  
+## Teoría básica de probabilidad
+
+## Población y muestra
+
+Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.
+
+## Eventos y probabilidad condicional
+
+Acá agregar lo de árboles y diagramas.
+
+## Tablas de contingencia
+
+## Esperanza
+
+## Varianza y covarianza

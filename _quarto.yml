@@ -15,6 +15,7 @@ book:
   chapters:
     - index.qmd
     - intro_R.qmd
+    - intro_stat.qmd
     - references.qmd
 
 bibliography: references.bib

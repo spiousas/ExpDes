@@ -1,6 +1,6 @@
 set.seed(1014)
 
-pacman::p_load(dplyr, ggplot2, patchwork, here)
+pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble)
 
 knitr::opts_chunk$set(
   comment = "#>",

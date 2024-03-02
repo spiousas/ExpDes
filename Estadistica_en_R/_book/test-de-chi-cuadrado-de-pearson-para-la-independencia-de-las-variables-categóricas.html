@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Test de chi cuadrado de Pearson para la independencia de las variables categóricas | Introducción a la bioestadistica</title>
+  <meta name="description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Test de chi cuadrado de Pearson para la independencia de las variables categóricas | Introducción a la bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="github-repo" content="rstudio/libroR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Test de chi cuadrado de Pearson para la independencia de las variables categóricas | Introducción a la bioestadistica" />
+  
+  <meta name="twitter:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  
+
+<meta name="author" content="Ismael Calandri" />
+
+
+<meta name="date" content="2021-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="flenilogo.ico" type="image/x-icon" />
+<link rel="prev" href="matriz-de-confusión.html"/>
+<link rel="next" href="test-de-contraste-de-variables-continuas.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="libs/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Acerca de este libro</a></li>
+<li class="chapter" data-level="2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html"><i class="fa fa-check"></i><b>2</b> Introducción y set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-es-r"><i class="fa fa-check"></i><b>2.1</b> ¿Qué es R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-quiere-decir-que-es-un-lenguaje-de-programación"><i class="fa fa-check"></i><b>2.1.1</b> ¿Qué quiere decir que es un lenguaje de programación?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación"><i class="fa fa-check"></i><b>2.2</b> Instalación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Instalación de RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#dónde-pedir-ayuda"><i class="fa fa-check"></i><b>2.2.3</b> ¿Dónde pedir ayuda?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html"><i class="fa fa-check"></i><b>3</b> Primeros pasos en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#consola"><i class="fa fa-check"></i><b>3.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#scripts"><i class="fa fa-check"></i><b>3.2</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#crear-un-script"><i class="fa fa-check"></i><b>3.2.1</b> Crear un script</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#objetos"><i class="fa fa-check"></i><b>3.3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.3.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#clases-de-objetos"><i class="fa fa-check"></i><b>3.3.2</b> Clases de objetos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#operaciones-con-objetos"><i class="fa fa-check"></i><b>3.3.3</b> Operaciones con objetos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-con-objetos"><i class="fa fa-check"></i><b>3.3.4</b> Funciones con objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador"><i class="fa fa-check"></i><b>3.4</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+<li class="chapter" data-level="3.5" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#dataset-dataframe-bases-de-datos"><i class="fa fa-check"></i><b>3.5</b> Dataset-Dataframe, bases de datos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-base-de-datos"><i class="fa fa-check"></i><b>3.5.1</b> Creación de base de datos:</a></li>
+<li class="chapter" data-level="3.5.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-básicas-para-los-dataframes"><i class="fa fa-check"></i><b>3.5.2</b> Funciones básicas para los dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador-1"><i class="fa fa-check"></i><b>3.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><i class="fa fa-check"></i><b>4</b> Ambientes de trabajo y manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#antes-de-empezar"><i class="fa fa-check"></i><b>4.1</b> Antes de empezar</a></li>
+<li class="chapter" data-level="4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#directorio-de-trabajo-o-working-directory"><i class="fa fa-check"></i><b>4.2</b> Directorio de trabajo o Working directory</a></li>
+<li class="chapter" data-level="4.3" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#paquetes-o-librerías"><i class="fa fa-check"></i><b>4.3</b> Paquetes o librerías</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-instalar-una-librería"><i class="fa fa-check"></i><b>4.3.1</b> ¿Como instalar una librería?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-activar-una-librería"><i class="fa fa-check"></i><b>4.3.2</b> ¿Como activar una librería?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#de-la-base-de-datos-a-r"><i class="fa fa-check"></i><b>4.4</b> De la base de datos a R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#metodo-de-ventanas-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.1</b> Metodo de ventanas para subir un dataframe a R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#código-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.2</b> Código para subir un dataframe a R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#manipulación-de-variables-i"><i class="fa fa-check"></i><b>4.5</b> Manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#métodos-de-selección-de-datos"><i class="fa fa-check"></i><b>4.5.1</b> Métodos de selección de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html"><i class="fa fa-check"></i><b>5</b> Manipulación de variables (II)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#piping-y-paquete-dplyr"><i class="fa fa-check"></i><b>5.1</b> Piping y paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#funciones-dplyr"><i class="fa fa-check"></i><b>5.2</b> Funciones dplyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-filter"><i class="fa fa-check"></i><b>5.2.1</b> Función filter()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-select"><i class="fa fa-check"></i><b>5.3</b> Función select()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-arrange"><i class="fa fa-check"></i><b>5.3.1</b> Función arrange()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-mutate"><i class="fa fa-check"></i><b>5.4</b> Función mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#otras-funciones-de-dplyr"><i class="fa fa-check"></i><b>5.5</b> Otras funciones de dplyr</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#ejercicios-2"><i class="fa fa-check"></i><b>5.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1"><i class="fa fa-check"></i><b>5.6.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2"><i class="fa fa-check"></i><b>5.6.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3"><i class="fa fa-check"></i><b>5.6.3</b> Problema 3:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#respuestas"><i class="fa fa-check"></i><b>5.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1-1"><i class="fa fa-check"></i><b>5.7.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.7.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2-1"><i class="fa fa-check"></i><b>5.7.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.7.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3-1"><i class="fa fa-check"></i><b>5.7.3</b> Problema 3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html"><i class="fa fa-check"></i><b>6</b> Resumen de variables en R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-categoricas"><i class="fa fa-check"></i><b>6.1</b> Resumen de variables categoricas</a></li>
+<li class="chapter" data-level="6.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-numéricas"><i class="fa fa-check"></i><b>6.2</b> Resumen de variables numéricas</a></li>
+<li class="chapter" data-level="6.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#antes-de-empezar-1"><i class="fa fa-check"></i><b>6.3</b> Antes de empezar</a></li>
+<li class="chapter" data-level="6.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-básica"><i class="fa fa-check"></i><b>6.4</b> Estadística descriptiva básica</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-posición"><i class="fa fa-check"></i><b>6.4.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="6.4.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>6.4.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="6.4.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-frecuencia"><i class="fa fa-check"></i><b>6.4.3</b> Medidas de frecuencia</a></li>
+<li class="chapter" data-level="6.4.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#tablas-cruzadas"><i class="fa fa-check"></i><b>6.4.4</b> Tablas cruzadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-en-bloque"><i class="fa fa-check"></i><b>6.5</b> Estadística descriptiva en bloque</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-lapply"><i class="fa fa-check"></i><b>6.5.1</b> Función lapply()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-summary"><i class="fa fa-check"></i><b>6.5.2</b> Función summary()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#ejercicios-3"><i class="fa fa-check"></i><b>6.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="6.7" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#respuestas-1"><i class="fa fa-check"></i><b>6.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="6.8" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#parametricidad"><i class="fa fa-check"></i><b>6.8</b> Parametricidad</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-gráficos"><i class="fa fa-check"></i><b>6.8.1</b> Métodos gráficos:</a></li>
+<li class="chapter" data-level="6.8.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-analíticos"><i class="fa fa-check"></i><b>6.8.2</b> Métodos analíticos:</a></li>
+<li class="chapter" data-level="6.8.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-parametricidad"><i class="fa fa-check"></i><b>6.8.3</b> Resumen de parametricidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#la-tabla-1"><i class="fa fa-check"></i><b>6.9</b> La tabla 1</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#paquete-table1"><i class="fa fa-check"></i><b>6.9.1</b> Paquete table1</a></li>
+<li class="chapter" data-level="6.9.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-tbl_summary"><i class="fa fa-check"></i><b>6.9.2</b> Función tbl_summary()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html"><i class="fa fa-check"></i><b>7</b> Creación de gráficos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#gráficos-base-de-r"><i class="fa fa-check"></i><b>7.1</b> Gráficos base de R</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#plot"><i class="fa fa-check"></i><b>7.1.1</b> plot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#histograma-y-boxplot"><i class="fa fa-check"></i><b>7.1.2</b> Histograma y boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> Ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#sintaxis-ggplot"><i class="fa fa-check"></i><b>7.2.1</b> Sintaxis ggplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#el-mapeo-estético"><i class="fa fa-check"></i><b>7.2.2</b> El mapeo estético</a></li>
+<li class="chapter" data-level="7.2.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#las-geometrías"><i class="fa fa-check"></i><b>7.2.3</b> Las geometrías</a></li>
+<li class="chapter" data-level="7.2.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#capas"><i class="fa fa-check"></i><b>7.2.4</b> Capas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ejercicios-4"><i class="fa fa-check"></i><b>7.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="7.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#respuestas-2"><i class="fa fa-check"></i><b>7.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html"><i class="fa fa-check"></i><b>8</b> Matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#componentes-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.1</b> Componentes de la matriz de confusión</a></li>
+<li class="chapter" data-level="8.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.2</b> Análisis de la matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#sensibilidad"><i class="fa fa-check"></i><b>8.2.1</b> Sensibilidad</a></li>
+<li class="chapter" data-level="8.2.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#especificidad"><i class="fa fa-check"></i><b>8.2.2</b> Especificidad</a></li>
+<li class="chapter" data-level="8.2.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#valores-predictivos-positivos-y-negativos"><i class="fa fa-check"></i><b>8.2.3</b> Valores predictivos positivos y negativos</a></li>
+<li class="chapter" data-level="8.2.4" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#indice-de-omision-falsa-false-omission-rate-e-indice-de-deteccion-falsa-false-discovery-rate"><i class="fa fa-check"></i><b>8.2.4</b> Indice de omision falsa (False Omission Rate) e indice de deteccion falsa (False Discovery Rate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión-con-r"><i class="fa fa-check"></i><b>8.3</b> Análisis de la matriz de confusión con R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><i class="fa fa-check"></i><b>9</b> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>9.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="9.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#test-de-chi-cuadrado"><i class="fa fa-check"></i><b>9.2</b> Test de Chi cuadrado</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#supuestos-del-chi-cuadrado"><i class="fa fa-check"></i><b>9.2.1</b> Supuestos del Chi cuadrado</a></li>
+<li class="chapter" data-level="9.2.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#corrección-de-fisher"><i class="fa fa-check"></i><b>9.2.2</b> Corrección de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#ejercicios-5"><i class="fa fa-check"></i><b>9.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="9.4" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#respuestas-3"><i class="fa fa-check"></i><b>9.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html"><i class="fa fa-check"></i><b>10</b> Test de contraste de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-z"><i class="fa fa-check"></i><b>10.1</b> Test Z</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-del-test-z"><i class="fa fa-check"></i><b>10.1.1</b> Supuestos del test Z</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-t-de-student"><i class="fa fa-check"></i><b>10.2</b> Test <em>t</em> de Student</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-de-la-prueba-t"><i class="fa fa-check"></i><b>10.2.1</b> Supuestos de la prueba <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#tests-no-paramétricos-para-comparación-de-variables-continuas"><i class="fa fa-check"></i><b>10.3</b> Tests no paramétricos para comparación de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-u-de-mann-whitnney"><i class="fa fa-check"></i><b>10.3.1</b> Test <em>U</em> de Mann-Whitnney</a></li>
+<li class="chapter" data-level="10.3.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-wilcoxon"><i class="fa fa-check"></i><b>10.3.2</b> Test de Wilcoxon</a></li>
+<li class="chapter" data-level="10.3.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-la-mediana"><i class="fa fa-check"></i><b>10.3.3</b> test de la Mediana</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#algoritmo-para-la-decisión-de-la-prueba"><i class="fa fa-check"></i><b>10.4</b> Algoritmo para la decisión de la prueba</a></li>
+<li class="chapter" data-level="10.5" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#ejercicios-6"><i class="fa fa-check"></i><b>10.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="10.6" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#respuestas-4"><i class="fa fa-check"></i><b>10.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><i class="fa fa-check"></i><b>11</b> Test de contraste de variables continuas con grupos de más de dos niveles</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#anova"><i class="fa fa-check"></i><b>11.1</b> Anova</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#supestos-de-la-anova"><i class="fa fa-check"></i><b>11.1.1</b> Supestos de la ANOVA</a></li>
+<li class="chapter" data-level="11.1.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#interpretando-el-modelo-de-anova"><i class="fa fa-check"></i><b>11.1.2</b> Interpretando el modelo de ANOVA</a></li>
+<li class="chapter" data-level="11.1.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#el-problema-de-las-comparaciones-múltiples"><i class="fa fa-check"></i><b>11.1.3</b> El problema de las comparaciones múltiples</a></li>
+<li class="chapter" data-level="11.1.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc"><i class="fa fa-check"></i><b>11.1.4</b> Post-Hoc</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#kruskal-wallis"><i class="fa fa-check"></i><b>11.2</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc-no-paramétricos"><i class="fa fa-check"></i><b>11.2.1</b> Post-hoc no paramétricos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#ejercicios-7"><i class="fa fa-check"></i><b>11.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="11.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#respuestas-5"><i class="fa fa-check"></i><b>11.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlaciones.html"><a href="correlaciones.html"><i class="fa fa-check"></i><b>12</b> Correlaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlaciones.html"><a href="correlaciones.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1</b> Coeficiente de correlación de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlaciones.html"><a href="correlaciones.html#supuestos-del-coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1.1</b> Supuestos del coeficiente de correlación de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlaciones.html"><a href="correlaciones.html#correlaciones-no-paramétricas-de-kendal-y-spearman"><i class="fa fa-check"></i><b>12.2</b> Correlaciones no paramétricas de Kendal y Spearman</a></li>
+<li class="chapter" data-level="12.3" data-path="correlaciones.html"><a href="correlaciones.html#ejercicios-8"><i class="fa fa-check"></i><b>12.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="12.4" data-path="correlaciones.html"><a href="correlaciones.html#respuestas-6"><i class="fa fa-check"></i><b>12.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="12.5" data-path="correlaciones.html"><a href="correlaciones.html#matriz-de-correlación"><i class="fa fa-check"></i><b>12.5</b> Matriz de correlación</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlaciones.html"><a href="correlaciones.html#visualización-de-matriz-de-correlaciones-corrplot"><i class="fa fa-check"></i><b>12.5.1</b> Visualización de matriz de correlaciones, Corrplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html"><i class="fa fa-check"></i><b>13</b> Regresión y regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#concepto-de-regresión"><i class="fa fa-check"></i><b>13.1</b> Concepto de regresión</a></li>
+<li class="chapter" data-level="13.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal"><i class="fa fa-check"></i><b>13.2</b> Regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>13.2.1</b> Regresión lineal simple</a></li>
+<li class="chapter" data-level="13.2.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-múltiple"><i class="fa fa-check"></i><b>13.2.2</b> Regresión lineal múltiple</a></li>
+<li class="chapter" data-level="13.2.3" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#parámetros-de-corrección-del-modelo"><i class="fa fa-check"></i><b>13.2.3</b> Parámetros de corrección del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>14</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logística"><i class="fa fa-check"></i><b>14.1</b> La función logística</a></li>
+<li class="chapter" data-level="14.2" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-simple"><i class="fa fa-check"></i><b>14.2</b> Regresión logística simple</a></li>
+<li class="chapter" data-level="14.3" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-múltiple"><i class="fa fa-check"></i><b>14.3</b> Regresión logística múltiple</a></li>
+<li class="chapter" data-level="14.4" data-path="regresión-logística.html"><a href="regresión-logística.html#evaluando-la-precisión-de-la-regresión-logística"><i class="fa fa-check"></i><b>14.4</b> Evaluando la precisión de la regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#criterio-de-información-de-akaike"><i class="fa fa-check"></i><b>14.4.1</b> Criterio de información de Akaike</a></li>
+<li class="chapter" data-level="14.4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#hacer-predicciones-y-compararlas-con-la-realidad"><i class="fa fa-check"></i><b>14.4.2</b> Hacer predicciones y compararlas con la realidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regresión-logística.html"><a href="regresión-logística.html#ejercicios-9"><i class="fa fa-check"></i><b>14.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="14.6" data-path="regresión-logística.html"><a href="regresión-logística.html#respuestas-7"><i class="fa fa-check"></i><b>14.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</h1>
+<p>La prueba de independencia de chi-cuadrado se utiliza para analizar una tabla de frecuencias (o tabla de contingencia) formada por dos variables categóricas (sin importar cuantos niveles tengan (pueden ser dictómicas por ejemplo). La prueba evalúa si existe una asociación significativa entre las distribución de frecuncias de las categorías de las dos variables, es decir, si la distribución de una “depende” o no de la de la otra.</p>
+<div id="tablas-de-contingencia" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Tablas de contingencia</h2>
+<p>En el capítulo anterior tuvimos una breve introducción a las tabals de contingencia a partir de una muy particular, las <em>matrices de confusión</em> que no es más que una tabla de contingencia para dos variables dicotómicas (una con el gold standard para el diagnóstico y la otra con una prueba que se quiere testear)</p>
+<p>Pese a que algunas cosillas ya sabemos del asunto, vamos a refrescar algunos conceptos.</p>
+<p>Las tablas de contingencia también pueden ser llamadas <em>tablas de doble entrada</em> ya que se disponen dos variables _ una en el encabezado_ y otra en la <em>primera columna</em>. La posición de ambas variables en cada lugar es irrelevante desde la mayoría de los enfoques estadísticos, sin embargo por convención, aplicamos reglas similares a la de los gráficos y en el eje x (o sea el encabezado) colocamos la variable explicativa y en el de las y (la primera fila) la variable que pensamos que “es función” de la anterior.</p>
+<p>Se pueden crear tablas de varias formas en R, veamos algunas.</p>
+<p>Las tablas de contingencia se usan para resumir dos variables categóricas antes de proseguir asegurarse que las variables estén definidas correctamente (como <em>factores</em>)</p>
+<p>Vamos a trabajar con la base de datos “TitanicSurvival” del paquete “carData” (instalenlo si no lo tienen). Esta base contiene información sobre el estado de supervivencia, sexo, edad y clase de los 1309 pasajeros del desastre del Titanic de 1912 (y no, no hay información sobre el incidente de Rose, Jack y una puerta con mucho espacio)</p>
+<p>Asignemosla a un objeto del ambiente para trabajar.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(carData)</span>
+<span id="cb267-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb267-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb267-3"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb267-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>TitanicSurvival</span></code></pre></div>
+<p>Crear una tabla de contingencia es tan sencillo como asignar en la función <em>table()</em> una variable “en función de la otra”. En este caso nos interesa conocer la distribución de sobrevivientes <em>en función</em> del sexo (por lo de: “mujeres y niños primero”)</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>survived, data<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>##      
+##       female male
+##   no     127  682
+##   yes    339  161</code></pre>
+<p>Listo, creamos nuestra tabla de contingencia, tan sencillo como eso.
+¿Sobrevivieron más hombres o más mujeres?</p>
+<p>Pareciera que sí, pero claro no basta con calcular cuantos murieron y cuantos no, sino cuantos del total (puede ocurrir que haya sobrevivido más mujeres porque, sencillamente, en el barco había más mujeres)</p>
+<p>Si “mujeres y niños primero” fue una medida efectiva, entonces la distribución de la variable <em>sex</em> debería determinar la distribución <em>survived</em>. En otras palabras sobrevvivir es dependiente del sexo. Determinar que esta dependencia existe y no es fruto del azar es la tarea del test de Chi Cuadrado. Manos a la obra.</p>
+</div>
+<div id="test-de-chi-cuadrado" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Test de Chi cuadrado</h2>
+<p>En términos sencillos, la prueba de Chi-cuadrado examina si las filas y las columnas de una tabla de contingencia están asociadas (o dependen entre ellas) de forma estadísticamente significativa (y no son producto del azar. Las hipótesis de trabajo del test son</p>
+<ul>
+<li><p><strong>Hipótesis nula (H0)</strong>: las variables de fila y columna de la tabla de contingencia son independientes.</p></li>
+<li><p><strong>Hipótesis alternativa (H1)</strong>: las variables de fila y columna son dependientes entre sí</p></li>
+</ul>
+<p>Para ello construye dos tablas, una tabla de <em>hipótesis nula</em> es decir, una tabla falsa con la distribución que tomarían las variables si lo determinara el azar. A esta tabla se la llama de <strong>frecuencias esperadas</strong> y la contrasta con la distribución real, o de <strong>frecuencias observadas</strong>.</p>
+<p>Una vez que ambas tablas estan construídas, se chequea celda a celda cuanto se asemejan una a la otra creando el <em>estadístico de Chi cuadrado</em>.</p>
+<p><img src="img/chi_2.JPG" width="210" /></p>
+<p>Este estadístico se comparará con una distribución teórica (no se pierdan la clase de distribuciones si lo han hecho). En esta distribución encontraremos la probabilidad que este estadístico se produzca por azar (o de que la hipótesis nula sea cierta)</p>
+<p>Hagamos un ejercicio para entender esto:</p>
+<p>Supongamos que nos interesa ver si la ley de “mujeres primero” generó un impacto en la sobrevivida, entonces ambas variables deberían ser <em>dependientes</em> entre sí. testeamoslo con un test de chi cuadrado:</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>survived, data<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  data$survived and data$sex
+## X-squared = 363.62, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>La p es infinitamente pequeña (15 ceros después de la coma antes del primer valor) mostrando que la hipótesis nula del test (sexo y sobrevida son independientes) es falsa.</p>
+<p>Pero veamos algunas cositas más, guardemos el resultado en un objeto:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb272-1" aria-hidden="true" tabindex="-1"></a>chi<span class="ot">&lt;-</span><span class="fu">chisq.test</span>(data<span class="sc">$</span>survived, data<span class="sc">$</span>sex)</span></code></pre></div>
+<p>Verán que tenemos un objeto “list” con 9 componentes, ¿les interesa ver que tiene adentro?, a mí si. Chusmeemos:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(chi)</span></code></pre></div>
+<pre><code>## List of 9
+##  $ statistic: Named num 364
+##   ..- attr(*, &quot;names&quot;)= chr &quot;X-squared&quot;
+##  $ parameter: Named int 1
+##   ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
+##  $ p.value  : num 4.59e-81
+##  $ method   : chr &quot;Pearson&#39;s Chi-squared test with Yates&#39; continuity correction&quot;
+##  $ data.name: chr &quot;data$survived and data$sex&quot;
+##  $ observed : &#39;table&#39; int [1:2, 1:2] 127 339 682 161
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ data$survived: chr [1:2] &quot;no&quot; &quot;yes&quot;
+##   .. ..$ data$sex     : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  $ expected : num [1:2, 1:2] 288 178 521 322
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ data$survived: chr [1:2] &quot;no&quot; &quot;yes&quot;
+##   .. ..$ data$sex     : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  $ residuals: &#39;table&#39; num [1:2, 1:2] -9.49 12.07 7.05 -8.97
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ data$survived: chr [1:2] &quot;no&quot; &quot;yes&quot;
+##   .. ..$ data$sex     : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  $ stdres   : &#39;table&#39; num [1:2, 1:2] -19.1 19.1 19.1 -19.1
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ data$survived: chr [1:2] &quot;no&quot; &quot;yes&quot;
+##   .. ..$ data$sex     : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<p>Como ven esta el p valor en un lugar, el método utilizado en otro y hay dos tablas: <strong>observadas</strong> y <strong>esperadas</strong>.
+Es decir que R las creo y las guardo en algún lado, veamosla:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co">#la tabla de las frecuencias observadas (la misma que creamos en el apartado anterior)</span></span>
+<span id="cb275-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb275-2" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>observed</span></code></pre></div>
+<pre><code>##              data$sex
+## data$survived female male
+##           no     127  682
+##           yes    339  161</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co">#la tabla de las esperadas (frecuencias claculadas con el supuesto del azar)</span></span>
+<span id="cb277-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb277-2" aria-hidden="true" tabindex="-1"></a>chi<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>##              data$sex
+## data$survived   female     male
+##           no  288.0015 520.9985
+##           yes 177.9985 322.0015</code></pre>
+<p>Como ven, si el sexo no hubiera importado en la sobrevida deberían haber sobrevivido en lugar de 161 hombres, 322 (y Jack con ellos :( )</p>
+<p>El test de chi cuadrado es muy versátil y puede servir, como en este caso, para contrastar la independencia de dos variables dicotómicas (lo que llamamos una tabla de 2x2) o de variables con más niveles.</p>
+<p>Pero no todo es soplar y hacer botellas, existen condiciones muy estrictas en que este test se puede usar, esas condiciones que deben cumplirse son llamadas <strong>supuestos</strong></p>
+<div id="supuestos-del-chi-cuadrado" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Supuestos del Chi cuadrado</h3>
+<p>Existen varios supuestos de acuerdo a diferentes autores, aquí mencionaremos los conocidos como clásicos (elaborados por Cochran en 1952)</p>
+<p><strong>Tablas 2x2:</strong></p>
+<ul>
+<li><p>Cada observación debe ser <strong>independiente de todas las demás</strong> (es decir, <em>sólo</em> una observación por sujeto)</p></li>
+<li><p>Todas las <strong>frecuencias esperados deben ser 10 o más</strong> Si alguno de los recuentos esperados es inferior a 10, pero superior o igual a 5, algunos autores sugieren que se aplique la corrección de continuidad de Yates. Si alguno de los recuentos esperados es inferior a 5, deberá utilizarse alguna otra prueba (por ejemplo, la prueba exacta de Fisher para tablas de contingencia de 2x2)</p></li>
+</ul>
+<p><strong>Tablas mayores de 2x2:</strong></p>
+<p>Para las tablas mayores de 2x2, la distribución chi-cuadrado con los grados de libertad adecuados proporciona una buena aproximación a la distribución de muestreo del chi-cuadrado de Pearson cuando la hipótesis nula es verdadera y se cumplen las siguientes condiciones:</p>
+<ul>
+<li><p>Cada observación es independiente de todas las demás (es decir, una observación por sujeto);</p></li>
+<li><p>“No más del 20% de los recuentos esperados son inferiores a 5 y todos los recuentos individuales esperados son 1 o superiores” Obsérvese que está bien tener algunos recuentos esperados inferiores a 5, siempre que ninguno sea inferior a 1, y que al menos el 80% de los recuentos esperados sean iguales o superiores a 5.</p></li>
+</ul>
+<p>Con estos supuestos vemos que no siempre es correcto usar Chi cuadrado y que existen un par de pruebas (Yates y Fisher) que funcionan como <strong>correcciones</strong> cuando esto ocurre. En la sección siguiente vamos a ver cómo funcionan.</p>
+</div>
+<div id="corrección-de-fisher" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Corrección de Fisher</h3>
+<p>Creemos un dataset hipotético, copien la siguiente línea:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb279-1" aria-hidden="true" tabindex="-1"></a>fumon <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb279-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Fuma&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>, <span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>),</span>
+<span id="cb279-3"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Deportista&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>, <span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;Si&quot;</span>))</span>
+<span id="cb279-4"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb279-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-5"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb279-5" aria-hidden="true" tabindex="-1"></a>fumon</span></code></pre></div>
+<pre><code>##    Fuma Deportista
+## 1    Si         Si
+## 2    Si         Si
+## 3    Si         No
+## 4    Si         No
+## 5    Si         No
+## 6    Si         No
+## 7    Si         No
+## 8    No         Si
+## 9    No         Si
+## 10   No         Si
+## 11   No         Si
+## 12   No         Si
+## 13   No         Si
+## 14   No         Si</code></pre>
+<p>Hacemos un chi cuadrado para demotrar que el no fumar y la práctica de deporte estan relacionados:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb281-1" aria-hidden="true" tabindex="-1"></a>chi2<span class="ot">&lt;-</span><span class="fu">chisq.test</span>(fumon<span class="sc">$</span>Fuma,fumon<span class="sc">$</span>Deportista)</span></code></pre></div>
+<pre><code>## Warning in chisq.test(fumon$Fuma, fumon$Deportista): Chi-squared approximation
+## may be incorrect</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb283-1" aria-hidden="true" tabindex="-1"></a>chi2</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  fumon$Fuma and fumon$Deportista
+## X-squared = 4.9778, df = 1, p-value = 0.02567</code></pre>
+<p>Obtenemos un valor de p significativo. Pero pero pero… un aviso de R que dice que la aproximación de Chi cuadrado es incorrecta. Esto es porque R chequeo los supuestos y encontró que no se cumplen, y nos lo hace saber. Veamos las frecuencias esperadas.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb285-1" aria-hidden="true" tabindex="-1"></a>chi2<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>##           fumon$Deportista
+## fumon$Fuma  No  Si
+##         No 2.5 4.5
+##         Si 2.5 4.5</code></pre>
+<p>El supuesto “Todas las frecuencias esperados deben ser 10 o más” no se cumple. En esos casos debemos recurrir a la corrección de Yates si la frecuencia esperada es menor de 10 pero mayor a 5 y si es menor de 5 la de Fisher.
+La corrección de Fisher funciona para todas las frecuencias así que suele ser la más usada, también es la más estricta con el p valor asi que es posible que la significancia desaparezca (por eso algunos estadísticos prefieren usar Yates cuando es posible)</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(fumon<span class="sc">$</span>Fuma,fumon<span class="sc">$</span>Deportista)</span></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  fumon$Fuma and fumon$Deportista
+## p-value = 0.02098
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.0000000 0.6899019
+## sample estimates:
+## odds ratio 
+##          0</code></pre>
+<p>Como ven en este caso, ambas pruebas son significativas, sin embargo los p-valores difieren. <strong>No es correcto reportar el chi cuadrado cuando los supuestos no se cumplen porque en ese caso, ese p-valor, no es válido</strong></p>
+<p>Ejercitemos un poco:</p>
+</div>
+</div>
+<div id="ejercicios-5" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</h2>
+<p><strong>Ejercicio 1</strong></p>
+<ol style="list-style-type: decimal">
+<li>En este caso vamos a usar la base “TitanicSurvival” para demostrar que existe tambien una asociación entre la sobrevida y el tipo de clase en la que viajaban.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Construyan la tabla de doble entrada para demostrar esto</p></li>
+<li><p>Planteen el test de chi cuadrado, corranlo y posteriormente traten de definir el hallazgo.</p></li>
+</ol>
+<p><strong>Ejercicio 2</strong></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Vayamos un poco más lejos que pasara si las condiciones del sexo del pasajero y la de la sobrevida se combinaran para determinar la sobrevida (porque quizás la frase “mujeres y niños primero”, no sea equivalente a “damas de alta sociedad, mujeres obreras, jovenes herederos y niños trabajadores primero”).</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Para ello, una forma de hacer esto es dividir la base en tres (una por cada clase), usemos la funcion filter para hacerlo (Visiten los capítulo de manipulación de datos si no se acuerdan como). Haganlo</p></li>
+<li><p>Una vez que tengan realizada la división corran test de chi cuadrados e interpretenlos</p></li>
+</ol>
+<p>A trabajar</p>
+</div>
+<div id="respuestas-3" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</h2>
+<p>Acá estan las soluciones</p>
+<p><strong>Ejercicio 1. </strong></p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Construímos la Tabla</span></span>
+<span id="cb289-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>survived, data<span class="sc">$</span>passengerClass)</span></code></pre></div>
+<pre><code>##      
+##       1st 2nd 3rd
+##   no  123 158 528
+##   yes 200 119 181</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="co">#corrimos el test</span></span>
+<span id="cb291-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>survived, data<span class="sc">$</span>passengerClass)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  data$survived and data$passengerClass
+## X-squared = 127.86, df = 2, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co">#El test de chi cuadrado arrojó un valor significativo, eso quiere decir que la distribución de la sobrevida en distintas clases no fue producto del azar (tampoco fue magia), sino que una dependen de la otra (a simple vista la primera clase tiene más chances de sobrevida, Das Kapital my friend!)</span></span></code></pre></div>
+<p><strong>Ejercicio 2</strong></p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Vamos a utilizar dplyr para crear bases por clases</span></span>
+<span id="cb294-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-3"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb294-4"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-5"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-5" aria-hidden="true" tabindex="-1"></a>Primera<span class="ot">&lt;-</span>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(passengerClass <span class="sc">==</span> <span class="st">&quot;1st&quot;</span>)</span>
+<span id="cb294-6"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-6" aria-hidden="true" tabindex="-1"></a>Segunda<span class="ot">&lt;-</span>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(passengerClass <span class="sc">==</span> <span class="st">&quot;2nd&quot;</span>)</span>
+<span id="cb294-7"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-7" aria-hidden="true" tabindex="-1"></a>Tercera<span class="ot">&lt;-</span>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(passengerClass <span class="sc">==</span> <span class="st">&quot;3rd&quot;</span>)</span>
+<span id="cb294-8"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-9"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Ahora vamos a correr Chi test para cada grupo</span></span>
+<span id="cb294-10"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-11"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Para primera:</span></span>
+<span id="cb294-12"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb294-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Primera<span class="sc">$</span>survived, Primera<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>##      
+##       female male
+##   no       5  118
+##   yes    139   61</code></pre>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Primera<span class="sc">$</span>survived, Primera<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  Primera$survived and Primera$sex
+## X-squared = 129.36, df = 1, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para segunda:</span></span>
+<span id="cb298-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Segunda<span class="sc">$</span>survived, Segunda<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>##      
+##       female male
+##   no      12  146
+##   yes     94   25</code></pre>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Segunda<span class="sc">$</span>survived, Segunda<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  Segunda$survived and Segunda$sex
+## X-squared = 143.46, df = 1, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para Tercera:</span></span>
+<span id="cb302-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Tercera<span class="sc">$</span>survived, Tercera<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>##      
+##       female male
+##   no     110  418
+##   yes    106   75</code></pre>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Tercera<span class="sc">$</span>survived, Tercera<span class="sc">$</span>sex)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  Tercera$survived and Tercera$sex
+## X-squared = 88.809, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>Vemos que no se cumplieron todos los supuestos del Chi cuadrado entonces R aplico corrección de Yates, en todos los grupos hubo una asociación entre ser mujer y sobrevivir sin embargo si uds comparan las proporciones verán que las “chances de sobrevivir” disminuyeron clase a clase pese a ser mujer.</p>
+<p>Otra forma de demostrar eso es quedarnos con las mujeres solamente y testear el efecto de clase, intentemoslo:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb306-1" aria-hidden="true" tabindex="-1"></a>mujeres<span class="ot">&lt;-</span>data<span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>)</span>
+<span id="cb306-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb306-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb306-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-4"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Construímos la Tabla</span></span>
+<span id="cb306-5"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mujeres<span class="sc">$</span>survived, mujeres<span class="sc">$</span>passengerClass)</span></code></pre></div>
+<pre><code>##      
+##       1st 2nd 3rd
+##   no    5  12 110
+##   yes 139  94 106</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co">#corrimos el test</span></span>
+<span id="cb308-2"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(mujeres<span class="sc">$</span>survived, mujeres<span class="sc">$</span>passengerClass)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  mujeres$survived and mujeres$passengerClass
+## X-squared = 115.7, df = 2, p-value &lt; 2.2e-16</code></pre>
+<p>Sigue habiendo un efecto de la clase!.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="matriz-de-confusión.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="test-de-contraste-de-variables-continuas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Esatadistica_en_R.pdf", "Esatadistica_en_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

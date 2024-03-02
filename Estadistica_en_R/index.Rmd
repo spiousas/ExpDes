@@ -1,0 +1,25 @@
+---
+title: "Introducción a la bioestadistica"
+subtitle: "Manual de actividades en R"
+author: "Ismael Calandri"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: rstudio/libroR
+description: "Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni"
+favicon: "flenilogo.ico"
+---
+
+```{r, include = FALSE, eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html"}
+# Enables Font Awesome in HTML based bookdown outputs.
+fa <- rmarkdown::html_dependency_font_awesome()
+fa$attachment <- "fonts/fontawesome-webfont.ttf"
+htmltools::tagList(fa)
+```
+
+# Acerca de este libro
+
+![](img/logofleni.png)
+
+> Este libro se creó para funcionar como una guía de trabajos prácticos y una introducción al manejo del software de *R* para estadística básica. Forma parte integral del **curso de estadística bàsica para las neurociencias dictado por Fleni**. Para más información sobre este curso por favor visitar el siguiente link [**https://www.fleni.org.ar/investigacion-educacion/cursos-seminarios-y-congresos/**](https://www.fleni.org.ar/investigacion-educacion/cursos-seminarios-y-congresos/){.uri}

@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Resumen de variables en R | Introducción a la bioestadistica</title>
+  <meta name="description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Resumen de variables en R | Introducción a la bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="github-repo" content="rstudio/libroR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Resumen de variables en R | Introducción a la bioestadistica" />
+  
+  <meta name="twitter:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  
+
+<meta name="author" content="Ismael Calandri" />
+
+
+<meta name="date" content="2021-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="flenilogo.ico" type="image/x-icon" />
+<link rel="prev" href="manipulación-de-variables-ii.html"/>
+<link rel="next" href="creación-de-gráficos.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="libs/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Acerca de este libro</a></li>
+<li class="chapter" data-level="2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html"><i class="fa fa-check"></i><b>2</b> Introducción y set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-es-r"><i class="fa fa-check"></i><b>2.1</b> ¿Qué es R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-quiere-decir-que-es-un-lenguaje-de-programación"><i class="fa fa-check"></i><b>2.1.1</b> ¿Qué quiere decir que es un lenguaje de programación?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación"><i class="fa fa-check"></i><b>2.2</b> Instalación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Instalación de RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#dónde-pedir-ayuda"><i class="fa fa-check"></i><b>2.2.3</b> ¿Dónde pedir ayuda?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html"><i class="fa fa-check"></i><b>3</b> Primeros pasos en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#consola"><i class="fa fa-check"></i><b>3.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#scripts"><i class="fa fa-check"></i><b>3.2</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#crear-un-script"><i class="fa fa-check"></i><b>3.2.1</b> Crear un script</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#objetos"><i class="fa fa-check"></i><b>3.3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.3.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#clases-de-objetos"><i class="fa fa-check"></i><b>3.3.2</b> Clases de objetos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#operaciones-con-objetos"><i class="fa fa-check"></i><b>3.3.3</b> Operaciones con objetos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-con-objetos"><i class="fa fa-check"></i><b>3.3.4</b> Funciones con objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador"><i class="fa fa-check"></i><b>3.4</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+<li class="chapter" data-level="3.5" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#dataset-dataframe-bases-de-datos"><i class="fa fa-check"></i><b>3.5</b> Dataset-Dataframe, bases de datos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-base-de-datos"><i class="fa fa-check"></i><b>3.5.1</b> Creación de base de datos:</a></li>
+<li class="chapter" data-level="3.5.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-básicas-para-los-dataframes"><i class="fa fa-check"></i><b>3.5.2</b> Funciones básicas para los dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador-1"><i class="fa fa-check"></i><b>3.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><i class="fa fa-check"></i><b>4</b> Ambientes de trabajo y manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#antes-de-empezar"><i class="fa fa-check"></i><b>4.1</b> Antes de empezar</a></li>
+<li class="chapter" data-level="4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#directorio-de-trabajo-o-working-directory"><i class="fa fa-check"></i><b>4.2</b> Directorio de trabajo o Working directory</a></li>
+<li class="chapter" data-level="4.3" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#paquetes-o-librerías"><i class="fa fa-check"></i><b>4.3</b> Paquetes o librerías</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-instalar-una-librería"><i class="fa fa-check"></i><b>4.3.1</b> ¿Como instalar una librería?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-activar-una-librería"><i class="fa fa-check"></i><b>4.3.2</b> ¿Como activar una librería?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#de-la-base-de-datos-a-r"><i class="fa fa-check"></i><b>4.4</b> De la base de datos a R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#metodo-de-ventanas-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.1</b> Metodo de ventanas para subir un dataframe a R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#código-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.2</b> Código para subir un dataframe a R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#manipulación-de-variables-i"><i class="fa fa-check"></i><b>4.5</b> Manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#métodos-de-selección-de-datos"><i class="fa fa-check"></i><b>4.5.1</b> Métodos de selección de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html"><i class="fa fa-check"></i><b>5</b> Manipulación de variables (II)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#piping-y-paquete-dplyr"><i class="fa fa-check"></i><b>5.1</b> Piping y paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#funciones-dplyr"><i class="fa fa-check"></i><b>5.2</b> Funciones dplyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-filter"><i class="fa fa-check"></i><b>5.2.1</b> Función filter()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-select"><i class="fa fa-check"></i><b>5.3</b> Función select()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-arrange"><i class="fa fa-check"></i><b>5.3.1</b> Función arrange()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-mutate"><i class="fa fa-check"></i><b>5.4</b> Función mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#otras-funciones-de-dplyr"><i class="fa fa-check"></i><b>5.5</b> Otras funciones de dplyr</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#ejercicios-2"><i class="fa fa-check"></i><b>5.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1"><i class="fa fa-check"></i><b>5.6.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2"><i class="fa fa-check"></i><b>5.6.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3"><i class="fa fa-check"></i><b>5.6.3</b> Problema 3:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#respuestas"><i class="fa fa-check"></i><b>5.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1-1"><i class="fa fa-check"></i><b>5.7.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.7.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2-1"><i class="fa fa-check"></i><b>5.7.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.7.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3-1"><i class="fa fa-check"></i><b>5.7.3</b> Problema 3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html"><i class="fa fa-check"></i><b>6</b> Resumen de variables en R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-categoricas"><i class="fa fa-check"></i><b>6.1</b> Resumen de variables categoricas</a></li>
+<li class="chapter" data-level="6.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-numéricas"><i class="fa fa-check"></i><b>6.2</b> Resumen de variables numéricas</a></li>
+<li class="chapter" data-level="6.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#antes-de-empezar-1"><i class="fa fa-check"></i><b>6.3</b> Antes de empezar</a></li>
+<li class="chapter" data-level="6.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-básica"><i class="fa fa-check"></i><b>6.4</b> Estadística descriptiva básica</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-posición"><i class="fa fa-check"></i><b>6.4.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="6.4.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>6.4.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="6.4.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-frecuencia"><i class="fa fa-check"></i><b>6.4.3</b> Medidas de frecuencia</a></li>
+<li class="chapter" data-level="6.4.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#tablas-cruzadas"><i class="fa fa-check"></i><b>6.4.4</b> Tablas cruzadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-en-bloque"><i class="fa fa-check"></i><b>6.5</b> Estadística descriptiva en bloque</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-lapply"><i class="fa fa-check"></i><b>6.5.1</b> Función lapply()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-summary"><i class="fa fa-check"></i><b>6.5.2</b> Función summary()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#ejercicios-3"><i class="fa fa-check"></i><b>6.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="6.7" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#respuestas-1"><i class="fa fa-check"></i><b>6.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="6.8" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#parametricidad"><i class="fa fa-check"></i><b>6.8</b> Parametricidad</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-gráficos"><i class="fa fa-check"></i><b>6.8.1</b> Métodos gráficos:</a></li>
+<li class="chapter" data-level="6.8.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-analíticos"><i class="fa fa-check"></i><b>6.8.2</b> Métodos analíticos:</a></li>
+<li class="chapter" data-level="6.8.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-parametricidad"><i class="fa fa-check"></i><b>6.8.3</b> Resumen de parametricidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#la-tabla-1"><i class="fa fa-check"></i><b>6.9</b> La tabla 1</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#paquete-table1"><i class="fa fa-check"></i><b>6.9.1</b> Paquete table1</a></li>
+<li class="chapter" data-level="6.9.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-tbl_summary"><i class="fa fa-check"></i><b>6.9.2</b> Función tbl_summary()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html"><i class="fa fa-check"></i><b>7</b> Creación de gráficos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#gráficos-base-de-r"><i class="fa fa-check"></i><b>7.1</b> Gráficos base de R</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#plot"><i class="fa fa-check"></i><b>7.1.1</b> plot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#histograma-y-boxplot"><i class="fa fa-check"></i><b>7.1.2</b> Histograma y boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> Ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#sintaxis-ggplot"><i class="fa fa-check"></i><b>7.2.1</b> Sintaxis ggplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#el-mapeo-estético"><i class="fa fa-check"></i><b>7.2.2</b> El mapeo estético</a></li>
+<li class="chapter" data-level="7.2.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#las-geometrías"><i class="fa fa-check"></i><b>7.2.3</b> Las geometrías</a></li>
+<li class="chapter" data-level="7.2.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#capas"><i class="fa fa-check"></i><b>7.2.4</b> Capas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ejercicios-4"><i class="fa fa-check"></i><b>7.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="7.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#respuestas-2"><i class="fa fa-check"></i><b>7.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html"><i class="fa fa-check"></i><b>8</b> Matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#componentes-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.1</b> Componentes de la matriz de confusión</a></li>
+<li class="chapter" data-level="8.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.2</b> Análisis de la matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#sensibilidad"><i class="fa fa-check"></i><b>8.2.1</b> Sensibilidad</a></li>
+<li class="chapter" data-level="8.2.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#especificidad"><i class="fa fa-check"></i><b>8.2.2</b> Especificidad</a></li>
+<li class="chapter" data-level="8.2.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#valores-predictivos-positivos-y-negativos"><i class="fa fa-check"></i><b>8.2.3</b> Valores predictivos positivos y negativos</a></li>
+<li class="chapter" data-level="8.2.4" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#indice-de-omision-falsa-false-omission-rate-e-indice-de-deteccion-falsa-false-discovery-rate"><i class="fa fa-check"></i><b>8.2.4</b> Indice de omision falsa (False Omission Rate) e indice de deteccion falsa (False Discovery Rate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión-con-r"><i class="fa fa-check"></i><b>8.3</b> Análisis de la matriz de confusión con R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><i class="fa fa-check"></i><b>9</b> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>9.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="9.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#test-de-chi-cuadrado"><i class="fa fa-check"></i><b>9.2</b> Test de Chi cuadrado</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#supuestos-del-chi-cuadrado"><i class="fa fa-check"></i><b>9.2.1</b> Supuestos del Chi cuadrado</a></li>
+<li class="chapter" data-level="9.2.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#corrección-de-fisher"><i class="fa fa-check"></i><b>9.2.2</b> Corrección de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#ejercicios-5"><i class="fa fa-check"></i><b>9.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="9.4" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#respuestas-3"><i class="fa fa-check"></i><b>9.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html"><i class="fa fa-check"></i><b>10</b> Test de contraste de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-z"><i class="fa fa-check"></i><b>10.1</b> Test Z</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-del-test-z"><i class="fa fa-check"></i><b>10.1.1</b> Supuestos del test Z</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-t-de-student"><i class="fa fa-check"></i><b>10.2</b> Test <em>t</em> de Student</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-de-la-prueba-t"><i class="fa fa-check"></i><b>10.2.1</b> Supuestos de la prueba <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#tests-no-paramétricos-para-comparación-de-variables-continuas"><i class="fa fa-check"></i><b>10.3</b> Tests no paramétricos para comparación de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-u-de-mann-whitnney"><i class="fa fa-check"></i><b>10.3.1</b> Test <em>U</em> de Mann-Whitnney</a></li>
+<li class="chapter" data-level="10.3.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-wilcoxon"><i class="fa fa-check"></i><b>10.3.2</b> Test de Wilcoxon</a></li>
+<li class="chapter" data-level="10.3.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-la-mediana"><i class="fa fa-check"></i><b>10.3.3</b> test de la Mediana</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#algoritmo-para-la-decisión-de-la-prueba"><i class="fa fa-check"></i><b>10.4</b> Algoritmo para la decisión de la prueba</a></li>
+<li class="chapter" data-level="10.5" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#ejercicios-6"><i class="fa fa-check"></i><b>10.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="10.6" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#respuestas-4"><i class="fa fa-check"></i><b>10.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><i class="fa fa-check"></i><b>11</b> Test de contraste de variables continuas con grupos de más de dos niveles</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#anova"><i class="fa fa-check"></i><b>11.1</b> Anova</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#supestos-de-la-anova"><i class="fa fa-check"></i><b>11.1.1</b> Supestos de la ANOVA</a></li>
+<li class="chapter" data-level="11.1.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#interpretando-el-modelo-de-anova"><i class="fa fa-check"></i><b>11.1.2</b> Interpretando el modelo de ANOVA</a></li>
+<li class="chapter" data-level="11.1.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#el-problema-de-las-comparaciones-múltiples"><i class="fa fa-check"></i><b>11.1.3</b> El problema de las comparaciones múltiples</a></li>
+<li class="chapter" data-level="11.1.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc"><i class="fa fa-check"></i><b>11.1.4</b> Post-Hoc</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#kruskal-wallis"><i class="fa fa-check"></i><b>11.2</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc-no-paramétricos"><i class="fa fa-check"></i><b>11.2.1</b> Post-hoc no paramétricos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#ejercicios-7"><i class="fa fa-check"></i><b>11.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="11.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#respuestas-5"><i class="fa fa-check"></i><b>11.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlaciones.html"><a href="correlaciones.html"><i class="fa fa-check"></i><b>12</b> Correlaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlaciones.html"><a href="correlaciones.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1</b> Coeficiente de correlación de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlaciones.html"><a href="correlaciones.html#supuestos-del-coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1.1</b> Supuestos del coeficiente de correlación de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlaciones.html"><a href="correlaciones.html#correlaciones-no-paramétricas-de-kendal-y-spearman"><i class="fa fa-check"></i><b>12.2</b> Correlaciones no paramétricas de Kendal y Spearman</a></li>
+<li class="chapter" data-level="12.3" data-path="correlaciones.html"><a href="correlaciones.html#ejercicios-8"><i class="fa fa-check"></i><b>12.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="12.4" data-path="correlaciones.html"><a href="correlaciones.html#respuestas-6"><i class="fa fa-check"></i><b>12.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="12.5" data-path="correlaciones.html"><a href="correlaciones.html#matriz-de-correlación"><i class="fa fa-check"></i><b>12.5</b> Matriz de correlación</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlaciones.html"><a href="correlaciones.html#visualización-de-matriz-de-correlaciones-corrplot"><i class="fa fa-check"></i><b>12.5.1</b> Visualización de matriz de correlaciones, Corrplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html"><i class="fa fa-check"></i><b>13</b> Regresión y regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#concepto-de-regresión"><i class="fa fa-check"></i><b>13.1</b> Concepto de regresión</a></li>
+<li class="chapter" data-level="13.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal"><i class="fa fa-check"></i><b>13.2</b> Regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>13.2.1</b> Regresión lineal simple</a></li>
+<li class="chapter" data-level="13.2.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-múltiple"><i class="fa fa-check"></i><b>13.2.2</b> Regresión lineal múltiple</a></li>
+<li class="chapter" data-level="13.2.3" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#parámetros-de-corrección-del-modelo"><i class="fa fa-check"></i><b>13.2.3</b> Parámetros de corrección del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>14</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logística"><i class="fa fa-check"></i><b>14.1</b> La función logística</a></li>
+<li class="chapter" data-level="14.2" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-simple"><i class="fa fa-check"></i><b>14.2</b> Regresión logística simple</a></li>
+<li class="chapter" data-level="14.3" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-múltiple"><i class="fa fa-check"></i><b>14.3</b> Regresión logística múltiple</a></li>
+<li class="chapter" data-level="14.4" data-path="regresión-logística.html"><a href="regresión-logística.html#evaluando-la-precisión-de-la-regresión-logística"><i class="fa fa-check"></i><b>14.4</b> Evaluando la precisión de la regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#criterio-de-información-de-akaike"><i class="fa fa-check"></i><b>14.4.1</b> Criterio de información de Akaike</a></li>
+<li class="chapter" data-level="14.4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#hacer-predicciones-y-compararlas-con-la-realidad"><i class="fa fa-check"></i><b>14.4.2</b> Hacer predicciones y compararlas con la realidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regresión-logística.html"><a href="regresión-logística.html#ejercicios-9"><i class="fa fa-check"></i><b>14.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="14.6" data-path="regresión-logística.html"><a href="regresión-logística.html#respuestas-7"><i class="fa fa-check"></i><b>14.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="resumen-de-variables-en-r" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Resumen de variables en R</h1>
+<p>La estadística descriptiva (en el sentido amplio del término) es una rama de la estadística cuyo objetivo es resumir, describir y presentar una serie de valores o un conjunto de datos. La estadística descriptiva suele ser el primer paso y una parte importante en cualquier análisis estadístico. Permite comprobar la calidad de los datos y ayuda a “entender” los datos al tener una visión clara de los mismos. Si está bien presentada, la estadística descriptiva es clave para permitir a cualquier lector una idea rápida y precisa de nuestro conjunto de datos.</p>
+<p>Obviamente la forma en que resumiremos una variable dependerá del tipo de variable que estemos resumiendo.</p>
+<div id="resumen-de-variables-categoricas" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Resumen de variables categoricas</h2>
+<p>Las variables presentadas como categorías se pueden resumir a través de la <strong>frecuencia</strong> es decir el número de datos que adoptan tal o cual categoría de la variable, la <strong>frecuencia relativa</strong> es una medida similar pero que tienen en cuenta el número total de observaciones (en pocas palabras es el <em>porcentaje</em> de los datos que adoptan tal o cual categoría)</p>
+</div>
+<div id="resumen-de-variables-numéricas" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Resumen de variables numéricas</h2>
+<p>Existen muchas medidas para resumir datos pero en términos generales las vamos a dividir en dos tipos:</p>
+<ol style="list-style-type: decimal">
+<li>Medidas de posición y tendencia central</li>
+<li>Medidas de dispersión</li>
+</ol>
+<p>Las <em>medidas de posición</em> permiten ver “dónde” se sitúan los datos, es decir a puntan a valores concretos como “el medio de los datos” o “el mayor de los datos”, por ejemplo.
+Las <em>medidas de tendencia central</em> son un tipo especial de medidas de posición que nos permiten suponer el valor en donde se encuentra el medio de nuestros datos. Las medidas de posición son:</p>
+<ul>
+<li>Mínimo</li>
+<li>Máximo</li>
+<li>1er, 3er, o 4to cuartil</li>
+<li><strong>Media</strong></li>
+<li><strong>Mediana</strong></li>
+<li><strong>Moda</strong></li>
+</ul>
+<p>Estas últimas tres son medidas de tendencia central.</p>
+<p>Las <em>medidas de dispersión</em> permiten a quien las lea generarse una idea de cuan cercanos (o no) estan los valores entre sí y con la medida de tendencia central que lo representa. Las medidas de dispersión más comunes son:</p>
+<ul>
+<li>Desvío estándard</li>
+<li>Varianza</li>
+<li>Intervalo intercuartil</li>
+<li>Coeficiente de variación</li>
+<li>Rango</li>
+</ul>
+<p>Veamos con un ejemplo sencillo que queremos decir con ello:</p>
+<p>Creemos dos sets de números y calculemos sus medias (en este caso una medida de tendencia central.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="resumen-de-variables-en-r.html#cb150-1" aria-hidden="true" tabindex="-1"></a>set1<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>,<span class="dv">26</span>,<span class="dv">27</span>)</span>
+<span id="cb150-2"><a href="resumen-de-variables-en-r.html#cb150-2" aria-hidden="true" tabindex="-1"></a>set2<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">21</span>,<span class="dv">23</span>,<span class="dv">25</span>,<span class="dv">27</span>,<span class="dv">29</span>,<span class="dv">31</span>,<span class="dv">33</span>,<span class="dv">35</span>)</span>
+<span id="cb150-3"><a href="resumen-de-variables-en-r.html#cb150-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-4"><a href="resumen-de-variables-en-r.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(set1)</span></code></pre></div>
+<pre><code>## [1] 21</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="resumen-de-variables-en-r.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(set2)</span></code></pre></div>
+<pre><code>## [1] 21</code></pre>
+<p>Son iguales!!!</p>
+<p>Ahora veamos como son sus desvíos estándares (medida de dispersión):</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="resumen-de-variables-en-r.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(set1)</span></code></pre></div>
+<pre><code>## [1] 3.89444</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="resumen-de-variables-en-r.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(set2)</span></code></pre></div>
+<pre><code>## [1] 8.944272</code></pre>
+<p>Claramente son distintos, si sólo hubiéramos reportado la medida de tendencia central el lector tendría a pensar que ambas series de casos son iguales sin embargo difieren significativamente en la dispersión de los datos como vimos al crearlas.</p>
+<p>La mejor forma de resumir numéricamente una variable es reportando siempre una medida de tendencia central acompañada de una de dispersión.</p>
+</div>
+<div id="antes-de-empezar-1" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Antes de empezar</h2>
+<p>En este capítulo exploraremos varios paquetes para analizar y resumir nuestros datos en R.</p>
+<p>Trabajaremos con los datos del PBI del paquete gapminder y la base iris de Fisher (si llegaron a este capítulo sin leer los anteriores en el capítulo 5 explicamos de donde venían estas bases).</p>
+<p>Si ya no tienen estas bases en el ambiente pueden correr las siguientes líneas para tenerlos a mano:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="resumen-de-variables-en-r.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;gapminder&quot;</span>)</span>
+<span id="cb158-2"><a href="resumen-de-variables-en-r.html#cb158-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-3"><a href="resumen-de-variables-en-r.html#cb158-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>gapminder</span>
+<span id="cb158-4"><a href="resumen-de-variables-en-r.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-5"><a href="resumen-de-variables-en-r.html#cb158-5" aria-hidden="true" tabindex="-1"></a>flores<span class="ot">&lt;-</span>iris</span></code></pre></div>
+</div>
+<div id="estadística-descriptiva-básica" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Estadística descriptiva básica</h2>
+<p>Muchas de las funciones que veremos en este sección las hemos usado intuitivamente en capítulos anteriores así que haremos un repaso a vuelo de pajaro de las mismas.</p>
+<div id="medidas-de-posición" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Medidas de posición</h3>
+<div id="media" class="section level4" number="6.4.1.1">
+<h4><span class="header-section-number">6.4.1.1</span> Media</h4>
+<p>Desde la secundaria que estamos familiarizados con el concepto de la media o promedio. La media es el resultado de un cálculo aritmético, que nos permite estimar el valor central de los datos o, en otras palabras, el centro de gravedad de los mismos. La media se obtiene sumando todos los valores y dividiendo esta suma por el número de observaciones (denominado <em>n</em>).</p>
+<p>Vamos a plantear un ejemplo que nos ayude a visualizar mejor porque decimos que es el “centro de gravedad de los datos”.</p>
+<p>Imaginemos que un alumno se saca en estadística un 2, dos 8s y un 10. ¿La media sería de 7, no?. Bueno imaginemos que estamos en una especie de sube y baja con casillas de igual tamaño que representan las notas y cada nota es un pelota. El 7 sería el casillero en donde ambos “pesos” quedan equilibrados, o sea donde deberiamos poner el fulcro si queremos que este sube y baja quede balanceado.</p>
+<p>Algo así:</p>
+<p><img src="img/mean_ruler.jpg" width="1653" /></p>
+<p>Como todo estudiante sabe, agregar valores (notas) en los extremos del sube y baja cambia notablemente donde debemos poner el centro de gravedad (porque hacen “palanca” en los datos), como si nos sacaramos un 0, en el próximo parcial, la situacion quedaría así:</p>
+<p><img src="img/mean_ruler_2.jpg" width="1653" /></p>
+<p>La media sería de 5,6, hubiera variado casi dos puntos en una escala de 10.</p>
+<p>Si en cambio la nota siguiente no fuera un 0, sino un valor muy cercano a la media, como un 6 digamos, pasía algo así</p>
+<p><img src="img/mean_ruler_3.jpg" width="1653" /></p>
+<p>La media hubiera sido de 6,8; es decir prácticamente no se hubiera movido.</p>
+<p>Resumiendo, lo que cualquier alumno (o niño que use un sube y baja) sabe, adicionar a la muestra nuevos valores cercanos a la media no la hacen variar prácticamente, mientras que adicionar valores extremos generan una variación enorme (por un efecto de “apalancamiento” de los datos). Esta circunstancia hace que la media sea extremadamente susceptible a la aparición de valores atípicos o outliers. Los valores atípicos pueden originarse por una serie de circunstancias (como un error), y son pocos (sino no serían atípicos), si tienen una posición de privilegio en la determinación del centro de los datos puede ser que estemos creando un “centro atípico” o falso. Es por esta razón en que la media no siempre es la mejor medida para calcular el centro de una variable.</p>
+<p>Bueno una vez que pasamos esta pequeña introducción, veamos como calcularla en R.</p>
+<p>Super simple, calculemos la media de el PBI en la base que cargamos:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="resumen-de-variables-en-r.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 7215.327</code></pre>
+<p>Un punto <strong>importante</strong>, si en nuestra base falta aunque sea un sólo valor esta formula da error, a menos que agreguemos un argumento que se lee como “remover los vacíos”. Y sería algo así.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="resumen-de-variables-en-r.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>gdpPercap,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 7215.327</code></pre>
+</div>
+<div id="mediana" class="section level4" number="6.4.1.2">
+<h4><span class="header-section-number">6.4.1.2</span> Mediana</h4>
+<p>La mediana se interpreta como el valor a partir del cual hay tantas observaciones por debajo como por encima. En otras palabras, el 50% de las observaciones están por debajo de la mediana y el 50% de las observaciones están por encima de la mediana.
+Se obtiene ordenando los valores de menor a mayor y seleccionando el que ocupa la condición que los divide en dos. A diferencia de la media es muy resistente a los valores atípicos, veamos como funciona en el ejemplo anterior:</p>
+<p><img src="img/median-01.jpg" width="750" /></p>
+<p>Como vemos la mediana es una medida mucho mas estable ante los valores extremos.</p>
+<p>¿Como la calculamos?</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="resumen-de-variables-en-r.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(data<span class="sc">$</span>gdpPercap,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 3531.847</code></pre>
+</div>
+<div id="cuartiles" class="section level4" number="6.4.1.3">
+<h4><span class="header-section-number">6.4.1.3</span> Cuartiles</h4>
+<p>Si la media es el valor que divide a la muestra (ordenada) en la mitad. Los cuartiles la dividen en cuatro segmentos, el primer cuartil deja un cuarto de la muestra por debajo y 3 por encima, el segundo cuartil dos cuartos por abajo y dos por arriba (si eso les suena igual a dejar media muestra por arriba y media por abajo, es porque sí, el segundo cuartil es la mediana) y el tercer cuartil deja 3 cuartos por debajo y uno por arriba.
+Los Percentiles son similares a los cuartiles y dividen la muestra en 100 segmentos (obviamente el percentil 25 es lo mismo que el primer cuartil, el 50 la mediana y el 75 y el tercero)</p>
+<p>Los cuartiles se calculan de la siguiente manera</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="resumen-de-variables-en-r.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co">#si queremos ver todos los cuartiles</span></span>
+<span id="cb165-2"><a href="resumen-de-variables-en-r.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(data<span class="sc">$</span>gdpPercap) </span></code></pre></div>
+<pre><code>##          0%         25%         50%         75%        100% 
+##    241.1659   1202.0603   3531.8470   9325.4623 113523.1329</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="resumen-de-variables-en-r.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co">#si sólo queremos el primer cuartil</span></span>
+<span id="cb167-2"><a href="resumen-de-variables-en-r.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(data<span class="sc">$</span>gdpPercap, <span class="fl">0.25</span>) </span></code></pre></div>
+<pre><code>##     25% 
+## 1202.06</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="resumen-de-variables-en-r.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co">#o si sólo queremos el tercer cuartil</span></span>
+<span id="cb169-2"><a href="resumen-de-variables-en-r.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(data<span class="sc">$</span>gdpPercap, <span class="fl">0.75</span>) </span></code></pre></div>
+<pre><code>##      75% 
+## 9325.462</code></pre>
+</div>
+<div id="mínimo-y-máximo" class="section level4" number="6.4.1.4">
+<h4><span class="header-section-number">6.4.1.4</span> Mínimo y máximo</h4>
+<p>Definimos como mínimo al valor más pequeño de la muestra y máximo al más grande.
+Su calculo es muy sencillo</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="resumen-de-variables-en-r.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 241.1659</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="resumen-de-variables-en-r.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 113523.1</code></pre>
+</div>
+</div>
+<div id="medidas-de-dispersión" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Medidas de dispersión</h3>
+<div id="rango" class="section level4" number="6.4.2.1">
+<h4><span class="header-section-number">6.4.2.1</span> Rango</h4>
+<p>La más simple de las medidas de dispersión, simplemente nos dice cual es la distancia entre el menor y el mayor de los valores.</p>
+<p>Existe una función rango, pero nos dice sencillamente el minimo y el maximo (o sea los determinantes del rango)</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="resumen-de-variables-en-r.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1]    241.1659 113523.1329</code></pre>
+<p>Para calcular el rango propiamente dicho deberiamos restar ambos valores</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="resumen-de-variables-en-r.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(data<span class="sc">$</span>gdpPercap)<span class="sc">-</span><span class="fu">min</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 113282</code></pre>
+</div>
+<div id="desvío-estándard" class="section level4" number="6.4.2.2">
+<h4><span class="header-section-number">6.4.2.2</span> Desvío estándard</h4>
+<p>El desvío estándar es la medida de dispersión más común en estadística. Indica cuál es la desviación “normal” de los datos. En realidad, calcula la <em>desviación promedio</em> de todos los valores con respecto a la media. Cuanto mayor es la desviación estándar, más dispersos están los datos. Por el contrario, cuanto menor sea la desviación estándar, más centrados estarán los datos en torno a la media.</p>
+<p>A continuación una representación visual de la desviación estándar:</p>
+<p><img src="img/SD.png" width="205" /></p>
+<p>también el cálculo del desvío estándar es muy simple</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="resumen-de-variables-en-r.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 9857.455</code></pre>
+</div>
+<div id="intervalo-intercuartil" class="section level4" number="6.4.2.3">
+<h4><span class="header-section-number">6.4.2.3</span> Intervalo intercuartil</h4>
+<p>El desvío estandard es una medida de dispersión “basada” en la media, esto hace que la misma presente los mismos defectos para cierto tipo de muestra. Si necesitáramos usar la mediana para describir mejor a una población, la medida de dispersión que mejor la representa es el <em>intervalo intercuartil</em>. Este es la distancia entre el 1er cuartil y el 3ero. De esta forma:</p>
+<p><img src="img/IQR.jpg" width="661" />
+El cálculo del intervalo intercuartil puede hacerse de la siguiente manera:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="resumen-de-variables-en-r.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(data<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 8123.402</code></pre>
+</div>
+</div>
+<div id="medidas-de-frecuencia" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Medidas de frecuencia</h3>
+<p>Como explicáramos antes podemos calcular la frecuencia o la frecuencia relativa de variables categóricas.</p>
+<p>La frecuencia absoluta puede obtenerse a traves de la funcion <em>table()</em></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="resumen-de-variables-en-r.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(flores<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<p>Es importante recordar que esta función necesita que nuestra variable categórica este definida como un factor.</p>
+<p>Para calcular la frecuencia relativa no existe una función pero podemos recurrir a combinar un par de ellas, sabemos que la función <em>length()</em> nos da el numero total de observaciones y sabemos que la frecuencia relativa es el n de esa categoria sobre el n total de observaciones o sea:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="resumen-de-variables-en-r.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(flores<span class="sc">$</span>Species)<span class="sc">/</span><span class="fu">length</span>(flores<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333</code></pre>
+</div>
+<div id="tablas-cruzadas" class="section level3" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> Tablas cruzadas</h3>
+<p>Es frecuente que las variables dicotómicas sean de nuestro interés presentarlas además divididas por grupos, por ejemplo cuantos hombres y mujeres hay entre los casos y entre los controles.</p>
+<p>A esto se lo llama <strong>tablas cruzadas</strong></p>
+<p>Veamos como se puede hacer eso en forma sencilla</p>
+<p>Antes que nada para ello necesitamos una base con al menos dos variables categóricas, como nuestras bases de práctica no tienen, vamos a crear una nueva variable y agregarla para poder trabajar, para eso esta línea a continuación:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="resumen-de-variables-en-r.html#cb187-1" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>origen<span class="ot">&lt;-</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&#39;Cortada&#39;</span>, <span class="st">&#39;Cultivada&#39;</span>), <span class="dv">150</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>(Sólo para satisfacerles la curiosidad, la función <code>sample()</code>crea un vector aleatorio de lo que le pidamos, en este caso cortada o cultivada y el segundo argumento es la cantidad de veces, para meterlo en nuestro dataset lo asigne a una nueva fila con el signo $)</p>
+<p>Bueno ahora que el dataset flores tiene dos variables categóricas podemos hacer una tabla cruzada, para ello la forma más sencilla es usar la función <code>table()</code> pero esta vez con dos argumentos. El orden de los argumentos sigue la eterna lógica de R, primero las filas y después las columnas</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="resumen-de-variables-en-r.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(flores<span class="sc">$</span>Species, flores<span class="sc">$</span>origen)</span></code></pre></div>
+<pre><code>##             
+##              Cortada Cultivada
+##   setosa          32        18
+##   versicolor      22        28
+##   virginica       24        26</code></pre>
+</div>
+</div>
+<div id="estadística-descriptiva-en-bloque" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Estadística descriptiva en bloque</h2>
+<p><img src="img/mingo.jpg" width="194" /></p>
+<p>Como ya habremos aprendido por las malas encarar las cosas 1 a 1, puede traer problemas. En este caso no es para nada cómodo ir evaluando variable por variable cada uno de estos indicadores. Es por eso que en esta sección exploraremos formas simples de analizar un volumen más grande de variables con menos código.</p>
+<div id="función-lapply" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Función lapply()</h3>
+<p>La función <code>lapply()</code> es una función genérica de R que nos permite “aplicar” otra función a un conjunto de objeto, esta función tiene una hermana melliza: <code>sapply()</code> que hace fundamentalmente lo mismo pero difieren en la salida (sapply reporta la salida más sencilla y lapply la más informativa), a los efectos que veremos ahora son práctiocamente la misma.</p>
+<p>Como dijimos, esta función nos permite aplicar otras funciones a un “conjunto de objetos”, en este caso vamos a usarla para pedirle que nos de la media de todas las variables numericas de nuestro dataset. Veamos como, la estructura de la función es así <code>lapply(list, function)</code>. El primer argumento debe ser una lista de objetos (en este caso las variables) y el segundo la función que queremos que aplique</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="resumen-de-variables-en-r.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], mean)</span></code></pre></div>
+<pre><code>## $lifeExp
+## [1] 59.47444
+## 
+## $pop
+## [1] 29601212
+## 
+## $gdpPercap
+## [1] 7215.327</code></pre>
+<p>¿Vamos a <em>leer</em> que hicimos aquí? Tomamos la función lapply que dice: <em>a esta lista, hacele esto</em>; creamos una lista que es las tres columnas de mi data set donde estan expectativa de vida, población y PBI (para eso use el método <em>phill collins</em>) y en el segundo argumento le pedi la media</p>
+<p>Recuerden que puede que nuestra base tenga valores faltantes, en ese caso la línea de código debería ser así.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="resumen-de-variables-en-r.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## $lifeExp
+## [1] 59.47444
+## 
+## $pop
+## [1] 29601212
+## 
+## $gdpPercap
+## [1] 7215.327</code></pre>
+<p>Este método se puede utilizar para todas las medidas de resumen que vimos en la sección anterior</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="resumen-de-variables-en-r.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], mean)</span></code></pre></div>
+<pre><code>## $lifeExp
+## [1] 59.47444
+## 
+## $pop
+## [1] 29601212
+## 
+## $gdpPercap
+## [1] 7215.327</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="resumen-de-variables-en-r.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], sd)</span></code></pre></div>
+<pre><code>## $lifeExp
+## [1] 12.91711
+## 
+## $pop
+## [1] 106157897
+## 
+## $gdpPercap
+## [1] 9857.455</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="resumen-de-variables-en-r.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], median)</span></code></pre></div>
+<pre><code>## $lifeExp
+## [1] 60.7125
+## 
+## $pop
+## [1] 7023596
+## 
+## $gdpPercap
+## [1] 3531.847</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="resumen-de-variables-en-r.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], IQR)</span></code></pre></div>
+<pre><code>## $lifeExp
+## [1] 22.6475
+## 
+## $pop
+## [1] 16791558
+## 
+## $gdpPercap
+## [1] 8123.402</code></pre>
+<p>El problema de este método es que si bien nos ahorramos varias líneas de código repetidas (que cuando tenemos una gran base de datos puede ser horas y horas de copy+paste sin sentido) nos permite sólo calcular una medida por vez. Lo mejor de lo mejor sería tener una sóla función para hacer todo, ¿no? Tranquilos que ya va a llegar.</p>
+</div>
+<div id="función-summary" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Función summary()</h3>
+<p>Con esta función estamos familiarizados desde capítulos anteriores así que ya se imaginaran lo sencillo que es (esta vez) poder obtener todas las medidas de cada variable del dataset acorde al tipo de variable que es.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="resumen-de-variables-en-r.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species      origen         
+##  setosa    :50   Length:150        
+##  versicolor:50   Class :character  
+##  virginica :50   Mode  :character  
+##                                    
+##                                    
+## </code></pre>
+<p>Como verán, esta función es bu-e-ní-si-ma, pero requiere que seamos muy cuidadosos en la definición del tipo de variable previamente. Si miran el resultado de origen pueden ver que no tenemos la frecuencia porque la <em>clase</em> de este vector es carácter en lugar de factor. Solucionemoslo:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="resumen-de-variables-en-r.html#cb204-1" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>origen<span class="ot">&lt;-</span><span class="fu">as.factor</span>(flores<span class="sc">$</span>origen) <span class="co">#cambie la clase del vector</span></span>
+<span id="cb204-2"><a href="resumen-de-variables-en-r.html#cb204-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb204-3"><a href="resumen-de-variables-en-r.html#cb204-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species         origen  
+##  setosa    :50   Cortada  :78  
+##  versicolor:50   Cultivada:72  
+##  virginica :50                 
+##                                
+##                                
+## </code></pre>
+<p>También es cierto que hay algunas medidas (como el IQR) que no están y que deberemos buscar otras estrategias si las necesitamos, como <code>lapply()</code> o ir una por una.</p>
+<p>Hemos avanzado muchísimo pero se nos abre ante nosotros un largo viaje, estas medidas de resumen son usualmente utilizadas por los investigadores para mostrarle a sus lectores como es su muestra, esto generalmente se hace en la famosa <strong>tabla 1</strong> de un paper, cerraremos este capítulo con instrucciones para hacerlo pero antes nos esperan <strong>ejercicios integradores</strong> y aprender una herramienta más,el diagnóstico de <strong>parametricidad</strong></p>
+</div>
+</div>
+<div id="ejercicios-3" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</h2>
+<p>Para estos ejercicios vamos a trabajar con un nuevo dataset “cars”, incluido en un paquete a instalar lleno de datasets de práctica el paquete se llama “datasets”.</p>
+<p>Dicho dataset contiene datos indican de velocidad de coches y las distancias que tardan en detenerse. Tengan en cuenta que los datos se registraron en la década de 1920 (no se escandalicen).</p>
+<p>Nuestro ejercicio consiste en</p>
+<ol style="list-style-type: decimal">
+<li><p>Instalar el paquete “datasets”</p></li>
+<li><p>Activar el paquete</p></li>
+<li><p>Asignar la base de datos “cars” al objeto data</p></li>
+</ol>
+<p>Y responder las siguientes preguntas:</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>¿Cuántos registros tiene?</p></li>
+<li><p>¿Cual es la velocidad media dentro del dataset?</p></li>
+<li><p>¿y la maxima?</p></li>
+<li><p>¿Cuál es la velocidad media de los primeros 25 registros del dataset?</p></li>
+</ol>
+</div>
+<div id="respuestas-1" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</h2>
+<p>Bueno aquí van nuestars respuestas (recuerden que no hay un sólo modo de hacer las cosas, este es el nuestro)</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="resumen-de-variables-en-r.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb206-2"><a href="resumen-de-variables-en-r.html#cb206-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-3"><a href="resumen-de-variables-en-r.html#cb206-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>cars</span>
+<span id="cb206-4"><a href="resumen-de-variables-en-r.html#cb206-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-5"><a href="resumen-de-variables-en-r.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># me permite concoer la base y saber cuantos registros hay</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="resumen-de-variables-en-r.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 15.4</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="resumen-de-variables-en-r.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(data<span class="sc">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="resumen-de-variables-en-r.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars) <span class="co">#una forma de contestar dos preguntas más rápido</span></span></code></pre></div>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="resumen-de-variables-en-r.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,<span class="dv">1</span>]) <span class="co">#nos aprovechamos del método &quot;Phil Collins&quot;</span></span></code></pre></div>
+<pre><code>## [1] 11.08</code></pre>
+</div>
+<div id="parametricidad" class="section level2" number="6.8">
+<h2><span class="header-section-number">6.8</span> Parametricidad</h2>
+<p>Como seguramente habran visto en la clase del curso que complementa este libro, que una muestra o población siga una distribución normal o Gaussiana es un prerrequisito importante para el uso de ciertas medidas de resumen (como la media) y de varios test de comparación (como el test t)</p>
+<p>Por ello es importante que antes de empezar a trabajar podamos estar seguros del cumplimiento de este requisito (veremos mas adelante que el nombre adecuado es <em>supuesto</em>)</p>
+<p>Para diagnosticar la normalidad de una variable se pueden recurrir a:</p>
+<ol style="list-style-type: decimal">
+<li>Métodos gráficos</li>
+</ol>
+<ul>
+<li>Histograma</li>
+<li>Boxplot</li>
+<li>Gráficos de densidad</li>
+<li>QQ plot</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Métodos analíticos</li>
+</ol>
+<ul>
+<li>Test de komogoroiv smirnof</li>
+<li>Tets de Shapiro Wilk</li>
+</ul>
+<div id="métodos-gráficos" class="section level3" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Métodos gráficos:</h3>
+<p><strong>Histograma</strong></p>
+<p>Los historgramas pueden ser una de las estrategias más sencillas para evaluar si una variable sigue una distribución normal, como vemos en estos ejemplos es facil darse cuenta cuando no, fundamentalmente porque son una medida indirecta de la densidad (la linea que a veces se suma a los histogramas)</p>
+<p>Los histogramas pueden hacerse en forma sencilla con la función <code>hist()</code></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="resumen-de-variables-en-r.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(flores<span class="sc">$</span>Sepal.Width)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p>Si quisieramos agregar una líneas de densidad podríamos verlo así:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="resumen-de-variables-en-r.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(flores<span class="sc">$</span>Sepal.Width, </span>
+<span id="cb217-2"><a href="resumen-de-variables-en-r.html#cb217-2" aria-hidden="true" tabindex="-1"></a> <span class="at">prob =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb217-3"><a href="resumen-de-variables-en-r.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(flores<span class="sc">$</span>Sepal.Width))</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-123-1.png" width="672" />
+Los histogramas permiten decidir si una distribución se acerca a la forma de la normal o no.</p>
+<p>Veamos este caso, aquí vemos una distribución (un caso extremo) que no cumple criterios para ser considerada normal, cuando la mayoría de los datos se distribuyen a la izquierda (en valores bajos del eje x) hablamos de distribución desviada a la izquierda (o de colas pesadas por su forma en los box plots) como es el ejemplo de la siguiente. Estas distribuciones son frecuentemente resultado de distribuciones teóricas logarítimicas. Otras variables con comportamiento exponencial, como los casos acumulados de covid, producen distribuciones desviadas a la derecha. Como muchos de ustedes intuirán, describir el numero de casos acumulados de covid con la media desde el inicio de la pandemia no es un enfoque “representativo”</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="resumen-de-variables-en-r.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb218-2"><a href="resumen-de-variables-en-r.html#cb218-2" aria-hidden="true" tabindex="-1"></a>desv_izq<span class="ot">&lt;-</span><span class="fu">rlnorm</span>(<span class="dv">600</span>, <span class="at">meanlog =</span><span class="dv">20</span> , <span class="at">sdlog =</span> <span class="dv">1</span>)</span>
+<span id="cb218-3"><a href="resumen-de-variables-en-r.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(desv_izq)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><strong>Box plot</strong></p>
+<p>Los gráficos de box plot o como se llaman en español “gráficos de caja” o “diagramas de cajas y bigotes”, son una forma muy útil de graficar varios parámetros de la distribución que permiten diagnosticar su “grado de normalidad”. El gráfico consiste en una caja cuyos límites superior son el 1er. cuartil (Q1) y el 3 cuartil (Q3) -por lo tanto la caja es tan alta como el rango intercuartil (RIC), la mediana se grafica comoo una linea dentro de la caja. El gráfico incluye los “bigotes” cuyo largo representa el rango total de la variable o 1.5 el RIC sobre o por debajo de Q1 y Q3 (lo que ocurra antes). Eventualmente se puede graficar la media con un asterisco para ver su coincidencia con la mediana.<br />
+Los valores que pueden quedar por debajo o por encima de los bigotes se les clasifica como “atípicos” y se grafican por separado. Los atípicos pueden o no ser outliers (un concepto más complejo).</p>
+<p>Estos valores son homologables al histograma aunque es más preciso para</p>
+<p><img src="img/box.jpg" width="432" /></p>
+<p>Cuando una distribución presenta demasiados valores a la izquierda el bigote se hace muy largo hacia abajo, como si pesara, a estas distribuciones las llamamos de “colas pesadas”, y en el caso de las desviadas a la izquierda son de “colas livianas”</p>
+<p>Veamos como se construye con nuestros datos</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="resumen-de-variables-en-r.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(flores<span class="sc">$</span>Sepal.Width)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><strong>QQ plot</strong></p>
+<p>El gráfico Q-Q normal o QQ plot es un método gráfico de evaluación de la normalidad alternativo al histograma y es muy útil en tamaños de muestra pequeños (en donde los histogramas suelen verse “feos”, al graficar). Se llama así para abrevir su nombre correcto que sería “gráfico (plot) cuantil (Q) a cuantil (Q)”.
+En este tipo de gràficos se grafica la dispersión de cada dato sobre el supuesto de una distribución normal perfecta.<br />
+Esto se logra dividiendo la muestra en múltiples cuantiles y la distribución normal teórica de esa muestra de la misma forma. Si la muestra es “perfectamente” normal, cada cuantil muestral es igual a un cuantil teórico y se vería como una linea recta con pendiente 1 (y=x). En los qqplots se grafica esta situación “ideal” (en una recta) junto con la situación “real” (como puntos)</p>
+<p>Para que los datos se consideren normalmente distribuidos, la dispersión debe estar lo más cerca posible de la línea “ideal”, sin que haya un patrón evidente que se aleje de ella. Veamos como se construye uno con nuestros datos</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="resumen-de-variables-en-r.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb220-2"><a href="resumen-de-variables-en-r.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(flores<span class="sc">$</span>Sepal.Width, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">frame =</span> <span class="cn">FALSE</span>) <span class="co">#esta línea grafica los puuntos</span></span>
+<span id="cb220-3"><a href="resumen-de-variables-en-r.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(flores<span class="sc">$</span>Sepal.Width, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="co"># esta línea grafica la línea teórica</span></span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+</div>
+<div id="métodos-analíticos" class="section level3" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Métodos analíticos:</h3>
+<p>También existen test analíticos específicos para comprobar la normalidad. Es importante tener en cuenta que el mejor enfoque es utilizar màs de un mètodo y convinar mètodos analíticos y gràficos. Esto último se debe a que la mayoría de las pruebas son sensibles a los valores atípicos y están influenciadas por el tamaño de la muestra.</p>
+<p>Los test más importantes para la demostración de normalidad son <strong>el test de Kolmogorov-Smirnov</strong> y <strong>la prueba W de Shapiro-Wilk</strong>.</p>
+<p><strong><em>Importante</em></strong></p>
+<p>Ambas pruebas tienen como hipótesis nula: <em>los datos se distribuyen normalmente</em>. Esto quiere decir que <strong>si p&gt; 0,05, se puede suponer la normalidad.</strong>
+Esto puede sonar a veces contraintuitivo y por lo tanto es importante recordarlo siempre</p>
+<p>Ambos test son útiles pero existen algunos criterios para preferir uno o el otro:</p>
+<ul>
+<li><p>Para muestras más pequeñas, es <em>menos probable</em> que se detecte la no normalidad. Por esto, es preferible usar la prueba de Shapiro-Wilk, ya que suele ser más sensible.</p></li>
+<li><p>Para muestras más grandes (&gt; 100), las pruebas de normalidad son demasiado conservadoras y la hipótesis de normalidad suele rechazarse con demasiada facilidad (razón por la cual hay que acompañarla de mètodos gráficos). En estos casos Kolmogorov-Smirnov es preferioble por su especificidad</p></li>
+<li><p>La prueba de Kolmogorov-Smirnov sirve para comparar distribuciones (una real con una teórica, o dos reales entre sí). Para calcular la parametricidad debemos aclarar que la prueba compara la distribución de mis datos con la teórica normal</p></li>
+</ul>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="resumen-de-variables-en-r.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats) <span class="co">#estos test se encuentran dentro del paquete stats</span></span>
+<span id="cb221-2"><a href="resumen-de-variables-en-r.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flores<span class="sc">$</span>Sepal.Width)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  flores$Sepal.Width
+## W = 0.98492, p-value = 0.1012</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="resumen-de-variables-en-r.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(flores<span class="sc">$</span>Sepal.Width, <span class="st">&quot;rnorm&quot;</span>) <span class="co"># el argumento &quot;rnorm&quot; indica que el K-S compara con la teórica normal</span></span></code></pre></div>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  flores$Sepal.Width
+## D = 3.3479, p-value &lt; 2.2e-16
+## alternative hypothesis: two-sided</code></pre>
+</div>
+<div id="resumen-de-parametricidad" class="section level3" number="6.8.3">
+<h3><span class="header-section-number">6.8.3</span> Resumen de parametricidad</h3>
+<p>Como vimos hay varias formas de testearlo (ninguna definitiva), a lo largo de esta sección vimos el analisis de una sola variable en todos los métodos. Al llegar aquí han notado seguramente que tenemos resultados <em>“contradictorios”</em>. ¿Qué hacer en estos casos? Bueno, utilizar los conocimientos adquiridos y tomar una <em>decisión</em>. Recordemos: a) combinar graficos con analíticos, b) decidir el analítico que mejor se ajusta al problema c) saber que toda decisión implica un margen de error que hay que tolerar.</p>
+<p>En este caso nos la jugaremos por decir que la variable Sepal.width tiene un grado de parametricidad “tolerable”</p>
+</div>
+</div>
+<div id="la-tabla-1" class="section level2" number="6.9">
+<h2><span class="header-section-number">6.9</span> La tabla 1</h2>
+<p>Bueno ha llegado el momento, vamos a estructurar los datos en estadísticas de resumen en un formato agradable para pegar en nuestro paper. Vamos a ver dos paquetes muy útiles para ello.</p>
+<p><strong><em>Importante</em></strong>
+Al llegar a este punto es importante que todas nuestras variables tengan su correcta <strong>definición de clase</strong> (Si no recurdan/saben que es esto visiten el capítulo 3.3.2). Los paquetes automatizados para la creación de tablas van a <em>decidir</em> como resumir las variables en función del tipo que son (como vimos al inicio de este capítulo de resumen de los datos)</p>
+<div id="paquete-table1" class="section level3" number="6.9.1">
+<h3><span class="header-section-number">6.9.1</span> Paquete table1</h3>
+<p>El paquete table1 crea tablas html de aspecto profesional, les permite resumir variables en uno o varios grupos y tiene una sintaxis muy sencilla</p>
+<p>Como deciamos la sintaxis de table1 es muy sencilla, necesita (en este orden):</p>
+<ul>
+<li><p>Las lista de las variables, inicia con una virgulilla (es este símbolo, ~) y separadas por un +</p></li>
+<li><p>La variable que los divide en grupos (si no los hay dejarla vacia) detrás de una barra recta |</p></li>
+<li><p>El nombre de la base de datos detrás de una ,</p></li>
+</ul>
+<p><img src="img/virgu.jpg" width="250" /></p>
+<p>veamos que significa esto, vamos a construir una tabla que tenga el ancho y el alto del petalo y el sepalo por especie de nuestra base de flores la sintaxis sería mas o menos asi</p>
+<blockquote>
+<p>table1(~Sepal.Length+Sepal.Width+Petal.Length+Petal.Width+origen|Species, flores )</p>
+</blockquote>
+<p>¿Leemos el código? A las variables <em>Sepal.Length</em>, <em>Sepal.Width</em>, <em>Petal.Length</em>, <em>Petal.Width</em> y <em>origen</em> agrupémoslas en sus <em>species</em> y todos los datos saquemoslos de la base <em>flores</em></p>
+<p>Veamos que obtenemos</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="resumen-de-variables-en-r.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table1)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;table1&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     units, units&lt;-</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="resumen-de-variables-en-r.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span>Sepal.Length<span class="sc">+</span>Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width<span class="sc">+</span>origen<span class="sc">|</span>Species, flores )</span></code></pre></div>
+<div class="Rtable1"><table class="Rtable1">
+<thead>
+<tr>
+<th class='rowlabel firstrow lastrow'></th>
+<th class='firstrow lastrow'><span class='stratlabel'>setosa<br><span class='stratn'>(N=50)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>versicolor<br><span class='stratn'>(N=50)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>virginica<br><span class='stratn'>(N=50)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(N=150)</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>Sepal.Length</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>5.01 (0.352)</td>
+<td>5.94 (0.516)</td>
+<td>6.59 (0.636)</td>
+<td>5.84 (0.828)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>5.00 [4.30, 5.80]</td>
+<td class='lastrow'>5.90 [4.90, 7.00]</td>
+<td class='lastrow'>6.50 [4.90, 7.90]</td>
+<td class='lastrow'>5.80 [4.30, 7.90]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>Sepal.Width</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>3.43 (0.379)</td>
+<td>2.77 (0.314)</td>
+<td>2.97 (0.322)</td>
+<td>3.06 (0.436)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>3.40 [2.30, 4.40]</td>
+<td class='lastrow'>2.80 [2.00, 3.40]</td>
+<td class='lastrow'>3.00 [2.20, 3.80]</td>
+<td class='lastrow'>3.00 [2.00, 4.40]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>Petal.Length</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>1.46 (0.174)</td>
+<td>4.26 (0.470)</td>
+<td>5.55 (0.552)</td>
+<td>3.76 (1.77)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>1.50 [1.00, 1.90]</td>
+<td class='lastrow'>4.35 [3.00, 5.10]</td>
+<td class='lastrow'>5.55 [4.50, 6.90]</td>
+<td class='lastrow'>4.35 [1.00, 6.90]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>Petal.Width</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>0.246 (0.105)</td>
+<td>1.33 (0.198)</td>
+<td>2.03 (0.275)</td>
+<td>1.20 (0.762)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>0.200 [0.100, 0.600]</td>
+<td class='lastrow'>1.30 [1.00, 1.80]</td>
+<td class='lastrow'>2.00 [1.40, 2.50]</td>
+<td class='lastrow'>1.30 [0.100, 2.50]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>origen</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Cortada</td>
+<td>32 (64.0%)</td>
+<td>22 (44.0%)</td>
+<td>24 (48.0%)</td>
+<td>78 (52.0%)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Cultivada</td>
+<td class='lastrow'>18 (36.0%)</td>
+<td class='lastrow'>28 (56.0%)</td>
+<td class='lastrow'>26 (52.0%)</td>
+<td class='lastrow'>72 (48.0%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En este caso podemos ver como resumió todas las variables en media y desvío estandard debido a que son continuas y a la variable <em>origen</em>(que és categórica)en frecuencias absolutas y relativas</p>
+</div>
+<div id="función-tbl_summary" class="section level3" number="6.9.2">
+<h3><span class="header-section-number">6.9.2</span> Función tbl_summary()</h3>
+<p>La función tbl_summary() es parte de un paquete muy útil para muchas tablas el paquete <strong>gtsummary</strong> tiene un comportamiento similar a la función table1 pero con una ventaja extra…tachan tachan…Usa la <em>sintaxis de dplyr</em> eso quiere decir que vamos a usarlo con el operador <strong>&gt;%&gt;</strong> y podemos combinar con todas las funciones de manipulación de variables, y eso serñoras y señores, es muy muy útil</p>
+<p>Veamos como funciona, si quisieramos resumir toda la base como hicimos recién deberíamos escribir lo siguientes</p>
+<blockquote>
+<p>flores %&gt;% tbl_summary(by=Species)</p>
+</blockquote>
+<p>¿Lo leemos? Sería algo así: a la base <em>flores</em> <strong>apliquemosle</strong> la función <em>tbl_summary</em> separada por <em>Species</em></p>
+<p>Veamos el resultado:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="resumen-de-variables-en-r.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb229-2"><a href="resumen-de-variables-en-r.html#cb229-2" aria-hidden="true" tabindex="-1"></a>flores <span class="sc">%&gt;%</span> <span class="fu">tbl_summary</span>(<span class="at">by=</span>Species)</span></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#okqiyolstg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#okqiyolstg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#okqiyolstg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#okqiyolstg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#okqiyolstg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#okqiyolstg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#okqiyolstg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#okqiyolstg .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#okqiyolstg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#okqiyolstg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#okqiyolstg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#okqiyolstg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#okqiyolstg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#okqiyolstg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okqiyolstg .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okqiyolstg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#okqiyolstg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#okqiyolstg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#okqiyolstg .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#okqiyolstg .gt_left {
+  text-align: left;
+}
+
+#okqiyolstg .gt_center {
+  text-align: center;
+}
+
+#okqiyolstg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#okqiyolstg .gt_font_normal {
+  font-weight: normal;
+}
+
+#okqiyolstg .gt_font_bold {
+  font-weight: bold;
+}
+
+#okqiyolstg .gt_font_italic {
+  font-style: italic;
+}
+
+#okqiyolstg .gt_super {
+  font-size: 65%;
+}
+
+#okqiyolstg .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="okqiyolstg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>setosa</strong>, N = 50<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>versicolor</strong>, N = 50<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>virginica</strong>, N = 50<sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Sepal.Length</td>
+      <td class="gt_row gt_center">5.00 (4.80, 5.20)</td>
+      <td class="gt_row gt_center">5.90 (5.60, 6.30)</td>
+      <td class="gt_row gt_center">6.50 (6.23, 6.90)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Sepal.Width</td>
+      <td class="gt_row gt_center">3.40 (3.20, 3.68)</td>
+      <td class="gt_row gt_center">2.80 (2.52, 3.00)</td>
+      <td class="gt_row gt_center">3.00 (2.80, 3.18)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Petal.Length</td>
+      <td class="gt_row gt_center">1.50 (1.40, 1.58)</td>
+      <td class="gt_row gt_center">4.35 (4.00, 4.60)</td>
+      <td class="gt_row gt_center">5.55 (5.10, 5.88)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Petal.Width</td>
+      <td class="gt_row gt_center">0.20 (0.20, 0.30)</td>
+      <td class="gt_row gt_center">1.30 (1.20, 1.50)</td>
+      <td class="gt_row gt_center">2.00 (1.80, 2.30)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">origen</td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Cortada</td>
+      <td class="gt_row gt_center">32 (64%)</td>
+      <td class="gt_row gt_center">22 (44%)</td>
+      <td class="gt_row gt_center">24 (48%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Cultivada</td>
+      <td class="gt_row gt_center">18 (36%)</td>
+      <td class="gt_row gt_center">28 (56%)</td>
+      <td class="gt_row gt_center">26 (52%)</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="4">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Median (IQR); n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
+<p>El resultado es muy similar al otro método pero… más simple (recuerden que mientras menos escribamos más agradable es nuestro código)</p>
+<p>Pero el verdadero poder de esta función es su poder de combinar con otras funciones dplyr</p>
+<p>Veamos un ejemplo, supongamos que queremos crear una tabla que contenga <em>sólo</em> el largo de los petalos y los sepalos de las flores cortadas de las variedades setosa y versicolor. Podríamos resolverlo así:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="resumen-de-variables-en-r.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb230-2"><a href="resumen-de-variables-en-r.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb230-3"><a href="resumen-de-variables-en-r.html#cb230-3" aria-hidden="true" tabindex="-1"></a>flores <span class="sc">%&gt;%</span> <span class="fu">filter</span>(origen<span class="sc">==</span><span class="st">&quot;Cortada&quot;</span> <span class="sc">&amp;</span> Species <span class="sc">!=</span> <span class="st">&quot;virginica&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb230-4"><a href="resumen-de-variables-en-r.html#cb230-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Petal.Length, Sepal.Length, Species) <span class="sc">%&gt;%</span></span>
+<span id="cb230-5"><a href="resumen-de-variables-en-r.html#cb230-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by=</span><span class="st">&quot;Species&quot;</span>)</span></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#koiznxskva .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#koiznxskva .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#koiznxskva .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#koiznxskva .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#koiznxskva .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#koiznxskva .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#koiznxskva .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#koiznxskva .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#koiznxskva .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#koiznxskva .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#koiznxskva .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#koiznxskva .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#koiznxskva .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#koiznxskva .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#koiznxskva .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#koiznxskva .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#koiznxskva .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#koiznxskva .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#koiznxskva .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#koiznxskva .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#koiznxskva .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#koiznxskva .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#koiznxskva .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#koiznxskva .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#koiznxskva .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#koiznxskva .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#koiznxskva .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#koiznxskva .gt_left {
+  text-align: left;
+}
+
+#koiznxskva .gt_center {
+  text-align: center;
+}
+
+#koiznxskva .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#koiznxskva .gt_font_normal {
+  font-weight: normal;
+}
+
+#koiznxskva .gt_font_bold {
+  font-weight: bold;
+}
+
+#koiznxskva .gt_font_italic {
+  font-style: italic;
+}
+
+#koiznxskva .gt_super {
+  font-size: 65%;
+}
+
+#koiznxskva .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="koiznxskva" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>setosa</strong>, N = 32<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>versicolor</strong>, N = 22<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>virginica</strong>, N = 0<sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Petal.Length</td>
+      <td class="gt_row gt_center">1.50 (1.40, 1.60)</td>
+      <td class="gt_row gt_center">4.30 (3.92, 4.57)</td>
+      <td class="gt_row gt_center">NA (NA, NA)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Sepal.Length</td>
+      <td class="gt_row gt_center">5.10 (4.90, 5.32)</td>
+      <td class="gt_row gt_center">5.90 (5.60, 6.38)</td>
+      <td class="gt_row gt_center">NA (NA, NA)</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="4">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Median (IQR)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
+<p>Leamos el código que usamos. A la base <em>flores</em> <strong>apliquémosle</strong> filtrar por la condición que <em>origen</em> sea igual a cortada <em>y</em> que <em>species</em> <strong>no sea (!=)</strong> virginica (o sea las otras dos) después <strong>apliquémosle</strong> seleccionar y seleccionamos solo las variables que necesitamos (los largos y la variable de grupo)y a todo esoo <strong>apliquenosle</strong> hacer una tabla agrupada por la especie</p>
+<p>(la columna de las virginicas quedó vacía porque la dejamos afuera)</p>
+<p>Pero, pero, pero…una buena tabla 1 tiene test de hipótesis que testean el parecido (o no) de los grupos. Con este paquete es muy sencillo, solo hay que pedirle que <strong>aplique</strong> la forma de obtener las p</p>
+<p>Veamos:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="resumen-de-variables-en-r.html#cb231-1" aria-hidden="true" tabindex="-1"></a>flores <span class="sc">%&gt;%</span> <span class="fu">filter</span>(origen<span class="sc">==</span><span class="st">&quot;Cortada&quot;</span> <span class="sc">&amp;</span> Species <span class="sc">!=</span> <span class="st">&quot;virginica&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb231-2"><a href="resumen-de-variables-en-r.html#cb231-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Petal.Length, Sepal.Length, Species) <span class="sc">%&gt;%</span></span>
+<span id="cb231-3"><a href="resumen-de-variables-en-r.html#cb231-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by=</span><span class="st">&quot;Species&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb231-4"><a href="resumen-de-variables-en-r.html#cb231-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>()</span></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#iiwxqjhrxf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iiwxqjhrxf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iiwxqjhrxf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iiwxqjhrxf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iiwxqjhrxf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iiwxqjhrxf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iiwxqjhrxf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iiwxqjhrxf .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iiwxqjhrxf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iiwxqjhrxf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iiwxqjhrxf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iiwxqjhrxf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iiwxqjhrxf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#iiwxqjhrxf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iiwxqjhrxf .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iiwxqjhrxf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iiwxqjhrxf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iiwxqjhrxf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iiwxqjhrxf .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#iiwxqjhrxf .gt_left {
+  text-align: left;
+}
+
+#iiwxqjhrxf .gt_center {
+  text-align: center;
+}
+
+#iiwxqjhrxf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iiwxqjhrxf .gt_font_normal {
+  font-weight: normal;
+}
+
+#iiwxqjhrxf .gt_font_bold {
+  font-weight: bold;
+}
+
+#iiwxqjhrxf .gt_font_italic {
+  font-style: italic;
+}
+
+#iiwxqjhrxf .gt_super {
+  font-size: 65%;
+}
+
+#iiwxqjhrxf .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="iiwxqjhrxf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>setosa</strong>, N = 32<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>versicolor</strong>, N = 22<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>virginica</strong>, N = 0<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Petal.Length</td>
+      <td class="gt_row gt_center">1.50 (1.40, 1.60)</td>
+      <td class="gt_row gt_center">4.30 (3.92, 4.57)</td>
+      <td class="gt_row gt_center">NA (NA, NA)</td>
+      <td class="gt_row gt_center"><0.001</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Sepal.Length</td>
+      <td class="gt_row gt_center">5.10 (4.90, 5.32)</td>
+      <td class="gt_row gt_center">5.90 (5.60, 6.38)</td>
+      <td class="gt_row gt_center">NA (NA, NA)</td>
+      <td class="gt_row gt_center"><0.001</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="5">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Median (IQR)
+          <br />
+        </p>
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>2</em>
+          </sup>
+           
+          Wilcoxon rank sum test
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
+<p>Más sencillo, imposible. El paquete permite mucha más fucnionalidad (como elegir las medidas de resumen y el test a utilizar), pero ustedes ya saben como averiguar.</p>
+<p><img src="img/pobama.jpg" width="250" /></p>
+<p>Ahora que nuestra tabla 1 tiene todo lo que tiene que tener. Cerremos este capítulo.
+Nos vemos en los gráficos…</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manipulación-de-variables-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="creación-de-gráficos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Esatadistica_en_R.pdf", "Esatadistica_en_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -211,8 +211,12 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link active" data-scroll-target="#tidy-data"><span class="toc-section-number">1.0.1</span>  Tidy data</a></li>
-  <li><a href="#introducción-al-tidyverse" id="toc-introducción-al-tidyverse" class="nav-link" data-scroll-target="#introducción-al-tidyverse"><span class="toc-section-number">1.0.2</span>  Introducción al Tidyverse</a></li>
+  <li><a href="#el-tidyverse" id="toc-el-tidyverse" class="nav-link active" data-scroll-target="#el-tidyverse"><span class="toc-section-number">1.1</span>  El <em>tidyverse</em></a>
+  <ul class="collapse">
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"><span class="toc-section-number">1.1.1</span>  Tidy data</a></li>
+  <li><a href="#introducción-al-tidyverse" id="toc-introducción-al-tidyverse" class="nav-link" data-scroll-target="#introducción-al-tidyverse"><span class="toc-section-number">1.1.2</span>  Introducción al Tidyverse</a></li>
+  </ul></li>
+  <li><a href="#cierre" id="toc-cierre" class="nav-link" data-scroll-target="#cierre"><span class="toc-section-number">1.2</span>  Cierre</a></li>
   </ul>
 </nav>
     </div>
@@ -253,20 +257,22 @@ Instalación de R y RStudio
 <p>Pueden bajar la versión gratuita de RStudio del siguiente <a href="https://www.rstudio.com/products/rstudio/download/#download">link</a>. En caso de que el link no haya detectado correctamente el sistema operativo, en la sección <em>All Installers</em> pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.</p>
 </div>
 </div>
-<p>Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la propuesta es utilizar los paquetes y funciones del <em>Tidyverse</em>. El <em>Tidyverse</em> es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et al. 2019</a>)</span>. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.</p>
-<section id="tidy-data" class="level3" data-number="1.0.1">
-<h3 data-number="1.0.1" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">1.0.1</span> Tidy data</h3>
+<p>Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la propuesta es utilizar los paquetes y funciones del <em>tidyverse</em>. El <em>tidyverse</em> es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et al. 2019</a>)</span>. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.</p>
+<section id="el-tidyverse" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="el-tidyverse"><span class="header-section-number">1.1</span> El <em>tidyverse</em></h2>
+<section id="tidy-data" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">1.1.1</span> Tidy data</h3>
 <p>Lo primero que tenemos que pe</p>
 </section>
-<section id="introducción-al-tidyverse" class="level3" data-number="1.0.2">
-<h3 data-number="1.0.2" class="anchored" data-anchor-id="introducción-al-tidyverse"><span class="header-section-number">1.0.2</span> Introducción al Tidyverse</h3>
-<p>Como contamos más arriba, el Tidyverse es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete <em>{readr}</em>, los verbos de <em>{dplyr}</em> para manipularlos, las funciones de <em>{tidyR}</em> para acomodarlos y el poderosísimo <em>{ggplot2}</em> para visualizarlos.</p>
-<section id="cargando-datos-con-readr" class="level4" data-number="1.0.2.1">
-<h4 data-number="1.0.2.1" class="anchored" data-anchor-id="cargando-datos-con-readr"><span class="header-section-number">1.0.2.1</span> Cargando datos con <em>readr</em></h4>
+<section id="introducción-al-tidyverse" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="introducción-al-tidyverse"><span class="header-section-number">1.1.2</span> Introducción al Tidyverse</h3>
+<p>Como contamos más arriba, el Tidyverse es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete <em>{readr}</em>, los verbos de <em>{dplyr}</em> para manipularlos, las funciones de <em>{tidyR}</em> para acomodarlos y el poderosísimo <em>{ggplot2}</em> para visualizarlos.</p>
+<section id="cargando-datos-con-readr" class="level4" data-number="1.1.2.1">
+<h4 data-number="1.1.2.1" class="anchored" data-anchor-id="cargando-datos-con-readr"><span class="header-section-number">1.1.2.1</span> Cargando datos con <em>readr</em></h4>
 <p>Una de las cosas que vamos a hacer más a menudo en este libro es cargar algún dataset. Para esto vamos a usar varias de las funcionalidades del paquete <em>{readr}</em>.</p>
 <p>El caso más simple al que nos vamos a enfrentar es la carga de una base de datos organizada en columnas y separadas por comas en un archivo de extensión <em>.csv</em>. En este caso lo que tenemos que hacer es bastante simple, usar la función <em>read_csv()</em> como a continuación:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/summer.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/summer.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 31165 Columns: 9</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ─────────────────────────────────────────────────────</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: ","</span></span>
@@ -275,22 +281,33 @@ Instalación de R y RStudio
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 31,165 × 9</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City   Sport    Discipline Athlete               Country Gender</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;                 &lt;chr&gt;   &lt;chr&gt; </span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  1896 Athens Aquatics Swimming   HAJOS, Alfred         HUN     Men   </span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  1896 Athens Aquatics Swimming   HERSCHMANN, Otto      AUT     Men   </span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  1896 Athens Aquatics Swimming   DRIVAS, Dimitrios     GRE     Men   </span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  1896 Athens Aquatics Swimming   MALOKINIS, Ioannis    GRE     Men   </span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1896 Athens Aquatics Swimming   CHASAPIS, Spiridon    GRE     Men   </span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  1896 Athens Aquatics Swimming   CHOROPHAS, Efstathios GRE     Men   </span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 31,159 more rows</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Year          City              Sport            Discipline       </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Min.   :1896   Length:31165       Length:31165       Length:31165      </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:1948   Class :character   Class :character   Class :character  </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Median :1980   Mode  :character   Mode  :character   Mode  :character  </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mean   :1970                                                           </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:2000                                                           </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Max.   :2012                                                           </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Athlete            Country             Gender             Event          </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Length:31165       Length:31165       Length:31165       Length:31165      </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Class :character   Class :character   Class :character   Class :character  </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mode  :character   Mode  :character   Mode  :character   Mode  :character  </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                             </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                             </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                             </span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Medal          </span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Length:31165      </span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Class :character  </span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mode  :character  </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Describir que es un tibble.</p>
 </section>
-<section id="el-operador-pipe-del-paquete-magrittr" class="level4" data-number="1.0.2.2">
-<h4 data-number="1.0.2.2" class="anchored" data-anchor-id="el-operador-pipe-del-paquete-magrittr"><span class="header-section-number">1.0.2.2</span> El operador <em>pipe</em> (|&gt;) del paquete <strong><em>magrittr</em></strong></h4>
+<section id="el-operador-pipe-del-paquete-magrittr" class="level4" data-number="1.1.2.2">
+<h4 data-number="1.1.2.2" class="anchored" data-anchor-id="el-operador-pipe-del-paquete-magrittr"><span class="header-section-number">1.1.2.2</span> El operador <em>pipe</em> (|&gt;) del paquete <strong><em>magrittr</em></strong></h4>
 <p>El operador pipe nos permite concatenar funciones que utilizan como entrada los mismos datos. El principio de operación es el siguiente, supongan que nosotros queremos cargar un dataset y aplicarle la función summary. Esto lo podemos hacer simplemente cargando el dataset en una lìnea de código y ejecutanco la función summary() en la siguiente.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/summer.csv"</span>)</span>
@@ -361,16 +378,22 @@ Instalación de R y RStudio
 <p>Al dejar vacío el paréntesis de la función summary(), la misma va a tomar como variable de entrada a la que está antes del operador pipe, es decir, a la que antes llamamos <code>data</code>. En el caso que la función summary() tuviera más de una variable de entrada, lo que viene antes del <em>pipe</em> tomaría el lugar de la primera de ellas.</p>
 <p>Si bien esta funcionalidad parece algo que complica las cosas y que no trae demasiados beneficios con un ejemplo tan simple, más adelante veremos que puede ser de gran utilidad, ayudando a disminuir la cantidad de línes de código y de variables intermedias.</p>
 </section>
-<section id="dplyr-y-sus-verbos" class="level4" data-number="1.0.2.3">
-<h4 data-number="1.0.2.3" class="anchored" data-anchor-id="dplyr-y-sus-verbos"><span class="header-section-number">1.0.2.3</span> <em>Dplyr</em> y sus verbos</h4>
+<section id="dplyr-y-sus-verbos" class="level4" data-number="1.1.2.3">
+<h4 data-number="1.1.2.3" class="anchored" data-anchor-id="dplyr-y-sus-verbos"><span class="header-section-number">1.1.2.3</span> <em>Dplyr</em> y sus verbos</h4>
 <p>Una de las cosas más útiles del Tidyverse para el tipo de procesamiento de datos que vamos a llevar a cabo en este libro son los verbos de dplyr. Estas funciones no permiten agregar columnas, resumir la información, filtrar filas, seleccionar columnas, etc. Y todas estas acciones las podemos hacer en la base de datos completa o en una parte de ella agrupada de acuerdo a algún criterio. Vayamos de a poco.</p>
 <p>https://dplyr.tidyverse.org/</p>
 </section>
-<section id="tidyr-el-paquete-para-ordenar-tus-datos" class="level4" data-number="1.0.2.4">
-<h4 data-number="1.0.2.4" class="anchored" data-anchor-id="tidyr-el-paquete-para-ordenar-tus-datos"><span class="header-section-number">1.0.2.4</span> TidyR, el paquete para ordenar tus datos</h4>
+<section id="tidyr-el-paquete-para-ordenar-tus-datos" class="level4" data-number="1.1.2.4">
+<h4 data-number="1.1.2.4" class="anchored" data-anchor-id="tidyr-el-paquete-para-ordenar-tus-datos"><span class="header-section-number">1.1.2.4</span> TidyR, el paquete para ordenar tus datos</h4>
 </section>
-<section id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="level4" data-number="1.0.2.5">
-<h4 data-number="1.0.2.5" class="anchored" data-anchor-id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="header-section-number">1.0.2.5</span> ggplot2 o cómo hacer figuras que sean la envidia de tu compañero de escritorio</h4>
+<section id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="level4" data-number="1.1.2.5">
+<h4 data-number="1.1.2.5" class="anchored" data-anchor-id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="header-section-number">1.1.2.5</span> ggplot2 o cómo hacer figuras que sean la envidia de tu compañero de escritorio</h4>
+</section>
+</section>
+</section>
+<section id="cierre" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="cierre"><span class="header-section-number">1.2</span> Cierre</h2>
+<p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [<span class="citation" data-cites="wickham2023r">Wickham, Çetinkaya-Rundel, and Grolemund (<a href="references.html#ref-wickham2023r" role="doc-biblioref">2023</a>)</span>]<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -385,12 +408,11 @@ Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for 
 </div>
 </div>
 </section>
-</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>Es decir, sin tener que cargar ningún paquete de funciones adicional.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Si quieren profundizar puede ir a ver este fantástico libro <span class="citation" data-cites="wickham2023r">(<a href="references.html#ref-wickham2023r" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Disponible gratis online en este link https://r4ds.had.co.nz/.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

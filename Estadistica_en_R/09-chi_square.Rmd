@@ -1,0 +1,272 @@
+# Test de chi cuadrado de Pearson para la independencia de las variables categóricas
+
+
+
+La prueba de independencia de chi-cuadrado se utiliza para analizar una tabla de frecuencias (o tabla de contingencia) formada por dos variables categóricas (sin importar cuantos niveles tengan (pueden ser dictómicas por ejemplo). La prueba evalúa si existe una asociación significativa entre las distribución de frecuncias de las categorías de las dos variables, es decir, si la distribución de una "depende" o no de la de la otra. 
+
+
+
+
+## Tablas de contingencia
+
+En el capítulo anterior tuvimos una breve introducción a las tabals de contingencia a partir de una muy particular, las _matrices de confusión_  que no es más que una tabla de contingencia para dos variables dicotómicas (una con el gold standard para el diagnóstico y la otra con una prueba que se quiere testear)
+
+Pese a que algunas cosillas ya sabemos del asunto, vamos a refrescar algunos conceptos.
+
+
+Las tablas de contingencia también pueden ser llamadas _tablas de doble entrada_ ya que se disponen dos variables _ una en el encabezado_ y otra en la _primera columna_. La posición de ambas variables en cada lugar es irrelevante desde la mayoría de los enfoques estadísticos, sin embargo por convención, aplicamos reglas similares a la de los gráficos y en el eje x (o sea el encabezado) colocamos la variable explicativa y en el de las y (la primera fila) la variable que pensamos que "es función" de la anterior. 
+
+
+Se pueden crear tablas de varias formas en R, veamos algunas. 
+
+
+
+Las tablas de contingencia se usan para resumir dos variables categóricas antes de proseguir asegurarse que las variables estén definidas correctamente (como _factores_)
+
+Vamos a trabajar con la base de datos "TitanicSurvival" del paquete "carData" (instalenlo si no lo tienen). Esta base contiene información sobre el estado de supervivencia, sexo, edad y clase de los 1309 pasajeros del desastre del Titanic de 1912 (y no, no hay información sobre el incidente de Rose, Jack y una puerta con mucho espacio) 
+
+Asignemosla a un objeto del ambiente para trabajar. 
+
+```{r}
+
+library(carData)
+
+data<-TitanicSurvival
+
+```
+
+
+Crear una tabla de contingencia es tan sencillo como asignar en la función _table()_ una variable "en función de la otra". En este caso nos interesa conocer la distribución de sobrevivientes _en función_ del sexo (por lo de:  "mujeres y niños primero") 
+
+```{r}
+table(data$survived, data$sex)
+```
+
+Listo, creamos nuestra tabla de contingencia, tan sencillo como eso. 
+¿Sobrevivieron más hombres o más mujeres?
+
+Pareciera que sí, pero claro no basta con calcular cuantos murieron y cuantos no, sino cuantos del total (puede ocurrir que haya sobrevivido más mujeres porque, sencillamente, en el barco había más mujeres)
+
+Si "mujeres y niños primero" fue una medida efectiva, entonces la distribución de la variable _sex_ debería determinar la distribución _survived_. En otras palabras sobrevvivir es dependiente del sexo. Determinar que esta dependencia existe y no es fruto del azar es la tarea del test de Chi Cuadrado. Manos a la obra. 
+
+## Test de Chi cuadrado 
+
+
+En términos sencillos, la prueba de Chi-cuadrado examina si las filas y las columnas de una tabla de contingencia están asociadas (o dependen entre ellas) de forma estadísticamente significativa (y no son producto del azar. Las hipótesis de trabajo del test son 
+
+* **Hipótesis nula (H0)**: las variables de fila y columna de la tabla de contingencia son independientes.
+
+* **Hipótesis alternativa (H1)**: las variables de fila y columna son dependientes entre sí
+
+
+Para ello construye dos tablas, una tabla de _hipótesis nula_ es decir, una tabla falsa con la distribución que tomarían las variables si lo determinara el azar. A esta tabla se la llama  de **frecuencias esperadas** y la contrasta con la distribución real, o de **frecuencias observadas**.
+
+
+Una vez que ambas tablas estan construídas, se chequea celda a celda cuanto se asemejan una a la otra creando el _estadístico de Chi cuadrado_. 
+
+
+```{r echo=FALSE}
+knitr::include_graphics("img/chi_2.jpg")
+```
+
+Este estadístico se comparará con una distribución teórica (no se pierdan la clase de distribuciones si lo han hecho). En esta distribución encontraremos la probabilidad que este estadístico se produzca por azar (o de que la hipótesis nula sea cierta)
+
+
+Hagamos un ejercicio para entender esto:
+
+Supongamos que nos interesa ver si la ley de "mujeres primero" generó un impacto en la sobrevivida, entonces ambas variables deberían ser _dependientes_ entre sí. testeamoslo con un test de chi cuadrado:
+
+
+```{r}
+chisq.test(data$survived, data$sex)
+```
+
+La p es infinitamente pequeña (15 ceros después de la coma antes del primer valor) mostrando que la hipótesis nula del test (sexo y sobrevida son independientes) es falsa. 
+
+
+Pero veamos algunas cositas más, guardemos el resultado en un objeto:
+
+```{r}
+chi<-chisq.test(data$survived, data$sex)
+```
+
+Verán que tenemos un objeto "list" con 9 componentes, ¿les interesa ver que tiene adentro?, a mí si. Chusmeemos:
+
+
+```{r}
+str(chi)
+```
+
+Como ven esta el p valor en un lugar, el método utilizado en otro y hay dos tablas: **observadas** y **esperadas**.
+Es decir que R las creo y las guardo en algún lado, veamosla:
+
+
+```{r}
+#la tabla de las frecuencias observadas (la misma que creamos en el apartado anterior)
+chi$observed
+
+
+#la tabla de las esperadas (frecuencias claculadas con el supuesto del azar)
+chi$expected
+```
+
+
+Como ven, si el sexo no hubiera importado en la sobrevida deberían haber sobrevivido en lugar de 161 hombres, 322 (y Jack con ellos :( )
+
+El test de chi cuadrado es muy versátil y puede servir, como en este caso, para contrastar la independencia de dos variables dicotómicas (lo que llamamos una tabla de 2x2) o de variables con más niveles. 
+
+Pero no todo es soplar y hacer botellas, existen condiciones muy estrictas en que este test se puede usar, esas condiciones que deben cumplirse son llamadas **supuestos**
+
+
+### Supuestos del Chi cuadrado
+
+Existen varios supuestos de acuerdo a diferentes autores, aquí mencionaremos los conocidos como clásicos (elaborados por Cochran en 1952)
+
+
+**Tablas 2x2:**
+
+*  Cada observación debe ser **independiente de todas las demás** (es decir, _sólo_ una observación por sujeto)
+
+*  Todas las **frecuencias esperados deben ser 10 o más** Si alguno de los recuentos esperados es inferior a 10, pero superior o igual a 5, algunos autores sugieren que se aplique la corrección de continuidad de Yates. Si alguno de los recuentos esperados es inferior a 5, deberá utilizarse alguna otra prueba (por ejemplo, la prueba exacta de Fisher para tablas de contingencia de 2x2)
+
+
+**Tablas mayores de 2x2:**
+
+Para las tablas mayores de 2x2, la distribución chi-cuadrado con los grados de libertad adecuados proporciona una buena aproximación a la distribución de muestreo del chi-cuadrado de Pearson cuando la hipótesis nula es verdadera y se cumplen las siguientes condiciones:
+
+* Cada observación es independiente de todas las demás (es decir, una observación por sujeto);
+    
+* "No más del 20% de los recuentos esperados son inferiores a 5 y todos los recuentos individuales esperados son 1 o superiores" Obsérvese que está bien tener algunos recuentos esperados inferiores a 5, siempre que ninguno sea inferior a 1, y que al menos el 80% de los recuentos esperados sean iguales o superiores a 5.
+
+
+Con estos supuestos vemos que no siempre es correcto usar Chi cuadrado y que existen un par de pruebas (Yates y Fisher) que funcionan como **correcciones** cuando esto ocurre. En la sección siguiente vamos a ver cómo funcionan.
+
+
+### Corrección de Fisher
+
+
+Creemos un dataset hipotético, copien la siguiente línea:
+
+
+```{r}
+fumon <- data.frame(
+  "Fuma" = c("Si","Si","Si","Si","Si","Si","Si", "No","No","No","No","No","No","No"),
+  "Deportista" = c("Si","Si", "No","No","No","No","No","Si","Si","Si","Si","Si","Si","Si"))
+
+fumon
+```
+
+Hacemos un chi cuadrado para demotrar que el no fumar y la práctica de deporte estan relacionados:
+
+
+```{r}
+chi2<-chisq.test(fumon$Fuma,fumon$Deportista)
+
+chi2
+
+```
+Obtenemos un valor de p significativo. Pero pero pero... un aviso de R que dice que la aproximación de Chi cuadrado es incorrecta. Esto es porque R chequeo los supuestos y encontró que no se cumplen, y nos lo hace saber. Veamos las frecuencias esperadas. 
+
+
+```{r}
+chi2$expected
+```
+
+El supuesto "Todas las frecuencias esperados deben ser 10 o más" no se cumple. En esos casos debemos recurrir a la corrección de Yates si la frecuencia esperada es menor de 10 pero mayor a 5 y si es menor de 5 la de Fisher. 
+La corrección de Fisher funciona para todas las frecuencias así que suele ser la más usada, también es la más estricta con el p valor asi que es posible que la significancia desaparezca (por eso algunos estadísticos prefieren usar Yates cuando es posible)
+
+```{r}
+fisher.test(fumon$Fuma,fumon$Deportista)
+```
+Como ven en este caso, ambas pruebas son significativas, sin embargo los p-valores difieren. **No es correcto reportar el chi cuadrado cuando los supuestos no se cumplen porque en ese caso, ese p-valor, no es válido**
+
+Ejercitemos un poco:
+
+
+## <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:
+
+
+**Ejercicio 1**
+
+1. En este caso vamos a usar la base "TitanicSurvival" para demostrar que existe tambien una asociación entre la sobrevida y el tipo de clase en la que viajaban. 
+
+a. Construyan la tabla de doble entrada para demostrar esto
+
+b. Planteen el test de chi cuadrado, corranlo  y posteriormente traten de definir el hallazgo.
+
+
+
+**Ejercicio 2**
+
+2. Vayamos un poco más lejos que pasara si las condiciones del sexo del pasajero y la de la sobrevida se combinaran para determinar la sobrevida (porque quizás la frase "mujeres y niños primero", no sea equivalente a "damas de alta sociedad, mujeres obreras, jovenes herederos y niños trabajadores primero"). 
+
+a. Para ello, una forma de hacer esto es dividir la base en tres (una por cada clase), usemos la funcion filter para hacerlo (Visiten los capítulo de manipulación de datos si no se acuerdan como). Haganlo
+
+b. Una vez que tengan realizada la división corran test de chi cuadrados e interpretenlos
+
+
+A trabajar
+
+## <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:
+
+Acá estan las soluciones
+
+
+**Ejercicio 1. **
+
+```{r}
+
+#Construímos la Tabla
+table(data$survived, data$passengerClass)
+
+#corrimos el test
+chisq.test(data$survived, data$passengerClass)
+
+#El test de chi cuadrado arrojó un valor significativo, eso quiere decir que la distribución de la sobrevida en distintas clases no fue producto del azar (tampoco fue magia), sino que una dependen de la otra (a simple vista la primera clase tiene más chances de sobrevida, Das Kapital my friend!)
+
+```
+**Ejercicio 2**
+
+```{r}
+#Vamos a utilizar dplyr para crear bases por clases
+
+library(dplyr)
+
+Primera<-data %>% filter(passengerClass == "1st")
+Segunda<-data %>% filter(passengerClass == "2nd")
+Tercera<-data %>% filter(passengerClass == "3rd")
+
+#Ahora vamos a correr Chi test para cada grupo
+
+#Para primera:
+table(Primera$survived, Primera$sex)
+chisq.test(Primera$survived, Primera$sex)
+
+
+#Para segunda:
+table(Segunda$survived, Segunda$sex)
+chisq.test(Segunda$survived, Segunda$sex)
+
+
+#Para Tercera:
+table(Tercera$survived, Tercera$sex)
+chisq.test(Tercera$survived, Tercera$sex)
+                         
+```
+Vemos que no se cumplieron todos los supuestos del Chi cuadrado entonces R aplico corrección de Yates, en todos los grupos hubo una asociación entre ser mujer y sobrevivir sin embargo si uds comparan las proporciones verán que las "chances de sobrevivir" disminuyeron clase a clase pese a ser mujer. 
+
+Otra forma de demostrar eso es quedarnos con las mujeres solamente y testear el efecto de clase, intentemoslo:
+
+```{r}
+mujeres<-data%>% filter(sex == "female")
+
+
+#Construímos la Tabla
+table(mujeres$survived, mujeres$passengerClass)
+
+#corrimos el test
+chisq.test(mujeres$survived, mujeres$passengerClass)
+```
+Sigue habiendo un efecto de la clase!. 
+
+

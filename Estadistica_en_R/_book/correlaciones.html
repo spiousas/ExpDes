@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Correlaciones | Introducción a la bioestadistica</title>
+  <meta name="description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Correlaciones | Introducción a la bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="github-repo" content="rstudio/libroR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Correlaciones | Introducción a la bioestadistica" />
+  
+  <meta name="twitter:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  
+
+<meta name="author" content="Ismael Calandri" />
+
+
+<meta name="date" content="2021-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="flenilogo.ico" type="image/x-icon" />
+<link rel="prev" href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"/>
+<link rel="next" href="regresión-y-regresión-lineal.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="libs/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Acerca de este libro</a></li>
+<li class="chapter" data-level="2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html"><i class="fa fa-check"></i><b>2</b> Introducción y set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-es-r"><i class="fa fa-check"></i><b>2.1</b> ¿Qué es R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-quiere-decir-que-es-un-lenguaje-de-programación"><i class="fa fa-check"></i><b>2.1.1</b> ¿Qué quiere decir que es un lenguaje de programación?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación"><i class="fa fa-check"></i><b>2.2</b> Instalación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Instalación de RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#dónde-pedir-ayuda"><i class="fa fa-check"></i><b>2.2.3</b> ¿Dónde pedir ayuda?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html"><i class="fa fa-check"></i><b>3</b> Primeros pasos en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#consola"><i class="fa fa-check"></i><b>3.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#scripts"><i class="fa fa-check"></i><b>3.2</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#crear-un-script"><i class="fa fa-check"></i><b>3.2.1</b> Crear un script</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#objetos"><i class="fa fa-check"></i><b>3.3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.3.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#clases-de-objetos"><i class="fa fa-check"></i><b>3.3.2</b> Clases de objetos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#operaciones-con-objetos"><i class="fa fa-check"></i><b>3.3.3</b> Operaciones con objetos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-con-objetos"><i class="fa fa-check"></i><b>3.3.4</b> Funciones con objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador"><i class="fa fa-check"></i><b>3.4</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+<li class="chapter" data-level="3.5" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#dataset-dataframe-bases-de-datos"><i class="fa fa-check"></i><b>3.5</b> Dataset-Dataframe, bases de datos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-base-de-datos"><i class="fa fa-check"></i><b>3.5.1</b> Creación de base de datos:</a></li>
+<li class="chapter" data-level="3.5.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-básicas-para-los-dataframes"><i class="fa fa-check"></i><b>3.5.2</b> Funciones básicas para los dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador-1"><i class="fa fa-check"></i><b>3.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><i class="fa fa-check"></i><b>4</b> Ambientes de trabajo y manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#antes-de-empezar"><i class="fa fa-check"></i><b>4.1</b> Antes de empezar</a></li>
+<li class="chapter" data-level="4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#directorio-de-trabajo-o-working-directory"><i class="fa fa-check"></i><b>4.2</b> Directorio de trabajo o Working directory</a></li>
+<li class="chapter" data-level="4.3" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#paquetes-o-librerías"><i class="fa fa-check"></i><b>4.3</b> Paquetes o librerías</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-instalar-una-librería"><i class="fa fa-check"></i><b>4.3.1</b> ¿Como instalar una librería?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-activar-una-librería"><i class="fa fa-check"></i><b>4.3.2</b> ¿Como activar una librería?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#de-la-base-de-datos-a-r"><i class="fa fa-check"></i><b>4.4</b> De la base de datos a R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#metodo-de-ventanas-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.1</b> Metodo de ventanas para subir un dataframe a R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#código-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.2</b> Código para subir un dataframe a R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#manipulación-de-variables-i"><i class="fa fa-check"></i><b>4.5</b> Manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#métodos-de-selección-de-datos"><i class="fa fa-check"></i><b>4.5.1</b> Métodos de selección de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html"><i class="fa fa-check"></i><b>5</b> Manipulación de variables (II)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#piping-y-paquete-dplyr"><i class="fa fa-check"></i><b>5.1</b> Piping y paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#funciones-dplyr"><i class="fa fa-check"></i><b>5.2</b> Funciones dplyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-filter"><i class="fa fa-check"></i><b>5.2.1</b> Función filter()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-select"><i class="fa fa-check"></i><b>5.3</b> Función select()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-arrange"><i class="fa fa-check"></i><b>5.3.1</b> Función arrange()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-mutate"><i class="fa fa-check"></i><b>5.4</b> Función mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#otras-funciones-de-dplyr"><i class="fa fa-check"></i><b>5.5</b> Otras funciones de dplyr</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#ejercicios-2"><i class="fa fa-check"></i><b>5.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1"><i class="fa fa-check"></i><b>5.6.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2"><i class="fa fa-check"></i><b>5.6.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3"><i class="fa fa-check"></i><b>5.6.3</b> Problema 3:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#respuestas"><i class="fa fa-check"></i><b>5.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1-1"><i class="fa fa-check"></i><b>5.7.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.7.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2-1"><i class="fa fa-check"></i><b>5.7.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.7.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3-1"><i class="fa fa-check"></i><b>5.7.3</b> Problema 3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html"><i class="fa fa-check"></i><b>6</b> Resumen de variables en R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-categoricas"><i class="fa fa-check"></i><b>6.1</b> Resumen de variables categoricas</a></li>
+<li class="chapter" data-level="6.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-numéricas"><i class="fa fa-check"></i><b>6.2</b> Resumen de variables numéricas</a></li>
+<li class="chapter" data-level="6.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#antes-de-empezar-1"><i class="fa fa-check"></i><b>6.3</b> Antes de empezar</a></li>
+<li class="chapter" data-level="6.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-básica"><i class="fa fa-check"></i><b>6.4</b> Estadística descriptiva básica</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-posición"><i class="fa fa-check"></i><b>6.4.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="6.4.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>6.4.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="6.4.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-frecuencia"><i class="fa fa-check"></i><b>6.4.3</b> Medidas de frecuencia</a></li>
+<li class="chapter" data-level="6.4.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#tablas-cruzadas"><i class="fa fa-check"></i><b>6.4.4</b> Tablas cruzadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-en-bloque"><i class="fa fa-check"></i><b>6.5</b> Estadística descriptiva en bloque</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-lapply"><i class="fa fa-check"></i><b>6.5.1</b> Función lapply()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-summary"><i class="fa fa-check"></i><b>6.5.2</b> Función summary()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#ejercicios-3"><i class="fa fa-check"></i><b>6.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="6.7" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#respuestas-1"><i class="fa fa-check"></i><b>6.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="6.8" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#parametricidad"><i class="fa fa-check"></i><b>6.8</b> Parametricidad</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-gráficos"><i class="fa fa-check"></i><b>6.8.1</b> Métodos gráficos:</a></li>
+<li class="chapter" data-level="6.8.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-analíticos"><i class="fa fa-check"></i><b>6.8.2</b> Métodos analíticos:</a></li>
+<li class="chapter" data-level="6.8.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-parametricidad"><i class="fa fa-check"></i><b>6.8.3</b> Resumen de parametricidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#la-tabla-1"><i class="fa fa-check"></i><b>6.9</b> La tabla 1</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#paquete-table1"><i class="fa fa-check"></i><b>6.9.1</b> Paquete table1</a></li>
+<li class="chapter" data-level="6.9.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-tbl_summary"><i class="fa fa-check"></i><b>6.9.2</b> Función tbl_summary()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html"><i class="fa fa-check"></i><b>7</b> Creación de gráficos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#gráficos-base-de-r"><i class="fa fa-check"></i><b>7.1</b> Gráficos base de R</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#plot"><i class="fa fa-check"></i><b>7.1.1</b> plot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#histograma-y-boxplot"><i class="fa fa-check"></i><b>7.1.2</b> Histograma y boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> Ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#sintaxis-ggplot"><i class="fa fa-check"></i><b>7.2.1</b> Sintaxis ggplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#el-mapeo-estético"><i class="fa fa-check"></i><b>7.2.2</b> El mapeo estético</a></li>
+<li class="chapter" data-level="7.2.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#las-geometrías"><i class="fa fa-check"></i><b>7.2.3</b> Las geometrías</a></li>
+<li class="chapter" data-level="7.2.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#capas"><i class="fa fa-check"></i><b>7.2.4</b> Capas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ejercicios-4"><i class="fa fa-check"></i><b>7.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="7.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#respuestas-2"><i class="fa fa-check"></i><b>7.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html"><i class="fa fa-check"></i><b>8</b> Matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#componentes-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.1</b> Componentes de la matriz de confusión</a></li>
+<li class="chapter" data-level="8.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.2</b> Análisis de la matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#sensibilidad"><i class="fa fa-check"></i><b>8.2.1</b> Sensibilidad</a></li>
+<li class="chapter" data-level="8.2.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#especificidad"><i class="fa fa-check"></i><b>8.2.2</b> Especificidad</a></li>
+<li class="chapter" data-level="8.2.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#valores-predictivos-positivos-y-negativos"><i class="fa fa-check"></i><b>8.2.3</b> Valores predictivos positivos y negativos</a></li>
+<li class="chapter" data-level="8.2.4" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#indice-de-omision-falsa-false-omission-rate-e-indice-de-deteccion-falsa-false-discovery-rate"><i class="fa fa-check"></i><b>8.2.4</b> Indice de omision falsa (False Omission Rate) e indice de deteccion falsa (False Discovery Rate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión-con-r"><i class="fa fa-check"></i><b>8.3</b> Análisis de la matriz de confusión con R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><i class="fa fa-check"></i><b>9</b> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>9.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="9.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#test-de-chi-cuadrado"><i class="fa fa-check"></i><b>9.2</b> Test de Chi cuadrado</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#supuestos-del-chi-cuadrado"><i class="fa fa-check"></i><b>9.2.1</b> Supuestos del Chi cuadrado</a></li>
+<li class="chapter" data-level="9.2.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#corrección-de-fisher"><i class="fa fa-check"></i><b>9.2.2</b> Corrección de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#ejercicios-5"><i class="fa fa-check"></i><b>9.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="9.4" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#respuestas-3"><i class="fa fa-check"></i><b>9.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html"><i class="fa fa-check"></i><b>10</b> Test de contraste de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-z"><i class="fa fa-check"></i><b>10.1</b> Test Z</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-del-test-z"><i class="fa fa-check"></i><b>10.1.1</b> Supuestos del test Z</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-t-de-student"><i class="fa fa-check"></i><b>10.2</b> Test <em>t</em> de Student</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-de-la-prueba-t"><i class="fa fa-check"></i><b>10.2.1</b> Supuestos de la prueba <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#tests-no-paramétricos-para-comparación-de-variables-continuas"><i class="fa fa-check"></i><b>10.3</b> Tests no paramétricos para comparación de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-u-de-mann-whitnney"><i class="fa fa-check"></i><b>10.3.1</b> Test <em>U</em> de Mann-Whitnney</a></li>
+<li class="chapter" data-level="10.3.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-wilcoxon"><i class="fa fa-check"></i><b>10.3.2</b> Test de Wilcoxon</a></li>
+<li class="chapter" data-level="10.3.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-la-mediana"><i class="fa fa-check"></i><b>10.3.3</b> test de la Mediana</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#algoritmo-para-la-decisión-de-la-prueba"><i class="fa fa-check"></i><b>10.4</b> Algoritmo para la decisión de la prueba</a></li>
+<li class="chapter" data-level="10.5" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#ejercicios-6"><i class="fa fa-check"></i><b>10.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="10.6" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#respuestas-4"><i class="fa fa-check"></i><b>10.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><i class="fa fa-check"></i><b>11</b> Test de contraste de variables continuas con grupos de más de dos niveles</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#anova"><i class="fa fa-check"></i><b>11.1</b> Anova</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#supestos-de-la-anova"><i class="fa fa-check"></i><b>11.1.1</b> Supestos de la ANOVA</a></li>
+<li class="chapter" data-level="11.1.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#interpretando-el-modelo-de-anova"><i class="fa fa-check"></i><b>11.1.2</b> Interpretando el modelo de ANOVA</a></li>
+<li class="chapter" data-level="11.1.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#el-problema-de-las-comparaciones-múltiples"><i class="fa fa-check"></i><b>11.1.3</b> El problema de las comparaciones múltiples</a></li>
+<li class="chapter" data-level="11.1.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc"><i class="fa fa-check"></i><b>11.1.4</b> Post-Hoc</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#kruskal-wallis"><i class="fa fa-check"></i><b>11.2</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc-no-paramétricos"><i class="fa fa-check"></i><b>11.2.1</b> Post-hoc no paramétricos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#ejercicios-7"><i class="fa fa-check"></i><b>11.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="11.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#respuestas-5"><i class="fa fa-check"></i><b>11.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlaciones.html"><a href="correlaciones.html"><i class="fa fa-check"></i><b>12</b> Correlaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlaciones.html"><a href="correlaciones.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1</b> Coeficiente de correlación de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlaciones.html"><a href="correlaciones.html#supuestos-del-coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1.1</b> Supuestos del coeficiente de correlación de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlaciones.html"><a href="correlaciones.html#correlaciones-no-paramétricas-de-kendal-y-spearman"><i class="fa fa-check"></i><b>12.2</b> Correlaciones no paramétricas de Kendal y Spearman</a></li>
+<li class="chapter" data-level="12.3" data-path="correlaciones.html"><a href="correlaciones.html#ejercicios-8"><i class="fa fa-check"></i><b>12.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="12.4" data-path="correlaciones.html"><a href="correlaciones.html#respuestas-6"><i class="fa fa-check"></i><b>12.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="12.5" data-path="correlaciones.html"><a href="correlaciones.html#matriz-de-correlación"><i class="fa fa-check"></i><b>12.5</b> Matriz de correlación</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlaciones.html"><a href="correlaciones.html#visualización-de-matriz-de-correlaciones-corrplot"><i class="fa fa-check"></i><b>12.5.1</b> Visualización de matriz de correlaciones, Corrplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html"><i class="fa fa-check"></i><b>13</b> Regresión y regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#concepto-de-regresión"><i class="fa fa-check"></i><b>13.1</b> Concepto de regresión</a></li>
+<li class="chapter" data-level="13.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal"><i class="fa fa-check"></i><b>13.2</b> Regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>13.2.1</b> Regresión lineal simple</a></li>
+<li class="chapter" data-level="13.2.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-múltiple"><i class="fa fa-check"></i><b>13.2.2</b> Regresión lineal múltiple</a></li>
+<li class="chapter" data-level="13.2.3" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#parámetros-de-corrección-del-modelo"><i class="fa fa-check"></i><b>13.2.3</b> Parámetros de corrección del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>14</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logística"><i class="fa fa-check"></i><b>14.1</b> La función logística</a></li>
+<li class="chapter" data-level="14.2" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-simple"><i class="fa fa-check"></i><b>14.2</b> Regresión logística simple</a></li>
+<li class="chapter" data-level="14.3" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-múltiple"><i class="fa fa-check"></i><b>14.3</b> Regresión logística múltiple</a></li>
+<li class="chapter" data-level="14.4" data-path="regresión-logística.html"><a href="regresión-logística.html#evaluando-la-precisión-de-la-regresión-logística"><i class="fa fa-check"></i><b>14.4</b> Evaluando la precisión de la regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#criterio-de-información-de-akaike"><i class="fa fa-check"></i><b>14.4.1</b> Criterio de información de Akaike</a></li>
+<li class="chapter" data-level="14.4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#hacer-predicciones-y-compararlas-con-la-realidad"><i class="fa fa-check"></i><b>14.4.2</b> Hacer predicciones y compararlas con la realidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regresión-logística.html"><a href="regresión-logística.html#ejercicios-9"><i class="fa fa-check"></i><b>14.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="14.6" data-path="regresión-logística.html"><a href="regresión-logística.html#respuestas-7"><i class="fa fa-check"></i><b>14.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="correlaciones" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Correlaciones</h1>
+<p>En este capítulo veremos como explorar la relación entre dos variables continuas. Estos análisis suelen ser utilizados para “darnos una idea” de la naturaleza de las relaciones, eso quiere decir que probablemente sólo sean utilizados como una puerta de entrada a análisis más sofisticados</p>
+<p>La correlación es una medida estadística que expresa hasta qué punto dos variables están relacionadas <strong>linealmente</strong>. En otras palabras, cuan probable es que cambien conjuntamente con una tasa constante. Es una herramienta común para describir relaciones simples <em>sin hacer afirmaciones sobre causa y efecto</em>.</p>
+<p>Uno de los aspectos por lo que no se pueden hacer afirmaciones de causa y efecto es que las correlaciones son <em>bivariadas</em>. Esto quiere decir que lo que estamos evaluando es como cambian dos variables <strong>conjuntamente</strong>, o sea, si se incrementa el valor de x, lo hace el de y o si incrementa y, lo hace x. No hay una hipótesis de dependencia y no sabes cual es causa de cual, sólo que se <em>mueven</em> juntan</p>
+<p>Veamos que quiere decir esto y exploremos algunas relaciones entre datos continuos. Vamos a volver a nuestro dataset “iris” entre el largo del pétalo (“petal.length”), y el ancho (“petal.width”), vamos a hacer lo mismo con el sépalo. ¿Recuerdan que una buena forma de <strong>explorar</strong> es hacer gráficos rápidos?</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="correlaciones.html#cb379-1" aria-hidden="true" tabindex="-1"></a>flores<span class="ot">&lt;-</span>iris</span>
+<span id="cb379-2"><a href="correlaciones.html#cb379-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-3"><a href="correlaciones.html#cb379-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-4"><a href="correlaciones.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flores<span class="sc">$</span>Petal.Length, flores<span class="sc">$</span>Petal.Width)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="correlaciones.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flores<span class="sc">$</span>Sepal.Length, flores<span class="sc">$</span>Sepal.Width)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p>¿Qué vemos?, pareciera que a medida que crece el largo del pétalo lo hace el ancho (¿o viceversa no?). Y este cambio lo hace con una tendencia más o menos lineal (describe una recta ascendente). Cuando miramos el sépalo no ocurre tan así, los puntos están muy separados y no es claro encontrar una tendencia.</p>
+<p>Entonces puede que ambas variables se muevan juntas, pero unas lo hacen con mucho más precisión (cuando se mueve una la otra lo hace casi casi igual), esto describe un conjunto de datos más o menos apretados con respecto a una recta.</p>
+<p>La dirección de la recta (su pendiente) da una idea de la naturaleza de asociación:</p>
+<ul>
+<li><p><strong>positiva</strong>: la recta asciende indicando que x e y aumentan en una proporción semejante, o disminuyen con la misma proporción, pero siempre en igual sentido</p></li>
+<li><p><strong>negativa</strong>: le recta desciende de izquierda a derecha indicando que la relación entre las variables es <em>inversamente proporcional</em>: cuando una aumenta, la otra baja</p></li>
+</ul>
+<p>La cercanía de los puntos a la recta imaginaria determina la <em>intimidad</em> de la asociación, mientras más juntos estén los datos a esa recta la correlación es más <strong>fuerte</strong>. Veamoslo con un ejemplo gráfico</p>
+<p><img src="img/Correlation.png" width="400" /></p>
+<p>Pese a que este enfoque es muy intuitivo, y ya tenemos una idea de la asociación de las variables en el dataset flores. Deberíamos cuantificar para ello están los test de correlaciones. Los test de correlaciones sirven para poner en número a la respuesta de dos preguntas:</p>
+<ul>
+<li><p>¿Cuál es la naturaleza de la asociación?: si es positiva o negativa, fuerte o débil. Se va a interpretar a partir de un estadístico <strong>r</strong> o <strong>coeficiente de correlación</strong></p></li>
+<li><p>¿Esta asociación existe o es fruto del azar?: se va a contestar con un test de hipótesis y un <strong>p-valor</strong></p></li>
+</ul>
+<p>Todas las correlaciones suponen una relación lineal, a esto la llamamos <strong>supuesto de linealidad</strong>, hay ocasiones en los que los datos no son lineales, en estos casos las correlaciones son erróneas</p>
+<p>Empecemos con la primera de las correlaciones para entender.</p>
+<div id="coeficiente-de-correlación-de-pearson" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Coeficiente de correlación de Pearson</h2>
+<p>La correlación de Pearson (r), como toda correlación, mide una dependencia lineal entre dos variables (x e y). También se conoce como prueba de correlación paramétrica porque depende de la distribución de los datos. <strong>Sólo puede utilizarse cuando x e y provienen de una distribución normal.</strong></p>
+<p>Veamos porque, esta es la fórmula del coeficiente de correlación de Pearson</p>
+<p><img src="img/r_pearson.JPG" width="438" /></p>
+<p>Como ven, parte (el denominador) de la fórmula es la <em>sumatoria de la multiplicación de la distancia de cada valor en x con la media de x y de cada valor de y con la media de y</em>. Es decir que para que esta fórmula tenga sentido las medias deberían ser buenos descriptores de la variable x y la variable y, por ende <strong>ambas variables deben ser normales</strong></p>
+<p>Analicemos un poco el término del denominador, es una sumatoria de multiplicaciones, en cada multiplicación se testea la distancia de un punto en las dos medias, o sea la posición de un individuo en ambos ejes.
+Si cada vez que un individuo adopta valores en x por encima de la media de x adopta valores en y por encima de la media de y, el término de la multiplicación da positivo. Además si cada vez que un individuo adopta valores en x por debajo de la media de x adopta valores en y por debajo de la media de y, el término de la multiplicación también da positivo (porque menos por menos, es más). En la sumatoria si predominan este tipo de términos positivos el valor de r <strong>va a ser positivo</strong>, en otras palabras <em>cada vez que subió x, subió y; y cada vez que bajó x bajó y</em>. Por el contrario si cada x por encima de la media se asocia con una y por debajo de la media, da negativo (menos por mas, es menos); y cada x por debajo de la media tiene una y por encima de la media (mas por menos es menos), el valor de r va a ser <strong>negativo</strong></p>
+<p>En definitiva:</p>
+<ul>
+<li><p><strong>el signo del estadístico <em>r</em></strong> nos indica la dirección de la relación</p></li>
+<li><p><strong>el número absoluto</strong>, la fuerza de la relación. Mientras más cercana a 1 más fuerte y más cercana a 0, más inexistente.</p></li>
+<li><p><strong>test de hipótesis</strong>, nos permite obtener un p-valor que sopesa la posibilidad de que esa relación sólo sea fruto del azar (p&lt;0.05, rechaza la hipótesis del azar)</p></li>
+</ul>
+<p>¿Nos animamos con un ejemplo?:</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="correlaciones.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(flores<span class="sc">$</span>Petal.Length, flores<span class="sc">$</span>Petal.Width, </span>
+<span id="cb381-2"><a href="correlaciones.html#cb381-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  flores$Petal.Length and flores$Petal.Width
+## t = 43.387, df = 148, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.9490525 0.9729853
+## sample estimates:
+##       cor 
+## 0.9628654</code></pre>
+<p>En este caso obtuvimos un <em>coeficiente r</em> de 0.96, una correlación muy fuerte y un <em>p-valor</em> &lt; 2.2e-16 lo que indica que no es fruto del azar. Algo que intuíamos viendo el gráfico.</p>
+<p>Veamos que pasa con los sépalos</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="correlaciones.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(flores<span class="sc">$</span>Sepal.Length, flores<span class="sc">$</span>Sepal.Width, </span>
+<span id="cb383-2"><a href="correlaciones.html#cb383-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  flores$Sepal.Length and flores$Sepal.Width
+## t = -1.4403, df = 148, p-value = 0.1519
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.27269325  0.04351158
+## sample estimates:
+##        cor 
+## -0.1175698</code></pre>
+<p>La correlación no es significativa (eso quiere decir que es muy probable que la correlación no exista o sea fruto del azar), si miramos su coeficiente también es muy bajo o sea que si existiera también sería una correlación muy muy débil.</p>
+<div id="supuestos-del-coeficiente-de-correlación-de-pearson" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Supuestos del coeficiente de correlación de Pearson</h3>
+<p>Los supuestos del coeficiente de correlación de Pearson son los siguientes: nivel de medición, pares relacionados, ausencia de valores atípicos, normalidad de las variables, linealidad y homocedasticidad.</p>
+<ul>
+<li><p><strong>Nivel de medición</strong> se refiere a cada variable. Para una correlación de Pearson, cada variable debe ser continua. Si una o ambas variables son de medición ordinal, entonces se podría realizar una correlación de Spearman en su lugar.</p></li>
+<li><p><strong>Pares relacionados</strong> se refiere a los pares de variables. Cada participante u observación debe tener un par de valores. Así, si la correlación es entre el peso y la altura, cada observación utilizada debe tener un valor de peso y otro de altura.</p></li>
+<li><p><strong>Normalidad</strong> ambas variables tienen que tener una distribución aproximada a la normal</p></li>
+<li><p><strong>Ausencia de valores atípicos</strong> se refiere a no tener valores atípicos en ninguna de las variables. La presencia de un valor atípico puede sesgar los resultados de la correlación, ya que la línea de mejor ajuste formada por la correlación se desvía demasiado en una u otra dirección. Normalmente, un valor atípico se define como un valor que está a 3,29 desviaciones estándar de la media</p></li>
+<li><p><strong>La linealidad y la homocedasticidad</strong> se refieren a la forma de los valores formados por el gráfico de dispersión. Para la linealidad, debe formarse una relación de “línea recta” entre la variable. Si se traza una línea entre todos los puntos que van de izquierda a derecha, la línea debe ser recta y no curva. La homocedasticidad se refiere a la distancia entre los puntos a esa línea recta. La forma del gráfico de dispersión debe tener forma de tubo. Si la forma es cónica, la homocedasticidad no se cumple.</p></li>
+</ul>
+</div>
+</div>
+<div id="correlaciones-no-paramétricas-de-kendal-y-spearman" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Correlaciones no paramétricas de Kendal y Spearman</h2>
+<p>Mientras se cumplan los supuestos de linealidad, nivel de medición, pares relacionados y ausencia de valores atípicos (estos últimos siempre pueden ser removidos), se puede realizar una correlación. El supuesto de normalidad es una condición infranqueable para calcular el coeficiente <em>r</em> de Pearson, sin embrago existen otros métodos cuando la normalidad no se cumpl:</p>
+<ul>
+<li><strong>Coeficiente de correlación de rangos de Kendall</strong> o el estadístico <em>tau</em> de Kendall se utiliza para estimar una medida de asociación basada en rangos. Esta prueba puede utilizarse si los datos no proceden necesariamente de una distribución normal bivariada.</li>
+</ul>
+<p>** <strong>Coeficiente rho de Spearman</strong> también se utiliza para estimar una medida de asociación basada en el rango y también es válida en casos de no cumplirse la normalidad.</p>
+<p>El cálculo de ambas es muy sencillo:</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="correlaciones.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(flores<span class="sc">$</span>Petal.Length, flores<span class="sc">$</span>Petal.Width, </span>
+<span id="cb385-2"><a href="correlaciones.html#cb385-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Kendall&#39;s rank correlation tau
+## 
+## data:  flores$Petal.Length and flores$Petal.Width
+## z = 13.968, p-value &lt; 2.2e-16
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.8068907</code></pre>
+<p>Como ven,tanto los coeficientes como los p-valores difieren entre las técnicas, ya que estas últimas tienen menos sensibilidad al cambio (pero también menos vulnerabilidad a la pérdida de normalidad)</p>
+<p>Hagamos un ejercicio</p>
+</div>
+<div id="ejercicios-8" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</h2>
+<p>Vamos a instalar un paquete nuevo con un dataset, el paquete se llama “datasauRus” (búsquenlo e instalenlo), y vamos a utilizar una base que se llama “datasaurus_dozen_wide”</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="correlaciones.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span>
+<span id="cb387-2"><a href="correlaciones.html#cb387-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb387-3"><a href="correlaciones.html#cb387-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>datasaurus_dozen_wide</span></code></pre></div>
+<p>Vamos a calcular dos correlaciones, una entre “away_x” y “away_y”, y otra entre “dino_x” y “dino_y”. No olviden chequear normalidad antes de decidir cada método.</p>
+</div>
+<div id="respuestas-6" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</h2>
+<p>Bueno seguramente todos han hecho algo más o menos así:</p>
+<p>**Chequeamos la normalidad</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="correlaciones.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (sólo haremos boxplots para no hacerla muy larga)</span></span>
+<span id="cb388-2"><a href="correlaciones.html#cb388-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-3"><a href="correlaciones.html#cb388-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>away_x)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="correlaciones.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>away_y)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-213-2.png" width="672" /></p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="correlaciones.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>dino_x)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-213-3.png" width="672" /></p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="correlaciones.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>dino_y)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-213-4.png" width="672" /></p>
+<p>**Y vamos con Pearson</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="correlaciones.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(data<span class="sc">$</span>away_x, data<span class="sc">$</span>away_y, </span>
+<span id="cb392-2"><a href="correlaciones.html#cb392-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  data$away_x and data$away_y
+## t = -0.76034, df = 140, p-value = 0.4483
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.2264633  0.1016730
+## sample estimates:
+##         cor 
+## -0.06412835</code></pre>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="correlaciones.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(data<span class="sc">$</span>dino_x, data<span class="sc">$</span>dino_y, </span>
+<span id="cb394-2"><a href="correlaciones.html#cb394-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  data$dino_x and data$dino_y
+## t = -0.76443, df = 140, p-value = 0.4459
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.2267905  0.1013316
+## sample estimates:
+##         cor 
+## -0.06447185</code></pre>
+<p>Ambas correlaciones son prácticamente igual… pero</p>
+<p><img src="img/emosido.jpg" width="315" /></p>
+<p>¿Por qué?, hagamos un gráfico de cada una de las correlaciones.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="correlaciones.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>away_x, data<span class="sc">$</span>away_y)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="correlaciones.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>dino_x, data<span class="sc">$</span>dino_y)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p>¡No chequeamos el supuesto de linealidad! Ninguna de estas variables, pese a ser normales, cumplen una relación de linealidad, por ende nuestras correlaciones son erróneas.</p>
+</div>
+<div id="matriz-de-correlación" class="section level2" number="12.5">
+<h2><span class="header-section-number">12.5</span> Matriz de correlación</h2>
+<p>En ocasiones como investigadores nos enfrentamos con bases enormes (cientos y cientos de variables). Una forma muy útil de enfrentar a estos leviatanes es empezando por tener un pantallazo general de las relaciones entre las variables. Para ello es posible que nos interese estudiar todas las correlaciones que las variables tienen entre sí, esta tarea se hace muy sencilla cuando creamos una <strong>matriz de correlaciones</strong>. Estas “matrices” son tablas de doble entradas con las variables en el encabezado y en la primera fila, las celdas que determinan la intersección contienen el coeficiente de correlación entre las dos variables.</p>
+<p>Veamos como es esto con un ejemplo:</p>
+<p>Vamos a volver a utilizar la base “mtcars” para recordar tiene las siguientes variables:</p>
+<ul>
+<li><p><em>mpg</em> Millas/(US) galón</p></li>
+<li><p><em>cyl</em> Número de cilindros</p></li>
+<li><p><em>disp</em> Desplazamiento (cu.in.)</p></li>
+<li><p><em>hp</em> Caballos de fuerza</p></li>
+<li><p><em>drat</em> Relación del eje trasero</p></li>
+<li><p><em>wt</em> Peso (1000 lbs)</p></li>
+<li><p><em>qsec</em> Tiempo de 1/4 de milla</p></li>
+<li><p><em>vs</em> Motor (0 = en forma de V, 1 = recto)</p></li>
+<li><p><em>am</em> Transmisión (0 = automática, 1 = manual)</p></li>
+<li><p><em>gear</em> Número de marchas adelante</p></li>
+<li><p><em>carb</em> Número de carburadores</p></li>
+</ul>
+<p>Vamos a tomar de esta base sólo las variables continuas.</p>
+<p>Para computar una matriz de correlaciones directamente vamos a usar la función <strong>cor()</strong></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="correlaciones.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co">#la active para poder seleccionar variables</span></span>
+<span id="cb398-2"><a href="correlaciones.html#cb398-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-3"><a href="correlaciones.html#cb398-3" aria-hidden="true" tabindex="-1"></a>autos<span class="ot">&lt;-</span>mtcars <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg, disp, hp, drat, wt, qsec )</span>
+<span id="cb398-4"><a href="correlaciones.html#cb398-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-5"><a href="correlaciones.html#cb398-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-6"><a href="correlaciones.html#cb398-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(autos)</span></code></pre></div>
+<pre><code>##             mpg       disp         hp        drat         wt        qsec
+## mpg   1.0000000 -0.8475514 -0.7761684  0.68117191 -0.8676594  0.41868403
+## disp -0.8475514  1.0000000  0.7909486 -0.71021393  0.8879799 -0.43369788
+## hp   -0.7761684  0.7909486  1.0000000 -0.44875912  0.6587479 -0.70822339
+## drat  0.6811719 -0.7102139 -0.4487591  1.00000000 -0.7124406  0.09120476
+## wt   -0.8676594  0.8879799  0.6587479 -0.71244065  1.0000000 -0.17471588
+## qsec  0.4186840 -0.4336979 -0.7082234  0.09120476 -0.1747159  1.00000000</code></pre>
+<p>Ahora podemos saber de un vistazo que el desplazamiento, el peso y los caballos de fuerza se relacionan inversamente con el tiempo que el auto tarda en alcanzar un 1/4 de milla (lógico no, parecen determinantes de la velocidad). Pero así como exploramos una relación podemos explorar muchísimas más. Este enfoque permite ver un bloque de datos e ir descubriendo asociaciones. Muy útil si se sale “a pescar” ;)</p>
+<p>Sin embargo la matriz de correlaciones sirve para “re pensar la base”, no para reportar, ya que como vimos no tiene por detrás una hipótesis de causalidad. En cambio es muy útil para señalar, donde ir a buscar.</p>
+<p>Esta tabla que hemos creado son muchas correlaciones de Pearson, ¿pero que p-valor tienen? Para eso también podemos construir una matriz de p-valores</p>
+<p>Para esto vamos a usar el paquete <strong>Hmisc</strong></p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="correlaciones.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;Hmisc&quot;</span>)</span>
+<span id="cb400-2"><a href="correlaciones.html#cb400-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(autos))</span></code></pre></div>
+<pre><code>##        mpg  disp    hp  drat    wt  qsec
+## mpg   1.00 -0.85 -0.78  0.68 -0.87  0.42
+## disp -0.85  1.00  0.79 -0.71  0.89 -0.43
+## hp   -0.78  0.79  1.00 -0.45  0.66 -0.71
+## drat  0.68 -0.71 -0.45  1.00 -0.71  0.09
+## wt   -0.87  0.89  0.66 -0.71  1.00 -0.17
+## qsec  0.42 -0.43 -0.71  0.09 -0.17  1.00
+## 
+## n= 32 
+## 
+## 
+## P
+##      mpg    disp   hp     drat   wt     qsec  
+## mpg         0.0000 0.0000 0.0000 0.0000 0.0171
+## disp 0.0000        0.0000 0.0000 0.0000 0.0131
+## hp   0.0000 0.0000        0.0100 0.0000 0.0000
+## drat 0.0000 0.0000 0.0100        0.0000 0.6196
+## wt   0.0000 0.0000 0.0000 0.0000        0.3389
+## qsec 0.0171 0.0131 0.0000 0.6196 0.3389</code></pre>
+<p>Ahora tenemos dos tablas, una con los coeficientes y otras con el p valor, para divertirnos…bueno diviértanse.</p>
+<p>Sí sí, leer tablas es casi el antónimo de diversión, por eso vamos a ver si podemos ver todo esto en un gráfico</p>
+<div id="visualización-de-matriz-de-correlaciones-corrplot" class="section level3" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Visualización de matriz de correlaciones, Corrplot</h3>
+<p>La matriz de correlaciones puede visualizarse como un gráfico, que además de más prolijo, permite dar un pantallazo aún más rápido a las relaciones, a ese gráfico lo llamamos <strong>correlation plot</strong> o <strong>corrplot</strong> (para los amigos).</p>
+<p>Para ello vamos a instalar el paquete <strong>corrplot</strong></p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="correlaciones.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb402-2"><a href="correlaciones.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)<span class="co">#porque tiene la función de la correlación</span></span>
+<span id="cb402-3"><a href="correlaciones.html#cb402-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-4"><a href="correlaciones.html#cb402-4" aria-hidden="true" tabindex="-1"></a>co<span class="ot">&lt;-</span> <span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(autos)) <span class="co">#computamos las matrices pero las guardamos porque las vamos a usar</span></span>
+<span id="cb402-5"><a href="correlaciones.html#cb402-5" aria-hidden="true" tabindex="-1"></a><span class="co">#el objeto co es una lista que tiene la matriz de coeficientes (r), las de p(p) y el n  </span></span>
+<span id="cb402-6"><a href="correlaciones.html#cb402-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-7"><a href="correlaciones.html#cb402-7" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(co<span class="sc">$</span>r) <span class="co">#le pedimos que grafique las correlaciones</span></span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p>Ahora tenemos un gráfico que nos muestra el tamaño de la relación en burbujas y el valor de r en una escala de colores, si quisiéramos que reúna las correlaciones mas importantes por un lado, podríamos pedirles que cree “clusters” agregando argumentos.</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="correlaciones.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(co<span class="sc">$</span>r, <span class="at">order =</span> <span class="st">&quot;hclust&quot;</span>)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p>Re ordenó el gráfico para que las asociaciones positivas se vean juntas y las negativas también.</p>
+<p>Pero, sabemos que no todas estas asociaciones son significativas, el valor de r importa poco si la asociación es por el azar, sería bueno removerlo. Vamos a complejizar este gráfico</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="correlaciones.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(co<span class="sc">$</span>r, <span class="co">#le digo donde están los coeficientes</span></span>
+<span id="cb404-2"><a href="correlaciones.html#cb404-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">order=</span><span class="st">&quot;hclust&quot;</span>, <span class="co">#le pido que los ordene por clusters</span></span>
+<span id="cb404-3"><a href="correlaciones.html#cb404-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">p.mat =</span> co<span class="sc">$</span>P, <span class="co">#le digo donde estan las p </span></span>
+<span id="cb404-4"><a href="correlaciones.html#cb404-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">sig.level =</span> <span class="fl">0.01</span>, <span class="co">#que valor de p quiero usar como pto de corte </span></span>
+<span id="cb404-5"><a href="correlaciones.html#cb404-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">insig =</span> <span class="st">&quot;blank&quot;</span> <span class="co">#le digo que hacer con los no sig, &quot;déjalo en blanco&quot;</span></span>
+<span id="cb404-6"><a href="correlaciones.html#cb404-6" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<p>Ahora podemos estudiar mucho mejor todas las asociaciones. este tipo de visualizaciones es muy útil cuando las bases son excesivamente grandes en variables, permitiendo al estadístico, “ver de un vistazo” donde están los rojos y los azules.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regresión-y-regresión-lineal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Esatadistica_en_R.pdf", "Esatadistica_en_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

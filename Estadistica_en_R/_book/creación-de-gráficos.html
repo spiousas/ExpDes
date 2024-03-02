@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Creación de gráficos | Introducción a la bioestadistica</title>
+  <meta name="description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Creación de gráficos | Introducción a la bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="github-repo" content="rstudio/libroR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Creación de gráficos | Introducción a la bioestadistica" />
+  
+  <meta name="twitter:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  
+
+<meta name="author" content="Ismael Calandri" />
+
+
+<meta name="date" content="2021-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="flenilogo.ico" type="image/x-icon" />
+<link rel="prev" href="resumen-de-variables-en-r.html"/>
+<link rel="next" href="matriz-de-confusión.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="libs/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Acerca de este libro</a></li>
+<li class="chapter" data-level="2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html"><i class="fa fa-check"></i><b>2</b> Introducción y set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-es-r"><i class="fa fa-check"></i><b>2.1</b> ¿Qué es R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-quiere-decir-que-es-un-lenguaje-de-programación"><i class="fa fa-check"></i><b>2.1.1</b> ¿Qué quiere decir que es un lenguaje de programación?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación"><i class="fa fa-check"></i><b>2.2</b> Instalación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Instalación de RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#dónde-pedir-ayuda"><i class="fa fa-check"></i><b>2.2.3</b> ¿Dónde pedir ayuda?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html"><i class="fa fa-check"></i><b>3</b> Primeros pasos en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#consola"><i class="fa fa-check"></i><b>3.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#scripts"><i class="fa fa-check"></i><b>3.2</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#crear-un-script"><i class="fa fa-check"></i><b>3.2.1</b> Crear un script</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#objetos"><i class="fa fa-check"></i><b>3.3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.3.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#clases-de-objetos"><i class="fa fa-check"></i><b>3.3.2</b> Clases de objetos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#operaciones-con-objetos"><i class="fa fa-check"></i><b>3.3.3</b> Operaciones con objetos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-con-objetos"><i class="fa fa-check"></i><b>3.3.4</b> Funciones con objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador"><i class="fa fa-check"></i><b>3.4</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+<li class="chapter" data-level="3.5" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#dataset-dataframe-bases-de-datos"><i class="fa fa-check"></i><b>3.5</b> Dataset-Dataframe, bases de datos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-base-de-datos"><i class="fa fa-check"></i><b>3.5.1</b> Creación de base de datos:</a></li>
+<li class="chapter" data-level="3.5.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-básicas-para-los-dataframes"><i class="fa fa-check"></i><b>3.5.2</b> Funciones básicas para los dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador-1"><i class="fa fa-check"></i><b>3.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><i class="fa fa-check"></i><b>4</b> Ambientes de trabajo y manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#antes-de-empezar"><i class="fa fa-check"></i><b>4.1</b> Antes de empezar</a></li>
+<li class="chapter" data-level="4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#directorio-de-trabajo-o-working-directory"><i class="fa fa-check"></i><b>4.2</b> Directorio de trabajo o Working directory</a></li>
+<li class="chapter" data-level="4.3" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#paquetes-o-librerías"><i class="fa fa-check"></i><b>4.3</b> Paquetes o librerías</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-instalar-una-librería"><i class="fa fa-check"></i><b>4.3.1</b> ¿Como instalar una librería?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-activar-una-librería"><i class="fa fa-check"></i><b>4.3.2</b> ¿Como activar una librería?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#de-la-base-de-datos-a-r"><i class="fa fa-check"></i><b>4.4</b> De la base de datos a R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#metodo-de-ventanas-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.1</b> Metodo de ventanas para subir un dataframe a R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#código-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.2</b> Código para subir un dataframe a R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#manipulación-de-variables-i"><i class="fa fa-check"></i><b>4.5</b> Manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#métodos-de-selección-de-datos"><i class="fa fa-check"></i><b>4.5.1</b> Métodos de selección de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html"><i class="fa fa-check"></i><b>5</b> Manipulación de variables (II)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#piping-y-paquete-dplyr"><i class="fa fa-check"></i><b>5.1</b> Piping y paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#funciones-dplyr"><i class="fa fa-check"></i><b>5.2</b> Funciones dplyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-filter"><i class="fa fa-check"></i><b>5.2.1</b> Función filter()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-select"><i class="fa fa-check"></i><b>5.3</b> Función select()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-arrange"><i class="fa fa-check"></i><b>5.3.1</b> Función arrange()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-mutate"><i class="fa fa-check"></i><b>5.4</b> Función mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#otras-funciones-de-dplyr"><i class="fa fa-check"></i><b>5.5</b> Otras funciones de dplyr</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#ejercicios-2"><i class="fa fa-check"></i><b>5.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1"><i class="fa fa-check"></i><b>5.6.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2"><i class="fa fa-check"></i><b>5.6.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3"><i class="fa fa-check"></i><b>5.6.3</b> Problema 3:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#respuestas"><i class="fa fa-check"></i><b>5.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1-1"><i class="fa fa-check"></i><b>5.7.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.7.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2-1"><i class="fa fa-check"></i><b>5.7.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.7.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3-1"><i class="fa fa-check"></i><b>5.7.3</b> Problema 3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html"><i class="fa fa-check"></i><b>6</b> Resumen de variables en R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-categoricas"><i class="fa fa-check"></i><b>6.1</b> Resumen de variables categoricas</a></li>
+<li class="chapter" data-level="6.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-numéricas"><i class="fa fa-check"></i><b>6.2</b> Resumen de variables numéricas</a></li>
+<li class="chapter" data-level="6.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#antes-de-empezar-1"><i class="fa fa-check"></i><b>6.3</b> Antes de empezar</a></li>
+<li class="chapter" data-level="6.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-básica"><i class="fa fa-check"></i><b>6.4</b> Estadística descriptiva básica</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-posición"><i class="fa fa-check"></i><b>6.4.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="6.4.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>6.4.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="6.4.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-frecuencia"><i class="fa fa-check"></i><b>6.4.3</b> Medidas de frecuencia</a></li>
+<li class="chapter" data-level="6.4.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#tablas-cruzadas"><i class="fa fa-check"></i><b>6.4.4</b> Tablas cruzadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-en-bloque"><i class="fa fa-check"></i><b>6.5</b> Estadística descriptiva en bloque</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-lapply"><i class="fa fa-check"></i><b>6.5.1</b> Función lapply()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-summary"><i class="fa fa-check"></i><b>6.5.2</b> Función summary()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#ejercicios-3"><i class="fa fa-check"></i><b>6.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="6.7" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#respuestas-1"><i class="fa fa-check"></i><b>6.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="6.8" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#parametricidad"><i class="fa fa-check"></i><b>6.8</b> Parametricidad</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-gráficos"><i class="fa fa-check"></i><b>6.8.1</b> Métodos gráficos:</a></li>
+<li class="chapter" data-level="6.8.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-analíticos"><i class="fa fa-check"></i><b>6.8.2</b> Métodos analíticos:</a></li>
+<li class="chapter" data-level="6.8.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-parametricidad"><i class="fa fa-check"></i><b>6.8.3</b> Resumen de parametricidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#la-tabla-1"><i class="fa fa-check"></i><b>6.9</b> La tabla 1</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#paquete-table1"><i class="fa fa-check"></i><b>6.9.1</b> Paquete table1</a></li>
+<li class="chapter" data-level="6.9.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-tbl_summary"><i class="fa fa-check"></i><b>6.9.2</b> Función tbl_summary()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html"><i class="fa fa-check"></i><b>7</b> Creación de gráficos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#gráficos-base-de-r"><i class="fa fa-check"></i><b>7.1</b> Gráficos base de R</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#plot"><i class="fa fa-check"></i><b>7.1.1</b> plot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#histograma-y-boxplot"><i class="fa fa-check"></i><b>7.1.2</b> Histograma y boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> Ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#sintaxis-ggplot"><i class="fa fa-check"></i><b>7.2.1</b> Sintaxis ggplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#el-mapeo-estético"><i class="fa fa-check"></i><b>7.2.2</b> El mapeo estético</a></li>
+<li class="chapter" data-level="7.2.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#las-geometrías"><i class="fa fa-check"></i><b>7.2.3</b> Las geometrías</a></li>
+<li class="chapter" data-level="7.2.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#capas"><i class="fa fa-check"></i><b>7.2.4</b> Capas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ejercicios-4"><i class="fa fa-check"></i><b>7.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="7.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#respuestas-2"><i class="fa fa-check"></i><b>7.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html"><i class="fa fa-check"></i><b>8</b> Matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#componentes-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.1</b> Componentes de la matriz de confusión</a></li>
+<li class="chapter" data-level="8.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.2</b> Análisis de la matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#sensibilidad"><i class="fa fa-check"></i><b>8.2.1</b> Sensibilidad</a></li>
+<li class="chapter" data-level="8.2.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#especificidad"><i class="fa fa-check"></i><b>8.2.2</b> Especificidad</a></li>
+<li class="chapter" data-level="8.2.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#valores-predictivos-positivos-y-negativos"><i class="fa fa-check"></i><b>8.2.3</b> Valores predictivos positivos y negativos</a></li>
+<li class="chapter" data-level="8.2.4" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#indice-de-omision-falsa-false-omission-rate-e-indice-de-deteccion-falsa-false-discovery-rate"><i class="fa fa-check"></i><b>8.2.4</b> Indice de omision falsa (False Omission Rate) e indice de deteccion falsa (False Discovery Rate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión-con-r"><i class="fa fa-check"></i><b>8.3</b> Análisis de la matriz de confusión con R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><i class="fa fa-check"></i><b>9</b> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>9.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="9.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#test-de-chi-cuadrado"><i class="fa fa-check"></i><b>9.2</b> Test de Chi cuadrado</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#supuestos-del-chi-cuadrado"><i class="fa fa-check"></i><b>9.2.1</b> Supuestos del Chi cuadrado</a></li>
+<li class="chapter" data-level="9.2.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#corrección-de-fisher"><i class="fa fa-check"></i><b>9.2.2</b> Corrección de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#ejercicios-5"><i class="fa fa-check"></i><b>9.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="9.4" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#respuestas-3"><i class="fa fa-check"></i><b>9.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html"><i class="fa fa-check"></i><b>10</b> Test de contraste de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-z"><i class="fa fa-check"></i><b>10.1</b> Test Z</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-del-test-z"><i class="fa fa-check"></i><b>10.1.1</b> Supuestos del test Z</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-t-de-student"><i class="fa fa-check"></i><b>10.2</b> Test <em>t</em> de Student</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-de-la-prueba-t"><i class="fa fa-check"></i><b>10.2.1</b> Supuestos de la prueba <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#tests-no-paramétricos-para-comparación-de-variables-continuas"><i class="fa fa-check"></i><b>10.3</b> Tests no paramétricos para comparación de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-u-de-mann-whitnney"><i class="fa fa-check"></i><b>10.3.1</b> Test <em>U</em> de Mann-Whitnney</a></li>
+<li class="chapter" data-level="10.3.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-wilcoxon"><i class="fa fa-check"></i><b>10.3.2</b> Test de Wilcoxon</a></li>
+<li class="chapter" data-level="10.3.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-la-mediana"><i class="fa fa-check"></i><b>10.3.3</b> test de la Mediana</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#algoritmo-para-la-decisión-de-la-prueba"><i class="fa fa-check"></i><b>10.4</b> Algoritmo para la decisión de la prueba</a></li>
+<li class="chapter" data-level="10.5" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#ejercicios-6"><i class="fa fa-check"></i><b>10.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="10.6" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#respuestas-4"><i class="fa fa-check"></i><b>10.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><i class="fa fa-check"></i><b>11</b> Test de contraste de variables continuas con grupos de más de dos niveles</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#anova"><i class="fa fa-check"></i><b>11.1</b> Anova</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#supestos-de-la-anova"><i class="fa fa-check"></i><b>11.1.1</b> Supestos de la ANOVA</a></li>
+<li class="chapter" data-level="11.1.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#interpretando-el-modelo-de-anova"><i class="fa fa-check"></i><b>11.1.2</b> Interpretando el modelo de ANOVA</a></li>
+<li class="chapter" data-level="11.1.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#el-problema-de-las-comparaciones-múltiples"><i class="fa fa-check"></i><b>11.1.3</b> El problema de las comparaciones múltiples</a></li>
+<li class="chapter" data-level="11.1.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc"><i class="fa fa-check"></i><b>11.1.4</b> Post-Hoc</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#kruskal-wallis"><i class="fa fa-check"></i><b>11.2</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc-no-paramétricos"><i class="fa fa-check"></i><b>11.2.1</b> Post-hoc no paramétricos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#ejercicios-7"><i class="fa fa-check"></i><b>11.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="11.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#respuestas-5"><i class="fa fa-check"></i><b>11.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlaciones.html"><a href="correlaciones.html"><i class="fa fa-check"></i><b>12</b> Correlaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlaciones.html"><a href="correlaciones.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1</b> Coeficiente de correlación de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlaciones.html"><a href="correlaciones.html#supuestos-del-coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1.1</b> Supuestos del coeficiente de correlación de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlaciones.html"><a href="correlaciones.html#correlaciones-no-paramétricas-de-kendal-y-spearman"><i class="fa fa-check"></i><b>12.2</b> Correlaciones no paramétricas de Kendal y Spearman</a></li>
+<li class="chapter" data-level="12.3" data-path="correlaciones.html"><a href="correlaciones.html#ejercicios-8"><i class="fa fa-check"></i><b>12.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="12.4" data-path="correlaciones.html"><a href="correlaciones.html#respuestas-6"><i class="fa fa-check"></i><b>12.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="12.5" data-path="correlaciones.html"><a href="correlaciones.html#matriz-de-correlación"><i class="fa fa-check"></i><b>12.5</b> Matriz de correlación</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlaciones.html"><a href="correlaciones.html#visualización-de-matriz-de-correlaciones-corrplot"><i class="fa fa-check"></i><b>12.5.1</b> Visualización de matriz de correlaciones, Corrplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html"><i class="fa fa-check"></i><b>13</b> Regresión y regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#concepto-de-regresión"><i class="fa fa-check"></i><b>13.1</b> Concepto de regresión</a></li>
+<li class="chapter" data-level="13.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal"><i class="fa fa-check"></i><b>13.2</b> Regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>13.2.1</b> Regresión lineal simple</a></li>
+<li class="chapter" data-level="13.2.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-múltiple"><i class="fa fa-check"></i><b>13.2.2</b> Regresión lineal múltiple</a></li>
+<li class="chapter" data-level="13.2.3" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#parámetros-de-corrección-del-modelo"><i class="fa fa-check"></i><b>13.2.3</b> Parámetros de corrección del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>14</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logística"><i class="fa fa-check"></i><b>14.1</b> La función logística</a></li>
+<li class="chapter" data-level="14.2" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-simple"><i class="fa fa-check"></i><b>14.2</b> Regresión logística simple</a></li>
+<li class="chapter" data-level="14.3" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-múltiple"><i class="fa fa-check"></i><b>14.3</b> Regresión logística múltiple</a></li>
+<li class="chapter" data-level="14.4" data-path="regresión-logística.html"><a href="regresión-logística.html#evaluando-la-precisión-de-la-regresión-logística"><i class="fa fa-check"></i><b>14.4</b> Evaluando la precisión de la regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#criterio-de-información-de-akaike"><i class="fa fa-check"></i><b>14.4.1</b> Criterio de información de Akaike</a></li>
+<li class="chapter" data-level="14.4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#hacer-predicciones-y-compararlas-con-la-realidad"><i class="fa fa-check"></i><b>14.4.2</b> Hacer predicciones y compararlas con la realidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regresión-logística.html"><a href="regresión-logística.html#ejercicios-9"><i class="fa fa-check"></i><b>14.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="14.6" data-path="regresión-logística.html"><a href="regresión-logística.html#respuestas-7"><i class="fa fa-check"></i><b>14.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="creación-de-gráficos" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Creación de gráficos</h1>
+<p>Antes de empezar a graficar es importante que todas nuestras variables tengan su correcta <strong>definición de clase</strong> (Si no recuerdan/saben que es esto visiten el capítulo 3.3.2). No todas las variables se pueden graficar de la misma manera y R necesita saber de que se trata</p>
+<p>En esta sección vamos a abordar herramientas para la creación de gráficos en dos secciones:</p>
+<ul>
+<li><p><strong>Gráficos del paquete básico de R</strong>: sencillos, rápidos, muy limitados. <em>Sirven para “ver” que estamos haciendo y por donde va la cosa</em></p></li>
+<li><p><strong>Gráficos del paquete ggplot2</strong>: más complicados pero de altísima calidad. Flexibles (se puede hacer casi cualquier cosa), llevan tiempo. <em>Sirven para crear el gráfico final para publicar</em></p></li>
+</ul>
+<div id="gráficos-base-de-r" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Gráficos base de R</h2>
+<p>Como decíamos antes, estos gráficos nos permiten estudiar los datos sobre la marcha, carecen de sofisticación, pero no están pensados para ellos.
+La idea es que podamos explorar nuestra estadística de una forma sencilla (gráficos que probablemente no van a ir a otro lado que nuestra computadora) mientras trabajamos.</p>
+<p>Vamos a ver los más famosos, vamos a trabajar con los datos de gapminder y de iris así que carguemoslos (sino lo hicimos antes ya)</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="creación-de-gráficos.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;gapminder&quot;</span>)</span>
+<span id="cb232-2"><a href="creación-de-gráficos.html#cb232-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-3"><a href="creación-de-gráficos.html#cb232-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>gapminder</span>
+<span id="cb232-4"><a href="creación-de-gráficos.html#cb232-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-5"><a href="creación-de-gráficos.html#cb232-5" aria-hidden="true" tabindex="-1"></a>flores<span class="ot">&lt;-</span>iris</span></code></pre></div>
+<p>Algunas aclaraciones que son importantes:</p>
+<ul>
+<li><p>El paquete base tiene una sintaxis muy simple, multilínea (quizas la unica multilíea de todo el lenguaje). esto quiere decir que si escribimos dos graficos en dos lineas consecutivas los pega (sin necesidad de un conector como el %&gt;%)</p></li>
+<li><p>R no tiene gráficos de tortas (básicamente porque no tienen una buena relación con la gente que hace estadística)</p></li>
+<li><p>En la sintaxis simple de base, nuestra amiga la virgulilla significa <strong>en función de</strong></p></li>
+</ul>
+<div id="plot" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> plot()</h3>
+<p>La función plot es la más simple de todas, sirve para graficar la relación entre dos variables, lo usamos para generar gráficos de dispersión simples.</p>
+<p>Por ejemplo:</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="creación-de-gráficos.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flores<span class="sc">$</span>Sepal.Length <span class="sc">~</span> flores<span class="sc">$</span>Sepal.Width)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-136-1.png" width="672" />
+Como ven podemos escribir esto realmente en muy pocas palabras. En este caso al escribir <em>flores<span class="math inline">\(Sepal.Length ~ flores\)</span>Sepal.Width</em> le indicamos Length <strong>en función</strong> de Width, y por eso lo puso en la y. Porque en los gráficos cartesianos y <strong>es función</strong> de x</p>
+<p>Siempre podemos ajustar algunos parámetros de esta función para hacer “más lindo” al gráfico. Veamos algunas en un simple ejemplo.</p>
+<p>Veamos algunos ajustes:</p>
+<ul>
+<li><p>El parametro <em>main</em>: para poner el título</p></li>
+<li><p>Los parámetros <em>xlab</em> e <em>ylab</em>: permiten cambiar los títulos de los ejes</p></li>
+<li><p>pch sirve para seleccionar el tipo de símbolo de punto</p></li>
+</ul>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="creación-de-gráficos.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flores<span class="sc">$</span>Sepal.Length <span class="sc">~</span> flores<span class="sc">$</span>Sepal.Width, <span class="at">main=</span><span class="st">&quot;Ratio Sepal/Length&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Width&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Length&quot;</span>, <span class="at">pch=</span><span class="st">&quot;*&quot;</span>)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-137-1.png" width="672" />
+Veamos algunos parámetros más:</p>
+<ul>
+<li><p>El parámetro <em>cex</em>: permite cambiar el tamaño del punto</p></li>
+<li><p>El parametro <em>col</em>: permite crear una paleta</p></li>
+<li><p>Una variable entre corchetes después de <em>col</em> permite asignarle los colores a las variable</p></li>
+</ul>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="creación-de-gráficos.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flores<span class="sc">$</span>Sepal.Length <span class="sc">~</span> flores<span class="sc">$</span>Sepal.Width, <span class="at">main=</span><span class="st">&quot;Ratio Sepal/Length&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Width&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Length&quot;</span>, <span class="at">pch=</span><span class="st">&quot;*&quot;</span>, <span class="at">cex=</span><span class="dv">2</span>,<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)[flores<span class="sc">$</span>Species])</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<blockquote>
+<p><i class="fa fa-paperclip" aria-hidden="true"></i> <strong>Aclaración</strong>: si bien se puede “tunear” estos gráficos, no conviene. Es un proceso engorroso con malos resultados. Tenemos otro paquete para producir gráficos “para publicar”. Estos gráficos no estan pensados para ser lindos, sino rápidos. Si perdemos tiempo no sirve</p>
+</blockquote>
+</div>
+<div id="histograma-y-boxplot" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Histograma y boxplot</h3>
+<p>Muchas de las características de los histogramas y los diagramas de caja las vimos en el capítulo anterior (en la sección de parametricidad), así que abordaremos esto en forma muy sencilla</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="creación-de-gráficos.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(flores<span class="sc">$</span>Sepal.Width, </span>
+<span id="cb236-2"><a href="creación-de-gráficos.html#cb236-2" aria-hidden="true" tabindex="-1"></a> <span class="at">prob =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb236-3"><a href="creación-de-gráficos.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(flores<span class="sc">$</span>Sepal.Width)) <span class="do">##Acá vemos como funciona el multilínea</span></span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-139-1.png" width="672" />
+En el caso de boxplot podemos graficar una sola variable (como vimos en el capítulo anterior)</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="creación-de-gráficos.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(flores<span class="sc">$</span>Sepal.Width)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<p>O dividirlo por una categórica en grupos</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="creación-de-gráficos.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(flores<span class="sc">$</span>Sepal.Width<span class="sc">~</span>flores<span class="sc">$</span>Species)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-141-1.png" width="672" />
+De nuevo aquí usamos la virguilla para pedirle que grafique en función de qué.</p>
+<p>Estos gráficos son muy útiles para explorar por ejemplo la normalidad y seguir trabajando</p>
+</div>
+</div>
+<div id="ggplot2" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Ggplot2</h2>
+<p>Este paquete es uno de los más utilizados de R. Uno de los aspectos más remarcables es que este paquete plantea una <em>sintaxis</em> particular que es reproducida por muchos otros paquetes.</p>
+<p>Hay dos grandes sistemas de sintaxis que son muy útiles de aprender, la <em>sintaxis dplyr</em> para manipular variables y la <em>sintaxis ggplot</em> para hacer gráficos</p>
+<p>Veamos en que consiste esta sintaxis ggplot</p>
+<div id="sintaxis-ggplot" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Sintaxis ggplot</h3>
+<p>La sintaxis ggplot se resume en 4 aspectos escenciales:</p>
+<ul>
+<li><p>Una estructura de <strong>mapeo estético</strong> en donde le decimos a R, donde estan los datos y donde ponerlos (que va en el eje de las x, en el eje de las y, que variable es el color)</p></li>
+<li><p>Una <strong>geometría</strong> que define el tipo de gráfico a utilizar</p></li>
+<li><p>Múltiples <strong>funciones de ajustes</strong> para controlar titulos, paletas de colores, estilos de la grilla, etc.</p></li>
+<li><p>Un <strong>sistema de capas</strong>, que permite superponer distintas geometrías en el orden que deseemos</p></li>
+</ul>
+<p>Veamos como funciona en esta sintaxis de un boxplot</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="creación-de-gráficos.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb239-2"><a href="creación-de-gráficos.html#cb239-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-3"><a href="creación-de-gráficos.html#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">y=</span>Sepal.Width, <span class="at">x=</span>Species, <span class="at">fill=</span>Species))<span class="sc">+</span></span>
+<span id="cb239-4"><a href="creación-de-gráficos.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p>Analicemos lo que escribimos con la idea mental de los componentes de la sintaxis:</p>
+<p>En la primera línea nos encontramos con esto:</p>
+<blockquote>
+<p>ggplot(flores, aes(y=Sepal.Width, x=Species, fill=Species))+</p>
+</blockquote>
+<p>Esta estructura es el <strong>mapeo estético</strong>:</p>
+<ul>
+<li><p>El primer argumento es de donde surgen los datos (el dataset)</p></li>
+<li><p>El segundo argumento es la estética, aquí: 1) Asignamos la variable a y 2) Asignamos la variable a x 3) y asignamos la variable al color</p></li>
+<li><p>esta línea debe terminar con un <strong>+</strong>, esto le dice a R que hay una línea siguiente (una capa más)</p></li>
+</ul>
+<p>La segunda línea es:</p>
+<blockquote>
+<p>geom_boxplot()</p>
+</blockquote>
+<p>que asigna que geometría le vamos a pedir</p>
+<div id="recapitulemos" class="section level4" number="7.2.1.1">
+<h4><span class="header-section-number">7.2.1.1</span> Recapitulemos</h4>
+<p>Vimos que para crear un boxplor en R básico debo escribir esto:</p>
+<blockquote>
+<p>boxplot(Sepal.Width ~ Species)</p>
+</blockquote>
+<p>y para hacerlo en ggplot:</p>
+<blockquote>
+<p>_ggplot(flores, aes(y=Sepal.Width, x=Species, fill=Species))+
+geom_boxplot()</p>
+</blockquote>
+<p>¿Qué sentido tiene utilizar una función más compleja para obtener el mismo gráfico? La respuesta corta es niguno. La respuesta larga es otra pregunta: ¿para qué queremos el gráfico?. Si queremos un gráfico para ver como son los datos, no es ggplot lo que necesitamos. En las secciones que siguen vamos a ver como ggplot nos sirve para crear “el gráfico” para publicar.</p>
+</div>
+</div>
+<div id="el-mapeo-estético" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> El mapeo estético</h3>
+<p>El mapeo estético como habíamos visto en la sección anterior es asignar una variable a una característica visual del gráfico, las posibilidades:</p>
+<ul>
+<li><p>asignar un valor a la posicion en el eje x o en el y</p></li>
+<li><p>asignar una variable al color (color)</p></li>
+<li><p>asignar una variable al relleno de geometrías sólidas (fill)</p></li>
+<li><p>asignar una variable a un tipo de forma (shape)</p></li>
+<li><p>asignar una variable a un tamaño (size)</p></li>
+</ul>
+<p><strong><em>Importante</em></strong></p>
+<p>El mapeo estético <strong>necesita</strong> que todas nuestras variables tengan su correcta <strong>definición de clase</strong> Esta es la principal fuente de error en los gráficos ggplot</p>
+<p>Veamos algunos ejemplos de mapeos esteticos en un <em>gráfico de dispersión</em></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="creación-de-gráficos.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Species))<span class="sc">+</span></span>
+<span id="cb240-2"><a href="creación-de-gráficos.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<p>Dentro del mapeo entonces: 1) asignamos el largo a la “x” 2) el ancho a las “y” y 3) la especie al color</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="creación-de-gráficos.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">shape=</span>Species))<span class="sc">+</span></span>
+<span id="cb241-2"><a href="creación-de-gráficos.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-144-1.png" width="672" />
+Dentro del mapeo entonces: 1) asignamos el largo a la “x” 2) el ancho a las “y” y 3) la especie al tipo de forma de punto.</p>
+<p>Incluso podemos asignar varios atributos esteticos a la misma variable, como aquí:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="creación-de-gráficos.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Species, <span class="at">shape=</span>Species))<span class="sc">+</span></span>
+<span id="cb242-2"><a href="creación-de-gráficos.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p>En este caso : 1) asignamos el largo a la “x” 2) el ancho a las “y” 3) la especie al tipo de forma de punto y 4) el color a la especie</p>
+<p>Veamos que pasa si en lugar de una variable categórica como atributo del color ponemos una continua</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="creación-de-gráficos.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Petal.Width))<span class="sc">+</span></span>
+<span id="cb243-2"><a href="creación-de-gráficos.html#cb243-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p>En este caso, asignamos una variable que R sabe es una continua a un color. Al graficar una continua R sabe que los valores no son bloques independientes entre sí (como en una paleta de colores) sino que hay infinitos valores entre uno y otro. para graficar este suceso recurre a mostrar una graduación de un sólo color, un proceso que se conoce como <strong>escalar</strong> la variable (porque la puso en una escala de azules). Para que ocurra esto es muy, muy, muy importante que las variables tengan asignada la clase que les corresponde.</p>
+<p>Veamos que pasa si le “pifeamos” en eso:</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="creación-de-gráficos.html#cb244-1" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>Petal.Width<span class="ot">&lt;-</span><span class="fu">as.factor</span>(flores<span class="sc">$</span>Petal.Width) <span class="co"># esta linea es para definir mal el tipo de variable (un error, a propósito)</span></span>
+<span id="cb244-2"><a href="creación-de-gráficos.html#cb244-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb244-3"><a href="creación-de-gráficos.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Petal.Width))<span class="sc">+</span></span>
+<span id="cb244-4"><a href="creación-de-gráficos.html#cb244-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="creación-de-gráficos.html#cb245-1" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>Petal.Width<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(flores<span class="sc">$</span>Petal.Width) <span class="co"># para reparar el error y seguir trabajando</span></span></code></pre></div>
+<p>Creamos un desastre en donde asigno un color independiente a cada valor que adoptó la variable (esto puede llevar a crear miles de colores así que mucho cuidado)</p>
+</div>
+<div id="las-geometrías" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Las geometrías</h3>
+<p>Después de la definición de las variables a sus condiciones (la que llamamos anteriormente <em>mapeo estético</em>) debemos indicarle el tipo de gráfico que queremos que sea creado, estos gráficos se denominan geometrías y son básicamente los siguientes:</p>
+<ul>
+<li><p><strong>geom_point()</strong> produce un gráfico de dispersión o <em>scatter plot</em></p></li>
+<li><p><strong>geom_boxplot()</strong> produce un gráfico de caja y bigotes (o _box-p) para resumir la distribución de un conjunto de puntos.</p></li>
+<li><p><strong>geom_histogram()</strong> y <strong>geom_freqpoly()</strong> sirven àra crear gráficos de frecuencia e histogramas, resumen la distribución de variables continuas.</p></li>
+<li><p><strong>geom_bar()</strong> crea gráficos de barra utilizadps para resumir la distribución de las variables categóricas.</p></li>
+<li><p><strong>geom_path()</strong> y <strong>geom_line()</strong> dibujan líneas entre los puntos de datos. Un gráfico de líneas está limitado a producir líneas que van de izquierda a derecha, mientras que los caminos ( <em>geom_path</em>) pueden ir en cualquier dirección. Las líneas se utilizan normalmente para explorar cómo cambian las cosas con el tiempo.</p></li>
+<li><p><strong>geom_smooth()</strong>: ajusta una línea a los datos y muestra tanto el ajuste como su error estándar (en términos de un intervalo de confianza).</p></li>
+</ul>
+</div>
+<div id="capas" class="section level3" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Capas</h3>
+<p>Una de las cosas más interesantes con respecto a ggplot es que es posible <em>apilar geometrías</em> e incluso modificar la estética de cada una, veamoslo con un ejemplo:</p>
+<p>Vamos a crear un gráfico de dispersión como el anterior</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="creación-de-gráficos.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width))<span class="sc">+</span></span>
+<span id="cb246-2"><a href="creación-de-gráficos.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<p>Imaginemos que queremos producir una línea que implique un ajuste “lineal” a estos datos, deberíamos <em>apilar</em> otra geometría</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="creación-de-gráficos.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width))<span class="sc">+</span></span>
+<span id="cb247-2"><a href="creación-de-gráficos.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb247-3"><a href="creación-de-gráficos.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="co">#este parámetro es para que el método de ajuste sea lineal</span></span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-149-1.png" width="672" />
+Veamos ahora dos gráficos y sus diferencias:</p>
+<p>El primero:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="creación-de-gráficos.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">color=</span>Species))<span class="sc">+</span></span>
+<span id="cb249-2"><a href="creación-de-gráficos.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb249-3"><a href="creación-de-gráficos.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="co">#este parámetro es para que el método de ajuste sea lineal</span></span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-150-1.png" width="672" />
+El segundo:</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="creación-de-gráficos.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width))<span class="sc">+</span></span>
+<span id="cb251-2"><a href="creación-de-gráficos.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Species))<span class="sc">+</span></span>
+<span id="cb251-3"><a href="creación-de-gráficos.html#cb251-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="co">#este parámetro es para que el método de ajuste sea lineal</span></span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p>¿Por qué son diferentes?:</p>
+<p>Prestemos mucha atención al mapeo estético, en el primero: el color está asignado junto con la estética <strong>global</strong> del gráfico (en la primera línea), mientras que en el segundo el mapeo estético está como un argumento de <em>geom_point</em> afectando sólo a esa capa.</p>
+<p>Algunos conceptos importantes con respecto al trabajo de capas:</p>
+<ol style="list-style-type: decimal">
+<li><p>El mapeo estético puede afectar a una o más capas depende en donde decidamos incorporarlo</p></li>
+<li><p>El orden de las líneas determina el orden en que se superponen, miremos estos dos gráficos:</p></li>
+</ol>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="creación-de-gráficos.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">y=</span>Sepal.Width, <span class="at">x=</span>Species, <span class="at">fill=</span>Species))<span class="sc">+</span></span>
+<span id="cb253-2"><a href="creación-de-gráficos.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb253-3"><a href="creación-de-gráficos.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="creación-de-gráficos.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flores, <span class="fu">aes</span>(<span class="at">y=</span>Sepal.Width, <span class="at">x=</span>Species, <span class="at">fill=</span>Species))<span class="sc">+</span></span>
+<span id="cb254-2"><a href="creación-de-gráficos.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb254-3"><a href="creación-de-gráficos.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p>Un gráfico <em>cubre</em> al otro en el sentido en que las capas se superponen, tener siempre en cuenta esto a la hora de graficar.</p>
+</div>
+</div>
+<div id="ejercicios-4" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</h2>
+<p>Para estos ejercicios vamos a trabajar con otro dataset “ChickWeight”, incluído en un paquete que se llama “datasets”.</p>
+<p>“ChickWeight” es una base de datos con 578 registros sobre el efecto de 4 tipos de dietas distintas (la variable “Diet”) sobre el peso (“weigth”) de pollitos de distintas edades, reportadas en días (la variable “Time”)</p>
+<p>Nuestro ejercicio consiste en:</p>
+<ol style="list-style-type: decimal">
+<li><p>Instalar el paquete “datasets” (si no lo han hecho ya)</p></li>
+<li><p>Activar el paquete</p></li>
+<li><p>Asignar la base de datos “cars” al objeto data</p></li>
+</ol>
+<p>Y realizar los siguientes gráficos:</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Un gráfico rápido mostrando el peso de los pollitos en función de su edad</p></li>
+<li><p>Un gráfico de cajas con el peso de los pollitos por dietas (rápido o no, ustedes deciden)</p></li>
+<li><p>Un gráfico de dispersión con el peso y la edad de los pollitos, coloreados por dieta</p></li>
+<li><p>Un gráfico de dispersión con el peso y la edad de los pollitos, coloreados por dieta, con una línea de ajuste lineal por cada dieta</p></li>
+<li><p>Un gráfico de dispersión con el peso y la edad de los pollitos, coloreados por dieta, con una línea de ajuste lineal para todos los pollitos en común</p></li>
+</ol>
+<p>A trabajar</p>
+</div>
+<div id="respuestas-2" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</h2>
+<p>Si son tan vagos de haber llegado a está sección sin hacer por su propia mano los ejercicios, acá están las respuestas pero recuerden “NO PAIN NO GAIN”</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="creación-de-gráficos.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="co"># los puntos 1 a 3</span></span>
+<span id="cb255-2"><a href="creación-de-gráficos.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb255-3"><a href="creación-de-gráficos.html#cb255-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-4"><a href="creación-de-gráficos.html#cb255-4" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>ChickWeight</span>
+<span id="cb255-5"><a href="creación-de-gráficos.html#cb255-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-6"><a href="creación-de-gráficos.html#cb255-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Un gráfico rápido mostrando el peso de los pollitos en función de su edad</span></span>
+<span id="cb255-7"><a href="creación-de-gráficos.html#cb255-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-8"><a href="creación-de-gráficos.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>weight<span class="sc">~</span>data<span class="sc">$</span>Time)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="creación-de-gráficos.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un gráfico de cajas con el peso de los pollitos por dietas (yo decidí un ggplot porque estoy obsesionado con el pero quizás un gráfico rápido hubiera sido mejor)</span></span>
+<span id="cb256-2"><a href="creación-de-gráficos.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="creación-de-gráficos.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb256-4"><a href="creación-de-gráficos.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">X=</span>Diet, <span class="at">y=</span>weight))<span class="sc">+</span></span>
+<span id="cb256-5"><a href="creación-de-gráficos.html#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-154-2.png" width="672" /></p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="creación-de-gráficos.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un gráfico de dispersión con el peso y la edad de los pollitos, coloreados por dieta</span></span>
+<span id="cb257-2"><a href="creación-de-gráficos.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>weight, <span class="at">color=</span>Diet))<span class="sc">+</span></span>
+<span id="cb257-3"><a href="creación-de-gráficos.html#cb257-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-154-3.png" width="672" /></p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="creación-de-gráficos.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un gráfico de dispersión con el peso y la edad de los pollitos, coloreados por dieta, con una línea de ajuste lineal por cada dieta</span></span>
+<span id="cb258-2"><a href="creación-de-gráficos.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>weight, <span class="at">color=</span>Diet))<span class="sc">+</span></span>
+<span id="cb258-3"><a href="creación-de-gráficos.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb258-4"><a href="creación-de-gráficos.html#cb258-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-154-4.png" width="672" /></p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="creación-de-gráficos.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Un gráfico de dispersión con el peso y la edad de los pollitos, coloreados por dieta, con una línea de ajuste lineal para todos los pollitos en común</span></span>
+<span id="cb260-2"><a href="creación-de-gráficos.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>weight))<span class="sc">+</span></span>
+<span id="cb260-3"><a href="creación-de-gráficos.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Diet))<span class="sc">+</span></span>
+<span id="cb260-4"><a href="creación-de-gráficos.html#cb260-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-154-5.png" width="672" /></p>
+<p>¿Qué piensan, son las dietas efectivas para subir el peso de los pollitos?, o los pollitos suben de peso sólo por crecer.</p>
+<p>Bueno tranquilos que hay que “testear” estas hipótesis… y vamos a hacerlas en los próximos capítulos</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="resumen-de-variables-en-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="matriz-de-confusión.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Esatadistica_en_R.pdf", "Esatadistica_en_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

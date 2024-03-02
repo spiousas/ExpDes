@@ -1,0 +1,280 @@
+# Test de contraste de variables continuas
+
+
+
+En este capítulo veremos como comparar variables continuas entre dos grupos, esto incluye el test t, el test Z y algunas opciones no-paramétricas
+
+
+
+## Test Z
+
+Supongamos que queremos comparar la altura de dos grupos de 800 niños, unos que han recibido hormona de crecimiento por un año, y otros que no.
+
+Nosotros, como investigadores, queremos demostrar que el tratamiento de un año con hormona de crecimiento impacta sobre la altura de los niños.
+
+Una forma de demostrar esto es que la media de la altura de los niños tratados es significativamente mayor que la media de los no tratados (lo dicho de otra forma, que las diferencias en la altura de un grupo y otro no son producto del azar, sino del efecto del tratamiento)
+
+Antes de empezar tenemos que preguntarnos **¿Es la media un buen descriptor de este grupo?** Sino lo es, no tiene sentido comparar medias, pues, no son la mejor descripción de ello. O sea que antes de empezar debemos chequear la **normalidad** de estas muestras. 
+
+
+El test z es un test que se construye con las siguientes hipótesis:
+
+* **Hipótesis nula (H0)**: las medias de ambos grupos son iguales (en otras palabras que sus diferencias se deben solamente al azar)
+
+* **Hipótesis alternativa (H1)**: es que las medias de ambos grupos son diferentes (esas diferencias no pueden atribuirse al azar).
+
+
+La fórmula del estadístico Z es la siguiente:
+
+```{r echo=FALSE}
+knitr::include_graphics("img/z.jpg")
+```
+
+En donde x raya (las X con una rayita encima) representan las medias de ambos grupos y sigma la varianza. Como vemos evalúa la distancia entre las medias sobre su variación. Una vez obtenido el estadístico z es contrastado con una tabla de distribución normal (la tabla z de Gauss), en donde consta la probabilidad que este número sea originado por el azar (el p-valor). 
+
+Es decir mientras menor sea la probabilidad hay mas chances de que esta diferencia sea real y no producto del azar. O sea de que las medias de ambos grupos sean diferentes por efecto del tratamiento.
+
+
+Hagamos un ejemplo utilizando una base de datos. Vamos a utilizar los datos de los automóviles de la base "mtcars". Esta base presenta datos extraídos de la revista Motor Trend US de 1974 y comprenden el consumo de combustible y 10 aspectos del diseño y el rendimiento de 32 automóviles (modelos de 1973-74).
+
+Supongamos que queremos demostrar que la media de consumo en millas por galón (la variable "mpg") es distinto si el motor (la variable "vs") tiene los cilindros en V (0) o rectos (1)
+
+
+El planteamiento de nuestro test debería ser:
+
+* **Ho**: la media de consumo entre los motores en v y los motores rectos es igual
+
+* **H1**:la media de consumo entre los motores en v y los motores rectos es distinta
+
+```{r}
+
+data<-mtcars
+
+data$vs<-as.factor(data$vs) #para convertirla en una variable dicotómica
+library(BSDA)
+z.test(data$mpg[data$vs == 1],sigma.x=sd(data$mpg[data$vs == 1]), data$mpg[data$vs == 0], sigma.y= sd(data$mpg[data$vs == 0]))
+
+```
+El p valor es de 0.00000305, es decir es significativo. Esto dice que  el consumo medio de un grupo es significativamente distinto del otro. En este caso el motor en V tuvo una media de 24.55 millas por galón (identificado como la variable x) y el grupo recto de 16.61 (identificado como la y). La sintaxis de este test como han visto es sumamente compleja, necesita que le incorporemos cada grupo como una variable filtrada y cada desvío estandard calculado también (fíjense que hay una forma anidada), para peor esta conclusiones, están mal. Veamos por qué:
+
+### Supuestos del test Z
+
+Existen condiciones muy particulares en donde se puede aplicar el test z, si las mismas no se cumplen, sus resultados son erróneos:
+
+
+* La distribución de las muestras debe aproximarse a la normal
+
+* Las muestras de cada población deben ser independientes entre sí
+
+* Las desviaciones estándar de la población deben ser conocidos
+
+* Los tamaños de las muestras deben ser grandes (es decir, n1≥30 y n2≥30, idealmente n1≥100 y n2≥100)
+
+
+En nuestro caso la muestra _nunca fue testeada para su normalidad_, por ende puede que estemos completamente equivocados. Tampoco conocemos las desviaciones estandards de las poblaciones (sólo las de las muestras) y nuestro tamaño muestra no es grande. Miremos:
+
+```{r}
+table(data$vs)
+```
+
+¡n1=18 y n2=14!
+
+
+Por ende nuestro test _no debería ser administrado_. El test z tiene un poder más anecdótico (es el padre de todos los test basados en la media) que real. Estos supuestos estrictos hace que sean muy raras las condiciones en los que se puede aplicar, por eso su sintaxis es tan mala (nadie se ha preocupado por refinarla), en muchos softwares (como SPSS) ni siquiera existe.
+Existe una alternativa más flexible y más poderosa que el test Z: el test t
+
+
+
+## Test _t_ de Student
+
+Una de las pruebas más comunes en estadística es la prueba _t_, utilizada para determinar si las medias de dos grupos son iguales entre sí.
+
+
+La hipótesis de de trabajo de la prueba son las siguientes:
+
+* **Hipótesis nula (H0)**: las medias de ambos grupos son iguales (en otras palabras que sus diferencias se deben solamente al azar)
+
+* **Hipótesis alternativa (H1)**: es que las medias de ambos grupos son diferentes (esas diferencias no pueden atribuirse al azar).
+
+La prueba _t_ de Student hereda muchas similitudes de su hermana mayor, la prueba _z_, sin embargo agrega una modificación clave, la distribución de contraste. En este caso la distribución de contraste es _la distribución de Student_ esta tiene la particularidad de corregirse a través de los _grados de libertad_ un concepto íntimamente ligado al tamaño muestral.
+
+Ambas pruebas (la _t_ y la _z_) sirven para comparar las medias de dos grupos cuyas distribuciones se aproximan a la normal (no olviden el importante capítulo de _parametricidad_ y vuelvan a visitarlo), sin embargo la prueba _t_ funciona con mayor exactitud que la _z_ cuando las muestras son más pequeñas (menor de 100 sujetos) debido a su corrección por los grados de libertad.
+
+Por esta propiedad es una de las pruebas más elegidas a la hora de contrastar medias entre grupos.
+
+Sin embargo esta prueba tampoco esta exenta de la necesidad de que se cumplan sus supuestos.
+
+
+
+### Supuestos de la prueba _t_
+
+
+* Escala de medición:  la escala de medición aplicada a los datos recogidos sigue una escala continua u ordinal de multiples niveles (≥30)
+
+* La muestra es aleatoria simple, es decir, que los datos se recogen de una parte representativa y seleccionada al azar de la población total.
+
+* Los datos, cuando se representan, dan lugar a una distribución normal
+
+* Se utiliza un tamaño de muestra razonablemente grande (≥20)
+
+* Homogeneidad de la varianza. Existe una varianza homogénea, o igual, cuando las desviaciones estándar de las muestras son aproximadamente iguales. 
+
+
+Cómo vemos, no podemos escapar a conceptos claves como el tipo de variable y la asunción de normalidad. Un punto importante es la homogeneidad de las varianzas, cuando este supuesto no se da (en muchos de los casos) existe una prueba que corrige ese problema: el **test de Welch**.
+
+
+Usemos nuestro ejemplo anterior para realizar un test t en r:
+
+
+```{r}
+t.test(mpg ~ vs, data = data)
+```
+
+Como vemos hay una diferencia estadísticamente significativa. Si el supuesto de normalidad se cumple (hay que testearlo antes). Estamos en condiciones de decir que el gasto de un tipo de motor es _significativamente_ distinto que el otro. 
+
+
+Notese que la sintaxis de este test es muy sencilla, básicamente sigue la siguiente regla:
+
+ _t.test(**variable dependiente**~ **variable de grupo**)_
+ 
+ 
+ Nuestra amiga la virgulilla a vuelto para quedarse. 
+ 
+ 
+## Tests no paramétricos para comparación de variables continuas
+
+A continuación veremos un par de alternativas a los test que requieren normalidad de la muestra, a estas alternativas se las suele llamar, no paramétricas.
+
+
+### Test _U_ de Mann-Whitnney
+
+La prueba _U_ de Mann-Whitney se utiliza para comparar si existe una diferencia en la variable dependiente continua para dos grupos independientes. 
+
+A diferencia de las pruebas paramétricas, compara si la distribución de la variable  dependiente es la misma para los dos grupos y, por tanto, procede de la misma población. Es decir que la media no es utilizada como centro de la comparación.
+
+Esta prueba es tolerante a casi todos los supuestos necesario en las otras y es una gran alternativa cuando no se cumple la normalidad de la muestra. 
+
+
+### Test de Wilcoxon
+
+Esta prueba, al igual que Mann-Whitnney no compara medidas de centralidad, en este caso la comparación es de la forma de la distribución a través del rango, razón por la cual este test se suele llamar _Prueba de suma de rangos de Wilcoxon_ o _Wilcoxon´s sum rank test_.
+
+Con respecto a los supuestos, los únicos supuestos para realizar una prueba de Mann-Whitney o un Wilcoxon son que los dos grupos deben ser independientes y que la variable dependiente sea ordinal o continua.
+
+Tanto Mann-Whitney como Wilcoxon sirven para demostrar que ambas muestras pertenecen a poblaciones distintas (o dicho de otra forma, que son significativamente diferentes). En ambos no se puede hablar de comparación de medias, pero si de muestras. Sin embargo, para poder informar de la diferencia entre grupos como medianas, la forma de las distribuciones de la variable dependiente por grupo debe ser similar.   No importa si las distribuciones tengan una ubicación diferente en el eje x, sólo tienen que tener una forma similar.
+  
+
+
+Veamos como estudiaríamos el caso anterior con un test de Wilcoxon:
+
+```{r, warning=FALSE}
+wilcox.test(mpg ~ vs, data = data)
+```
+
+Como ven, la sintaxis es muy similar:
+
+_wilcox.test(**variable dependiente**~ **variable de grupo**)_
+
+### test de la Mediana
+
+Esta es una prueba no paramétrica para varias muestras independientes. La prueba de la mediana está diseñada para examinar si varias muestras proceden de poblaciones que tienen la misma mediana.
+Es tolerante a la irregularidad de formas de distribución en los grupos y es una opción cuando Wilcoxon y Mann-Whitney no puede aplicarse. Es una prueba bastante impopular pero versátil. 
+
+
+## Algoritmo para la decisión de la prueba
+
+Con los supuestos y las opciones vistas en este capítulo podemos construir un algoritmo que nos sirva para decidir que test utilizar.
+
+Aquí una versión simplificada:
+
+```{r echo=FALSE}
+knitr::include_graphics("img/algo.jpg")
+```
+
+
+
+## <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:
+
+Hoy vamos a realizar un ejercicio integrador, vamos a trabajar con la base "ToothGrowth" del paquete "datasets"En esta base esta registrada la respuesta de la longitud de los odontoblastos (células responsables del crecimiento de los dientes) en 60 cobayas (variable "len"). Cada animal recibió uno de los tres niveles de dosis de vitamina C (0,5, 1 y 2 mg/día) mediante uno de los dos métodos de administración (la variable "supp"), zumo de naranja (OJ) o ácido ascórbico (VC).
+
+
+Queremos testear si el largo de los odontoblastos es diferentes de acuerdo a la vía de administración.
+
+Realice todos los pasos que requiere el algoritmo, decida el test a utilizar, realícelo y saque sus conclusiones. 
+
+
+## <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:
+
+Asumiendo que lo han intentado fuerte vamos a resolverlo
+
+```{r}
+```
+
+
+```{r}
+library(datasets)
+
+diente<-ToothGrowth
+
+
+#chequeamos que las variables estén bien codificadas
+str(diente) #len es una continua y supp un factor, todo bien
+```
+
+
+
+**¿Es el n grande?**
+
+```{r}
+
+
+table(diente$supp)
+```
+
+
+
+Mmm, 30 por grupo no es numero como para hacer un test _z_, pero el test _t_ podría funcionar
+
+
+**¿Es normal la muestra?**
+
+```{r}
+
+##con un histograma
+hist(diente$len)
+
+
+##con un boxplot
+
+boxplot(diente$len)
+
+boxplot(diente$len, diente$supp)
+
+
+##con un qq-plot
+
+library(stats)
+qqnorm(diente$len, pch = 1, frame = FALSE) 
+qqline(diente$len, col = "steelblue", lwd = 2) 
+
+
+## con una analítica
+shapiro.test(diente$len)
+ks.test(diente$len, "rnorm")
+
+```
+
+Hay evidencia gráfica y analítica de normalidad, ¡VAMOS POR EL TEST T!
+
+
+```{r}
+t.test(diente$len ~ diente$supp)
+```
+Obtuvimos un p-valor > 0.05, no hemos alcanzado el umbral para poder rechazar la hipótesis nula, es decir que no hay suficiente evidencia apara probar que una vía de administración sea diferente que la otra en el largo de los odontoblastos. 
+
+
+
+
+Una reflexión final: realizar cualquiera de estos test no implica para nosotros más que una línea, pero como hemos visto, decidir cual de ellos implica un delicado proceso y múltiples test previos. Saltarse cualquiera de estos pasos es llegar a conclusiones erróneas y hacer ciencia de la Mala (si, con "M" mayúscula)
+
+

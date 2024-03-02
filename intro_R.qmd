@@ -16,9 +16,11 @@ Lo primero que hay que hacer para poder correr scripts de R es, como resulta evi
 Pueden bajar la versión gratuita de RStudio del siguiente [link](https://www.rstudio.com/products/rstudio/download/#download). En caso de que el link no haya detectado correctamente el sistema operativo, en la sección *All Installers* pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.
 :::
 
-Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base[^intro_r-1], la propuesta es utilizar los paquetes y funciones del *Tidyverse*. El *Tidyverse* es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos[@wickham2019welcome]. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.
+Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base[^intro_r-1], la propuesta es utilizar los paquetes y funciones del *tidyverse*. El *tidyverse* es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos[@wickham2019welcome]. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.
 
 [^intro_r-1]: Es decir, sin tener que cargar ningún paquete de funciones adicional.
+
+## El *tidyverse*
 
 ### Tidy data
 
@@ -26,9 +28,7 @@ Lo primero que tenemos que pe
 
 ### Introducción al Tidyverse
 
-Como contamos más arriba, el Tidyverse es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades[^intro_r-2] pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete *{readr}*, los verbos de *{dplyr}* para manipularlos, las funciones de *{tidyR}* para acomodarlos y el poderosísimo *{ggplot2}* para visualizarlos.
-
-[^intro_r-2]: Si quieren profundizar puede ir a ver este fantástico libro [@wickham2023r].
+Como contamos más arriba, el Tidyverse es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete *{readr}*, los verbos de *{dplyr}* para manipularlos, las funciones de *{tidyR}* para acomodarlos y el poderosísimo *{ggplot2}* para visualizarlos.
 
 #### Cargando datos con *readr*
 
@@ -37,7 +37,8 @@ Una de las cosas que vamos a hacer más a menudo en este libro es cargar algún 
 El caso más simple al que nos vamos a enfrentar es la carga de una base de datos organizada en columnas y separadas por comas en un archivo de extensión *.csv*. En este caso lo que tenemos que hacer es bastante simple, usar la función *read_csv()* como a continuación:
 
 ```{r}
-read_csv("data/summer.csv")
+data <- read_csv("data/summer.csv")
+summary(data)
 ```
 
 Describir que es un tibble.
@@ -70,3 +71,9 @@ https://dplyr.tidyverse.org/
 #### TidyR, el paquete para ordenar tus datos
 
 #### ggplot2 o cómo hacer figuras que sean la envidia de tu compañero de escritorio
+
+## Cierre
+
+Como vimos brevemente en este capítulo, los paquetes del *tidyverse* son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham[@wickham2019welcome] o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [@wickham2023r][^intro_r-2]. Es decir, sin tener que cargar ningún paquete de funciones adicional..
+
+[^intro_r-2]: Disponible gratis online en este link https://r4ds.had.co.nz/.

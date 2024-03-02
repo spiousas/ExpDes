@@ -1,0 +1,66 @@
+# Introducción y set up
+
+## ¿Qué es R?
+
+La definición de **Wikipedia** es bastante clara al respecto:
+
+*R nació como una reimplementación de software libre del lenguaje S, adicionado con soporte para ámbito estático. Se trata de uno de los lenguajes de programación más utilizados en investigación científica, siendo además muy popular en los campos de aprendizaje automático (machine learning), minería de datos, investigación biomédica, bioinformática y matemática financiera. A esto contribuye la posibilidad de cargar diferentes bibliotecas o paquetes con funcionalidades de cálculo y graficación. R es parte del sistema GNU y se distribuye bajo la licencia GNU GPL. Está disponible para los sistemas operativos Windows, Macintosh, Unix y GNU/Linux.*
+
+En pocas palabras es a la vez, software y lenguaje de programación. Fue diseñado para el análisis estadístico y es libre. Una de sus principales virtudes es el trabajo colaborativo, existe una enorme comunidad que desarrolla paquetes de funciones y las mantiene actualizadas, esta comunidad son los mismos usuarios lo que hace que siempre haya una solución simple para un problema nuevo al que nos enfrentamos.
+
+### ¿Qué quiere decir que es un lenguaje de programación?
+
+Que R sea un lenguaje de programación implica (como todo lenguaje) que tiene:
+
+-   Definiciones y operadores: palabras concretas para referirnos a datos, columnas o funciones que vamos a utilizar
+-   Sintaxis: sólo existe un orden y una manera lógica de solicitar que se hagan operaciones
+-   Gramática: eso quiere decir que se puede construir una sistemática organizada para las funciones en las que queremos trabajar y que esta sea compartida con todos
+
+El conjunto de todas nuestras demandas al programa se llama **código**, los códigos pueden guardarse en varias formas de archivos, la forma más simple de archivo ejecutable se conoce como **script**
+
+R es un *lenguaje orientado a objetos*, en este manual no vamos a ver grandes temas de programación sino un enfoque práctico a la estadística básica.
+
+Es probable que todo el tiempo estemos bombardeandolo con términos de dificil intrepretación. Para eso al fono de este texto hay un `glosario` en donde trataremos de aclarar
+
+> <i class="fa fa-paperclip" aria-hidden="true"></i> **Aclaración**: a los fines didácticos vamos a simplificar la mayoría de los temas, esto puede provocar que en casos particulares existan pequeñas contradicciones
+
+## Instalación
+
+Para los ejercicios que vienen incluídos en este manual vamos a necesitar dos programas, el R propiamente dicho y un entorno de desarrollo (IDE) que nos permite trabajar mas comodamente en R, en nuestro caso el RStudio.
+
+### Instalación de R
+
+Para instalar R debemos dirigirnos a la colección de paquetes en CRAN (del inglés, Comprehensive R Archive Network). CRAN es un repositorio global donde se puede acceder al software y a los paquetes que la comunidad produce. Veremos pronto que R provee limitada funcionalidad de base y los paquetes son una parte fundamental del uso diario.
+
+1.  La instalación comienza entrando en <https://cran.r-project.org/> .
+2.  Seleccionar el link correcto de descarga en la sección *Download and Install R* . El link depende del sistema operativo en que querramos utilizar el programa.
+3.  Hacer clic en *Install R for the first time* (instalar R por primera vez).
+4.  Con los datos proporcionados entraremos a la página de descarga de la mejor versión. En mi caso (Windows) el enlace es el siguiente *Download R 4.0.3 for Windows* .Este enlace descarga un archivo ejecutable (.exe, para el caso de windows, .pkg para Mac)
+5.  Instalar el ejecutable.
+
+Completados estos pasos no volveremos a trabajar con R en si mismo sino a traves de RStudio (la IDE), vamos a instalarlo...
+
+### Instalación de RStudio
+
+Rstudio es un software que agrega una serie de herramientas gráficas y variabilidad de opciones a R, como grabar, exportar archivos, visualizar. RStudio funciona como una pantalla que nos *simplifica* trabajar con R.
+
+> <i class="fa fa-paperclip" aria-hidden="true"></i> **Aclaración**:De ahora en más cuando hablemos de que abrimos R, estamos hablando de abrir Rstudio
+
+Para instalar Rstudio, podemos seguir los siguientes pasos:
+
+1.  Ir a <https://www.rstudio.com/products/rstudio/download/>
+2.  Hacer clic en Descargar software.
+3.  Seleccionar la version compatible con el sistema operativo.
+4.  Instalar desde el ejecutable (.exe o .pkg) descargado.
+
+Con esto hemos finalizado el primer desafío: instalar adecuadamente nuestro sistema, de ahora en mas accederemos al software a traves de RStudio **siempre**
+
+### ¿Dónde pedir ayuda?
+
+Una gran forma de resolver los problemas que tenemos cuando escribimos código es googlear el problema exacto. R normalmente nos mostrará errores de la forma:
+
+`## Error: error message here`
+
+Copiar y pegar el error particular es de gran ayuda. Existen diversos foros especializados. Afortunadamente existe material en español (aunque es limitado). Un gran sitio para empezar es:
+
+StackOverflow en español! <https://es.stackoverflow.com/>

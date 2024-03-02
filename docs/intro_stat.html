@@ -20,6 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -61,6 +80,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -132,9 +152,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#teoría-básica-de-probabilidad" id="toc-teoría-básica-de-probabilidad" class="nav-link active" data-scroll-target="#teoría-básica-de-probabilidad"><span class="toc-section-number">2.1</span>  Teoría básica de probabilidad</a></li>
   <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="toc-section-number">2.2</span>  Población y muestra</a></li>
   <li><a href="#eventos-y-probabilidad-condicional" id="toc-eventos-y-probabilidad-condicional" class="nav-link" data-scroll-target="#eventos-y-probabilidad-condicional"><span class="toc-section-number">2.3</span>  Eventos y probabilidad condicional</a></li>
-  <li><a href="#tablas-de-contingencia" id="toc-tablas-de-contingencia" class="nav-link" data-scroll-target="#tablas-de-contingencia"><span class="toc-section-number">2.4</span>  Tablas de contingencia</a></li>
-  <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="toc-section-number">2.5</span>  Esperanza</a></li>
-  <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="toc-section-number">2.6</span>  Varianza y covarianza</a></li>
+  <li><a href="#probabilidad-total" id="toc-probabilidad-total" class="nav-link" data-scroll-target="#probabilidad-total"><span class="toc-section-number">2.4</span>  Probabilidad total</a></li>
+  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="toc-section-number">2.5</span>  Teorema de Bayes</a></li>
+  <li><a href="#tablas-de-contingencia" id="toc-tablas-de-contingencia" class="nav-link" data-scroll-target="#tablas-de-contingencia"><span class="toc-section-number">2.6</span>  Tablas de contingencia</a></li>
+  <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="toc-section-number">2.7</span>  Esperanza</a></li>
+  <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="toc-section-number">2.8</span>  Varianza y covarianza</a></li>
   </ul>
 </nav>
     </div>
@@ -171,16 +193,61 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2.3" class="anchored" data-anchor-id="eventos-y-probabilidad-condicional"><span class="header-section-number">2.3</span> Eventos y probabilidad condicional</h2>
 <p>Acá agregar lo de árboles y diagramas.</p>
 </section>
-<section id="tablas-de-contingencia" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="tablas-de-contingencia"><span class="header-section-number">2.4</span> Tablas de contingencia</h2>
+<section id="probabilidad-total" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="probabilidad-total"><span class="header-section-number">2.4</span> Probabilidad total</h2>
 </section>
-<section id="esperanza" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="esperanza"><span class="header-section-number">2.5</span> Esperanza</h2>
+<section id="teorema-de-bayes" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="teorema-de-bayes"><span class="header-section-number">2.5</span> Teorema de Bayes</h2>
+<p>Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de <span class="citation" data-cites="herzog2019understanding">(<a href="references.html#ref-herzog2019understanding" role="doc-biblioref">Herzog, Francis, and Clarke 2019</a>)</span>: Tenemos un test para identificar la XXX de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus (<span class="math inline">\(P(T^+|IKV)\)</span>) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus (<span class="math inline">\(P(T^-|\neg IKV)\)</span>). Sabemos también que la incidencia del virus IKV es de 1 en 10000.</p>
+<p>Supongamos que somos elegidos aleatoriamente para realizarnos el test y este da positivo ¿Qué probabilidad de ser portadores del virus tenemos (<span class="math inline">\(P(IKV|T^+)\)</span>)? La primera respuesta que se nos viene es 0.9999 ¿Verdad? Pero, si estuvimos prestando atención, ya a esta altura debemos saber que para invertir la condicionalidad de una probabilidad tenemos que acudir al bueno de Bayes. O sea:</p>
+<p><span class="math display">\[
+P(IKV|T^+) = \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}
+\]</span></p>
+<p>donde <span class="math inline">\(P(T^+|IKV) = 0.9999\)</span> y <span class="math inline">\(P(IKV) = 1/10000 = 0.0001\)</span>. Además, echando mano a la definición de probabilidad total podemos calcular <span class="math inline">\(P(T+)\)</span> como:</p>
+<p><span class="math display">\[
+P(T+) = P(T^+|IKV) \times P(IKV) + P(T^+|\neg IKV) \times P(\neg IKV)
+\]</span></p>
+<p>donde <span class="math inline">\(P(T^+|\neg IKV) = 1-0.9999\)</span> y <span class="math inline">\(P(\neg IKV) = 1-0.0001\)</span>. Reemplazando todos los valores tenemos que:</p>
+<p><span class="math display">\[
+\begin{array}
+_P(IKV|T^+) &amp;=&amp; \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}\\
+&amp;=&amp; \frac{P(T^+|IKV) \times P(IKV)}{P(T^+|IKV) \times P(IKV) + P(T^+|\neg IKV) \times P(\neg IKV)} \\
+&amp;=&amp; \frac{0.9999 \times 0.0001}{0.9999 \times 0.0001 + (1-0.9999) \times (1-0.0001)} \\
+&amp;=&amp; \frac{0.9999 \times 0.0001}{0.9999 \times 0.0001 + 0.0001 \times 0.9999} \\
+&amp;=&amp; 0.5
+\end{array}
+\]</span></p>
+<p>¿Qué? ¿Esto significa que si el test me da positivo solo tengo un 0.5 de probabilidad de tener el virus? ¿Esto quiere decir que los tests no sirven para nada? Momento, analicemos un poco al resultado al que llegamos. Lo que nos dice esta cuenta es que, una vez que el test nos da positivo, a pesar de lo sensible del test y por lo “raro” de la portación del virus, nuestra probabilidad de ser portadores es de 0.5. Pero, ¿Y nuestra probabilidad de ser portadores si el test nos da negativos? Hagamos la cuenta:</p>
+<p><span class="math display">\[
+\begin{array}
+_P(IKV|T^-) &amp;=&amp; \frac{P(T^-|IKV) \times P(IKV)}{P(T-)}\\
+&amp;=&amp; \frac{P(T^-|IKV) \times P(IKV)}{P(T^-|IKV) \times P(IKV) + P(T^-|\neg IKV) \times P(\neg IKV)} \\
+&amp;=&amp; \frac{(1-0.9999) \times 0.0001}{(1 - 0.9999) \times 0.0001 + (0.9999) \times (1-0.0001)} \\
+&amp;=&amp; 1E-8
+\end{array}
+\]</span></p>
+<p>OK, ahora la cosa tiene más sentido. O sea, el test es bastante bueno para decirnos cuando no somos portadores y dando negativo, el problema es cuando da positivo. En este caso tenemos que preocuparnos, pero, como vimos anteriormente, la probabilidad de ser portadores es de apenas 0.5.</p>
+<p>Hay una solución más simple para esto y es la que deben estar pensando ustedes: ¿Y si me hacen un segundo test? ¡BINGO! Calculemos rápidamente la probabilidad de estar infectados si nos testean por segunda vez:</p>
+<p><span class="math display">\[
+P(IKV|T^{2+}) = \frac{0.9999^2 \times 0.0001}{0.9999^2 \times 0.0001 + 0.0001^2 \times 0.9999} = 0.9999
+\]</span> Ahora sí, si somos testeados por segunda vez, la probabilidad de ser portadores dado que tenemos dos resultados positivos trepa a 0.9999. Nos podemos quedar tranquilos.</p>
+<p>Para cerrar, me gustaría que pensemos un poco en una palabra MUY importante que se dijo en el enunciado del problema: Aleatoriamente. En muchos de los casos en los que nos testeamos para ver si somos portadores de un virus, lo hacemos porque tenemos algún tipo de presunción de que podemos serlo (por ejemplo, tenemos síntomas). ¿Cuál creen que sería la probabilidad que se modifica en la fórmula? Exacto, <span class="math inline">\(P(IKV)\)</span>, ya que sería más bien <span class="math inline">\(P(IKV|síntomas)\)</span>.</p>
 </section>
-<section id="varianza-y-covarianza" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="varianza-y-covarianza"><span class="header-section-number">2.6</span> Varianza y covarianza</h2>
+<section id="tablas-de-contingencia" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="tablas-de-contingencia"><span class="header-section-number">2.6</span> Tablas de contingencia</h2>
+</section>
+<section id="esperanza" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="esperanza"><span class="header-section-number">2.7</span> Esperanza</h2>
+</section>
+<section id="varianza-y-covarianza" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="varianza-y-covarianza"><span class="header-section-number">2.8</span> Varianza y covarianza</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-herzog2019understanding" class="csl-entry" role="doc-biblioentry">
+Herzog, Michael H, Gregory Francis, and Aaron Clarke. 2019. <em>Understanding Statistics and Experimental Design: How to Not Lie with Statistics</em>. Springer Nature.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

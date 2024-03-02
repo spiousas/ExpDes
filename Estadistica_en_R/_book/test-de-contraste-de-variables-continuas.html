@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Test de contraste de variables continuas | Introducción a la bioestadistica</title>
+  <meta name="description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Test de contraste de variables continuas | Introducción a la bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="github-repo" content="rstudio/libroR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Test de contraste de variables continuas | Introducción a la bioestadistica" />
+  
+  <meta name="twitter:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  
+
+<meta name="author" content="Ismael Calandri" />
+
+
+<meta name="date" content="2021-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="flenilogo.ico" type="image/x-icon" />
+<link rel="prev" href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"/>
+<link rel="next" href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="libs/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Acerca de este libro</a></li>
+<li class="chapter" data-level="2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html"><i class="fa fa-check"></i><b>2</b> Introducción y set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-es-r"><i class="fa fa-check"></i><b>2.1</b> ¿Qué es R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-quiere-decir-que-es-un-lenguaje-de-programación"><i class="fa fa-check"></i><b>2.1.1</b> ¿Qué quiere decir que es un lenguaje de programación?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación"><i class="fa fa-check"></i><b>2.2</b> Instalación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Instalación de RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#dónde-pedir-ayuda"><i class="fa fa-check"></i><b>2.2.3</b> ¿Dónde pedir ayuda?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html"><i class="fa fa-check"></i><b>3</b> Primeros pasos en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#consola"><i class="fa fa-check"></i><b>3.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#scripts"><i class="fa fa-check"></i><b>3.2</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#crear-un-script"><i class="fa fa-check"></i><b>3.2.1</b> Crear un script</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#objetos"><i class="fa fa-check"></i><b>3.3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.3.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#clases-de-objetos"><i class="fa fa-check"></i><b>3.3.2</b> Clases de objetos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#operaciones-con-objetos"><i class="fa fa-check"></i><b>3.3.3</b> Operaciones con objetos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-con-objetos"><i class="fa fa-check"></i><b>3.3.4</b> Funciones con objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador"><i class="fa fa-check"></i><b>3.4</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+<li class="chapter" data-level="3.5" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#dataset-dataframe-bases-de-datos"><i class="fa fa-check"></i><b>3.5</b> Dataset-Dataframe, bases de datos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-base-de-datos"><i class="fa fa-check"></i><b>3.5.1</b> Creación de base de datos:</a></li>
+<li class="chapter" data-level="3.5.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-básicas-para-los-dataframes"><i class="fa fa-check"></i><b>3.5.2</b> Funciones básicas para los dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador-1"><i class="fa fa-check"></i><b>3.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><i class="fa fa-check"></i><b>4</b> Ambientes de trabajo y manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#antes-de-empezar"><i class="fa fa-check"></i><b>4.1</b> Antes de empezar</a></li>
+<li class="chapter" data-level="4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#directorio-de-trabajo-o-working-directory"><i class="fa fa-check"></i><b>4.2</b> Directorio de trabajo o Working directory</a></li>
+<li class="chapter" data-level="4.3" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#paquetes-o-librerías"><i class="fa fa-check"></i><b>4.3</b> Paquetes o librerías</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-instalar-una-librería"><i class="fa fa-check"></i><b>4.3.1</b> ¿Como instalar una librería?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-activar-una-librería"><i class="fa fa-check"></i><b>4.3.2</b> ¿Como activar una librería?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#de-la-base-de-datos-a-r"><i class="fa fa-check"></i><b>4.4</b> De la base de datos a R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#metodo-de-ventanas-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.1</b> Metodo de ventanas para subir un dataframe a R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#código-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.2</b> Código para subir un dataframe a R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#manipulación-de-variables-i"><i class="fa fa-check"></i><b>4.5</b> Manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#métodos-de-selección-de-datos"><i class="fa fa-check"></i><b>4.5.1</b> Métodos de selección de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html"><i class="fa fa-check"></i><b>5</b> Manipulación de variables (II)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#piping-y-paquete-dplyr"><i class="fa fa-check"></i><b>5.1</b> Piping y paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#funciones-dplyr"><i class="fa fa-check"></i><b>5.2</b> Funciones dplyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-filter"><i class="fa fa-check"></i><b>5.2.1</b> Función filter()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-select"><i class="fa fa-check"></i><b>5.3</b> Función select()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-arrange"><i class="fa fa-check"></i><b>5.3.1</b> Función arrange()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-mutate"><i class="fa fa-check"></i><b>5.4</b> Función mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#otras-funciones-de-dplyr"><i class="fa fa-check"></i><b>5.5</b> Otras funciones de dplyr</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#ejercicios-2"><i class="fa fa-check"></i><b>5.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1"><i class="fa fa-check"></i><b>5.6.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2"><i class="fa fa-check"></i><b>5.6.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3"><i class="fa fa-check"></i><b>5.6.3</b> Problema 3:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#respuestas"><i class="fa fa-check"></i><b>5.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1-1"><i class="fa fa-check"></i><b>5.7.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.7.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2-1"><i class="fa fa-check"></i><b>5.7.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.7.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3-1"><i class="fa fa-check"></i><b>5.7.3</b> Problema 3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html"><i class="fa fa-check"></i><b>6</b> Resumen de variables en R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-categoricas"><i class="fa fa-check"></i><b>6.1</b> Resumen de variables categoricas</a></li>
+<li class="chapter" data-level="6.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-numéricas"><i class="fa fa-check"></i><b>6.2</b> Resumen de variables numéricas</a></li>
+<li class="chapter" data-level="6.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#antes-de-empezar-1"><i class="fa fa-check"></i><b>6.3</b> Antes de empezar</a></li>
+<li class="chapter" data-level="6.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-básica"><i class="fa fa-check"></i><b>6.4</b> Estadística descriptiva básica</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-posición"><i class="fa fa-check"></i><b>6.4.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="6.4.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>6.4.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="6.4.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-frecuencia"><i class="fa fa-check"></i><b>6.4.3</b> Medidas de frecuencia</a></li>
+<li class="chapter" data-level="6.4.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#tablas-cruzadas"><i class="fa fa-check"></i><b>6.4.4</b> Tablas cruzadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-en-bloque"><i class="fa fa-check"></i><b>6.5</b> Estadística descriptiva en bloque</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-lapply"><i class="fa fa-check"></i><b>6.5.1</b> Función lapply()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-summary"><i class="fa fa-check"></i><b>6.5.2</b> Función summary()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#ejercicios-3"><i class="fa fa-check"></i><b>6.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="6.7" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#respuestas-1"><i class="fa fa-check"></i><b>6.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="6.8" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#parametricidad"><i class="fa fa-check"></i><b>6.8</b> Parametricidad</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-gráficos"><i class="fa fa-check"></i><b>6.8.1</b> Métodos gráficos:</a></li>
+<li class="chapter" data-level="6.8.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-analíticos"><i class="fa fa-check"></i><b>6.8.2</b> Métodos analíticos:</a></li>
+<li class="chapter" data-level="6.8.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-parametricidad"><i class="fa fa-check"></i><b>6.8.3</b> Resumen de parametricidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#la-tabla-1"><i class="fa fa-check"></i><b>6.9</b> La tabla 1</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#paquete-table1"><i class="fa fa-check"></i><b>6.9.1</b> Paquete table1</a></li>
+<li class="chapter" data-level="6.9.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-tbl_summary"><i class="fa fa-check"></i><b>6.9.2</b> Función tbl_summary()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html"><i class="fa fa-check"></i><b>7</b> Creación de gráficos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#gráficos-base-de-r"><i class="fa fa-check"></i><b>7.1</b> Gráficos base de R</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#plot"><i class="fa fa-check"></i><b>7.1.1</b> plot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#histograma-y-boxplot"><i class="fa fa-check"></i><b>7.1.2</b> Histograma y boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> Ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#sintaxis-ggplot"><i class="fa fa-check"></i><b>7.2.1</b> Sintaxis ggplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#el-mapeo-estético"><i class="fa fa-check"></i><b>7.2.2</b> El mapeo estético</a></li>
+<li class="chapter" data-level="7.2.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#las-geometrías"><i class="fa fa-check"></i><b>7.2.3</b> Las geometrías</a></li>
+<li class="chapter" data-level="7.2.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#capas"><i class="fa fa-check"></i><b>7.2.4</b> Capas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ejercicios-4"><i class="fa fa-check"></i><b>7.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="7.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#respuestas-2"><i class="fa fa-check"></i><b>7.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html"><i class="fa fa-check"></i><b>8</b> Matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#componentes-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.1</b> Componentes de la matriz de confusión</a></li>
+<li class="chapter" data-level="8.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.2</b> Análisis de la matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#sensibilidad"><i class="fa fa-check"></i><b>8.2.1</b> Sensibilidad</a></li>
+<li class="chapter" data-level="8.2.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#especificidad"><i class="fa fa-check"></i><b>8.2.2</b> Especificidad</a></li>
+<li class="chapter" data-level="8.2.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#valores-predictivos-positivos-y-negativos"><i class="fa fa-check"></i><b>8.2.3</b> Valores predictivos positivos y negativos</a></li>
+<li class="chapter" data-level="8.2.4" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#indice-de-omision-falsa-false-omission-rate-e-indice-de-deteccion-falsa-false-discovery-rate"><i class="fa fa-check"></i><b>8.2.4</b> Indice de omision falsa (False Omission Rate) e indice de deteccion falsa (False Discovery Rate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión-con-r"><i class="fa fa-check"></i><b>8.3</b> Análisis de la matriz de confusión con R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><i class="fa fa-check"></i><b>9</b> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>9.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="9.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#test-de-chi-cuadrado"><i class="fa fa-check"></i><b>9.2</b> Test de Chi cuadrado</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#supuestos-del-chi-cuadrado"><i class="fa fa-check"></i><b>9.2.1</b> Supuestos del Chi cuadrado</a></li>
+<li class="chapter" data-level="9.2.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#corrección-de-fisher"><i class="fa fa-check"></i><b>9.2.2</b> Corrección de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#ejercicios-5"><i class="fa fa-check"></i><b>9.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="9.4" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#respuestas-3"><i class="fa fa-check"></i><b>9.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html"><i class="fa fa-check"></i><b>10</b> Test de contraste de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-z"><i class="fa fa-check"></i><b>10.1</b> Test Z</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-del-test-z"><i class="fa fa-check"></i><b>10.1.1</b> Supuestos del test Z</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-t-de-student"><i class="fa fa-check"></i><b>10.2</b> Test <em>t</em> de Student</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-de-la-prueba-t"><i class="fa fa-check"></i><b>10.2.1</b> Supuestos de la prueba <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#tests-no-paramétricos-para-comparación-de-variables-continuas"><i class="fa fa-check"></i><b>10.3</b> Tests no paramétricos para comparación de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-u-de-mann-whitnney"><i class="fa fa-check"></i><b>10.3.1</b> Test <em>U</em> de Mann-Whitnney</a></li>
+<li class="chapter" data-level="10.3.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-wilcoxon"><i class="fa fa-check"></i><b>10.3.2</b> Test de Wilcoxon</a></li>
+<li class="chapter" data-level="10.3.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-la-mediana"><i class="fa fa-check"></i><b>10.3.3</b> test de la Mediana</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#algoritmo-para-la-decisión-de-la-prueba"><i class="fa fa-check"></i><b>10.4</b> Algoritmo para la decisión de la prueba</a></li>
+<li class="chapter" data-level="10.5" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#ejercicios-6"><i class="fa fa-check"></i><b>10.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="10.6" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#respuestas-4"><i class="fa fa-check"></i><b>10.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><i class="fa fa-check"></i><b>11</b> Test de contraste de variables continuas con grupos de más de dos niveles</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#anova"><i class="fa fa-check"></i><b>11.1</b> Anova</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#supestos-de-la-anova"><i class="fa fa-check"></i><b>11.1.1</b> Supestos de la ANOVA</a></li>
+<li class="chapter" data-level="11.1.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#interpretando-el-modelo-de-anova"><i class="fa fa-check"></i><b>11.1.2</b> Interpretando el modelo de ANOVA</a></li>
+<li class="chapter" data-level="11.1.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#el-problema-de-las-comparaciones-múltiples"><i class="fa fa-check"></i><b>11.1.3</b> El problema de las comparaciones múltiples</a></li>
+<li class="chapter" data-level="11.1.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc"><i class="fa fa-check"></i><b>11.1.4</b> Post-Hoc</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#kruskal-wallis"><i class="fa fa-check"></i><b>11.2</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc-no-paramétricos"><i class="fa fa-check"></i><b>11.2.1</b> Post-hoc no paramétricos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#ejercicios-7"><i class="fa fa-check"></i><b>11.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="11.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#respuestas-5"><i class="fa fa-check"></i><b>11.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlaciones.html"><a href="correlaciones.html"><i class="fa fa-check"></i><b>12</b> Correlaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlaciones.html"><a href="correlaciones.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1</b> Coeficiente de correlación de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlaciones.html"><a href="correlaciones.html#supuestos-del-coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1.1</b> Supuestos del coeficiente de correlación de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlaciones.html"><a href="correlaciones.html#correlaciones-no-paramétricas-de-kendal-y-spearman"><i class="fa fa-check"></i><b>12.2</b> Correlaciones no paramétricas de Kendal y Spearman</a></li>
+<li class="chapter" data-level="12.3" data-path="correlaciones.html"><a href="correlaciones.html#ejercicios-8"><i class="fa fa-check"></i><b>12.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="12.4" data-path="correlaciones.html"><a href="correlaciones.html#respuestas-6"><i class="fa fa-check"></i><b>12.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="12.5" data-path="correlaciones.html"><a href="correlaciones.html#matriz-de-correlación"><i class="fa fa-check"></i><b>12.5</b> Matriz de correlación</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlaciones.html"><a href="correlaciones.html#visualización-de-matriz-de-correlaciones-corrplot"><i class="fa fa-check"></i><b>12.5.1</b> Visualización de matriz de correlaciones, Corrplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html"><i class="fa fa-check"></i><b>13</b> Regresión y regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#concepto-de-regresión"><i class="fa fa-check"></i><b>13.1</b> Concepto de regresión</a></li>
+<li class="chapter" data-level="13.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal"><i class="fa fa-check"></i><b>13.2</b> Regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>13.2.1</b> Regresión lineal simple</a></li>
+<li class="chapter" data-level="13.2.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-múltiple"><i class="fa fa-check"></i><b>13.2.2</b> Regresión lineal múltiple</a></li>
+<li class="chapter" data-level="13.2.3" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#parámetros-de-corrección-del-modelo"><i class="fa fa-check"></i><b>13.2.3</b> Parámetros de corrección del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>14</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logística"><i class="fa fa-check"></i><b>14.1</b> La función logística</a></li>
+<li class="chapter" data-level="14.2" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-simple"><i class="fa fa-check"></i><b>14.2</b> Regresión logística simple</a></li>
+<li class="chapter" data-level="14.3" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-múltiple"><i class="fa fa-check"></i><b>14.3</b> Regresión logística múltiple</a></li>
+<li class="chapter" data-level="14.4" data-path="regresión-logística.html"><a href="regresión-logística.html#evaluando-la-precisión-de-la-regresión-logística"><i class="fa fa-check"></i><b>14.4</b> Evaluando la precisión de la regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#criterio-de-información-de-akaike"><i class="fa fa-check"></i><b>14.4.1</b> Criterio de información de Akaike</a></li>
+<li class="chapter" data-level="14.4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#hacer-predicciones-y-compararlas-con-la-realidad"><i class="fa fa-check"></i><b>14.4.2</b> Hacer predicciones y compararlas con la realidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regresión-logística.html"><a href="regresión-logística.html#ejercicios-9"><i class="fa fa-check"></i><b>14.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="14.6" data-path="regresión-logística.html"><a href="regresión-logística.html#respuestas-7"><i class="fa fa-check"></i><b>14.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="test-de-contraste-de-variables-continuas" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Test de contraste de variables continuas</h1>
+<p>En este capítulo veremos como comparar variables continuas entre dos grupos, esto incluye el test t, el test Z y algunas opciones no-paramétricas</p>
+<div id="test-z" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Test Z</h2>
+<p>Supongamos que queremos comparar la altura de dos grupos de 800 niños, unos que han recibido hormona de crecimiento por un año, y otros que no.</p>
+<p>Nosotros, como investigadores, queremos demostrar que el tratamiento de un año con hormona de crecimiento impacta sobre la altura de los niños.</p>
+<p>Una forma de demostrar esto es que la media de la altura de los niños tratados es significativamente mayor que la media de los no tratados (lo dicho de otra forma, que las diferencias en la altura de un grupo y otro no son producto del azar, sino del efecto del tratamiento)</p>
+<p>Antes de empezar tenemos que preguntarnos <strong>¿Es la media un buen descriptor de este grupo?</strong> Sino lo es, no tiene sentido comparar medias, pues, no son la mejor descripción de ello. O sea que antes de empezar debemos chequear la <strong>normalidad</strong> de estas muestras.</p>
+<p>El test z es un test que se construye con las siguientes hipótesis:</p>
+<ul>
+<li><p><strong>Hipótesis nula (H0)</strong>: las medias de ambos grupos son iguales (en otras palabras que sus diferencias se deben solamente al azar)</p></li>
+<li><p><strong>Hipótesis alternativa (H1)</strong>: es que las medias de ambos grupos son diferentes (esas diferencias no pueden atribuirse al azar).</p></li>
+</ul>
+<p>La fórmula del estadístico Z es la siguiente:</p>
+<p><img src="img/z.JPG" width="160" /></p>
+<p>En donde x raya (las X con una rayita encima) representan las medias de ambos grupos y sigma la varianza. Como vemos evalúa la distancia entre las medias sobre su variación. Una vez obtenido el estadístico z es contrastado con una tabla de distribución normal (la tabla z de Gauss), en donde consta la probabilidad que este número sea originado por el azar (el p-valor).</p>
+<p>Es decir mientras menor sea la probabilidad hay mas chances de que esta diferencia sea real y no producto del azar. O sea de que las medias de ambos grupos sean diferentes por efecto del tratamiento.</p>
+<p>Hagamos un ejemplo utilizando una base de datos. Vamos a utilizar los datos de los automóviles de la base “mtcars”. Esta base presenta datos extraídos de la revista Motor Trend US de 1974 y comprenden el consumo de combustible y 10 aspectos del diseño y el rendimiento de 32 automóviles (modelos de 1973-74).</p>
+<p>Supongamos que queremos demostrar que la media de consumo en millas por galón (la variable “mpg”) es distinto si el motor (la variable “vs”) tiene los cilindros en V (0) o rectos (1)</p>
+<p>El planteamiento de nuestro test debería ser:</p>
+<ul>
+<li><p><strong>Ho</strong>: la media de consumo entre los motores en v y los motores rectos es igual</p></li>
+<li><p><strong>H1</strong>:la media de consumo entre los motores en v y los motores rectos es distinta</p></li>
+</ul>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="test-de-contraste-de-variables-continuas.html#cb310-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>mtcars</span>
+<span id="cb310-2"><a href="test-de-contraste-de-variables-continuas.html#cb310-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="test-de-contraste-de-variables-continuas.html#cb310-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>vs<span class="ot">&lt;-</span><span class="fu">as.factor</span>(data<span class="sc">$</span>vs) <span class="co">#para convertirla en una variable dicotómica</span></span>
+<span id="cb310-4"><a href="test-de-contraste-de-variables-continuas.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;BSDA&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:carData&#39;:
+## 
+##     Vocab, Wool</code></pre>
+<pre><code>## The following object is masked from &#39;package:datasets&#39;:
+## 
+##     Orange</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="test-de-contraste-de-variables-continuas.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(data<span class="sc">$</span>mpg[data<span class="sc">$</span>vs <span class="sc">==</span> <span class="dv">1</span>],<span class="at">sigma.x=</span><span class="fu">sd</span>(data<span class="sc">$</span>mpg[data<span class="sc">$</span>vs <span class="sc">==</span> <span class="dv">1</span>]), data<span class="sc">$</span>mpg[data<span class="sc">$</span>vs <span class="sc">==</span> <span class="dv">0</span>], <span class="at">sigma.y=</span> <span class="fu">sd</span>(data<span class="sc">$</span>mpg[data<span class="sc">$</span>vs <span class="sc">==</span> <span class="dv">0</span>]))</span></code></pre></div>
+<pre><code>## 
+##  Two-sample z-Test
+## 
+## data:  data$mpg[data$vs == 1] and data$mpg[data$vs == 0]
+## z = 4.6671, p-value = 3.056e-06
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   4.605813 11.275139
+## sample estimates:
+## mean of x mean of y 
+##  24.55714  16.61667</code></pre>
+<p>El p valor es de 0.00000305, es decir es significativo. Esto dice que el consumo medio de un grupo es significativamente distinto del otro. En este caso el motor en V tuvo una media de 24.55 millas por galón (identificado como la variable x) y el grupo recto de 16.61 (identificado como la y). La sintaxis de este test como han visto es sumamente compleja, necesita que le incorporemos cada grupo como una variable filtrada y cada desvío estandard calculado también (fíjense que hay una forma anidada), para peor esta conclusiones, están mal. Veamos por qué:</p>
+<div id="supuestos-del-test-z" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Supuestos del test Z</h3>
+<p>Existen condiciones muy particulares en donde se puede aplicar el test z, si las mismas no se cumplen, sus resultados son erróneos:</p>
+<ul>
+<li><p>La distribución de las muestras debe aproximarse a la normal</p></li>
+<li><p>Las muestras de cada población deben ser independientes entre sí</p></li>
+<li><p>Las desviaciones estándar de la población deben ser conocidos</p></li>
+<li><p>Los tamaños de las muestras deben ser grandes (es decir, n1≥30 y n2≥30, idealmente n1≥100 y n2≥100)</p></li>
+</ul>
+<p>En nuestro caso la muestra <em>nunca fue testeada para su normalidad</em>, por ende puede que estemos completamente equivocados. Tampoco conocemos las desviaciones estandards de las poblaciones (sólo las de las muestras) y nuestro tamaño muestra no es grande. Miremos:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="test-de-contraste-de-variables-continuas.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>vs)</span></code></pre></div>
+<pre><code>## 
+##  0  1 
+## 18 14</code></pre>
+<p>¡n1=18 y n2=14!</p>
+<p>Por ende nuestro test <em>no debería ser administrado</em>. El test z tiene un poder más anecdótico (es el padre de todos los test basados en la media) que real. Estos supuestos estrictos hace que sean muy raras las condiciones en los que se puede aplicar, por eso su sintaxis es tan mala (nadie se ha preocupado por refinarla), en muchos softwares (como SPSS) ni siquiera existe.
+Existe una alternativa más flexible y más poderosa que el test Z: el test t</p>
+</div>
+</div>
+<div id="test-t-de-student" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Test <em>t</em> de Student</h2>
+<p>Una de las pruebas más comunes en estadística es la prueba <em>t</em>, utilizada para determinar si las medias de dos grupos son iguales entre sí.</p>
+<p>La hipótesis de de trabajo de la prueba son las siguientes:</p>
+<ul>
+<li><p><strong>Hipótesis nula (H0)</strong>: las medias de ambos grupos son iguales (en otras palabras que sus diferencias se deben solamente al azar)</p></li>
+<li><p><strong>Hipótesis alternativa (H1)</strong>: es que las medias de ambos grupos son diferentes (esas diferencias no pueden atribuirse al azar).</p></li>
+</ul>
+<p>La prueba <em>t</em> de Student hereda muchas similitudes de su hermana mayor, la prueba <em>z</em>, sin embargo agrega una modificación clave, la distribución de contraste. En este caso la distribución de contraste es <em>la distribución de Student</em> esta tiene la particularidad de corregirse a través de los <em>grados de libertad</em> un concepto íntimamente ligado al tamaño muestral.</p>
+<p>Ambas pruebas (la <em>t</em> y la <em>z</em>) sirven para comparar las medias de dos grupos cuyas distribuciones se aproximan a la normal (no olviden el importante capítulo de <em>parametricidad</em> y vuelvan a visitarlo), sin embargo la prueba <em>t</em> funciona con mayor exactitud que la <em>z</em> cuando las muestras son más pequeñas (menor de 100 sujetos) debido a su corrección por los grados de libertad.</p>
+<p>Por esta propiedad es una de las pruebas más elegidas a la hora de contrastar medias entre grupos.</p>
+<p>Sin embargo esta prueba tampoco esta exenta de la necesidad de que se cumplan sus supuestos.</p>
+<div id="supuestos-de-la-prueba-t" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Supuestos de la prueba <em>t</em></h3>
+<ul>
+<li><p>Escala de medición: la escala de medición aplicada a los datos recogidos sigue una escala continua u ordinal de multiples niveles (≥30)</p></li>
+<li><p>La muestra es aleatoria simple, es decir, que los datos se recogen de una parte representativa y seleccionada al azar de la población total.</p></li>
+<li><p>Los datos, cuando se representan, dan lugar a una distribución normal</p></li>
+<li><p>Se utiliza un tamaño de muestra razonablemente grande (≥20)</p></li>
+<li><p>Homogeneidad de la varianza. Existe una varianza homogénea, o igual, cuando las desviaciones estándar de las muestras son aproximadamente iguales.</p></li>
+</ul>
+<p>Cómo vemos, no podemos escapar a conceptos claves como el tipo de variable y la asunción de normalidad. Un punto importante es la homogeneidad de las varianzas, cuando este supuesto no se da (en muchos de los casos) existe una prueba que corrige ese problema: el <strong>test de Welch</strong>.</p>
+<p>Usemos nuestro ejemplo anterior para realizar un test t en r:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="test-de-contraste-de-variables-continuas.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> data)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  mpg by vs
+## t = -4.6671, df = 22.716, p-value = 0.0001098
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.462508  -4.418445
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        16.61667        24.55714</code></pre>
+<p>Como vemos hay una diferencia estadísticamente significativa. Si el supuesto de normalidad se cumple (hay que testearlo antes). Estamos en condiciones de decir que el gasto de un tipo de motor es <em>significativamente</em> distinto que el otro.</p>
+<p>Notese que la sintaxis de este test es muy sencilla, básicamente sigue la siguiente regla:</p>
+<p><em>t.test(<strong>variable dependiente</strong>~ <strong>variable de grupo</strong>)</em></p>
+<p>Nuestra amiga la virgulilla a vuelto para quedarse.</p>
+</div>
+</div>
+<div id="tests-no-paramétricos-para-comparación-de-variables-continuas" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Tests no paramétricos para comparación de variables continuas</h2>
+<p>A continuación veremos un par de alternativas a los test que requieren normalidad de la muestra, a estas alternativas se las suele llamar, no paramétricas.</p>
+<div id="test-u-de-mann-whitnney" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Test <em>U</em> de Mann-Whitnney</h3>
+<p>La prueba <em>U</em> de Mann-Whitney se utiliza para comparar si existe una diferencia en la variable dependiente continua para dos grupos independientes.</p>
+<p>A diferencia de las pruebas paramétricas, compara si la distribución de la variable dependiente es la misma para los dos grupos y, por tanto, procede de la misma población. Es decir que la media no es utilizada como centro de la comparación.</p>
+<p>Esta prueba es tolerante a casi todos los supuestos necesario en las otras y es una gran alternativa cuando no se cumple la normalidad de la muestra.</p>
+</div>
+<div id="test-de-wilcoxon" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Test de Wilcoxon</h3>
+<p>Esta prueba, al igual que Mann-Whitnney no compara medidas de centralidad, en este caso la comparación es de la forma de la distribución a través del rango, razón por la cual este test se suele llamar <em>Prueba de suma de rangos de Wilcoxon</em> o <em>Wilcoxon´s sum rank test</em>.</p>
+<p>Con respecto a los supuestos, los únicos supuestos para realizar una prueba de Mann-Whitney o un Wilcoxon son que los dos grupos deben ser independientes y que la variable dependiente sea ordinal o continua.</p>
+<p>Tanto Mann-Whitney como Wilcoxon sirven para demostrar que ambas muestras pertenecen a poblaciones distintas (o dicho de otra forma, que son significativamente diferentes). En ambos no se puede hablar de comparación de medias, pero si de muestras. Sin embargo, para poder informar de la diferencia entre grupos como medianas, la forma de las distribuciones de la variable dependiente por grupo debe ser similar. No importa si las distribuciones tengan una ubicación diferente en el eje x, sólo tienen que tener una forma similar.</p>
+<p>Veamos como estudiaríamos el caso anterior con un test de Wilcoxon:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="test-de-contraste-de-variables-continuas.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> data)</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  mpg by vs
+## W = 22.5, p-value = 9.034e-05
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>Como ven, la sintaxis es muy similar:</p>
+<p><em>wilcox.test(<strong>variable dependiente</strong>~ <strong>variable de grupo</strong>)</em></p>
+</div>
+<div id="test-de-la-mediana" class="section level3" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> test de la Mediana</h3>
+<p>Esta es una prueba no paramétrica para varias muestras independientes. La prueba de la mediana está diseñada para examinar si varias muestras proceden de poblaciones que tienen la misma mediana.
+Es tolerante a la irregularidad de formas de distribución en los grupos y es una opción cuando Wilcoxon y Mann-Whitney no puede aplicarse. Es una prueba bastante impopular pero versátil.</p>
+</div>
+</div>
+<div id="algoritmo-para-la-decisión-de-la-prueba" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Algoritmo para la decisión de la prueba</h2>
+<p>Con los supuestos y las opciones vistas en este capítulo podemos construir un algoritmo que nos sirva para decidir que test utilizar.</p>
+<p>Aquí una versión simplificada:</p>
+<p><img src="img/algo.JPG" width="347" /></p>
+</div>
+<div id="ejercicios-6" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</h2>
+<p>Hoy vamos a realizar un ejercicio integrador, vamos a trabajar con la base “ToothGrowth” del paquete “datasets”En esta base esta registrada la respuesta de la longitud de los odontoblastos (células responsables del crecimiento de los dientes) en 60 cobayas (variable “len”). Cada animal recibió uno de los tres niveles de dosis de vitamina C (0,5, 1 y 2 mg/día) mediante uno de los dos métodos de administración (la variable “supp”), zumo de naranja (OJ) o ácido ascórbico (VC).</p>
+<p>Queremos testear si el largo de los odontoblastos es diferentes de acuerdo a la vía de administración.</p>
+<p>Realice todos los pasos que requiere el algoritmo, decida el test a utilizar, realícelo y saque sus conclusiones.</p>
+</div>
+<div id="respuestas-4" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</h2>
+<p>Asumiendo que lo han intentado fuerte vamos a resolverlo</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="test-de-contraste-de-variables-continuas.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb322-2"><a href="test-de-contraste-de-variables-continuas.html#cb322-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb322-3"><a href="test-de-contraste-de-variables-continuas.html#cb322-3" aria-hidden="true" tabindex="-1"></a>diente<span class="ot">&lt;-</span>ToothGrowth</span>
+<span id="cb322-4"><a href="test-de-contraste-de-variables-continuas.html#cb322-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb322-5"><a href="test-de-contraste-de-variables-continuas.html#cb322-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb322-6"><a href="test-de-contraste-de-variables-continuas.html#cb322-6" aria-hidden="true" tabindex="-1"></a><span class="co">#chequeamos que las variables estén bien codificadas</span></span>
+<span id="cb322-7"><a href="test-de-contraste-de-variables-continuas.html#cb322-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diente) <span class="co">#len es una continua y supp un factor, todo bien</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  3 variables:
+##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+##  $ supp: Factor w/ 2 levels &quot;OJ&quot;,&quot;VC&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...</code></pre>
+<p><strong>¿Es el n grande?</strong></p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="test-de-contraste-de-variables-continuas.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(diente<span class="sc">$</span>supp)</span></code></pre></div>
+<pre><code>## 
+## OJ VC 
+## 30 30</code></pre>
+<p>Mmm, 30 por grupo no es numero como para hacer un test <em>z</em>, pero el test <em>t</em> podría funcionar</p>
+<p><strong>¿Es normal la muestra?</strong></p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="test-de-contraste-de-variables-continuas.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="do">##con un histograma</span></span>
+<span id="cb326-2"><a href="test-de-contraste-de-variables-continuas.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diente<span class="sc">$</span>len)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="test-de-contraste-de-variables-continuas.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="do">##con un boxplot</span></span>
+<span id="cb327-2"><a href="test-de-contraste-de-variables-continuas.html#cb327-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb327-3"><a href="test-de-contraste-de-variables-continuas.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(diente<span class="sc">$</span>len)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-187-2.png" width="672" /></p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="test-de-contraste-de-variables-continuas.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(diente<span class="sc">$</span>len, diente<span class="sc">$</span>supp)</span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-187-3.png" width="672" /></p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="test-de-contraste-de-variables-continuas.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="do">##con un qq-plot</span></span>
+<span id="cb329-2"><a href="test-de-contraste-de-variables-continuas.html#cb329-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-3"><a href="test-de-contraste-de-variables-continuas.html#cb329-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb329-4"><a href="test-de-contraste-de-variables-continuas.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(diente<span class="sc">$</span>len, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">frame =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb329-5"><a href="test-de-contraste-de-variables-continuas.html#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(diente<span class="sc">$</span>len, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) </span></code></pre></div>
+<p><img src="Esatadistica_en_R_files/figure-html/unnamed-chunk-187-4.png" width="672" /></p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="test-de-contraste-de-variables-continuas.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="do">## con una analítica</span></span>
+<span id="cb330-2"><a href="test-de-contraste-de-variables-continuas.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diente<span class="sc">$</span>len)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  diente$len
+## W = 0.96743, p-value = 0.1091</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="test-de-contraste-de-variables-continuas.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(diente<span class="sc">$</span>len, <span class="st">&quot;rnorm&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in ks.test(diente$len, &quot;rnorm&quot;): ties should not be present for the
+## Kolmogorov-Smirnov test</code></pre>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  diente$len
+## D = 3.5705, p-value &lt; 2.2e-16
+## alternative hypothesis: two-sided</code></pre>
+<p>Hay evidencia gráfica y analítica de normalidad, ¡VAMOS POR EL TEST T!</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="test-de-contraste-de-variables-continuas.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(diente<span class="sc">$</span>len <span class="sc">~</span> diente<span class="sc">$</span>supp)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  diente$len by diente$supp
+## t = 1.9153, df = 55.309, p-value = 0.06063
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1710156  7.5710156
+## sample estimates:
+## mean in group OJ mean in group VC 
+##         20.66333         16.96333</code></pre>
+<p>Obtuvimos un p-valor &gt; 0.05, no hemos alcanzado el umbral para poder rechazar la hipótesis nula, es decir que no hay suficiente evidencia apara probar que una vía de administración sea diferente que la otra en el largo de los odontoblastos.</p>
+<p>Una reflexión final: realizar cualquiera de estos test no implica para nosotros más que una línea, pero como hemos visto, decidir cual de ellos implica un delicado proceso y múltiples test previos. Saltarse cualquiera de estos pasos es llegar a conclusiones erróneas y hacer ciencia de la Mala (si, con “M” mayúscula)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Esatadistica_en_R.pdf", "Esatadistica_en_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

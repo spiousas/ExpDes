@@ -1,0 +1,317 @@
+# Regresión logística
+
+
+
+En esta sección veremos como realizar una regresión logística, un modelo de predicción que sirve para pronosticar el valor de una variable dicotómica
+
+
+
+Llegamos al final de este curso de estadística, si sobrevivieron hasta aquí vamos a ver una de las herramientas más utilizadas en bioestadística, la ***regresión logística***. En este tipo de regresión ajustaremos una función particular (logit) que nos permitirá predecir **una variable dicotómica**.
+
+veamos algunas definiciones.
+
+La regresión logística se utiliza para predecir la clase (o categoría) de los individuos en función de una o varias variables predictoras (x). Se utiliza para modelar un resultado binario, es decir, una variable que sólo puede tener dos valores posibles: 0 o 1, sí o no, enfermo o no enfermo (van entendiendo porque es tan útil).
+
+Como regresión,  pertenece a una familia, denominada Modelo Lineal Generalizado (GLM), desarrollada para ampliar el modelo de regresión lineal a otras situaciones no lineales. Otros sinónimos son la regresión logística binaria, la regresión logística binomial y el modelo logit.
+
+La regresión logística no devuelve directamente la clase de las observaciones (no podemos predecir el sí o el no), en cambio nos permite estimar la probabilidad (p) de pertenencia a una clase (la probabilidad de que sea sí). 
+
+
+## La función logística
+
+La función de regresión logística estándar, para predecir el resultado de una observación dada una variable de predicción (x), es una curva en forma de s definida como: 
+
+> p = exp(y) / [1 + exp(y)] 
+
+Esto también puede escribirse simplemente como:
+
+>p = 1/[1 + exp(-y)]
+donde y = b0 + b1*x,  exp() es la potencia en base _e_ y p es la probabilidad de que ocurra el suceso (1) dado x. 
+
+Matemáticamente, se escribe como p(suceso=1|x) y se abrevia asp(x), sopx = 1/[1 + exp(-(b0 + b1*x))]`.
+
+Con un poco de manipulación, se puede demostrar que p/(1-p) = exp(b0 + b1 ."x") Tomando el logaritmo de ambos lados, la fórmula se convierte en una combinación lineal de predictores: log[p/(1-p)] = b0 + b1."x"
+
+Cuando se tienen múltiples variables predictoras, la función logística tiene el siguiente aspecto: log[p/(1-p)] = b0 + b1.x1 + b2.x2 + ... + bn.xn
+
+b0 y b1 son los coeficientes beta de la regresión. Un b1 positivo indica que el aumento de x se asociará con el aumento de p. Por el contrario, un b1 negativo indica que el aumento de x se asociará con la disminución de p.
+
+La cantidad log[p/(1-p)] se denomina logaritmo de odds, también conocido como log-odd o logit.
+
+El logaritmo de odds refleja la probabilidad de que se produzca el suceso. Puede considerarse como la relación entre los "éxitos" y los "no éxitos".
+
+Técnicamente, el odds es la la probabilidad de un evento dividida por la probabilidad de que el evento no se produzca (revisiten el capítulo e OR). Por ejemplo, si la probabilidad de ser diabético es 0,5, la probabilidad de "no serlo" es 1-0,5 = 0,5, y las probabilidades son 1,0.
+
+Para muchos este conjunto de reflexión pueden sonar a chino básico, pero para hacerlo más sencillo debemos entender que:
+
+* la transformación logit permite obtener una serie de coeficientes para cada variable
+
+* estos coeficientes son el log de odds para la aparición del suceso debido a la presencia de esa variable independiente, valores negativos implican que esa variable reduce las chances de que ese evento suceda ( si ese evento es enfermedad o muerte, es un factor protector)
+
+* elevar los coeficientes a una potencia de base _e_ nos permite obtener el odds de esa variable, y si esa variable es dicotómica, el ***OR*** para la ocurrencia del suceso cuando esta variable esta presente.
+
+## Regresión logística simple
+
+
+volvamos a nuestro ejemplo del titanic, supongamos que queremos predecir las chances de sobre vida que tienen las mujeres de sobrevivir. Esta es una respuesta de regresión logística. Porque:
+
+1.Tenemos una variable a predecir (dependiente) dicotómica
+2.Tenemos una o varias variables para predictora de distintas naturaleza, vamos a empezar con otra dicotómica
+
+
+```{r}
+library(carData)
+
+Titanic<-TitanicSurvival
+
+
+logist <- glm( survived ~ sex, data = Titanic, family = binomial)
+
+summary(logist)
+
+```
+En este caso vemos que la variable es estadísticamente significativa o sea que es un predictor _distinto_ de la casualidad de la probabilidad de sobrevivir.  Tratemos de interpretar el coeficiente.
+
+Recordemos lo siguiente de la sección anterior:
+
+* la transformación logit permite obtener una serie de coeficientes para cada variable
+
+* estos coeficientes son el log de odds para la aparición del suceso debido a la presencia de esa variable independiente, valores negativos implican que esa variable reduce las chances de que ese evento suceda (si ese evento es enfermedad o muerte, es un factor protector)
+
+* elevar los coeficientes a una potencia de base _e_ nos permite obtener el odds de esa variable, y si esa variable es dicotómica, el ***OR*** para la ocurrencia del suceso cuando esta variable esta presente.
+
+
+Con todo esto en mente tenemos que tener en cuenta como está _codificada_ cada variable, en este caso el evento a predecir es "sobre vida", aumentar las chances de que eso suceda es "protector" y disminuirla un "factor de riesgo"
+
+
+
+
+Hay que ser muy cuidadoso con estas interpretaciones ya que distintas codificaciones llevan a conclusiones completamente opuestas, y en nuestra cabeza palabras como OR están vinculadas a riesgo, aunque a veces (como en el caso de titanic) es el riesgo de que algo bueno suceda
+
+
+Dicho esto podemos ver que el evento "ser hombre" suceda (porque así está codificada la variable) tiene un coeficiente negativo (o sea que su log de odds es negativo). Esto, como vimos en la sección anterior habla de que _reduce_ las chances de que el evento dependiente ocurra, en este caso sobrevivir. 
+
+Pero esta interpretación es sumamente compleja (es difícil pensar en términos de log de odds), sin embargo aprendimos que el logaritmo de odds de una variable dicotómica elevado a la potencia en base _e_ es el el **OR**
+
+Hagámoslo:
+
+1. Veamos que nuestro modelo, como tantas otras veces, ha sido guardado como una lista. Dentro de ella hay un objeto $coefficients que contiene los coeficientes.
+
+2. ahora que los encontramos elevemoslos en base _e_
+
+
+```{r}
+exp(logist$coefficients)
+```
+Ahora sí! "ser hombre" tiene un OR=0.08 eso quiere decir que un hombre tiene un 8% de chances comparados a las mujeres de sobrevivir, o tiene un 92% de reducción en el "riesgo de sobrevivir". No me gustaría ser hombre y estar leyendo esto en este momento. 
+
+
+
+## Regresión logística múltiple
+
+En nuestro capítulo de chi cuadrado vimos que nos interesaban también otras relaciones, sospechábamos que ser mujer, niño y tener más dinero cambiaba nuestras chances de sobrevivir.
+
+Comparamos ser mujer y la clase en la que viajaban creando mini-bases por clases (el nombre correcto es ***estratos**), ese enfoque es sencillo pero tiene algunos inconvenientes (uno de ellos es que en realidad aumentamos el numero de comparaciones de 1 a 3). Vamos a resolver ese problema a través de incorporar términos a la regresión logística.
+
+Vamos a empezar con términos dicotómicos porque son más sencillos de implementar.
+
+Testeemos primero aquellos de mujeres y niños, tenemos una variable con la edad de la gente así que vamos a crear una dicotómica que sea "ninio", en donde 1 sea ser menor que 12 años y 0 mayor:
+
+***modelo 2***
+
+```{r}
+
+Titanic$ninio<-as.factor(Titanic$age<12)
+
+logist2 <- glm( survived ~ sex + ninio, data = Titanic, family = binomial)
+
+summary(logist2)
+
+
+
+```
+Como vemos ser hombre reduce las chances de morir y ser niño las aumenta ambas en forma significativa, si quisiéramos saber cuanto, podríamos calcular el OR.
+
+
+```{r}
+exp(logist2$coefficients)
+```
+como vemos niño tiene un OR de 1.89, podríamos decir que "casi duplica" las chances de sobrevivir. Hurra!
+
+
+Pero, conciencia de clase obliga, testeemos las clases, para ello vamos a dividir la variable clase (con tres niveles) en tres variables dicotomicas. Este tipo de variables divididas se llaman variables ***dummy*** y seguro más de una vez la han implementado instintivamente.
+
+1. creemos las dummys
+
+```{r, warning=FALSE, message=FALSE}
+library(sjmisc)
+Titanic2<-to_dummy(Titanic$passengerClass, suffix = "label")
+```
+
+2. chusmeemos la tabla ah ver como quedo, despues vamos a tomar la columna primera clase y ponerla en Titanic:
+
+```{r}
+View(Titanic2)
+
+Titanic$Primera<-Titanic2$passengerClass_1st
+```
+
+Estamos listos para hacer el análisis:
+
+***modelo 3***
+```{r}
+logist3 <- glm( survived ~ sex + ninio + Primera, data = Titanic, family = binomial)
+
+summary(logist3)
+```
+como vemos los tres factores fueron claves en la supervivencia (nos lo imaginábamos). Veamos los OR.
+
+```{r}
+exp(logist3$coefficients)
+```
+Viajar en primera aumento casi 4 veces las chances de sobre vida!!
+Pero por qué cambió la sobre vida de los niños, esto es porque las variables primera y niños no son independientes y la frecuencia de una determina la frecuencia de la otra, en este modelo, el OR de los niños es más preciso que en el anterior porque está "ajustado" por la clase. Las chances de sobrevivir siendo niño se deben a ser niño y no a estar en primera. 
+
+Si nos quedan dudas podemos testear esa supuesta dependencia (si con nuestro amigo el chi cuadrado)
+
+```{r}
+table(Titanic$ninio, Titanic$Primera)
+
+chisq.test(Titanic$ninio, Titanic$Primera)
+```
+
+Lo sospechábamos desde un principio, no había niños en primera clase, entonces en el **modelo 2** los niños tenían su propia chance de sobrevivir pero esa chance estaba disminuida por el hecho de que no viajaban en primera, ambas se combinaban dando un OR menor. Al agregar el término "primera", ajustamos esa posibilidad y, como en la regresión lineal, en el ***modelo 3*** el riesgo es ahora comparando a los niños con los adultos (los no-niños, en realidad) dentro de la "misma" clase.
+
+Ya se habrán dado cuenta que esta opción comparada a la que presentamos en el capítulo de chi cuadrado es superadora, testeamos tres condiciones dentro del mismo test y pudimos obtener resultados mejor "ajustados" a la realidad.
+
+
+## Evaluando la precisión de la regresión logística
+
+### Criterio de información de Akaike
+
+El criterio de información de Akaike (AIC) es una medida de la calidad relativa del modelo estadístico, para un conjunto dado de datos. En estos términos funciona como el R² de la regresión lineal, el problema es que su interpretación no es tan claro
+
+
+El AIC proporciona una herramienta para comparar modelos, mejor AIC, mejor modelo. Peeeero: AIC no proporciona una prueba de un modelo en el sentido de probar una hipótesis nula, es decir AIC no puede decir nada acerca de la calidad del modelo en un sentido absoluto. Si todos los modelos candidatos encajan mal, AIC no dará ningún aviso de ello. 
+
+AIC maneja es un calculo complejo que implica un intercambio entre la bondad de ajuste del modelo y la complejidad del modelo -algo así como un R² ajustado- . Se basa en la entropía de información: se ofrece una estimación relativa de la información perdida cuando se utiliza un modelo determinado para representar el proceso que genera los datos.
+
+El AIC es un parámetro que van a encontrar en todos las salidas de R que calculen una regresión logística pero vamos a ver un mecanismo mucho más elegante para probar la precisión de nuestro modelo. 
+
+
+### Hacer predicciones y compararlas con la realidad
+
+
+Si recordarán del capítulo de regresión lineal, una de las ventajas de _construir una fórmula_ es que después podemos incorporar nuevos valores y nos devolverá valores (más o menos precisos) de la variable dependiente.
+
+Bueno la regresión logística no es la excepción. Por su construcción esta función está prediciendo la ocurrencia de una dicotómica (en el caso de Titanic, la sobrevida). 
+Si yo quiero saber si ese modelo de predicción es bueno podría: 
+
+1. crear el modelo con las variables de interés (si es hombre, si es niño, si viaja en primera)
+
+2. obtener una fórmula en donde se que porción de riesgo le asigna cada característica
+
+3. incorporar nuevos individuos con distintas combinaciones de características y que la formula me diga si sobrevivirán o no
+
+Si la fórmula es buena, adivina que un sujeto va a sobrevivir y en la realidad sobrevive.
+
+Pero momento, ¿debería repetir el experimento no? y sí, pero esto no es un experimento y el Titanic se hundió una sola vez. Lo que si podemos es dividir la base en dos, y usar una para crear el modelo y otra para ver si funciona
+
+Vamos a hacerlo:
+
+1. Primero dividimos los datos aleatoriamente (porque quizás se cargaron primero los sobrevivientes y después los muertos y dividir a la mitad genera sesgo)
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(caret)
+
+set.seed(123)
+training.samples <- Titanic$survived %>% 
+  createDataPartition(p = 0.8, list = FALSE) # esta linea e aspara que asigne igual proporción de supervivientes a ambos grupos
+train.data  <- Titanic[training.samples, ]
+test.data <- Titanic[-training.samples, ]
+
+```
+
+Ahora tenemos dos bases "train.data" con 1309 sujetos y una "test.data" con 261 sujetos. Vamos usar la primera para ajustar el modelo (o entrenar) y la segunda para testear su funcionamiento y precisión
+
+
+2. Ahora creemos (entrenemos) el modelo
+
+```{r}
+model <- glm( survived ~ sex + ninio + Primera, data = train.data, family = binomial)
+
+summary(model)
+```
+
+3. con el modelo entrenado, vamos a decirle que prediga a los "nuevos" sujetos y que nos diga si van a sobrevivir o no (los que están en la base test.data)
+
+```{r}
+probabilities <- model %>% predict(test.data, type = "response")
+
+head(probabilities)
+```
+
+Ahora el objeto probabilities es una lista de sujetos con sus probabilidades de sobrevivir de acuerdo a las características que tenían
+
+Ahora bastará con buscar a estos señores y ver si sobrevivieron. Pero antes tenemos que dicotomizar esta probabilidad, es decir ahora sabemos cuales son las ***probabilidades de sobrevivir*** pero en definitiva lo que queremos saber es si sobrevivió o no. Entonces vamos a definir un punto de corte (arbitrario), digamos que una persona con un 75% de chances de sobrevivir la vamos a tomar como sobrevivida. Entonces creemos eso con los individuos "nuevos"
+
+```{r}
+predicted.classes <- ifelse(probabilities > 0.5, "yes", "no")
+head(predicted.classes)
+```
+Ahora sí, si nuestro modelo es bueno. Deberíamos encontrar que la señora Helene Baxter sobrevivío y don Beattie Thompson no. 
+
+
+Bueno como lo vamos a hacer:
+
+Vamos a poner las predicciones en la misma base que los datos:
+
+```{r}
+test.data$prediccion<-as.factor(predicted.classes)
+```
+
+
+Entonces tenemos por un lado los resultados que nos da un test (en este caso, un modelo de regresión) y por otro lado lo que verdaderamente ocurrió. ¿Les suena a algo?
+
+
+Exacto!! Podemos poner esto en una matriz de confusión
+
+
+```{r, message=FALSE}
+
+library(caret)
+ 
+matrix_confusion <- confusionMatrix(data=test.data$prediccion, reference = test.data$survived)
+ 
+matrix_confusion
+```
+Perfecto, ahora sabemos que nuestro modelo tiene una ***sensibilidad*** del 77% y una ***especificidad*** del 75%.
+
+Podríamos repetir esto para varios modelos y elegir el que mejor se adapta a nuestra necesidad
+
+
+
+## <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:
+
+
+Bueno ha llegado el último ejercicio del curso. En este vamos a construir un modelo de predicción para la infertilidad después de un aborto.
+
+Para ello vamos a usar el dataset "infert" del paquete "datasets". Este es un estudio de 248 sujetos (Trichopoulos et al (1976) Br. J. of Obst. and Gynaec. 83, 645–650.) con un diseño de casos y controles para evaluar la fertilidad de las mujeres post-aborto. La base consta de las siguientes variables:
+
+
+1. ***Education***: Educación  (0 = 0-5 años; 1 = 6-11 años; 2 = 12+ años)
+2. ***age***: Edad en años
+3. ***parity***: Paridad (numero de partos)
+4. ***number of prior induced abortions***: número de abortos inducidos anteriores (0 = 0, 1 = 1, = 2 o más)
+5. ***case status** 1 = caso (infertil) 0 = control (fértil)
+6. ***number of prior spontaneuos abortions***: número de abortos espontáneos anteriores (0 = 0, 1 = 1, = 2 o más)
+
+Pueden recurrir a cuanto test intermedio crean necesario para darse una idea de los datos
+
+
+## <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:
+
+Pequeño estudiante como todo alguna vez termina. Ha llegado el momento de buscar su propio camino. Esta sección no tiene respuestas, porque un buen aprendizaje debe terminar con muchas preguntas. 
+
+Te desafiamos a que compitas con tus compañeros en términos de creación del mejor modelo, también puedes buscar el paper y ver cuales son las conclusiones de los autores y sus resultados.

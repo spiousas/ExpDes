@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Manipulación de variables (II) | Introducción a la bioestadistica</title>
+  <meta name="description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Manipulación de variables (II) | Introducción a la bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  <meta name="github-repo" content="rstudio/libroR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Manipulación de variables (II) | Introducción a la bioestadistica" />
+  
+  <meta name="twitter:description" content="Este libro se creó para funcionar como una guía de trabajos prácticos en el curso de estadística básica de Fleni" />
+  
+
+<meta name="author" content="Ismael Calandri" />
+
+
+<meta name="date" content="2021-08-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="flenilogo.ico" type="image/x-icon" />
+<link rel="prev" href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"/>
+<link rel="next" href="resumen-de-variables-en-r.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="libs/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Acerca de este libro</a></li>
+<li class="chapter" data-level="2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html"><i class="fa fa-check"></i><b>2</b> Introducción y set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-es-r"><i class="fa fa-check"></i><b>2.1</b> ¿Qué es R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#qué-quiere-decir-que-es-un-lenguaje-de-programación"><i class="fa fa-check"></i><b>2.1.1</b> ¿Qué quiere decir que es un lenguaje de programación?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación"><i class="fa fa-check"></i><b>2.2</b> Instalación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-r"><i class="fa fa-check"></i><b>2.2.1</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Instalación de RStudio</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introducción-y-set-up.html"><a href="introducción-y-set-up.html#dónde-pedir-ayuda"><i class="fa fa-check"></i><b>2.2.3</b> ¿Dónde pedir ayuda?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html"><i class="fa fa-check"></i><b>3</b> Primeros pasos en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#consola"><i class="fa fa-check"></i><b>3.1</b> Consola</a></li>
+<li class="chapter" data-level="3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#scripts"><i class="fa fa-check"></i><b>3.2</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#crear-un-script"><i class="fa fa-check"></i><b>3.2.1</b> Crear un script</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#objetos"><i class="fa fa-check"></i><b>3.3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.3.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#clases-de-objetos"><i class="fa fa-check"></i><b>3.3.2</b> Clases de objetos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#operaciones-con-objetos"><i class="fa fa-check"></i><b>3.3.3</b> Operaciones con objetos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-con-objetos"><i class="fa fa-check"></i><b>3.3.4</b> Funciones con objetos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador"><i class="fa fa-check"></i><b>3.4</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+<li class="chapter" data-level="3.5" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#dataset-dataframe-bases-de-datos"><i class="fa fa-check"></i><b>3.5</b> Dataset-Dataframe, bases de datos</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#creación-de-base-de-datos"><i class="fa fa-check"></i><b>3.5.1</b> Creación de base de datos:</a></li>
+<li class="chapter" data-level="3.5.2" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#funciones-básicas-para-los-dataframes"><i class="fa fa-check"></i><b>3.5.2</b> Funciones básicas para los dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="primeros-pasos-en-r.html"><a href="primeros-pasos-en-r.html#ejercicio-integrador-1"><i class="fa fa-check"></i><b>3.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicio integrador</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><i class="fa fa-check"></i><b>4</b> Ambientes de trabajo y manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#antes-de-empezar"><i class="fa fa-check"></i><b>4.1</b> Antes de empezar</a></li>
+<li class="chapter" data-level="4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#directorio-de-trabajo-o-working-directory"><i class="fa fa-check"></i><b>4.2</b> Directorio de trabajo o Working directory</a></li>
+<li class="chapter" data-level="4.3" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#paquetes-o-librerías"><i class="fa fa-check"></i><b>4.3</b> Paquetes o librerías</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-instalar-una-librería"><i class="fa fa-check"></i><b>4.3.1</b> ¿Como instalar una librería?</a></li>
+<li class="chapter" data-level="4.3.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#como-activar-una-librería"><i class="fa fa-check"></i><b>4.3.2</b> ¿Como activar una librería?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#de-la-base-de-datos-a-r"><i class="fa fa-check"></i><b>4.4</b> De la base de datos a R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#metodo-de-ventanas-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.1</b> Metodo de ventanas para subir un dataframe a R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#código-para-subir-un-dataframe-a-r"><i class="fa fa-check"></i><b>4.4.2</b> Código para subir un dataframe a R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#manipulación-de-variables-i"><i class="fa fa-check"></i><b>4.5</b> Manipulación de variables (I)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ambientes-de-trabajo-y-manipulación-de-variables-i.html"><a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html#métodos-de-selección-de-datos"><i class="fa fa-check"></i><b>4.5.1</b> Métodos de selección de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html"><i class="fa fa-check"></i><b>5</b> Manipulación de variables (II)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#piping-y-paquete-dplyr"><i class="fa fa-check"></i><b>5.1</b> Piping y paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#funciones-dplyr"><i class="fa fa-check"></i><b>5.2</b> Funciones dplyr</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-filter"><i class="fa fa-check"></i><b>5.2.1</b> Función filter()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-select"><i class="fa fa-check"></i><b>5.3</b> Función select()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-arrange"><i class="fa fa-check"></i><b>5.3.1</b> Función arrange()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#función-mutate"><i class="fa fa-check"></i><b>5.4</b> Función mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#otras-funciones-de-dplyr"><i class="fa fa-check"></i><b>5.5</b> Otras funciones de dplyr</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#ejercicios-2"><i class="fa fa-check"></i><b>5.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1"><i class="fa fa-check"></i><b>5.6.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2"><i class="fa fa-check"></i><b>5.6.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3"><i class="fa fa-check"></i><b>5.6.3</b> Problema 3:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#respuestas"><i class="fa fa-check"></i><b>5.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-1-1"><i class="fa fa-check"></i><b>5.7.1</b> Problema 1:</a></li>
+<li class="chapter" data-level="5.7.2" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-2-1"><i class="fa fa-check"></i><b>5.7.2</b> Problema 2:</a></li>
+<li class="chapter" data-level="5.7.3" data-path="manipulación-de-variables-ii.html"><a href="manipulación-de-variables-ii.html#problema-3-1"><i class="fa fa-check"></i><b>5.7.3</b> Problema 3:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html"><i class="fa fa-check"></i><b>6</b> Resumen de variables en R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-categoricas"><i class="fa fa-check"></i><b>6.1</b> Resumen de variables categoricas</a></li>
+<li class="chapter" data-level="6.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-variables-numéricas"><i class="fa fa-check"></i><b>6.2</b> Resumen de variables numéricas</a></li>
+<li class="chapter" data-level="6.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#antes-de-empezar-1"><i class="fa fa-check"></i><b>6.3</b> Antes de empezar</a></li>
+<li class="chapter" data-level="6.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-básica"><i class="fa fa-check"></i><b>6.4</b> Estadística descriptiva básica</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-posición"><i class="fa fa-check"></i><b>6.4.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="6.4.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>6.4.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="6.4.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#medidas-de-frecuencia"><i class="fa fa-check"></i><b>6.4.3</b> Medidas de frecuencia</a></li>
+<li class="chapter" data-level="6.4.4" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#tablas-cruzadas"><i class="fa fa-check"></i><b>6.4.4</b> Tablas cruzadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#estadística-descriptiva-en-bloque"><i class="fa fa-check"></i><b>6.5</b> Estadística descriptiva en bloque</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-lapply"><i class="fa fa-check"></i><b>6.5.1</b> Función lapply()</a></li>
+<li class="chapter" data-level="6.5.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-summary"><i class="fa fa-check"></i><b>6.5.2</b> Función summary()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#ejercicios-3"><i class="fa fa-check"></i><b>6.6</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="6.7" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#respuestas-1"><i class="fa fa-check"></i><b>6.7</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="6.8" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#parametricidad"><i class="fa fa-check"></i><b>6.8</b> Parametricidad</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-gráficos"><i class="fa fa-check"></i><b>6.8.1</b> Métodos gráficos:</a></li>
+<li class="chapter" data-level="6.8.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#métodos-analíticos"><i class="fa fa-check"></i><b>6.8.2</b> Métodos analíticos:</a></li>
+<li class="chapter" data-level="6.8.3" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#resumen-de-parametricidad"><i class="fa fa-check"></i><b>6.8.3</b> Resumen de parametricidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#la-tabla-1"><i class="fa fa-check"></i><b>6.9</b> La tabla 1</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#paquete-table1"><i class="fa fa-check"></i><b>6.9.1</b> Paquete table1</a></li>
+<li class="chapter" data-level="6.9.2" data-path="resumen-de-variables-en-r.html"><a href="resumen-de-variables-en-r.html#función-tbl_summary"><i class="fa fa-check"></i><b>6.9.2</b> Función tbl_summary()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html"><i class="fa fa-check"></i><b>7</b> Creación de gráficos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#gráficos-base-de-r"><i class="fa fa-check"></i><b>7.1</b> Gráficos base de R</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#plot"><i class="fa fa-check"></i><b>7.1.1</b> plot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#histograma-y-boxplot"><i class="fa fa-check"></i><b>7.1.2</b> Histograma y boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> Ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#sintaxis-ggplot"><i class="fa fa-check"></i><b>7.2.1</b> Sintaxis ggplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#el-mapeo-estético"><i class="fa fa-check"></i><b>7.2.2</b> El mapeo estético</a></li>
+<li class="chapter" data-level="7.2.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#las-geometrías"><i class="fa fa-check"></i><b>7.2.3</b> Las geometrías</a></li>
+<li class="chapter" data-level="7.2.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#capas"><i class="fa fa-check"></i><b>7.2.4</b> Capas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#ejercicios-4"><i class="fa fa-check"></i><b>7.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="7.4" data-path="creación-de-gráficos.html"><a href="creación-de-gráficos.html#respuestas-2"><i class="fa fa-check"></i><b>7.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html"><i class="fa fa-check"></i><b>8</b> Matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#componentes-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.1</b> Componentes de la matriz de confusión</a></li>
+<li class="chapter" data-level="8.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión"><i class="fa fa-check"></i><b>8.2</b> Análisis de la matriz de confusión</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#sensibilidad"><i class="fa fa-check"></i><b>8.2.1</b> Sensibilidad</a></li>
+<li class="chapter" data-level="8.2.2" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#especificidad"><i class="fa fa-check"></i><b>8.2.2</b> Especificidad</a></li>
+<li class="chapter" data-level="8.2.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#valores-predictivos-positivos-y-negativos"><i class="fa fa-check"></i><b>8.2.3</b> Valores predictivos positivos y negativos</a></li>
+<li class="chapter" data-level="8.2.4" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#indice-de-omision-falsa-false-omission-rate-e-indice-de-deteccion-falsa-false-discovery-rate"><i class="fa fa-check"></i><b>8.2.4</b> Indice de omision falsa (False Omission Rate) e indice de deteccion falsa (False Discovery Rate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="matriz-de-confusión.html"><a href="matriz-de-confusión.html#análisis-de-la-matriz-de-confusión-con-r"><i class="fa fa-check"></i><b>8.3</b> Análisis de la matriz de confusión con R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><i class="fa fa-check"></i><b>9</b> Test de chi cuadrado de Pearson para la independencia de las variables categóricas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>9.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="9.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#test-de-chi-cuadrado"><i class="fa fa-check"></i><b>9.2</b> Test de Chi cuadrado</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#supuestos-del-chi-cuadrado"><i class="fa fa-check"></i><b>9.2.1</b> Supuestos del Chi cuadrado</a></li>
+<li class="chapter" data-level="9.2.2" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#corrección-de-fisher"><i class="fa fa-check"></i><b>9.2.2</b> Corrección de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#ejercicios-5"><i class="fa fa-check"></i><b>9.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="9.4" data-path="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html"><a href="test-de-chi-cuadrado-de-pearson-para-la-independencia-de-las-variables-categóricas.html#respuestas-3"><i class="fa fa-check"></i><b>9.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html"><i class="fa fa-check"></i><b>10</b> Test de contraste de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-z"><i class="fa fa-check"></i><b>10.1</b> Test Z</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-del-test-z"><i class="fa fa-check"></i><b>10.1.1</b> Supuestos del test Z</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-t-de-student"><i class="fa fa-check"></i><b>10.2</b> Test <em>t</em> de Student</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#supuestos-de-la-prueba-t"><i class="fa fa-check"></i><b>10.2.1</b> Supuestos de la prueba <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#tests-no-paramétricos-para-comparación-de-variables-continuas"><i class="fa fa-check"></i><b>10.3</b> Tests no paramétricos para comparación de variables continuas</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-u-de-mann-whitnney"><i class="fa fa-check"></i><b>10.3.1</b> Test <em>U</em> de Mann-Whitnney</a></li>
+<li class="chapter" data-level="10.3.2" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-wilcoxon"><i class="fa fa-check"></i><b>10.3.2</b> Test de Wilcoxon</a></li>
+<li class="chapter" data-level="10.3.3" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#test-de-la-mediana"><i class="fa fa-check"></i><b>10.3.3</b> test de la Mediana</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#algoritmo-para-la-decisión-de-la-prueba"><i class="fa fa-check"></i><b>10.4</b> Algoritmo para la decisión de la prueba</a></li>
+<li class="chapter" data-level="10.5" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#ejercicios-6"><i class="fa fa-check"></i><b>10.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="10.6" data-path="test-de-contraste-de-variables-continuas.html"><a href="test-de-contraste-de-variables-continuas.html#respuestas-4"><i class="fa fa-check"></i><b>10.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><i class="fa fa-check"></i><b>11</b> Test de contraste de variables continuas con grupos de más de dos niveles</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#anova"><i class="fa fa-check"></i><b>11.1</b> Anova</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#supestos-de-la-anova"><i class="fa fa-check"></i><b>11.1.1</b> Supestos de la ANOVA</a></li>
+<li class="chapter" data-level="11.1.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#interpretando-el-modelo-de-anova"><i class="fa fa-check"></i><b>11.1.2</b> Interpretando el modelo de ANOVA</a></li>
+<li class="chapter" data-level="11.1.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#el-problema-de-las-comparaciones-múltiples"><i class="fa fa-check"></i><b>11.1.3</b> El problema de las comparaciones múltiples</a></li>
+<li class="chapter" data-level="11.1.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc"><i class="fa fa-check"></i><b>11.1.4</b> Post-Hoc</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#kruskal-wallis"><i class="fa fa-check"></i><b>11.2</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#post-hoc-no-paramétricos"><i class="fa fa-check"></i><b>11.2.1</b> Post-hoc no paramétricos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#ejercicios-7"><i class="fa fa-check"></i><b>11.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="11.4" data-path="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html"><a href="test-de-contraste-de-variables-continuas-con-grupos-de-más-de-dos-niveles.html#respuestas-5"><i class="fa fa-check"></i><b>11.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="correlaciones.html"><a href="correlaciones.html"><i class="fa fa-check"></i><b>12</b> Correlaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="correlaciones.html"><a href="correlaciones.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1</b> Coeficiente de correlación de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="correlaciones.html"><a href="correlaciones.html#supuestos-del-coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>12.1.1</b> Supuestos del coeficiente de correlación de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="correlaciones.html"><a href="correlaciones.html#correlaciones-no-paramétricas-de-kendal-y-spearman"><i class="fa fa-check"></i><b>12.2</b> Correlaciones no paramétricas de Kendal y Spearman</a></li>
+<li class="chapter" data-level="12.3" data-path="correlaciones.html"><a href="correlaciones.html#ejercicios-8"><i class="fa fa-check"></i><b>12.3</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="12.4" data-path="correlaciones.html"><a href="correlaciones.html#respuestas-6"><i class="fa fa-check"></i><b>12.4</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+<li class="chapter" data-level="12.5" data-path="correlaciones.html"><a href="correlaciones.html#matriz-de-correlación"><i class="fa fa-check"></i><b>12.5</b> Matriz de correlación</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="correlaciones.html"><a href="correlaciones.html#visualización-de-matriz-de-correlaciones-corrplot"><i class="fa fa-check"></i><b>12.5.1</b> Visualización de matriz de correlaciones, Corrplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html"><i class="fa fa-check"></i><b>13</b> Regresión y regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#concepto-de-regresión"><i class="fa fa-check"></i><b>13.1</b> Concepto de regresión</a></li>
+<li class="chapter" data-level="13.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal"><i class="fa fa-check"></i><b>13.2</b> Regresión lineal</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>13.2.1</b> Regresión lineal simple</a></li>
+<li class="chapter" data-level="13.2.2" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#regresión-lineal-múltiple"><i class="fa fa-check"></i><b>13.2.2</b> Regresión lineal múltiple</a></li>
+<li class="chapter" data-level="13.2.3" data-path="regresión-y-regresión-lineal.html"><a href="regresión-y-regresión-lineal.html#parámetros-de-corrección-del-modelo"><i class="fa fa-check"></i><b>13.2.3</b> Parámetros de corrección del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>14</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logística"><i class="fa fa-check"></i><b>14.1</b> La función logística</a></li>
+<li class="chapter" data-level="14.2" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-simple"><i class="fa fa-check"></i><b>14.2</b> Regresión logística simple</a></li>
+<li class="chapter" data-level="14.3" data-path="regresión-logística.html"><a href="regresión-logística.html#regresión-logística-múltiple"><i class="fa fa-check"></i><b>14.3</b> Regresión logística múltiple</a></li>
+<li class="chapter" data-level="14.4" data-path="regresión-logística.html"><a href="regresión-logística.html#evaluando-la-precisión-de-la-regresión-logística"><i class="fa fa-check"></i><b>14.4</b> Evaluando la precisión de la regresión logística</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#criterio-de-información-de-akaike"><i class="fa fa-check"></i><b>14.4.1</b> Criterio de información de Akaike</a></li>
+<li class="chapter" data-level="14.4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#hacer-predicciones-y-compararlas-con-la-realidad"><i class="fa fa-check"></i><b>14.4.2</b> Hacer predicciones y compararlas con la realidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regresión-logística.html"><a href="regresión-logística.html#ejercicios-9"><i class="fa fa-check"></i><b>14.5</b> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</a></li>
+<li class="chapter" data-level="14.6" data-path="regresión-logística.html"><a href="regresión-logística.html#respuestas-7"><i class="fa fa-check"></i><b>14.6</b> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulación-de-variables-ii" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Manipulación de variables (II)</h1>
+<p>En esta sección vamos a ver fundamentos sencillos de manipulación de datos mediante la gramática del tidiverse (paciencia que suena rarísimo, pero es una pavada).
+Para eso vamos a utilizar dos paquetes: dplyr (que contiene las funciones para manipular los datos) y gapminder que es un paquete con bases de datos de PBI mundiales, vamos a activarlos ( e instalarlos si no los tienen)</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="manipulación-de-variables-ii.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="do">## estos son los comandos para instalar </span></span>
+<span id="cb97-2"><a href="manipulación-de-variables-ii.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="co">#(también pueden hacerlo desde tools-&gt; install package)</span></span>
+<span id="cb97-3"><a href="manipulación-de-variables-ii.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="co">#recuerden remover los &quot;#&quot; para que la línea se ejecute </span></span>
+<span id="cb97-4"><a href="manipulación-de-variables-ii.html#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="manipulación-de-variables-ii.html#cb97-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="manipulación-de-variables-ii.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;gapminder&quot;)</span></span>
+<span id="cb97-7"><a href="manipulación-de-variables-ii.html#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;dplyr&quot;) </span></span>
+<span id="cb97-8"><a href="manipulación-de-variables-ii.html#cb97-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-9"><a href="manipulación-de-variables-ii.html#cb97-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-10"><a href="manipulación-de-variables-ii.html#cb97-10" aria-hidden="true" tabindex="-1"></a><span class="do">##y estos los comandos para activarlos</span></span>
+<span id="cb97-11"><a href="manipulación-de-variables-ii.html#cb97-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-12"><a href="manipulación-de-variables-ii.html#cb97-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;gapminder&quot;</span>)</span>
+<span id="cb97-13"><a href="manipulación-de-variables-ii.html#cb97-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<p>Vamos a asignar nuestros datos a un objeto base local así los podemos visualizar en el ambiente</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="manipulación-de-variables-ii.html#cb101-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>gapminder</span></code></pre></div>
+<p>Listo con los preliminares, ahora tenemos una base de datos en nuestro ambiente con 6 variables y 1704 observaciones (no es así? :-&lt;, revisen la sintaxis)</p>
+<div id="piping-y-paquete-dplyr" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Piping y paquete dplyr</h2>
+<p>En la primera sección vimos cuan importante es el operador de asignación <strong>-&gt;</strong>. Bueno ahora veremos uno más potente aún, la pipa o <strong>pipe</strong>. Este operador se escribe de la siguiente forma %&gt;%. fue introducido por el paquete dplyr (el que vamos a usar aquí), pero su dinàmica es tan buena que ha sido replicado por muchos paquetes para ordenar datos (el conocido como tidiverse)</p>
+<p><img src="img/memedrake.png" width="3254" /></p>
+<p>Es uno de los operadores más utilizados por su versatilidad. Este signo se escribe antecediendo una función de dplyr. Veamos como lo lee R.</p>
+<p>Una sintaxis de dplyr seria por ejemplo asi</p>
+<blockquote>
+<p>data %&gt;% filter(year==1992)</p>
+</blockquote>
+<p>Esto se lee así, a la base data <strong>apliquemosle</strong> la función filter (y la función filter en este caso se lee, filtrar todos los registros en donde el año es 1992)</p>
+<p>Una de las maravillas de este operador es que puede concatenarse, y eso nos permite aplicar varias funciones en orden como un flujo de trabajos o <strong>piping</strong>. Veamos como.</p>
+<blockquote>
+<p>data %&gt;% filter(year==1992) %&gt;% filter(continent==“Asia”)</p>
+</blockquote>
+<p>Esto se lee así, a la base data <strong>apliquemosle</strong> la función filter (y filtremos sólo los registros en donde el año es 1992); a lo que quedó, <strong>apliquemosle</strong> la función filter (y filtremos sólo los registros del continente asiático)</p>
+<p>Si corren estas lineas veran que el resultado se muestra como una base de datos en la <em>consola</em>, es probable que con estos datos querramos trabajar a continuación, para que eso pase debemos convertirlo en un <em>objeto</em> del ambiente, con nuestro viejo amigo el operador <em>-&gt;</em>, algo así:</p>
+<blockquote>
+<p>data_filtrada &lt;- data %&gt;% filter(year==1992) %&gt;% filter(continent==“Asia”)</p>
+</blockquote>
+<p>Esto lo leeríamos así: en el objeto <em>datafiltrada</em> <strong>asignemos</strong> el resultado de las operaciones de agarrar la base data <strong>aplicarle</strong> la función filter (y filtremos sólo los registros en donde el año es 1992); y a lo que quedó, <strong>aplicarle</strong> la función filter (y filtremos sólo los registros del continente asiático).</p>
+<p>Una vez que aprendimos del piping vamos a aprender las funciones de dplyr màs útiles.</p>
+</div>
+<div id="funciones-dplyr" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Funciones dplyr</h2>
+<p>Dplyr tiene muchísimas funciones, en esta seccion veremos sólo algunas: la función <code>filter()</code> o filtrado, que nos permite seleccionar todas las <em>filas</em> que cumplan con una condición, la función <code>select()</code> que nos permite _seleccionar sólo algunas columnas del dataset. La función <code>arrange()</code> que sirve para ordenar los datos en función del agun criterio y la función <code>mutate()</code> para crear nuevas variables.</p>
+<blockquote>
+<p><i class="fa fa-paperclip" aria-hidden="true"></i> <strong>Aclaración</strong>: Probablemente llegado a este punto se plantearán que ya concen métodos para crear una nueva variable (con el método de $) o incluso podemos usar nuestro método Phil Colins para filtrar por condiciones, es cierto.</p>
+<p>Una cosa interesante de R, es que hay varias formas de decir lo mismo (como en un lenguaje, recuerdan), e incluso podemos mezclar estilos (hacer un piping y usar cosas del método phil colins por ejemplo)</p>
+</blockquote>
+<p>Zarpemos a la aventura</p>
+<div id="función-filter" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Función filter()</h3>
+<p>Esta función tiene la tarea de seleccionar las observaciones (filas) que cumplen las condiciones que nos interesan.
+Tiene una sintaxis muy sencilla simplemente ponemos la variable y la condición (recuerden que el nombre del dataframe se lo dimos en el piping), ya vimos ejemplos de como usarla, pero nunca vienen mal otros:</p>
+<ol style="list-style-type: decimal">
+<li>Quiero obtener un dataset con solo los datos de Argentina, y lo quiero llamar PBIArg, deberíamos escribir algo así.</li>
+</ol>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manipulación-de-variables-ii.html#cb102-1" aria-hidden="true" tabindex="-1"></a> PBIArg <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span> (country <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span>)</span></code></pre></div>
+<p>Se animan a hacer algunas funciones clásicas ahora?</p>
+<p>Calculemos el PBI percapita promedio en todos estos años de la base.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="manipulación-de-variables-ii.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(PBIArg<span class="sc">$</span>gdpPercap)</span></code></pre></div>
+<pre><code>## [1] 8955.554</code></pre>
+<p>¿Se animan algo más complejo?, como contestarían la pregunta: ¿Cuál fue el PBI Argentino en 1982?, bueno podemos resolverlo de dos maneras ahora que tenemos el objeto PBIArg</p>
+<p>Manera 1:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="manipulación-de-variables-ii.html#cb105-1" aria-hidden="true" tabindex="-1"></a>PBIArg <span class="sc">%&gt;%</span> <span class="fu">filter</span> (year <span class="sc">==</span><span class="dv">1982</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   country   continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Argentina Americas   1982    69.9 29341374     8998.</code></pre>
+<p>Manera 2:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="manipulación-de-variables-ii.html#cb107-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country<span class="sc">==</span><span class="st">&quot;Argentina&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1982</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   country   continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Argentina Americas   1982    69.9 29341374     8998.</code></pre>
+<p>El resultado fue el mismo! Hagan el ejercicio de leer el <em>piping</em> en voz alta. ¿Cual opción les parece mejor?, si bien no hay una sóla respuesta a esto, la manera 2 es muy útil si sólo queremos un dato de Argentina porque no crea una objeto intermedio (en este caso, PBIArg) Ahora no parece un problema pero cuando trabajen más de 15 minutos van a darse cuenta que su ambiente se llena de <em>objetos basura</em> si no somos cuidadosos y complica mucho el trabajo.</p>
+<p>Resumiendo la función filter() haría algo así.</p>
+<p><img src="img/filter.png" width="627" /></p>
+</div>
+</div>
+<div id="función-select" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Función select()</h2>
+<p>La función select sirve para seleccionar columnas completas, ¿para que puede servir algo así?.</p>
+<p>Siganme un poco con el ejemplo:</p>
+<p>Primero vamos a cargar una base que esta en R que se llama iris (que son medidas de ancho y largo del pétalo y el sépalo de florecitas de tres variedades distintas encontradas en el mismo campo medidas por un sr Ronald Fisher - que cuando no medía flores estaba revolucionando la estadística-), carguemos la base y veamos que tipos de variables son:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="manipulación-de-variables-ii.html#cb109-1" aria-hidden="true" tabindex="-1"></a>flores<span class="ot">&lt;-</span>iris</span>
+<span id="cb109-2"><a href="manipulación-de-variables-ii.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="manipulación-de-variables-ii.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(flores)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>Bueno si todo les salió bien (como a mí) van a tener que hayt 4 variables numéricas (los anchos y largos) y un factor (una categórica que es la variedad de la flor)</p>
+<p>Bueno hete aquí el problemita que que entre los defectos de Ronald Fisher (además de un poquito de racismo) estaba el ser inglés y tomó todas estas medias en pulgadas. nosotros investigadores del nuevo milenio queremos pasar esto al sistema internacional (con medidas más logicas que el tamaño del pulgar de un rey muerto)</p>
+<p>¿Cómo hacemos eso? Bueno ya vimos algunas soluciones en el capítulo anterior. Las voy a ejecutar a modo de repaso</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="manipulación-de-variables-ii.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creo dentro de flor nuevas variables ajustadas</span></span>
+<span id="cb111-2"><a href="manipulación-de-variables-ii.html#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-3"><a href="manipulación-de-variables-ii.html#cb111-3" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>Sepal.Lengthcm<span class="ot">&lt;-</span>flores<span class="sc">$</span>Sepal.Length<span class="sc">*</span><span class="fl">2.54</span> <span class="co">#multiplicamos por 2.54 cada valor para pasarlo a cm </span></span>
+<span id="cb111-4"><a href="manipulación-de-variables-ii.html#cb111-4" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>Sepal.Widthcm<span class="ot">&lt;-</span>flores<span class="sc">$</span>Sepal.Width<span class="sc">*</span><span class="fl">2.54</span></span>
+<span id="cb111-5"><a href="manipulación-de-variables-ii.html#cb111-5" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>Petal.Lengthcm<span class="ot">&lt;-</span>flores<span class="sc">$</span>Petal.Length<span class="sc">*</span><span class="fl">2.54</span></span>
+<span id="cb111-6"><a href="manipulación-de-variables-ii.html#cb111-6" aria-hidden="true" tabindex="-1"></a>flores<span class="sc">$</span>Petal.Widthcm<span class="ot">&lt;-</span>flores<span class="sc">$</span>Petal.Width<span class="sc">*</span><span class="fl">2.54</span></span>
+<span id="cb111-7"><a href="manipulación-de-variables-ii.html#cb111-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-8"><a href="manipulación-de-variables-ii.html#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(flores)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  9 variables:
+##  $ Sepal.Length  : num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width   : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length  : num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width   : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species       : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Sepal.Lengthcm: num  13 12.4 11.9 11.7 12.7 ...
+##  $ Sepal.Widthcm : num  8.89 7.62 8.13 7.87 9.14 ...
+##  $ Petal.Lengthcm: num  3.56 3.56 3.3 3.81 3.56 ...
+##  $ Petal.Widthcm : num  0.508 0.508 0.508 0.508 0.508 ...</code></pre>
+<p>Perfecto, este método funciona. Pero, pero, pero: tuvimos que escribir una línea super engorrosa por cada variable (en este caso eran 4, pero si son no sé, 60, se pasarían toda la tarde), tiene que haber una forma de simplificar esto.</p>
+<p>¿Que pasa si multiplicamos toooda la base *2.54?</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="manipulación-de-variables-ii.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flores<span class="sc">*</span><span class="fl">2.54</span>)</span></code></pre></div>
+<pre><code>## Warning in Ops.factor(left, right): &#39;*&#39; not meaningful for factors</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Sepal.Lengthcm
+## 1       12.954       8.890        3.556       0.508      NA       32.90316
+## 2       12.446       7.620        3.556       0.508      NA       31.61284
+## 3       11.938       8.128        3.302       0.508      NA       30.32252
+## 4       11.684       7.874        3.810       0.508      NA       29.67736
+## 5       12.700       9.144        3.556       0.508      NA       32.25800
+## 6       13.716       9.906        4.318       1.016      NA       34.83864
+##   Sepal.Widthcm Petal.Lengthcm Petal.Widthcm
+## 1      22.58060        9.03224       1.29032
+## 2      19.35480        9.03224       1.29032
+## 3      20.64512        8.38708       1.29032
+## 4      19.99996        9.67740       1.29032
+## 5      23.22576        9.03224       1.29032
+## 6      25.16124       10.96772       2.58064</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manipulación-de-variables-ii.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#acá anide la multiplicación dentro de la función head() para que sólo muestre el pimer pedacito de la tabla</span></span></code></pre></div>
+<p>¿Que pasó con la variables <em>Species</em>? Bueno le aplicó la multiplicación a una palabra, la multiplicación por una palabra no existe o sea que me borró los datos.
+Nosotros queríamos comparar las diferencias entre esas plantas así que ahora, estamos fritos! Tenemos los cm pero perdimos una variable.</p>
+<p>Acá entrá (y si hizo esperar), la función <code>select()</code></p>
+<p>Dijimos que esta función sirve para quedarno con sólo algunas columnas (como hace fiulter con las filas)</p>
+<p>Miren como lo haríamos</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="manipulación-de-variables-ii.html#cb117-1" aria-hidden="true" tabindex="-1"></a>medidas_Flores<span class="ot">&lt;-</span>flores <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sepal.Length<span class="sc">:</span>Petal.Width)</span>
+<span id="cb117-2"><a href="manipulación-de-variables-ii.html#cb117-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-3"><a href="manipulación-de-variables-ii.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(medidas_Flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4</code></pre>
+<p>Aquí tenemos las 4 variables</p>
+<p>ahora podemos transformarlas:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="manipulación-de-variables-ii.html#cb119-1" aria-hidden="true" tabindex="-1"></a>medidas_Flores<span class="ot">&lt;-</span>medidas_Flores<span class="sc">*</span><span class="fl">2.54</span></span>
+<span id="cb119-2"><a href="manipulación-de-variables-ii.html#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="manipulación-de-variables-ii.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(medidas_Flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1       12.954       8.890        3.556       0.508
+## 2       12.446       7.620        3.556       0.508
+## 3       11.938       8.128        3.302       0.508
+## 4       11.684       7.874        3.810       0.508
+## 5       12.700       9.144        3.556       0.508
+## 6       13.716       9.906        4.318       1.016</code></pre>
+<p>y podemos pegarle la categoría que nos quedó colgada</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="manipulación-de-variables-ii.html#cb121-1" aria-hidden="true" tabindex="-1"></a>medidas_Flores<span class="sc">$</span>especie<span class="ot">&lt;-</span>flores<span class="sc">$</span>Species</span>
+<span id="cb121-2"><a href="manipulación-de-variables-ii.html#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="manipulación-de-variables-ii.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(medidas_Flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width especie
+## 1       12.954       8.890        3.556       0.508  setosa
+## 2       12.446       7.620        3.556       0.508  setosa
+## 3       11.938       8.128        3.302       0.508  setosa
+## 4       11.684       7.874        3.810       0.508  setosa
+## 5       12.700       9.144        3.556       0.508  setosa
+## 6       13.716       9.906        4.318       1.016  setosa</code></pre>
+<p>Ahora sí ya podemos trabajar con la base de Fisher en cm y sin perder datos</p>
+<p>Pero momentito, esta función no aporta nada nuevo. Podemos hacer esto mismo con la sintaxis que aprendimos en el capítulo anterior (si con el método Phil Colins).</p>
+<p>Vamos a hacer el intento</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="manipulación-de-variables-ii.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(medidas_Flores) <span class="co"># esta función borra la base, así no creamos miles de objeto</span></span>
+<span id="cb123-2"><a href="manipulación-de-variables-ii.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="manipulación-de-variables-ii.html#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="manipulación-de-variables-ii.html#cb123-4" aria-hidden="true" tabindex="-1"></a>medidas_Flores<span class="ot">&lt;-</span>flores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>] <span class="co">#le pedi todas las filas de la columna 1 a la 4 (que son las medidas)</span></span>
+<span id="cb123-5"><a href="manipulación-de-variables-ii.html#cb123-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="manipulación-de-variables-ii.html#cb123-6" aria-hidden="true" tabindex="-1"></a>medidas_Flores<span class="ot">&lt;-</span>medidas_Flores<span class="sc">*</span><span class="fl">2.54</span> <span class="co">#las transformo</span></span>
+<span id="cb123-7"><a href="manipulación-de-variables-ii.html#cb123-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-8"><a href="manipulación-de-variables-ii.html#cb123-8" aria-hidden="true" tabindex="-1"></a>medidas_Flores<span class="sc">$</span>especie<span class="ot">&lt;-</span>flores<span class="sc">$</span>Species <span class="co"># le pego la especie</span></span>
+<span id="cb123-9"><a href="manipulación-de-variables-ii.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-10"><a href="manipulación-de-variables-ii.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(medidas_Flores) <span class="co">#chusmeo los primeros</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width especie
+## 1       12.954       8.890        3.556       0.508  setosa
+## 2       12.446       7.620        3.556       0.508  setosa
+## 3       11.938       8.128        3.302       0.508  setosa
+## 4       11.684       7.874        3.810       0.508  setosa
+## 5       12.700       9.144        3.556       0.508  setosa
+## 6       13.716       9.906        4.318       1.016  setosa</code></pre>
+<p>Dió lo mismo!. Si claro, ¿recuerdan que hay varias formas de decir lo mismo?
+Entonces ¿para que aprender esta función?</p>
+<p><img src="img/moria.jpg" width="151" /></p>
+<p>Planteemos otro problema:</p>
+<p>Resulta que estas flores son redondas entonces podemos calcular la superficie del pétalo y el sépalo (el ancho es el diámetro no?).</p>
+<p>O sea que si hacemos el ancho/2, obtenemos el radio y si lo elevo al cuadrado y lo multiplicamos por pi (3.14) obtenemos la superficie, pero solo de las medidas width!</p>
+<p>O sea que ahora no podemos agarrar un rango!, el método phil colins no sirve!!!</p>
+<p>Y ahí llega, a salvar las papas <code>select()</code></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="manipulación-de-variables-ii.html#cb125-1" aria-hidden="true" tabindex="-1"></a>superficies<span class="ot">&lt;-</span>flores <span class="sc">%&gt;%</span> <span class="fu">select</span>(Petal.Width, Sepal.Width)</span>
+<span id="cb125-2"><a href="manipulación-de-variables-ii.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-3"><a href="manipulación-de-variables-ii.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(superficies)</span></code></pre></div>
+<pre><code>##   Petal.Width Sepal.Width
+## 1         0.2         3.5
+## 2         0.2         3.0
+## 3         0.2         3.2
+## 4         0.2         3.1
+## 5         0.2         3.6
+## 6         0.4         3.9</code></pre>
+<p>Select nos permite tomar un conjunto de columnas que no sean contiguas y ponerlas en otro dataset.
+Esquemáticaente algo así:</p>
+<p><img src="img/select.png" width="284" />
+Ahora sí podemos proseguir con la transformación:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="manipulación-de-variables-ii.html#cb127-1" aria-hidden="true" tabindex="-1"></a>superficies<span class="ot">&lt;-</span><span class="fl">3.14</span><span class="sc">*</span>((superficies<span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#transformo en superficies</span></span>
+<span id="cb127-2"><a href="manipulación-de-variables-ii.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="manipulación-de-variables-ii.html#cb127-3" aria-hidden="true" tabindex="-1"></a>superficies<span class="sc">$</span>especie<span class="ot">&lt;-</span>flores<span class="sc">$</span>Species <span class="co">#le pego la especie</span></span>
+<span id="cb127-4"><a href="manipulación-de-variables-ii.html#cb127-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-5"><a href="manipulación-de-variables-ii.html#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(superficies) <span class="co">#chusmeo</span></span></code></pre></div>
+<pre><code>##   Petal.Width Sepal.Width especie
+## 1      0.0314     9.61625  setosa
+## 2      0.0314     7.06500  setosa
+## 3      0.0314     8.03840  setosa
+## 4      0.0314     7.54385  setosa
+## 5      0.0314    10.17360  setosa
+## 6      0.1256    11.93985  setosa</code></pre>
+<div id="función-arrange" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Función arrange()</h3>
+<p>La función arrange es quizàs la más facil de entender, su funcionamiento básico consiste en ordenar las filas de acuerdo a algún criterio (muy similar al ordenar de excel)</p>
+<p>Su valor por defecto es el orden ascendente, si quisieramos un orden descendente deberiamos indicarselo, otra ventaja es que podemos ordenar por distintas columnas.</p>
+<p>Veamos un ejemplo, queremos ordenar los datos de gapminder para que nos muestre los más viejos y de esos el menor PBI primero:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="manipulación-de-variables-ii.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recuerden que anidamos la funcion head </span></span>
+<span id="cb129-2"><a href="manipulación-de-variables-ii.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co"># para no mostrar toooda la base </span></span>
+<span id="cb129-3"><a href="manipulación-de-variables-ii.html#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="manipulación-de-variables-ii.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(year, gdpPercap))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   country       continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Lesotho       Africa     1952    42.1   748747      299.
+## 2 Guinea-Bissau Africa     1952    32.5   580653      300.
+## 3 Eritrea       Africa     1952    35.9  1438760      329.
+## 4 Myanmar       Asia       1952    36.3 20092996      331 
+## 5 Burundi       Africa     1952    39.0  2445618      339.
+## 6 Ethiopia      Africa     1952    34.1 20860941      362.</code></pre>
+<p>Si quisieramos mostrar al reves, los màs nuevos y de mayor PBI deberíamos apelar al orden descendente</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="manipulación-de-variables-ii.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recuerden que ustedes pueden usarlo sin la funcion head </span></span>
+<span id="cb131-2"><a href="manipulación-de-variables-ii.html#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="manipulación-de-variables-ii.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(year), <span class="fu">desc</span>(gdpPercap)))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   country          continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 Norway           Europe     2007    80.2   4627926    49357.
+## 2 Kuwait           Asia       2007    77.6   2505559    47307.
+## 3 Singapore        Asia       2007    80.0   4553009    47143.
+## 4 United States    Americas   2007    78.2 301139947    42952.
+## 5 Ireland          Europe     2007    78.9   4109086    40676.
+## 6 Hong Kong, China Asia       2007    82.2   6980412    39725.</code></pre>
+</div>
+</div>
+<div id="función-mutate" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Función mutate()</h2>
+<p>La función <code>mutate()</code> sirve para crear nuevas variables que son funciones de otras que se encuentran ahí. ¿Se acuerdan del problema de las flores de Fisher?, bueno veamos como esto nos brinda una herramienta mas inteligente para resolverlo.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="manipulación-de-variables-ii.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(flores) <span class="co">#borro flores porque le hicimos cambios y queremos empezar de cero</span></span>
+<span id="cb133-2"><a href="manipulación-de-variables-ii.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="manipulación-de-variables-ii.html#cb133-3" aria-hidden="true" tabindex="-1"></a>flores<span class="ot">&lt;-</span>iris <span class="co">#le asigno el dataset iris y volvimos a foja cero</span></span></code></pre></div>
+<p>Queremos pasar las medidas a cm, ¿recuerdan? vamos a usar la función <code>mutate()</code> para eso.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="manipulación-de-variables-ii.html#cb134-1" aria-hidden="true" tabindex="-1"></a>flores <span class="ot">&lt;-</span> flores <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">Petal.Length.cm =</span> Petal.Length<span class="sc">*</span><span class="fl">2.54</span>)</span>
+<span id="cb134-2"><a href="manipulación-de-variables-ii.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="manipulación-de-variables-ii.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Petal.Length.cm
+## 1          5.1         3.5          1.4         0.2  setosa           3.556
+## 2          4.9         3.0          1.4         0.2  setosa           3.556
+## 3          4.7         3.2          1.3         0.2  setosa           3.302
+## 4          4.6         3.1          1.5         0.2  setosa           3.810
+## 5          5.0         3.6          1.4         0.2  setosa           3.556
+## 6          5.4         3.9          1.7         0.4  setosa           4.318</code></pre>
+<p>Excelente, pero, ya sabíamos hacer eso, ¿por qué me conviene usar mutate()? Bueno porque nos permite tambien hacer no uno sino muchos cambios en una misma linea de código, así:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="manipulación-de-variables-ii.html#cb136-1" aria-hidden="true" tabindex="-1"></a>flores <span class="ot">&lt;-</span> flores <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">Petal.Length.cm =</span> Petal.Length<span class="sc">*</span><span class="fl">2.54</span>,</span>
+<span id="cb136-2"><a href="manipulación-de-variables-ii.html#cb136-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Petal.Width.cm =</span> Petal.Width<span class="sc">*</span><span class="fl">2.54</span>,</span>
+<span id="cb136-3"><a href="manipulación-de-variables-ii.html#cb136-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Sepal.Length.cm =</span> Sepal.Length<span class="sc">*</span><span class="fl">2.54</span>,</span>
+<span id="cb136-4"><a href="manipulación-de-variables-ii.html#cb136-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Sepal.Width.cm =</span> Sepal.Width<span class="sc">*</span><span class="fl">2.54</span>,</span>
+<span id="cb136-5"><a href="manipulación-de-variables-ii.html#cb136-5" aria-hidden="true" tabindex="-1"></a>                             )</span>
+<span id="cb136-6"><a href="manipulación-de-variables-ii.html#cb136-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-7"><a href="manipulación-de-variables-ii.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flores)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Petal.Length.cm
+## 1          5.1         3.5          1.4         0.2  setosa           3.556
+## 2          4.9         3.0          1.4         0.2  setosa           3.556
+## 3          4.7         3.2          1.3         0.2  setosa           3.302
+## 4          4.6         3.1          1.5         0.2  setosa           3.810
+## 5          5.0         3.6          1.4         0.2  setosa           3.556
+## 6          5.4         3.9          1.7         0.4  setosa           4.318
+##   Petal.Width.cm Sepal.Length.cm Sepal.Width.cm
+## 1          0.508          12.954          8.890
+## 2          0.508          12.446          7.620
+## 3          0.508          11.938          8.128
+## 4          0.508          11.684          7.874
+## 5          0.508          12.700          9.144
+## 6          1.016          13.716          9.906</code></pre>
+<p>Excelente, pero que ventaja tiene esto por sobre el método de extraerlos en una base, multiplicarlos y después pegarles las que necesitaba, dos muy importantes:</p>
+<ol style="list-style-type: decimal">
+<li><p>el método anterior crea un objeto nuevo (muchos objetos enlentecen el programan y complican al usuario, imaginen que al final del día tienen una base <em>flores</em>, una <em>flores2</em>, una <em>floreees</em>, y una <em>floresfinal</em>, y no recuerdan en donde esta cada cosa).</p></li>
+<li><p>este método permite aplicar tranformaciones diferentes a un grupo de variables</p></li>
+</ol>
+<p>Veamos esta última opción:</p>
+<p>Resulta que queremos calcular el largo en metros del petalo y el sepalo y calcular las superficies como la otra vez, ¿podemos hacerlo todo con una sola función?, claro que sí, gracias a mutate():</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="manipulación-de-variables-ii.html#cb138-1" aria-hidden="true" tabindex="-1"></a>flores<span class="ot">&lt;-</span>flores <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Petal.Length.m =</span> Petal.Length.cm<span class="sc">/</span><span class="dv">100</span>,</span>
+<span id="cb138-2"><a href="manipulación-de-variables-ii.html#cb138-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Sepal.Length.m =</span> Sepal.Length.cm<span class="sc">/</span><span class="dv">100</span>,</span>
+<span id="cb138-3"><a href="manipulación-de-variables-ii.html#cb138-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Petal.surface.m =</span> <span class="fl">3.14</span><span class="sc">*</span>((Petal.Width.cm<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb138-4"><a href="manipulación-de-variables-ii.html#cb138-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Sepal.surface.m =</span> <span class="fl">3.14</span><span class="sc">*</span>((Sepal.Width.cm<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb138-5"><a href="manipulación-de-variables-ii.html#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flores)                          </span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Petal.Length.cm
+## 1          5.1         3.5          1.4         0.2  setosa           3.556
+## 2          4.9         3.0          1.4         0.2  setosa           3.556
+## 3          4.7         3.2          1.3         0.2  setosa           3.302
+## 4          4.6         3.1          1.5         0.2  setosa           3.810
+## 5          5.0         3.6          1.4         0.2  setosa           3.556
+## 6          5.4         3.9          1.7         0.4  setosa           4.318
+##   Petal.Width.cm Sepal.Length.cm Sepal.Width.cm Petal.Length.m Sepal.Length.m
+## 1          0.508          12.954          8.890        0.03556        0.12954
+## 2          0.508          12.446          7.620        0.03556        0.12446
+## 3          0.508          11.938          8.128        0.03302        0.11938
+## 4          0.508          11.684          7.874        0.03810        0.11684
+## 5          0.508          12.700          9.144        0.03556        0.12700
+## 6          1.016          13.716          9.906        0.04318        0.13716
+##   Petal.surface.m Sepal.surface.m
+## 1    2.025802e-05     0.006204020
+## 2    2.025802e-05     0.004558055
+## 3    2.025802e-05     0.005186054
+## 4    2.025802e-05     0.004866990
+## 5    2.025802e-05     0.006563600
+## 6    8.103210e-05     0.007703114</code></pre>
+<p>Lo logramos, creamos funciones diferentes, sin crear objetos intermedios y con una sola función!</p>
+<p>Creanme a medida que pase el tiempo van a notar lo conveniente de ahorrar lineas de comando y objetos.</p>
+</div>
+<div id="otras-funciones-de-dplyr" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Otras funciones de dplyr</h2>
+<p>Estas funciones que vimos aquí son quizás las más útiles para empezar pero son sólo la punta del iceberg.
+Este paquete tiene muchísimas funciones, seguramente con la práctica vamos a ir conociendo algunas.</p>
+<p><img src="img/jojo.jpg" width="180" /></p>
+<p>Por las dudas aquí tienen un pequeños listado para investigar (spoiler, a esta lista la vamos a usar):</p>
+<blockquote>
+<p><strong>FUNCIONES DPLYR</strong></p>
+<p>group_by()<br />
+if_else()<br />
+if_all()<br />
+if_any()<br />
+mutate_all()<br />
+mutate_if()<br />
+na_if()<br />
+rename()<br />
+summarise()<br />
+summarise_all()</p>
+</blockquote>
+</div>
+<div id="ejercicios-2" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios:</h2>
+<p>En esta sección vamos a usar lo que aprendimos (y todo nuestro ingenio y creatividad) para resolver pequeños problemas con la base gapminder.</p>
+<p>El desafío: hacerlo con el menor número de lineas y de objetos intermedios.</p>
+<p>Empecemos</p>
+<div id="problema-1" class="section level3" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Problema 1:</h3>
+<p>En nuestra base hay una variable <code>lifeExp</code> que representa la esperanza de vida en años. Queremos crear una variable nueva que se llame <code>lifeExp_months</code> y represente la expectativa de vida en meses:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="manipulación-de-variables-ii.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb140-2"><a href="manipulación-de-variables-ii.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb140-3"><a href="manipulación-de-variables-ii.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb140-4"><a href="manipulación-de-variables-ii.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb140-5"><a href="manipulación-de-variables-ii.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
+</div>
+<div id="problema-2" class="section level3" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Problema 2:</h3>
+<p>Queremos mostrar el país con la mayor población en 1997. Quizas quieran usar varias veces el operador %&gt;%:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="manipulación-de-variables-ii.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb141-2"><a href="manipulación-de-variables-ii.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb141-3"><a href="manipulación-de-variables-ii.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb141-4"><a href="manipulación-de-variables-ii.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb141-5"><a href="manipulación-de-variables-ii.html#cb141-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
+</div>
+<div id="problema-3" class="section level3" number="5.6.3">
+<h3><span class="header-section-number">5.6.3</span> Problema 3:</h3>
+<p>Vamos afrontar un desafío, quiero crear una base <code>mas_ricos</code> con los países (en orden ascendente) que en el año 2007 superaron el billón de PBI total (Recuerden <code>gdpPercap</code> es el PBI per cápita y <code>pop</code> es la población total). Traten de hacerlo por uds mismos (pista: recuerden que podemos <em>pipear</em> funciones)</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="manipulación-de-variables-ii.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb142-2"><a href="manipulación-de-variables-ii.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb142-3"><a href="manipulación-de-variables-ii.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb142-4"><a href="manipulación-de-variables-ii.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb142-5"><a href="manipulación-de-variables-ii.html#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
+<div id="problema-3-con-mas-pistas" class="section level4" number="5.6.3.1">
+<h4><span class="header-section-number">5.6.3.1</span> Problema 3 (con mas pistas):</h4>
+<p>Si llegaron hasta acá es porque el ejercicio anterior fue demasiado abrumador (no lo creo). Pero aquí van algunas ayuditas.</p>
+<p>Lo primero de lo primero es entender que hay varias condiciones, entonces vamos a tener que <em>pipear</em> varias funciones. Ordenemos las condiciones y después las escribimos (recuerden que es muy útil leer el código en voz alta, porque en definitiva es un lenguaje y tiene un sentido).</p>
+<p>Primero hay una columna que no existe que debemos crear multiplicando dos existentes (quizas algo relacionado con mutar pueda ser útil ¿no? ), después nos dice que sólo le interesa los datos de 2007 (filtremos por esa condicion) y después sólo los que superan cierto valor (suena como a un segundo filtro) y por último ordenar todo para mostrarlo. Probemos ahora.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="manipulación-de-variables-ii.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb143-2"><a href="manipulación-de-variables-ii.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb143-3"><a href="manipulación-de-variables-ii.html#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb143-4"><a href="manipulación-de-variables-ii.html#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb143-5"><a href="manipulación-de-variables-ii.html#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="respuestas" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> <i class="fa fa-cog" aria-hidden="true"></i> Respuestas:</h2>
+<p>Esperemos que hayas llegado acá después de haber intentado varias veces encontrar una respuesta por vos mismo. Si no lo hiciste, a subir de nuevo que nada se gana sin luchar (menos aprender).</p>
+<p>Si ya te diste por vencido aquí vienen las respuestas:</p>
+<p><strong><em>Importante</em></strong></p>
+<p>Recuerden que este es sólo un modo de resolver, hay muchas posibilidades que dependen (entre otras cosas) de su creatividad. No hay un modo correcto pero si hay modos que consumen menos esfuerzo (ahora o en el futuro). La simpleza es siempre el mejor criterio.</p>
+<div id="problema-1-1" class="section level3" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Problema 1:</h3>
+<p>En nuestra base hay una variable <code>lifeExp</code> que representa la esperanza de vida en años. Queremos crear una variable nueva que se llame <code>lifeExp_months</code> y represente la expectativa de vida en meses:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="manipulación-de-variables-ii.html#cb144-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">lifeExp_months =</span> lifeExp<span class="sc">*</span><span class="dv">12</span> )</span></code></pre></div>
+</div>
+<div id="problema-2-1" class="section level3" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Problema 2:</h3>
+<p>Queremos mostrar el país con la mayor población en 1997. Quizas quieran usar varias veces el operador %&gt;%:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="manipulación-de-variables-ii.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1997</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(pop)),<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 7
+##   country continent  year lifeExp        pop gdpPercap lifeExp_months
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;          &lt;dbl&gt;
+## 1 China   Asia       1997    70.4 1230075000     2289.           845.</code></pre>
+<p>Vamos a comentar que hicimos acá, leamoslo en vos alta:</p>
+<p>A la base data le <strong>aplique</strong> la opción filtro año=1997, a ese resultado (o sea solo a los registros de 1997) le <strong>aplique</strong> la función ordernar en orden descendente y todo eso esta <strong>adentro</strong> de la funcion head() que me muestra los primeros campos de la base, como solo quiero el 1º, le agregué un argumento <code>,1</code> que le dice a la función que sólo presente el primer campo.</p>
+</div>
+<div id="problema-3-1" class="section level3" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span> Problema 3:</h3>
+<p>Vamos afrontar un desafío, quiero crear una base <code>mas_ricos</code> con los países (en orden ascendente) que en el año 2007 superaron el billón de PBI total (Recuerden <code>gdpPercap</code> es el PBI per cápita y <code>pop</code> es la población total). Traten de hacerlo por uds mismos (pista: recuerden que podemos <em>pipear</em> funciones)</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="manipulación-de-variables-ii.html#cb147-1" aria-hidden="true" tabindex="-1"></a>mas_ricos<span class="ot">&lt;-</span>data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">PBI =</span> gdpPercap <span class="sc">*</span> pop ) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PBI<span class="sc">&gt;</span><span class="dv">1000000000000</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(PBI)</span>
+<span id="cb147-2"><a href="manipulación-de-variables-ii.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-3"><a href="manipulación-de-variables-ii.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mas_ricos)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##   country     continent  year lifeExp       pop gdpPercap lifeExp_months     PBI
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Korea, Rep. Asia       2007    78.6  49044790    23348.           943. 1.15e12
+## 2 Spain       Europe     2007    80.9  40448191    28821.           971. 1.17e12
+## 3 Canada      Americas   2007    80.7  33390141    36319.           968. 1.21e12
+## 4 Mexico      Americas   2007    76.2 108700891    11978.           914. 1.30e12
+## 5 Italy       Europe     2007    80.5  58147733    28570.           967. 1.66e12
+## 6 Brazil      Americas   2007    72.4 190010647     9066.           869. 1.72e12</code></pre>
+<p>¿Leemos el código?: a la base data le <strong>aplique</strong> la tranformacion para calcular el valor del PBI, después a la base resultante le <strong>aplique</strong> un filtro de año (para quedarme solo con 2007) y después <strong>aplique</strong> otro filtro para quedarme con los PBIs superiores a un billon, a la resultante le <strong>aplique</strong> un orden basado en el PBI y a tooodo eso lo <strong>asigne</strong> a la base <code>mas_ricos</code></p>
+<blockquote>
+<p><i class="fa fa-paperclip" aria-hidden="true"></i> <strong>Algunos comentarios de estilo </strong></p>
+<p>La forma en que escribimos el código previo es correcta pero un poco desordenada ya que escribimos todo <em>como un chorizo</em></p>
+<p>Cuando las lineas son largas conviene partirlas pero al hacer eso debemos dejarle claro a R que despues de esta linea sigue un nuevo argumento, esto solo es posible si dejamos el %&gt;% al final (eso le indica que algo sigue, y lo va a buscar, si no lo encuentra, bueno, termina ahi)</p>
+<p>En fin esta es la forma, elegante, de escribirlo:</p>
+</blockquote>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="manipulación-de-variables-ii.html#cb149-1" aria-hidden="true" tabindex="-1"></a>mas_ricos<span class="ot">&lt;-</span>data <span class="sc">%&gt;%</span> </span>
+<span id="cb149-2"><a href="manipulación-de-variables-ii.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PBI =</span> gdpPercap <span class="sc">*</span> pop ) <span class="sc">%&gt;%</span> </span>
+<span id="cb149-3"><a href="manipulación-de-variables-ii.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb149-4"><a href="manipulación-de-variables-ii.html#cb149-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PBI<span class="sc">&gt;</span><span class="dv">1000000000000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb149-5"><a href="manipulación-de-variables-ii.html#cb149-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(PBI)</span></code></pre></div>
+<blockquote>
+<p>Tambien es más cómodo para leer qué funciones se utilizan.</p>
+<p>Un objetivo importante es que nuestro código debe ser fácil de leer, esto nos permitirá compartirlo con otros (y que entiendan lo que hicimos).</p>
+<p>Recuerden que nuestro código tiene un gran lector esperándolo, nosotros mismos cuando tengamos que contestar al revisor de nuestro artículo. Así que quieránse y dediquense un código agradable a su yo futuro</p>
+</blockquote>
+<p><img src="img/conspiranoico.jpg" width="350" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ambientes-de-trabajo-y-manipulación-de-variables-i.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resumen-de-variables-en-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Esatadistica_en_R.pdf", "Esatadistica_en_R.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -32,6 +32,8 @@ Esta sección cuenta con dos capítulos:
 
 Este libro no es un libro de inferencia estadística y no vamos a hablar de *tests* estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro **NO** es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.
 
+Este libro tampoco es un manual de programación ni de análisis de datos en R. Si bien en la primera sección del libro haremos una presentación de algunas de las funcionalidades de la colección de paquetes para análisis de datos que es el *tidyverse*, no vamos a repasar ninguna de las bases de R ni de Rstudio. Existen infinidad de recursos invreíbles para aprender esto y sentimos que no hay necesida de, a eso, sumarle uno mediocre.
+
 ## Prerequisitos
 
 Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.
@@ -50,4 +52,4 @@ Ante cualquier duda pueden contactarme vía e-mail a [ispiousas\@udesa.edu.ar](m
 
 ## Licencia
 
-This website is and will always be free, licensed under the \[CC BY-NC-ND 3.0 License\]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.
+Este sitio web es y siempre será gratuito, licencia bajo \[CC BY-NC-ND 3.0 License\]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.

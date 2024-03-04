@@ -149,14 +149,16 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#teoría-básica-de-probabilidad" id="toc-teoría-básica-de-probabilidad" class="nav-link active" data-scroll-target="#teoría-básica-de-probabilidad"><span class="toc-section-number">2.1</span>  Teoría básica de probabilidad</a></li>
-  <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="toc-section-number">2.2</span>  Población y muestra</a></li>
+  <li><a href="#variables-aleatorias" id="toc-variables-aleatorias" class="nav-link active" data-scroll-target="#variables-aleatorias"><span class="toc-section-number">2.1</span>  Variables aleatorias</a></li>
+  <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link" data-scroll-target="#probabilidad"><span class="toc-section-number">2.2</span>  Probabilidad</a></li>
   <li><a href="#eventos-y-probabilidad-condicional" id="toc-eventos-y-probabilidad-condicional" class="nav-link" data-scroll-target="#eventos-y-probabilidad-condicional"><span class="toc-section-number">2.3</span>  Eventos y probabilidad condicional</a></li>
   <li><a href="#probabilidad-total" id="toc-probabilidad-total" class="nav-link" data-scroll-target="#probabilidad-total"><span class="toc-section-number">2.4</span>  Probabilidad total</a></li>
   <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="toc-section-number">2.5</span>  Teorema de Bayes</a></li>
   <li><a href="#tablas-de-contingencia" id="toc-tablas-de-contingencia" class="nav-link" data-scroll-target="#tablas-de-contingencia"><span class="toc-section-number">2.6</span>  Tablas de contingencia</a></li>
   <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="toc-section-number">2.7</span>  Esperanza</a></li>
   <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="toc-section-number">2.8</span>  Varianza y covarianza</a></li>
+  <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación"><span class="toc-section-number">2.9</span>  Correlación</a></li>
+  <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="toc-section-number">2.10</span>  Población y muestra</a></li>
   </ul>
 </nav>
     </div>
@@ -182,23 +184,72 @@ div.csl-indent {
 <div class="cell">
 
 </div>
-<section id="teoría-básica-de-probabilidad" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="teoría-básica-de-probabilidad"><span class="header-section-number">2.1</span> Teoría básica de probabilidad</h2>
+<section id="variables-aleatorias" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="variables-aleatorias"><span class="header-section-number">2.1</span> Variables aleatorias</h2>
+<p>Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales (<span class="math inline">\(X:\Omega \rightarrow \mathbb{R}\)</span>). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica es definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos.</p>
+<p>Vamos con un ejemplo. Supongan que tiramos una moneda justa dos veces y tenemos la variabla aleatoria <span class="math inline">\(X\)</span> que cuenta la cantidad de caras (H)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Los posibles eventos <span class="math inline">\(\omega\)</span> del espacio de eventos <span class="math inline">\(\Omega\)</span> son <span class="math inline">\(\Omega = \{ TT, TH, HT, HH \}\)</span>. En este caso, la variable aleatoria <span class="math inline">\(X\)</span> va a tomar los valores <span class="math inline">\(X = \{ 0, 1, 1, 2\}\)</span> para cada <span class="math inline">\(\omega\)</span>. Esto, en resumidas cuentas, es lo que hace una variable aleatoria.</p>
+<p>El ejemplo anterior se trata de una variable aleatoria discreta, es decir, que sólo puede tomar algunos valores posibles, pero también existen variables aleatorias continuas como por ejemplo la altura de una nueva persona que nace.</p>
 </section>
-<section id="población-y-muestra" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.2</span> Población y muestra</h2>
-<p>Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.</p>
+<section id="probabilidad" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="probabilidad"><span class="header-section-number">2.2</span> Probabilidad</h2>
+<p>Para una variable como la definida en el ejemplo anterior podemos definir fácilmente su probabilidad de ocurrencia. Debido que la moneda es justa, todos los eventos de <span class="math inline">\(\Omega\)</span> son equiprobables, y es por eso que podemos definir:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\omega\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X(\omega)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P({\omega})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">TT</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1/4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">TH</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1/4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">HT</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1/4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">HH</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1/4</td>
+</tr>
+</tbody>
+</table>
+<p>Sin embargo, el concepto de probabilidad es algo complejo, pero, como esto no es un curso de probabilidad, vamos a confiar en que ustedes ya lo traen claro. Si tienen coraje puede ir a leer el capítulo 1 de <span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> y si quiere algo más terrenal pueden ir a ver el repaso de probabilidad de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> (disponible online).</p>
+<p>Cuando las variables aleatorias son continuas la cosa se complica un poco más ya que <span class="math inline">\(P(X=c)\)</span>, es decir, la probabilida de que una variable tome un valor dado, es cero. Esto lo vamos a repensar un poco en la siguiente sección, cuando definamos lo que nos importa para este libro: Las funciónes de densidad y de distribución.</p>
 </section>
 <section id="eventos-y-probabilidad-condicional" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="eventos-y-probabilidad-condicional"><span class="header-section-number">2.3</span> Eventos y probabilidad condicional</h2>
 <p>Acá agregar lo de árboles y diagramas.</p>
+<p>Pensemos en un ejemplo</p>
 </section>
 <section id="probabilidad-total" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="probabilidad-total"><span class="header-section-number">2.4</span> Probabilidad total</h2>
+<p>Ahora imaginemos que pasa si queremos calcular la probabilidad de B (<span class="math inline">\(P(B)\)</span>). Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió S y junto con la probabilidad de B dado que NO ocurrió S. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto sería:</p>
+<p><span class="math display">\[
+P(B) = P(B|A) \times P(A) +  P(B|\neg A) \times P(\neg A)
+\]</span></p>
+<p>Volvamos al ejemplo de las cartas. En este caso, si calculamos la probabilidad de B obenemos:</p>
+<p><span class="math display">\[
+P(B) = XXX
+\]</span></p>
+<p>De forma general definimos a la probabilidad total como:</p>
+<p><span class="math display">\[
+blabla
+\]</span></p>
 </section>
 <section id="teorema-de-bayes" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="teorema-de-bayes"><span class="header-section-number">2.5</span> Teorema de Bayes</h2>
-<p>Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de <span class="citation" data-cites="herzog2019understanding">(<a href="references.html#ref-herzog2019understanding" role="doc-biblioref">Herzog, Francis, and Clarke 2019</a>)</span>: Tenemos un test para identificar la XXX de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus (<span class="math inline">\(P(T^+|IKV)\)</span>) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus (<span class="math inline">\(P(T^-|\neg IKV)\)</span>). Sabemos también que la incidencia del virus IKV es de 1 en 10000.</p>
+<p>Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de <span class="citation" data-cites="herzog2019understanding">(<a href="references.html#ref-herzog2019understanding" role="doc-biblioref">Herzog, Francis, and Clarke 2019</a>)</span>: Tenemos un test para identificar si somos portadores de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus (<span class="math inline">\(P(T^+|IKV)\)</span>) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus (<span class="math inline">\(P(T^-|\neg IKV)\)</span>). Sabemos también que la incidencia del virus IKV es de 1 en 10000.</p>
 <p>Supongamos que somos elegidos aleatoriamente para realizarnos el test y este da positivo ¿Qué probabilidad de ser portadores del virus tenemos (<span class="math inline">\(P(IKV|T^+)\)</span>)? La primera respuesta que se nos viene es 0.9999 ¿Verdad? Pero, si estuvimos prestando atención, ya a esta altura debemos saber que para invertir la condicionalidad de una probabilidad tenemos que acudir al bueno de Bayes. O sea:</p>
 <p><span class="math display">\[
 P(IKV|T^+) = \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}
@@ -238,16 +289,81 @@ P(IKV|T^{2+}) = \frac{0.9999^2 \times 0.0001}{0.9999^2 \times 0.0001 + 0.0001^2 
 </section>
 <section id="esperanza" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="esperanza"><span class="header-section-number">2.7</span> Esperanza</h2>
+<p>La esperanza de una variable aleatoria <span class="math inline">\(X\)</span>, a veces también llamada media poblacional, es simplemente la suma pesada de todos sus valores posibles. No debemos confundir la esperanza con el promedio muestral, aunque, como veremos en breve, para algunos casos el primero es un estimador insesgado del segundo.</p>
+<p>La esperanza de una variable aleatoria discreta se define como:</p>
+<p><span class="math display">\[
+E[X] = \sum_{1}^\infty x_i p(x_i)
+\]</span> En este caso es muy claro la naturaleza de promedio pesado, ya que a cada valor posible de <span class="math inline">\(X\)</span> lo estamos pesando por su probabilidad. Sin embargo, para una variable aleatoria continua, en la que no tenemos definida una probabilidad puntual <span class="math inline">\(p(x_i)\)</span> sino una función de densidad <span class="math inline">\(f(x)\)</span>, la definición es la siguiente:</p>
+<p><span class="math display">\[
+E[X] = \int_{-\infty}^\infty x f(x) dx
+\]</span></p>
+<p>Como resulta esperable, la suma se transforma en una integral y la probabilidad puntual se reemplaza por <span class="math inline">\(f(x)\)</span>.</p>
+<p>Algunas propiedades importantes de la esperanza son:</p>
+<p><span class="math display">\[
+\begin{array}
+_E(aX+b) &amp; = &amp; aE(X) + b\\
+E(\sum_{i=1}^n X_i) &amp; = &amp; \sum_{i=1}^nE(X_i)
+\end{array}
+\]</span> Por último y a modo de aviso, advertencia y amenaza, recordemos que <span class="math inline">\(E(X)^2 \neq E(X^2)\)</span>.</p>
 </section>
 <section id="varianza-y-covarianza" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="varianza-y-covarianza"><span class="header-section-number">2.8</span> Varianza y covarianza</h2>
+</section>
+<section id="correlación" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="correlación"><span class="header-section-number">2.9</span> Correlación</h2>
+</section>
+<section id="población-y-muestra" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.10</span> Población y muestra</h2>
+<p>Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.</p>
+<p>Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de <span class="math inline">\(\mu_{varones} = 175\)</span> y una desviación estándar <span class="math inline">\(\sigma_{varones} = 7\)</span>, o, como ya aprendimos a decir: <span class="math inline">\(h_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. A continuación podemos ver la función de densidad:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora bien, en la figura podemos ver la función <span class="math inline">\(f(x)\)</span> junto con una línea vertical que nos indica la media y dos líneas que nos indican los percentiles <span class="math inline">\(2.5\)</span> y <span class="math inline">\(97.5\)</span>, es decir, que contienen el 95% de la masa de probabilidad. Todo esto es muy lindo pero estamos jugando a ser dios (o el Doctor Manhattan, o en lo que ustedes crean). Es imposible conocer los parámetros de esta distribución pero lo que sí podemos hacer en la práctica es estimarlos. Estimar los parámetros de un modelo es el <em>pan y manteca</em> de la inferencia estadística y el <em>data mining</em>. Como podemos ver en esta hermosa figura de Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span>, la teoría de probabilidad nos ayuda a definir modelos para la generación de datos y la inferencia estadística nos ayuda a estimar estos parámetros.</p>
+<p>Hay diversas formas de encontrar estimadores para los parámetros de un modelo (por ejemplo, método de los momentos, máxima verosimilitud, etc.) pero entenemos que eso excede los contenidos de este curso. Sin embargo, para estimar todos conocemos los estimadores de los parámetros poblacionales <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. Claro, el promedio <span class="math inline">\(\bar{x}\)</span> y el desvío muestral <span class="math inline">\(\hat{S}^2\)</span>:</p>
+<p><span class="math display">\[
+\begin{array}
+\\\bar{x} &amp; = &amp; n^{-1} \sum_{i=1}^n x_i\\
+\hat{S}^2 &amp; = &amp; (n-1)^{-1} \sum_{i=1}^n (x_i
+\end{array}
+\]</span></p>
+<p>Simulemos tres experimento tomando 10, 50 y 100 mediciones (<span class="math inline">\(n\)</span>) y veamos los histogramas de estas muestras y sus estimaciones de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como es de esperarse, podemos ver que al aumentar <span class="math inline">\(n\)</span>, la estimación de los parámetros poblacionales es mejor. Pero tenemos que tener esta idea en mente, cada vez que tomamos una muestra podemos estimar un parámetro de la población y hasta hacer inferencias estadísticas sobre el mismo, pero <strong>NUNCA</strong> lo vamos a conocer.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
+Cunningham, Scott. 2021. <em>Causal Inference: The Mixtape</em>. Yale university press.
+</div>
 <div id="ref-herzog2019understanding" class="csl-entry" role="doc-biblioentry">
 Herzog, Michael H, Gregory Francis, and Aaron Clarke. 2019. <em>Understanding Statistics and Experimental Design: How to Not Lie with Statistics</em>. Springer Nature.
 </div>
+<div id="ref-wasserman2004all" class="csl-entry" role="doc-biblioentry">
+Wasserman, Larry. 2004. <em>All of Statistics: A Concise Course in Statistical Inference</em>. Springer Science &amp; Business Media.
 </div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Del inglés <em>Head</em> y ceca sera T del inglés <em>Tail</em>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><strong>h</strong> del inglés <em>height</em>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

@@ -33,8 +33,8 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-    mainfont: LX Fonts
-    mathfont: LX Fonts
+    mainfont: MLModern
+    mathfont: MLModern
   pdf:
     documentclass: scrreprt
 

@@ -1,6 +1,6 @@
 set.seed(1014)
 
-pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble)
+pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble, patchwork)
 
 knitr::opts_chunk$set(
   comment = "#>",
@@ -25,4 +25,4 @@ options(
   width = 77 # 80 - 3 for #> comment
 )
 
-ggplot2::theme_set(ggplot2::theme_gray(12))
+ggplot2::theme_set(ggplot2::theme_minimal(12))

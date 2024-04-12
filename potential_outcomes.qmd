@@ -1,0 +1,11 @@
+# *Potential outcomes* {#sec-pot-outcomes}
+
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+asd
+
+## Sdf

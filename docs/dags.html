@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ignacio Spiousas">
-<meta name="author" content="Ismael Calandri">
 
-<title>Diseños experimentales y cuasiexperimentales</title>
+<title>Diseños experimentales y cuasiexperimentales - Grafos acíclicos dirigidos (DAGS)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_R.html" rel="next">
+<link href="./exp_aleatorios.html" rel="next">
+<link href="./potential_outcomes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -66,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -75,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefacio</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dags.html">Grafos acíclicos dirigidos (DAGS)</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
@@ -127,20 +126,32 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferencia</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dags.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Grafos acíclicos dirigidos (DAGS)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inferencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferencia</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -151,67 +162,34 @@ ul.task-list li input[type="checkbox"] {
 </li>
     </ul>
     </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#definiciones-características-y-ejemplos" id="toc-definiciones-características-y-ejemplos" class="nav-link active" data-scroll-target="#definiciones-características-y-ejemplos">Definiciones, características y ejemplos</a></li>
+  <li><a href="#el-criterio-de-las-puertas-de-atrás" id="toc-el-criterio-de-las-puertas-de-atrás" class="nav-link" data-scroll-target="#el-criterio-de-las-puertas-de-atrás">El criterio de las puertas de atrás</a></li>
+  <li><a href="#colliders" id="toc-colliders" class="nav-link" data-scroll-target="#colliders"><em>Colliders</em></a></li>
+  <li><a href="#un-ejemplo" id="toc-un-ejemplo" class="nav-link" data-scroll-target="#un-ejemplo">Un ejemplo</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Índice</h2>
-   
-  <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio">Prefacio</a>
-  <ul class="collapse">
-  <li><a href="#lo-que-vas-a-aprender-en-este-libro" id="toc-lo-que-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</a></li>
-  <li><a href="#cómo-se-organiza-este-libro" id="toc-cómo-se-organiza-este-libro" class="nav-link" data-scroll-target="#cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</a>
-  <ul class="collapse">
-  <li><a href="#probabilidad-y-estadística" id="toc-probabilidad-y-estadística" class="nav-link" data-scroll-target="#probabilidad-y-estadística">Probabilidad y estadística</a></li>
-  <li><a href="#dieseño-experimental" id="toc-dieseño-experimental" class="nav-link" data-scroll-target="#dieseño-experimental">Dieseño experimental</a></li>
-  <li><a href="#diseño-cuasi-experimental" id="toc-diseño-cuasi-experimental" class="nav-link" data-scroll-target="#diseño-cuasi-experimental">Diseño cuasi experimental</a></li>
-  <li><a href="#ejemplos-de-aplicación" id="toc-ejemplos-de-aplicación" class="nav-link" data-scroll-target="#ejemplos-de-aplicación">Ejemplos de aplicación</a></li>
-  </ul></li>
-  <li><a href="#lo-que-no-vas-a-aprender-en-este-libro" id="toc-lo-que-no-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</a></li>
-  <li><a href="#prerequisitos" id="toc-prerequisitos" class="nav-link" data-scroll-target="#prerequisitos">Prerequisitos</a></li>
-  <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
-  <li><a href="#contacto" id="toc-contacto" class="nav-link" data-scroll-target="#contacto">Contacto</a></li>
-  <li><a href="#licencia" id="toc-licencia" class="nav-link" data-scroll-target="#licencia">Licencia</a></li>
-  </ul></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Diseños experimentales y cuasiexperimentales</h1>
+<h1 class="title">Grafos acíclicos dirigidos (DAGS)</h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliations</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Ignacio Spiousas <a href="https://orcid.org/0000-0002-0283-4696" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Conicet/UdeSA
-          </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Ismael Calandri <a href="https://orcid.org/0000-0002-6983-1430" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Fleni/UdeSA
-          </p>
-      </div>
-    </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -219,80 +197,35 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="prefacio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefacio</h1>
-<p>Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la <a href="https://udesa.edu.ar/">Universidad de San Andrés</a> (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.</p>
-<section id="lo-que-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</h2>
-<p>El objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.</p>
-<p>Se espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y “apta para todo público”. Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental “ideal” (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.</p>
+<div class="page-columns page-full"><p>Los grafos acíclicos dirigidos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos..</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;A partir de ahora DAGS, del inglés <em>Directed acyclic graphs</em>.</p></li></div></div>
+<section id="definiciones-características-y-ejemplos" class="level2">
+<h2 class="anchored" data-anchor-id="definiciones-características-y-ejemplos">Definiciones, características y ejemplos</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-SIGA SIGA…
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Si bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.</p>
+<p>Para realizar los DAGS que aparecen en este capítulo utilizamos la librería <em>{ggdag}</em>. Para esto primero debemos hacer un esquema de nuestro DAG en <a href="https://www.dagitty.net/dags.html#">Daggity</a> y luego copiar parte de lo generado en la definición de nuestro DAG en <strong>R</strong>. En el desarrollo del capítulo utilizaremos algunas de las herramientas de <em>{ggdag}</em>, varias de las cuales pueden encontrar en <a href="https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1">este tutorial</a>. Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la <a href="https://r-causal.github.io/ggdag/">documentación del mismo</a>.</p>
 </div>
 </div>
 </section>
-<section id="cómo-se-organiza-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</h2>
-<p>El libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.</p>
-<section id="probabilidad-y-estadística" class="level3">
-<h3 class="anchored" data-anchor-id="probabilidad-y-estadística">Probabilidad y estadística</h3>
-<p>Esta sección cuenta con dos capítulos:</p>
+<section id="el-criterio-de-las-puertas-de-atrás" class="level2">
+<h2 class="anchored" data-anchor-id="el-criterio-de-las-puertas-de-atrás">El criterio de las puertas de atrás</h2>
 </section>
-<section id="dieseño-experimental" class="level3">
-<h3 class="anchored" data-anchor-id="dieseño-experimental">Dieseño experimental</h3>
+<section id="colliders" class="level2">
+<h2 class="anchored" data-anchor-id="colliders"><em>Colliders</em></h2>
 </section>
-<section id="diseño-cuasi-experimental" class="level3">
-<h3 class="anchored" data-anchor-id="diseño-cuasi-experimental">Diseño cuasi experimental</h3>
-</section>
-<section id="ejemplos-de-aplicación" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplos-de-aplicación">Ejemplos de aplicación</h3>
-</section>
-</section>
-<section id="lo-que-no-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</h2>
-<p>Este libro no es un libro de inferencia estadística y no vamos a hablar de <em>tests</em> estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro <strong>NO</strong> es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.</p>
-<p>Este libro tampoco es un manual de programación ni de análisis de datos en R. Si bien en la primera sección del libro haremos una presentación de algunas de las funcionalidades de la colección de paquetes para análisis de datos que es el <em>tidyverse</em>, no vamos a repasar ninguna de las bases de R ni de Rstudio. Existen infinidad de recursos invreíbles para aprender esto y sentimos que no hay necesida de, a eso, sumarle uno mediocre.</p>
-</section>
-<section id="prerequisitos" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisitos">Prerequisitos</h2>
-<p>Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.</p>
-<div class="callout callout-style-default callout-warning no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-DON’T PANIC
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.</p>
-</div>
-</div>
-</section>
-<section id="agradecimientos" class="level2">
-<h2 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h2>
-</section>
-<section id="contacto" class="level2">
-<h2 class="anchored" data-anchor-id="contacto">Contacto</h2>
-<p>Ante cualquier duda pueden contactarme vía e-mail a <a href="mailto:ispiousas@udesa.edu.ar">ispiousas@udesa.edu.ar</a>.</p>
-</section>
-<section id="licencia" class="level2">
-<h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
-<p>Este sitio web es y siempre será gratuito, licencia bajo [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.</p>
+<section id="un-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="un-ejemplo">Un ejemplo</h2>
 
 
 </section>
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -530,10 +463,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./potential_outcomes.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_R.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./exp_aleatorios.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

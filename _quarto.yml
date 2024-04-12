@@ -26,18 +26,25 @@ book:
     - index.qmd
     - intro_R.qmd
     - intro_stat.qmd
+    - inferencia.qmd
+    - potential_outcomes.qmd
+    - dags.qmd
+    - inferencia.qmd
+    - exp_aleatorios.qmd
     - references.qmd
 
 bibliography: references.bib
 
+reference-location: margin
+citation-location: margin
+
 format:
   html:
     theme: cosmo
-    mainfont: MLModern
-    mathfont: MLModern
   pdf:
     documentclass: scrreprt
 
 editor: visual
 
 toc-title: Índice
+toc-location: left

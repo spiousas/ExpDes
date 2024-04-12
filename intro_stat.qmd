@@ -108,8 +108,6 @@ Ahora sí, si somos testeados por segunda vez, la probabilidad de ser portadores
 
 Para cerrar, me gustaría que pensemos un poco en una palabra MUY importante que se dijo en el enunciado del problema: Aleatoriamente. En muchos de los casos en los que nos testeamos para ver si somos portadores de un virus, lo hacemos porque tenemos algún tipo de presunción de que podemos serlo (por ejemplo, tenemos síntomas). ¿Cuál creen que sería la probabilidad que se modifica en la fórmula? Exacto, $P(IKV)$, ya que sería más bien $P(IKV|síntomas)$.
 
-## Tablas de contingencia
-
 ## Esperanza
 
 La esperanza de una variable aleatoria $X$, a veces también llamada media poblacional, es simplemente la suma pesada de todos sus valores posibles. No debemos confundir la esperanza con el promedio muestral, aunque, como veremos en breve, para algunos casos el primero es un estimador insesgado del segundo.
@@ -117,12 +115,12 @@ La esperanza de una variable aleatoria $X$, a veces también llamada media pobla
 La esperanza de una variable aleatoria discreta se define como:
 
 $$
-E[X] = \sum_{1}^\infty x_i p(x_i)
+E(X) = \sum_{1}^\infty x_i p(x_i)
 $$
 En este caso es muy claro la naturaleza de promedio pesado, ya que a cada valor posible de $X$ lo estamos pesando por su probabilidad. Sin embargo, para una variable aleatoria continua, en la que no tenemos definida una probabilidad puntual $p(x_i)$ sino una función de densidad $f(x)$, la definición es la siguiente:
 
 $$
-E[X] = \int_{-\infty}^\infty x f(x) dx
+E(X) = \int_{-\infty}^\infty x f(x) dx
 $$
 
 Como resulta esperable, la suma se transforma en una integral y la probabilidad puntual se reemplaza por $f(x)$. 
@@ -139,13 +137,22 @@ Por último y a modo de aviso, advertencia y amenaza, recordemos que $E(X)^2 \ne
 
 ## Varianza y covarianza
 
+$$
+V(X) = \sigma^2 = E \left[ (X - E(X))^2 \right]
+$$
+Y se puede demostrar que:
+
+$$
+V(X) = E(X^2) - E^2(X)
+$$
+
 ## Correlación
 
 ## Población y muestra
 
 Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.
 
-Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de $\mu_{varones} = 175$ y una desviación estándar $\sigma_{varones} = 7$, o, como ya aprendimos a decir: $h_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)$[^h]. A continuación podemos ver la función de densidad:
+Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de $\mu_{varones} = 175$ y una desviación estándar $\sigma_{varones} = 7$, o, como ya aprendimos a decir: $H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)$[^h]. A continuación podemos ver la función de densidad:
 
 [^h]: **h** del inglés *height*.
 
@@ -211,7 +218,246 @@ ggplot() +
 
 Como es de esperarse, podemos ver que al aumentar $n$, la estimación de los parámetros poblacionales es mejor. Pero tenemos que tener esta idea en mente, cada vez que tomamos una muestra podemos estimar un parámetro de la población y hasta hacer inferencias estadísticas sobre el mismo, pero **NUNCA** lo vamos a conocer.
 
+$$
+X \sim \mathcal{N}(1, 3^2)
+$$
+
+$$
+\alpha = 0.05
+$$
+
+$$
+\begin{array}
+_\bar{x} &=& 1.424871 \\
+S &=& 2.917996
+\end{array}
+$$
+
+$$
+\begin{array}
+_H_0 &:& \mu = 0 \\
+H_1 &:& \mu \neq 0
+\end{array}
+$$
+
+$$
+Z = \frac{\bar X-\mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
+$$
+
+$$
+Z_{H_0} = \frac{\bar X}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
+$$
+
+$$
+\begin{array}
+_\bar{x} &=& 1.424871 \\
+\frac{\bar{x}-0}{\sqrt{3^2/20}} &=& 2.124073
+\end{array}
+$$
+
+$$
+\begin{array}
+_p_{valor} &=& P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
+ &=& P(Z \geq |z_{\bar{x}}| \: \: |H_0) + P(Z \leq -|z_{\bar{x}}| \: \: |H_0) \\
+ &=& 2 P(Z \leq -|z_{\bar{x}}| \: \: |H_0)
+\end{array}
+$$
+
+$$
+z_{\bar{x}} = \frac{\bar{x}-0}{\sqrt{3^2/20}} = 2.124073
+$$
+
+$$
+\begin{array}
+_p_{valor} &=& P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
+&=& 2 P(Z \leq -|z_{\bar{x}}| \: \: |H_0) \\
+&=& 2 \times 0.01683202 \\
+&=& 0.03366405
+\end{array}
+$$
+
+$$
+\bar{x} = 0.006372746
+$$
+
+$$
+\begin{array}
+_p_{valor} &=& P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
+&=& 2 P(Z \leq -|z_{\bar{x}}| \: \: |H_0) \\
+&=& 2 \times 0.4962101 \\
+&=& 0.9924203
+\end{array}
+$$
+
+$$
+potencia = P(rechazar \, H_0 | H_0 \, falsa)
+$$
+
+$$
+\begin{array}
+_potencia &=& P(rechazar \, H_0 | H_1) \\
+&=& P\left( \left| \frac{\bar{X}}{\sqrt{\sigma^2/n}} \right| \geq Z_{1-\alpha/2}  \right)\\
+&=& 1 - P\left( Z \leq Z_{\alpha/2} + \frac{\mu}{\sqrt{\sigma^2/n}} \right) - P\left( Z \leq Z_{1-\alpha/2} + \frac{\mu}{\sqrt{\sigma^2/n}} \right) \\
+
+\end{array}
+$$
+
+$$
+\frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
+$$
+
+$$
+(n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
+$$
+
+$$
+\begin{array}
+_U &\sim& \mathcal{N}(0,1) \\
+V &\sim& \chi^2_{n} \\
+\frac{U}{\sqrt{V/n}} &\sim& t_{n}
+\end{array}
+$$
+
+$$
+\frac{\bar{X} - \mu}{\sqrt{S^2/n}} \sim t_{n-1}
+$$
+
+$$
+\begin{array}
+_\bar{x} &=& 1.424871 \\
+\frac{\bar{x}-0}{\sqrt{S^2/20}} &=& 2.18375
+\end{array}
+$$
+
+$$
+\begin{array}
+_p_{valor} &=& P(|T| \geq |t_{\bar{x}}| \: \: |H_0) \\
+&=& 2 P(T \leq -|t_{\bar{x}}| \: \: |H_0) \\
+&=& 2 \times 0.0208614 \\
+&=& 0.0417228
+\end{array}
+$$
+
+$$
+\frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}  \xrightarrow{\mathcal{D}} \mathcal{N}(0,1)
+$$
+
+$$
+V \sim \mathcal{E}(\lambda=1)
+$$
+
+$$
+E(V) = \lambda
+$$
+
+$$
+\begin{array}
+_\bar{v} &=& 1.036848 \\
+S_v &=& 1.084248
+\end{array}
+$$
+
+$$
+\begin{array}
+_\mu_{\bar{u}_{n=2000}} &=& 0.1 \\
+\sigma^2_{\bar{u}_{n=2000}} &=& \sigma^2/n \\
+&=& 9/2000 \\ 
+&=& 0.0045
+\end{array}
+$$
+
+$$
+\begin{array}
+_\mu_{\bar{u}_{n=100}} &=& 0.1 \\
+\sigma^2_{\bar{u}_{n=100}} &=& \sigma^2/n \\
+&=& 9/100 \\ 
+&=& 0.09
+\end{array}
+$$
+
+$$
+U = \mathcal{N}(0.1,3)
+$$
+
+$$
+\hat{\beta}_T - \beta_T = 6.12 - 5 = 1.12
+$$
+
+$$
+\hat{\beta}_T = \bar{Y}_T - \bar{Y}_C = 8.005
+$$
+
+$$
+\hat{\beta}_T = (\bar{Y}_T - \bar{Y}_C) - \hat{\beta}_X \times (\bar{X}_T - \bar{X}_C)= 5.063
+$$
+
+$$
+\rho_{XY} = 0.909
+$$
+
+$$
+\sigma_{\epsilon}^2 ANOVA = 4.897
+$$
+
+$$
+\sigma_{\epsilon}^2 ANCOVA = (1-\rho_{XY}^2) \sigma_{\epsilon}^2 ANOVA = 4.897 \times (1-0.909^2) = 0.8507019
+$$
 
 
+$$
+model_1: Y_i = \alpha +\beta_X X_i + \epsilon_i
+$$
+
+$$
+model_2: Y_i = \alpha + \beta_X X_i + \beta_C C_i + \epsilon_i
+$$
+
+```{r}
+tb <- tibble(
+  C = rnorm(10000),
+  X = 1 + 1*C + rnorm(10000),
+  Y = 1 + 2*C + 2*X + rnorm(10000)
+)
+
+library(stargazer)
+
+tb  %>% ggplot(aes(x = X,
+           y = Y)) +
+  geom_point(alpha = .2) +
+  geom_smooth(color = "red", method = "lm", se = F) +
+  theme_bw()
+
+  
+lm_1 <- lm(Y ~ X, tb)
+lm_2 <- lm(Y ~ X + C, tb)
+
+stargazer(lm_1,lm_2, type = "text", 
+          column.labels = c("Sin controlar", 
+                            "Controlando por C")) %>%
+  knitr::kable()
+```
 
 
+$$
+Y_i = \alpha + \beta_D D_i + \beta_I I_i + \epsilon_i
+$$
+
+$$
+lm_1: talent_i = \alpha + \beta_{beauty} beauty_i + \epsilon_i
+$$
+
+$$
+lm_2: talent_i = \alpha + \beta_{beauty} beauty_i + \beta_{star} star_i + \epsilon_i
+$$
+
+$$
+lm_1: wage_i = \alpha + \beta_{female} female_i + \epsilon_i
+$$
+
+$$
+lm_2: wage_i = \alpha + \beta_{female} female_i + \beta_{occupation} occupation_i + \epsilon_i
+$$
+
+$$
+lm_2: wage_i = \alpha + \beta_{female} female_i + \beta_{occupation} occupation_i + \beta_{ability} ability_i+ \epsilon_i
+$$

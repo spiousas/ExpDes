@@ -1,0 +1,20 @@
+# Grafos acíclicos dirigidos (DAGS) {.unnumbered}
+
+Los grafos acíclicos dirigidos [^dags]son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos..
+
+[^dags]: A partir de ahora DAGS, del inglés *Directed acyclic graphs*.
+
+
+## Definiciones, características y ejemplos
+
+::: {.callout-tip icon="false"}
+Para realizar los DAGS que aparecen en este capítulo utilizamos la librería *{ggdag}*. Para esto primero debemos hacer un esquema de nuestro DAG en [Daggity](https://www.dagitty.net/dags.html#) y luego copiar parte de lo generado en la definición de nuestro DAG en **R**. En el desarrollo del capítulo utilizaremos algunas de las herramientas de *{ggdag}*, varias de las cuales pueden encontrar en [este tutorial](https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1). Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la [documentación del mismo](https://r-causal.github.io/ggdag/). 
+
+:::
+
+
+## El criterio de las puertas de atrás
+
+## *Colliders*
+
+## Un ejemplo

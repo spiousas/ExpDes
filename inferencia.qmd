@@ -1,0 +1,11 @@
+# Inferencia {#sec-inferencia}
+
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+asd
+
+## Sdf

@@ -1,0 +1,11 @@
+# Experimentos aleatorios {#sec-random-exp}
+
+```{r}
+#| echo: false
+
+source("../R/_common.R")
+```
+
+asd
+
+## Sdf

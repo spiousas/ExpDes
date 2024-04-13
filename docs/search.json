@@ -107,37 +107,37 @@
   {
     "objectID": "dags.html",
     "href": "dags.html",
-    "title": "Grafos acíclicos dirigidos (DAGS)",
+    "title": "4  Grafos acíclicos dirigidos (DAGS)",
     "section": "",
     "text": "Los grafos acíclicos dirigidos 1son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos..1 A partir de ahora DAGS, del inglés Directed acyclic graphs."
   },
   {
     "objectID": "dags.html#definiciones-características-y-ejemplos",
     "href": "dags.html#definiciones-características-y-ejemplos",
-    "title": "Grafos acíclicos dirigidos (DAGS)",
-    "section": "Definiciones, características y ejemplos",
-    "text": "Definiciones, características y ejemplos\n\n\n\n\n\n\nTip\n\n\n\nPara realizar los DAGS que aparecen en este capítulo utilizamos la librería {ggdag}. Para esto primero debemos hacer un esquema de nuestro DAG en Daggity y luego copiar parte de lo generado en la definición de nuestro DAG en R. En el desarrollo del capítulo utilizaremos algunas de las herramientas de {ggdag}, varias de las cuales pueden encontrar en este tutorial. Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la documentación del mismo."
+    "title": "4  Grafos acíclicos dirigidos (DAGS)",
+    "section": "4.1 Definiciones, características y ejemplos",
+    "text": "4.1 Definiciones, características y ejemplos\nasdfasdf\n\n\n\n\n\n\nTip\n\n\n\nPara realizar los DAGS que aparecen en este capítulo utilizamos la librería {ggdag}. Para esto primero debemos hacer un esquema de nuestro DAG en Daggity y luego copiar parte de lo generado en la definición de nuestro DAG en R. En el desarrollo del capítulo utilizaremos algunas de las herramientas de {ggdag}, varias de las cuales pueden encontrar en este tutorial. Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la documentación del mismo."
   },
   {
     "objectID": "dags.html#el-criterio-de-las-puertas-de-atrás",
     "href": "dags.html#el-criterio-de-las-puertas-de-atrás",
-    "title": "Grafos acíclicos dirigidos (DAGS)",
-    "section": "El criterio de las puertas de atrás",
-    "text": "El criterio de las puertas de atrás"
+    "title": "4  Grafos acíclicos dirigidos (DAGS)",
+    "section": "4.2 El criterio de las puertas de atrás",
+    "text": "4.2 El criterio de las puertas de atrás"
   },
   {
     "objectID": "dags.html#colliders",
     "href": "dags.html#colliders",
-    "title": "Grafos acíclicos dirigidos (DAGS)",
-    "section": "Colliders",
-    "text": "Colliders"
+    "title": "4  Grafos acíclicos dirigidos (DAGS)",
+    "section": "4.3 Colliders",
+    "text": "4.3 Colliders"
   },
   {
     "objectID": "dags.html#un-ejemplo",
     "href": "dags.html#un-ejemplo",
-    "title": "Grafos acíclicos dirigidos (DAGS)",
-    "section": "Un ejemplo",
-    "text": "Un ejemplo"
+    "title": "4  Grafos acíclicos dirigidos (DAGS)",
+    "section": "4.4 Un ejemplo",
+    "text": "4.4 Un ejemplo"
   },
   {
     "objectID": "exp_aleatorios.html",

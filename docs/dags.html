@@ -20,6 +20,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -61,6 +143,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -170,34 +253,663 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="page-columns page-full"><p>Los grafos acíclicos dirigidos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos..</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;A partir de ahora DAGS, del inglés <em>Directed acyclic graphs</em>.</p></li></div></div>
+<div class="cell">
+
+</div>
+<div class="page-columns page-full"><p>Los grafos acíclicos dirigidos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos. Los mismos nos permiten poner en una representación gráfica el conocimiento que tenemos de las variables aleatorias involucradas en un proceso que queremos estudiar y las relaciones causales entre ellas. Además, existen herramientas que, a partir de características de los DAGS, nos permiten decidir cuál es el modelo estadístico cuyo parámetro será una estimación del efecto causal que queremos estudiar.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;A partir de ahora DAGS, del inglés <em>Directed acyclic graphs</em>.</p></li></div></div>
 <section id="definiciones-características-y-ejemplos" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="definiciones-características-y-ejemplos"><span class="header-section-number">4.1</span> Definiciones, características y ejemplos</h2>
-<p>asdfasdf</p>
-<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<p>Un DAG es una representación gráfica de una cadena de efectos causales. Los nodos (los circulitos o cuadraditos que vamos a ver más adelante) representan variables aleatorias y las flechas que los unen representan la relación causal que se mueve de una variable a la otra en la dirección intuitiva de la flecha. Por ejemplo, pensemos que queremos estudiar el efecto de tomar una aspirina en la intensidad de nuestro dolor de cabeza cuando nos duele la cabeza. Tenemos dos variables Aspirina (<strong>A</strong>) e Intensidad del dolor (<strong>I</strong>). Esta relación la podemos expresar en el siguiente DAG:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption">DAG que representa la relación entre tomar una aspirina (A) y la intensidad del dolor (I).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Tip
+DAGS en R
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Para realizar los DAGS que aparecen en este capítulo utilizamos la librería <em>{ggdag}</em>. Para esto primero debemos hacer un esquema de nuestro DAG en <a href="https://www.dagitty.net/dags.html#">Daggity</a> y luego copiar parte de lo generado en la definición de nuestro DAG en <strong>R</strong>. En el desarrollo del capítulo utilizaremos algunas de las herramientas de <em>{ggdag}</em>, varias de las cuales pueden encontrar en <a href="https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1">este tutorial</a>. Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la <a href="https://r-causal.github.io/ggdag/">documentación del mismo</a>.</p>
 </div>
 </div>
+<p>¿Así de simple? Sí y no ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra “correlación no implica causalidad” la relación entre venta de helados (<strong>Hel</strong>) y accidentes por mordidas de tiburón en Australia(<strong>Sh</strong>). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿No?. Entonces, ¿Qué está pasando? ¿Qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación en este caso lo que tenemos es una común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (<strong>T</strong>). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption">DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Todo muy lindo, pero ¿Para qué?</p>
 </section>
-<section id="el-criterio-de-las-puertas-de-atrás" class="level2" data-number="4.2">
+<section id="el-criterio-de-las-puertas-de-atrás" class="level2 page-columns page-full" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="el-criterio-de-las-puertas-de-atrás"><span class="header-section-number">4.2</span> El criterio de las puertas de atrás</h2>
+<p>Una de las principales ventajas de plantear un DAg para estudiar una relación causal es que nos permite ajustar un modelo a partir del cual, lo que estamos estimando en uno de sus parámetros es un estimador de la relación causal que queremos estudiar. Empecemos planteando los caminos posibles para llegar desde <strong>Hel</strong> a <strong>Sh</strong>. En este caso serían dos:</p>
+<p><span class="math display">\[
+\begin{array}
+_Hel    \longrightarrow Sh \\
+Hel \longleftarrow T \longrightarrow Sh
+\end{array}
+\]</span></p>
+<p>El primero es lo que se llama un <em>camino directo</em> y es lo relación causal que queremos estudiar. Por otro lado, el segundo (<span class="math inline">\(Hel \leftarrow T \rightarrow Sh\)</span>) es lo que se llama una <em>puerta de atrás</em> y lo identíficamos porque, al menos en alguna de sus relaciones causales, la flechita va para la izquierda. Identificar estos caminos <em>puerta de atrás</em> es una parte fundamental de controlar la variabilidad espúrea en nuestras relaciones causales. En particular en este ejemplo, tenemos un claro confusor y lo que queremos es controlar por <strong>T</strong>.</p>
+<p>Simulemos esta relación y veamos que pasa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1414</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>helados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Temperatura =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">20</span>, <span class="dv">5</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Helados     =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>Temperatura <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Ataques     =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>Temperatura <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>Helados <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Veamos que <strong>Temperatura</strong> es una variable aleatoria con distribución normal con media <span class="math inline">\(20\)</span> y desviación estándar <span class="math inline">\(5\)</span>. Tomamos <span class="math inline">\(1000\)</span> muestras de la misma y después generamos las variables <strong>Helados</strong> y <strong>Ataques</strong> como una combinación lineal de <strong>Temperatura</strong> más un error aleatorio de media <span class="math inline">\(0\)</span> y desviación estándar <span class="math inline">\(1\)</span>. En la definición de <strong>Ataques</strong> podemos ver explícitamente que la influencia de Helados en <strong>Ataques</strong> es <span class="math inline">\(0\)</span>. Sin embargo, miremos la relación que existe entre ambas variables:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; `geom_smooth()` using formula = 'y ~ x'</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Vemos que ambas variables están altamente correlacionadas, de hecho, su <em>r</em> de Pearson vale 0.977. Sin embargo, nosotros sabemos que esa correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón y que algo tenemos que hacer. Hemos escuchado muchas veces que lo que tenemos que hacer es “controlar” por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agergar <strong>Temperatura</strong> como una covariable. Ajustemos dos modelos de regresión, uno con la <strong>Temperatura</strong> como covariable y uno sin y comparemos las estimaciones de los efectos causales (<span class="math inline">\(\hat\beta_H\)</span>)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Donde <span class="math inline">\(\epsilon_i\)</span> y <span class="math inline">\(\tau_i\)</span> son los términos de error i.i.d. distribuidos normalmente con <span class="math inline">\(\mu=0\)</span> y <span class="math inline">\(\sigma=1\)</span>.</p></li></div></div>
+<p><span class="math display">\[
+\begin{array}
+_lm_1&amp;:&amp; Ataques_i = \alpha + \beta_{H} Helados_i + \epsilon_i \\
+lm_2&amp;:&amp; Ataques_i = \alpha + \beta_{H} Helados_i +  \beta_{T} Temperatura_i + \tau_i
+\end{array}
+\]</span> En la siguiente tabla podemos ver las estimaciones de <span class="math inline">\(\hat\beta_H\)</span> para cada uno de los modelos:</p>
+
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+Ataques
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Sin controlar por Temp.
+</td>
+<td>
+Controlando por Temp.
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Helados
+</td>
+<td>
+1.928<sup>***</sup>
+</td>
+<td>
+-0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.013)
+</td>
+<td>
+(0.032)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Temperatura
+</td>
+<td>
+</td>
+<td>
+2.003<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.033)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.602<sup>**</sup>
+</td>
+<td>
+1.015<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.291)
+</td>
+<td>
+(0.134)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+1,000
+</td>
+<td>
+1,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.954
+</td>
+<td>
+0.990
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.954
+</td>
+<td>
+0.990
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+2.246 (df = 998)
+</td>
+<td>
+1.032 (df = 997)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+20,826.210<sup>***</sup> (df = 1; 998)
+</td>
+<td>
+51,243.220<sup>***</sup> (df = 2; 997)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<p>Como podemos ver, si no controlamos por <strong>Temperatura</strong> , la estimación de <span class="math inline">\(\hat\beta_H\)</span> tiene un valor cercano a <span class="math inline">\(1\)</span>, mientras que si controlamos por <strong>Temperatura</strong> tiene un valor cercano a <span class="math inline">\(0\)</span> lo que sabemos es el valor “real” del parámetro <span class="math inline">\(\beta_H\)</span>. Todo muy lindo pero, ¿Qué tiene que ver esto con los DAGS? Bueno, cuando planteamos un DAG existe algo que se llama <em>el criterio de las puertas traseras</em> que dice que para estimar el efecto causal que nos interesa debemos “cerrar” todas las puertas traseras que conectan la causa y elefecto. Y “cerrar” en este contexto es simplemente controlar por la variabilidad de alguna de las variables presentes en la <em>puerta trasera</em>. En este caso, controlando por <strong>Temperatura</strong> estamos cerrando la única puerta trasera, por lo tanto, estamos estimando el verdadero efecto causal que nos interesa.</p>
+<!-- ## Causalidad sin correlación -->
+<!-- Muchas veces escuchamos que "correlación no implica causalidad" pero ¿Causalidad implica correlación? Respondamos esta pregunta con un ejemplo. Supongamos que hay una relación causal entre el ingreso (**I**) y la satisfacción (**S**), a más ingreso más satisfacción.  -->
 </section>
-<section id="colliders" class="level2" data-number="4.3">
+<section id="colliders" class="level2 page-columns page-full" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="colliders"><span class="header-section-number">4.3</span> <em>Colliders</em></h2>
+<p>Hasta ahora tuvimos que lidiar casi únicamente con <em>confusores</em> pero existe otro tipo de variables en el contexto de un camino causal que se denomina <em>collider</em>. Vemos un ejemplo y apliquemos <em>el criterio de las puertas traseras</em>. Pensemos el siguiente ejemplo. Supongamos que queremos estudiar el efecto del factor de riesgo edad (<strong>Age</strong>) en la infección de COVID-19 (<strong>Cov</strong>), pero lo hacemos a través de datos voluntarios recavados por una aplicación móvil (<strong>App</strong>). Un DAG muy simplicado que podríamos plantear es el siguiente:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption">DAG que representa la relación entre la edad (Age), la infección por COVID-19 (Cov) y el uso de la aplicación móvil de autoreporte (App).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ya uqe sabemos que la edad tienen un. efecto en el uso de aplicaciones móviles y, podemos suponer, que la gente que se infecta de COVID-19 tiende a reportar más sus datos en la aplicación. Ahora veamos los caminos:</p>
+<div class="page-columns page-full"><p><span class="math display">\[
+\begin{array}
+_Age    \longrightarrow Cov \\
+Age \longrightarrow App \longleftarrow Cov
+\end{array}
+\]</span> Repitamos el ejercicio de simulación que utilizamos en el ejemplo de los confusores, sólo que esta vez Covid es una variable dicotómica y, por lo tanto, debemos muestrarla de una distribución Bernoulli<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Para más detalles sobre como simular una variiable con distribución Bernoulli (binomial con <span class="math inline">\(n=1\)</span>) podemos ver el siguiente <a href="https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model">link</a>.</p></li></div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age   =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">40</span>, <span class="dv">10</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Covid =</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="at">prob =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="dv">10</span><span class="fl">-.25</span><span class="sc">*</span>Age))),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">App   =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>Age <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>Covid <span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Puede verse que la verdadera relación entre Covid y Age (en términos de parámetros de una regresión logística) es <span class="math inline">\(0.25\)</span>. Veamos como se ve la edad de los infectados y no infectados:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Infefctados y no infectados de COVID-19 en función de la edad.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Según el <em>criterio de las puertas traseras</em> deberíamos controlar por <strong>App</strong> para así cerrar ese camino. Ajustemos estos dos regresiones logísticas y veamos sus estimaciones de los parámetros:</p>
+<p><span class="math display">\[
+\begin{array}
+_glm_1&amp;:&amp; logit(Covid_i) = \alpha + \beta_{Age} Age_i + \epsilon_i \\
+glm_2&amp;:&amp; logit(Covid_i) = \alpha + \beta_{Age} Age_i + \beta_{App} App_i + \epsilon_i
+\end{array}
+\]</span></p>
+<p>En la siguiente tabla podemos ver las estimaciones de <span class="math inline">\(\hat\beta_{Age}\)</span> para cada uno de los modelos:</p>
+
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+Covid
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Sin controlar por App
+</td>
+<td>
+Controlando por App
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Age
+</td>
+<td>
+0.243<sup>***</sup>
+</td>
+<td>
+1.354<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.016)
+</td>
+<td>
+(0.109)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+App
+</td>
+<td>
+</td>
+<td>
+1.100<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.103)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-9.787<sup>***</sup>
+</td>
+<td>
+-11.839<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.631)
+</td>
+<td>
+(0.763)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+1,000
+</td>
+<td>
+1,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-419.336
+</td>
+<td>
+-344.156
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+842.672
+</td>
+<td>
+694.312
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<p>La estimación del efecto correcta sería la del modelos sin controlar pero ¿Por qué pasa esto? Cuando tenemos un <em>collider</em> podemos considerar ese camino como <em>cerrado por defecto</em> y al controlar por él, ese camino se abre. Entonces, en si bien teníamos dos posibles caminos causales, sólo uno estaba abierto y no necesitábamos controlar por <strong>App</strong>. Esto se debe a que, al <strong>App</strong> no causar ninguna de mis otras dos variables, ese camino causal está cerrado. Para reflexionar un poco en por qué ese camino se abre al controlar por un <em>collider</em> recomiendo las reflexiones del capítulo 8 de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"></div><div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+El criterio de las puertas traseras
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En resumen, el <strong>criterio de las puertas traseras</strong> nos dice que para estimar la relación causal principal debemos cerrar todas las <em>puertas traseras</em> (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un <em>collider</em> el camino està cerrado y al controlar por él lo abrimos.</p>
+</div>
+</div>
 </section>
-<section id="un-ejemplo" class="level2" data-number="4.4">
+<section id="un-ejemplo" class="level2 page-columns page-full" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="un-ejemplo"><span class="header-section-number">4.4</span> Un ejemplo</h2>
+<div class="page-columns page-full"><p>Analicemos el ejemplo que plantean los autores en <span class="citation" data-cites="tonnies2022collider">(<a href="references.html#ref-tonnies2022collider" role="doc-biblioref">Tönnies, Kahl, and Kuss 2022</a>)</span>. Lo que quieren estudiar es el efecto causal de la obesidad (<strong>Ob</strong>) end la mortalidad (<strong>Mort</strong>). Pero, identifican dos variables que tambièn podrìan estar afectando: 1- Si el individuo tiene diabetes (<strong>Diab</strong>) y 2- Si el individuo es fumador (<strong>Smok</strong>). La relación causal enntre las variables que plantean (medio de juguete) puede verse representada en el siguiente DAG<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></li></div></div>
+<div class="no-row-height column-margin column-container"></div><div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="ot">&lt;-</span> dagitty<span class="sc">::</span><span class="fu">dagitty</span>(<span class="st">'dag {</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">Ob [exposure,pos="-1.5,0"]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">Mort [outcome,pos="1.5,0"]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">Smok [pos="1.5,1.5"]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">Diab [pos="0,1.5"]</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">Ob -&gt; Mort</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">Ob -&gt; Diab</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">Diab -&gt; Mort</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">Smok -&gt; Mort</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">Smok -&gt; Diab</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>tidy_dag <span class="ot">&lt;-</span> <span class="fu">tidy_dagitty</span>(dag_Ob)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdag</span>(tidy_dag) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="dags_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">DAG que representa la relación causal planteada por los autores en <span class="citation" data-cites="tonnies2022collider">(<a href="references.html#ref-tonnies2022collider" role="doc-biblioref">Tönnies, Kahl, and Kuss 2022</a>)</span>.</figcaption><div class="no-row-height column-margin column-container"><div id="ref-tonnies2022collider" class="csl-entry" role="doc-biblioentry">
+Tönnies, Thaddäus, Sabine Kahl, and Oliver Kuss. 2022. <span>“Collider Bias in Observational Studies: Consequences for Medical Research Part 30 of a Series on Evaluation of Scientific Publications.”</span> <em>Deutsches <span>Ä</span>rzteblatt International</em> 119 (7): 107.
+</div></div><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si tebemos todos estos datos observados y queremos estimar el efecto causal de la obesidad en la mortalidad, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función <code>ggdag_paths</code> del paquete <em>{ggdags}</em>[^dags-3]. A continuación vemos un ejemplo de uso de esta función:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Ob"</span>, <span class="at">to =</span> <span class="st">"Mort"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Usando ggdag_collider para identificar colliders en nuestro DAG.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos ver que los caminos abiertos son:</p>
+<p><span class="math display">\[
+\begin{array}
+_Ob  \longrightarrow Mort\\
+Ob  \longrightarrow Diab \longrightarrow Mort
+\end{array}
+\]</span></p>
+<p>Pero ¿Por qué no está abierto el camino <span class="math inline">\(Ob \rightarrow Diab \leftarrow Smok \rightarrow Mort\)</span>? ¡Exacto! Está cerrado, porque, para ese camino, <strong>Diab</strong> es un <em>collider</em> ya que está causada tanto por <strong>Smok</strong> como por <strong>Ob</strong>. Resulta importante notar que una variable es un <em>collider</em> o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que <strong>Diab</strong> actúa como un confusor en el camino <span class="math inline">\(Ob \rightarrow Diab \rightarrow Mort\)</span>. La función <code>ggdag_collider</code> también nos puede ayudar a identificar un <em>collider</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dag_Ob<span class="sc">%&gt;%</span> <span class="fu">ggdag_collider</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Usando ggdag_collider para identificar colliders en nuestro DAG.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Bueno, tenemos dos caminos, el que queremos estudiar y una <em>puerta de atrás</em>. Todo indica que tenemos que controlar por <strong>Diab</strong> y listo ¿No? Apliquemos esto agregando el parámetro <code>adjust_for = "Diab"</code> a la función <code>ggdag_paths</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Ob"</span>, <span class="at">to =</span> <span class="st">"Mort"</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="st">"Diab"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">hue =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Usando ggdag_collider para identificar colliders en nuestro DAG.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sin embargo, podemos ver que los caminos abiertos son:</p>
+<p><span class="math display">\[
+\begin{array}
+_Ob  \longrightarrow Mort\\
+Ob  \longrightarrow Diab \longleftarrow Smok \longrightarrow Mort
+\end{array}
+\]</span> ¿Qué pasó? Bueno, lo que pasó es que al controlar por un <em>collider</em> abrimos un camino que estaba cerrado. Miremos qué pasa si controlamos por <strong>Diab</strong> y <strong>Smok</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Ob"</span>, <span class="at">to =</span> <span class="st">"Mort"</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="fu">c</span>(<span class="st">"Diab"</span>, <span class="st">"Smok"</span>), <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">hue =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dags_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Usando ggdag_collider para identificar colliders en nuestro DAG.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora sí, el único camino abierto es <span class="math inline">\(Ob \rightarrow Mort\)</span>, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:</p>
+<p><span class="math display">\[
+Mortalidad_i = \alpha + \beta_{Ob} Obesidad_i + \beta_{Diab} Diabetes_i +  \beta_{Smok} Smoker_i + \epsilon_i
+\]</span></p>
+<p>Donde <span class="math inline">\(\beta_{Ob}\)</span> es un estimador del efecto causal que queremos estudiar.</p>
+<div class="page-columns page-full"><p>Para más ejemplos y detalles sobre los DAGS pueden consultar <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> o <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>. El canal de <a href="https://www.youtube.com/@NickHuntingtonKlein">YouTube de Nick Huntington-Klein</a> también es un excelente recurso para profundizar sobre estos temas<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Nick es el autor de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p><div id="ref-huntington2021effect" class="csl-entry" role="doc-biblioentry">
+Huntington-Klein, Nick. 2021. <em>The Effect: An Introduction to Research Design and Causality</em>. Chapman; Hall/CRC.
+</div></li></div></div>
 
 
+<div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
+Cunningham, Scott. 2021. <em>Causal Inference: The Mixtape</em>. Yale university press.
+</div></div>
 </section>
 
 

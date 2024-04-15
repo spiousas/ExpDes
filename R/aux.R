@@ -575,9 +575,9 @@ ggdag(tidy_dag, text_size = 3) +
   theme_dag()
 
 tb <- tibble(
-  C = rnorm(10000),
-  X = 1 + 1*C + rnorm(10000),
-  Y = 1 + 2*C + 2*X + rnorm(10000)
+  C = rnorm(1000),
+  X = 1 + 1*C + rnorm(1000),
+  Y = 1 + 2*C + rnorm(1000)
 )
 
 library(stargazer)
@@ -594,8 +594,7 @@ lm_2 <- lm(Y ~ X + C, tb)
 
 stargazer(lm_1,lm_2, type = "text", 
           column.labels = c("Sin controlar", 
-                            "Controlando por C")) %>%
-  kableExtra::kable()
+                            "Controlando por C")) 
 
 tb <- tibble(
   C = rnorm(20),
@@ -697,6 +696,21 @@ O -> Y
 ')
 
 discrimination_dag %>% ggdag() + theme_dag()
+
+dag_Ob %>% ggdag_paths() + 
+  theme_dag() +
+  theme(legend.position = "bottom")
+
+dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort",
+                       adjust_for = "Diab", shadow = TRUE) + 
+  theme_dag() +
+  labs(hue = NULL) +
+  theme(legend.position = "bottom")
+
+dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort",
+                       adjust_for = c("Diab", "Smok"), shadow = TRUE) + 
+  theme_dag() +
+  theme(legend.position = "bottom")
 
 discrimination_dag %>% ggdag_adjustment_set() + theme_dag()
 

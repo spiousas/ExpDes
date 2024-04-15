@@ -111,6 +111,8 @@ $$
 En la siguiente tabla podemos ver las estimaciones de $\hat\beta_H$ para cada uno de los modelos:
 ```{r, results='asis'}
 #| echo: false
+#| label: tbl-helados
+#| tbl-cap: "Estimaciones de los parámetros de los modelos lm1 y lm2 definidos anteriormente."
 lm_1 <- lm(Ataques ~ Helados, helados)
 lm_2 <- lm(Ataques ~ Helados + Temperatura, helados)
 stargazer(lm_1,lm_2, type = "html",
@@ -200,6 +202,9 @@ En la siguiente tabla podemos ver las estimaciones de $\hat\beta_{Age}$ para cad
 
 ```{r, results='asis'}
 #| echo: false
+#| label: tbl-covid
+#| tbl-align: center
+#| tbl-cap: "Estimaciones de los parámetros de los modelos glm1 y glm2 definidos anteriormente."
 glm_1 <- glm(Covid ~ Age, family = "binomial", data = covid)
 glm_2 <- glm(Covid ~ Age + App, family = "binomial", data = covid)
 stargazer(glm_1,glm_2, type = "html",
@@ -273,7 +278,7 @@ Pero ¿Por qué no está abierto el camino $Ob	\rightarrow Diab \leftarrow Smok 
 #| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."
 #| fig-width: 6
 #| fig-align: center
-dag_Ob%>% ggdag_collider() +
+dag_Ob %>% ggdag_collider() +
      theme_dag() +
      scale_color_brewer(palette = "Dark2")
 ```
@@ -282,7 +287,7 @@ Bueno, tenemos dos caminos, el que queremos estudiar y una *puerta de atrás*. T
 
 ```{r}
 #| echo: true
-#| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."
+#| fig-cap: "Caminos causales abiertos luego de controlar por Diab."
 #| fig-width: 8
 #| fig-align: center
 dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort",
@@ -304,7 +309,7 @@ $$
 
 ```{r}
 #| echo: true
-#| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."
+#| fig-cap: "Caminos causales abiertos luego de controlar por Diab y Smok."
 #| fig-width: 8
 #| fig-align: center
 dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort",

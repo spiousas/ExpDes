@@ -233,6 +233,7 @@ div.csl-indent {
   <li><a href="#cargando-datos-con-readr" id="toc-cargando-datos-con-readr" class="nav-link" data-scroll-target="#cargando-datos-con-readr"><span class="toc-section-number">1.2.1</span>  Cargando datos con <em>readr</em></a></li>
   <li><a href="#el-operador-pipe-del-paquete-magrittr" id="toc-el-operador-pipe-del-paquete-magrittr" class="nav-link" data-scroll-target="#el-operador-pipe-del-paquete-magrittr"><span class="toc-section-number">1.2.2</span>  El operador <em>pipe</em> (|&gt;) del paquete <em>{magrittr}</em></a></li>
   <li><a href="#dplyr-y-sus-verbos" id="toc-dplyr-y-sus-verbos" class="nav-link" data-scroll-target="#dplyr-y-sus-verbos"><span class="toc-section-number">1.2.3</span>  <em>{dplyr}</em> y sus verbos</a></li>
+  <li><a href="#tidyr-el-paquete-para-ordenar-tus-datos" id="toc-tidyr-el-paquete-para-ordenar-tus-datos" class="nav-link" data-scroll-target="#tidyr-el-paquete-para-ordenar-tus-datos"><span class="toc-section-number">1.2.4</span>  <em>{tidyR}</em>, el paquete para ordenar tus datos</a></li>
   </ul></li>
   <li><a href="#algunas-palabras-finales" id="toc-algunas-palabras-finales" class="nav-link" data-scroll-target="#algunas-palabras-finales"><span class="toc-section-number">1.3</span>  Algunas palabras finales</a></li>
   </ul>
@@ -674,14 +675,116 @@ Instalación de R y RStudio
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  3.83   2.28</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Digieran esto tranquilos.</p>
-<!-- ### *{tidyR}*, el paquete para ordenar tus datos -->
+</section>
+</section>
+<section id="tidyr-el-paquete-para-ordenar-tus-datos" class="level3 page-columns page-full" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="tidyr-el-paquete-para-ordenar-tus-datos"><span class="header-section-number">1.2.4</span> <em>{tidyR}</em>, el paquete para ordenar tus datos</h3>
+<div class="page-columns page-full"><p>El paquete <em>{tidyR}</em> tiene muchas herramientas de manejo de tablas como reformatear, expandir tablas, manejar valores faltantes, dividir celdas, anidar datos, etc<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Sin embargo, en esta breve introducción sólo vamos a presentar muy brevemente las herramientas que nos permiten convertir una tabla <em>wide</em> en <em>tidy</em> (o <em>long</em>) y viceverse.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Para más información ver el <a href="https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf">cheatsheet</a>.</p></li></div></div>
+<section id="la-función-pivot_longer" class="level4 page-columns page-full" data-number="1.2.4.1">
+<h4 data-number="1.2.4.1" class="anchored" data-anchor-id="la-función-pivot_longer"><span class="header-section-number">1.2.4.1</span> La función <code>pivot_longer</code></h4>
+<p>Volvamos a la tabla iniicial que teníamos en formato wide:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tabla_wide <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sujeto  =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Jerry"</span>, <span class="st">"Elaine"</span>, <span class="st">"George"</span>)),</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trial_1 =</span> <span class="fu">runif</span>(<span class="dv">3</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trial_2 =</span> <span class="fu">runif</span>(<span class="dv">3</span>)) </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>tabla_wide</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sujeto trial_1 trial_2</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry    0.320  0.404 </span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Elaine   0.402  0.0637</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George   0.196  0.389</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="page-columns page-full"><p>Si nosotros quisiñeramos transformar esta tabla en una tabla en formato <em>tidy</em> podemos utilizar la función <code>pivot_longer</code><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Veamos como funciona y después la desmenuzamos:</p><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">acá</a>.</p></li></div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">"trial"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">"tiempo_respuesta"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sujeto trial   tiempo_respuesta</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry  trial_1           0.320 </span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Jerry  trial_2           0.404 </span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Elaine trial_1           0.402 </span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Elaine trial_2           0.0637</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 George trial_1           0.196 </span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George trial_2           0.389</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Los argumentos son los siguientes: <code>data</code> es la tabla a la que le vamos a realizar el cambio de formato; <code>cols</code> son las columnas que vamos a cambiar, en este caso desde <code>trial_1</code> a <code>trial_2</code>; en <code>names_to</code> indicamos la variable a la que vamos a mandar los nombres de las columnas actuales; y <code>values_to</code> la variables a la que vamos a mandar los valores.</p>
+<div class="page-columns page-full"><p>Algo ligeramente raro es que la columna trial no es numérica y, sólo por completitud, lo vamos a solucionar usando a nuestro gran amigo <code>|&gt;</code> y al verbo <code>mutate</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Y la función <a href="https://readr.tidyverse.org/reference/parse_number.html"><code>parse_number</code></a> del paquete <em>{readr}</em>.</p></li></div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">"trial"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">"tiempo_respuesta"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trial =</span> <span class="fu">parse_number</span>(trial))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sujeto trial tiempo_respuesta</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;            &lt;dbl&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry      1           0.320 </span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Jerry      2           0.404 </span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Elaine     1           0.402 </span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Elaine     2           0.0637</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 George     1           0.196 </span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George     2           0.389</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="la-función-pivot_wider" class="level4 page-columns page-full" data-number="1.2.4.2">
+<h4 data-number="1.2.4.2" class="anchored" data-anchor-id="la-función-pivot_wider"><span class="header-section-number">1.2.4.2</span> La función <code>pivot_wider</code></h4>
+<p>Ahora vamos con el caso contrario en el que tenemos una tabla en formato <em>long</em> y la queremos convertir en <em>wide</em>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tabla_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">names_to =</span> <span class="st">"trial"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">values_to =</span> <span class="st">"tiempo_respuesta"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trial =</span> <span class="fu">parse_number</span>(trial))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>tabla_long</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sujeto trial tiempo_respuesta</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;            &lt;dbl&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry      1           0.320 </span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Jerry      2           0.404 </span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Elaine     1           0.402 </span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Elaine     2           0.0637</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 George     1           0.196 </span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George     2           0.389</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="page-columns page-full"><p>Para esto vamos a hechar mano a la función <code>pivot_wider</code><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> que tiene una sintáxis parecida a su prima <code>pivot_longer</code>:</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">acá</a>.</p></li></div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> tabla_long, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> trial, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> tiempo_respuesta)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sujeto   `1`    `2`</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry  0.320 0.404 </span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Elaine 0.402 0.0637</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George 0.196 0.389</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Et Voilà!</em>, ya tenemos nuestra tabla en formato wide. En este caso le dijimos de que variable tomar los nombres de las nuevas columnas en <code>names_from</code> y de que variable tomar los valores en <code>values_from</code>.</p>
+<p>Finalmente, y sólo para alimnetar nuestra obsesión, vamos a corregir los nombres de las columnas agregando el prefijo <code>trial_</code> utilizando el parámetro de la función <code>names_prefix</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> tabla_long, </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> trial, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_prefix =</span> <span class="st">"trial_"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> tiempo_respuesta)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sujeto trial_1 trial_2</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry    0.320  0.404 </span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Elaine   0.402  0.0637</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George   0.196  0.389</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <!-- ### *{ggplot2}* o cómo hacer figuras que sean la envidia de tu compañero de escritorio -->
 </section>
 </section>
 </section>
 <section id="algunas-palabras-finales" class="level2 page-columns page-full" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="algunas-palabras-finales"><span class="header-section-number">1.3</span> Algunas palabras finales</h2>
-<div class="page-columns page-full"><p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [<span class="citation" data-cites="wickham2023r">Wickham, Çetinkaya-Rundel, and Grolemund (<a href="references.html#ref-wickham2023r" role="doc-biblioref">2023</a>)</span>]<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Disponible gratis online en <a href="https://r4ds.had.co.nz/">acá</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [<span class="citation" data-cites="wickham2023r">Wickham, Çetinkaya-Rundel, and Grolemund (<a href="references.html#ref-wickham2023r" role="doc-biblioref">2023</a>)</span>]<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Disponible gratis online en <a href="https://r4ds.had.co.nz/">acá</a>.</p></li></div></div>
 
 
 <div class="no-row-height column-margin column-container"><div id="ref-wickham2019welcome" class="csl-entry" role="doc-biblioentry">

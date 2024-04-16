@@ -243,7 +243,95 @@ summer |>
 
 Digieran esto tranquilos.
 
-<!-- ### *{tidyR}*, el paquete para ordenar tus datos -->
+### *{tidyR}*, el paquete para ordenar tus datos
+
+El paquete *{tidyR}* tiene muchas herramientas de manejo de tablas como reformatear, expandir tablas, manejar valores faltantes, dividir celdas, anidar datos, etc[^tidyr]. Sin embargo, en esta breve introducción sólo vamos a presentar muy brevemente las herramientas que nos permiten convertir una tabla *wide* en *tidy* (o *long*) y viceverse.
+
+[^tidyr]: Para más información ver el [cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf).
+
+#### La función `pivot_longer`
+
+Volvamos a la tabla iniicial que teníamos en formato wide:
+
+```{r}
+#| echo: true
+#| message: false
+tabla_wide <- tibble(sujeto  = rep(c("Jerry", "Elaine", "George")),
+                     trial_1 = runif(3),
+                     trial_2 = runif(3)) 
+
+tabla_wide
+```
+
+Si nosotros quisiñeramos transformar esta tabla en una tabla en formato *tidy* podemos utilizar la función `pivot_longer`[^pivot_longer]. Veamos como funciona y después la desmenuzamos:
+
+[^pivot_longer]: Más información [acá](https://tidyr.tidyverse.org/reference/pivot_longer.html).
+
+```{r}
+#| echo: true
+#| message: false
+pivot_longer(data = tabla_wide, 
+             cols = trial_1:trial_2, 
+             names_to = "trial",
+             values_to = "tiempo_respuesta")
+```
+
+Los argumentos son los siguientes: `data` es la tabla a la que le vamos a realizar el cambio de formato; `cols` son las columnas que vamos a cambiar, en este caso desde `trial_1` a `trial_2`; en `names_to` indicamos la variable a la que vamos a mandar los nombres de las columnas actuales; y `values_to` la variables a la que vamos a mandar los valores.
+
+Algo ligeramente raro es que la columna trial no es numérica y, sólo por completitud, lo vamos a solucionar usando a nuestro gran amigo `|>` y al verbo `mutate`[^parse_number]:
+
+[^parse_number]: Y la función [`parse_number`](https://readr.tidyverse.org/reference/parse_number.html) del paquete *{readr}*.
+
+```{r}
+#| echo: true
+#| message: false
+pivot_longer(data = tabla_wide, 
+             cols = trial_1:trial_2, 
+             names_to = "trial",
+             values_to = "tiempo_respuesta") |>
+  mutate(trial = parse_number(trial))
+```
+
+#### La función `pivot_wider`
+
+Ahora vamos con el caso contrario en el que tenemos una tabla en formato *long* y la queremos convertir en *wide*:
+
+```{r}
+#| echo: true
+#| message: false
+tabla_long <- pivot_longer(data = tabla_wide, 
+                           cols = trial_1:trial_2, 
+                           names_to = "trial",
+                           values_to = "tiempo_respuesta") |>
+  mutate(trial = parse_number(trial))
+
+tabla_long
+```
+
+Para esto vamos a hechar mano a la función `pivot_wider`[^pivot_wider] que tiene una sintáxis parecida a su prima `pivot_longer`:
+
+[^pivot_wider]: Más información [acá](https://tidyr.tidyverse.org/reference/pivot_wider.html).
+
+```{r}
+#| echo: true
+#| message: false
+pivot_wider(data = tabla_long, 
+            names_from = trial, 
+            values_from = tiempo_respuesta)
+```
+
+*Et Voilà!*, ya tenemos nuestra tabla en formato wide. En este caso le dijimos de que variable tomar los nombres de las nuevas columnas en `names_from` y de que variable tomar los valores en `values_from`.
+
+Finalmente, y sólo para alimnetar nuestra obsesión, vamos a corregir los nombres de las columnas agregando el prefijo `trial_` utilizando el parámetro de la función `names_prefix`:
+
+```{r}
+#| echo: true
+#| message: false
+pivot_wider(data = tabla_long, 
+            names_from = trial, 
+            names_prefix = "trial_",
+            values_from = tiempo_respuesta)
+```
 
 <!-- ### *{ggplot2}* o cómo hacer figuras que sean la envidia de tu compañero de escritorio -->
 

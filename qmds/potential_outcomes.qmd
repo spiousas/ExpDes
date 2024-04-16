@@ -6,6 +6,6 @@
 source("../R/_common.R")
 ```
 
-asd
+<!-- ## Sdf -->
 
-## Sdf
+En construcción `r emo::ji("construction")`

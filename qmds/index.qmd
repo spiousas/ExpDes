@@ -14,19 +14,9 @@ Se espera que los lectores y lectoras sean capaces de comunicar los diseños exp
 Si bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.
 :::
 
-## ¿Cómo se organiza este libro?
+## ¿Qué es este libro?
 
-El libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.
-
-### Probabilidad y estadística
-
-Esta sección cuenta con dos capítulos:
-
-### Dieseño experimental
-
-### Diseño cuasi experimental
-
-### Ejemplos de aplicación
+En este libro no vas a encontrar grandes desarrollos teóricos ni ejemplos complejos. Es simplemente una guía de lectura que tiene como objetivo ser la puerta de entrada para algunos conceptos clave del diseño experimental y la inferencia causal. Para esto vamos a chapotear en **R** y *tidyverse*, mojar las patas en la estadística, aguantar un poco la respiración en inferencia y *potential outcomes*, bucear en diseños aleatorizados (experimentos) para finalmente sumergirnos (con la idea de volver a salir a flote) en las profundas aguas del diseño cuasiexperimental y la inferencia causal.
 
 ## Lo que NO vas a aprender en este libro
 

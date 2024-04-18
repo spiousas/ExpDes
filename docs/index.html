@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.1.251">
@@ -50,15 +50,15 @@ ul.task-list li input[type="checkbox"] {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
   }
 }</script>
 
@@ -145,13 +145,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio">Prefacio</a>
   <ul class="collapse">
   <li><a href="#lo-que-vas-a-aprender-en-este-libro" id="toc-lo-que-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</a></li>
-  <li><a href="#cómo-se-organiza-este-libro" id="toc-cómo-se-organiza-este-libro" class="nav-link" data-scroll-target="#cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</a>
-  <ul class="collapse">
-  <li><a href="#probabilidad-y-estadística" id="toc-probabilidad-y-estadística" class="nav-link" data-scroll-target="#probabilidad-y-estadística">Probabilidad y estadística</a></li>
-  <li><a href="#dieseño-experimental" id="toc-dieseño-experimental" class="nav-link" data-scroll-target="#dieseño-experimental">Dieseño experimental</a></li>
-  <li><a href="#diseño-cuasi-experimental" id="toc-diseño-cuasi-experimental" class="nav-link" data-scroll-target="#diseño-cuasi-experimental">Diseño cuasi experimental</a></li>
-  <li><a href="#ejemplos-de-aplicación" id="toc-ejemplos-de-aplicación" class="nav-link" data-scroll-target="#ejemplos-de-aplicación">Ejemplos de aplicación</a></li>
-  </ul></li>
+  <li><a href="#qué-es-este-libro" id="toc-qué-es-este-libro" class="nav-link" data-scroll-target="#qué-es-este-libro">¿Qué es este libro?</a></li>
   <li><a href="#lo-que-no-vas-a-aprender-en-este-libro" id="toc-lo-que-no-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</a></li>
   <li><a href="#prerequisitos" id="toc-prerequisitos" class="nav-link" data-scroll-target="#prerequisitos">Prerequisitos</a></li>
   <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
@@ -174,8 +168,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliations</div>
+  <div class="quarto-title-meta-heading">Autores</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
   
     <div class="quarto-title-meta-contents">
     Ignacio Spiousas <a href="https://orcid.org/0000-0002-0283-4696" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
@@ -225,22 +219,9 @@ SIGA SIGA…
 </div>
 </div>
 </section>
-<section id="cómo-se-organiza-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-organiza-este-libro">¿Cómo se organiza este libro?</h2>
-<p>El libro se organiza en cuatro grandes secciones: Probabilidad y estadística, diseño experimental, diseño cuasi experimental y ejemplos de aplicación.</p>
-<section id="probabilidad-y-estadística" class="level3">
-<h3 class="anchored" data-anchor-id="probabilidad-y-estadística">Probabilidad y estadística</h3>
-<p>Esta sección cuenta con dos capítulos:</p>
-</section>
-<section id="dieseño-experimental" class="level3">
-<h3 class="anchored" data-anchor-id="dieseño-experimental">Dieseño experimental</h3>
-</section>
-<section id="diseño-cuasi-experimental" class="level3">
-<h3 class="anchored" data-anchor-id="diseño-cuasi-experimental">Diseño cuasi experimental</h3>
-</section>
-<section id="ejemplos-de-aplicación" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplos-de-aplicación">Ejemplos de aplicación</h3>
-</section>
+<section id="qué-es-este-libro" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-este-libro">¿Qué es este libro?</h2>
+<p>En este libro no vas a encontrar grandes desarrollos teóricos ni ejemplos complejos. Es simplemente una guía de lectura que tiene como objetivo ser la puerta de entrada para algunos conceptos clave del diseño experimental y la inferencia causal. Para esto vamos a chapotear en <strong>R</strong> y <em>tidyverse</em>, mojar las patas en la estadística, aguantar un poco la respiración en inferencia y <em>potential outcomes</em>, bucear en diseños aleatorizados (experimentos) para finalmente sumergirnos (con la idea de volver a salir a flote) en las profundas aguas del diseño cuasiexperimental y la inferencia causal.</p>
 </section>
 <section id="lo-que-no-vas-a-aprender-en-este-libro" class="level2">
 <h2 class="anchored" data-anchor-id="lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</h2>
@@ -320,7 +301,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiada");
     setTimeout(function() {
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');

@@ -194,63 +194,67 @@ div.csl-indent {
 <div class="cell">
 
 </div>
-<section id="presentación" class="level2" data-number="3.1">
+<section id="presentación" class="level2 page-columns page-full" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="presentación"><span class="header-section-number">3.1</span> Presentación</h2>
-<p>Supongamos que quiero evaluar la efectividad de la aspirina para el dolor de cabeza. Me duele la cabeza y lo quiero es saber el efecto diferencial entre tomar y no tomar esa aspirina. Es decir, en el tiempo 0 estoy yo con dolor de cabeza y en el tiempo 1 debería haber dos versiones mías (como si una no fuera suficiente), la que tomó la aspirina y la que no. A cada una de ellas les tendría que preguntar cuánto les duele la cabeza, el <em>outcome</em> de mi comparación. No hace falta ser demasiado astuto para darse cuenta que esto es imposible ya que sólo nos será posible obsevar una de esas versiones mientras que la otra será un contrafáctico.</p>
-<p>De</p>
-</section>
+<p>Supongamos que quiero evaluar la efectividad de la aspirina para mitigar el dolor de cabeza. Me duele la cabeza y lo quiero es saber el efecto diferencial entre tomar y no tomar esa aspirina. Es decir, en el tiempo 0 estoy yo con dolor de cabeza y en el tiempo 1 debería haber dos versiones mías (como si una no fuera suficiente), la que tomó la aspirina y la que no. A cada una de ellas les tendría que preguntar cuánto les duele la cabeza, el <em>outcome</em> de mi comparación. No hace falta ser demasiado astuto para darse cuenta que esto es imposible ya que sólo nos será posible obsevar una de esas versiones mientras que la otra será un contrafáctico.</p>
+<p>De esto vamos a hablar en este capítulo, utilizando la tradición de los <em>potential outcomes</em>. Estas ideas terminan de tomar forma en la versión que conocemos en las ciencias sociales en <span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span></p>
+<div class="no-row-height column-margin column-container"></div></section>
 <section id="potential-outcomes" class="level2 page-columns page-full" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="potential-outcomes"><span class="header-section-number">3.2</span> <em>Potential outcomes</em></h2>
-<p>La idea de los <em>potential outcomes</em> termina de tomar forma en la versión que conocemos en las ciencias sociales en <span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span>. Lo que nos propone es la definición del efecto causal como la comparación de dos estados en el mundo. En una versión del mundo, la “actual”, me tomo una aspirina y a las dos horas registro la severidad de mi dolor de cabeza mientras que en la otra versión del mundo, la “contrafactual”, no me la tomo y las dos horas registro la severidad del dolor. A partir de esto, la tradición de los <em>potential outcomes</em> define al efecto causal de tomar una aspirina en el dolor de cabeza como la diferencia entre esas dos mediciones.</p>
-<div class="no-row-height column-margin column-container"></div><p>Todo muy lindo, pero como ya estarán sospechando es imposible calcular un efecto que está expresado en función de un contrafactual, ya que este contrafactual no lo podemos observar. Pero no se preocupen que le vamos a encontrar la vuelta.</p>
+<p>Lo que nos proponen los <em>potential outcomes</em> es la definición del efecto causal como la comparación de dos estados en el mundo. En una versión del mundo, la “actual”, me tomo una aspirina y a las dos horas registro la severidad de mi dolor de cabeza mientras que en la otra versión del mundo, la “contrafactual”, no me la tomo y las dos horas registro la severidad del dolor. A partir de esto, la tradición de los <em>potential outcomes</em> define al efecto causal de tomar una aspirina en el dolor de cabeza como la diferencia entre esas dos mediciones.</p>
+<p>Todo muy lindo, pero como ya estarán sospechando es imposible calcular un efecto que está expresado en función de un contrafactual, ya que este contrafactual no lo podemos observar. Pero no se preocupen que le vamos a encontrar la vuelta.</p>
 <div class="page-columns page-full"><p>Empecemos con un poco de notación que nos va a ayudar a acomodar las ideas. Por simplicidad vamos a asumir una variable binaria para la asignación del grupo (por ejemplo, tratamiento y control). Esta variable vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibe el tratamiento y <span class="math inline">\(0\)</span> si no. Cada unidad <span class="math inline">\(i\)</span> va a tener dos <em>potential outcomes</em>: <span class="math inline">\(Y_i^1\)</span> si la unidad recibió el tratamiento y <span class="math inline">\(Y_i^0\)</span> si no. Esto significa que una unidad experimental en el mismo momento del tiempo va a recibir y no recibir el tratamiento, o sea, alguno de estos va a ser contrafactual<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;De ahí el nombre de <em>potential</em>, porque se trata de posibles estados del mundo. Un estado en el que la unidad <span class="math inline">\(i\)</span> recibe el tratamiento y uno en el que no.</p></li></div></div>
 <p>Los <em>outcomes</em> observables difieren de los potenciales. Mientras que los potenciales son variables aleatorias hipotéticas, los observables son variables aleatorias factuales y medibles. Hay una ecuación que nos permite definir el <em>outcome</em> observable (<span class="math inline">\(Y^i\)</span>) en función de los potenciales, se llama la <em>switching equation</em>:</p>
-<p>switching equation <span id="eq-test"><span class="math display">\[
+<p><span id="eq-switching"><span class="math display">\[
 Y_i = D_i Y_i^1 + (1-D_i) Y_i^0
 \tag{3.1}\]</span></span></p>
-<p>Donde <span class="math inline">\(D_i\)</span> vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibió el tratamiento (entonces <span class="math inline">\(Y_i=Y_i^1\)</span>) y <span class="math inline">\(0\)</span> si no (entonces <span class="math inline">\(Y_i=Y_i^0\)</span>). Vale la pena notar que <span class="math inline">\(Y_i\)</span>, el <em>outcome</em> observable, no tiene ningún supraíndice ya que es más potencial.</p>
-<p>Usando esta notación definimos el efecto causal del tratamiento para una unidad como: <span id="eq-test"><span class="math display">\[
+<p>Donde <span class="math inline">\(D_i\)</span> vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibió el tratamiento (entonces <span class="math inline">\(Y_i=Y_i^1\)</span>) y <span class="math inline">\(0\)</span> si no (entonces <span class="math inline">\(Y_i=Y_i^0\)</span>). Vale la pena notar que <span class="math inline">\(Y_i\)</span>, el <em>outcome</em> observable, no tiene ningún supraíndice ya que no es más potencial.</p>
+<p>Usando esta notación definimos el efecto causal del tratamiento para una unidad <span class="math inline">\(i\)</span> como: <span id="eq-deltai"><span class="math display">\[
 \delta_i = Y_i^1 - Y_i^0
 \tag{3.2}\]</span></span></p>
-<p>Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los <em>potential outcomes</em> debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal, que para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar (los contrafácticos)<span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span>.</p>
+<p>Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los <em>potential outcomes</em> debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal: Para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar (los contrafácticos)<span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-rubin1974estimating" class="csl-entry" role="doc-biblioentry">
 Rubin, Donald B. 1974. <span>«Estimating causal effects of treatments in randomized and nonrandomized studies.»</span> <em>Journal of educational Psychology</em> 66 (5): 688.
 </div></div></section>
-<section id="efecto-promedio-del-tratamiento" class="level2" data-number="3.3">
+<section id="efecto-promedio-del-tratamiento" class="level2 page-columns page-full" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="efecto-promedio-del-tratamiento"><span class="header-section-number">3.3</span> Efecto promedio del tratamiento</h2>
-<p><span id="eq-test"><span class="math display">\[
+<div class="page-columns page-full"><p>Al igual que los <em>potential outcomes</em>, el efecto para la unidad <span class="math inline">\(i\)</span> (<span class="math inline">\(\delta_i\)</span>) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (<strong>ATE</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>). El <strong>ATE</strong> va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. El mismo se define de la siguiente forma:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Del inglés <em>Average treatment effect</em>.</p></li></div></div>
+<p><span id="eq-ATE"><span class="math display">\[
 \begin{array}
 _ATE &amp;=&amp; E[\delta_i] \\
 &amp;=&amp; E[Y_i^1 - Y_i^0] \\
 &amp;=&amp; E[Y_i^1] - E[Y_i^0]
 \end{array}
 \tag{3.3}\]</span></span></p>
-<p><span id="eq-test"><span class="math display">\[
+<p>Ahora vamos a definir el efecto promedio, pero para el grupo tratado (es decir, los participantes asignados al grupo tratamiento, con <span class="math inline">\(D_i=1\)</span>):</p>
+<p><span id="eq-ATT"><span class="math display">\[
 \begin{array}
 _ATT &amp;=&amp; E[\delta_i|D_i=1] \\
 &amp;=&amp; E[Y_i^1 - Y_i^0|D_i=1] \\
 &amp;=&amp; E[Y_i^1|D_i=1] - E[Y_i^0|D_i=1]
 \end{array}
 \tag{3.4}\]</span></span></p>
-<p><span id="eq-test"><span class="math display">\[
+<div class="page-columns page-full"><p>Esta magnitud se llama <strong>ATT</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> y se calcula de la misma forma que el <strong>ATE</strong> pero condicionando los <span class="math inline">\(\delta_i\)</span> al valor de <span class="math inline">\(D_i\)</span> igual a 1. De manera análoga definimos el efecto promedio pero para el grupo no tratado<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>(<span class="math inline">\(D_i=0\)</span>)</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Del inglés <em>Average treatment effect for the treated</em>.</p></li><li id="fn4"><p><sup>4</sup>&nbsp;Del inglés <em>Average treatment effect for the untreated</em>.</p></li></div></div>
+<p><span id="eq-ATU"><span class="math display">\[
 \begin{array}
 _ATU &amp;=&amp; E[\delta_i|D_i=0] \\
 &amp;=&amp; E[Y_i^1 - Y_i^0|D_i=0] \\
 &amp;=&amp; E[Y_i^1|D_i=0] - E[Y_i^0|D_i=0]
 \end{array}
 \tag{3.5}\]</span></span></p>
-<p>En construcción 🚧</p>
+<div class="page-columns page-full"><p>Ojo con confundir estos tres conceptos. Creo que el <strong>ATE</strong> es autoexplicativo, pero se suele confundir <strong>ATT</strong> y <strong>ATU</strong>. En el primer caso, estamos calculando la esperanza de los <span class="math inline">\(\delta_i\)</span> para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus <span class="math inline">\(Y^1_i\)</span> como sus <span class="math inline">\(Y^0_i\)</span>. Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el <strong>ATE</strong> no se pueden calcular en la práctica. En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, podemos estimar el <strong>ATE</strong> a partir de los <em>outcomes</em> observables.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Spoiler: Asignación aleatoria de las unidades experimentales a los grupos.</p></li></div></div>
 </section>
 <section id="diferencia-de-medias-simple" class="level2 page-columns page-full" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</h2>
-<p><span id="eq-test"><span class="math display">\[
+<div class="page-columns page-full"><p>¿Qué es lo que sí podemos observar? Una magnitud que a priori podríamos creer que va aestar relacionada con el <strong>ATE</strong> y que podemos observar es la diferencia de medias entre los <em>outcomes</em> observados del grupo tratamiento y el grupo control. La vamos a llamar <strong>SDO</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> y se calcula de la siguiente forma:</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Del inglés <em>simple difference in outcomes</em>.</p></li></div></div>
+<p><span id="eq-SDO"><span class="math display">\[
 \begin{array}
 _SDO &amp;=&amp; E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] \\
 &amp;=&amp; \frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=1}^{N_C} (y_i|d_i=0)
 \end{array}
 \tag{3.6}\]</span></span></p>
-<p><span class="math inline">\(N_T + N_C = n\)</span></p>
-<p><span id="eq-test"><span class="math display">\[
+<p>Donde <span class="math inline">\(N_T\)</span> y <span class="math inline">\(N_C\)</span> son la cantidad de individuos en el grupo tratamiento y control respectivamente (y <span class="math inline">\(N_T + N_C = n\)</span>). Todo muy lindo, pero operemos un poquito para ver hasta que punto el <strong>SDO</strong> es un estimador insesgado del <strong>ATE</strong>. Empecemos escribiendo el <strong>ATE</strong> como una suma pesada del <strong>ATT</strong> y el <strong>ATU</strong>:</p>
+<p><span id="eq-sesgos"><span class="math display">\[
 \begin{array}
 _ATE &amp;=&amp; \pi ATT + (1-\pi) ATU \\
 &amp;=&amp; \pi E[Y_i^1|D_i=1] - \pi E[Y_i^0|D_i=1] + \\
@@ -258,16 +262,12 @@ _ATE &amp;=&amp; \pi ATT + (1-\pi) ATU \\
 &amp;=&amp; \bigl\{ \pi E[Y_i^1|D_i=1] + (1-\pi) E[Y_i^1|D_i=0] \bigl\} - \\
 &amp; &amp; \bigl\{ \pi E[Y_i^0|D_i=1] + (1-\pi) E[Y_i^0|D_i=0] \bigl\}
 \end{array}
-\tag{3.7}\]</span></span> Con:</p>
-<div class="page-columns page-full"><p><span class="math display">\[
-\begin{array}
-_\pi &amp;=&amp; N_T/n \\
-1 - \pi &amp;=&amp; N_C/n \\
-\end{array}
-\]</span> Operando con esa ecuación para despejar la diferencia entre los <em>outcomes</em> observables y ver cómo estos se realcionan con el resto de las magnitudes definidas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
+\tag{3.7}\]</span></span></p>
+<p>Con <span class="math inline">\(\pi = N_T/n\)</span> y <span class="math inline">\(1 - \pi = N_C/n\)</span>.</p>
+<div class="page-columns page-full"><p>Operando con la <a href="#eq-sesgos">Ecuación&nbsp;<span>3.8</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
 Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
 </div></li></div></div>
-<p><span id="eq-test"><span class="math display">\[
+<p><span id="eq-sesgos"><span class="math display">\[
 \begin{array}
 _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &amp;=&amp; ATE \\
 &amp;+&amp; ( E[Y_i^0|D_i=1] + E[Y_i^0|D_i=0] ) \\
@@ -275,14 +275,14 @@ _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &amp;=&amp; ATE \\
 \end{array}
 \tag{3.8}\]</span></span></p>
 <p>Que podemos reescribir como:</p>
-<p><span id="eq-sesgos"><span class="math display">\[
+<p><span id="eq-SDOdecomp"><span class="math display">\[
 \begin{array}
 _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=1}^{N_C} (y_i|d_i=0)}_\text{Diferencia de los outcomes} &amp;=&amp; \underbrace{ATE}_\text{Efecto promedio del tratamiento} \\
 &amp;+&amp; \underbrace{( E[Y_i^0|D_i=1] + E[Y_i^0|D_i=0] )}_\text{Sesgo de selección} \\
 &amp;+&amp; \underbrace{(1-\pi) (ATT - ATU)}_\text{Sesgo de efecto heterogéneo}
 \end{array}
 \tag{3.9}\]</span></span></p>
-<p>En construcción 🚧</p>
+<p>Lo que puede verse en <a href="#eq-SDOdecomp">Ecuación&nbsp;<span>3.9</span></a> es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el <strong>SDO</strong> sería un buen estimador del <strong>ATE</strong> que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.</p>
 </section>
 <section id="independencia" class="level2 page-columns page-full" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="independencia"><span class="header-section-number">3.5</span> Independencia</h2>
@@ -298,23 +298,23 @@ _E[Y^1|D=1] - E[Y^1|D=0] &amp;=&amp; 0 \\
 E[Y^0|D=1] - E[Y^0|D=0] &amp;=&amp; 0
 \end{array}
 \tag{3.10}\]</span></span></p>
-<div class="page-columns page-full"><p>Es decir, que la esperanza de los <em>outcomes</em> para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en “mundo tratamiento”<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el “mundo control”[^indep]. Ojo que esto no implica que la esperanza del <em>outcome</em> para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=0] = 0\)</span>) ni igual a la esperanza no tratamiento de los tratados (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=1] = 0\)</span>).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Tengamos en cuenta que <span class="math inline">\(E[Y^1|D=0]\)</span> es un contrafáctico, ya que es el <em>outcome</em> habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con <span class="math inline">\(D=0\)</span>)</p></li></div></div>
-<p>¿Qué implicancias tiene las igualdades presentadas en <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a> en los sesgos que vimos en la ecuación <a href="#eq-sesgos">Ecuación&nbsp;<span>3.9</span></a>? Empecemos por el sesgo de selección (<span class="math inline">\(E[Y^0|D=1] + E[Y^0|D=0]\)</span>). Vemos que, deacuerdo a la primera línea de <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a> ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo <em>outcome</em> lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.</p>
+<div class="page-columns page-full"><p>Es decir, que la esperanza de los <em>outcomes</em> para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en “mundo tratamiento”<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el “mundo control”[^indep]. Ojo que esto no implica que la esperanza del <em>outcome</em> para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=0] = 0\)</span>) ni igual a la esperanza no tratamiento de los tratados (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=1] = 0\)</span>).</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;Tengamos en cuenta que <span class="math inline">\(E[Y^1|D=0]\)</span> es un contrafáctico, ya que es el <em>outcome</em> habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con <span class="math inline">\(D=0\)</span>)</p></li></div></div>
+<p>¿Qué implicancias tiene las igualdades presentadas en <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a> en los sesgos que vimos en la ecuación <a href="#eq-sesgos">Ecuación&nbsp;<span>3.8</span></a>? Empecemos por el sesgo de selección (<span class="math inline">\(E[Y^0|D=1] + E[Y^0|D=0]\)</span>). Vemos que, deacuerdo a la primera línea de <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a> ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo <em>outcome</em> lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.</p>
 <p>La relación del sesgo de efecto heterogéneo (<span class="math inline">\((1-\pi) (ATT - ATU)\)</span>) con la independencia es un poquito más difícil de demostrar. Olvidémonos del <span class="math inline">\((1-\pi)\)</span> de momento. Reescribamos los efectos <strong>ATT</strong> y <strong>ATU</strong>:</p>
-<p><span id="eq-test"><span class="math display">\[
+<p><span class="math display">\[
 \begin{array}
 _ATT &amp;=&amp; E[Y^1|D=1] - E[Y^0|D=1] \\
 ATU &amp;=&amp; E[Y^1|D=0] - E[Y^0|D=0]
 \end{array}
-\tag{3.11}\]</span></span></p>
+\]</span></p>
 <p>Y ahora restemos ambos términos:</p>
 <p><span id="eq-sesgohet"><span class="math display">\[
 \begin{array}
 _ATT - ATU &amp;=&amp; E[Y^1|D=1] - E[Y^0|D=1] - ( E[Y^1|D=0] - E[Y^0|D=0] )\\
 &amp;=&amp; \bigl\{ E[Y^1|D=1] - E[Y^1|D=0] \bigl\} + \bigl\{ E[Y^0|D=0] - E[Y^0|D=1] \bigl\}
 \end{array}
-\tag{3.12}\]</span></span></p>
-<p>Reescrito de esta forma podemos ver los dos primero términos de <a href="#eq-sesgohet">Ecuación&nbsp;<span>3.12</span></a> se hacen cero por la rpimero línea de <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a>, y los últimos dos se hacen cero por la segunda.</p>
+\tag{3.11}\]</span></span></p>
+<p>Reescrito de esta forma podemos ver los dos primero términos de <a href="#eq-sesgohet">Ecuación&nbsp;<span>3.11</span></a> se hacen cero por la rpimero línea de <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a>, y los últimos dos se hacen cero por la segunda.</p>
 <p>Finalmente, demostramos que si hay independencia en la asignación de los grupos, la diferencia de las medias entre el grupo tratado y el control es un buen estimador del <strong>ATE</strong>.</p>
 
 

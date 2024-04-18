@@ -33,6 +33,7 @@ ggdag(tidy_dag) +
 
 ::: {.callout-warning icon="false"}
 ## DAGS en R
+
 Para realizar los DAGS que aparecen en este capítulo utilizamos la librería *{ggdag}*. Para esto primero debemos hacer un esquema de nuestro DAG en [Daggity](https://www.dagitty.net/dags.html#) y luego copiar parte de lo generado en la definición de nuestro DAG en **R**. En el desarrollo del capítulo utilizaremos algunas de las herramientas de *{ggdag}*, varias de las cuales pueden encontrar en [este tutorial](https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1). Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la [documentación del mismo](https://r-causal.github.io/ggdag/).
 :::
 
@@ -66,14 +67,14 @@ Una de las principales ventajas de plantear un DAg para estudiar una relación c
 
 $$
 \begin{array}
-_Hel	\longrightarrow Sh \\
-Hel	\longleftarrow T \longrightarrow Sh
+_Hel    \longrightarrow Sh \\
+Hel \longleftarrow T \longrightarrow Sh
 \end{array}
 $$
 
 El primero es lo que se llama un *camino directo* y es lo relación causal que queremos estudiar. Por otro lado, el segundo ($Hel \leftarrow T \rightarrow Sh$) es lo que se llama una *puerta de atrás* y lo identíficamos porque, al menos en alguna de sus relaciones causales, la flechita va para la izquierda. Identificar estos caminos *puerta de atrás* es una parte fundamental de controlar la variabilidad espúrea en nuestras relaciones causales. En particular en este ejemplo, tenemos un claro confusor y lo que queremos es controlar por **T**.
 
-Simulemos esta relación y veamos que pasa. 
+Simulemos esta relación y veamos que pasa.
 
 ```{r}
 #| echo: true
@@ -98,17 +99,17 @@ helados  %>% ggplot(aes(x = Helados, y = Ataques)) +
   theme_bw()
 ```
 
-Vemos que ambas variables están altamente correlacionadas, de hecho, su *r* de Pearson vale `r round(cor(helados$Ataques, helados$Helados), 3)`. Sin embargo, nosotros sabemos que esa correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón y que algo tenemos que hacer. Hemos escuchado muchas veces que lo que tenemos que hacer es "controlar" por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agergar **Temperatura** como una covariable. Ajustemos dos modelos de regresión, uno con la **Temperatura** como covariable y uno sin y comparemos las estimaciones de los efectos causales ($\hat\beta_H$)[^errores-1]:
+Vemos que ambas variables están altamente correlacionadas, de hecho, su *r* de Pearson vale `r round(cor(helados$Ataques, helados$Helados), 3)`. Sin embargo, nosotros sabemos que esa correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón y que algo tenemos que hacer. Hemos escuchado muchas veces que lo que tenemos que hacer es "controlar" por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agergar **Temperatura** como una covariable. Ajustemos dos modelos de regresión, uno con la **Temperatura** como covariable y uno sin y comparemos las estimaciones de los efectos causales ($\hat\beta_H$)[^dags-2]:
 
-[^errores-1]: Donde $\epsilon_i$ y $\tau_i$ son los términos de error i.i.d. distribuidos normalmente con $\mu=0$ y $\sigma=1$.
+[^dags-2]: Donde $\epsilon_i$ y $\tau_i$ son los términos de error i.i.d. distribuidos normalmente con $\mu=0$ y $\sigma=1$.
 
 $$
 \begin{array}
 _lm_1&:& Ataques_i = \alpha + \beta_{H} Helados_i + \epsilon_i \\
 lm_2&:& Ataques_i = \alpha + \beta_{H} Helados_i +  \beta_{T} Temperatura_i + \tau_i
 \end{array}
-$$
-En la siguiente tabla podemos ver las estimaciones de $\hat\beta_H$ para cada uno de los modelos:
+$$ En la siguiente tabla podemos ver las estimaciones de $\hat\beta_H$ para cada uno de los modelos:
+
 ```{r, results='asis'}
 #| echo: false
 #| label: tbl-helados
@@ -154,13 +155,12 @@ Ya uqe sabemos que la edad tienen un. efecto en el uso de aplicaciones móviles 
 
 $$
 \begin{array}
-_Age	\longrightarrow Cov \\
-Age	\longrightarrow App \longleftarrow Cov
+_Age    \longrightarrow Cov \\
+Age \longrightarrow App \longleftarrow Cov
 \end{array}
-$$
-Repitamos el ejercicio de simulación que utilizamos en el ejemplo de los confusores, sólo que esta vez Covid es una variable dicotómica y, por lo tanto, debemos muestrarla de una distribución Bernoulli[^binomial]:
+$$ Repitamos el ejercicio de simulación que utilizamos en el ejemplo de los confusores, sólo que esta vez Covid es una variable dicotómica y, por lo tanto, debemos muestrarla de una distribución Bernoulli[^dags-3]:
 
-[^binomial]: Para más detalles sobre como simular una variiable con distribución Bernoulli (binomial con $n=1$) podemos ver el siguiente [link](https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model).
+[^dags-3]: Para más detalles sobre como simular una variiable con distribución Bernoulli (binomial con $n=1$) podemos ver el siguiente [link](https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model).
 
 ```{r}
 #| echo: true
@@ -176,7 +176,7 @@ Puede verse que la verdadera relación entre Covid y Age (en términos de parám
 
 ```{r}
 #| echo: false
-#| fig-cap: "Infefctados y no infectados de COVID-19 en función de la edad."
+#| fig-cap: "Infectados y no infectados de COVID-19 en función de la edad."
 #| fig-width: 6
 #| fig-align: center
 #| warning: false
@@ -216,117 +216,118 @@ La estimación del efecto correcta sería la del modelos sin controlar pero ¿Po
 
 ::: {.callout-tip icon="false"}
 ## El criterio de las puertas traseras
+
 En resumen, el **criterio de las puertas traseras** nos dice que para estimar la relación causal principal debemos cerrar todas las *puertas traseras* (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un *collider* el camino està cerrado y al controlar por él lo abrimos.
 :::
 
-<!-- ## Un ejemplo -->
+## Un ejemplo
 
-<!-- Analicemos el ejemplo que plantean los autores en [@tonnies2022collider]. Lo que quieren estudiar es el efecto causal de la obesidad (**Ob**) end la mortalidad (**Mort**). Pero, identifican dos variables que tambièn podrìan estar afectando: 1- Si el individuo tiene diabetes (**Diab**) y 2- Si el individuo es fumador (**Smok**). La relación causal enntre las variables que plantean (medio de juguete) puede verse representada en el siguiente DAG[^dags-2]: -->
+Analicemos el ejemplo que plantean los autores en [@tonnies2022collider]. Lo que quieren estudiar es el efecto causal de la obesidad (**Ob**) end la mortalidad (**Mort**). Pero, identifican dos variables que tambièn podrìan estar afectando: 1- Si el individuo tiene diabetes (**Diab**) y 2- Si el individuo es fumador (**Smok**). La relación causal enntre las variables que plantean (medio de juguete) puede verse representada en el siguiente DAG[^dags-2]:
 
-<!-- [^dags-2]: Recuerden que el diagrama causal no es un problema estadísticon sino más bien se plantea previo a cualquier consideración estadística, usando como insumo el conocimiento del dominio que tenemos. -->
+[^dags-2]: Recuerden que el diagrama causal no es un problema estadísticon sino más bien se plantea previo a cualquier consideración estadística, usando como insumo el conocimiento del dominio que tenemos.
 
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "DAG que representa la relación causal planteada por los autores en [@tonnies2022collider]." -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
+```{r}
+#| echo: true
+#| fig-cap: "DAG que representa la relación causal planteada por los autores en [@tonnies2022collider]."
+#| fig-width: 6
+#| fig-align: center
+dag_Ob <- dagitty::dagitty('dag {
+Ob [exposure,pos="-1.5,0"]
+Mort [outcome,pos="1.5,0"]
+Smok [pos="1.5,1.5"]
+Diab [pos="0,1.5"]
+Ob -> Mort
+Ob -> Diab
+Diab -> Mort
+Smok -> Mort
+Smok -> Diab
+}')
 
-<!-- dag_Ob <- dagitty::dagitty('dag { -->
-<!-- Ob [exposure,pos="-1.5,0"] -->
-<!-- Mort [outcome,pos="1.5,0"] -->
-<!-- Smok [pos="1.5,1.5"] -->
-<!-- Diab [pos="0,1.5"] -->
-<!-- Ob -> Mort -->
-<!-- Ob -> Diab -->
-<!-- Diab -> Mort -->
-<!-- Smok -> Mort -->
-<!-- Smok -> Diab -->
-<!-- }') -->
+tidy_dag <- tidy_dagitty(dag_Ob)
+ggdag(tidy_dag) +
+  theme_dag()
+```
 
-<!-- tidy_dag <- tidy_dagitty(dag_Ob) -->
-<!-- ggdag(tidy_dag) + -->
-<!--   theme_dag() -->
-<!-- ``` -->
+Si tebemos todos estos datos observados y queremos estimar el efecto causal de la obesidad en la mortalidad, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función `ggdag_paths` del paquete *{ggdags}*[^dags-3]. A continuación vemos un ejemplo de uso de esta función:
 
-<!-- Si tebemos todos estos datos observados y queremos estimar el efecto causal de la obesidad en la mortalidad, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función `ggdag_paths` del paquete *{ggdags}*[^dags-3]. A continuación vemos un ejemplo de uso de esta función: -->
+[^dags-2]: Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.
 
-<!-- [^dags-2]: Esto resulta especialmente útil cuando los DAGS se empiezan a complicar. -->
+```{r}
+#| echo: true
+#| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."
+#| fig-width: 8
+#| fig-align: center
+dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", shadow = TRUE) +
+  theme_dag() +
+  theme(legend.position = "bottom")
+```
 
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG." -->
-<!-- #| fig-width: 8 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", shadow = TRUE) +  -->
-<!--   theme_dag() + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
+Podemos ver que los caminos abiertos son:
 
-<!-- Podemos ver que los caminos abiertos son: -->
+$$
+\begin{array}
+_Ob     \longrightarrow Mort\\
+Ob \longrightarrow Diab \longrightarrow Mort
+\end{array}
+$$
 
-<!-- $$ -->
-<!-- \begin{array} -->
-<!-- _Ob	 \longrightarrow Mort\\ -->
-<!-- Ob	\longrightarrow Diab \longrightarrow Mort -->
-<!-- \end{array} -->
-<!-- $$ -->
+Pero ¿Por qué no está abierto el camino $Ob    \rightarrow Diab \leftarrow Smok \rightarrow Mort$? ¡Exacto! Está cerrado, porque, para ese camino, **Diab** es un *collider* ya que está causada tanto por **Smok** como por **Ob**. Resulta importante notar que una variable es un *collider* o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que **Diab** actúa como un confusor en el camino $Ob  \rightarrow Diab \rightarrow Mort$. La función `ggdag_collider` también nos puede ayudar a identificar un *collider*.
 
-<!-- Pero ¿Por qué no está abierto el camino $Ob	\rightarrow Diab \leftarrow Smok \rightarrow Mort$? ¡Exacto! Está cerrado, porque, para ese camino, **Diab** es un *collider* ya que está causada tanto por **Smok** como por **Ob**. Resulta importante notar que una variable es un *collider* o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que **Diab** actúa como un confusor en el camino $Ob	\rightarrow Diab \rightarrow Mort$. La función `ggdag_collider` también nos puede ayudar a identificar un *collider*. -->
+```{r}
+#| echo: true
+#| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."
+#| fig-width: 6
+#| fig-align: center
+dag_Ob %>% ggdag_collider() +
+     theme_dag() +
+     scale_color_brewer(palette = "Dark2")
+```
 
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG." -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_collider() + -->
-<!--      theme_dag() + -->
-<!--      scale_color_brewer(palette = "Dark2") -->
-<!-- ``` -->
+Bueno, tenemos dos caminos, el que queremos estudiar y una *puerta de atrás*. Todo indica que tenemos que controlar por **Diab** y listo ¿No? Apliquemos esto agregando el parámetro `adjust_for = "Diab"` a la función `ggdag_paths`:
 
-<!-- Bueno, tenemos dos caminos, el que queremos estudiar y una *puerta de atrás*. Todo indica que tenemos que controlar por **Diab** y listo ¿No? Apliquemos esto agregando el parámetro `adjust_for = "Diab"` a la función `ggdag_paths`:  -->
+```{r}
+#| echo: true
+#| fig-cap: "Caminos causales abiertos luego de controlar por Diab."
+#| fig-width: 8
+#| fig-align: center
+dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort",
+                       adjust_for = "Diab", shadow = TRUE) +
+  theme_dag() +
+  labs(hue = NULL) +
+  theme(legend.position = "bottom")
+```
 
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Caminos causales abiertos luego de controlar por Diab." -->
-<!-- #| fig-width: 8 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", -->
-<!--                        adjust_for = "Diab", shadow = TRUE) +  -->
-<!--   theme_dag() + -->
-<!--   labs(hue = NULL) + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
+Sin embargo, podemos ver que los caminos abiertos son:
 
-<!-- Sin embargo, podemos ver que los caminos abiertos son: -->
+$$
+\begin{array}
+_Ob     \longrightarrow Mort\\
+Ob \longrightarrow Diab \longleftarrow Smok \longrightarrow Mort
+\end{array}
+$$
 
-<!-- $$ -->
-<!-- \begin{array} -->
-<!-- _Ob	 \longrightarrow Mort\\ -->
-<!-- Ob	\longrightarrow Diab \longleftarrow Smok \longrightarrow Mort -->
-<!-- \end{array} -->
-<!-- $$ -->
-<!-- ¿Qué pasó? Bueno, lo que pasó es que al controlar por un *collider* abrimos un camino que estaba cerrado. Miremos qué pasa si controlamos por **Diab** y **Smok**: -->
+¿Qué pasó? Bueno, lo que pasó es que al controlar por un *collider* abrimos un camino que estaba cerrado. Miremos qué pasa si controlamos por **Diab** y **Smok**:
 
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Caminos causales abiertos luego de controlar por Diab y Smok." -->
-<!-- #| fig-width: 8 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", -->
-<!--                        adjust_for = c("Diab", "Smok"), shadow = TRUE) +  -->
-<!--   theme_dag() + -->
-<!--   labs(hue = NULL) + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
+```{r}
+#| echo: true
+#| fig-cap: "Caminos causales abiertos luego de controlar por Diab y Smok."
+#| fig-width: 8
+#| fig-align: center
+dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort",
+                       adjust_for = c("Diab", "Smok"), shadow = TRUE) +
+  theme_dag() +
+  labs(hue = NULL) +
+  theme(legend.position = "bottom")
+```
 
-<!-- Ahora sí, el único camino abierto es $Ob \rightarrow Mort$, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es: -->
+Ahora sí, el único camino abierto es $Ob \rightarrow Mort$, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:
 
-<!-- $$ -->
-<!-- Mortalidad_i = \alpha + \beta_{Ob} Obesidad_i + \beta_{Diab} Diabetes_i +  \beta_{Smok} Smoker_i + \epsilon_i -->
-<!-- $$ -->
+$$
+Mortalidad_i = \alpha + \beta_{Ob} Obesidad_i + \beta_{Diab} Diabetes_i +  \beta_{Smok} Smoker_i + \epsilon_i
+$$
 
-<!-- Donde $\beta_{Ob}$ es un estimador del efecto causal que queremos estudiar. -->
+Donde $\beta_{Ob}$ es un estimador del efecto causal que queremos estudiar.
 
-<!-- Para más ejemplos y detalles sobre los DAGS pueden consultar [@cunningham2021causal] o [@huntington2021effect]. El canal de [YouTube de Nick Huntington-Klein](https://www.youtube.com/@NickHuntingtonKlein) también es un excelente recurso para profundizar sobre estos temas[^effect-1]. -->
+Para más ejemplos y detalles sobre los DAGS pueden consultar [@cunningham2021causal] o [@huntington2021effect]. El canal de [YouTube de Nick Huntington-Klein](https://www.youtube.com/@NickHuntingtonKlein) también es un excelente recurso para profundizar sobre estos temas[^effect-1].
 
-<!-- [^effect-1]: Nick es el autor de [@huntington2021effect]. -->
+[^effect-1]: Nick es el autor de [@huntington2021effect].

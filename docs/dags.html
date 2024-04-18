@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,48 +47,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -101,8 +73,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -131,18 +102,20 @@ div.csl-indent {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -151,11 +124,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dags.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -163,12 +141,12 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -176,46 +154,53 @@ div.csl-indent {
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -224,12 +209,14 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#definiciones-características-y-ejemplos" id="toc-definiciones-características-y-ejemplos" class="nav-link active" data-scroll-target="#definiciones-características-y-ejemplos"><span class="toc-section-number">4.1</span>  Definiciones, características y ejemplos</a></li>
-  <li><a href="#el-criterio-de-las-puertas-de-atrás" id="toc-el-criterio-de-las-puertas-de-atrás" class="nav-link" data-scroll-target="#el-criterio-de-las-puertas-de-atrás"><span class="toc-section-number">4.2</span>  El criterio de las puertas de atrás</a></li>
-  <li><a href="#colliders" id="toc-colliders" class="nav-link" data-scroll-target="#colliders"><span class="toc-section-number">4.3</span>  <em>Colliders</em></a></li>
+  <li><a href="#definiciones-características-y-ejemplos" id="toc-definiciones-características-y-ejemplos" class="nav-link active" data-scroll-target="#definiciones-características-y-ejemplos"><span class="header-section-number">4.1</span> Definiciones, características y ejemplos</a></li>
+  <li><a href="#el-criterio-de-las-puertas-de-atrás" id="toc-el-criterio-de-las-puertas-de-atrás" class="nav-link" data-scroll-target="#el-criterio-de-las-puertas-de-atrás"><span class="header-section-number">4.2</span> El criterio de las puertas de atrás</a></li>
+  <li><a href="#colliders" id="toc-colliders" class="nav-link" data-scroll-target="#colliders"><span class="header-section-number">4.3</span> <em>Colliders</em></a></li>
+  <li><a href="#un-ejemplo" id="toc-un-ejemplo" class="nav-link" data-scroll-target="#un-ejemplo"><span class="header-section-number">4.4</span> Un ejemplo</a></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -238,7 +225,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></h1>
 </div>
 
 
@@ -246,15 +233,13 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
 </header>
 
-<div class="cell">
-
-</div>
 <div class="page-columns page-full"><p>Los grafos acíclicos dirigidos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos. Los mismos nos permiten poner en una representación gráfica el conocimiento que tenemos de las variables aleatorias involucradas en un proceso que queremos estudiar y las relaciones causales entre ellas. Además, existen herramientas que, a partir de características de los DAGS, nos permiten decidir cuál es el modelo estadístico cuyo parámetro será una estimación del efecto causal que queremos estudiar.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;A partir de ahora DAGS, del inglés <em>Directed acyclic graphs</em>.</p></li></div></div>
 <section id="definiciones-características-y-ejemplos" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="definiciones-características-y-ejemplos"><span class="header-section-number">4.1</span> Definiciones, características y ejemplos</h2>
@@ -264,17 +249,17 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dags_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="384"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación entre tomar una aspirina (A) y la intensidad del dolor (I).</figcaption><p></p>
+<figcaption class="figure-caption">DAG que representa la relación entre tomar una aspirina (A) y la intensidad del dolor (I).</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout-warning callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 DAGS en R
 </div>
 </div>
@@ -288,7 +273,7 @@ DAGS en R
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dags_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="384"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption><p></p>
+<figcaption class="figure-caption">DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption>
 </figure>
 </div>
 </div>
@@ -321,21 +306,21 @@ Hel \longleftarrow T \longrightarrow Sh
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dags_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption><p></p>
+<figcaption class="figure-caption">DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>Vemos que ambas variables están altamente correlacionadas, de hecho, su <em>r</em> de Pearson vale 0.977. Sin embargo, nosotros sabemos que esa correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón y que algo tenemos que hacer. Hemos escuchado muchas veces que lo que tenemos que hacer es “controlar” por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agergar <strong>Temperatura</strong> como una covariable. Ajustemos dos modelos de regresión, uno con la <strong>Temperatura</strong> como covariable y uno sin y comparemos las estimaciones de los efectos causales (<span class="math inline">\(\hat\beta_H\)</span>)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Donde <span class="math inline">\(\epsilon_i\)</span> y <span class="math inline">\(\tau_i\)</span> son los términos de error i.i.d. distribuidos normalmente con <span class="math inline">\(\mu=0\)</span> y <span class="math inline">\(\sigma=1\)</span>.</p></li></div></div>
+<div class="page-columns page-full"><p>Vemos que ambas variables están altamente correlacionadas, de hecho, su <em>r</em> de Pearson vale 0.977. Sin embargo, nosotros sabemos que esa correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón y que algo tenemos que hacer. Hemos escuchado muchas veces que lo que tenemos que hacer es “controlar” por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agergar <strong>Temperatura</strong> como una covariable. Ajustemos dos modelos de regresión, uno con la <strong>Temperatura</strong> como covariable y uno sin y comparemos las estimaciones de los efectos causales (<span class="math inline">\(\hat\beta_H\)</span>)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></li></div></div>
 <p><span class="math display">\[
 \begin{array}
 _lm_1&amp;:&amp; Ataques_i = \alpha + \beta_{H} Helados_i + \epsilon_i \\
 lm_2&amp;:&amp; Ataques_i = \alpha + \beta_{H} Helados_i +  \beta_{T} Temperatura_i + \tau_i
 \end{array}
 \]</span> En la siguiente tabla podemos ver las estimaciones de <span class="math inline">\(\hat\beta_H\)</span> para cada uno de los modelos:</p>
-<div id="tbl-helados" class="cell tbl-parent quarto-layout-panel anchored">
+<div id="tbl-helados" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="Estimaciones de los parámetros de los modelos lm1 y lm2 definidos anteriormente.">
 <div class="panel-caption table-caption">
-<p>Estimaciones de los parámetros de los modelos lm1 y lm2 definidos anteriormente.</p>
+<p><strong>?(caption)</strong></p>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
@@ -1382,7 +1367,7 @@ F Statistic
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dags_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación entre la edad (Age), la infección por COVID-19 (Cov) y el uso de la aplicación móvil de autoreporte (App).</figcaption><p></p>
+<figcaption class="figure-caption">DAG que representa la relación entre la edad (Age), la infección por COVID-19 (Cov) y el uso de la aplicación móvil de autoreporte (App).</figcaption>
 </figure>
 </div>
 </div>
@@ -1408,7 +1393,7 @@ Age \longrightarrow App \longleftarrow Cov
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dags_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Infefctados y no infectados de COVID-19 en función de la edad.</figcaption><p></p>
+<figcaption class="figure-caption">Infectados y no infectados de COVID-19 en función de la edad.</figcaption>
 </figure>
 </div>
 </div>
@@ -1421,9 +1406,9 @@ glm_2&amp;:&amp; logit(Covid_i) = \alpha + \beta_{Age} Age_i + \beta_{App} App_i
 \end{array}
 \]</span></p>
 <p>En la siguiente tabla podemos ver las estimaciones de <span class="math inline">\(\hat\beta_{Age}\)</span> para cada uno de los modelos:</p>
-<div id="tbl-covid" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-align="center">
+<div id="tbl-covid" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-align="center" data-tbl-cap="Estimaciones de los parámetros de los modelos glm1 y glm2 definidos anteriormente.">
 <div class="panel-caption table-caption">
-<p>Estimaciones de los parámetros de los modelos glm1 y glm2 definidos anteriormente.</p>
+<p><strong>?(caption)</strong></p>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
@@ -2349,14 +2334,12 @@ Akaike Inf. Crit.
 </div>
 </div>
 <p>La estimación del efecto correcta sería la del modelos sin controlar pero ¿Por qué pasa esto? Cuando tenemos un <em>collider</em> podemos considerar ese camino como <em>cerrado por defecto</em> y al controlar por él, ese camino se abre. Entonces, en si bien teníamos dos posibles caminos causales, sólo uno estaba abierto y no necesitábamos controlar por <strong>App</strong>. Esto se debe a que, al <strong>App</strong> no causar ninguna de mis otras dos variables, ese camino causal está cerrado. Para reflexionar un poco en por qué ese camino se abre al controlar por un <em>collider</em> recomiendo las reflexiones del capítulo 8 de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-huntington2021effect" class="csl-entry" role="doc-biblioentry">
-Huntington-Klein, Nick. 2021. <em>The effect: An introduction to research design and causality</em>. Chapman; Hall/CRC.
-</div></div><div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="no-row-height column-margin column-container"></div><div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 El criterio de las puertas traseras
 </div>
 </div>
@@ -2364,98 +2347,174 @@ El criterio de las puertas traseras
 <p>En resumen, el <strong>criterio de las puertas traseras</strong> nos dice que para estimar la relación causal principal debemos cerrar todas las <em>puertas traseras</em> (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un <em>collider</em> el camino està cerrado y al controlar por él lo abrimos.</p>
 </div>
 </div>
-<!-- ## Un ejemplo -->
-<!-- Analicemos el ejemplo que plantean los autores en [@tonnies2022collider]. Lo que quieren estudiar es el efecto causal de la obesidad (**Ob**) end la mortalidad (**Mort**). Pero, identifican dos variables que tambièn podrìan estar afectando: 1- Si el individuo tiene diabetes (**Diab**) y 2- Si el individuo es fumador (**Smok**). La relación causal enntre las variables que plantean (medio de juguete) puede verse representada en el siguiente DAG[^dags-2]: -->
-<!-- [^dags-2]: Recuerden que el diagrama causal no es un problema estadísticon sino más bien se plantea previo a cualquier consideración estadística, usando como insumo el conocimiento del dominio que tenemos. -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "DAG que representa la relación causal planteada por los autores en [@tonnies2022collider]." -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob <- dagitty::dagitty('dag { -->
-<!-- Ob [exposure,pos="-1.5,0"] -->
-<!-- Mort [outcome,pos="1.5,0"] -->
-<!-- Smok [pos="1.5,1.5"] -->
-<!-- Diab [pos="0,1.5"] -->
-<!-- Ob -> Mort -->
-<!-- Ob -> Diab -->
-<!-- Diab -> Mort -->
-<!-- Smok -> Mort -->
-<!-- Smok -> Diab -->
-<!-- }') -->
-<!-- tidy_dag <- tidy_dagitty(dag_Ob) -->
-<!-- ggdag(tidy_dag) + -->
-<!--   theme_dag() -->
-<!-- ``` -->
-<!-- Si tebemos todos estos datos observados y queremos estimar el efecto causal de la obesidad en la mortalidad, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función `ggdag_paths` del paquete *{ggdags}*[^dags-3]. A continuación vemos un ejemplo de uso de esta función: -->
-<!-- [^dags-2]: Esto resulta especialmente útil cuando los DAGS se empiezan a complicar. -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG." -->
-<!-- #| fig-width: 8 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", shadow = TRUE) +  -->
-<!--   theme_dag() + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
-<!-- Podemos ver que los caminos abiertos son: -->
-<!-- $$ -->
-<!-- \begin{array} -->
-<!-- _Ob     \longrightarrow Mort\\ -->
-<!-- Ob \longrightarrow Diab \longrightarrow Mort -->
-<!-- \end{array} -->
-<!-- $$ -->
-<!-- Pero ¿Por qué no está abierto el camino $Ob    \rightarrow Diab \leftarrow Smok \rightarrow Mort$? ¡Exacto! Está cerrado, porque, para ese camino, **Diab** es un *collider* ya que está causada tanto por **Smok** como por **Ob**. Resulta importante notar que una variable es un *collider* o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que **Diab** actúa como un confusor en el camino $Ob  \rightarrow Diab \rightarrow Mort$. La función `ggdag_collider` también nos puede ayudar a identificar un *collider*. -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG." -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_collider() + -->
-<!--      theme_dag() + -->
-<!--      scale_color_brewer(palette = "Dark2") -->
-<!-- ``` -->
-<!-- Bueno, tenemos dos caminos, el que queremos estudiar y una *puerta de atrás*. Todo indica que tenemos que controlar por **Diab** y listo ¿No? Apliquemos esto agregando el parámetro `adjust_for = "Diab"` a la función `ggdag_paths`:  -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Caminos causales abiertos luego de controlar por Diab." -->
-<!-- #| fig-width: 8 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", -->
-<!--                        adjust_for = "Diab", shadow = TRUE) +  -->
-<!--   theme_dag() + -->
-<!--   labs(hue = NULL) + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
-<!-- Sin embargo, podemos ver que los caminos abiertos son: -->
-<!-- $$ -->
-<!-- \begin{array} -->
-<!-- _Ob     \longrightarrow Mort\\ -->
-<!-- Ob \longrightarrow Diab \longleftarrow Smok \longrightarrow Mort -->
-<!-- \end{array} -->
-<!-- $$ -->
-<!-- ¿Qué pasó? Bueno, lo que pasó es que al controlar por un *collider* abrimos un camino que estaba cerrado. Miremos qué pasa si controlamos por **Diab** y **Smok**: -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| fig-cap: "Caminos causales abiertos luego de controlar por Diab y Smok." -->
-<!-- #| fig-width: 8 -->
-<!-- #| fig-align: center -->
-<!-- dag_Ob %>% ggdag_paths(from = "Ob", to = "Mort", -->
-<!--                        adjust_for = c("Diab", "Smok"), shadow = TRUE) +  -->
-<!--   theme_dag() + -->
-<!--   labs(hue = NULL) + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
-<!-- Ahora sí, el único camino abierto es $Ob \rightarrow Mort$, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es: -->
-<!-- $$ -->
-<!-- Mortalidad_i = \alpha + \beta_{Ob} Obesidad_i + \beta_{Diab} Diabetes_i +  \beta_{Smok} Smoker_i + \epsilon_i -->
-<!-- $$ -->
-<!-- Donde $\beta_{Ob}$ es un estimador del efecto causal que queremos estudiar. -->
-<!-- Para más ejemplos y detalles sobre los DAGS pueden consultar [@cunningham2021causal] o [@huntington2021effect]. El canal de [YouTube de Nick Huntington-Klein](https://www.youtube.com/@NickHuntingtonKlein) también es un excelente recurso para profundizar sobre estos temas[^effect-1]. -->
-<!-- [^effect-1]: Nick es el autor de [@huntington2021effect]. -->
+</section>
+<section id="un-ejemplo" class="level2 page-columns page-full" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="un-ejemplo"><span class="header-section-number">4.4</span> Un ejemplo</h2>
+<div class="page-columns page-full"><p>Analicemos el ejemplo que plantean los autores en <span class="citation" data-cites="tonnies2022collider">(<a href="references.html#ref-tonnies2022collider" role="doc-biblioref">Tönnies, Kahl, y Kuss 2022</a>)</span>. Lo que quieren estudiar es el efecto causal de la obesidad (<strong>Ob</strong>) end la mortalidad (<strong>Mort</strong>). Pero, identifican dos variables que tambièn podrìan estar afectando: 1- Si el individuo tiene diabetes (<strong>Diab</strong>) y 2- Si el individuo es fumador (<strong>Smok</strong>). La relación causal enntre las variables que plantean (medio de juguete) puede verse representada en el siguiente DAG<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></li></div></div>
+<div class="no-row-height column-margin column-container"><div id="ref-tonnies2022collider" class="csl-entry" role="listitem">
+Tönnies, Thaddäus, Sabine Kahl, y Oliver Kuss. 2022. <span>«Collider bias in observational studies: consequences for medical research part 30 of a series on evaluation of scientific publications»</span>. <em>Deutsches <span>Ä</span>rzteblatt International</em> 119 (7): 107.
+</div></div><div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "DAG que representa la relación causal planteada por los autores en [@tonnies2022collider]."</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="ot">&lt;-</span> dagitty<span class="sc">::</span><span class="fu">dagitty</span>(<span class="st">'dag {</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">Ob [exposure,pos="-1.5,0"]</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">Mort [outcome,pos="1.5,0"]</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">Smok [pos="1.5,1.5"]</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">Diab [pos="0,1.5"]</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">Ob -&gt; Mort</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">Ob -&gt; Diab</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">Diab -&gt; Mort</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">Smok -&gt; Mort</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">Smok -&gt; Diab</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>tidy_dag <span class="ot">&lt;-</span> <span class="fu">tidy_dagitty</span>(dag_Ob)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdag</span>(tidy_dag) <span class="sc">+</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dags_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="page-columns page-full"><p>Si tebemos todos estos datos observados y queremos estimar el efecto causal de la obesidad en la mortalidad, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función <code>ggdag_paths</code> del paquete <em>{ggdags}</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A continuación vemos un ejemplo de uso de esta función:</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Para más detalles sobre como simular una variiable con distribución Bernoulli (binomial con <span class="math inline">\(n=1\)</span>) podemos ver el siguiente <a href="https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model">link</a>.</p></li></div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Ob"</span>, <span class="at">to =</span> <span class="st">"Mort"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dags_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p>Podemos ver que los caminos abiertos son:</p>
+<p>$$</p>
+<span class="math display">\[\begin{array}
+
+_Ob     \longrightarrow Mort\\
+
+Ob \longrightarrow Diab \longrightarrow Mort
+
+\end{array}\]</span>
+<p>$$</p>
+<p>Pero ¿Por qué no está abierto el camino <span class="math inline">\(Ob \rightarrow Diab \leftarrow Smok \rightarrow Mort\)</span>? ¡Exacto! Está cerrado, porque, para ese camino, <strong>Diab</strong> es un <em>collider</em> ya que está causada tanto por <strong>Smok</strong> como por <strong>Ob</strong>. Resulta importante notar que una variable es un <em>collider</em> o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que <strong>Diab</strong> actúa como un confusor en el camino <span class="math inline">\(Ob \rightarrow Diab \rightarrow Mort\)</span>. La función <code>ggdag_collider</code> también nos puede ayudar a identificar un <em>collider</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_collider</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dags_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p>Bueno, tenemos dos caminos, el que queremos estudiar y una <em>puerta de atrás</em>. Todo indica que tenemos que controlar por <strong>Diab</strong> y listo ¿No? Apliquemos esto agregando el parámetro <code>adjust_for = "Diab"</code> a la función <code>ggdag_paths</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Caminos causales abiertos luego de controlar por Diab."</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Ob"</span>, <span class="at">to =</span> <span class="st">"Mort"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="st">"Diab"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">hue =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dags_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p>Sin embargo, podemos ver que los caminos abiertos son:</p>
+<p>$$</p>
+<span class="math display">\[\begin{array}
+
+_Ob     \longrightarrow Mort\\
+
+Ob \longrightarrow Diab \longleftarrow Smok \longrightarrow Mort
+
+\end{array}\]</span>
+<p>$$</p>
+<p>¿Qué pasó? Bueno, lo que pasó es que al controlar por un <em>collider</em> abrimos un camino que estaba cerrado. Miremos qué pasa si controlamos por <strong>Diab</strong> y <strong>Smok</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Caminos causales abiertos luego de controlar por Diab y Smok."</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>dag_Ob <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Ob"</span>, <span class="at">to =</span> <span class="st">"Mort"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="fu">c</span>(<span class="st">"Diab"</span>, <span class="st">"Smok"</span>), <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">hue =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="dags_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p>Ahora sí, el único camino abierto es <span class="math inline">\(Ob \rightarrow Mort\)</span>, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:</p>
+<p>$$</p>
+<p>Mortalidad_i = + <em>{Ob} Obesidad_i + </em>{Diab} Diabetes_i + _{Smok} Smoker_i + _i</p>
+<p>$$</p>
+<p>Donde <span class="math inline">\(\beta_{Ob}\)</span> es un estimador del efecto causal que queremos estudiar.</p>
+<div class="page-columns page-full"><p>Para más ejemplos y detalles sobre los DAGS pueden consultar <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> o <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>. El canal de <a href="https://www.youtube.com/@NickHuntingtonKlein">YouTube de Nick Huntington-Klein</a> también es un excelente recurso para profundizar sobre estos temas<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Nick es el autor de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p><div id="ref-huntington2021effect" class="csl-entry" role="listitem">
+Huntington-Klein, Nick. 2021. <em>The effect: An introduction to research design and causality</em>. Chapman; Hall/CRC.
+</div></li></div></div>
 
 
-
+<div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
+Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
+</div></div>
 </section>
 
 
@@ -2487,9 +2546,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -2500,8 +2573,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -2537,24 +2627,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
@@ -2574,6 +2768,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

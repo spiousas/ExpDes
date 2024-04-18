@@ -33,9 +33,11 @@ Cuando las variables aleatorias son continuas la cosa se complica un poco más y
 
 ## Eventos y probabilidad condicional
 
-Acá agregar lo de árboles y diagramas.
+<!-- Acá agregar lo de árboles y diagramas. -->
 
-Pensemos en un ejemplo
+<!-- Pensemos en un ejemplo -->
+
+En construcción `r emo::ji("construction")`
 
 ## Probabilidad total
 
@@ -143,6 +145,8 @@ $$
 
 ## Correlación
 
+En construcción `r emo::ji("construction")`
+
 ## Población y muestra
 
 Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.
@@ -212,3 +216,15 @@ ggplot() +
 ```
 
 Como es de esperarse, podemos ver que al aumentar $n$, la estimación de los parámetros poblacionales es mejor. Pero tenemos que tener esta idea en mente, cada vez que tomamos una muestra podemos estimar un parámetro de la población y hasta hacer inferencias estadísticas sobre el mismo, pero **NUNCA** lo vamos a conocer.
+
+## Inferencia estadística
+
+En construcción `r emo::ji("construction")`
+
+## El p-valor
+
+En construcción `r emo::ji("construction")`
+
+## Potencia estadística
+
+En construcción `r emo::ji("construction")`

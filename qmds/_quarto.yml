@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: ../docs
 
+lang: es
+
 book:
   title: "Diseños experimentales y cuasiexperimentales"
   author:

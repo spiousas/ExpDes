@@ -776,4 +776,37 @@ imp <- mice(hsbwmiss2, m = 50, seed = 1234)
 mi1 <- with(imp, lm(write ~ female + read + math))
 summary(pool(mi1))
 
+# LMEM
+
+betalm <- c()
+betalmer <- c()
+
+for (i in 1:100) {
+  set.seed(i)
+  tb <- tibble(
+    student = rep(1:10000),
+    classroom = sample(1:60, 10000, replace = T)) |>
+    group_by(classroom) |>
+    mutate(tratamiento = rbinom(1,1,.5),
+           mu_classroom = rnorm(1,200, 10) + tratamiento * 2) |>
+    ungroup() |>
+    mutate(Yij = mu_classroom + rnorm(10000,0,100))
+  
+  
+  # tb |> ggplot(aes(x = as.factor(tratamiento):as.factor(classroom),
+  #                  y = Yij,
+  #                  color = as.factor(classroom),
+  #                  group = as.factor(classroom))) +
+  #   geom_jitter() +
+  #   stat_summary(color = "black") +
+  #   theme(legend.position = "none")
+  
+  mlm <- lm(Yij ~ tratamiento, data = tb)
+  mlmer <- lmer(Yij ~ tratamiento + (1|classroom), data = tb)
+  
+  betalm <- c(betalm, coef(mlm)[2])
+  betalmer <- c(betalmer, fixef(mlmer)[2])
+}
+sd(betalm)
+sd(betalmer)
 

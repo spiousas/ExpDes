@@ -733,12 +733,104 @@ V &amp;\sim&amp; \chi^2_{n} \\
 <p>Donde ahora la curva negra es una <span class="math inline">\(\mathcal{N}(0,1)\)</span>. Hagan la prueba con otras distribuciones u otros <span class="math inline">\(n\)</span> y van a ver que rápido (o lento para las distribuciones altamente asimétricas) que convergen a una <span class="math inline">\(\mathcal{N}(0,1)\)</span>.</p>
 </section>
 </section>
-<section id="potencia-estadística" class="level2" data-number="2.11">
+<section id="potencia-estadística" class="level2 page-columns page-full" data-number="2.11">
 <h2 data-number="2.11" class="anchored" data-anchor-id="potencia-estadística"><span class="header-section-number">2.11</span> Potencia estadística</h2>
-<p>En construcción 🚧</p>
+<p>Ya hablamos de los errores de tipo I y prometimos hablar de los errores de tipo II. ¿Qué sería eso? Bueno, sería el caso en el que <span class="math inline">\(H_0\)</span> fuera falsa y nosotros no la rechazáramos. A diferencia del contros de errores de tipo I, la probabilidad de cometer errores de tipo II (llamada muy originalmente <span class="math inline">\(\beta\)</span>) depende del valor real de mi parámetro. En el ejemplo anterior, cuando <span class="math inline">\(H_0\)</span> era verdadera <span class="math inline">\(\mu\)</span> era igual a cero pero, ¿Qué pasa cuando es falsa? ¿Qué valor de <span class="math inline">\(\mu\)</span> tenemos que asumir?.</p>
+<p>Empecemos definiendo a la potencia estadística, la misma se define como <span class="math inline">\(1-\beta\)</span>, es decir, cuanto más acotado este el error de tipo II más alta será la potencia. Una definición formal podría ser:</p>
+<p><span id="eq-test"><span class="math display">\[
+potencia = P(rechazar \, H_0 | H_0 \, falsa)
+\tag{2.30}\]</span></span></p>
+<p>Que, para el ejemplo anterior la podríamos reescribir como:</p>
+<p><span class="math display">\[
+\begin{array}
+_potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
+&amp;=&amp; P\left( \left| \frac{\bar{X}}{\sqrt{\sigma^2/n}} \right| \geq Z_{1-\alpha/2}  \right)\\
+&amp;=&amp; 1 - P\left( Z \leq Z_{\alpha/2} + \frac{\mu}{\sqrt{\sigma^2/n}} \right) - P\left( Z \leq Z_{1-\alpha/2} + \frac{\mu}{\sqrt{\sigma^2/n}} \right) \\
+\end{array}
+\]</span></p>
+<p>Fijensé que para calcularla no sólo necesitamos a <span class="math inline">\(\sigma\)</span> (que podríamos estimar) sino también a <span class="math inline">\(mu\)</span>, que es nuestro parámetro de interés. Por ejemplo, podemos ver que la pontencia depende de <span class="math inline">\(\mu\)</span>, siendo más grande para valores de <span class="math inline">\(\mu\)</span> más alejados del cero. Esto tiene sentido ya que a medida que <span class="math inline">\(|\mu|\)</span> es mayor, es menor probable cometer errores tipo II.</p>
+<div class="cell" data-layout-align="center">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>potencia <span class="ot">&lt;-</span> <span class="cf">function</span>(sigma, mu, n, alpha) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,.<span class="dv">1</span>),<span class="dv">20</span>,<span class="fl">0.05</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">mu =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,.<span class="dv">1</span>), <span class="at">potencia =</span> pot)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mu,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Potencia estadística en función de mu.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como es de esperarse, la potencia también depende del <span class="math inline">\(\alpha\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">20</span>,<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>), <span class="at">potencia =</span> pot)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Potencia en función de alfa"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Potencia estadística en función de alfa.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Con valores de potencia mayores para valores más garndes de <span class="math inline">\(\alpha\)</span>. Nuevamente esto tiene sentido ya que ser más restictivo con el rechazo de <span class="math inline">\(H_0\)</span> (o sea, que tenga que observar un valor más extremo) lleva a una disminución de <span class="math inline">\(\alpha\)</span>, a un aumento de los errores tipo II y con ello a una disminución de la potencia.</p>
+<p>Finalmente, la potencia también depende del <span class="math inline">\(n\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>),<span class="fl">0.05</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">n =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>), <span class="at">potencia =</span> pot)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Potencia en función de n"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Potencia estadística en función de n.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Con valores de potencia más altos para <span class="math inline">\(n\)</span> más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>. Esta última dependencia es muy importante.</p><div class="no-row-height column-margin column-container"><li id="fn14"><p><sup>14</sup>&nbsp;Las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se hacen más finas y hay menos solapamiento, recuerden que en ambas la varianza disminuye con <span class="math inline">\(1/n\)</span>.</p></li></div></div>
+<p>Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar cambios pequeños sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El <span class="math inline">\(\alpha\)</span> lo decidimos cuando acotamos el error de tipo I, a <span class="math inline">\(\mu\)</span> no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el <span class="math inline">\(n\)</span>.</p>
+<p>El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:</p>
+<ol type="1">
+<li>Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.</li>
+<li>Determinamos el mínimo tamaño de efecto de interés (<em>SESOI</em><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaña de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.</li>
+<li>Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo <span class="math inline">\(0.9\)</span>) y un <span class="math inline">\(\alpha\)</span> dado (por ejemplo <span class="math inline">\(0.05\)</span>).</li>
+</ol>
+<div class="no-row-height column-margin column-container"><li id="fn15"><p><sup>15</sup>&nbsp;Del inglés <em>smallest effect size of interest</em>.</p></li></div><p>No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente <span class="math inline">\(n\)</span>, pero la forma de pensar el problema es siempre similar.</p>
+<p>Para más detalles sobre los procedimientos para justificar el temaño de muestra ver <span class="citation" data-cites="lakens2022sample">(<a href="references.html#ref-lakens2022sample" role="doc-biblioref">Lakens 2022</a>)</span>.</p>
 
 
-
+<div class="no-row-height column-margin column-container"><div id="ref-lakens2022sample" class="csl-entry" role="doc-biblioentry">
+Lakens, Daniel. 2022. <span>«Sample size justification»</span>. <em>Collabra: psychology</em> 8 (1): 33267.
+</div></div>
 </section>
 
 

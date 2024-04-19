@@ -81,17 +81,14 @@ $$
 potencia = P(rechazar \, H_0 | H_0 \, falsa)
 $$
 
-\$\$
+$$
 
-```{=tex}
 \begin{array}
 _potencia &=& P(rechazar \, H_0 | H_1) \\
 &=& P\left( \left| \frac{\bar{X}}{\sqrt{\sigma^2/n}} \right| \geq Z_{1-\alpha/2}  \right)\\
 &=& 1 - P\left( Z \leq Z_{\alpha/2} + \frac{\mu}{\sqrt{\sigma^2/n}} \right) - P\left( Z \leq Z_{1-\alpha/2} + \frac{\mu}{\sqrt{\sigma^2/n}} \right) \\
-
 \end{array}
-```
-\$\$
+$$
 
 $$
 \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)

@@ -45,6 +45,8 @@ caption-location: margin
 format:
   html:
     theme: cosmo
+    code-fold: show
+    code-summary: "Ver el código"
   pdf:
     documentclass: scrreprt
 

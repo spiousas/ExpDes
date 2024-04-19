@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.1.251">
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
@@ -68,15 +131,15 @@ div.csl-indent {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
   }
 }</script>
 
@@ -163,16 +226,19 @@ div.csl-indent {
   <ul>
   <li><a href="#variables-aleatorias" id="toc-variables-aleatorias" class="nav-link active" data-scroll-target="#variables-aleatorias"><span class="toc-section-number">2.1</span>  Variables aleatorias</a></li>
   <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link" data-scroll-target="#probabilidad"><span class="toc-section-number">2.2</span>  Probabilidad</a></li>
-  <li><a href="#eventos-y-probabilidad-condicional" id="toc-eventos-y-probabilidad-condicional" class="nav-link" data-scroll-target="#eventos-y-probabilidad-condicional"><span class="toc-section-number">2.3</span>  Eventos y probabilidad condicional</a></li>
+  <li><a href="#probabilidad-condicional" id="toc-probabilidad-condicional" class="nav-link" data-scroll-target="#probabilidad-condicional"><span class="toc-section-number">2.3</span>  Probabilidad condicional</a></li>
   <li><a href="#probabilidad-total" id="toc-probabilidad-total" class="nav-link" data-scroll-target="#probabilidad-total"><span class="toc-section-number">2.4</span>  Probabilidad total</a></li>
   <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="toc-section-number">2.5</span>  Teorema de Bayes</a></li>
   <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="toc-section-number">2.6</span>  Esperanza</a></li>
   <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="toc-section-number">2.7</span>  Varianza y covarianza</a></li>
   <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación"><span class="toc-section-number">2.8</span>  Correlación</a></li>
   <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="toc-section-number">2.9</span>  Población y muestra</a></li>
-  <li><a href="#inferencia-estadística" id="toc-inferencia-estadística" class="nav-link" data-scroll-target="#inferencia-estadística"><span class="toc-section-number">2.10</span>  Inferencia estadística</a></li>
-  <li><a href="#el-p-valor" id="toc-el-p-valor" class="nav-link" data-scroll-target="#el-p-valor"><span class="toc-section-number">2.11</span>  El p-valor</a></li>
-  <li><a href="#potencia-estadística" id="toc-potencia-estadística" class="nav-link" data-scroll-target="#potencia-estadística"><span class="toc-section-number">2.12</span>  Potencia estadística</a></li>
+  <li><a href="#inferencia-estadística" id="toc-inferencia-estadística" class="nav-link" data-scroll-target="#inferencia-estadística"><span class="toc-section-number">2.10</span>  Inferencia estadística</a>
+  <ul class="collapse">
+  <li><a href="#qué-pasa-si-no-conozco-sigma" id="toc-qué-pasa-si-no-conozco-sigma" class="nav-link" data-scroll-target="#qué-pasa-si-no-conozco-sigma"><span class="toc-section-number">2.10.1</span>  ¿Qué pasa si no conozco <span class="math inline">\(\sigma\)</span>?</a></li>
+  <li><a href="#qué-pasa-si-x-no-se-distribuye-normalmente" id="toc-qué-pasa-si-x-no-se-distribuye-normalmente" class="nav-link" data-scroll-target="#qué-pasa-si-x-no-se-distribuye-normalmente"><span class="toc-section-number">2.10.2</span>  ¿Qué pasa si <span class="math inline">\(X\)</span> no se distribuye normalmente?</a></li>
+  </ul></li>
+  <li><a href="#potencia-estadística" id="toc-potencia-estadística" class="nav-link" data-scroll-target="#potencia-estadística"><span class="toc-section-number">2.11</span>  Potencia estadística</a></li>
   </ul>
 </nav>
 </nav>
@@ -243,45 +309,48 @@ div.csl-indent {
 </table>
 <p>Sin embargo, el concepto de probabilidad es algo complejo, pero, como esto no es un curso de probabilidad, vamos a confiar en que ustedes ya lo traen claro. Si tienen coraje puede ir a leer el capítulo 1 de <span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> y si quiere algo más terrenal pueden ir a ver el repaso de probabilidad de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> (disponible online).</p>
 <div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
-Cunningham, Scott. 2021. <em>Causal Inference: The Mixtape</em>. Yale university press.
+Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
 </div></div><p>Cuando las variables aleatorias son continuas la cosa se complica un poco más ya que <span class="math inline">\(P(X=c)\)</span>, es decir, la probabilida de que una variable tome un valor dado, es cero. Esto lo vamos a repensar un poco en la siguiente sección, cuando definamos lo que nos importa para este libro: Las funciónes de densidad y de distribución.</p>
 </section>
-<section id="eventos-y-probabilidad-condicional" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="eventos-y-probabilidad-condicional"><span class="header-section-number">2.3</span> Eventos y probabilidad condicional</h2>
-<!-- Acá agregar lo de árboles y diagramas. -->
-<!-- Pensemos en un ejemplo -->
-<p>En construcción 🚧</p>
+<section id="probabilidad-condicional" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="probabilidad-condicional"><span class="header-section-number">2.3</span> Probabilidad condicional</h2>
+<p>La probabilidad condicional es la probabilidad de que ocurra un evento A dado que ocurrió un evento B y se escribe como <span class="math inline">\(P(A|B)\)</span>. Por ahora quedémonos con esta definición simple que será de vital importancia para lo que sigue.</p>
 </section>
-<section id="probabilidad-total" class="level2" data-number="2.4">
+<section id="probabilidad-total" class="level2 page-columns page-full" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="probabilidad-total"><span class="header-section-number">2.4</span> Probabilidad total</h2>
-<p>Ahora imaginemos que pasa si queremos calcular la probabilidad de B (<span class="math inline">\(P(B)\)</span>). Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió S y junto con la probabilidad de B dado que NO ocurrió S. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto sería:</p>
-<p><span class="math display">\[
+<div class="page-columns page-full"><p>Ahora imaginemos que pasa si queremos calcular la probabilidad de B (<span class="math inline">\(P(B)\)</span>). Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió S y junto con la probabilidad de B dado que NO ocurrió S. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto sería<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Recordemos que <span class="math inline">\(\neg\)</span> es el símbolo lógico de la negación.</p></li></div></div>
+<p><span id="eq-test"><span class="math display">\[
 P(B) = P(B|A) \times P(A) +  P(B|\neg A) \times P(\neg A)
-\]</span></p>
-<p>Volvamos al ejemplo de las cartas. En este caso, si calculamos la probabilidad de B obenemos:</p>
-<p><span class="math display">\[
-P(B) = XXX
-\]</span></p>
-<p>De forma general definimos a la probabilidad total como:</p>
-<p><span class="math display">\[
-blabla
-\]</span></p>
+\tag{2.1}\]</span></span></p>
+<p>Pensemosun ejemplo. Imaginemos que una perona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es <span class="math inline">\(0.35\)</span> y la probabilidad de que lo termine si no llueve es de <span class="math inline">\(0.95\)</span>. Si la probabilidad de que llueva es <span class="math inline">\(P(A)=0.4\)</span> ¿Cuál es la probabilidad (<span class="math inline">\(P(B)\)</span>) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:</p>
+<p><span id="eq-probTotalEj"><span class="math display">\[
+\begin{array}
+_P(B) &amp;=&amp; P(B|A) \times P(A) + P(B|\neg A) \times P(\neg A) \\
+&amp;=&amp; 0.35 \times 0.4 + 0.95 \times 0.6 \\
+&amp;=&amp; 0.71
+\end{array}
+\tag{2.2}\]</span></span></p>
+<p>Entonces, la probabilidad de completar el trabajo en un día es <span class="math inline">\(P(B)=0.71\)</span>.</p>
+<p>Por último, cuando tenemos muchas condiciones, podemos definir de forma general a la probabilidad total como:</p>
+<p><span id="eq-test"><span class="math display">\[
+P(B) = \sum_n P(B|A_n) P(A_n)
+\tag{2.3}\]</span></span></p>
 </section>
 <section id="teorema-de-bayes" class="level2 page-columns page-full" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="teorema-de-bayes"><span class="header-section-number">2.5</span> Teorema de Bayes</h2>
-<p>Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de <span class="citation" data-cites="herzog2019understanding">(<a href="references.html#ref-herzog2019understanding" role="doc-biblioref">Herzog, Francis, and Clarke 2019</a>)</span>: Tenemos un test para identificar si somos portadores de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus (<span class="math inline">\(P(T^+|IKV)\)</span>) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus (<span class="math inline">\(P(T^-|\neg IKV)\)</span>). Sabemos también que la incidencia del virus IKV es de 1 en 10000.</p>
+<p>Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de <span class="citation" data-cites="herzog2019understanding">(<a href="references.html#ref-herzog2019understanding" role="doc-biblioref">Herzog, Francis, y Clarke 2019</a>)</span>: Tenemos un test para identificar si somos portadores de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus (<span class="math inline">\(P(T^+|IKV)\)</span>) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus (<span class="math inline">\(P(T^-|\neg IKV)\)</span>). Sabemos también que la incidencia del virus IKV es de 1 en 10000.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-herzog2019understanding" class="csl-entry" role="doc-biblioentry">
-Herzog, Michael H, Gregory Francis, and Aaron Clarke. 2019. <em>Understanding Statistics and Experimental Design: How to Not Lie with Statistics</em>. Springer Nature.
+Herzog, Michael H, Gregory Francis, y Aaron Clarke. 2019. <em>Understanding statistics and experimental design: how to not lie with statistics</em>. Springer Nature.
 </div></div><p>Supongamos que somos elegidos aleatoriamente para realizarnos el test y este da positivo ¿Qué probabilidad de ser portadores del virus tenemos (<span class="math inline">\(P(IKV|T^+)\)</span>)? La primera respuesta que se nos viene es 0.9999 ¿Verdad? Pero, si estuvimos prestando atención, ya a esta altura debemos saber que para invertir la condicionalidad de una probabilidad tenemos que acudir al bueno de Bayes. O sea:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 P(IKV|T^+) = \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}
-\]</span></p>
+\tag{2.4}\]</span></span></p>
 <p>donde <span class="math inline">\(P(T^+|IKV) = 0.9999\)</span> y <span class="math inline">\(P(IKV) = 1/10000 = 0.0001\)</span>. Además, echando mano a la definición de probabilidad total podemos calcular <span class="math inline">\(P(T+)\)</span> como:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 P(T+) = P(T^+|IKV) \times P(IKV) + P(T^+|\neg IKV) \times P(\neg IKV)
-\]</span></p>
+\tag{2.5}\]</span></span></p>
 <p>donde <span class="math inline">\(P(T^+|\neg IKV) = 1-0.9999\)</span> y <span class="math inline">\(P(\neg IKV) = 1-0.0001\)</span>. Reemplazando todos los valores tenemos que:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _P(IKV|T^+) &amp;=&amp; \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}\\
 &amp;=&amp; \frac{P(T^+|IKV) \times P(IKV)}{P(T^+|IKV) \times P(IKV) + P(T^+|\neg IKV) \times P(\neg IKV)} \\
@@ -289,100 +358,383 @@ _P(IKV|T^+) &amp;=&amp; \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}\\
 &amp;=&amp; \frac{0.9999 \times 0.0001}{0.9999 \times 0.0001 + 0.0001 \times 0.9999} \\
 &amp;=&amp; 0.5
 \end{array}
-\]</span></p>
+\tag{2.6}\]</span></span></p>
 <p>¿Qué? ¿Esto significa que si el test me da positivo solo tengo un 0.5 de probabilidad de tener el virus? ¿Esto quiere decir que los tests no sirven para nada? Momento, analicemos un poco al resultado al que llegamos. Lo que nos dice esta cuenta es que, una vez que el test nos da positivo, a pesar de lo sensible del test y por lo “raro” de la portación del virus, nuestra probabilidad de ser portadores es de 0.5. Pero, ¿Y nuestra probabilidad de ser portadores si el test nos da negativos? Hagamos la cuenta:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _P(IKV|T^-) &amp;=&amp; \frac{P(T^-|IKV) \times P(IKV)}{P(T-)}\\
 &amp;=&amp; \frac{P(T^-|IKV) \times P(IKV)}{P(T^-|IKV) \times P(IKV) + P(T^-|\neg IKV) \times P(\neg IKV)} \\
 &amp;=&amp; \frac{(1-0.9999) \times 0.0001}{(1 - 0.9999) \times 0.0001 + (0.9999) \times (1-0.0001)} \\
 &amp;=&amp; 1E-8
 \end{array}
-\]</span></p>
+\tag{2.7}\]</span></span></p>
 <p>OK, ahora la cosa tiene más sentido. O sea, el test es bastante bueno para decirnos cuando no somos portadores y dando negativo, el problema es cuando da positivo. En este caso tenemos que preocuparnos, pero, como vimos anteriormente, la probabilidad de ser portadores es de apenas 0.5.</p>
 <p>Hay una solución más simple para esto y es la que deben estar pensando ustedes: ¿Y si me hacen un segundo test? ¡BINGO! Calculemos rápidamente la probabilidad de estar infectados si nos testean por segunda vez:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 P(IKV|T^{2+}) = \frac{0.9999^2 \times 0.0001}{0.9999^2 \times 0.0001 + 0.0001^2 \times 0.9999} = 0.9999
-\]</span> Ahora sí, si somos testeados por segunda vez, la probabilidad de ser portadores dado que tenemos dos resultados positivos trepa a 0.9999. Nos podemos quedar tranquilos.</p>
+\tag{2.8}\]</span></span> Ahora sí, si somos testeados por segunda vez, la probabilidad de ser portadores dado que tenemos dos resultados positivos trepa a 0.9999. Nos podemos quedar tranquilos.</p>
 <p>Para cerrar, me gustaría que pensemos un poco en una palabra MUY importante que se dijo en el enunciado del problema: Aleatoriamente. En muchos de los casos en los que nos testeamos para ver si somos portadores de un virus, lo hacemos porque tenemos algún tipo de presunción de que podemos serlo (por ejemplo, tenemos síntomas). ¿Cuál creen que sería la probabilidad que se modifica en la fórmula? Exacto, <span class="math inline">\(P(IKV)\)</span>, ya que sería más bien <span class="math inline">\(P(IKV|síntomas)\)</span>.</p>
 </section>
 <section id="esperanza" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="esperanza"><span class="header-section-number">2.6</span> Esperanza</h2>
 <p>La esperanza de una variable aleatoria <span class="math inline">\(X\)</span>, a veces también llamada media poblacional, es simplemente la suma pesada de todos sus valores posibles. No debemos confundir la esperanza con el promedio muestral, aunque, como veremos en breve, para algunos casos el primero es un estimador insesgado del segundo.</p>
 <p>La esperanza de una variable aleatoria discreta se define como:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 E(X) = \sum_{1}^\infty x_i p(x_i)
-\]</span> En este caso es muy claro la naturaleza de promedio pesado, ya que a cada valor posible de <span class="math inline">\(X\)</span> lo estamos pesando por su probabilidad. Sin embargo, para una variable aleatoria continua, en la que no tenemos definida una probabilidad puntual <span class="math inline">\(p(x_i)\)</span> sino una función de densidad <span class="math inline">\(f(x)\)</span>, la definición es la siguiente:</p>
-<p><span class="math display">\[
+\tag{2.9}\]</span></span> En este caso es muy claro la naturaleza de promedio pesado, ya que a cada valor posible de <span class="math inline">\(X\)</span> lo estamos pesando por su probabilidad. Sin embargo, para una variable aleatoria continua, en la que no tenemos definida una probabilidad puntual <span class="math inline">\(p(x_i)\)</span> sino una función de densidad <span class="math inline">\(f(x)\)</span>, la definición es la siguiente:</p>
+<p><span id="eq-test"><span class="math display">\[
 E(X) = \int_{-\infty}^\infty x f(x) dx
-\]</span></p>
+\tag{2.10}\]</span></span></p>
 <p>Como resulta esperable, la suma se transforma en una integral y la probabilidad puntual se reemplaza por <span class="math inline">\(f(x)\)</span>.</p>
 <p>Algunas propiedades importantes de la esperanza son:</p>
-<p><span class="math display">\[
+<p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _E(aX+b) &amp; = &amp; aE(X) + b\\
 E(\sum_{i=1}^n X_i) &amp; = &amp; \sum_{i=1}^nE(X_i)
 \end{array}
-\]</span> Por último y a modo de aviso, advertencia y amenaza, recordemos que <span class="math inline">\(E(X)^2 \neq E(X^2)\)</span>.</p>
+\tag{2.11}\]</span></span></p>
+<p>Por último y a modo de aviso, advertencia y amenaza, recordemos que <span class="math inline">\(E(X)^2 \neq E(X^2)\)</span>.</p>
 </section>
-<section id="varianza-y-covarianza" class="level2" data-number="2.7">
+<section id="varianza-y-covarianza" class="level2 page-columns page-full" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="varianza-y-covarianza"><span class="header-section-number">2.7</span> Varianza y covarianza</h2>
-<p><span class="math display">\[
+<div class="page-columns page-full"><p>La varianza nos da una idea de la variabilidad de los procesos aleatorios que generan una variable aleatorio<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. La varianza de la variable aleatoria <span class="math inline">\(X\)</span> se define como:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Dato que será de vital importancia para sentar las bases de la inferencia estadística.</p></li></div></div>
+<p><span id="eq-test"><span class="math display">\[
 V(X) = \sigma^2 = E \left[ (X - E(X))^2 \right]
-\]</span> Y se puede demostrar que:</p>
-<p><span class="math display">\[
+\tag{2.12}\]</span></span></p>
+<p>Y se puede demostrar que:</p>
+<p><span id="eq-test"><span class="math display">\[
 V(X) = E(X^2) - E^2(X)
-\]</span></p>
+\tag{2.13}\]</span></span></p>
+<p>Por otro lado, la covarianza es mide la cantidad de dependencia lineal entre dos variables aleatorias. La msma se define como</p>
+<p><span id="eq-test"><span class="math display">\[
+Cov(X,Y) = E(XY) - E(X)E(Y)
+\tag{2.14}\]</span></span></p>
+<p>Si <span class="math inline">\(Cov(X,Y)&gt;0\)</span>, esto indica que las dos variables se mueven en la misma dirección, mientras que si <span class="math inline">\(Cov(X,Y)&lt;0\)</span> esto indica que ambas variables se mueven en direcciones opuestas.</p>
 </section>
-<section id="correlación" class="level2" data-number="2.8">
+<section id="correlación" class="level2 page-columns page-full" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="correlación"><span class="header-section-number">2.8</span> Correlación</h2>
-<p>En construcción 🚧</p>
-</section>
-<section id="población-y-muestra" class="level2 page-columns page-full" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.9</span> Población y muestra</h2>
-<p>Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.</p>
-<div class="page-columns page-full"><p>Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de <span class="math inline">\(\mu_{varones} = 175\)</span> y una desviación estándar <span class="math inline">\(\sigma_{varones} = 7\)</span>, o, como ya aprendimos a decir: <span class="math inline">\(H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. A continuación podemos ver la función de densidad:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<strong>h</strong> del inglés <em>height</em>.</p></li></div></div>
+<p>La correlación es la versión más amigable de la covarianza. ¿Por qué? Porque nos dice cuánto covarían dos variables independizándose de la varianza de cada una de ellas, es decir, normalizando. Esto la convierte en una medida muy relevante e informativa. Si tenemos dos variables aleatorias <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, la correlación de se define como la covarianza es sus versiones estandarizadas:</p>
+<p><span id="eq-test"><span class="math display">\[
+\begin{array}
+_W &amp;=&amp; \frac{X-E(X)}{\sqrt{V(X)}} \\
+Z &amp;=&amp; \frac{Y-E(Y)}{\sqrt{V(Y)}}
+\end{array}
+\tag{2.15}\]</span></span></p>
+<p>De la siguiente forma:</p>
+<p><span id="eq-test"><span class="math display">\[
+\begin{array}
+_Corr(X,Y) &amp;=&amp; Cov(W,Z) \\
+&amp;=&amp;  Cov(\frac{X-E(X)}{\sqrt{V(X)}}, \frac{Y-E(Y)}{\sqrt{V(Y)}}) \\
+&amp;=&amp;  \frac{1}{\sqrt{V(X)}} \frac{1}{\sqrt{V(Y)}}  Cov(X-E(X),Y-E(Y)) \\
+&amp;=&amp;  \frac{Cov(X,Y)}{\sqrt{V(X) V(Y)}}
+\end{array}
+\tag{2.16}\]</span></span></p>
+<p>Usamos la propiedad de la covarianza que dice que:</p>
+<p><span id="eq-test"><span class="math display">\[
+Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
+\tag{2.17}\]</span></span></p>
+<p>Y como <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son constantes (en nuestro caso esperanzas), el único término que sobrevive es <span class="math inline">\(Cov(X,Y)\)</span>. Esta magnitud es también conocida como el coeficiente de correlación <span class="math inline">\(\rho\)</span>.</p>
+<div class="page-columns page-full"><p>Con esta definición en la mano, si yo les digo que dos variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tienen una covarianza de <span class="math inline">\(14.988\)</span> no les dice mucho, ¿No? Ahora, si les digo que el coeficiente de correlación es de <span class="math inline">\(0.788\)</span> probablemente entiendan rápidamente que ambas variables están muy relacionadas<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Si quieren divertirse y de paso convertise en ases de la determinación del coeficiente de correlación a <em>ojímetro</em> les recomiendo <a href="https://www.guessthecorrelation.com/">este juegazo</a>. Una estudiante ostenta el abultado récord de <span class="math inline">\(231\)</span> puntos ¿La pasaste?</p></li></div></div>
+<p>Veamos este ejemplo con números y de paso repasemos como se calcula la correlación en R:</p>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">20</span>, <span class="dv">4</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">*</span>.<span class="dv">9</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"La covarianza entre X e Y es"</span>, <span class="fu">round</span>(<span class="fu">cov</span>(x,y), <span class="dv">3</span>)))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; La covarianza entre X e Y es 14.988</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"La correlación entre X e Y es"</span>, <span class="fu">round</span>(<span class="fu">cor</span>(x,y), <span class="dv">3</span>)))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; La correlación entre X e Y es 0.788</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="intro_stat_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Relación lineal entre X e Y.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Ahora bien, en la figura podemos ver la función <span class="math inline">\(f(x)\)</span> junto con una línea vertical que nos indica la media y dos líneas que nos indican los percentiles <span class="math inline">\(2.5\)</span> y <span class="math inline">\(97.5\)</span>, es decir, que contienen el 95% de la masa de probabilidad. Todo esto es muy lindo pero estamos jugando a ser dios (o el Doctor Manhattan, o en lo que ustedes crean). Es imposible conocer los parámetros de esta distribución pero lo que sí podemos hacer en la práctica es estimarlos. Estimar los parámetros de un modelo es el <em>pan y manteca</em> de la inferencia estadística y el <em>data mining</em>. Como podemos ver en esta hermosa figura de Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span>, la teoría de probabilidad nos ayuda a definir modelos para la generación de datos y la inferencia estadística nos ayuda a estimar estos parámetros.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-wasserman2004all" class="csl-entry" role="doc-biblioentry">
-Wasserman, Larry. 2004. <em>All of Statistics: A Concise Course in Statistical Inference</em>. Springer Science &amp; Business Media.
-</div></div><p>Hay diversas formas de encontrar estimadores para los parámetros de un modelo (por ejemplo, método de los momentos, máxima verosimilitud, etc.) pero entenemos que eso excede los contenidos de este curso. Sin embargo, para estimar todos conocemos los estimadores de los parámetros poblacionales <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. Claro, el promedio <span class="math inline">\(\bar{x}\)</span> y el desvío muestral <span class="math inline">\(\hat{S}^2\)</span>:</p>
-<p><span class="math display">\[
-\begin{array}
-\\\bar{x} &amp; = &amp; n^{-1} \sum_{i=1}^n x_i\\
-\hat{S}^2 &amp; = &amp; (n-1)^{-1} \sum_{i=1}^n (x_i
-\end{array}
-\]</span></p>
-<p>Simulemos tres experimento tomando 10, 50 y 100 mediciones (<span class="math inline">\(n\)</span>) y veamos los histogramas de estas muestras y sus estimaciones de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>.</p>
+<p>Es muy importante tener en cuenta que el cueficiente de correlación nos dice cuán <strong>linealmente</strong> relacionadas están las variables. Veamos esto con un ejemplito:</p>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">1</span><span class="sc">*</span><span class="fu">runif</span>(<span class="dv">1000</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"La covarianza entre X e Y es"</span>, <span class="fu">round</span>(<span class="fu">cov</span>(x,y), <span class="dv">3</span>)))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; La covarianza entre X e Y es 0.01</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"La correlación entre X e Y es"</span>, <span class="fu">round</span>(<span class="fu">cor</span>(x,y), <span class="dv">3</span>)))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; La correlación entre X e Y es 0.055</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="intro_stat_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Relación no lineal entre X e Y.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este caso vemos que claramente hay uan relación entre <strong>X</strong> e <strong>Y</strong> (no son una nube de puntos sin estructura) pero como esta relación no es lineal (cuadrática en nuestro caso), el coeficiente de correlación es cercano a cero.</p>
+<p>Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre <span class="math inline">\(-1\)</span> y <span class="math inline">\(1\)</span>. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra. Cuanto más cerca esté el coeficiente de <span class="math inline">\(1\)</span> o, más fuerte es la relación lineal.</p>
+</section>
+<section id="población-y-muestra" class="level2 page-columns page-full" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.9</span> Población y muestra</h2>
+<p>Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.</p>
+<div class="page-columns page-full"><p>Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de <span class="math inline">\(\mu_{varones} = 175\)</span> y una desviación estándar <span class="math inline">\(\sigma_{varones} = 7\)</span>, o, como ya aprendimos a decir: <span class="math inline">\(H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)\)</span><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A continuación podemos ver la función de densidad:</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;<strong>h</strong> del inglés <em>height</em>.</p></li></div></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora bien, en la figura podemos ver la función <span class="math inline">\(f_X(x)\)</span> junto con una línea vertical que nos indica la media y dos líneas que nos indican los percentiles <span class="math inline">\(2.5\)</span> y <span class="math inline">\(97.5\)</span>, es decir, que contienen el 95% de la masa de probabilidad. Todo esto es muy lindo pero estamos jugando a ser dios (o el Doctor Manhattan, o en lo que ustedes crean). Es imposible conocer los parámetros de esta distribución pero lo que sí podemos hacer en la práctica es estimarlos. Estimar los parámetros de un modelo es el <em>pan y manteca</em> de la inferencia estadística y el <em>data mining</em>. Como podemos ver en esta hermosa figura de Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span>, la teoría de probabilidad nos ayuda a definir modelos para la generación de datos y la inferencia estadística nos ayuda a estimar estos parámetros.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-wasserman2004all" class="csl-entry" role="doc-biblioentry">
+Wasserman, Larry. 2004. <em>All of statistics: a concise course in statistical inference</em>. Springer Science &amp; Business Media.
+</div></div><p>Hay diversas formas de encontrar estimadores para los parámetros de un modelo (por ejemplo, método de los momentos, máxima verosimilitud, etc.) pero entenemos que eso excede los contenidos de este curso. Sin embargo, para estimar todos conocemos los estimadores de los parámetros poblacionales <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. Claro, el promedio <span class="math inline">\(\bar{x}\)</span> y el desvío muestral <span class="math inline">\(\hat{S}^2\)</span>:</p>
+<p><span id="eq-test"><span class="math display">\[
+\begin{array}
+\\\bar{x} &amp; = &amp; n^{-1} \sum_{i=1}^n x_i\\
+\hat{S}^2 &amp; = &amp; (n-1)^{-1} \sum_{i=1}^n (x_i
+\end{array}
+\tag{2.18}\]</span></span></p>
+<p>Simulemos tres experimento tomando 10, 50 y 100 mediciones (<span class="math inline">\(n\)</span>) y veamos los histogramas de estas muestras y sus estimaciones de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Como es de esperarse, podemos ver que al aumentar <span class="math inline">\(n\)</span>, la estimación de los parámetros poblacionales es mejor. Pero tenemos que tener esta idea en mente, cada vez que tomamos una muestra podemos estimar un parámetro de la población y hasta hacer inferencias estadísticas sobre el mismo, pero <strong>NUNCA</strong> lo vamos a conocer.</p>
+<p>Algo importante cuando usemos un estimador es que este sea consistente, lo que implica que si aumentamos <span class="math inline">\(n\)</span> al infinito, el estimador converge al valor del parámetro (en este caso el promedio muestral para <span class="math inline">\(n \to \infty\)</span> tiende a la media poblacional <span class="math inline">\(\mu\)</span>). Decimos entonces que un estimador converge en probabilidad a un determinado parámetro. Como usuarios de la estadística esto nos va a venir masticado y no nos vamos a tener que preocupar tanto pero es bueno tenerlo en mente cuando hablamos de estimadores y estimaciones.</p>
 </section>
-<section id="inferencia-estadística" class="level2" data-number="2.10">
+<section id="inferencia-estadística" class="level2 page-columns page-full" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="inferencia-estadística"><span class="header-section-number">2.10</span> Inferencia estadística</h2>
-<p>En construcción 🚧</p>
+<p>Vamos a hacer un breve paseo por los conceptos clave de la inferencia estadística de la mano de un ejemplo.</p>
+<div class="callout-tip callout callout-style-default callout-captioned page-columns page-full">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+El ejemplo de inferencia
+</div>
+</div>
+<div class="callout-body-container callout-body page-columns page-full">
+<div class="page-columns page-full"><p>Supongamos que tenemos una página web de noticias y queremos probar una nueva <em>feature</em> con la que queremos aumentar el tiempo de retención de los usuarios. Para esto le vamos a presentar a los usuarios la versión nueva de la página y vamos a medir el tiempo que se mantienen en la página en <em>ms</em><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Probabilemente lo más correcto para responder esta pregunta sea un <em>A/B test</em>, pero ya hablaremos de eso más adelante.</p></li></div></div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Primero definamos nuestra variable aleatoria: <span class="math inline">\(X\)</span>:“La diferencia de tiempo en <em>ms</em> entre después y antes del cambio”. Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si <span class="math inline">\(E(X)\)</span> es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>. Esta suposición no es tan loca ya que mucho procesos naturales se distribuyen de forma normal<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la <span class="math inline">\(\sigma^2\)</span> de <span class="math inline">\(X\)</span>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Además, como vamos a ver más adelante, cuando el <span class="math inline">\(n\)</span> es lo suficientemente grande, esta condición deja de importar tanto.</p></li></div></div>
+<p>Como dijimos en el recuedro, si bien nuestro objetivo es probar si <span class="math inline">\(\mu\)</span> es diferente de <span class="math inline">\(0\)</span>, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\hat{\mu}=\bar{X}\)</span>, es decir, el promedio muestral. Ahora supongamos que el promedio nos da <span class="math inline">\(0.5\)</span>: ¿Es distinto de cero? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.</p>
+<p>Definamos primero las hipótesis:</p>
+<p><span id="eq-test"><span class="math display">\[
+\begin{array}
+_H_0 &amp;:&amp; \mu = 0 \\
+H_1 &amp;:&amp; \mu \neq 0
+\end{array}
+\tag{2.19}\]</span></span></p>
+<p>Lo que vamos a querer hacer es rechazar <span class="math inline">\(H_0\)</span> con cierto grado de confianza. Para esto vamos a comparar nuestra medición <span class="math inline">\(\bar{x}_{obs}\)</span> con la distribución de los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span>.</p>
+<div class="page-columns page-full"><p>Recordemos que si <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span> entonces <span class="math inline">\(\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)\)</span><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, donde <span class="math inline">\(n\)</span> es la cantidad de realizaciones con las que yo calculo mi <span class="math inline">\(\bar{X}\)</span>. Entonces si mi <span class="math inline">\(\bar{x}_{obs}\)</span> medida está lo suficientemente lejos de <span class="math inline">\(0\)</span> podemos decir que que <span class="math inline">\(\mu\)</span> es diferente de cero. Pero: ¿Qué es suficientemente lejos?</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una seciencia de <span class="math inline">\(n\)</span> realizaciones.</p></li></div></div>
+<p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o dalso positivo) o podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o dalso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.</p>
+<p>Para esto vamos a calcular qué tal probable es observar un valor igual o más alejado del cero que <span class="math inline">\(\bar{x}_{obs}\)</span> dado que <span class="math inline">\(H_0\)</span> es verdadera. Es decir, <span class="math inline">\(P(|\bar{X}|&gt;\bar{x}_{obs}|H_0)\)</span>. Esta magnitud es lo que se conoce como el viejo y querido p-valor o <em>p-value</em> (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando <span class="math inline">\(\bar{X}\)</span> de la siguiente forma:</p>
+<p><span id="eq-test"><span class="math display">\[
+Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
+\tag{2.20}\]</span></span></p>
+<p>Qque bajo <span class="math inline">\(H_0\)</span> es:</p>
+<p><span id="eq-test"><span class="math display">\[
+Z_{H_0} = \frac{\bar{X}}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
+\tag{2.21}\]</span></span></p>
+<p>Entonces, si consideramos a <span class="math inline">\(z_{\bar{x}}\)</span> como la versión estandarizada de <span class="math inline">\(\bar{x}_{obs}\)</span>, podemos calcular el p-valor como:</p>
+<p><span id="eq-test"><span class="math display">\[
+\begin{array}
+_p_{valor} &amp;=&amp; P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
+&amp;=&amp; P(Z \geq |z_{\bar{x}}| \: \: |H_0) + P(Z \leq -|z_{\bar{x}}| \: \: |H_0) \\
+&amp;=&amp; 2 P(Z \leq -|z_{\bar{x}}| \: \: |H_0)
+\end{array}
+\tag{2.22}\]</span></span></p>
+<p>Y como bajo <span class="math inline">\(H_0\)</span> ocurre que <span class="math inline">\(Z_{H_0} \sim \mathcal{N}(0,1)\)</span>:</p>
+<p><span id="eq-test"><span class="math display">\[
+p_{valor} = 2 \phi(-|z_{\bar{x}}|)
+\tag{2.23}\]</span></span></p>
+<div class="page-columns page-full"><p>Y ahora que tenemos esta probabilidad qué hacemos. Bueno, lo que podemos hacer es decir: Si los datos vienen de <span class="math inline">\(H_0\)</span> podemos calcular que tan “raros” son, entonces pongamos una cota en esa probabilidad y de esa forma estaremos acotando el error de tipo I en el largo plazo<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Así es que surge el famoso <span class="math inline">\(\alpha\)</span> que normalmente hacemos valer <span class="math inline">\(0.05\)</span><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el <span class="math inline">\(5%\)</span> de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación “práctica” del p-valor (si se quedan con las ganas pueden ir a leer <a href="https://lakens.github.io/statistical_inferences/01-pvalue.html">esto</a>).</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.</p></li><li id="fn10"><p><sup>10</sup>&nbsp;Para una discusión más profunda sobre el tema de la selección de <span class="math inline">\(\alpha\)</span> en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens <span class="citation" data-cites="maier2022justify">(<a href="references.html#ref-maier2022justify" role="doc-biblioref">Maier y Lakens 2022</a>)</span>.</p><div id="ref-maier2022justify" class="csl-entry" role="doc-biblioentry">
+Maier, Maximilian, y Daniël Lakens. 2022. <span>«Justify your alpha: A primer on two practical approaches»</span>. <em>Advances in Methods and Practices in Psychological Science</em> 5 (2): 25152459221080396.
+</div></li></div></div>
+<p>Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que <span class="math inline">\(\alpha\)</span> podemos decir que <span class="math inline">\(H_0\)</span> es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.</p>
+<p>Simulemos un experimento para <span class="math inline">\(n=50\)</span> en el que nosotros conocemos tanto <span class="math inline">\(\sigma^2\)</span> como <span class="math inline">\(\mu\)</span>:</p>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El promedio muestral es:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(X), <span class="dv">3</span>)))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El promedio muestral es: 0.569</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El promedio muestral estandarizado es:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="dv">3</span>)))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El promedio muestral estandarizado es: 2.011</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Acá vemos que, efectivamente, <span class="math inline">\(H_0\)</span> es falsa ya que <span class="math inline">\(\mu=0.5\)</span> (el verdadero parámetro poblacional). La media observada vale 0.569 y la media estandarizada (<span class="math inline">\(z_{\bar{x}}\)</span>) vale 2.011. Miremos ccomo queda <span class="math inline">\(z_{\bar{x}}\)</span> dentro de la distribución de los <span class="math inline">\(Z_{H_0}\)</span> (los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span> estandarizados):</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+#&gt; ℹ Please use `linewidth` instead.</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La curva azul es la función de densidad de <span class="math inline">\(Z_{H_0}\)</span>, las líneas verticales naranjas delimitan los valores de <span class="math inline">\(Z\)</span> cuales la probabilidad de encontrar valores más extremos es mayor a <span class="math inline">\(0.05\)</span>, es decir, a la derecha de la línea naranja positiva y a la izquierda de la negativa estamos en la región en la que vamos a considerar a <span class="math inline">\(z_{\bar{x}}\)</span> como evidencia significativa de que <span class="math inline">\(H_0\)</span> es falsa. La suma de las integrales de la curva azul a la derecha de la línea naranja posiva y a la izquierda de la negativa da como resultado <span class="math inline">\(\alpha\)</span>.</p>
+<p>El punto verde (y la línea punteada que lo acompaña) es nuestra observación <span class="math inline">\(z_{\bar{x}}\)</span>. O sea, todo parece indicar que controlando nuestro error de tipo I con <span class="math inline">\(\alpha=0.05\)</span> el valor observado nos permitiría que podemos rechazar <span class="math inline">\(H_0\)</span> o, como se dice habitualmente: “Que <span class="math inline">\(\mu\)</span> es significativamente diferente de cero”. Calculemos el p-valor y veamos si esto es efectivamente así.</p>
+<p><span id="eq-test"><span class="math display">\[
+p_{valor} = 2 \phi(-|z_{\bar{x}}|) = 2 \phi(-2.011)
+\tag{2.24}\]</span></span></p>
+<p>Que en R lo podemos calcular como:</p>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)),<span class="dv">3</span>)))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.044</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Que como es menor que <span class="math inline">\(0.05\)</span> nos permite rechazar <span class="math inline">\(H_0\)</span>.</p>
+<p>Para resolver este ejemplo hicimos dos consideraciones que les pueden hacer ruido: 1. Asumimos que conocíamos la desviación estándar de X. 2. Asumimos que X tiene distribución normal.</p>
+<section id="qué-pasa-si-no-conozco-sigma" class="level3 page-columns page-full" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="qué-pasa-si-no-conozco-sigma"><span class="header-section-number">2.10.1</span> ¿Qué pasa si no conozco <span class="math inline">\(\sigma\)</span>?</h3>
+<p>Con respecto a <strong>1</strong>, es natural que les haga ruido ya que en la mayoría de los casos no conocemos al <span class="math inline">\(\sigma\)</span> poblacional sino que lo vamos a estimar. Y ¿Cómo lo vamos a estimar? Echando mano del estimador insesgado de la desviación estándar <span class="math inline">\(S\)</span>. El mismo se define como:</p>
+<p><span id="eq-test"><span class="math display">\[
+S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
+\tag{2.25}\]</span></span></p>
+<p>Para nuestro ejemplo vale:</p>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"la estimación de sigma es:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(X), <span class="dv">3</span>)))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; la estimación de sigma es: 1.852</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Bastante cercana al valor poblacional <span class="math inline">\(2\)</span>.</p>
+<p>Ahora, no es cuestión de normalizar con este nuevo <span class="math inline">\(S^2\)</span> y seguir como si nada. La cosa cambia y la distribución de <span class="math inline">\(\bar(X)\)</span> estandarizado bajo <span class="math inline">\(H_0\)</span> ya no tiene una distribución normal sino una distribución t de student con <span class="math inline">\(n-1\)</span> grados de libertad. O sea:</p>
+<p><span id="eq-test"><span class="math display">\[
+\frac{\bar{X} - \mu}{\sqrt{S^2/n}} \sim t_{n-1}
+\tag{2.26}\]</span></span></p>
+<p>Esto se deduce a partir de que: <span class="math display">\[
+\frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
+\]</span> Y:</p>
+<p><span id="eq-test"><span class="math display">\[
+(n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
+\tag{2.27}\]</span></span></p>
+<div class="page-columns page-full"><p>Y la definición de <span class="math inline">\(t_{n-1}\)</span> es<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></li></div></div>
+<p><span id="eq-test"><span class="math display">\[
+\begin{array}
+_U &amp;\sim&amp; \mathcal{N}(0,1) \\
+V &amp;\sim&amp; \chi^2_{n} \\
+\frac{U}{\sqrt{V/n}} &amp;\sim&amp; t_{n}
+\end{array}
+\tag{2.28}\]</span></span></p>
+<div class="page-columns page-full"><p>Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la <span class="math inline">\(\sigma\)</span> poblacional<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></li></div></div>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(X)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="at">df =</span> n<span class="dv">-1</span>),<span class="dv">4</span>)))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.0347</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Una buena noticia es que este p valor se puede calcular directamente con la función <code>t.test(X)</code> de la siguiente forma:</p>
+<div class="cell">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  One Sample t-test</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  X</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 2.1721, df = 49, p-value = 0.03472</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.04254842 1.09506577</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.5688071</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Para cerrar, vale la pena mencionar que los parámetros <span class="math inline">\(\beta\)</span> de un modelo lineal también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.</p>
 </section>
-<section id="el-p-valor" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="el-p-valor"><span class="header-section-number">2.11</span> El p-valor</h2>
-<p>En construcción 🚧</p>
+<section id="qué-pasa-si-x-no-se-distribuye-normalmente" class="level3 page-columns page-full" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="qué-pasa-si-x-no-se-distribuye-normalmente"><span class="header-section-number">2.10.2</span> ¿Qué pasa si <span class="math inline">\(X\)</span> no se distribuye normalmente?</h3>
+<p>Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos <span class="math inline">\(X\)</span> nos interesa la de sus medias <span class="math inline">\(\bar(X)\)</span> (si estiman algún parámetro de interés, claro). Y acá viene al rescate el teorema central del límite:</p>
+<p><span id="eq-test"><span class="math display">\[
+\frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}  \xrightarrow{\mathcal{D}} \mathcal{N}(0,1)
+\tag{2.29}\]</span></span></p>
+<div class="page-columns page-full"><p>El mismo nos dice que distribución de la media estandarizada converge endistribución a una <span class="math inline">\(\mathcal{N}(0,1)\)</span> sin importar la distribución de <span class="math inline">\(X\)</span>. Esto significa que si el <span class="math inline">\(n\)</span> es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).</p></li></div></div>
+<p>Supongamos que hay una variable aleatoria <span class="math inline">\(V \sim \mathcal{E}(\lambda=1)\)</span> tal que <span class="math inline">\(E(V) = \lambda\)</span>. Si tomamos una muestra de <span class="math inline">\(n=100\)</span> de <span class="math inline">\(V\)</span>, el histograma de la misma se ve algo así:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Histograma de una muestra de 100 datos de una exponencial con lambda=1</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Donde en azul vemos el histograma y en negro la función de densidad para <span class="math inline">\(\mathcal{E}(\lambda=1)\)</span>. Ahora, qué pasa si tomamos <span class="math inline">\(1000\)</span> muestras y hacemos el histograma de sus medias:</p>
+<div class="cell" data-layout-align="center">
+<details open="">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Zs <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  Zs <span class="ot">&lt;-</span> <span class="fu">c</span>(Zs, (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(x)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Z_means <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Zs)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Z_means <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Zs, <span class="at">y =</span> ..density..), <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"n = "</span>, n), <span class="at">x =</span> <span class="st">"Medias de v"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 2 rows containing non-finite outside the scale range</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`stat_bin()`).</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`geom_bar()`).</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Histograma de 1000 medias de muestras de 100 datos de una exponencial con lambda=1</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Donde ahora la curva negra es una <span class="math inline">\(\mathcal{N}(0,1)\)</span>. Hagan la prueba con otras distribuciones u otros <span class="math inline">\(n\)</span> y van a ver que rápido (o lento para las distribuciones altamente asimétricas) que convergen a una <span class="math inline">\(\mathcal{N}(0,1)\)</span>.</p>
 </section>
-<section id="potencia-estadística" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="potencia-estadística"><span class="header-section-number">2.12</span> Potencia estadística</h2>
+</section>
+<section id="potencia-estadística" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="potencia-estadística"><span class="header-section-number">2.11</span> Potencia estadística</h2>
 <p>En construcción 🚧</p>
 
 
@@ -431,7 +783,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiada");
     setTimeout(function() {
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');

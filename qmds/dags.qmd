@@ -255,7 +255,7 @@ Si tebemos todos estos datos observados y queremos estimar el efecto causal de l
 
 [^dags-3]: Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.
 
-```{r, fig.height=8}
+```{r, fig.height=8, fig.asp=1.2}
 #| echo: true
 #| fig-cap: "Usando ggdag_collider para identificar colliders en nuestro DAG."
 #| fig-align: center

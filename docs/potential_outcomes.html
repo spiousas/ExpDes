@@ -270,7 +270,7 @@ Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university
 <p><span id="eq-sesgos"><span class="math display">\[
 \begin{array}
 _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &amp;=&amp; ATE \\
-&amp;+&amp; ( E[Y_i^0|D_i=1] + E[Y_i^0|D_i=0] ) \\
+&amp;+&amp; ( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] ) \\
 &amp;+&amp; (1-\pi) (ATT - ATU)
 \end{array}
 \tag{3.8}\]</span></span></p>
@@ -278,7 +278,7 @@ _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &amp;=&amp; ATE \\
 <p><span id="eq-SDOdecomp"><span class="math display">\[
 \begin{array}
 _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=1}^{N_C} (y_i|d_i=0)}_\text{Diferencia de los outcomes} &amp;=&amp; \underbrace{ATE}_\text{Efecto promedio del tratamiento} \\
-&amp;+&amp; \underbrace{( E[Y_i^0|D_i=1] + E[Y_i^0|D_i=0] )}_\text{Sesgo de selección} \\
+&amp;+&amp; \underbrace{( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] )}_\text{Sesgo de selección} \\
 &amp;+&amp; \underbrace{(1-\pi) (ATT - ATU)}_\text{Sesgo de efecto heterogéneo}
 \end{array}
 \tag{3.9}\]</span></span></p>

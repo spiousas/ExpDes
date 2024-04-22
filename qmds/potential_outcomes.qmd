@@ -112,7 +112,7 @@ Operando con la @eq-sesgos podemos despejar la diferencia entre los *outcomes* o
 $$
 \begin{array}
 _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &=& ATE \\
-&+& ( E[Y_i^0|D_i=1] + E[Y_i^0|D_i=0] ) \\
+&+& ( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] ) \\
 &+& (1-\pi) (ATT - ATU)
 \end{array}
 $${#eq-sesgos}
@@ -122,7 +122,7 @@ Que podemos reescribir como:
 $$
 \begin{array}
 _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=1}^{N_C} (y_i|d_i=0)}_\text{Diferencia de los outcomes} &=& \underbrace{ATE}_\text{Efecto promedio del tratamiento} \\
-&+& \underbrace{( E[Y_i^0|D_i=1] + E[Y_i^0|D_i=0] )}_\text{Sesgo de selección} \\
+&+& \underbrace{( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] )}_\text{Sesgo de selección} \\
 &+& \underbrace{(1-\pi) (ATT - ATU)}_\text{Sesgo de efecto heterogéneo}
 \end{array}
 $$ {#eq-SDOdecomp}

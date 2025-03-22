@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tutorial_1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="TP1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="TP1_files/libs/quarto-html/quarto.js"></script>
+<script src="TP1_files/libs/quarto-html/popper.min.js"></script>
+<script src="TP1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="TP1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="TP1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="TP1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="TP1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="TP1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="TP1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">tutorial_1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="tutoría-1.-práctica-de-r-y-tidyverse" class="level1">
+<h1>Tutoría 1. Práctica de R y tidyverse</h1>
+<p>El desafio es sencillo, en esta notebook hay una serie de ejercicios para reproducir, no hay una sola respuesta (y no es la que da chatGPT), son todas tareas sencillas pero se pueden resolver de miles de formas distintas, traten de hacerlo de la forma mas original tratando de usar el minimo numero de lineas (que sea mas eficiente). Apoyense en google, stack overflow y busquedas sencillas de internet. Está lleno de problemas a los que nos enfrentamos los humanos todos los dias y la internet esta llena de explicaciones y comentarios.</p>
+<section id="trump-vs-kamala" class="level2">
+<h2 class="anchored" data-anchor-id="trump-vs-kamala">Trump vs Kamala</h2>
+<p>Lo que tienen en la siguiente línea es una base de datos con el perfil sociodemográfico de 500 votantes de estados unidos.</p>
+<section id="parte-1.-data-cleaning" class="level4">
+<h4 class="anchored" data-anchor-id="parte-1.-data-cleaning">Parte 1. Data cleaning</h4>
+<p>Vamos a limpiar y explorar los datos. Los nombre sos un desastre, quizas quieran trabajar mas comodos con datos mas limpios. Si es asi exploren el paquete <strong>janitor</strong> que puede darles una mano<br>
+</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 1.</strong> Hagamos un pequeño analisis exploratorio sacando un resumen de la base. Pista, la funcion summary de R base es bastante buena para ello., prestemos atencion a los valores minimos y maximos</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 2:</strong> Hay valores negativos en numero de hijos e ingresos, suponiendo que hay un typo, vamos a convertir los valores negativos en valores positivos para “numero de hijos” y “Ingreso anual”, asignenlo a columnas con el sufijo _corregido. Pista: investiguen que hace la funcion <em>abs</em>.</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 3:</strong> Hay algunas variables que estan guardadas como “character”, sin embargo algunas son factores, vamos a convertir estado de residencia en un factor. Pistas: prueben trabajar con <em>factor</em>, <em>as.factor</em> (en R base) o <em>mutate</em> (en tidyverse), asignenlo a una nueva variable que se llame “estado_corregido”. Cuando terminen hagan un summary de esa variable. Cuantos niveles tiene, son correctos?</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 4:</strong> corrijamos los typos en la variable original y despues volvamos a hacer el factor, hay muchas opciones para hacer esto, pueden explorar usar la funcion ifelse por ejemplo</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 5:</strong> Vamos a hacer un dataset de “MAGA”s, vamos a seleccionar votantes de Trump. Seleccione gente que pueda votar (mayores de 18 años), que vayan a votar (que su intencion de voto sea distinta de “nunca”) y que no tenga valores vacios en sexo, edad, ni nivel educativo. Cree una variable nueva que se llame “educacion_universitaria”, con valores si o no si la educacion es universitaria o mayor (posgrado o doctorardo). Quizas quieran leer como se usa el case_when o if_else</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="parte-2.-graficos" class="level4">
+<h4 class="anchored" data-anchor-id="parte-2.-graficos">Parte 2. Graficos</h4>
+<p><strong>Ejercicio 1:</strong> queremos conocer la distribucion de los ingresos entre hombres y mujeres. Hagamos con ggplot un grafico de densidad en donde se observen la distribucion de los ingresos en hombres y en mujeres. Sean creativos, se pueden hacer ambos en un mismo grafico (exploren que capa en <em>aes</em> hara que tengan distinto no se, color o relleno) o pueden animarse a usar <em>facet</em> y hacer dos graficos paralelos. O pueden mostrarlo de alguna otra forma, hay espacio para ser creativos. Nota, si las distribuciones van a estar superpuestas por ahi es una buena idea hacerlas un poco transparentes, investiguen como funciona el argumento <em>alpha</em></p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 2:</strong> Vamos a ver la relacion entre el ingreso de hombres y mujeres segun la edad, y segun si votarian a Trump o a Kamala. Hagamos un scatter plot en donde en el eje de las x este el ingreso, en las y la edad, en distintos colores los puntos si son hombres o mujeres, y que haya en realidad dos graficos, uno para los votantes de Trump y otro de Kamala. A su vez, cada uno debe tener una linea de ajuste lineal para sexo y preferencia de voto (investigen como funciona <em>geom_smooth</em>). Ojo que hay algunos sujetos que no dijeron a quien iban a votar, quizas convenga filtrar y obtener solo los que dijeron a quien van a votar antes de graficar</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 3:</strong> ¿cual es la correlacion entre ingreso y edad por sexo? Se anima a calcularla? Estaria bueno mostrar esa correlacion creando un grafico de puntos con la linea de tendencia (una por sexo) y anotar en el mismo color de la linea el valor de la correlacion. Pista pueden usar <em>geom_anotate</em> para agregar valores</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="parte-2.-regresion-para-entender-a-los-magas" class="level4">
+<h4 class="anchored" data-anchor-id="parte-2.-regresion-para-entender-a-los-magas">Parte 2. Regresion para entender a los MAGAs</h4>
+<p>Vamos a usar los sujetos de nuestra nueva base. Queremos predecir el ingreso anual que reportan en funcion de su genero, su edad, si fueron a la universidad o no y el numero de hijos.</p>
+<p><strong>Ejercicio 1.</strong> Corramos una regresion lineal para responder esta pregunta</p>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 2.</strong> Como interpretaria el modelo? escriba un breve parrafo interpretando los coeficientes</p>
+<p><strong>Ejercicio 3</strong>. Esta regresion cumple con los supuestos que debería. Chequee la distribucion normal de los residuos y haga un qqplot de los mismos.</p>
+<p>Puede chequear otros supuestos. Pruebe la funcion check_model del paquete performance</p>
+</section>
+<section id="parte-3.-regresion-logistica-prediciendo-al-votante-de-trump" class="level4">
+<h4 class="anchored" data-anchor-id="parte-3.-regresion-logistica-prediciendo-al-votante-de-trump">Parte 3. Regresion logistica, prediciendo al votante de Trump</h4>
+<p>Vamos a volver a nuestra base completa. Vamos a construir una regresion logistica para predecir un outcome binario (voto a trump o no). En funcion de la edad, el sexo, el ingreso anual y si es universitario o no. Recuerde excluir a los sujetos que tienen frecuencia de voto “nunca”. Corramos esta linea para obtener la base limpia, solo tienen que correr el modelo</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<p><strong>Ejercicio 1:</strong> Interprete el modelo. Que significan los coeficientes obtenidos?</p>
+<p><strong>Ejercicio 2:</strong> convierta los coeficientes en OR, como los interpreta?</p>
+<div class="cell">
+
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

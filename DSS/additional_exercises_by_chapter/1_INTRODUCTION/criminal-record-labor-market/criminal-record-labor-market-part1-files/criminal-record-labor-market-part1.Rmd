@@ -1,0 +1,91 @@
+---
+title: |
+    | \vspace{-0.8cm}Does Having a Criminal Record Affect the \newline Chances of Receiving A Call Back for a Job Interview? \newline Part I: Loading and Making Sense of Data \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm}(Based on \href{https://scholar.harvard.edu/files/pager/files/pager_ajs.pdf}{Pager, Devah. 2003. "The Mark of a Criminal Record" \textit{American Journal of Sociology} 108 (5): 937-75.})
+
+In a few problem sets, we will estimate the average causal effect of having a criminal record on the probability of being called back for a job interview. For this purpose, we will analyze data from an experiment conducted in Milwaukee in 2001. 
+
+To isolate the causal effect of having a criminal record on the probability of receiving a call back for a job interview, the researchers ran an audit experiment. In this type of experiment, researchers present two similar people that differ only according to one trait thought to be the source of discrimination. 
+
+In this case, the researchers ran two audit experiments: one exploring the effect of having a criminal record among white applicants, the other exploring the effect of having a criminal record among black applicants. For this purpose, they hired a pair of white men and a pair of black men and instructed them to apply for existing entry-level jobs by filling out the applications in person at the employers' address. 
+
+As much as possible, the only difference between the two individuals in each pair was having a criminal record (in particular, having a felony conviction for possession of cocaine with intention to distribute). The men in each pair were matched on a number of dimensions, including physical appearance and self-presentation. (For example, all four were 23-year old male college students.)  
+
+For the first week, the criminal record was assigned at random within each pair. After that, who presented himself as the ex-offender rotated within each pair for each successive week, such that each tester served in the criminal record condition for an equal number of employment applications. The pairs were randomly assigned 15 job openings each week. Both members of the same pair applied for the same jobs, randomly varying whether the ex-offender applied first or second.
+
+The dataset we will use is in a file called "applications.csv". Table \ref{applications} shows the names and descriptions of the variables in this dataset, where the unit of observation is individual job applications.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{job\_id} & identifying number of job opening\\\addlinespace[1.5pt]
+\textit{criminal} & whether the job applicant presented himself as having a criminal record (1=yes, 0=no) \\\addlinespace[1.5pt]
+\textit{race} & race of applicant (black or white)\\\addlinespace[1.5pt]
+\textit{call} & whether job application received a call back for a job interview (1=yes, 0=no) \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "applications.csv"}\label{applications}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice how to load and make sense of data. 
+
+\newpage
+
+1. Use the function \fu{read.csv()} to read the CSV file "applications.csv" and use the assignment operator \fu{<-} to store the data in an object called \textit{applications}. (Do not forget to set the working directory first.) Provide the R code you used (without the output). (10 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    applications <- read.csv("applications.csv") # reads and stores data
+    ```
+(Recall: to the left of the assignment operator \fu{<-}, we specify the name of the object, \fu{applications} in this case; to the right of the assignment operator \fu{<-}, we specify the contents, which, in this case, are produced by reading the CSV file "applications.csv". Also, we do not use quotes around the name of an object such as \fu{applications} or around the name of a function such as \fu{read.csv()}, but we do use quotes around the name of a file: \fu{"applications.csv"}.)\newline\fi
+    
+2. Use the function \fu{head()} to view the first few observations of the dataset. Provide the R code you used (without the output). (10 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    head(applications) # shows first observations
+    ```
+$\textrm{\,}$
+\vspace{-.3cm}\fi
+
+3. What does each observation in this dataset represent? (5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: Each observation represents a job application. (Note: We know this because, as stated above, the unit of observation in this dataset is job applications.)
+\newline
+\fi
+
+4. Please substantively interpret the first observation in the dataset. (5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: The first observation in the dataset represents a job application for a job with id number 1, the applicant did not present himself as having a criminal record, he was white, and the job application received a call back for a job interview. (Note: the first observation consists of the following values: *job\_id*=1, *criminal*=0, *race*="white", *call*=1; we can interpret each value by using the description of the variables in Table 1.)
+\newline
+\fi
+
+5. For each variable in the dataset, please identify the type of variable (character vs. numeric binary vs. numeric non-binary) (10 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: *job\_id* is a numeric non-binary variable, *criminal* is a numeric binary variable, *race* is a character variable, and *call* is a numeric binary variable. (Recall: binary variables can only take two values, here 0s and 1s, and non-binary variables can take more than two values.)
+\newpage
+\fi
+
+6. How many observations are in the dataset? In other words, how many job applications were part of this experiment? (Hint: the function \fu{dim()} might be helpful here.) Provide the R code you used (without the output) and provide the substantive answer. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    dim(applications) # provides dimensions of dataframe: rows, columns
+    ```
+\underline{Answer}: There were `r dim(applications)[1]` job applications that were part of this experiment. (Recall: the first number provided by \fu{dim()} corresponds to the number of observations in the dataframe, the second number corresponds to the number of variables. Based on the output of dim(), there are `r dim(applications)[1]` observations in the dataframe *applications*. Since the unit of observation is job applications, the dataframe *applications* has data on `r dim(applications)[1]` job applications.)
+\fi
+

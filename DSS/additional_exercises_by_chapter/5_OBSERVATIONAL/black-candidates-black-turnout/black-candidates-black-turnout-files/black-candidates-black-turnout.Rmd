@@ -1,0 +1,169 @@
+---
+title: |
+    | \vspace{-.8cm} Does Having a Black Candidate Running \newline Increase Black Turnout? \if1\solutions(with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} (Based on \href{https://onlinelibrary.wiley.com/doi/epdf/10.1111/ajps.12172}{Bernard Fraga. 2016. "Candidates or Districts? Reevaluating the Role of Race in Voter Turnout." \textit{American Journal of Political Science}, 60: 97-122.})
+
+Some scholars have suggested that having a black candidate running increases black turnout. In this problem set, we explore the causal relationship between black candidates and black turnout using observational data from U.S. elections.
+
+The dataset is in a file called "districts.csv". Table \ref{districts} shows the names and descriptions of the variables in this dataset, where the unit of observation is district elections.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description \\
+\midrule \addlinespace[1.5pt]
+\textit{year} & year of the election \\\addlinespace[1.5pt]
+\textit{state} & state where the district is located\\\addlinespace[1.5pt] 
+\textit{district} & district number, which is unique within states but not across states\\\addlinespace[1.5pt] 
+\textit{proportion\_black} & proportion of the district's voting-age population that was black\\ &  at the time (in percentages)\\\addlinespace[1.5pt] 
+\textit{black\_candidate} & whether there was a black candidate running at the district-level election  \\ &  in that year: 1=there was a black candidate, 0=there was not\\\addlinespace[1.5pt] 
+\textit{black\_turnout} & proportion of the district's black voting age population that voted \\ & in that year's election (in percentages)\\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "districts.csv"}\label{districts}
+\end{center}
+\end{table}
+\vspace{.5cm}
+
+In this problem set, we practice fitting a linear model to compute the difference-in-means estimator and fitting a multiple linear regression model to statistically control for confounders.
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+districts <- read.csv("districts.csv") # reads and stores data
+head(districts, n=8) # shows first eight observations
+```
+
+In the code above, we asked R to show the first eight observations, instead of the default of six, by using the optional argument \fu{n} in the function \fu{head()}.
+
+1. First, let's make sure we understand the data and identify our X and Y variables.\newline
+    a. Substantively interpret the seventh and eight observations in the dataset and do not forget to include the unit of measurements. (2.5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: 
+The seventh observation in the dataset refers to the election that took place in 2006 in Alabama's district number 6, where about 11\% of the voting-age population was black, there was no black candidate running, and a little over 28\% of the black voting-age population voted. 
+The eight observation in the dataset refers to the election that took place in 2006 in Alabama's district number 7, where about 62\% of the voting-age population was black, there was a black candidate running, and close to 33\% of the black voting-age population voted. (Note: The values of the seventh observation are: *year*=2006, *state*="AL", *district*=6, *proportion\_black*=10.68\%, *black\_candidate*=0, and *black\_turnout*=28.33\%. And, the values of the eight observation are: *year*=2006, *state*="AL", *district*=7, *proportion\_black*=61.95\%, *black\_candidate*=1, and *black\_turnout*=32.91\%.)
+\newline
+\fi
+    b. Given that we are interested in estimating the average causal effect of having a black candidate running on black turnout: What should be our Y variable? In other words, which variable is the outcome variable? And, is this variable binary or non-binary? (2.5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: The Y variable should be \textit{black\_turnout}, which is a non-binary variable since it can take more than two values.
+\newline
+\fi
+    c. Given that we are interested in estimating the average causal effect of having a black candidate running on black turnout: What should be our X variable? In other words, which variable is the treatment variable? And, is this variable binary or non-binary? (2.5 points)\if1\solutions 
+\newline\newline\underline{Answer}: The X variable should be \textit{black\_candidate}, which is a binary variable since it can only take 1s and 0s. (Recall: All treatment variables in this class are binary. They equal 1 when the observation was treated, 0 when the observation was not treated. In this case, the treatment is the presence of a black candidate running and, thus, the treatment variable is \textit{black\_candidate}, which equals 1 when there is a black candidate running, and 0 otherwise.)
+\newline
+\fi
+
+2. For now, let's assume that the data we are analyzing came from a randomized experiment, where researchers were able to randomly assign black candidates to district elections. If this were true, then, we could estimate the average causal effect of having a black candidate running on black turnout by computing the difference-in-means estimator.\newline
+    a. Let's start by computing the average outcome for the treatment group, that is, the average black turnout in district elections with a black candidate running. Provide an interpretation of the result using a full sentences, and do not forget to include the unit of measurement. (2.5 points)
+\if1\solutions
+\newpage\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## compute average outcome for treatment group
+        mean(districts$black_turnout[districts$black_candidate==1])
+        ```
+$\textrm{\,}$\vspace{-.3cm}\newline
+(Recall: The R function to compute a mean is \fu{mean()}. We use \fu{[]} to subset a variable; inside the square brackets, we specify the criterion of selection. For example, we can use the relational operator \fu{==} to set a logical test; only the observations for which the logical test are true will be extracted. In the case above, we extract from *black\_turnout* the observations that belong to districts with a black candidate (for which *black\_candidate* equals 1) and then calculate the mean of those observations.) 
+\newline\newline\underline{Answer}: In district elections with a black candidate running, the average black turnout is of `r round(mean(districts$black_turnout[districts$black_candidate==1]), 2)`\%.
+\newline\fi
+    b. Now, compute the average outcome for the control group, that is, the average black turnout in district elections without a black candidate running. Provide an interpretation of the result using a full sentences, and do not forget to include the unit of measurement. (2.5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## compute average outcome for control group
+        mean(districts$black_turnout[districts$black_candidate==0])
+        ```
+$\textrm{\,}$\vspace{-.3cm}
+\newline\underline{Answer}: In district elections without a black candidate running, the average black turnout is of `r round(mean(districts$black_turnout[districts$black_candidate==0]), 2)`\%.
+\newline \fi
+    c. Compute the difference-in-means estimator directly and report its value. (2.5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## compute the difference in means estimator
+        mean(districts$black_turnout[districts$black_candidate==1]) - 
+          mean(districts$black_turnout[districts$black_candidate==0]) 
+        ```
+$\textrm{\,}$\vspace{-.3cm}
+\newline\underline{Answer}: The difference-in-means estimator equals `r round(mean(districts$black_turnout[districts$black_candidate==1]) - mean(districts$black_turnout[districts$black_candidate==0]),2)`.
+\newline
+\fi
+    b. Now, let's use the \fu{lm()} function to fit a line to the data in such a way that the $\widehat{\beta}$ coefficient will be equivalent to the difference-in-means estimator. What is the fitted line? In other words, provide the formula $\widehat{Y} = \widehat{\alpha} + \widehat{\beta} X$ where you specify each term (i.e., substitute $Y$ for the name of the outcome variable, substitute $\widehat{\alpha}$ for the estimated value of the intercept coefficient, substitute $\widehat{\beta}$ for the estimated value of the slope coefficient, and substitute $X$ for the name of the treatment variable.) (Hint: The \fu{lm()} function requires an argument of the form Y\~X) (5 points)
+\if1\solutions
+\newpage\underline{R code}:
+        ```{r, collapse=TRUE, eval=FALSE}
+        ## fit the linear model
+        lm(districts$black_turnout ~ districts$black_candidate) # or
+        ```
+        ```{r, collapse=TRUE, eval=TRUE}
+        lm(black_turnout ~ black_candidate, data = districts) 
+        ```
+$\textrm{\,}$\vspace{-.3cm}
+\newline (Recall: To fit a linear model in R we use the \fu{lm()} function. This function requires an argument of the type \fu{Y $\sim$ X}. Here, \textit{black\_turnout} is the outcome variable, Y, and \textit{black\_candidate} is the treatment variable, X. To specify the dataframe where the variables are stored, we can use either the \fu{\$} operator or the optional argument \fu{data}.)
+\newline\newline\underline{Answer}: $\widehat{\textrm{black\_turnout}}$ = 39 + 6 *black\_candidate*. (Note: The Y variable  is *black\_turnout*, $\widehat{\alpha}$=39, $\widehat{\beta}$=6, and the X variable is *black\_candidate*.)
+\newline \fi
+    c. Is the estimated slope coefficient ($\widehat{\beta}$) equivalent to the value of the difference-in-means estimator in this case? A yes/no answer will suffice. (5 points)
+\if1\solutions
+\newline\newline
+\underline{Answer}: Yes, the estimated slope coefficient is equivalent to the difference-in-means estimator. (Note: They are both equal to 6.16.)
+\newline
+\fi
+    e. If the data came from a randomized experiment, what would you conclude is the direction, size, and unit of measurement of the estimated average causal effect of having a black candidate running on black turnout? (5 points)
+\if1\solutions
+\newline\newline
+\underline{Answer}: If the data came from a randomized experiment, I would estimate that having a black candidate running increases black turnout by 6 percentage points, on average. (Note: It is an increase because we are measuring change---the change in the outcome variable caused by the treatment---and the difference-in-means estimator is positive. The unit of measurement is the same as the unit of measurement of $\triangle \overline{Y}$. Since Y is non-binary and measured in percentages, $\overline{Y}$ is measured in percentages and $\triangle \overline{Y}$, the difference-in-means estimator, and $\widehat{\beta}$ are measured in percentage points. Recall: Percentage points is the unit of measurement of the difference between two percentages. In this case, `r round(mean(districts$black_turnout[districts$black_candidate==1]), 2)`\% - `r round(mean(districts$black_turnout[districts$black_candidate==0]), 2)`\% =  `r round(mean(districts$black_turnout[districts$black_candidate==1]) -mean(districts$black_turnout[districts$black_candidate==0]) ,2)` percentage points.\newline
+\fi
+
+3. Since the data is observational, which means it did not come from a randomized experiment, the district elections with black candidates running might be different in some relevant ways from the district elections without black candidates running. In other words, there might be potential confounding variables present obscuring the causal relationship between *black\_candidates* and *black\_turnout*. A potential confounder is, for example, the proportion of the district's voting-age population that was black at the time of the election: *proportion\_black*. Here is the reasoning: It is likely the case that districts with a higher proportion of black voting-age population are more likely to have black candidates running in the election ($Z \rightarrow X$). It is also likely the case that districts with a higher proportion of black voting-age population are more likely to have a higher black turnout in the elections ($Z \rightarrow Y$). \newline
+\begin{center}
+\begin{tikzpicture}
+\node (x) at (0,1) {\textit{black\_candidate}};
+\node (z) at (2,2) {\textit{proportion\_black}};
+\node (y) at (4,1) {\textit{black\_turnout}};
+\draw[->, line width=.02cm] (z) -- (y);
+\draw[->, line width=.02cm] (x) -- (y);
+\draw[->, line width=.02cm] (z) -- (x);
+\end{tikzpicture}
+\end{center}$\textrm{\,}$\vspace{-.3cm}\newline
+    a. To further explore the possibility that *proportion\_black* is a confounder, compute the correlation between *proportion\_black* and *black\_candidate*. Are these two variables moderately to highly correlated with each other? A yes/no answer will suffice. (5 points)
+\if1\solutions
+\newline\newline
+\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        ## compute correlations
+        cor(districts$proportion_black, districts$black_candidate)
+        ```
+$\textrm{\,}$\vspace{-.3cm}\newline
+(Recall: The function in R to compute a correlation coefficient is \fu{cor()}. The only two required arguments are the code identifying the two variables. The order of the variables does not matter since the correlation between X and Y is the same as the correlation between Y and X.)
+\newline\newline\underline{Answer}: Yes, these two variables are moderately to highly correlated with each other so it is possible that *proportion\_black* is a confounder. (Note: The correlation coefficient is much closer to 1 than to 0.)\newline
+\fi
+    b. Now, statistically control for *proportion\_black* by running a multiple linear regression model and estimate the average causal effect of having a black candidate running on black turnout while keeping the proportion of black voting-age population in the district constant. Report the new direction, size, and unit of measurement of the estimated average causal effect of having a black candidate running on black turnout. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=FALSE}
+        ## fit the linear model
+        lm(districts$black_turnout ~ districts$black_candidate + proportion_black) # or
+        ```
+        ```{r, collapse=TRUE, eval=TRUE}
+        lm(black_turnout ~ black_candidate + proportion_black, data = districts) 
+        ```
+$\textrm{\,}$\vspace{-.3cm}
+\newline (Recall: To fit a multiple linear regression model in R we also use the \fu{lm()} function. The required argument is a formula of the type \fu{Y $\sim$ X$_1$ + X$_2$ + ... + X$_k$}.)
+\newline\newline\underline{Answer}: When we hold the proportion of black voting-age population in the district constant, we estimate that having a black candidate running *decreases* black turnout by 0.74 percentage points, on average. (Note: It is a decrease because we are measuring change---the change in the outcome variable caused by the treatment---and the $\widehat{\beta_1}$ is negative.) (Important note: The causal interpretation of this coefficient would be wrong if there are confounding variables other than *proportion\_black*.)
+\newline
+\fi
+    c. Given this last analysis, would you conclude that having a black candidate running increases black turnout? A yes/no answer will suffice. (5 points)
+    \if1\solutions
+    \newline\newline\underline{Answer}: No, I would not conclude that having a black candidate running increases black turnout. Once we control for the confounder *proportion\_black*, the effect disappears. In fact, the effect reverses directions and becomes very small.
+    \newline\fi

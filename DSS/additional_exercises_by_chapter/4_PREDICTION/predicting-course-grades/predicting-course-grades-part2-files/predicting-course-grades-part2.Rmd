@@ -1,0 +1,146 @@
+---
+title: |
+    | \vspace{-.8cm}Predicting Course Grades Using Midterm Scores  \newline Part II: Predicting Overall Scores \if1\solutions(with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let's continue to analyze real, historical, student performance data from the class. The goal here is to model the relationship between midterm and overall scores so that we can later predict overall scores based on midterm scores. The dataset we will use is in the \textit{grades.csv} file. Table \ref{grades} shows the names and descriptions of the variables in this dataset, where the unit of observation is students.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{midterm} & students' scores in the midterm (from 0 to 100 points) \\\addlinespace[1.5pt]
+\textit{final} & students' scores in the final exam (from 0 to 100 points) \\\addlinespace[1.5pt]
+\textit{overall} & students' scores in the class overall (from 0 to 100 points) \\\addlinespace[1.5pt] 
+\textit{gradeA} & identifies students who earned an A or an A minus in the class \\
+\midrule
+\end{tabular}
+\caption{Variables in "grades.csv"}\label{grades}
+\end{center}
+\end{table}
+
+\vspace{.5cm}
+In this problem set, we practice fitting a line to make predictions when $Y$ is non-binary, including computing correlations, creating scatter plots, adding the fitted line to the plot, and computing R$^2$.
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+grades <- read.csv("grades.csv") # reads and stores data
+head(grades) # shows first observations
+```
+\vspace{.5cm}
+
+1. First, let's figure out what each observation represents, identify our $X$ and $Y$ variables, and explore whether they are moderately or strongly linearly associated with each other.
+    a. In this dataset, what does each observation represent? (2.5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: Each observation represents a student. (Note: As indicated above, the unit of observation in this dataset is students.)
+\newline
+\fi
+    b. What should be our X variable? In other words, which variable are we going to use as the predictor? Please provide the name of the variable and identify whether it is binary or non-binary. (2.5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: *midterm*, which is a non-binary variable
+\newline
+\fi
+    c. What should be our Y variable? In other words, which variable are we going to use as the outcome variable? Please provide the name of the variable and identify whether it is binary or non-binary. (2.5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: *overall*, which is a non-binary variable
+\newline
+\fi
+    d. Compute the correlation coefficient between X and Y. Is the relationship between X and Y moderately or strongly linear? A yes/no answer will suffice. (2.5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        cor(grades$overall, grades$midterm) # computes correlation
+        ```
+(Recall: The function in R to compute a correlation coefficient is \fu{cor()}. The only two required arguments are the code identifying the two variables. The order of the variables does not matter since cor(X,Y) = cor(Y,X).)
+\newline\newline\underline{Answer}: Yes, the relationship between the two variables is moderately to strongly linear since the correlation coefficient is much closer to 1 than to 0.
+\newline
+\fi
+
+2. Second, let's fit the linear model that we will use to make predictions.
+    a. Use the function \fu{lm()} to fit a linear model to summarize the relationship between X and Y and store the output in an object called *fit*. Then, ask R to provide the contents of *fit* by running its name. (R code only.) (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        # fit linear model and store it in an object called fit
+        fit <- lm(grades$overall ~ grades$midterm) 
+        ```
+        ```{r, collapse=TRUE, eval=TRUE}
+        fit # provides contents of object
+        ```
+(Recall: The function \fu{lm()} fits a linear model. It requires a function of the type \fu{Y $\sim$ X}, where Y identifies the Y variable (*overall*, in this case) and X identifies the X variable (*midterm*, in this case). To specify the dataframe where the variables are stored, we can use either the \fu{\$} operator (as in the code above) or the optional argument \fu{data}. If we wanted to use the latter, the code to fit the linear model would be \fu{lm(overall $\sim$ midterm, data = grades)}.)\newpage
+\fi
+    b. What is the fitted line? In other words, provide the formula $\widehat{Y} = \widehat{\alpha} + \widehat{\beta} X$ where you specify each term (i.e., substitute $Y$ for the name of the outcome variable, substitute $\widehat{\alpha}$ for the estimated value of the intercept coefficient, substitute $\widehat{\beta}$ for the estimated value of the slope coefficient, and substitute $X$ for the name of the predictor.) (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: $\widehat{\textrm{overall}}$ = `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` *midterm*
+\newline\newline (Note: The Y variable is *overall*, $\widehat{\alpha}$= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)`, $\widehat{\beta}$=`r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)`, and the X variable is *midterm*.)
+\newline
+\fi
+    c. Create a visualization of the relationship between X and Y and add the fitted line to the graph using the function \fu{abline()}. (R code only.). (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE}
+        plot(grades$midterm, grades$overall) # creates scatter plot
+        abline(fit) # adds fitted line
+        ```
+$\textrm{\,}$\newline(Recall: a scatter plot is the graphical representation of the relationship between two variables. The function in R to create a scatter plot is \fu{plot()}. It requires two arguments (separated by a comma) and in this particular order: (1) the code identifying the variable to be plotted along the x-axis, and (2) the the code identifying the variable to be plotted along the y-axis. We always plot the predictor along the X-axis and the outcome variable along the Y-axis. Alternatively, if we do not want the order of the arguments to matter, we could specify the names of the arguments, \fu{x} and \fu{y}, in the code. For example, \fu{plot(x=grades\$midterm, y=grades\$overall)} and \fu{plot(y=grades\$overall, x=grades\$midterm)} would produce the same scatter plot as the one above. Recall: The function \fu{abline()} adds lines to the most recently created graph. To add the fitted line, we specify as the main argument the name of the object where we stored the output of the \fu{lm()} function, *fit* in this case.) \newpage
+\fi
+
+3. Now, let's use the fitted line to make some predictions. 
+    a. Computing $\widehat{Y}$ based on $X$: Suppose that you earn 80 points in the midterm. What would be your best guess of your predicted overall score based on your performance in the midterm? Please show your calculations and then answer the question with a full sentence (including units of measurement). (5 points)
+\if1\solutions
+\newline\newline\underline{Calculations}: 
+\begin{align*}
+\widehat{\textrm{overall}} &= \widehat{\alpha} + \widehat{\beta} \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` \times 80 \color{gray} \,\,\,\textrm{(if midterm=80)}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80`= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80`
+\end{align*}
+\newline\underline{Answer}: If I earn 80 points in the midterm, I would predict that I will earn `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80` points overall in the class, on average. (Note: $\widehat{Y}$ is in the same unit of measurement as $\overline{Y}$; in this case, Y is non-binary and measured in points so $\overline{Y}$ and $\widehat{Y}$ are also measured in points. Note: We could have arrive at this same conclusion by looking at the scatter plot with the fitted line above. All we would need to do is (i) find 80 on the X-axis, (ii) go up to the line, and (iii) find the value on the Y-axis associated with that point on the line.)
+\newline
+\fi
+    b. Computing $\widehat{Y}$ based on $X$: Now, suppose that you earn 90 points in the midterm. What would be your best guess of your predicted overall score in the class based on your performance in the midterm? Please show your calculations and then answer the question with a full sentence (including units of measurement). (5 points)
+\if1\solutions
+\newline\newline\underline{Calculations}: 
+\begin{align*}
+\widehat{\textrm{overall}} &= \widehat{\alpha} + \widehat{\beta} \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` \times 90 \color{gray} \,\,\,\textrm{(if midterm=90)}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*90`= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*90`
+\end{align*}
+\newline\underline{Answer}: If I earn 90 points in the midterm, I would predict that I will earn `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*90` points overall in the class, on average. (Note: $\widehat{Y}$ is in the same unit of measurement as $\overline{Y}$; in this case, Y is non-binary and measured in points so $\overline{Y}$ and $\widehat{Y}$ are also measured in points.  Note: We could have arrive at this same conclusion by looking at the scatter plot with the fitted line above. All we would need to do is (i) find 90 on the X-axis, (ii) go up to the line, and (iii) find the value on the Y-axis associated with that point on the line.)
+\newline
+\fi
+    c. Computing $\triangle \widehat{Y}$ based on $\triangle X$:  What is the predicted change in overall exam scores associated with an increase in midterm scores of 10 points? Please show your calculations and then answer the question with a full sentence (including units of measurement). (10 points)
+\if1\solutions
+\newline\newline\underline{Calculations}: 
+\begin{align*}
+\triangle \widehat{\textrm{overall}} &= \widehat{\beta} \, \triangle \textrm{midterm} \\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)`  \times \triangle \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)`  \times 10 \color{gray} \,\,\,\textrm{(if $\triangle$ midterm=10)}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*10` 
+\end{align*}
+\newline\underline{Answer}:
+An increase in midterm scores of 10 points is associated with a predicted increase in overall scores of `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*10` points, on average.
+(Note: $\triangle\widehat{Y}$ is in the same unit of measurement as $\triangle\overline{Y}$; in this case, Y is non-binary and measured in points so $\triangle\overline{Y}$ and $\triangle\widehat{Y}$ are also measured in points.  Note: We could have arrive at this same conclusion by looking at the scatter plot with the fitted line above. All we would need to do is (i) pick two values on the X-axis that differ by 10, for example: 90 and 80, (ii) find the values on the Y-axis associated with each of those two points, in this case: `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*90` and `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80` and (iii) compute the difference between those two Y values: `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*90` - `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80` =  `r (round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*90) - (round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80)`.)
+\newline
+\fi
+8. What is the $R^2$ of the fitted model? And, how would you interpret it? (Hint: the function \fu{cor()} might be helpful here.) (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, eval=TRUE}
+    cor(grades$overall, grades$midterm)^2 # computes R^2
+    ```
+\underline{Answer}: The linear model using *midterm* as a predictor explains `r round(cor(grades$overall, grades$midterm)^2,2)*100`\% of the variation of overall scores. (Note: $R^2$ measures the proportion of the variation of the outcome variable explained by the model. In the simple linear model: $R^2$ = cor(X,Y)$^2$. Since $R^2$ is relatively close 1, it looks like it is a decent predictive model. As we can see in the scatter plot above, the prediction errors---the vertical distance between the dots and the line---are relatively small.)
+\fi    
+    

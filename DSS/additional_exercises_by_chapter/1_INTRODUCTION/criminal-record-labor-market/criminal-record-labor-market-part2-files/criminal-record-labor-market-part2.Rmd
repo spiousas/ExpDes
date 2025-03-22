@@ -1,0 +1,100 @@
+---
+title: |
+    | \vspace{-0.8cm}Does Having a Criminal Record Affect the \newline Chances of Receiving A Call Back for a Job Interview? \newline Part II: Computing and Interpreting Means \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let's continue working with the data from the experiment in Milwaukee where researchers randomly assigned whether the job applicant had a criminal record. As a reminder, Table \ref{applications} shows the names and descriptions of the variables in this dataset, where the unit of observation is individual job applications.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{job\_id} & identifying number of job opening\\\addlinespace[1.5pt]
+\textit{criminal} & whether the job applicant presented himself as having a criminal record (1=yes, 0=no) \\\addlinespace[1.5pt]
+\textit{race} & race of applicant (black or white)\\\addlinespace[1.5pt]
+\textit{call} & whether job application received a call back for a job interview (1=yes, 0=no) \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "applications.csv"}\label{applications}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice how to compute and interpret means, among other things. 
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+applications <- read.csv("applications.csv") # reads and stores data
+head(applications) # shows first observations
+```
+
+\vspace{.2cm}
+To simplify our analysis, let's focus on one of the two pairs: the pair of white applicants. To do so, we can run the piece of code below, which creates a new dataframe containing only the job applications that correspond to the white applicants. (It uses the \fu{[]} operator to extract a selection of observations from a dataframe, as explained on page 208 of DSS.) 
+
+```{r, collapse=TRUE, comment='##'}
+## create new dataframe containing only the job applications for white applicants
+applications_white <- applications[applications$race=="white", ]
+```
+
+Now, we are ready to start our analysis:
+
+1. Use the function \fu{dim()} to find how many observations are in the original dataframe \textit{applications} and how many observations are in the new dataframe \textit{applications\_white}. Provide a full sentence with what you learn from computing these two numbers. (10 points)
+\if1\solutions
+\newpage\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    # compute dimensions of dataframe: rows, columns
+    dim(applications) # of original dataframe
+    dim(applications_white) # of new dataframe
+    ```
+\underline{Answer}: Based on the outputs above, we learn that out of the `r dim(applications)[1]` job applications in the experiment, `r dim(applications_white)[1]` were submitted by the white applicants.
+\newline
+\fi
+
+2. Use the function \fu{mean()} to calculate the average of the variable \textit{criminal} in the dataframe \textit{applications\_white}. Please provide a full substantive interpretation of what this average means. Make sure to provide the unit of measurement. (10 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    mean(applications_white$criminal) # calculates the average of criminal
+    ```
+(Recall: We use \fu{\$} to access a variable within a dataframe. To its left, we specify the name of the object where the dataframe is stored, \fu{applications\_white} in this case; to its right, we specify the name of the variable, \fu{criminal} in this case. Also, we do not use quotes around the names of functions, the names of objects, or the names of elements within an object such as variables.)
+\newline\newline\underline{Answer}: Exactly 50\% of the job applications submitted by the white applicants were randomly assigned to have a criminal record, which is consistent with the notion that each tester served in the criminal record condition for an equal number of employment applications. (Note: The word "average" does not appear in the interpretation of this mean because it should be interpreted as a proportion. Recall: The mean of a binary variable should be interpreted as the proportion of the observations that have the characteristic identified by the variable. Here, *criminal* is binary and identifies the job applications that were assigned to have a criminal record. The unit of measurement is \%, after multiplying the output by 100. Here: 0.50 ${\times}$ 100=50\%.)
+\newline
+\fi
+
+3. Use the function \fu{mean()} to calculate the average of the variable \textit{call} in the dataframe \textit{applications\_white}. Please provide a full substantive interpretation of what this average means. Make sure to provide the unit of measurement. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    mean(applications_white$call) # calculates the average of water
+    ```
+\underline{Answer}: About 25\% of the job applications submitted by the white applicants received a call back for a job interview. (Note: See previous explanation for more details. Here, *call* is also binary and identifies the job applications that received a call back for a job interview. The unit of measurement is \%, after multiplying the output by 100. Here: 0.25 ${\times}$ 100=25\%.)
+\newpage
+\fi
+
+4. If we wanted to estimate the average causal effect of having a criminal record on the probability of getting a call back for a job interview for the white applicants: (10 points)
+    a. What would be the treatment variable? Please just provide the name of the variable in the  \textit{applications\_white} dataframe
+    b. What would be the outcome variable? Please just provide the name of the variable in the  \textit{applications\_white} dataframe
+\if1\solutions 
+\newline\newline\underline{Answer}: (a) *criminal*, (b) *call*. 
+\newline
+\fi
+
+5. In this analysis: (10 points)
+    a. What would be the treatment group?
+    b. What would be the control group?
+\if1\solutions 
+\newline\newline\underline{Answer}: (a) the job applications submitted by the white applicants that were randomly assigned to have a criminal record, (b) the job applications submitted by the white applicants that were randomly assigned to NOT have a criminal record. (Note: the unit of observation is job applications so both of these groups are composed of job applications; the treatment group are the job applications that were assigned to receive the treatment---having a criminal record; the control group are the job applications that were assigned to NOT receive the treatment.)
+\newline
+\fi
+

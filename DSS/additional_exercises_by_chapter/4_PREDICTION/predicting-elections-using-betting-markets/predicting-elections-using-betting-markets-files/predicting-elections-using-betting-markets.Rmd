@@ -1,0 +1,177 @@
+---
+title: |
+    | \vspace{-.8cm} Predicting Elections Using Betting Markets \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} In this exercise, we aim to predict electoral outcomes based on data from the betting markets. For this purpose, we will analyze state-level data on the 2008 U.S. presidential election where the two main candidates were Obama (the Democratic candidate) and McCain (the Republican candidate) and model the relationship between (i) the closing price the day before the election of contracts from the online betting company Intrade and (ii) the real electoral outcomes. At Intrade, people trade contracts such as 'Obama to win the electoral college votes of Florida.' The market price of each contract fluctuates based on its sales. The price of each nominee's contract can be interpreted as the vote share that the market expects that nominee to receive in that state. 
+
+The dataset we will use is in the \textit{intrade.csv} file. Table \ref{intrade} shows the names and descriptions of the variables in this dataset, where the unit of observation is states (plus DC).
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{state} & state's two letter abbreviation \\\addlinespace[1.5pt]
+\textit{D\_expected} & closing price or expected vote share of the Democratic candidate's contract \\
+& in that state (in percentages) \\\addlinespace[1.5pt] 
+\textit{R\_expected} & closing price or expected vote share of the Republican candidate's contract \\
+& in that state (in percentages) \\\addlinespace[1.5pt] 
+\textit{D\_real} & real vote share received by the Democratic candidate in that state (in percentages) \\\addlinespace[1.5pt] 
+\textit{R\_real} & real vote share received by the Republican candidate in that state (in percentages) \\\addlinespace[1.5pt] 
+\midrule
+\end{tabular}
+\caption{Variables in "intrade.csv"}\label{intrade}
+\end{center}
+\end{table}
+
+In this problem set, we practice creating new variables, creating histograms, computing correlations, creating scatter plots, fitting linear models, making predictions with the fitted line, and computing R$^2$.
+  
+As always, let's start by loading and exploring the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+intrade <- read.csv("intrade.csv") # reads and stores data
+head(intrade) # shows first observations
+```
+And, to confirm that we have data on all 50 states plus DC, we can run:
+
+```{r, collapse=TRUE, comment='##'}
+dim(intrade) # provides dimensions: rows, columns
+```
+
+\newpage
+$\textrm{\,}$\newline
+
+1. First, let's create our $Y$ and $X$ variables, figure out their unit of measurement, and explore whether they are moderately to strongly linearly associated with each other.\newline
+    a. Create our *X* variable, that is our predictor (i.e., what we will use as the basis of our prediction): the expected democratic margin based on the betting markets, defined as the closing price of the Democratic candidate's contract minus the closing price of the Republican candidate's contract. Call this variable *expected\_margin* and make sure to store it inside the dataframe *intrade*. (R code only) (2.5 points)
+    \if1\solutions
+    \newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        ## create our X variable
+        intrade$expected_margin <- intrade$D_expected - intrade$R_expected
+        ```
+(To store the values of the difference between *intrade\$D\_expected* and *intrade\$R\_expected* as a variable named \textit{expected\_margin} inside the dataframe \textit{intrade}, we use the assignment operator \fu{<-} and specify \fu{intrade\$expected\_margin} to the left of the assignment operator. Without \fu{intrade\$} in front of \fu{expected\_margin}, we would create a variable outside the dataframe, as a new object, which is not what we want.)\newline
+\fi
+    b. Create our *Y* variable, that is our outcome variable (i.e., what we want to predict): the real democratic margin, defined as the real vote share received by the Democratic candidate minus the real vote share received by the Republican candidate. Call this variable *real\_margin* and make sure to store it inside the dataframe *intrade*. (R code only) (2.5 points)
+    \if1\solutions
+    \newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        ## create our Y variable
+        intrade$real_margin <- intrade$D_real - intrade$R_real
+        ```
+(See note above.) \newline
+\fi
+    c. Use the function \fu{head()} to look at the first few observations of *intrade* again to ensure that the two new variables were created correctly. In what unit of measurement are the two new variables, *expected\_margin* and *real\_margin*? (5 points)
+        \if1\solutions
+    \newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        ## look at first few observations
+        head(intrade)
+        ```
+\newpage$\textrm{\,}$ \newline\underline{Answer}: Both *expected\_margin* and *real\_margin* are measured in percentage points since they are the result of computing the difference between two percentages. By looking at the first few observations above, we can confirm that the two new variables were created correctly. For example, the first value of *expected\_margin* is -88 percentage points, which makes sense since 6\% - 94\% = -88 percentage points. And, the first value of *real\_margin* is -21 percentage points, which also makes sense since 38\% - 59\% = -21 percentage points.
+\newline
+\fi
+    d. Do the betting markets do a good job in predicting the real democratic margin? To answer this question, create the histogram of the differences between *real\_margin* and *expected\_margin*. If the betting markets do a good job in predicting the real democratic margin, most of the observations in the histogram will be around 0 because the value of *real\_margin* will equal the value of *expected\_margin*. Is that what you observe in the histogram? A yes/no answer will suffice. (5 points)
+        \if1\solutions
+    \newline\newline\underline{R code}:
+        ```{r, eval=FALSE}
+        ## create histogram of the differences between real_margin and expected_margin
+        hist(intrade$real_margin-intrade$expected_margin)
+        ```    
+        $\textrm{\,}$
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        ## create histogram of the differences
+        hist(intrade$real_margin-intrade$expected_margin, main="", xlim=c(-100,100))
+        ```
+$\textrm{\,}$\newline (Recall: The function to create a histogram is \fu{hist()}. The only required argument is the code identifying the variable or the formula of variables, as is the case here.)
+\newline\newline\underline{Answer}: No, most observations are far away from zero, which means that the betting markets do not do a good job in predicting the real democratic margin. So, we should not just use the value of *expected\_margin* as our prediction of *real\_margin*.
+\newline
+\fi
+    e. Is the relationship between *expected\_margin* and *real\_margin* moderate to strongly linear? If so, we could model the relationship between *expected\_margin* and *real\_margin* with a line and then use that line to predict *real\_margin* based on the value of *expected\_margin*. Please answer this question, by computing the correlation coefficient between *expected\_margin* and *real\_margin*. A yes/no answer will suffice. (5 points)
+        \if1\solutions
+    \newpage$\textrm{\,}$\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        cor(intrade$expected_margin, intrade$real_margin) # computes correlation
+        ```
+(Recall: The function in R to compute a correlation coefficient is \fu{cor()}. The only two required arguments are the code identifying the two variables. The order of the variables does not matter since cor(X,Y) = cor(Y,X).)
+\newline\newline\underline{Answer}: Yes, the relationship between the two variables is moderate to strongly linear since their correlation coefficient is pretty high and much closer to 1 than to 0. This means that we can build a reasonably good predictive linear model using *expected\_margin* to predict *real\_margin*.
+\newline
+\fi
+    
+
+2. Second, let's fit the linear model that we will use to make predictions.\newline
+    a. Use the function \fu{lm()} to fit a linear model to summarize the relationship between *expected\_margin* and *real\_margin* and store the output in an object called *fit*. Then, ask R to provide the contents of *fit* by running its name. (R code only.) (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        # fit linear model and store it in an object called fit
+        fit <- lm(intrade$real_margin ~ intrade$expected_margin) 
+        ```
+        ```{r, collapse=TRUE, eval=TRUE}
+        fit # provides contents of object
+        ```
+(Recall: The function \fu{lm()} fits a linear model. It requires a function of the type \fu{Y $\sim$ X}, where Y identifies the Y variable (*real\_margin*, in this case) and X identifies the X variable (*expected\_margin*, in this case). To specify the dataframe where the variables are stored, we can use either the \fu{\$} operator (as in the code above) or the optional argument \fu{data}. If we wanted to use the latter, the code to fit the linear model would be \fu{lm(real\_margin $\sim$ expected\_margin, data = intrade)}.)\newline
+\fi
+    b. What is the fitted line? In other words, provide the formula $\widehat{Y} = \widehat{\alpha} + \widehat{\beta} X$ where you specify each term (i.e., substitute $Y$ for the name of the outcome variable, substitute $\widehat{\alpha}$ for the estimated value of the intercept coefficient, substitute $\widehat{\beta}$ for the estimated value of the slope coefficient, and substitute $X$ for the name of the predictor.) (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: $\widehat{\textrm{real\_margin}}$ = 1.3 + 0.23 \ *expected\_margin*
+\newline\newline (Note: Y is *real\_margin*, $\widehat{\alpha}$=1.3, $\widehat{\beta}$=0.23, and X is *expected\_margin*.)
+\newpage
+$\textrm{\,}$\newline
+\fi
+    c. Create a visualization of the relationship between *expected\_margin* and *real\_margin*  and add the fitted line to the graph using the function \fu{abline()}. (R code only.). (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE}
+        ## create scatter plot
+        plot(intrade$expected_margin, intrade$real_margin)
+        ## add fitted line
+        abline(fit)
+        ```
+$\textrm{\,}$ \newline(Recall: A scatter plot is the graphical representation of the relationship between two variables. The function in R to create a scatter plot is \fu{plot()}. It requires two arguments (separated by a comma) and in this particular order: (1) the code identifying the variable to be plotted along the x-axis, and (2) the the code identifying the variable to be plotted along the y-axis. We always plot the predictor along the X-axis and the outcome variable along the Y-axis. Alternatively, if we do not want the order of the arguments to matter, we could specify the names of the arguments, \fu{x} and \fu{y}, in the code. For example, \fu{plot(x=intrade\$expected\_margin, y= intrade\$real\_margin)} and \fu{plot(y= intrade\$real\_margin, x=intrade\$expected\_margin)} would produce the same scatter plot as the one above. Recall: The function \fu{abline()} adds lines to the most recently created graph. To add the fitted line, we specify as the main argument the name of the object where we stored the output of the \fu{lm()} function, *fit* in this case.) \newline
+\fi
+
+3. Now, let's use the fitted line to make some predictions.
+\newline
+    a. Computing $\widehat{Y}$ based on $X$: Suppose the day before the next U.S. presidential election, you notice that the difference between the closing price of the Democratic candidate's contract and the closing price of the Republican candidate's contract (i.e., the expected democratic margin) in a particular state equals 20 percentage points. By how much would you predict that the Democratic candidate will win that state? (5 points)
+\if1\solutions
+\newline\newline\underline{Calculations}: 
+\begin{align*}
+\widehat{\textrm{real\_margin}} &= \widehat{\alpha} + \widehat{\beta} \, \textrm{expected\_margin}\\
+&= 1.3 + 0.23 \,\, \textrm{expected\_margin}\\
+&= 1.3 + 0.23 \times 20 \color{gray} \,\,\,\textrm{(if expected\_margin=20)}\\
+&= 1.3 + 4.6 = 5.9 
+\end{align*}
+\newline\underline{Answer}: If the expected democratic margin in a state is of 20 percentage points the night before the election, I would predict that the real democratic margin in that state will be of 5.9 percentage points, on average. That is, I would predict that the Democratic candidate will win that state by 5.9 percentage points, on average. (Note: $\widehat{Y}$ is in the same unit of measurement as $\overline{Y}$; in this case, Y is non-binary and measured in percentage points so $\overline{Y}$ and $\widehat{Y}$ are also measured in percentage points.)
+\newline
+\fi
+    b. Computing $\triangle \widehat{Y}$ based on $\triangle X$: What is the predicted change in the real democratic margin associated with an increase in the expected democratic margin of 10 percentage points? (5 points)
+\if1\solutions
+\newline\newline\underline{Calculations}: 
+\begin{align*}
+\triangle \widehat{\textrm{real\_margin}} &= \widehat{\beta} \, \triangle \textrm{expected\_margin} \\
+&= 0.23 \times \triangle \textrm{expected\_margin}\\
+&= 0.23 \times 10 \color{gray} \,\,\,\textrm{(if $\triangle$ expected\_margin=10)}\\
+&= 2.3
+\end{align*}
+\newline\underline{Answer}: An increase in the expected democratic margin of 10 percentage points is associated with a predicted increase in the real democratic margin of 2.3 percentage points, on average.
+(Note: $\triangle\widehat{Y}$ is in the same unit of measurement as $\triangle\overline{Y}$; in this case, Y is non-binary and measured in percentage points so $\triangle\overline{Y}$ and $\triangle\widehat{Y}$ are also measured in percentage points.)
+\newline
+\fi
+    c. To explore how good the model is at making predictions, compute the $R^2$ of the fitted model and interpret its value. (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, eval=TRUE}
+        cor(intrade$expected_margin, intrade$real_margin)^2 # computes R^2
+        ```
+\underline{Answer}: The linear model using *expected\_margin* as a predictor explains 73\% of the variation of *real\_margin*, which means this linear model is relatively good at predicting electoral outcomes. (Note: $R^2$ measures the proportion of the variation of the outcome variable explained by the model. In the simple linear model: $R^2$ = cor(X,Y)$^2$. Since $R^2$ is relatively close to 1, it looks like a fairly good predictive model. The prediction errors---the vertical distance between the dots and the line---are relatively small.)
+\fi

@@ -1,0 +1,127 @@
+---
+title: |
+    | \vspace{-.8cm}Does Social Pressure Affect Turnout? \newline Part III: Estimate an Average Causal Effect, \newline Determine Statistical Significance and \newline Discuss Internal and External Validity \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let's continue working with the data from the randomized experiment conducted in Michigan and estimate the average causal effect of receiving the social pressure message on the probability of voting. 
+
+The dataset we will use is in a file called "voting.csv". Table \ref{voting} shows the names and descriptions of the variables in this dataset, where the unit of observation is registered voters.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{birth} &  year of birth of registered voter \\\addlinespace[1.5pt]
+\textit{message} & whether registered voter was assigned to receive the social pressure message:
+ "yes", "no" \\\addlinespace[1.5pt]
+\textit{voted} & whether registered voter voted in the August 2006 election:
+ 1{=}voted, 0{=}didn't vote \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "voting.csv"}\label{voting}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice how to (1) estimate an average treatment effect using data from a randomized experiment, (2) determine whether the estimated average treatment effect is statistically significant at the 5\% level, and (3) determine the internal and external validity of the study.
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+voting <- read.csv("voting.csv") # reads and stores data
+head(voting) # shows first six observations
+```
+
+Then, we run the following code to create our treatment variable and confirm that it is created correctly:
+```{r, collapse=TRUE, comment='##'}
+## create variable pressure inside dataframe voting
+voting$pressure <- # stores return values in new variable
+            ifelse(voting$message=="yes", # logical test
+              1, # return value if logical test is true
+              0) # return value if logical test is false
+```              
+```{r, collapse=TRUE, comment='##'}
+## look at the first observations again to ensure pressure was created correctly
+head(voting, n=4) # shows first four observations
+```                            
+
+1. What is the estimated average causal effect of receiving the social pressure message on the probability of voting?
+    a. Fit a linear model to the data in such a way that the estimated slope coefficient is equivalent to the difference-in-means estimator you are interested in and store the fitted model in an object called \textit{fit} (R code only). (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## fit and store linear model
+        fit <- lm(voting$voted ~ voting$pressure) # or
+        fit <- lm(voted ~ pressure, data = voting) 
+        ```
+$\textrm{\,}$
+\newline (Note: Remember that the \fu{lm()} function requires an argument of the form Y$\sim$X. Here, \textit{voted} is the outcome variable, Y, and \textit{pressure} is the treatment variable, X.)
+\newline\fi
+    b. What is the estimated slope coefficient, $\widehat{\beta}$? (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        fit # shows contents of object
+        ```
+$\textrm{\,}$
+\newline\underline{Answer}: The estimated slope coefficient, $\widehat{\beta}$, is `r round(coef(fit)[2],2)`.
+\newline
+\fi    
+    c. Now, let's answer the question: What is the estimated average treatment effect? Provide a full substantive answer (make sure to include the assumption, why the assumption is reasonable, the treatment, the outcome, as well as the direction, size, and unit of measurement of the average treatment effect) (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Let's start by figuring out each key element separately.\newline\newline 
+$\textrm{\,}$- \textit{What's the assumption?} We assume that the registered voters who were randomly assigned to receive the social pressure message (the treatment group) are comparable to the registered voters who were randomly assigned NOT to receive the social pressure message (the control group). (Note: If this assumption were not true the difference-in-means estimator would NOT produce a valid estimate of the average treatment effect.) \newline\newline
+$\textrm{\,}$- \textit{Why is the assumption reasonable?} Because the social pressure message was assigned at random OR because the data come from a randomized experiment. (Recall: Random treatment assignment makes the treatment and control groups on average identical to each other in all observed and unobserved pre-treatment characteristics.)\newline\newline 
+$\textrm{\,}$- \textit{What's the treatment?} Receiving the social pressure message. \newline\newline 
+$\textrm{\,}$- \textit{What's the outcome?} Probability of voting (Note: When the outcome variable is binary, we speak of "probability of 1," where 1 is whatever the 1 in the variable identifies.) \newline\newline 
+$\textrm{\,}$- \textit{What's the direction, size, and unit of measurement of the average causal effect?} An increase of 8 percentage points, on average. (Note: It is an increase because we are measuring change---the change in the outcome variable caused by the treatment---and the difference-in-means estimator is positive. The difference-in-means estimator = proportion of registered voters who received the social pressure message who voted - proportion of registered voters who did NOT receive the social pressure message who voted= 38\% - 30\% = 8 percentage points. Recall that percentage point is the unit of measurement of the arithmetic difference between two percentages.)\newline\newline 
+\textit{Full answer}: Assuming that the registered voters who were randomly assigned to receive the social pressure message are comparable to the registered voters who were randomly assigned NOT to receive the social pressure message (a reasonable assumption since the social pressure message was assigned at random), we estimate that receiving the social pressure message increases the probability of voting by 8 percentage points, on average.
+\newline\fi
+
+2. Is the effect statistically significant at the 5\% level?
+    a. Let's start by specifying the null and alternative hypotheses. Please provide both the mathematical notations and their meaning. (5 points) 
+\if1\solutions
+\newline\newline\underline{Answer}: The null and alternative hypotheses are:
+\newline\newline $H_0 {:} \,\, \beta{=}0$ (meaning: receiving the social pressure message has no average causal effect on the probability of voting at the population level). 
+\newline\newline $H_1 {:} \,\, \beta{\neq}0$ (meaning: receiving the social pressure message either increases or decreases the probability of voting, on average, at the population level)
+\newline\newline (Note that the null and alternative hypotheses refer to $\beta$, which is the true average causal effect at the population level, not to $\widehat{\beta}$, which is the estimated average causal effect at the sample level.)
+\newline\fi
+    b. What is the value of the observed test statistic, $z^{obs}$? (Hint: the code \fu{summary()\$coeff} might be helpful here.) (5 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        summary(fit)$coeff
+        ```
+$\textrm{\,}$
+\newline\underline{Answer}: The value of the observed test statistic, $z^{obs}$, is `r round(summary(fit)$coeff[2,3],2)`. (Note: The observed test statistic for regression coefficients equals $\widehat{\beta}$ divided by the standard error of $\widehat{\beta}$. Here, it equals `r round(summary(fit)$coeff[2,1],5)`/`r round(summary(fit)$coeff[2,2],5)`= `r round(summary(fit)$coeff[2,3],2)`, which is exactly what R provides as the t-value for the coefficient affecting \textit{pressure}, that is, the value in the cell in the second row, third column of the table above.)
+\newline \fi
+    c. What is the associated p-value? (5 points)
+\if1\solutions
+\newline\newline \underline{Answer}: The associated p-value is 2.04e-216, which is $2.04\times10^{-216}\approx$ 0.0000000... (Note: We can interpret this as indicating that, if the null hypothesis were true, the probability of observing a test statistic equal to or larger than `r round(summary(fit)$coeff[2,3],2)` (in absolute value) is  about $2.04\times10^{-214}$\%. This is a probability, well below 5\%, so we will reject the null hypothesis.)
+\newline \fi
+    d. Now, let's answer the question: Is the effect statistically significant at the 5\% level? Please provide your reasoning. (5 points)
+\if1\solutions
+\newline\newline \underline{Answer}: Yes, the effect is statistically significant at the 5\% level. Because (a) the absolute value of the observed test statistic is greater than 1.96 (|31.43|>1.96), and/or (b) the p-value is smaller than 0.05 (2e-216 = 2x10$^{-\textrm{216}}$ and 2x10$^{-\textrm{216}}$ ${<}$ 0.05), we reject the null hypothesis and conclude that there is likely to be an average treatment effect different than zero at the population level. In other words, we conclude that receiving the social pressure message is likely to have an average effect different than zero on the probability of voting \textit{at the population level}. (Note: You do not need to provide both reasons, (a) and (b). One of them suffices since both procedures should lead to the same conclusion.)
+\newline \fi
+
+3. Can we interpret the estimated effect as causal? In other words, how strong is the internal validity of this study? Have the researchers accurately measured the average causal effect on the sample of registered voters who were part of the study? Explain your reasoning. (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Yes, we can interpret the estimated effect as causal. The internal validity of this study is strong because the treatment (receiving the social pressure message) was assigned at random. Random treatment assignment should have eliminated all confounding variables, making the registered voters who were randomly assigned to receive the social pressure message (the treatment group) and the registered voters who were randomly assigned NOT to receive the social pressure message (the control group) comparable; that is, they should have the same observed and unobserved characteristics, on average, with the exception of having received the message. As a result, the difference-in-means estimator should provide a valid estimate of the average causal effect among the registered voters in the study. In other words, since the only systematic difference between the treatment and control groups is the receipt of the message, we can conclude that the observed difference in the outcome (the 8 percentage point increase in the probability of voting) is the direct result of the treatment (receiving the social pressure message).
+\newline
+\fi
+
+4. Can we generalize the results? In other words, how strong is the external validity of this study? Please explain your reasoning and be specific about what population you think the findings can or cannot be generalized to. (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: The answer depends on (i) whether the treatment used in the study is representative of the real-world treatment for which we want to generalize the results, and (ii) whether the sample of observations in the study is representative of the population to which we want to generalize the results. In regards to the first point, the treatment in the study (the postcard with the social pressure message) was administered in the real world, and thus, it is realistic and representative of sending the same kind of postcard in the real world. In regards to the second point, if the sample of registered voters who participated in the experiment is representative of all registered voters in Michigan, we could certainty generalize the results to the whole of Michigan registered voters. Could we generalize the results to Massachusetts registered voters? The answer would depend on how different registered voters in Massachusetts are from those in Michigan.
+\newline
+\fi

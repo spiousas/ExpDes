@@ -1,0 +1,501 @@
+ID,Edad,Género,Nivel educativo,Ingreso anual,Estado de residencia,Zona,Ocupación,Estado civil,Número de hijos,Preferencia política,Frecuencia de voto
+1,69,Masculino,Secundaria,626959.2183,Illinois,Urbana,Empleado,Soltero,2,Harris,Siempre
+2,32,Masculino,Universitario,63307.2677,Florida,Rural,Desempleado,Divorciado,4,Trump,
+3,89,Femenino,Posgrado,611926.9992,Texaas,Urbana,Empleado,Viudo,0,Harris,Frecuente
+4,,Femenino,Posgrado,522332.2132,Nueva York,Urbana,Autónomo,Casado,0,Harris,Nunca
+5,,Masculino,Posgrado,532252.6599,Florida,,Jubilado,,5,Trump,Frecuente
+6,41,Femenino,Posgrado,642498.1386,Florida,Rural,,Soltero,0,Harris,Siempre
+7,20,Masculino,Primaria,606493.3313,Illinois,,,Viudo,2,Trump,Frecuente
+8,,Femenino,Posgrado,627283.9792,Florida,Urbana,Jubilado,Viudo,2,Harris,Nunca
+9,70,Masculino,Universitario,619995.0598,Texas,Urbana,Estudiante,Casado,1,Trump,Nunca
+10,19,Masculino,Posgrado,630928.2796,Texas,Urbana,Empleado,Divorciado,1,Harris,Siempre
+11,,Masculino,Primaria,620943.4764,Califronia,Urbana,Empleado,Divorciado,0,Trump,Nunca
+12,55,Masculino,,620091.2892,Texas,Rural,Estudiante,Viudo,4,Harris,Frecuente
+13,19,Masculino,Primaria,633372.917,Florida,,Estudiante,Viudo,1,Trump,Siempre
+14,81,Femenino,Primaria,636730.552,Texas,Urbana,Empleado,,1,,Frecuente
+15,77,,Primaria,631655.4082,Illinois,Rural,Estudiante,Divorciado,2,Trump,
+16,38,Femenino,Primaria,617877.5941,California,Urbana,Desempleado,Casado,4,Trump,Siempre
+17,50,Femenino,Secundaria,605623.8576,Florida,,Jubilado,Soltero,5,Harris,Frecuente
+18,75,Masculino,Primaria,594011.4062,California,Urbana,Jubilado,,,Trump,Nunca
+19,39,Masculino,,632280.8611,Florida,Urbana,Jubilado,Divorciado,1,Harris,Nunca
+20,66,Femenino,Secundaria,616462.2987,Illinois,Urbana,Desempleado,,4,Harris,Ocasional
+21,76,Masculino,Posgrado,588047.845,California,,Estudiante,Viudo,4,Harris,
+22,59,,Primaria,575061.2617,Nueva York,Urbana,,Divorciado,0,Trump,Frecuente
+23,77,Masculino,Primaria,624950.4641,Florida,Urbana,Estudiante,Casado,4,Trump,
+24,32,,Posgrado,628058.2428,Nueva York,Urbana,Empleado,Viudo,,Harris,Ocasional
+25,79,Masculino,Primaria,619052.9773,California,Urbana,Jubilado,Casado,4,Trump,Nunca
+26,79,Femenino,Primaria,638742.0041,Nueva York,Urbana,Estudiante,Divorciado,1,Trump,Nunca
+27,64,Femenino,Posgrado,627569.0751,Nueva York,,Autónomo,Soltero,0,,Nunca
+28,79,Otro,Universitario,599340.1594,California,Rural,Empleado,Soltero,4,,Frecuente
+29,68,,Posgrado,603864.2461,Illinois,Urbana,Desempleado,,4,Harris,Ocasional
+30,72,Femenino,Primaria,628908.3803,Nueva York,Rural,Desempleado,Divorciado,1,,Frecuente
+31,150,,Posgrado,618334.3234,Nueva York,Urbana,Autónomo,Casado,0,Harris,Ocasional
+,20,Femenino,,636062.2897,Illinois,Rural,Empleado,Viudo,2,Trump,Siempre
+,68,Femenino,,601207.4104,Nueva York,Rural,Jubilado,Divorciado,-1,Trump,
+34,24,Femenino,,625341.0979,Nueva York,Urbana,Estudiante,,,Harris,Frecuente
+35,38,,Primaria,629003.655,Nueva York,Rural,Empleado,Casado,,Trump,Siempre
+36,56,Femenino,Primaria,630377.5578,Texas,Urbana,Desempleado,Viudo,0,Trump,Ocasional
+37,,Femenino,Primaria,625034.6321,Illinois,Urbana,Autónomo,Divorciado,0,Trump,Nunca
+38,21,Femenino,Universitario,631643.8994,Nueva York,Rural,Autónomo,Divorciado,5,Harris,Siempre
+39,,Masculino,Universitario,603180.8605,Illinois,Urbana,Estudiante,Divorciado,0,Harris,
+40,31,Masculino,Posgrado,630883.8501,Florida,Urbana,Autónomo,Casado,2,Harris,Nunca
+,26,Femenino,Universitario,537385.5418,Florida,Urbana,Autónomo,Viudo,0,Harris,Siempre
+42,70,Femenino,Primaria,550377.883,Nueva York,Rural,Empleado,Viudo,2,Trump,Ocasional
+43,19,Masculino,Primaria,636687.0892,Illinois,Urbana,Jubilado,Viudo,4,Trump,
+,77,Femenino,Primaria,622101.8539,Illinois,Urbana,Estudiante,Viudo,2,Trump,Siempre
+45,88,Masculino,Universitario,634227.158,Illinois,Rural,Empleado,Soltero,,,Frecuente
+46,61,,Posgrado,629829.9084,Texas,Rural,Jubilado,Soltero,4,,
+,25,Masculino,Secundaria,482568.0802,Florida,Urbana,Empleado,Viudo,2,Harris,Frecuente
+48,64,Masculino,Primaria,629523.9072,Illinois,Urbana,Empleado,Casado,1,Trump,Siempre
+49,52,Femenino,Primaria,614140.1151,Illinois,Urbana,Autónomo,Soltero,3,Trump,Frecuente
+50,53,Masculino,,607870.8924,Texas,Urbana,Jubilado,Divorciado,0,,Nunca
+51,67,Femenino,Primaria,637620.4479,,Urbana,Estudiante,Soltero,5,Trump,Frecuente
+52,21,Otro,Secundaria,636351.8422,Illinois,Rural,Estudiante,Divorciado,3,Harris,Frecuente
+53,,Femenino,Posgrado,639124.0233,California,Urbana,Jubilado,Viudo,0,,Nunca
+54,23,Femenino,Primaria,636636.6192,Illinois,Urbana,Autónomo,Soltero,0,Trump,Frecuente
+55,71,Masculino,Posgrado,644444.3659,Illinois,Urbana,Desempleado,,4,Harris,Nunca
+56,21,Femenino,Primaria,607747.266,Texas,Rural,Empleado,Soltero,0,Trump,Frecuente
+,71,Femenino,Primaria,473899.955,Texas,Urbana,Autónomo,Soltero,5,Trump,Nunca
+58,80,Masculino,Primaria,620183.0403,Illinois,Rural,Jubilado,Soltero,,Trump,Frecuente
+59,35,Femenino,Universitario,640374.4259,Illinois,Urbana,Empleado,Viudo,2,Harris,Nunca
+60,,Femenino,,634136.2463,Illinois,Urbana,Estudiante,Casado,3,Harris,Siempre
+61,51,Femenino,,631797.8597,,Urbana,Desempleado,Soltero,2,Harris,Nunca
+62,79,Femenino,Primaria,63775.59501,Illinois,Urbana,Estudiante,Casado,5,Trump,Frecuente
+63,31,Femenino,Primaria,593656.8478,Illinois,Urbana,Jubilado,Viudo,0,Harris,Frecuente
+64,65,Masculino,Primaria,596192.0878,Nueva York,,Empleado,Divorciado,5,Trump,Ocasional
+65,32,Femenino,,638781.964,California,Urbana,Jubilado,Soltero,4,Trump,Nunca
+66,89,,Primaria,600236.0186,Florida,Rural,Empleado,Casado,2,Trump,Siempre
+67,79,Masculino,Primaria,544320.0262,California,Urbana,Autónomo,Casado,2,Trump,Nunca
+68,57,Masculino,Secundaria,498074.5877,Nueva York,Rural,Desempleado,Viudo,1,Harris,Nunca
+69,70,Masculino,Primaria,259092.8485,Florida,Urbana,,Soltero,0,,Siempre
+70,41,Femenino,Primaria,636780.9678,,Urbana,Autónomo,Divorciado,-1,Harris,Nunca
+,43,Otro,Primaria,274620.8162,,Urbana,Jubilado,,2,Harris,Siempre
+72,150,Masculino,Posgrado,630261.799,,,Desempleado,Soltero,2,Harris,Siempre
+73,58,,Primaria,633538.6284,Texas,Urbana,Empleado,Divorciado,4,Trump,Nunca
+74,46,Masculino,Primaria,615169.8874,Nueva York,Urbana,Empleado,Casado,5,,Nunca
+75,32,Femenino,Primaria,633411.2467,Texas,Urbana,Estudiante,Casado,5,Harris,
+76,62,Femenino,Primaria,612890.202,Nueva York,Urbana,Empleado,Divorciado,0,Trump,
+77,82,Femenino,Universitario,639834.8411,Nueva York,Urbana,Jubilado,,1,Harris,Ocasional
+78,88,Masculino,Primaria,628370.1752,Texas,Rural,Autónomo,Viudo,2,Trump,
+79,26,Masculino,Primaria,566053.7034,Florida,Rural,Autónomo,Soltero,1,Trump,
+80,18,Masculino,Primaria,624913.6398,Califronia,Rural,Autónomo,Soltero,5,Trump,Siempre
+81,25,Masculino,Primaria,62034.50318,,Rural,Desempleado,Viudo,10,Trump,Ocasional
+82,150,Femenino,Primaria,610290.4031,,Urbana,Empleado,Casado,3,Trump,Nunca
+83,28,Femenino,,574702.3521,Illinois,Urbana,Jubilado,Divorciado,0,Harris,Ocasional
+84,25,Otro,Primaria,641510.2966,Texas,Rural,Desempleado,Divorciado,3,Trump,Siempre
+85,52,Otro,Primaria,606199.9392,Illinois,Urbana,Estudiante,Divorciado,3,Harris,Nunca
+86,,Femenino,Primaria,628872.5625,Texas,Urbana,,Casado,3,Trump,Siempre
+87,50,Femenino,Primaria,619697.9875,Illinois,Urbana,Jubilado,Divorciado,0,Trump,Nunca
+88,22,Femenino,Primaria,582145.0496,,Urbana,Jubilado,Divorciado,0,Trump,Ocasional
+89,58,Femenino,Secundaria,639045.51,California,Urbana,Autónomo,Viudo,4,Harris,Frecuente
+90,45,Masculino,Secundaria,637717.1635,California,Rural,Jubilado,Casado,1,,Ocasional
+,24,Masculino,Secundaria,642538.6448,,Urbana,Empleado,Soltero,1,Harris,Ocasional
+92,89,Masculino,Primaria,632999.5755,California,Urbana,Jubilado,Viudo,4,Trump,Frecuente
+93,29,Femenino,Universitario,562399.396,California,Rural,Autónomo,,4,Harris,Frecuente
+94,51,,Primaria,626194.1787,Texas,Urbana,Jubilado,Soltero,5,Trump,Nunca
+95,,Masculino,Posgrado,639951.6192,Nueva York,Urbana,Estudiante,,3,Harris,Nunca
+96,65,Femenino,Universitario,632166.0021,Illinois,Urbana,Estudiante,Casado,4,Harris,
+97,40,,Universitario,640743.6442,California,Rural,,Divorciado,2,Harris,
+98,79,Masculino,Primaria,638568.8177,Texas,,Empleado,Casado,1,,Ocasional
+99,54,Masculino,Primaria,613224.1679,,Urbana,Empleado,Soltero,4,,Frecuente
+100,61,Femenino,,-5000,Texas,Rural,Desempleado,Soltero,2,Trump,Siempre
+101,52,Femenino,,578705.9431,Nueva York,,Autónomo,Viudo,2,Harris,
+102,82,Femenino,Primaria,625204.0879,Illinois,Rural,Jubilado,Casado,,Harris,
+103,64,Femenino,Universitario,621723.5787,Nueva York,Rural,,Casado,5,,Nunca
+104,20,Femenino,Primaria,629044.0812,Florida,Rural,Desempleado,Soltero,5,,
+105,18,Femenino,,598010.7455,Texas,Urbana,Autónomo,Casado,,Trump,
+106,22,Femenino,Posgrado,597516.2362,Florida,Rural,Autónomo,,5,Trump,Siempre
+,31,,Secundaria,614925.0738,California,Rural,Desempleado,Casado,3,Harris,Siempre
+,44,Masculino,Posgrado,606972.1893,California,Urbana,,Casado,2,Harris,Frecuente
+109,26,Masculino,Posgrado,627901.398,Nueva York,Rural,Jubilado,Casado,3,Harris,Ocasional
+110,32,Masculino,Universitario,607837.507,Illinois,,Desempleado,Soltero,3,Trump,Nunca
+111,,Femenino,Posgrado,630007.3418,Florida,Rural,Estudiante,Viudo,2,Harris,Frecuente
+112,68,Femenino,Universitario,623642.7581,Illinois,Urbana,Empleado,Casado,1,,Siempre
+113,80,Femenino,,628981.7828,Nueva York,Rural,Estudiante,Soltero,2,Trump,Siempre
+114,69,Masculino,Primaria,631774.756,California,Urbana,Empleado,Soltero,,Harris,Ocasional
+115,21,,Universitario,-5000,Illinois,Urbana,Jubilado,Casado,5,Harris,Nunca
+116,,Masculino,Primaria,610557.5281,Illinois,Urbana,Jubilado,Casado,2,,Ocasional
+117,32,Masculino,Secundaria,1000000,California,,Autónomo,,1,,Nunca
+118,60,Femenino,Posgrado,574671.0738,Florida,Urbana,,Soltero,5,,
+119,46,Masculino,Secundaria,639449.0415,California,Urbana,,Soltero,0,,Ocasional
+120,53,Masculino,Posgrado,565764.7291,Illinois,Urbana,,Divorciado,0,Harris,Frecuente
+121,30,Femenino,Primaria,629694.4556,Florida,Urbana,,,3,Trump,Ocasional
+122,49,Masculino,Secundaria,605554.1659,Florida,Urbana,,Viudo,3,Harris,Ocasional
+123,,Femenino,Primaria,636818.6283,California,Rural,Desempleado,Divorciado,1,,Siempre
+124,,Femenino,Posgrado,620331.7533,Illinois,Urbana,,Divorciado,,Harris,
+125,45,Masculino,Universitario,615574.976,Nueva York,Rural,Jubilado,Divorciado,0,Harris,Ocasional
+126,83,Femenino,Universitario,640727.4154,Illinois,Rural,Jubilado,Casado,3,Trump,Ocasional
+127,59,Femenino,,605250.4194,Texaas,Urbana,Empleado,Casado,0,Trump,Siempre
+128,62,Femenino,Primaria,561097.6649,Nueva York,Urbana,Jubilado,Soltero,1,Trump,Nunca
+129,79,Masculino,Primaria,627221.6515,,Rural,Desempleado,Divorciado,1,Trump,Ocasional
+130,74,Femenino,Secundaria,559884.6349,Nueva York,Urbana,Jubilado,Viudo,4,Trump,Frecuente
+,23,,Universitario,627497.8626,,Urbana,Estudiante,Casado,4,Trump,Frecuente
+132,45,Masculino,Posgrado,594205.6886,Florida,,Autónomo,,5,Harris,Frecuente
+133,45,Masculino,Posgrado,643322.7352,Nueva York,Rural,Desempleado,Viudo,1,Harris,Ocasional
+134,61,Otro,Posgrado,398314.4651,Florida,Urbana,,Casado,,Trump,Nunca
+135,47,Femenino,Primaria,547449.9888,Florida,Urbana,,Casado,0,Trump,Nunca
+136,,Masculino,Posgrado,629148.0129,Texas,,Desempleado,Casado,2,Harris,
+137,79,,Primaria,642653.1021,Illinois,Rural,Autónomo,Casado,4,Trump,Ocasional
+138,,Masculino,Primaria,616339.6405,Illinois,Urbana,Autónomo,Divorciado,2,Trump,Nunca
+,44,Masculino,Primaria,640520.1984,Texas,Urbana,Empleado,Divorciado,3,Trump,Ocasional
+,79,Masculino,Secundaria,611351.3835,Nueva York,Rural,Empleado,Divorciado,4,,Siempre
+141,20,Masculino,Primaria,1000000,California,Urbana,Desempleado,Divorciado,2,Trump,Siempre
+142,87,Masculino,Posgrado,637126.3475,California,Urbana,Jubilado,Soltero,3,Harris,Siempre
+143,89,Masculino,Primaria,578145.2139,California,Urbana,Empleado,,,Trump,Frecuente
+144,44,Femenino,Posgrado,596423.5929,Texas,Rural,Jubilado,,3,Harris,Ocasional
+,26,Masculino,Primaria,587274.4904,,Urbana,Estudiante,Viudo,5,Trump,Siempre
+146,79,Masculino,Primaria,623495.9972,Florida,Rural,Autónomo,Divorciado,4,Trump,Ocasional
+147,54,Femenino,Posgrado,640370.4443,California,Rural,Jubilado,Soltero,1,Harris,Frecuente
+148,68,Masculino,Posgrado,587154.6198,Nueva York,,Autónomo,Casado,0,Harris,Frecuente
+,61,Femenino,Posgrado,628910.125,Nueva York,Urbana,Jubilado,Viudo,2,Harris,Siempre
+150,41,Masculino,Posgrado,640230.9785,,Urbana,Estudiante,Viudo,4,Harris,Siempre
+151,76,Masculino,Posgrado,560579.5296,California,Urbana,Empleado,,1,Harris,Nunca
+152,49,,Posgrado,465953.1101,Califronia,Urbana,Estudiante,Viudo,3,Harris,Ocasional
+153,,,Posgrado,624582.0352,Texas,Rural,Empleado,Divorciado,1,Harris,Siempre
+154,79,Masculino,Primaria,454891.6974,,Urbana,Empleado,Divorciado,4,Trump,Nunca
+155,75,Masculino,Primaria,621585.9343,Texas,Rural,Autónomo,Casado,4,Trump,Ocasional
+,69,Masculino,Primaria,630662.2493,Illinois,Urbana,Estudiante,Casado,5,Trump,
+157,29,Masculino,Posgrado,633992.6954,Nueva York,Urbana,Jubilado,Soltero,,Harris,Nunca
+158,56,Masculino,Primaria,532499.0788,Nueva York,Urbana,Estudiante,Casado,1,Trump,
+,19,Masculino,Primaria,635622.8219,,Urbana,Autónomo,Casado,3,Trump,Ocasional
+160,20,Masculino,Posgrado,599770.2631,,Rural,,Divorciado,1,Harris,Nunca
+161,73,Femenino,Posgrado,633126.1918,Illinois,Urbana,Autónomo,Casado,4,Harris,Ocasional
+162,76,Femenino,Universitario,631817.7508,Illinois,Urbana,Desempleado,Divorciado,,Harris,Ocasional
+,,Masculino,Primaria,584005.4453,Nueva York,Urbana,Desempleado,Divorciado,,Trump,Ocasional
+164,,Femenino,Universitario,630655.9386,Texas,Urbana,Jubilado,Casado,5,Harris,Frecuente
+165,71,,Primaria,631024.2852,Florida,Urbana,Autónomo,Soltero,,Trump,Nunca
+,18,Masculino,Secundaria,577340.551,Texas,Urbana,Jubilado,Soltero,0,Trump,
+167,36,Femenino,Secundaria,536904.2146,California,Rural,Jubilado,Viudo,4,Trump,Siempre
+168,19,Femenino,Secundaria,603749.2961,Texas,Urbana,Desempleado,Viudo,2,Trump,Frecuente
+169,70,Masculino,Secundaria,634274.3263,California,Rural,Jubilado,Casado,1,Trump,Frecuente
+170,61,Masculino,Posgrado,632499.6843,California,Urbana,Desempleado,Soltero,,Harris,Nunca
+171,49,Femenino,Secundaria,621859.4698,Florida,Urbana,,,5,Trump,Ocasional
+172,,Femenino,,615356.951,,Urbana,Autónomo,Viudo,3,Harris,
+173,49,Masculino,Secundaria,637516.4271,Texas,,Jubilado,Divorciado,1,Harris,
+,150,Masculino,Secundaria,600328.8491,California,Urbana,,Viudo,3,Trump,
+175,,Masculino,Secundaria,621725.5312,Texas,Urbana,Estudiante,Casado,2,Trump,Siempre
+176,73,Femenino,Secundaria,641757.2756,Nueva York,Urbana,Jubilado,Soltero,0,Trump,Ocasional
+177,34,Femenino,Posgrado,637018.4752,Nueva York,Urbana,Empleado,Viudo,1,Harris,
+178,55,Masculino,Secundaria,632413.7509,Illinois,Urbana,Empleado,Soltero,1,Trump,Siempre
+179,41,Masculino,Secundaria,625239.6985,Nueva York,Rural,Estudiante,,1,Trump,Ocasional
+180,86,Femenino,Universitario,500022.2503,Florida,Urbana,Desempleado,Casado,,,Siempre
+,87,Masculino,Posgrado,1000000,California,Urbana,Jubilado,,2,Harris,Siempre
+182,28,Masculino,Universitario,636216.7136,Illinois,Urbana,Desempleado,Casado,1,Harris,Frecuente
+183,33,Femenino,Secundaria,618254.4481,Florida,,Empleado,Soltero,1,Trump,Siempre
+184,76,Femenino,Posgrado,630229.0172,Texas,Urbana,,Divorciado,5,Harris,Nunca
+185,87,,Primaria,615240.4991,California,Urbana,,,0,Harris,Frecuente
+186,20,Femenino,Posgrado,606355.9799,Nueva York,Urbana,Desempleado,Casado,5,Harris,Nunca
+187,37,Masculino,Primaria,571909.8252,California,Urbana,,Divorciado,5,Harris,Siempre
+188,76,Masculino,Secundaria,624220.4697,Texas,Urbana,Autónomo,Viudo,0,Harris,Nunca
+189,53,Femenino,Primaria,532286.2395,Illinois,Urbana,,Soltero,2,Harris,Ocasional
+190,36,Masculino,,591105.6829,Illinois,Urbana,Estudiante,Divorciado,5,Harris,Siempre
+191,84,Masculino,Secundaria,634861.4863,Illionis,Urbana,Autónomo,Viudo,2,Trump,Ocasional
+192,36,Masculino,Primaria,444960.3966,Nueva York,Urbana,Autónomo,Casado,5,Trump,Nunca
+193,37,,,615172.2658,Florida,Rural,Jubilado,,,Trump,Ocasional
+194,,Masculino,Primaria,636162.9019,Florida,Urbana,Jubilado,Casado,0,Harris,Siempre
+195,69,Masculino,Secundaria,530692.4816,California,Urbana,,Casado,5,Harris,Ocasional
+196,50,,Posgrado,469799.672,Nueva York,Urbana,Estudiante,Soltero,4,Trump,Nunca
+197,57,Masculino,Secundaria,624407.5169,Illinois,Rural,Empleado,Soltero,3,Harris,Nunca
+,56,Femenino,Secundaria,632407.3843,Illinois,Urbana,Empleado,Viudo,4,Trump,Nunca
+199,18,Femenino,Universitario,627179.5607,Texas,Urbana,Jubilado,Soltero,1,Trump,Siempre
+200,28,Femenino,Universitario,600704.3032,Texas,Urbana,Jubilado,Soltero,5,Harris,Nunca
+201,74,Femenino,Secundaria,566666.7883,Illinois,Urbana,Empleado,Soltero,,Trump,
+202,,,Secundaria,606750.7743,Illinois,Urbana,Empleado,,,Trump,Ocasional
+203,40,Masculino,Secundaria,621333.4399,Nueva York,Urbana,Desempleado,Divorciado,3,Harris,Nunca
+204,48,Femenino,Universitario,547198.7372,Florida,Rural,Desempleado,Soltero,5,Harris,Ocasional
+205,59,Femenino,Universitario,629608.9482,,Urbana,Empleado,Soltero,1,Trump,Frecuente
+206,24,Femenino,Primaria,583964.1057,Florida,Rural,Desempleado,Viudo,,Harris,Ocasional
+207,33,Masculino,Primaria,629204.8725,Nueva York,Rural,Autónomo,Divorciado,3,Harris,Frecuente
+208,77,Masculino,Secundaria,611823.4278,Illinois,Urbana,Jubilado,Soltero,5,Trump,Ocasional
+209,19,Masculino,Posgrado,626056.5453,Florida,Urbana,Jubilado,Casado,3,Trump,
+210,18,Masculino,Posgrado,624888.4693,Illinois,Urbana,Empleado,Viudo,,,Ocasional
+211,65,Femenino,Universitario,630615.9651,Illinois,,Estudiante,Soltero,4,Trump,Siempre
+,29,Femenino,Universitario,561189.0885,California,Urbana,Empleado,Soltero,3,,Siempre
+213,,Masculino,Universitario,635134.6954,Florida,Rural,Desempleado,Casado,3,Harris,
+214,54,Otro,Secundaria,635211.7407,Florida,Rural,Estudiante,Casado,0,Harris,
+215,49,Femenino,Posgrado,462030.5032,Illinois,Urbana,Desempleado,Viudo,,Trump,Frecuente
+216,26,Masculino,Primaria,587156.0667,,,Autónomo,Viudo,0,Harris,Nunca
+,,,Secundaria,643690.2694,,Rural,Desempleado,Casado,4,Trump,Nunca
+218,65,Masculino,Primaria,633202.7069,Illinois,Rural,Autónomo,Viudo,5,,Ocasional
+219,20,Masculino,Primaria,642120.8752,Texas,Rural,Autónomo,Casado,5,Trump,Siempre
+220,,Masculino,Secundaria,637205.7773,Texas,Urbana,Desempleado,Soltero,,Trump,Siempre
+221,41,Masculino,Primaria,644763.6493,California,Urbana,Desempleado,Casado,4,Harris,
+222,,Masculino,,626511.811,Nueva York,Urbana,,Casado,2,Trump,Ocasional
+223,,Masculino,Primaria,638687.6166,Illinois,Urbana,Estudiante,Divorciado,4,Trump,Ocasional
+224,41,Femenino,Posgrado,622332.143,Florida,Urbana,Autónomo,Casado,3,Harris,
+225,89,,Posgrado,641381.6912,California,Urbana,Jubilado,Casado,5,Trump,Nunca
+226,53,Femenino,Posgrado,621787.8671,Nueva York,Urbana,Autónomo,Divorciado,1,Harris,Nunca
+227,55,Masculino,Universitario,631172.2531,Florida,Urbana,,Viudo,5,Trump,Frecuente
+228,42,Otro,Primaria,546809.6857,Texas,Urbana,Jubilado,Divorciado,0,Harris,Frecuente
+229,35,Masculino,,555376.5136,Texas,Urbana,,Soltero,5,Harris,Nunca
+230,83,Masculino,Secundaria,597410.7647,Florida,Urbana,Empleado,Divorciado,2,,
+231,71,Femenino,Primaria,629829.3717,California,,Estudiante,Soltero,4,Trump,Frecuente
+232,52,Femenino,Universitario,485325.7443,Texas,Urbana,Autónomo,Viudo,4,Trump,Ocasional
+233,78,,Universitario,641057.5294,Illionis,,Desempleado,Divorciado,5,Harris,Ocasional
+234,58,Masculino,Posgrado,640306.0689,Florida,Urbana,,Divorciado,1,Trump,Siempre
+235,50,Masculino,Primaria,-5000,Florida,Urbana,Jubilado,Viudo,1,Trump,Nunca
+236,85,Femenino,Primaria,435891.5493,Texas,Urbana,Jubilado,Soltero,2,Trump,Siempre
+237,50,Femenino,Secundaria,627726.8186,California,Rural,Empleado,Divorciado,,Trump,Nunca
+238,,Femenino,Primaria,627379.9922,Illinois,Urbana,,Soltero,5,Trump,Nunca
+239,38,Femenino,Universitario,640509.7124,,Urbana,Estudiante,Divorciado,4,Harris,Ocasional
+240,65,Masculino,,588995.7436,Nueva York,Urbana,Jubilado,Casado,5,Trump,Nunca
+241,37,Femenino,Secundaria,588583.2,Nueva York,Urbana,Estudiante,Divorciado,2,Trump,Ocasional
+,25,Masculino,Posgrado,597230.2601,Texas,Urbana,Desempleado,Viudo,3,Harris,Ocasional
+243,24,Masculino,Secundaria,633978.1725,Texas,Urbana,Empleado,Viudo,3,Harris,Nunca
+244,84,Masculino,Secundaria,634853.5276,Texas,Rural,Jubilado,Soltero,2,Trump,Ocasional
+245,34,,Posgrado,639674.0925,Nueva York,Urbana,Estudiante,Divorciado,4,Trump,Ocasional
+246,50,Masculino,Secundaria,621764.8671,California,Rural,Autónomo,Soltero,,Trump,Ocasional
+,65,Masculino,Secundaria,638241.3905,California,Rural,Empleado,Soltero,4,Harris,Frecuente
+248,76,Femenino,Primaria,638932.6605,Texas,,Desempleado,Casado,1,,Ocasional
+249,,Masculino,Primaria,631299.3294,Illinois,Rural,Estudiante,Casado,,Harris,Frecuente
+250,47,Femenino,Posgrado,632213.0478,California,Urbana,Desempleado,Viudo,4,Harris,Frecuente
+251,55,Masculino,Primaria,632856.5755,Nueva York,Urbana,Desempleado,Soltero,2,Harris,Ocasional
+252,68,Femenino,Primaria,610601.294,Florida,Urbana,Jubilado,Viudo,2,Trump,Ocasional
+253,71,Femenino,Secundaria,621880.1576,Florida,,Jubilado,Divorciado,4,Trump,Frecuente
+254,25,Masculino,Universitario,629206.412,,Urbana,Estudiante,Soltero,4,Trump,Frecuente
+255,44,Masculino,Primaria,619268.3941,Illinois,Urbana,Autónomo,,0,Trump,Ocasional
+256,44,Masculino,,637546.4008,Texas,Urbana,Estudiante,,2,Harris,Ocasional
+257,38,Masculino,Primaria,621246.5868,Nueva York,,Autónomo,Divorciado,3,Harris,
+258,,Otro,Primaria,620111.9082,Illinois,Urbana,Desempleado,Viudo,2,Harris,Frecuente
+259,,Masculino,Posgrado,640818.6165,Nueva York,Urbana,,Viudo,2,,Frecuente
+260,81,Femenino,Posgrado,586101.5702,Nueva York,Urbana,Estudiante,Divorciado,4,Trump,Nunca
+261,86,,Posgrado,636595.3212,Texas,Urbana,Estudiante,Viudo,-1,Trump,Frecuente
+262,78,Femenino,Universitario,621610.1735,Florida,Rural,Autónomo,Divorciado,5,Trump,Siempre
+,65,Femenino,Secundaria,575144.8106,Texas,,Desempleado,Soltero,2,,Frecuente
+,36,Femenino,Primaria,590132.9834,Illinois,Rural,Desempleado,Soltero,5,Harris,Nunca
+265,21,Masculino,Primaria,622922.5925,Illinois,Urbana,Autónomo,Casado,3,Harris,Siempre
+266,52,Masculino,,1000000,Illinois,,Desempleado,Soltero,4,Trump,Ocasional
+267,81,Masculino,Universitario,588905.9189,Texas,Urbana,Jubilado,Divorciado,2,Trump,Nunca
+268,66,Femenino,Posgrado,602470.9218,Nueva York,Urbana,Empleado,Viudo,5,Harris,Nunca
+269,5,Femenino,Secundaria,633850.03,Nueva York,,Estudiante,Casado,,,Ocasional
+270,61,,Universitario,635770.637,California,Rural,Empleado,Viudo,5,Harris,Nunca
+271,47,Masculino,Posgrado,642945.5451,Illinois,Urbana,Estudiante,Divorciado,1,Harris,Frecuente
+272,63,Femenino,Universitario,620023.9438,Nueva York,Rural,Jubilado,Soltero,0,Harris,Ocasional
+,23,,Secundaria,625440.2222,California,Rural,Desempleado,Casado,3,Trump,Nunca
+274,,Masculino,Posgrado,577108.5845,Nueva York,Rural,Autónomo,Divorciado,2,Trump,Ocasional
+275,41,Masculino,Universitario,614177.0699,Illinois,Rural,Jubilado,Casado,1,Trump,Ocasional
+276,63,,,562082.4448,Florida,Urbana,Empleado,Casado,2,Trump,Ocasional
+277,150,Femenino,Primaria,634751.5462,Illinois,Urbana,Autónomo,Soltero,2,Trump,Siempre
+278,77,Femenino,Secundaria,576974.0491,Texas,Urbana,Desempleado,Divorciado,4,Harris,Nunca
+279,80,Masculino,Primaria,632739.4897,Nueva York,Urbana,,Viudo,4,,Siempre
+280,49,Femenino,Universitario,597783.6801,Nueva York,Urbana,Autónomo,Casado,4,,Nunca
+281,,Masculino,Posgrado,640596.734,Texas,Rural,Jubilado,Casado,10,Trump,Frecuente
+282,84,Masculino,Posgrado,617853.1939,Texas,Urbana,Jubilado,Viudo,2,Trump,Frecuente
+283,35,Masculino,Universitario,642691.4797,Florida,Urbana,,Divorciado,0,Trump,Frecuente
+284,42,,Posgrado,628855.6804,Nueva York,,Estudiante,Casado,3,Harris,Nunca
+285,71,Femenino,Posgrado,611505.6721,Nueva York,Urbana,Autónomo,,4,Trump,Ocasional
+286,150,Femenino,Primaria,632635.9242,Florida,Urbana,,Casado,4,Trump,Ocasional
+287,84,Masculino,Universitario,638013.9141,California,Rural,Jubilado,Divorciado,2,Trump,Siempre
+288,63,Femenino,Secundaria,594383.9259,Florida,Urbana,Desempleado,Divorciado,2,Harris,Siempre
+289,41,Masculino,Primaria,625856.9584,Illinois,Urbana,Estudiante,,1,Harris,Frecuente
+,49,Femenino,Universitario,632218.6443,Nueva York,Urbana,Autónomo,Divorciado,1,Trump,Siempre
+291,64,Masculino,Primaria,622749.5447,Texas,Urbana,Estudiante,Divorciado,4,Harris,Nunca
+292,40,Masculino,Secundaria,338083.4804,Illinois,Urbana,Empleado,,2,Harris,
+293,,,Secundaria,575910.5065,Nueva York,Urbana,Autónomo,Viudo,0,Harris,Siempre
+294,44,Masculino,Universitario,575274.4109,Florida,Urbana,,Casado,3,Trump,Siempre
+295,19,Femenino,Secundaria,611669.7612,Illinois,Urbana,Jubilado,Divorciado,,Harris,Siempre
+296,34,Femenino,Primaria,619701.9585,Nueva York,Urbana,Autónomo,Casado,2,Harris,Siempre
+297,50,Masculino,Secundaria,643712.3939,California,Urbana,Autónomo,Casado,5,Harris,Frecuente
+298,26,Femenino,Primaria,634548.0676,California,Urbana,Desempleado,,1,Harris,Frecuente
+299,,Masculino,Primaria,632096.6491,Texas,Urbana,Jubilado,Divorciado,3,Harris,Siempre
+300,65,Femenino,Secundaria,642340.201,Nueva York,Urbana,Empleado,Viudo,4,Trump,Nunca
+301,56,,Universitario,638795.5739,California,Rural,Estudiante,Divorciado,2,Harris,Frecuente
+302,59,,Posgrado,642679.799,Flrorida,Urbana,Desempleado,Casado,,Harris,Nunca
+303,43,Masculino,Secundaria,1000000,Nueva York,Urbana,Estudiante,Viudo,2,Harris,Ocasional
+,67,Femenino,Primaria,595769.0236,Florida,Urbana,Empleado,Divorciado,,Trump,Nunca
+305,42,Femenino,Primaria,579097.4737,,Urbana,Empleado,Casado,3,Harris,Siempre
+306,41,Masculino,Secundaria,612369.387,California,Urbana,Autónomo,Casado,1,,Ocasional
+307,30,Masculino,Universitario,637313.2519,,Urbana,Empleado,Soltero,3,Trump,Frecuente
+308,77,Femenino,Universitario,642527.9274,,Rural,Estudiante,Soltero,5,Harris,Frecuente
+309,24,Femenino,Primaria,641917.0084,,Urbana,,Soltero,0,,Ocasional
+310,74,Femenino,Primaria,639526.4087,California,Urbana,Jubilado,Casado,1,Harris,Nunca
+311,53,,Universitario,636662.8184,Nueva York,Urbana,Autónomo,Divorciado,3,Trump,Frecuente
+312,62,Femenino,Posgrado,626943.9963,Nueva York,Urbana,Estudiante,,5,Trump,Siempre
+313,37,Masculino,Secundaria,637729.3144,Florida,Urbana,Estudiante,Divorciado,,Harris,Ocasional
+314,82,Masculino,Primaria,614804.0793,Nueva York,Urbana,Empleado,Soltero,5,Trump,Siempre
+315,,Masculino,Primaria,628257.4092,Florida,Rural,Estudiante,Viudo,2,Harris,Ocasional
+316,33,Femenino,Universitario,623458.4539,Califronia,Urbana,Desempleado,Viudo,2,Trump,Frecuente
+317,31,Masculino,Secundaria,576829.519,Texas,Urbana,Empleado,Soltero,4,Harris,Nunca
+318,32,Femenino,Universitario,638951.7372,,Rural,,Casado,1,Trump,Ocasional
+319,83,Femenino,Secundaria,612238.3983,California,Urbana,Autónomo,Soltero,2,Harris,Ocasional
+320,49,Femenino,Secundaria,623997.6082,Nueva York,Rural,Jubilado,Soltero,5,Trump,Siempre
+,80,Masculino,Secundaria,629938.1949,,Urbana,Autónomo,Casado,1,Trump,Frecuente
+322,68,,Primaria,592334.9692,Texas,Rural,Jubilado,Viudo,,,
+323,42,Masculino,,592667.1598,Texas,Urbana,Autónomo,Divorciado,4,Trump,Frecuente
+324,75,Femenino,Universitario,637169.9498,Florida,Rural,Estudiante,Soltero,3,Harris,Siempre
+325,80,Masculino,Posgrado,627360.0904,Illinois,Rural,Desempleado,Casado,4,Harris,Ocasional
+326,79,Masculino,Universitario,616539.2255,Florida,Urbana,Jubilado,Soltero,0,Trump,Siempre
+327,39,Femenino,Secundaria,-5000,California,Rural,Empleado,Casado,2,Harris,
+328,75,Masculino,,606180.2826,Illinois,,Desempleado,Divorciado,,Trump,Frecuente
+329,75,Masculino,Posgrado,616539.7992,California,Urbana,,Divorciado,0,,Frecuente
+330,66,Femenino,,508055.8064,Florida,Urbana,Desempleado,Viudo,-1,Harris,Ocasional
+,69,Femenino,,640950.2492,Illinois,Urbana,Desempleado,Casado,1,Harris,Frecuente
+332,59,Femenino,Primaria,626230.2418,Florida,Urbana,Autónomo,Casado,5,Trump,Nunca
+333,87,Femenino,Primaria,636838.9605,Illinois,Urbana,Jubilado,Viudo,2,Harris,Siempre
+334,32,Femenino,Posgrado,605418.405,,Urbana,Jubilado,Viudo,0,Trump,Ocasional
+335,71,Masculino,Secundaria,641347.0794,Texas,Rural,Desempleado,Casado,3,Harris,Nunca
+336,77,Masculino,Primaria,614576.4323,Florida,Rural,Estudiante,Viudo,0,Trump,Frecuente
+337,25,Masculino,Secundaria,633987.8866,Texas,Urbana,,Divorciado,,Harris,
+338,70,Femenino,Universitario,635147.767,Florida,Urbana,Empleado,,5,Harris,Nunca
+339,77,Femenino,Primaria,640533.5545,Illinois,Urbana,,Divorciado,5,Harris,Siempre
+340,22,Masculino,Posgrado,631883.8878,Illinois,Urbana,Autónomo,,1,Trump,Siempre
+341,85,Masculino,Universitario,580564.9839,Illinois,Urbana,Desempleado,Casado,0,Harris,Ocasional
+342,23,Femenino,Universitario,624239.8562,Nueva York,Urbana,Empleado,Casado,4,Trump,Frecuente
+343,64,Masculino,,604457.1284,California,Urbana,Empleado,,5,,Nunca
+344,72,,Primaria,529335.4258,Illinois,Rural,Desempleado,Casado,,Trump,Siempre
+345,57,Femenino,Primaria,617044.1606,Texas,Urbana,Autónomo,Viudo,1,Trump,Ocasional
+346,69,Femenino,Universitario,633121.6041,Illinois,Urbana,Empleado,Divorciado,3,Harris,Frecuente
+347,33,,Primaria,610572.9213,Nueva York,Urbana,Autónomo,Casado,,Trump,Frecuente
+348,30,Femenino,Secundaria,632937.5756,Texas,Urbana,,Soltero,0,Trump,Ocasional
+349,47,Femenino,Posgrado,632417.6621,,Urbana,Autónomo,Soltero,2,Trump,Ocasional
+350,36,Femenino,,640900.4672,Texas,Urbana,Estudiante,,2,Trump,Siempre
+351,34,Femenino,Primaria,590100.6937,Florida,Urbana,Estudiante,Casado,3,Harris,Nunca
+352,,Femenino,Universitario,630745.5299,Califronia,Urbana,Autónomo,Viudo,5,Harris,Frecuente
+353,36,Femenino,Posgrado,619292.5764,California,Rural,,Divorciado,3,Trump,Nunca
+,75,Masculino,,637901.5747,Nueva York,Rural,Jubilado,Soltero,5,Trump,Frecuente
+,72,Femenino,,611656.0944,California,Urbana,Desempleado,Divorciado,5,Trump,Frecuente
+,79,Femenino,Universitario,635437.3723,Nueva York,Urbana,Estudiante,Casado,2,Trump,Nunca
+,40,Masculino,Universitario,626602.2363,Nueva York,Urbana,Estudiante,Viudo,3,Harris,Ocasional
+358,26,Femenino,Secundaria,592730.1538,,Urbana,Autónomo,Viudo,1,Harris,Siempre
+359,29,Femenino,Posgrado,597148.5318,California,Urbana,Jubilado,Viudo,5,Trump,Frecuente
+360,18,,Posgrado,624171.9064,Nueva York,Urbana,Desempleado,Divorciado,4,Trump,Ocasional
+361,75,Masculino,Universitario,641959.5812,California,,Autónomo,Soltero,4,,
+362,18,Masculino,Secundaria,206474.3353,Nueva York,Urbana,Autónomo,Divorciado,1,Harris,Siempre
+363,51,Otro,Posgrado,519488.6795,,,Jubilado,Divorciado,4,Harris,Frecuente
+364,65,Femenino,Universitario,600345.3278,Nueva York,Rural,,Casado,0,Trump,Siempre
+365,18,Masculino,Primaria,635347.1484,Texas,Rural,Jubilado,Casado,,Trump,Siempre
+366,33,,Posgrado,626057.1272,Nueva York,Rural,Desempleado,Casado,1,Harris,Frecuente
+367,78,Femenino,Secundaria,632926.3783,Florida,Urbana,Jubilado,,3,Harris,Frecuente
+368,81,Femenino,Secundaria,567765.8561,Nueva York,Rural,Autónomo,Soltero,,Trump,Siempre
+369,80,Femenino,Secundaria,617080.0582,Texas,Urbana,Autónomo,Casado,1,Trump,Ocasional
+370,86,Masculino,Primaria,635663.3245,,Rural,Empleado,Casado,2,Trump,Nunca
+371,39,Masculino,Posgrado,631962.2337,California,Urbana,Estudiante,Soltero,3,Harris,Siempre
+372,84,,Posgrado,578130.2706,Illinois,Rural,Jubilado,Viudo,2,Trump,
+373,,Femenino,Primaria,536609.9589,Nueva York,Urbana,Empleado,Soltero,5,Trump,Frecuente
+374,33,Masculino,Posgrado,544165.8951,California,Rural,Estudiante,Soltero,3,Harris,Ocasional
+,,Masculino,Primaria,598759.3441,Illinois,Rural,Jubilado,Soltero,4,Trump,Nunca
+,74,Masculino,Primaria,628609.1733,Nueva York,Urbana,,Casado,1,,Siempre
+377,46,Femenino,Primaria,644857.0962,Florida,Urbana,Estudiante,Viudo,5,Trump,Siempre
+378,86,Femenino,Secundaria,616070.1348,Nueva York,Rural,Autónomo,Soltero,0,Trump,Nunca
+379,64,Masculino,Posgrado,623732.212,Texas,Urbana,Empleado,Casado,3,Harris,Siempre
+380,79,Masculino,Primaria,620382.4207,Texas,Rural,Estudiante,Divorciado,3,Trump,Nunca
+,86,Femenino,Posgrado,622472.2245,Florida,Urbana,Estudiante,Divorciado,5,Harris,Frecuente
+382,150,Masculino,Secundaria,639871.1187,California,Urbana,Autónomo,Soltero,5,Harris,Nunca
+383,65,Masculino,Primaria,607257.1052,Illionis,Urbana,Jubilado,,2,Trump,Siempre
+384,56,Masculino,,604269.5463,,,Desempleado,Viudo,4,Harris,Nunca
+,,Masculino,Secundaria,602139.0797,,Rural,Autónomo,Divorciado,2,Trump,
+386,40,Masculino,Universitario,588959.0084,California,Urbana,Desempleado,Divorciado,,Harris,Frecuente
+387,27,Femenino,Posgrado,605420.6541,Florida,Urbana,Jubilado,Viudo,4,Trump,Frecuente
+388,86,Masculino,Posgrado,631100.9939,Texaas,Urbana,Estudiante,Soltero,0,Harris,Nunca
+389,51,Femenino,Secundaria,625198.2724,Florida,Urbana,Desempleado,Soltero,2,Trump,Siempre
+390,69,Masculino,Posgrado,621590.5157,Nueva York,Rural,Empleado,Viudo,2,Trump,Ocasional
+391,27,Femenino,Universitario,621187.2729,Illinois,Rural,Empleado,Viudo,10,Harris,
+392,36,Femenino,Primaria,585950.9131,,Urbana,Autónomo,Viudo,4,Harris,Frecuente
+393,,Masculino,Primaria,603792.1269,Texas,Rural,Jubilado,Divorciado,1,Trump,Siempre
+394,18,Femenino,Primaria,469876.0298,Nueva York,Rural,Autónomo,Viudo,0,Trump,Siempre
+395,86,Masculino,Secundaria,445639.151,California,Urbana,Autónomo,Casado,0,Harris,Ocasional
+396,21,Femenino,Posgrado,621865.8078,Illinois,Rural,Autónomo,Divorciado,4,Harris,Nunca
+397,33,Masculino,Universitario,645243.4195,Texas,Urbana,Empleado,,5,Trump,Siempre
+398,41,Masculino,Posgrado,569844.197,Illinois,Urbana,Empleado,Soltero,5,Trump,Nunca
+399,19,Masculino,Posgrado,632887.3788,,Rural,Autónomo,Soltero,3,,Ocasional
+400,49,Otro,Posgrado,635835.9802,Illinois,Urbana,Empleado,Divorciado,3,Harris,Nunca
+401,41,Femenino,,630930.6789,Florida,Rural,Jubilado,,4,Trump,
+402,29,Femenino,Universitario,631626.5123,,Rural,Autónomo,Viudo,3,Trump,
+403,67,Masculino,Universitario,605088.1158,Illinois,Urbana,Empleado,Viudo,0,Harris,Ocasional
+404,52,Femenino,Posgrado,641087.2663,California,Rural,Desempleado,Soltero,0,Trump,Ocasional
+405,50,Masculino,Primaria,638221.2758,Florida,Urbana,Autónomo,Soltero,1,Trump,Ocasional
+406,50,Femenino,Primaria,614674.5042,Florida,Urbana,Autónomo,Divorciado,5,Trump,
+407,78,Masculino,Universitario,604652.0959,California,Urbana,Jubilado,Casado,,Trump,Frecuente
+408,68,Masculino,Primaria,603881.2139,Illinois,Rural,Estudiante,Viudo,2,Trump,Siempre
+409,60,Masculino,Primaria,635692.1656,Nueva York,Urbana,,Divorciado,5,Harris,Frecuente
+410,29,Masculino,,637437.3065,California,Urbana,Jubilado,Viudo,2,Trump,Nunca
+411,84,Femenino,,632447.0529,Illinois,Urbana,Jubilado,Soltero,1,Harris,Nunca
+412,82,Masculino,Posgrado,617720.8705,California,Rural,Jubilado,,-1,Harris,Siempre
+413,50,Femenino,,548425.9155,California,Urbana,Estudiante,,3,Harris,Nunca
+414,57,Masculino,,642875.5822,Texas,,Jubilado,Casado,1,Trump,Ocasional
+,60,Femenino,Secundaria,628054.658,Illinois,Urbana,,Soltero,1,,
+416,61,,Posgrado,639908.5166,Nueva York,Urbana,,Casado,,Trump,Ocasional
+417,46,Masculino,Universitario,641497.7291,Texas,Rural,Autónomo,Casado,3,Trump,Ocasional
+418,30,Femenino,,587790.4042,California,Urbana,Desempleado,Divorciado,1,,Ocasional
+419,29,,Universitario,607745.6646,Califronia,Urbana,Desempleado,Viudo,5,Harris,Nunca
+420,63,Masculino,Primaria,611193.6221,California,Rural,Autónomo,Soltero,1,Trump,Siempre
+421,19,Femenino,,590390.9065,,Urbana,Empleado,Soltero,-1,Trump,Siempre
+422,52,Femenino,Primaria,632084.9905,Illinois,Rural,Estudiante,Soltero,4,,Ocasional
+423,25,Masculino,Universitario,631427.7588,Texas,,Estudiante,Soltero,3,Harris,Nunca
+424,43,Masculino,Universitario,449745.7386,Nueva York,,Empleado,Soltero,2,Trump,Frecuente
+425,51,Femenino,Universitario,628505.2828,Texas,Urbana,Estudiante,Casado,4,Harris,Frecuente
+426,24,Masculino,,599776.5666,Florida,,Jubilado,Divorciado,,Trump,Nunca
+427,150,Masculino,,623550.9555,California,Rural,Autónomo,Soltero,0,Harris,Ocasional
+428,75,Masculino,Posgrado,642249.0178,California,Rural,Autónomo,Divorciado,3,,Siempre
+429,5,Femenino,Universitario,642867.5877,California,Rural,Empleado,Divorciado,2,Trump,Nunca
+430,53,Femenino,Primaria,633373.3178,Texas,,,Casado,,Trump,Frecuente
+431,38,Masculino,Secundaria,582389.2681,,,Desempleado,Soltero,4,Trump,Frecuente
+,53,Masculino,Universitario,597268.2378,California,Rural,Desempleado,Casado,5,Trump,Frecuente
+433,,Masculino,Universitario,590774.0269,Texas,Urbana,Estudiante,Soltero,3,Harris,Ocasional
+434,41,Femenino,Secundaria,637509.7009,Illinois,Rural,Desempleado,Casado,1,Harris,Frecuente
+435,81,Masculino,Posgrado,534875.1647,Illinois,,Empleado,Divorciado,3,Harris,Nunca
+436,66,Masculino,Secundaria,637325.8247,,Urbana,Empleado,Soltero,0,,Nunca
+437,53,Femenino,Secundaria,618468.0085,California,Urbana,Estudiante,Viudo,3,Trump,Frecuente
+438,,Masculino,Primaria,623918.8159,Texas,Urbana,Desempleado,Divorciado,4,Trump,Nunca
+439,40,Femenino,Primaria,627207.3271,,Urbana,Empleado,Viudo,4,Harris,Frecuente
+440,79,Masculino,Posgrado,561716.7484,Texas,Urbana,Empleado,Divorciado,3,Trump,Frecuente
+441,54,Masculino,Universitario,634836.1707,,Urbana,Jubilado,Casado,4,Harris,Siempre
+442,29,Masculino,Secundaria,640006.0323,Illinois,Urbana,Jubilado,Soltero,1,Trump,Ocasional
+443,72,Femenino,Posgrado,623247.105,Nueva York,Urbana,Empleado,Divorciado,,Trump,Ocasional
+444,30,Femenino,,630951.0935,Nueva York,Urbana,Estudiante,Casado,3,Harris,Siempre
+445,40,Femenino,Secundaria,475.0140828,Florida,Rural,Autónomo,Soltero,1,Trump,Siempre
+446,47,Masculino,Universitario,602392.4647,Texas,Rural,Autónomo,Soltero,5,Harris,Ocasional
+447,34,Femenino,Primaria,631090.9214,,Urbana,Empleado,Divorciado,5,Harris,Frecuente
+,79,Masculino,Primaria,638057.5053,Florida,Rural,,,1,Harris,Frecuente
+449,30,Masculino,Primaria,642358.382,,Urbana,Empleado,,2,Harris,Ocasional
+450,76,,Posgrado,637817.1467,Illinois,Urbana,Estudiante,Soltero,3,Harris,Frecuente
+451,36,Masculino,Universitario,621008.9655,Nueva York,,Jubilado,Viudo,5,Harris,Siempre
+452,66,Masculino,Secundaria,553922.0068,Texas,Urbana,Empleado,Casado,5,Trump,Frecuente
+453,29,Masculino,Posgrado,578096.4004,Nueva York,Rural,Empleado,,4,Trump,Frecuente
+454,78,Masculino,Posgrado,618021.0057,Nueva York,Rural,Desempleado,Divorciado,5,Harris,Nunca
+455,36,Masculino,Posgrado,629774.5217,,Urbana,Estudiante,Viudo,1,Trump,Nunca
+456,26,,Primaria,616898.7942,Nueva York,,Empleado,Divorciado,-1,Trump,Nunca
+457,88,Masculino,Universitario,632605.3992,Nueva York,,Desempleado,Soltero,2,Trump,Frecuente
+458,45,Femenino,Posgrado,522912.0845,Florida,Urbana,Autónomo,Soltero,3,Harris,Ocasional
+459,69,Femenino,,627488.6896,Illinois,Urbana,Empleado,Divorciado,3,Harris,Siempre
+460,33,Masculino,Universitario,625513.903,California,Urbana,Empleado,Viudo,5,Trump,Frecuente
+461,86,Masculino,Secundaria,643316.1439,Texas,,Desempleado,Soltero,0,Harris,Ocasional
+462,29,Masculino,Universitario,627602.1736,Nueva York,Rural,Estudiante,Casado,0,Harris,Frecuente
+463,42,Femenino,Secundaria,594876.1247,Texaas,Urbana,Empleado,Soltero,1,Harris,Siempre
+464,69,,Primaria,1000000,California,Rural,Autónomo,Casado,0,Harris,Frecuente
+465,70,Femenino,Posgrado,635321.3599,Texas,Urbana,Empleado,,1,Harris,
+466,40,Masculino,Secundaria,597053.6451,Califronia,,Autónomo,Casado,4,Trump,Frecuente
+467,33,Femenino,Universitario,640687.5909,Florida,,Jubilado,Casado,1,Harris,Siempre
+468,74,Masculino,Posgrado,582281.5324,Nueva York,Urbana,Jubilado,Casado,0,Trump,Frecuente
+469,56,Masculino,Posgrado,632781.3118,California,,,Casado,5,Harris,Siempre
+470,70,Femenino,,630783.8958,Texas,Urbana,Estudiante,,4,Harris,Nunca
+,59,Femenino,Secundaria,638559.4621,Nueva York,Urbana,Empleado,Casado,0,,Frecuente
+472,75,,,613572.3385,Florida,Urbana,Empleado,Soltero,1,Trump,Frecuente
+473,56,Femenino,Primaria,387935.8047,,Urbana,Jubilado,Casado,2,,Ocasional
+474,31,Femenino,Secundaria,597596.3129,California,Rural,Autónomo,Divorciado,3,Trump,Ocasional
+475,22,Femenino,Posgrado,636437.5249,Florida,Urbana,Empleado,Viudo,0,Harris,Siempre
+476,52,Femenino,Posgrado,577147.7351,Texas,Urbana,Empleado,Casado,,Trump,Frecuente
+477,35,Masculino,Posgrado,629670.7393,Florida,Urbana,Estudiante,Divorciado,4,Trump,Siempre
+478,26,Masculino,,558646.9264,,Urbana,Desempleado,Casado,0,Harris,Nunca
+479,75,Masculino,Secundaria,596369.2548,Illinois,Urbana,Jubilado,,0,Harris,Ocasional
+480,34,Femenino,Posgrado,644557.6408,,,Jubilado,Casado,3,,Siempre
+481,24,Femenino,Universitario,637648.3399,Florida,Urbana,,Divorciado,1,Trump,Siempre
+482,63,Masculino,Posgrado,589083.2764,Nueva York,Rural,Empleado,Viudo,,Harris,Ocasional
+,30,Masculino,Primaria,620084.8847,Texas,,Estudiante,Divorciado,4,Harris,
+484,57,Femenino,Posgrado,637805.5776,Nueva York,Rural,Estudiante,Viudo,1,Harris,Siempre
+485,,Otro,Secundaria,634029.352,Nueva York,Urbana,Jubilado,Casado,4,Harris,Ocasional
+,26,Femenino,Primaria,642444.4479,Califronia,Urbana,Estudiante,Soltero,,Harris,Frecuente
+,,Masculino,Secundaria,625554.9861,Nueva York,,Desempleado,Casado,3,Trump,Nunca
+488,44,Masculino,Secundaria,444792.8824,Illinois,Rural,Empleado,Viudo,3,Trump,Ocasional
+489,83,Masculino,Primaria,596455.1961,Illinois,Urbana,Desempleado,,5,Harris,Siempre
+490,22,Femenino,Secundaria,448825.1799,California,Urbana,Autónomo,Casado,2,Trump,Nunca
+,46,Masculino,,592487.3868,Texas,Urbana,Jubilado,Divorciado,3,Harris,Frecuente
+492,54,Femenino,Posgrado,584176.1753,Texas,Urbana,Estudiante,Divorciado,0,Trump,Frecuente
+493,55,Masculino,Universitario,487128.2506,Nueva York,,Autónomo,Divorciado,2,Harris,Ocasional
+494,25,Femenino,Secundaria,613597.4991,Nueva York,Urbana,Estudiante,Casado,1,Harris,Ocasional
+495,,Femenino,Secundaria,627452.8721,Nueva York,Rural,Empleado,Divorciado,,,Ocasional
+496,34,,Secundaria,583856.6723,Texas,Urbana,Empleado,,2,Trump,Frecuente
+497,88,,Posgrado,551455.7908,Florida,Urbana,Empleado,Casado,0,Trump,Nunca
+498,62,,Universitario,632088.3404,Illinois,Urbana,Estudiante,,5,Harris,Frecuente
+,21,Masculino,Primaria,635013.8112,Florida,Urbana,Autónomo,Casado,4,Harris,Siempre
+500,53,Femenino,Posgrado,620410.9346,Florida,Urbana,Empleado,Viudo,4,Trump,Frecuente

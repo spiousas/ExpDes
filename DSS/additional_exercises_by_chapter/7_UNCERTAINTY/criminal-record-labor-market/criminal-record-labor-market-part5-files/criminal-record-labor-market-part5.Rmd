@@ -1,0 +1,122 @@
+---
+title: |
+    | \vspace{-.8cm} Does Having a Criminal Record Affect the Chances\newline of Receiving A Call Back for a Job Interview? \newline Part V: Focus on Black Applicants\if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let's continue working with the data from the experiment in Milwaukee where researchers randomly assigned whether the job applicant had a criminal record. As a reminder, Table \ref{applications} shows the names and descriptions of the variables in this dataset, where the unit of observation is individual job applications.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{job\_id} & identifying number of job opening\\\addlinespace[1.5pt]
+\textit{criminal} & whether the job applicant presented himself as having a criminal record (1=yes, 0=no) \\\addlinespace[1.5pt]
+\textit{race} & race of applicant (black or black)\\\addlinespace[1.5pt]
+\textit{call} & whether job application received a call back for a job interview (1=yes, 0=no) \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "applications.csv"}\label{applications}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice answering the following four questions related to causal studies: \newline (1) What is the estimated average treatment effect? (2) Is the effect statistically significant at the 5\% level? (3) Can we interpret the effect as causal? And (4) Can we generalize the results?
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+applications <- read.csv("applications.csv") # reads and stores data
+head(applications) # shows first observations
+```
+
+Let's now focus on the pair of black applicants. To do so, we can run the piece of code below, which creates a new dataframe containing only the job applications that correspond to the black applicants. (It uses the \fu{[]} operator to extract a selection of observations from a dataframe, as explained on page 208 of DSS.) 
+
+```{r, collapse=TRUE, comment='##'}
+## create new dataframe containing only the job applications for black applicants
+applications_black <- applications[applications$race=="black", ]
+```
+
+Now, we are ready to start our analysis:
+
+1. In the dataset about the black applicants, what is the estimated average causal effect of having a criminal record on the probability of receiving a call back for a job interview?
+    a. Fit a linear model to the data in such a way that the estimated slope coefficient is equivalent to the difference-in-means estimator you are interested in and store the fitted model in an object called \textit{fit} (R code only). (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## fit and store linear model
+        fit <- lm(applications_black$call ~ applications_black$criminal) # or
+        fit <- lm(call ~ criminal, data = applications_black) 
+        ```
+$\textrm{\,}$
+\newline (Note: Remember that the \fu{lm()} function requires an argument of the form Y$\sim$X. Here, \textit{call} is the outcome variable, Y, and \textit{criminal} is the treatment variable, X.)
+\newline\fi
+    b. What is the estimated slope coefficient, $\widehat{\beta}$? (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        fit # shows contents of object
+        ```
+$\textrm{\,}$
+\newline\underline{Answer}: The estimated slope coefficient, $\widehat{\beta}$, is `r round(coef(fit)[2],2)`.
+\newline
+\fi    
+    c. Now, let's answer the question: What is the estimated average treatment effect? Provide a full substantive answer (make sure to include the assumption, why the assumption is reasonable, the treatment, the outcome, as well as the direction, size, and unit of measurement of the average treatment effect) (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: \underline{Answer}: Let's start by figuring out each key element separately.\newline\newline 
+$\textrm{\,}$- \textit{What's the assumption?} We assume that the job applications that were assigned to have a criminal record (the treatment group) are comparable to the job applications that were assigned to NOT have a criminal record (the control group). (Note: If this assumption were not true the difference-in-means estimator would NOT produce a valid estimate of the average treatment effect.) \newline\newline 
+$\textrm{\,}$- \textit{Why is the assumption reasonable?} Because the criminal records were assigned at random OR because the data come from a randomized experiment. (Recall: Random treatment assignment makes the treatment and control groups on average identical to each other in all observed and unobserved pre-treatment characteristics.)\newline\newline 
+$\textrm{\,}$- \textit{What's the treatment?} Having a criminal record. \newline\newline 
+$\textrm{\,}$- \textit{What's the outcome?} Probability of receiving a call back for a job interview among black applicants. (Note: When the outcome variable is binary, we speak of the effect of the treatment on the \textit{probability of the outcome occurring}.) \newline\newline 
+$\textrm{\,}$- \textit{What's the direction, size, and unit of measurement of the average causal effect?} A decrease of 9 percentage points, on average. (Note: It is a decrease because we are measuring change---the change in the outcome variable caused by the treatment---and the difference-in-means estimator is negative. The difference-in-means estimator is measured in percentage points (after we multiply the output by 100) because the outcome *call* is binary. As a result, both the average outcome for the treatment group and the average outcome for the control group will be measured in percentages, after multiplying the outputs by 100, and percentage points is the unit of measurement for the arithmetic difference between two percentages.)\newline\newline 
+\textit{Full answer}: Assuming that the job applications that were randomly assigned to have a criminal record were comparable to the job applications that were randomly assigned to NOT have a criminal record (a reasonable assumption since the criminal records were assigned at random), we estimate that having a criminal record decreases the probability of receiving a call back for a job interview among black applicants by 9 percentage points, on average.
+\newline
+\fi
+
+2. Is the effect statistically significant at the 5\% level?
+    a. Let's start by specifying the null and alternative hypotheses. Please provide both the mathematical notations and their meaning. (2.5 points) 
+\if1\solutions
+\newline\newline\underline{Answer}: The null and alternative hypotheses are:
+\newline\newline $H_0 {:} \,\, \beta{=}0$ (meaning: having a criminal record has no average causal effect on the probability of receiving a call back for a job interview among black applicants at the population level). 
+\newline\newline $H_1 {:} \,\, \beta{\neq}0$ (meaning: having a criminal politician, on average, either increases or decreases the probability of receiving a call back for a job interview among black applicants at the population level)
+\newline\newline (Note that the null and alternative hypotheses refer to $\beta$, which is the true average causal effect at the population level, not to $\widehat{\beta}$, which is the estimated average causal effect at the sample level.)
+\newline\fi
+    b. What is the value of the observed test statistic, $z^{obs}$? (Hint: the code \fu{summary()\$coeff} might be helpful here.) (2.5 points) 
+\if1\solutions
+\newpage\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        summary(fit)$coeff
+        ```
+$\textrm{\,}$
+\newline\underline{Answer}: The value of the observed test statistic, $z^{obs}$, is `r round(summary(fit)$coeff[2,3],2)`. (Note: The observed test statistic for regression coefficients equals $\widehat{\beta}$ divided by the standard error of $\widehat{\beta}$. Here, it equals `r round(summary(fit)$coeff[2,1],5)`/`r round(summary(fit)$coeff[2,2],5)`= `r round(summary(fit)$coeff[2,3],2)`, which is exactly what R provides as the t-value for the coefficient affecting \textit{criminal}, that is, the value in the cell in the second row, third column of the table above.)
+\newline \fi
+    c. What is the associated p-value? (2.5 points)
+\if1\solutions
+\newline\newline \underline{Answer}: The associated p-value is 2.31e-03, which is $2.31\times10^{-3}\approx$ 0.00231. (Note: We can interpret this as indicating that, if the null hypothesis were true, the probability of observing a test statistic equal to or larger than `r round(summary(fit)$coeff[2,3],2)` (in absolute value) is  about `r round(summary(fit)$coeff[2,4]*100,2)`\%. This is a small probability, well below 5\%, so we will reject the null hypothesis.)
+\newline \fi
+    d. Now, let's answer the question: Is the effect statistically significant at the 5\% level? Please provide your reasoning. (2.5 points)
+\if1\solutions
+\newline\newline \underline{Answer}: Yes, the effect is statistically significant at the 5\% level. Because (a) the absolute value of the observed test statistic is greater than 1.96 (|-3.07|>1.96), and/or (b) the p-value is smaller than 0.05 (0.002<0.05), we reject the null hypothesis and conclude that there is likely to be an average treatment effect different than zero at the population level. In other words, we conclude that having a criminal record is likely to have an average effect different than zero on the probability of receiving a call back for a job interview among black applicants \textit{at the population level}. (Note: You do not need to provide both reasons, (a) and (b). One of them suffices since both procedures should lead to the same conclusion.)
+\newline \fi
+
+4. Can we interpret the estimated effect as causal? In other words, how strong is the internal validity of this study? Have the researchers accurately measured the average causal effect on the sample of candidates who were part of the study? Please explain your reasoning. (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Yes, we can interpret the estimated effect as causal. The internal validity of this study is strong because the treatment (having a criminal record) was assigned at random. Random treatment assignment should have eliminated all confounding variables, making the job applications that were assigned to have a criminal record (the treatment group) and the job applications that were assigned to not have a criminal record (the control group) comparable; that is, they should have the same observed and unobserved characteristics, on average, with the exception of their criminal record. As a result, the difference-in-means estimator should provide a valid estimate of the average causal effect among the black applicants in the study. In other words, since the only systematic difference between the treatment and control groups is the criminal record, we can conclude that the observed difference in the outcome (the 9 percentage point decrease in the probability of getting a call back for a job interview) is the direct result of the treatment (having a criminal record).
+\newline
+\fi
+
+5. Can we generalize the results? In other words, how strong is the external validity of this study? Please explain your reasoning and be specific about what population you think the findings can or cannot be generalized to. (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: As we learned in the introduction, the experiment involved 23-year old male college students applying for entry-level positions in Milwaukee in 2001 and the criminal record assigned at random was drug related. The results might indeed have been different had the researchers 
+chosen a different gender and/or age of applicants, involved more advanced-level jobs, picked a different city or year, and/or assigned a more serious criminal record. (By comparing the results from the last problem set---part IV---to those from this problem set, we can see that the effect of having a criminal record seems to depend on the race of the applicant, thus, it might be reasonable to expect it to depend also on other characteristics of the applicants or the jobs.) If this is true, the external validity of the results might be weak if we intend to generalize them to a population not represented in the sample used in the study.
+\newline \newline (Note: It is worth mentioning, however, that a similar study was run in New York City in 2004 and the results were quite similar. See \href{https://scholar.harvard.edu/files/bonikowski/files/pager-western-bonikowski-discrimination-in-a-low-wage-labor-market.pdf}{Pager, Devah,  Bart Bonikowski and Bruce Western. 2009. Discrimination in a Low-Wage Labor Market: A Field Experiment. \textit{American Sociological Review}, 74(5): 777–99}.)
+\fi

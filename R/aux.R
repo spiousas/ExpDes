@@ -10,6 +10,8 @@ mean(x)
 sd(x)
 t.test(x)
 
+2*pnorm(-abs(mean(x)/sqrt(3^2/20)))
+
 means <- c()
 set.seed(123)
 for (i in 1:10000) {
@@ -30,6 +32,7 @@ for (i in 1:10000) {
 }
 
 Z_means <- tibble(Zs)
+
 Z_means %>% ggplot() +
   geom_histogram(aes(x = Zs, y = ..density..), fill = "steelblue") +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), 
@@ -37,6 +40,9 @@ Z_means %>% ggplot() +
   theme_bw()
 
 mean(x)/sqrt(9/20)
+
+set.seed(123)
+x <- rnorm(20, mean = 1, sd = 3)
 
 Z_means %>% ggplot() +
   geom_histogram(aes(x = Zs, y = ..density..), fill = "steelblue") +
@@ -56,7 +62,7 @@ Z_means %>% ggplot() +
 ps <- c()
 set.seed(123)
 for (i in 1:1E4) {
-  x <- rnorm(20, mean = 0, sd = 3)
+  x <- rnorm(20, mean = 1, sd = 3)
   p <- 2*pnorm(-abs(mean(x)/sqrt(3^2/20)))
   ps <- c(ps, p)
 }
@@ -67,16 +73,16 @@ p_values %>% ggplot(aes(x = ps)) +
                  binwidth = .05, boundary = .05) +
   theme_bw()
 
-
 set.seed(12)
 x <- rnorm(20, mean = 1, sd = 3)
 mean(x)
 2*pnorm(-abs(mean(x)/sqrt(3^2/20)))
 
 Z_means %>% ggplot() +
-  #geom_histogram(aes(x = Zs, y = ..density..), fill = "steelblue", alpha = .4) +
+  geom_histogram(aes(x = Zs, y = ..density..), fill = "steelblue", alpha = .4) +
   geom_vline(xintercept = 0, color = "black") +
-  geom_vline(xintercept = c(1, -1) * qnorm(0.05/2), linetype = "dashed", color = "red") +
+  geom_vline(xintercept = c(1, -1) * mean(x)/sqrt(9/20), linetype = "dashed", color = "red") +
+  geom_vline(xintercept = c(1, -1) * qnorm(0.05/2), linetype = "dashed", color = "blue") +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), 
                 color = "black", linewidth = 1) +
   stat_function(fun = dnorm, args = list(mean = 1/sqrt(9/20), sd = 1), 

@@ -1,0 +1,109 @@
+---
+title: |
+    | \vspace{-.8cm}Estimating the Bias in Self-Reported Turnout \newline Part II: Computing and Interpreting Means \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let’s continue working with the official and the self-reported ANES turnout data from 1980 to 2004. The dataset we will use is in a file called "ANES.csv". Table \ref{ANES} shows the names and descriptions of the variables in this dataset, where the unit of observation is federal elections in the U.S.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{year} & year of the election\\\addlinespace[1.5pt]
+\textit{presidential} & whether it was a presidential election: 1=yes, 0=no \\\addlinespace[1.5pt]
+\textit{midterm} & whether it was a midterm election: 1=yes, 0=no \\\addlinespace[1.5pt]
+\textit{ANES\_turnout} & proportion of ANES respondents who reported to have voted\\ 
+& in the election (in percentages) \\\addlinespace[1.5pt]
+\textit{votes} & number of ballots officially cast in the election (in thousands) \\\addlinespace[1.5pt]
+\textit{VEP} & voting eligible population at the time (in thousands) \\\addlinespace[1.5pt]
+\textit{VAP} & voting age population at the time (in thousands) \\\addlinespace[1.5pt]
+\textit{felons} & number of felons not eligible to vote (in thousands) \\\addlinespace[1.5pt]
+\textit{noncitizens} & number of non-citizens living in the U.S. (in thousands) \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "ANES.csv"}\label{ANES}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice (i) using arithmetic operators to create new variables as well as (ii) computing and interpreting means.
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+anes <- read.csv("ANES.csv") # reads and stores data
+head(anes) # shows first observations
+```  
+
+1. Create a new variable called \textit{VEP\_turnout} defined as the number of ballots officially cast in the election divided by the voting eligible population and multiplied by 100. Make sure to store this new variable in the existing dataframe named \textit{anes} by using the character \fu{\$}. (See page 41 of DSS, to learn how to use the character \fu{\$} to identify a variable inside a dataframe not just to access it but also to create it.) (5 points) 
+\if1\solutions
+\newpage\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    anes$VEP_turnout <- anes$votes / anes$VEP * 100 # creates new variable
+    ```
+(Recall: When creating a new object or a new element within an object (as is the case here), we use the assignment operator \fu{<-}. To the left of the assignment operator \fu{<-}, we specify the name of the new object or the name of the new element within an object, here: \fu{anes\$VEP\_turnout} since we are creating a new variable inside the existing dataframe *anes*; to the right of the assignment operator \fu{<-}, we specify the contents, which, in this case, are produced by dividing the values of the variable *votes* by the values of the variable *VEP* and multiplying the result by 100. When specifying each variable, we use the \fu{\$} character to identify the name of the object where the variables are either already stored, as is the case with *votes* and *VEP*, or should be stored, as is the case with *VEP\_turnout*. Had we ran \fu{VEP\_turnout <- anes\$votes / anes\$VEP} instead, R would have created a new, separate object named *VEP\_turnout*. However, what we want is to create a new element/variable called *VEP\_turnout* inside the existing object/dataframe named *anes*, so we should add \fu{anes\$} in front of the name of the new variable \fu{VEP\_turnout}.)
+\newline\fi
+
+2. Use the function \fu{head()} to look at the first few observations again to ensure that you have created the new variable, *VEP\_turnout*, correctly. Is the first value of *VEP\_turnout* what one would expect, given the first values of *votes* and *VEP*? What is the unit of measurement of *VEP\_turnout*? (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    head(anes) # shows first observations
+    ```
+\underline{Answer}: The first value of *VEP\_turnout* is 54\%, which is what one would expect given that the first values of *votes* and *VEP* are 86,515 thousand and 159,645 thousand, respectively (86515000 / 159645000 ${\times}$ 100 = 54\%). The new variable *VEP\_turnout* is measured in percentages because it is a proportion, the proportion of voters among the voting eligible population.\newline
+\fi
+
+3. Now, create a new variable called \textit{VAP\_turnout} defined as the number of ballots officially cast in the election divided by the voting age population and multiplied by 100. Make sure to store this new variable in the existing dataframe named \textit{anes}. (5 points) 
+\if1\solutions
+\newpage\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    anes$VAP_turnout <- anes$votes / anes$VAP * 100 # creates new variable
+    ```
+\fi
+
+4. Use the function \fu{head()} to look at the first few observations again to ensure that you have created the new variable, *VAP\_turnout*, correctly. Is the first value of *VAP\_turnout* what one would expect, given the first values of *votes* and *VAP*? What is the unit of measurement of *VAP\_turnout*? (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    head(anes) # shows first observations
+    ```
+\underline{Answer}: The first value of *VAP\_turnout* is 52.6\%, which is what one would expect given that the first values of *votes* and *VAP* are 86,515 thousand and 164,445 thousand, respectively (86515000 / 164445000 ${\times}$ 100 = 52.6\%). The new variable *VAP\_turnout* is also measured in percentages because it is a proportion, the proportion of voters among the voting age population.\newline
+\fi
+
+5. Looking at the first few observations of the two new variables, *VEP\_turnout* and *VAP\_turnout*, shown by the function \fu{head()} above, can you tell whether one of them always contains higher values than the other? Why do you think that is? Which of the two variables do you think most accurately measures turnout? (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: The values of *VEP\_turnout* are always slightly higher than the values of *VAP\_turnout*. This is likely because among the people counted in the voting age population (VAP) variable, there are many who are not eligible to vote, such as felons in some states and non U.S. citizens. As a result, the values of *VAP* will be higher than the values of *VEP*, and thus, *VAP\_turnout* will be lower than *VEP\_turnout* (since *VAP* and *VEP* are in the denominator of the formula that calculates the turnout). *VEP\_turnout* reflects turnout in a more accurately way since it only takes into account the population who are eligible to vote.\newline
+\fi
+
+6. Use the function \fu{mean()}, to compute the average value of *VEP\_turnout* among the 13 federal elections in the dataset. Please provide a full substantive interpretation of what this average means and make sure to provide the unit of measurement. (10 points)
+\if1\solutions
+\newpage\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    mean(anes$VEP_turnout) # computes average
+    ```
+\underline{Answer}: Among the 13 federal elections in the dataset, on average, about 48\% of the voting eligible population voted. (Note: this is an average of percentages. In other words, the unit of measurement is percentages and it is an average value.)\newline
+\fi
+
+7. Use the function \fu{mean()}, to compute the average value of *ANES\_turnout* among the 13 federal elections in the dataset. Please provide a full substantive interpretation of what this average means and make sure to provide the unit of measurement. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    mean(anes$ANES_turnout) # computes average
+    ```
+\underline{Answer}: Among the 13 federal elections in the dataset, on average, about 65\% of the ANES respondents reported to have voted. (Note: this is an average of percentages. In other words, the unit of measurement is percentages and it is an average value.)\newline
+\fi
+
+8. When comparing the average value of *ANES\_turnout* to the average value of *VEP\_turnout*, do you find any evidence of people lying about their voting behavior? (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: There is quite a substantial difference between the average ANES self-reported turnout rate and the average official turnout rate, among the 13 federal elections in the dataset. (Specifically, the average difference is of 65\% - 48\% = 17 percentage points.) We can, therefore, state that we have found some evidence of people lying about their voting behavior.
+\fi

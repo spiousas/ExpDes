@@ -1,0 +1,88 @@
+---
+title: |
+    | \vspace{-.8cm} Do Women Promote Different Policies than Men? \newline Part II: Computing and Interpreting Means \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex
+header-includes:
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm}Let's continue working with the data from the experiment in India. As a reminder, Table \ref{india} shows the names and descriptions of the variables in this dataset, where the unit of observation is villages.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{village} & village identifier ("Gram Panchayat number \_ village number") \\\addlinespace[1.5pt]
+\textit{female} & whether village was assigned a female politician: 1{=}yes, 0{=}no \\\addlinespace[1.5pt]
+\textit{water} & number of new (or repaired) drinking water facilities in the village\\ & since random assignment \\\addlinespace[1.5pt]
+\textit{irrigation} & number of new (or repaired) irrigation facilities in the village since\\ & since random assignment \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "india.csv"}\label{india}
+\end{center}
+\end{table}
+
+\vspace{.5cm}
+In this problem set, we practice how to compute and interpret means, among other things. 
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+india <- read.csv("india.csv") # reads and stores data
+head(india) # shows first observations
+```
+
+1. Use the function \fu{mean()} to calculate the average of the variable \textit{female}. Please provide a full substantive interpretation of what this average means. Make sure to provide the unit of measurement. (10 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    mean(india$female) # calculates the average of female
+    ```
+(Recall: We use \fu{\$} to access a variable within a dataframe. To its left, we specify the name of the object where the dataframe is stored, \fu{india} in this case; to its right, we specify the name of the variable, \fu{female} in this case. Also, we do not use quotes around the names of functions, the names of objects, or the names of elements within an object such as variables.)
+\newline\newline\underline{Answer}: 34% of the villages in the experiment were randomly assigned to have a female politician. (Note: The word "average" does not appear in the interpretation because the mean of a binary variable should be interpreted as the proportion of the observations that have the characteristic identified by the variable. Here, *female* is binary and identifies the villages that were assigned to have a female politician. The unit of measurement is \%, after multiplying the output by 100. Here: 0.34 ${\times}$ 100=34\%.)
+\newline
+\fi
+
+2. Use the function \fu{mean()} to calculate the average of the variable \textit{water}. Please provide a full substantive interpretation of what this average means. Make sure to provide the unit of measurement. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    mean(india$water) # calculates the average of water
+    ```
+\underline{Answer}: After the randomization of politicians, the average number of new (or repaired) drinking water facilities per village is 18 facilities (Note: the word "average" appears in the interpretation of this mean. Recall: The mean of a non-binary variable should be interpreted as an average and in the same unit of measurement as the variable itself, which is facilities in this case.)
+\newline
+\fi
+
+3. If we wanted to estimate the average causal effect of having a female politician on the number of new (and repaired) drinking water facilities: (10 points)
+    a. What would be the treatment variable? Please just provide the name of the variable
+    \vspace{-.2cm}
+    b. What would be the outcome variable? Please just provide the name of the variable
+\if1\solutions 
+\newline\newline\underline{Answer}: (a) *female*, (b) *water*. 
+\newline
+\fi
+
+4. If we wanted to estimate the average causal effect of having a female politician on the number of new (and repaired) irrigation facilities: (10 points)
+    a. What would be the treatment variable? Please just provide the name of the variable
+    \vspace{-.2cm}
+    b. What would be the outcome variable? Please just provide the name of the variable
+\if1\solutions 
+\newline\newline\underline{Answer}: (a) *female*, (b) *irrigation*. 
+\newline
+\fi
+
+5. In both analyses above: (10 points)
+    a. What would be the treatment group?
+    \vspace{-.2cm}
+    b. What would be the control group?
+\if1\solutions 
+\newline\newline\underline{Answer}: (a) the villages that were randomly assigned to have a female politician, (b) the villages that were randomly assigned to NOT have a female politician. (Note: the unit of observation is villages so both of these groups are composed of villages; the treatment group are the villages that were assigned to receive the treatment---having a female politician; the control group are the villages that were assigned to NOT receive the treatment.)
+\fi
+

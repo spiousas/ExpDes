@@ -1,0 +1,160 @@
+---
+title: |
+    | \vspace{-.8cm}Predicting Course Grades Using Midterm Scores \newline Part IV: Quantifying Uncertainty \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let's continue to analyze real, historical, student performance data from the class. The dataset we will use is in the \textit{grades.csv} file. Table \ref{grades} shows the names and descriptions of the variables in this dataset, where the unit of observation is students.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{midterm} & students' scores in the midterm (from 0 to 100 points) \\\addlinespace[1.5pt]
+\textit{final} & students' scores in the final exam (from 0 to 100 points) \\\addlinespace[1.5pt]
+\textit{overall} & students' scores in the class overall (from 0 to 100 points) \\\addlinespace[1.5pt] 
+\textit{gradeA} & identifies students who earned an A or an A minus in the class \\
+\midrule
+\end{tabular}
+\caption{Variables in "grades.csv"}\label{grades}
+\end{center}
+\end{table}
+
+\vspace{.3cm}
+In this problem set, we practice fitting a line to make predictions, creating scatter plots, adding the fitted line to the scatter plot, and constructing confidence intervals for our predictions.
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+grades <- read.csv("grades.csv") # reads and stores data
+head(grades) # shows first observations
+```
+\vspace{.2cm}
+
+1. First, let's fit the linear models that we will use to make predictions.\newline
+    a. Fit the following three linear models: (i) the linear model to predict final exam scores using midterm scores, (ii) the linear model to predict overall scores in the course using midterm scores, and (iii) the linear model to predict the probability of earning an A or an A- in the course using midterm scores. To specify the dataframe where the variables are stored, use the optional argument \fu{data}, instead of using the \fu{\$} operator for each variable.  Store each fitted line in an object. Call the three objects \textit{fit\_final}, \textit{fit\_overall}, and \textit{fit\_gradeA}, respectively. Then, run the names of the objects, \textit{fit\_final}, \textit{fit\_overall}, and \textit{fit\_gradeA}, so that R will provide you with the contents of each object. Finish by writing the fitted line for each model. In other words, provide the formula $\widehat{Y} = \widehat{\alpha} + \widehat{\beta} X$ where you specify each term (i.e., substitute $Y$ for the name of the outcome variable, substitute $\widehat{\alpha}$ for the estimated value of the intercept coefficient, substitute $\widehat{\beta}$ for the estimated value of the slope coefficient, and substitute $X$ for the name of the predictor.) (10 points)
+    \if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## fit and store the linear models that use midterm
+        fit_final <- lm(final ~ midterm, data=grades) # to predict final
+        fit_overall <- lm(overall ~ midterm, data=grades) # to predict overall
+        fit_gradeA <- lm(gradeA ~ midterm, data=grades) # to predict gradeA
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        fit_final # provides contents of object fit_final
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        fit_overall # provides contents of object fit_overall
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        fit_gradeA # provides contents of object fit_gradeA
+        ```
+$\textrm{\,}$\newline
+(Note: Remember that to fit a linear model in R we use the \fu{lm()} function. This function requires an argument of the type \fu{Y $\sim$ X}. Here, \textit{final}, \textit{overall}, and \textit{gradeA} are the outcome variables, Y, and \textit{midterm} is the treatment variable, X. To specify the dataframe where the variables are stored, we can use either the \fu{\$} operator for each variable or the optional argument \fu{data}.} Now, to store the fitted linear model as an object named \textit{fit\_final}, we use the assignment operator \fu{<-} and specify \textit{fit\_final} to its left.)
+\newline\newline\underline{Answers}: The fitted lines are: $\textrm{\,}$\hspace{.2cm}(i)  $\widehat{\textrm{final}}$ = `r round(coef(lm(grades$final ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$final ~ grades$midterm))[2], 2)` *midterm*
+\newline\newline $\textrm{\,}$\hspace{5cm} (ii) $\widehat{\textrm{overall}}$ = `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` *midterm*
+\newline\newline $\textrm{\,}$\hspace{5cm}(iii) $\widehat{\textrm{gradeA}}$ = `r round(coef(lm(grades$gradeA ~ grades$midterm))[1], 2)` + `r round(coef(lm(grades$gradeA ~ grades$midterm))[2], 2)` *midterm*
+\newpage\fi
+    b. For each of the three linear models above, create a visualization of the relationship between X and Y and add the fitted line. (Hint: The functions \fu{plot()} and \fu{abline()} might be helpful here.) (R code only.) (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=FALSE, echo=TRUE}
+        plot(grades$midterm, grades$final) # creates scatter plot
+        abline(fit_final) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        plot(grades$midterm, grades$final) # creates scatter plot
+        abline(fit_final) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=FALSE, echo=TRUE}
+        plot(grades$midterm, grades$overall) # creates scatter plot
+        abline(fit_overall) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        plot(grades$midterm, grades$overall) # creates scatter plot
+        abline(fit_overall) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=FALSE, echo=TRUE}
+        plot(grades$midterm, grades$gradeA) # creates scatter plot
+        abline(fit_gradeA) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        plot(grades$midterm, grades$gradeA) # creates scatter plot
+        abline(fit_gradeA) # adds fitted line
+        ```
+$\textrm{\,}$\newline
+(Note: To visualize the relationship between X and Y, we create a scatter plot with the function \fu{plot()}. This function requires two arguments and in this order: (1) the X variable, (2) the Y variable. We always plot the X variable along the X axes, and the Y variable along the Y axes. Here, \textit{midterm} is the X variable and  \textit{final}, \textit{overall}, and \textit{gradeA} are the Y variables. Alternatively, if we do not want the order of the arguments to matter, we could specify the names of the arguments, \fu{x} and \fu{y}, in the code. For example, \fu{plot(x=grades\$midterm, y=grades\$final)} and \fu{plot(y=grades\$final, x=grades\$midterm)} would produce the same scatter plot as the first one above. Now, to add the fitted line to the scatter plot, we use the function \fu{abline()}. The only required argument is the name of the object where we have stored the fitted line, \fu{fit\_final} in this first case.)
+\fi \newline
+2. Now, let's use the fitted linear models to make some predictions. \newline
+    a. Suppose that you earn 80 points in the midterm. Based on your performance in the midterm, what would be (i) your predicted final exam score, (ii) your predicted overall score, and (iii) your predicted probability of earning an A or A- in the course? Please show your calculations and then answer the question with a full sentence (including units of measurement). (5 points)
+\if1\solutions
+\newline\newline\underline{Calculations}: 
+\begin{align*}
+\textrm{(i)\,\,\,\,} \widehat{\textrm{final}} &= \widehat{\alpha} + \widehat{\beta} \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$final ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$final ~ grades$midterm))[2], 2)` \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$final ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$final ~ grades$midterm))[2], 2)` \times 80 \color{gray} \,\,\,\textrm{(if midterm=80)}\\
+&= `r round(coef(lm(grades$final ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$final ~ grades$midterm))[2], 2)*80`= `r round(coef(lm(grades$final ~ grades$midterm))[1], 0) + round(coef(lm(grades$final ~ grades$midterm))[2], 2)*80`
+\end{align*}
+\begin{align*}
+\textrm{(ii)\,\,\,\,} \widehat{\textrm{overall}} &= \widehat{\alpha} + \widehat{\beta} \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)` \times 80 \color{gray} \,\,\,\textrm{(if midterm=80)}\\
+&= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0)` + `r round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80`= `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80`
+\end{align*}
+\begin{align*}
+\textrm{(iii)\,\,\,\,}\widehat{\textrm{gradeA}} &= \widehat{\alpha} + \widehat{\beta} \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$gradeA ~ grades$midterm))[1], 4)` + `r round(coef(lm(grades$gradeA ~ grades$midterm))[2], 4)` \, \textrm{midterm}\\
+&= `r round(coef(lm(grades$gradeA ~ grades$midterm))[1], 4)` + `r round(coef(lm(grades$gradeA ~ grades$midterm))[2], 4)` \times 80 \color{gray} \,\,\,\textrm{(if midterm=80)}\\
+&= `r round(coef(lm(grades$gradeA ~ grades$midterm))[1], 4)` + `r round(coef(lm(grades$gradeA ~ grades$midterm))[2], 4)*80`= `r round(coef(lm(grades$gradeA ~ grades$midterm))[1], 4) + round(coef(lm(grades$gradeA ~ grades$midterm))[2], 4)*80`\\
+\end{align*}
+\vspace{-.1cm}
+\underline{Answer}: If I earn 80 points in the midterm, I would predict that:
+\newline\newline $\textrm{\,\,\,\,\,\,}$ (i) I will earn `r round(coef(lm(grades$final ~ grades$midterm))[1], 0) + round(coef(lm(grades$final ~ grades$midterm))[2], 2)*80` points in the final exam, on average. 
+\newline\newline $\textrm{\,\,\,\,\,\,}$ (ii) I will earn `r round(coef(lm(grades$overall ~ grades$midterm))[1], 0) + round(coef(lm(grades$overall ~ grades$midterm))[2], 2)*80` points overall in the class, on average.
+\newline\newline$\textrm{\,\,\,\,\,\,}$ (iii) My probability of earning an A or an A-  is of `r (round(coef(lm(grades$gradeA ~ grades$midterm))[1], 4) + round(coef(lm(grades$gradeA ~ grades$midterm))[2], 4)*80)*100`\%, on average.
+\newline\newline (Note: $\widehat{Y}$ is in the same unit of measurement as $\overline{Y}$; in the first two cases, Y is non-binary and measured in points so $\overline{Y}$ and $\widehat{Y}$ are also measured in points. In the third case, Y is binary so $\overline{Y}$ and $\widehat{Y}$ are in percentages, after multiplying the outputs by 100. Recall: the mean of a binary variable should be interpreted as the proportion of the observations that have the characteristic identified by the variable. That is, it should be interpret in percentages, after multiplying the number by 100. Note: We could have arrive at the same conclusions by looking at the scatter plots with the fitted lines above. In each scatter plot, all we would need to do is: (i) find 80 on the X-axis, (ii) go up to the line, and (iii) find the value on the Y-axis associated with that point on the line.)
+\fi \newline
+    b. Because of potential noise in the data, there is some uncertainty around these predictions. Construct the 95\% confidence interval for each of the three predictions using the function \fu{predict()} and re-write your answers to the previous question accordingly. (25 points)
+     \if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## compute 95% interval for prediction of final
+        predict(fit_final, # object with lm() output
+           newdata=data.frame(midterm=80), # set value of X
+           interval="confidence") # provide 95% confidence interval
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        ## compute 95% interval for prediction of overall
+        predict(fit_overall, # object with lm() output
+           newdata=data.frame(midterm=80), # set value of X
+           interval="confidence") # provide 95% confidence interval
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        ## compute 95% interval for prediction of gradeA
+        predict(fit_gradeA, # object with lm() output
+           newdata=data.frame(midterm=80), # set value of X
+           interval="confidence") # provide 95% confidence interval
+        ```
+$\textrm{\,}$\newline
+(Recall: The only required argument of the function \fu{predict()} is the name of the object that contains the output of the \fu{lm()} function. By default, this function produces a prediction for every observation in the dataset used to fit the linear model. To produce only one prediction based on a particular value of the predictor(s), we set the optional argument \fu{newdata} to equal \fu{data.frame()}, where inside the parentheses we specify the value of the predictor(s). To also produce the 95\% confidence interval of that one prediction, we set the optional argument \fu{interval} to equal \fu{"confidence"}. The first number R provides is the predicted outcome based on the specified (i) fitted linear model and (ii) value of the predictor. The next two numbers are the lower and upper limits of the 95\% confidence interval.)
+\newline\newline\underline{Answers}: If I earn 80 points in the midterm, I would predict that:
+\newline\newline $\textrm{\,\,\,\,\,\,}$ (i) I am likely to earn between `r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[2],2)` and  `r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[3],2)` points in the final exam, on average. (Note: The 95\% confidence interval here is: [`r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[2],2)`, `r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[3],2)`] because the lower bound is `r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[2],2)` and the upper bound is `r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[3],2)`.)
+\newline\newline $\textrm{\,\,\,\,\,\,}$ (ii) I am likely to earn between `r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[2],2)` and `r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[3],2)` points overall in the class, on average. (Note: The 95\% confidence interval here is: [`r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[2],2)`, `r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[3],2)`] because the lower bound is `r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[2],2)` and the upper bound is `r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[3],2)`.)
+\newline\newline $\textrm{\,\,\,\,\,\,}$ (iii) My probability of earning an A or an A- in the course is likely to be between `r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[2],2)*100`\% and `r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[3],2)*100`\%, on average. (Note: The 95\% confidence interval here is: [`r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[2],2)`, `r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[3],2)`] because the lower bound is `r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[2],2)` and the upper bound is `r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[3],2)`. As we saw in the previous question, since Y is binary, $\widehat{Y}$ should be interpreted in percentages, after multiplying the output by 100.)
+\newline\newline(Note: The predictions produced by the functions \fu{predict()} above, shown as the first return values:  `r round(predict(fit_final, newdata=data.frame(midterm=80), interval="confidence")[1],2)`,  `r round(predict(fit_overall, newdata=data.frame(midterm=80), interval="confidence")[1],2)`,  and `r round(predict(fit_gradeA, newdata=data.frame(midterm=80), interval="confidence")[1],2)`, are the exact same values we arrived at in the previous question when we did the calculations by hand using the fitted linear models. The small differences are due to our rounding to two decimals.)
+\fi

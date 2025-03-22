@@ -1,0 +1,298 @@
+---
+title: |
+    | \vspace{-.8cm} Probability \if1\solutions(with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets_noR.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\newcommand\pN{N}
+\newcommand\pE{\mathop{{}\mathbb{E}}}
+\newcommand\pV{\mathop{{}\mathbb{V}}}
+
+\vspace{-.5cm}Please read Chapter 6 of DSS and answer the following questions (each counts for 2.5 points):
+
+1. According to the frequentist interpretation of probability, the probability of an event is the proportion of its occurrence among infinitely many identical trials. For example, if we flip a coin 1 million times and 300,000 of those times we get heads, what's the probability of heads?
+\newline \newline A. it is impossible to know with the information given
+\newline B. 30\%
+\newline C. 0.3\%
+\newline D. 300\%
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B (Note: 300,000/1,000,000= 0.3; 0.3*100=30\%) 
+\newline
+\fi
+
+2. According to the Bayesian interpretation, probabilities represent one's subjective beliefs about the relative likelihood of events. For example, if we state that the probability of rain today is of 0\%, we are describing that:
+\newline \newline A. the proportion of rain events over multiple days
+\newline B. we are certain that it will rain today
+\newline C. we are certain that it won't rain today
+\newline D. none of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: C 
+\newline
+\fi
+
+3. In this class, we distinguish between two types of numeric random variables based on the number of values the variables can take. These are:
+\newline \newline A. treatment and control
+\newline B. predictors and outcomes
+\newline C. binary and non-binary
+\newline D. treatment and outcome
+\newline
+\if1\solutions 
+\newline\underline{Answer}: C (Note: Binary variables can only take two values; non-binary variables can take more than two values. Treatment variables, outcome variables, and predictors are distinctions based on the role the variables take in the research question, not on the number of values the variables can take.) 
+\newpage
+\fi
+
+4. Each random variable has a probability distribution, which characterizes the likelihood of each value the variable can take. The Bernoulli distribution is the probability distribution of:
+\newline \newline A. a non-binary variable
+\newline B. a binary variable
+\newline C. a variable that can take more than two values
+\newline D. none of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B
+\newline
+\fi
+
+5. If X=\{1,1,1,0,0\}, $X$ is:
+\newline \newline A. a non-binary variable
+\newline B. a binary variable
+\newline C. an outcome variable
+\newline D. a predictor
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B
+\newline
+\fi
+
+6. If X=\{1,1,1,0,0\}, what is $P$(X=1), also known as $p$? 
+\newline \newline A. $P$(X=1) = $p$ = 0.6
+\newline B. $P$(X=1) = $p$ = 3
+\newline C. $P$(X=1) = $p$ = 0.4
+\newline D. none of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: A (Note: 3/5=0.6, which means that the probability that $X$ equals 1 is of 60\%.) 
+\newline
+\fi
+
+7. If in a Bernoulli distribution $p$=0.7, what is $P$(X=0)? 
+\newline \newline A. $P$(X=0) = 0.2
+\newline B. $P$(X=0) = 0.7
+\newline C. $P$(X=0) = 1
+\newline D. $P$(X=0) = 0.3
+\newline
+\if1\solutions 
+\newline\underline{Answer}: D (Note: Since all probabilities in a distribution must add up to 1, $P$(X=1)+$P$(X=0)=1. Therefore, if $P$(X=1)=$p$, then $P$(X=0)=1-$p$. In this case, $P$(X=0)=1-$p$=1-0.7=0.3, which means that the probability that $X$ equals 0 is of 30\%.) 
+\newline
+\fi
+
+8. The Bernoulli distribution is characterized by:
+\newline \newline A. one parameter
+\newline B. two parameters
+\newline C. three parameters
+\newline D. four parameters
+\newline
+\if1\solutions 
+\newline\underline{Answer}: A (Note: The Bernoulli distribution is characterized by one parameter: $p$. Once we know $p$, we know everything there is to know about the distribution. The probability that X equals 1 is $p$ and the probability that X equals 0 is 1-$p$. The mean of the distribution is $p$ and the variance of the distribution is $p$(1-$p$).)
+\newline
+\fi
+
+9. The normal distribution is the probability distribution we commonly use as a good approximation for many non-binary variables. The normal distribution is characterized by:
+\newline \newline A. one parameter
+\newline B. two parameters
+\newline C. three parameters
+\newline D. four parameters
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B (Note: The normal distribution is characterized by two parameters: $\mu$ (pronounced mu) and $\sigma^2$ (pronounced sigma-squared). The mean of the distribution is $\mu$ and the variance of the distribution is $\sigma^2$.) 
+\newline\newline
+    ```{r, fig.width=6, fig.height=3, echo=F, cache=FALSE}
+x1 <- rnorm(1e6, mean=0, sd=1)
+par(mfrow = c(1,1),
+oma = c(1,0,1,0) + 0.1, # outer margin: bottom, left, top, right
+mar = c(3,3,1,1) + 0.1, # inner margin, default: c(5,4,4,2) + 0.1
+mgp = c(2,0.5,0), # margin line for axis title, default: c(3,1,0)
+cex=.8, adj=1, # 1: right-justified
+yaxs="r", xaxs="r") # axis choice: "i" internal, "r" regular
+
+hist(x1, freq=FALSE, col="white", border="white", xlim=c(-5, 5), 
+     main="", xlab="", ylab="density", ylim=c(0,0.4), 
+     font.main=1, axes = F, col.lab="gray17")
+lines(density(x1), col="#ef3119")
+
+axis(1, at=c(-6,6), labels=F, col="gray17", 
+     col.ticks="gray", col.axis="gray17", tck=0)
+axis(2, at=c(0, 0.1, 0.2, 0.3, 0.4), labels=T, 
+     col="gray17", col.ticks="gray", col.axis="gray17", tck=-0.02)
+mtext("X", side=1, line=0.5, outer=FALSE, adj=1, cex=0.8,
+      col="gray17")
+abline(v=0, lty="dashed", col="gray30")
+
+text(x=2.5,y=.32, 
+     labels=expression(paste("N(",mu,", ",sigma^2,")")), 
+     cex = 1.3, col="#ef3119")
+mtext(expression(paste(mu)), side=1, line = 0.5, 
+      outer=FALSE, at=0, cex=1, col="#ef3119")
+arrows(0.1+0.15, .17, .9+0.15, .17, code = 3, 
+       lwd=1, length=.05, col="gray30")
+text(x=0.5+0.15,y=.2, 
+     labels=expression(paste(sigma)), cex = 1.3, col="#ef3119", adj=0.5)
+    ```
+\newline
+\fi
+
+10. In mathematical notation, we write a normal random variable $X$ as $X$ $\sim$ $\pN$($\mu$, $\sigma^2$), where:
+\newline \newline A. $\mu$ stands for the mean of the distribution and $\sigma^2$ stands for the variance
+\newline B. $\mu$ stands for the mean of the distribution and $\sigma^2$ stands for the standard deviation
+\newline C. $\mu$ stands for the variance of the distribution and $\sigma^2$ stands for the mean
+\newline D. none of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: A
+\newline
+\fi
+
+11. If $X \sim \pN$(20, 25), then $X$ is: 
+\newline \newline A. distributed like a normal distribution with mean 25 and variance 20.
+\newline B. distributed like a normal distribution with mean 20 and standard deviation 5.
+\newline C. distributed like a normal distribution with mean 20 and standard deviation 25.
+\newline D. distributed like a Bernoulli distribution with mean 20 and variance 5.
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B (Note: $X \sim \pN(\mu, \sigma^2)$ means that $X$ follows a normal distribution with mean $\mu$ and variance $\sigma^2$. In addition, recall that the standard deviation is the square root of the variance. Thus, $X$ has a mean of 20, a variance of 25, and a standard deviation of 5.) 
+\newline
+\fi
+\vspace{.4cm}
+
+12. The probability density function of the normal distribution represents the likelihood of each possible value the normal random variable can take. We can use it to compute the probability that X takes a value within a given range:
+$$\textrm{\textit{P}}(\textrm{x}_{1} \leq X \leq \textrm{x}_{2}) = \textrm{area under the curve between } \textrm{x}_{1} \textrm{ and } \textrm{x}_{2}$$
+If $X$ follows the probability density function below, which of the following statements is true?
+\newline\newline
+    ```{r, fig.width=6, fig.height=2, echo=F, cache=FALSE}
+par(mfrow = c(1,1),
+          oma = c(1,0,1,0) + 0.1,
+          mar = c(3,3,1,1) + 0.1,
+          mgp = c(2,.5,0), cex=.8, adj=1)
+
+x <- seq(-3.5,3.5,length=1e3)
+y <- dnorm(x,mean=0,sd=1)
+plot(x, y, type="l", col="white", xlim=c(-4, 4), 
+     main="", xlab="", ylim=c(0,0.4), font.main=1, 
+     bty="n", axes = F, ylab="", lty="dashed")
+
+axis(1, at=c(-5,-1,0, 1, 2, 5), labels=c("",-1, 0, 1, 2, ""), lwd.tick=0, col.axis="gray17", col="gray17")
+polygon(c(x[x>=1], 1), c(y[x>=1], y[x==max(x)]), col="gray", border="white")
+polygon(c(x[x>=2], 2), c(y[x>=2], y[x==max(x)]), col="white", border="white")
+polygon(c(x[x<=0], 0), c(y[x<=0], y[x==min(x)]), col="#f25c49", border="white")
+polygon(c(x[x<=-1], -1), c(y[x<=-1], y[x==min(x)]), col="white", border="white")
+lines(x,y, col="gray17", lwd=1, lty=2) 
+    ```
+$\textrm{\,}$\newline \newline A.
+$\textrm{\textit{P}}(-1 \leq X \leq 0) < \textrm{\textit{P}}(1 \leq X \leq 2)$
+\newline B. $\textrm{\textit{P}}(-1 \leq X \leq 0) > \textrm{\textit{P}}(1 \leq X \leq 2)$
+\newline C. $\textrm{\textit{P}}(-1 \leq X \leq 0) = \textrm{\textit{P}}(1 \leq X \leq 2)$
+\newline D. none of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B (Note: The area under the curve between -1 and 0 is larger than the area under the curve between 1 and 0.) 
+\newline
+\fi
+
+13. The standard normal distribution, is a special case of the normal distribution. In mathematical notation, we refer to the standard normal random variable as $Z$. Which of the following statements is true?
+\newline\newline A.  $Z$ is a normal random variable with mean 0 and variance 1
+\newline B. $Z$ is a normal random variable with mean 0 and standard deviation 1
+\newline C. $Z \sim \pN$(0, 1)
+\newline D. all of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: D
+\newline
+\fi
+
+14. In the standard normal distribution:
+\newline\newline A. about 95\% of the observations are between -1.96 and 1.96
+\newline B. $P$(Z $\leq$ -1.96) = $P$(Z $\geq$ 1.96)
+\newline C. both A. and B. 
+\newline D. neither A. nor B.
+\newline
+\if1\solutions 
+\newline\underline{Answer}: C
+\newpage
+\fi
+
+15. Given the properties of normal distributions, we can always transform a normally distributed random variable into a random variable that is distributed like the standard normal distribution:
+\begin{center}if X $\sim$ N($\mu$, $\sigma^2$), then $\frac{X-\mu}{\sigma}$ $\sim$ N(0,1)\end{center}
+So, if X $\sim$ N(10, 25), then:
+\newline \newline A. $(X-10)/25$ $\sim$ $\pN$(0,1)
+\newline B. $(X-10)/5$ $\sim$ $\pN$(0,1)
+\newline C. $(X-25)/10$ $\sim$ $\pN$(0,1)
+\newline D. $(X-5)/10$ $\sim$ $\pN$(0,1)
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B (Note that what we use in the denominator is the standard deviation $\sigma$, not the variance $\sigma^2$. In this case, $\sigma^2$=25, therefore $\sigma$=$\sqrt{25}$=5.) 
+\newline
+\fi
+
+16. When we analyze data, we are usually interested in the value of a parameter at the population level, such as the proportion of candidate A supporters among all voters in a country. However, we typically only have access to statistics from a small sample of observations drawn from the target population, such as the proportion of supporters among the voters who responded to a survey. Which of the following statements is true:
+\newline \newline A. This is not a problem since the sample statistics always equal the population parameters
+\newline B. This is a problem since the sample statistics typically differ from the population parameters because the sample contains noise
+\newline C. This is not a problem when we use random sampling to draw the sample. Under these circumstances, the sample statistics equal the population parameters
+\newline D. All of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: B
+\newline
+\fi
+
+17. Sampling variability refers to the fact that the value of a statistic varies from one sample to another because each sample contains a different set of observations drawn from the target population. Which of the following statements is true?
+\newline \newline A. Smaller sample size generally leads to greater sampling variability
+\newline B. Sampling variability does not depend on the size of the sample
+\newline C. Larger sample size generally leads to greater sampling variability
+\newline D. None of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: A 
+\newline
+\fi
+
+18. The Law of Large Numbers states that as the sample size increases, the sample mean of $X$ approximates the population mean of $X$. Now, suppose we drew three samples of data from the same target population: the first sample with ten observations (n=10), the second sample with a thousand observations (n=1,000), and the third sample with a million observations (n=1,000,000). Which sample is most likely to provide us with a sample mean closest to the population mean of $X$?
+\newline \newline A. The first sample
+\newline B. The second sample
+\newline C. The third sample
+\newline D. It is impossible to know with the information given
+\newline
+\if1\solutions 
+\newline\underline{Answer}: C
+\newline
+\fi
+
+19. The Central Limit Theorem states that as the sample size increases, the standardized sample mean of $X$ can be approximated by the standard normal distribution. Now, suppose we drew 10,000 samples of 1,000 observations each from the same binary random variable (which by definition follows a Bernoulli distribution). Which of the following statements is true?
+\newline \newline A. The standardized sample means will approximately follow a Bernoulli distribution
+\newline B. The standardized sample means will approximately follow a normal distribution with mean and variance unknown
+\newline C. The standardized sample means will approximately follow a standard normal distribution
+\newline D. None of the above
+\newline
+\if1\solutions 
+\newline\underline{Answer}: C
+\newline
+\fi
+
+\vspace{.4cm}
+
+20. Thanks to the Central Limit Theorem, we know that if we were to draw multiple large samples from a random variable centered at ten at the population level, the distribution of the sample means over these multiple samples will be centered at:
+\newline \newline A. ten
+\newline B. zero
+\newline C. the number of observations in each sample
+\newline D. it is impossible to know with the information given
+\newline
+\if1\solutions 
+\newline\underline{Answer}: A 
+\newline
+\fi

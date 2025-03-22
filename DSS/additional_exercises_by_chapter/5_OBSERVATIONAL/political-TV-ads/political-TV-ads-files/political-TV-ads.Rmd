@@ -1,0 +1,88 @@
+---
+title: |
+    | \vspace{-.8cm} Do Negative Political TV Ads Decrease Voter Turnout? \if1\solutions\newline(with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets_noR.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} One of the most useful skills we can teach you is the ability to evaluate social scientific studies. All of you will need, at one point or another, to read a published research article, make sense of it, and figure out whether you can trust the findings. In this week's problem set, we are going to practice just that. 
+
+For this purpose, we are going to read sections of:
+Ansolabehere, Stephen, Shanto Iyengar, Adam Simon and Nicholas Valentino. 1994. 
+``Does Attack Advertising Demobilize the Electorate?"
+\textit{The American Political Science Review}, Vol. 88, No. 4, pp. 829-838.
+
+You will find the article with the highlighted sections I want you to focus on here: \href{https://www.dropbox.com/s/cuiwkro8q6jg4p5/Does%20Attack%20Adversiting%20Demobilize%20the%20Electorate%20%28for%20pset7%29.pdf?dl=1}{\textbf{link to pdf}}
+
+Please answer the following questions *based on the highlighted sections of the text*:
+\vspace{.5cm}
+
+1. Is this a causal study? In other words, is the aim of the study to estimate the causal effect of a treatment on an outcome? Yes or no? (2.5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Yes, it is a causal study because it aims to estimate causal effects.
+\newline
+\fi
+
+2. Is this a randomized experiment or an observational study? Explain your reasoning. (2.5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: It is a randomized experiment because treatment was assigned at random.
+\newline
+\fi
+
+3. What is the treatment the study is interested in estimating the effects of?  (Technically, the study is interested in the effect of two different treatments. For this whole problem set, just focus on one of them.) (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}:  Exposure to a negative political TV ad. (Alternative: Exposure to a positive political TV ad.)
+\newline
+\fi
+
+4. What is the outcome variable? (5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Intent to vote.
+\newline
+\fi
+
+5. What was the unit of observation? In other words, what does each observation represent? (2.5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Participants or people.
+\newline
+\fi
+
+
+6. How many people participated in this study? (Hint: you may need to look into the table containing the results of the analysis) (2.5 points)
+\if1\solutions
+\newline\newline\underline{Answer}: 1,655 people.
+\newline
+\fi
+
+
+7. What was the estimated average causal effect of the treatment on the outcome? In other words, what were the findings of the study? (Make sure to include the assumption, why the assumption is reasonable, the treatment, the outcome, as well as the direction, size, and unit of measurement of the average treatment effect) (10 points)
+\if1\solutions
+\newline\newline \underline{Answer}: Let's start by figuring out each key element separately.\newline\newline 
+$\textrm{\,}$- \textit{What's the assumption?} We assume that the participants who were exposed to a negative political TV ad (the treatment group) were comparable to the participants who were exposed to a non-political TV ad (the control group). (Note: If this assumption were not true the difference-in-means estimator would NOT produce a valid estimate of the average treatment effect.) \newline\newline 
+$\textrm{\,}$- \textit{Why is the assumption reasonable?} Because negative political TV ads were assigned at random OR because the data come from a randomized experiment. (Recall: Random treatment assignment makes the treatment and control groups on average identical to each other in all observed and unobserved pre-treatment characteristics.)\newline\newline 
+$\textrm{\,}$- \textit{What's the treatment?} Being exposed to a negative political TV ad. \newline\newline 
+$\textrm{\,}$- \textit{What's the outcome?} Intent to vote. \newline\newline 
+$\textrm{\,}$- \textit{What's the direction, size, and unit of measurement of the average causal effect?} A decrease of 2.5 percentage points, on average. (Note: It is a decrease because we are measuring change---the change in the outcome variable caused by the treatment---and the difference-in-means estimator is negative. The difference-in-means estimator = proportion of participants who intent to vote, among those exposed to negative political TV ad - proportion of participants who intent to vote, among those exposed to non-political TV ad - 58\% - 61\% = -2.5 percentage points.)\newline\newline 
+\textit{Full answer}: Assuming that the participants who were exposed to a negative political TV ad were comparable to the participants who were exposed to a non-political TV ad (a reasonable assumption since negative political TV ads were assigned at random), we estimate that being exposed to a negative political TV ad decreases intent to vote by about 2.5 percentage points, on average.
+\newline\newline \textit{Alternative full answer (if exposure to a positive political TV ad is the treatment)}: Assuming that the participants who were exposed to a positive political TV ad were comparable to the participants who were exposed to a non-political TV ad (a reasonable assumption since positive political TV ads were assigned at random), we estimate that being exposed to a positive political TV ad increases intent to vote by about 2.5 percentage points, on average.
+\newpage
+\fi
+
+8. How strong is the internal validity of this study? In other words, have the researchers accurately measured the causal effect on the sample of individuals who were part of the study? Please explain your reasoning. (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: The internal validity of this study is strong because the treatment (exposure to a negative political TV ad) was assigned at random. Random treatment assignment should have eliminated all confounding variables, making the participants who were exposed to a negative political TV ad (the treatment group) and the participants who were exposed to a non-political TV ad (the control group) comparable; that is, they should have the same observed and unobserved characteristics, on average. As a result, the difference-in-means estimator should provide a valid estimate of the average causal effect among the participants in the study.
+\newline
+\fi
+
+9. How strong is the external validity of this study? In other words, can we generalize the results to a population outside of the sample? Please explain your reasoning and be specific about what population you think the findings can or cannot be generalized to. (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: 
+The answer depends on (i) whether the treatment used in the study is representative of the treatment for which we want to generalize the results, and (i) whether the sample of observations in the study is representative of the population to which we want to generalize the results. In regards to the first point, watching a political TV ad in a laboratory is quite different than watching a political TV ad in the comfort of your own home, where many things compete for your attention (e.g., phone, food, friends, etc.) Therefore, the treatment is not exactly comparable to its real-world equivalent. In regards to the second point, according to the authors, even though participants were not selected at random they "resembled the composition of the greater Los Angeles area" (p. 831). If the sample is representative of the population in the greater Los Angeles area, then we can generalize the results to that population. However, if we intended to generalize the results to the population in the whole of the United States, then the sample would not be representative. 
+\newline
+\fi
+

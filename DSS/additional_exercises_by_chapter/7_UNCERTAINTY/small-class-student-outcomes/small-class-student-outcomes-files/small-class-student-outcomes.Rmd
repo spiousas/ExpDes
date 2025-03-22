@@ -1,0 +1,173 @@
+---
+title: |
+    | \vspace{-.8cm} Do Small Classes in Elementary School\newline Improve Student Outcomes? \if1\solutions(with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} (Based on \href{https://www.jstor.org/stable/1602360}{Frederick Mosteller, ``The Tennessee Study of Class Size in the Early School Grades,'' \textit{Future of Children} 5, no.2 (1995): 113--27.})
+
+Let's answer this question by analyzing the data from Project STAR, where students in Tennessee were randomly assigned to attend either a small class or a regular-size class from kindergarten until third grade. (See Chapter 2 of DSS for further details.)
+
+The dataset is in a file called \textit{STAR.csv}. Table \ref{STAR} shows the names and descriptions of the variables in this dataset, where the unit of observation is students.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{classtype} & class size the student attended: ``small'' or $\textrm{``regular''}$ \\\addlinespace[1.5pt]
+\textit{reading} & student's third-grade reading test scores (in points) \\\addlinespace[1.5pt]
+\textit{math} & student's third-grade math test scores (in points) \\\addlinespace[1.5pt]
+\textit{graduated} & identifies whether the student graduated from high school:\\ & 1{=}graduated or 0{=}did not \textrm{graduate}\\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "STAR.csv"}\label{STAR}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice estimating average treatment effects using data from a randomized experiment and a linear model, and determining whether the estimated average treatment effect is statistically significant at the 5% level.
+
+As always, let's start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+star <- read.csv("STAR.csv") # reads and stores data
+head(star) # shows first six observations
+```
+
+Then, we run the following code to create our treatment variable and confirm that it is created correctly:
+```{r, collapse=TRUE, comment='##'}
+## create variable pressure inside dataframe voting
+star$small <- # stores return values in new variable
+            ifelse(star$classtype=="small", # logical test
+              1, # return value if logical test is true
+              0) # return value if logical test is false
+```              
+```{r, collapse=TRUE, comment='##'}
+## look at the first observations again to ensure small was created correctly
+head(star, n=3) # shows first three observations
+```                            
+
+
+1. First, let's estimate the average causal effect of attending a small class on the three different measures of student outcomes we have in the dataset: (i) third-grade reading test scores, (ii) third-grade math test scores, and (iii) probability of graduating from high school.\newline
+    a. To estimate each of the three average treatment effects, fit a linear model to the data in such a way that the estimated slope coefficient is equivalent to the difference-in-means estimator you are interested in and store the fitted model in an object. Call the three objects \textit{fit\_reading}, \textit{fit\_math}, and \textit{fit\_graduated}, respectively. Then, run the names of the objects, \textit{fit\_reading}, \textit{fit\_math}, and \textit{fit\_graduated}, so that R will provide you with the contents of each object. Do you arrive at the same estimates as we arrived in Chapter 2 when we computed the three difference-in-means estimators directly? (See page 43 of DSS.) A yes/no answer will suffice. (10 points)
+    \if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## fit and store linear models that estimate the three causal effects of small
+        fit_reading <- lm(star$reading ~ star$small) # on reading
+        fit_math <- lm(star$math ~ star$small) # on math
+        fit_graduated <- lm(star$graduated ~ star$small) # on graduated
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        fit_reading # provides contents of object fit_reading
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        fit_math # provides contents of object fit_reading
+        ```
+\newpage       
+        ```{r, collapse=TRUE, comment='##'}
+        fit_graduated # provides contents of object fit_reading
+        ```
+$\textrm{\,}$\newline
+(Note: Remember that to fit a linear model in R we use the \fu{lm()} function. This function requires an argument of the type \fu{Y $\sim$ X}. Here, \textit{reading}, \textit{math}, and \textit{graduated} are the outcome variables, Y, and \textit{small} is the treatment variable, X. To specify the dataframe where the variables are stored, we can use either the \fu{\$} operator (as in the code above) or the optional argument \fu{data}. If we wanted to use the latter, the code to fit the first linear model above would be \fu{lm(reading $\sim$ small, data = star).} Now, to store the fitted linear model as an object named \textit{fit\_reading}, we use the assignment operator \fu{<-} and specify \textit{fit\_reading} to its left.)
+\newline\newline\underline{Answer}: Yes, we arrive at the same estimates as when we computed the difference-in-means estimator directly.
+\fi \newline 
+    b. For each of the three linear models above, create a visualization of the relationship between X and Y and add the fitted line. (Hint: The functions \fu{plot()} and \fu{abline()} might be helpful here.) (R code only.) (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=FALSE, echo=TRUE}
+        plot(star$small, star$reading) # creates scatter plot
+        abline(fit_reading) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        plot(star$small, star$reading) # creates scatter plot
+        abline(fit_reading) # adds fitted line
+        ```
+        \newpage
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=FALSE, echo=TRUE}
+        plot(star$small, star$math) # creates scatter plot
+        abline(fit_math) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        plot(star$small, star$math) # creates scatter plot
+        abline(fit_math) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=FALSE, echo=TRUE}
+        plot(star$small, star$graduated) # creates scatter plot
+        abline(fit_graduated) # adds fitted line
+        ```
+        $\textrm{\,}$\newline
+        ```{r, collapse=TRUE, comment='##', fig.width=6, fig.height=5, echo=TRUE, out.width = '70%', fig.align='center', eval=TRUE, echo=FALSE}
+        plot(star$small, star$graduated) # creates scatter plot
+        abline(fit_graduated) # adds fitted line
+        ```
+$\textrm{\,}$\newline
+(Note: To visualize the relationship between X and Y, we create a scatter plot with the function \fu{plot()}. This function requires two arguments and in this order: (1) the X variable, (2) the Y variable. We always plot the X variable along the X axes, and the Y variable along the Y axes. Here, \textit{small} is the X variable and  \textit{reading}, \textit{math}, and \textit{graduated} are the Y variables. Alternatively, if we do not want the order of the arguments to matter, we could specify the names of the arguments, \fu{x} and \fu{y}, in the code. For example, \fu{plot(x=star\$small, y=star\$reading)} and \fu{plot(y=star\$reading, x=star\$small)} would produce the same scatter plot as the first one above. Now, to add the fitted line to the scatter plot, we use the function \fu{abline()}. The only required argument is the name of the object where we have stored the fitted line, \fu{fit\_reading} in this first case.)
+\fi \newline  
+    c. Now, let's answer the questions: (i) What is the estimated average causal effect of attending a small class on third-grade reading test scores?, (ii) What is the estimated average causal effect of attending a small class on third-grade math test scores?, and (iii) What is the estimated average causal effect of attending a small class on the probability of graduating from high school? Provide a full substantive answer for each (make sure to include the assumption, why the assumption is reasonable, the treatment, the outcome, as well as the direction, size, and unit of measurement of the average treatment effect) (10 points)
+\if1\solutions
+\newline\newline\underline{Answers}: \newline\newline (i) Assuming that the students who attended a small class were comparable before schooling to those who attended a regular-size class (a reasonable assumption given that the dataset comes from a randomized experiment), we estimate that attending a small class increases student performance on the third-grade reading test by 7 points, on average. \newline\newline (ii) Assuming that the students who attended a small class were comparable before schooling to those who attended a regular-size class (a reasonable assumption given that the dataset comes from a randomized experiment), we estimate that attending a small class increases student performance on the third-grade math test by 6 points, on average.\newline\newline (iii) Assuming that the students who attended a small class were comparable before schooling to those who attended a regular-size class (a reasonable assumption given that the dataset comes from a randomized experiment), we estimate that attending a small class increases the probability of graduating from high school by about 1 percentage point, on average. \newline\newline(Note: These are the exact same conclusion statements we wrote in Chapter 2 of DSS, on page 43.)
+\fi \newline
+
+2. Second, let's figure out whether the effects are statistically significant at the 5\% level?\newline
+    a. For each of the three treatment effects, specify the null and alternative hypotheses. Please provide both the mathematical notations and their meaning. (5 points)
+\if1\solutions
+\newline\newline\underline{Answers}: 
+\newline\newline(i) The null and alternative hypotheses for the treatment effect on reading test scores are:
+\newline\newline $H_0 {:} \,\, \beta{=}0$ (meaning: attending a small class has no average causal effect on third-grade reading test scores at the population level). 
+\newline\newline $H_1 {:} \,\, \beta{\neq}0$ (meaning: attending a small class either increases or decreases third-grade reading test scores, on average, at the population level)
+\newline\newline (ii) The null and alternative hypotheses for the treatment effect on math test scores are:
+\newline\newline $H_0 {:} \,\, \beta{=}0$ (meaning: attending a small class has no average causal effect on third-grade math test scores at the population level). 
+\newline\newline $H_1 {:} \,\, \beta{\neq}0$ (meaning: attending a small class either increases or decreases third-grade math test scores, on average, at the population level)
+\newline\newline (iii) The null and alternative hypotheses for the treatment effect on the probability of graduating from high school are:
+\newline\newline $H_0 {:} \,\, \beta{=}0$ (meaning: attending a small class has no average causal effect on the probability of graduating from high school at the population level). 
+\newline\newline $H_1 {:} \,\, \beta{\neq}0$ (meaning: attending a small class either increases or decreases the probability of graduating from high school, on average, at the population level)
+\newline\newline (Note that the null and alternative hypotheses refer to $\beta$, which is the true average treatment effect at the population level, not to $\widehat{\beta}$, which is the estimated average treatment effect at the sample level.)
+\fi\newline 
+    b. For each of the three treatment effects, what is the value of the observed test statistic, $z^{obs}$? (Hint: the code \fu{summary()\$coeff} might be helpful here.) (5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        summary(fit_reading)$coeff
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        summary(fit_math)$coeff
+        ```
+        ```{r, collapse=TRUE, comment='##'}
+        summary(fit_graduated)$coeff
+        ```
+$\textrm{\,}$
+\newline\underline{Answers}: 
+\newline\newline (i) The value of the observed test statistic for the treatment effect on reading test scores, $z^{obs}$, is `r round(summary(fit_reading)$coeff[2,3],2)`. \newline\newline (ii) The value of the observed test statistic for the treatment effect on math test scores, $z^{obs}$, is `r round(summary(fit_math)$coeff[2,3],2)`. 
+\newline\newline (iii) The value of the observed test statistic for the treatment effect on the probability of graduating from high school, $z^{obs}$, is `r round(summary(fit_graduated)$coeff[2,3],2)`. 
+\newline\newline (Note: The observed test statistic for regression coefficients equals $\widehat{\beta}$ divided by the standard error of $\widehat{\beta}$. For the first analysis above, it equals `r round(summary(fit_reading)$coeff[2,1],5)`/`r round(summary(fit_reading)$coeff[2,2],5)`= `r round(summary(fit_reading)$coeff[2,3],2)`, which is exactly what R provides as the t-value for the coefficient affecting \textit{small}, that is, the value in the cell in the second row, third column of the first table above.)
+\fi\newline 
+    c.  For each of the three treatment effects, what is the associated p-value? (5 points)
+\if1\solutions\newline\newline \underline{Answers}: 
+\newline\newline (i) The associated p-value is 0.0005. (Note: We can interpret this as indicating that, if the null hypothesis were true, the probability of observing a test statistic equal to or larger than `r round(summary(fit_reading)$coeff[2,3],2)` (in absolute value) is about `r round(summary(fit_reading)$coeff[2,4],4)*100`\%. This is a tiny probability, well below 5\%, so we will reject the null hypothesis.)
+\newline\newline (i) The associated p-value is `r round(summary(fit_math)$coeff[2,4],3)`. (Note: We can interpret this as indicating that, if the null hypothesis were true, the probability of observing a test statistic equal to or larger than `r round(summary(fit_math)$coeff[2,3],2)` (in absolute value) is about `r round(summary(fit_math)$coeff[2,4],3)*100`\%. This is a small probability, well below 5\%, so we will reject the null hypothesis.)
+\newline\newline (i) The associated p-value is `r round(summary(fit_graduated)$coeff[2,4],3)`. (Note: We can interpret this as indicating that, if the null hypothesis were true, the probability of observing a test statistic equal to or larger than `r round(summary(fit_graduated)$coeff[2,3],2)` (in absolute value) is about `r round(summary(fit_graduated)$coeff[2,4],3)*100`\%. This is a large probability, well above 5\%, so we will fail to reject the null hypothesis.)
+\fi\newline 
+    d. For each of the three treatment effects, answer the question: Is the effect statistically significant at the 5\% level? Please provide your reasoning. (10 points)
+\if1\solutions
+\newline\newline \underline{Answers}: 
+\newline\newline (i) Yes, the effect of attending a small class on reading test scores is statistically significant at the 5\% level. Because (a) the absolute value of the observed test statistic is greater than 1.96 (|3.51|>1.96), and/or (b) the p-value is smaller than 0.05 (0.0005<0.05), we reject the null hypothesis and conclude that there is likely to be an average treatment effect different than zero at the population level. In other words, we conclude that attending a small class from kindergarten until third grade is likely to have an average effect different than zero on third-grade reading test scores \textit{at the population level}. 
+\newline\newline (i) Yes, the effect of attending a small class on math test scores is statistically significant at the 5\% level. Because (a) the absolute value of the observed test statistic is greater than 1.96 (|2.75|>1.96), and/or (b) the p-value is smaller than 0.05 (0.006<0.05), we reject the null hypothesis and conclude that there is likely to be an average treatment effect different than zero at the population level. In other words, we conclude that attending a small class from kindergarten until third grade is likely to have an average effect different than zero on third-grade math test scores \textit{at the population level}. 
+\newline\newline (i) No, the effect of attending a small class on the probability of graduating from high school is not statistically significant at the 5\% level. Because (a) the absolute value of the observed test statistic is less than 1.96 (|0.37|>1.96), and/or (b) the p-value is larger than 0.05 (0.711<0.05), we fail to reject the null hypothesis and conclude that we do **not** have enough evidence to state that the average treatment effect is likely to be non-zero at the population level. In other words, we do **not** have enough evidence to state that attending a small class from kindergarten until third grade is likely to have a non-zero average effect on the probability of graduating from high school \textit{at the population level}. 
+\newline\newline(Note: In each of these answers, you do not need to provide both reasons, (a) and (b). One of them suffices since both procedures should lead to the same conclusion.)
+\fi \newline
+    
+3. For a discussion about the internal and external validity of this study, see subsection 5.5.4 on page 156 of DSS.
+    

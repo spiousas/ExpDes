@@ -1,0 +1,94 @@
+---
+title: |
+    | \vspace{-.8cm}Estimating the Bias in Self-Reported Turnout \newline Part I: Loading and Making Sense of Data \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} As we will learn in Chapter 3, surveys are frequently used to collect data from a sample of individuals for the purpose of inferring the characteristics of the population from which the sample of individuals was drawn. One of the complications we face when conducting survey research is misreporting, that is, the fact that participants might provide inaccurate or false information. This is particularly likely when one answer is more socially acceptable or desirable than the others. For example, in federal elections in the United States, official turnout rates are systematically lower than self-reported turnout rates. Voting is often perceived as to be a civic duty, so respondents might feel social pressure to lie about their voting behavior. 
+
+In a few problem sets, we will estimate the bias in self-reported turnout data in the American National Election Studies (ANES), which is a survey that collects voting data on a representative sample of adults in the United States. The dataset we will use is in a file called "ANES.csv". Table \ref{ANES} shows the names and descriptions of the variables in this dataset, where the unit of observation is federal elections in the U.S.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{year} & year of the election\\\addlinespace[1.5pt]
+\textit{presidential} & whether it was a presidential election: 1=yes, 0=no \\\addlinespace[1.5pt]
+\textit{midterm} & whether it was a midterm election: 1=yes, 0=no \\\addlinespace[1.5pt]
+\textit{ANES\_turnout} & proportion of ANES respondents who reported to have voted\\ 
+& in the election (in percentages) \\\addlinespace[1.5pt]
+\textit{votes} & number of ballots officially cast in the election (in thousands) \\\addlinespace[1.5pt]
+\textit{VEP} & voting eligible population at the time (in thousands) \\\addlinespace[1.5pt]
+\textit{VAP} & voting age population at the time (in thousands) \\\addlinespace[1.5pt]
+\textit{felons} & number of felons not eligible to vote (in thousands) \\\addlinespace[1.5pt]
+\textit{noncitizens} & number of non-citizens living in the U.S. (in thousands) \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "ANES.csv"}\label{ANES}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice how to load and make sense of data. 
+  
+1. Use the function \fu{read.csv()} to read the CSV file "ANES.csv" and use the assignment operator \fu{<-} to store the data in an object called \textit{anes}. (Do not forget to set the working directory first.) Provide the R code you used (without the output). (10 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    anes <- read.csv("ANES.csv") # reads and stores data
+    ```
+\newpage(Recall: to the left of the assignment operator \fu{<-}, we specify the name of the object, \fu{anes} in this case; to the right of the assignment operator \fu{<-}, we specify the contents, which, in this case, are produced by reading the CSV file "ANES.csv". Also, we do not use quotes around the name of an object such as \fu{anes} or around the name of a function such as \fu{read.csv()}, but we do use quotes around the name of a file: \fu{"ANES.csv"}.)\newline\fi
+    
+2. Use the function \fu{head()} to view the first few observations of the dataset. Provide the R code you used (without the output). (5 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    head(anes) # shows first observations
+    ```
+\fi
+
+3. What does each observation in this dataset represent? (5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: Each observation represents a U.S. federal election. (Note: We know this because, as stated above, the unit of observation in this dataset is federal elections in the U.S.)
+\newline
+\fi
+
+4. Use the function \fu{View()} to open a tab with the entire contents of the dataframe. What is the time period covered in the dataset? In other words, what's the first and last election the dataset contains? (5 points)
+\if1\solutions 
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##', eval=FALSE}
+    View(anes) # opens a new tab with contents of dataset
+    ```
+\underline{Answer}: The dataset covers the time period from `r min(anes$year)` to `r max(anes$year)`. In other words, the first election is the U.S. federal election that took place in `r min(anes$year)` and the last election is the U.S. federal election that took place in `r max(anes$year)`. (Note: We can see this by scrolling up and down on the tab opened by \fu{View()} and looking at the minimum and maximum value of *year*.)
+\newline
+\fi
+
+5. Please substantively interpret the first observation in the dataset. (5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: The first observation in the dataset represents the federal election that took place in 1980, which was a presidential election, not a midterm election, 71\% of the respondents of the ANES survey reported to have voted in this election, 86,515 thousand ballots were officially cast in this election, the number of voting eligible population at the time was 159,635 thousand, the number of voting age population at the time was 164,445 thousand, the number of felons not eligible to vote was 802 thousand, and the number of non-citizens living in the U.S. was 5,756 thousand. (Note: the first observation consists of the following values: *year*=`r head(anes)[1,1]`, *presidential*=`r head(anes)[1,2]`, *midterm*=`r head(anes)[1,3]`, *ANES\_turnout*=`r head(anes)[1,4]`, *votes*=`r head(anes)[1,5]`, *VEP*=`r head(anes)[1,6]`, *VAP*=`r head(anes)[1,7]`, *felons*=`r head(anes)[1,8]`, *noncitizens*=`r head(anes)[1,9]`; we can interpret each value by using the description of the variables in Table 1.)
+\newline
+\fi
+
+6. For each variable in the dataset, please identify the type of variable (character vs. numeric binary vs. numeric non-binary) (10 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: *job\_id* is a numeric non-binary variable, *criminal* is a numeric binary variable, *call* is a numeric binary variable, and *race* is a character variable. (Recall: binary variables can only take two values, 0s and 1s, and non-binary variables can take more than two values.)
+\newline
+\fi
+
+7. How many observations are in the dataset? In other words, how many federal elections are part of this dataset? (Hint: the function \fu{dim()} might be helpful here.) Provide the R code you used (without the output) and provide the substantive answer. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    dim(anes) # provides dimensions of dataframe: rows, columns
+    ```
+\underline{Answer}: There were `r dim(anes)[1]` federal elections that are part of this dataset. (Recall: the first number provided by \fu{dim()} corresponds to the number of observations in the dataframe, the second number corresponds to the number of variables. Based on the output of dim(), there are `r dim(anes)[1]` observations in the dataframe *anes*. Since the unit of observation is federal elections, the dataframe *anes* has data on `r dim(anes)[1]` federal elections.)
+\fi
+

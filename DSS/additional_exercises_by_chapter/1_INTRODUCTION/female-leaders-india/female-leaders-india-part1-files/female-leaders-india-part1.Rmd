@@ -1,0 +1,81 @@
+---
+title: |
+    | \vspace{-.8cm} Do Women Promote Different Policies than Men? \newline Part I: Loading and Making Sense of Data \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex 
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm}(Based on \href{https://economics.mit.edu/files/792}{Raghabendra Chattopadhyay and Esther Duflo. 2004. ``Women as Policy Makers: Evidence from a Randomized Policy Experiment in India." \textit{Econometrica}, 72 (5): 1409–43.})
+
+In a few problem sets, we will estimate the average causal effect of having a female politician on two different policy outcomes. For this purpose, we will analyze data from an experiment conducted in India, where villages were randomly assigned to have a female council head. The dataset we will use is in a file called "india.csv". Table \ref{india} shows the names and descriptions of the variables in this dataset, where the unit of observation is villages.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{village} & village identifier ("Gram Panchayat number \_ village number") \\\addlinespace[1.5pt]
+\textit{female} & whether village was assigned a female politician: 1{=}yes, 0{=}no \\\addlinespace[1.5pt]
+\textit{water} & number of new (or repaired) drinking water facilities in the village\\ & since random assignment \\\addlinespace[1.5pt]
+\textit{irrigation} & number of new (or repaired) irrigation facilities in the village\\ & since random assignment \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "india.csv"}\label{india}
+\end{center}
+\end{table}
+\vspace{.3cm}
+
+In this problem set, we practice how to load and make sense of data.
+\vspace{.5cm}
+  
+1. Use the function \fu{read.csv()} to read the CSV file "india.csv" and use the assignment operator \fu{<-} to store the data in an object called \textit{india}. (Do not forget to set the working directory first.) Provide the R code you used (without the output). (10 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    india <- read.csv("india.csv") # reads and stores data
+    ```
+(Recall: to the left of the assignment operator \fu{<-}, we specify the name of the object, \fu{india} in this case; to the right of the assignment operator \fu{<-}, we specify the contents, which, in this case, are produced by reading the CSV file "india.csv". Also, we do not use quotes around the name of an object such as \fu{india} or around the name of a function such as \fu{read.csv()}, but we do use quotes around the name of a file: \fu{"india.csv"}.)\newline\fi
+    
+2. Use the function \fu{head()} to view the first few observations of the dataset. Provide the R code you used (without the output). (10 points) 
+\if1\solutions
+\newpage\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    head(india) # shows first observations
+    ```
+$\textrm{\,}$\vspace{-.5cm}
+\fi
+
+3. What does each observation in this dataset represent? (5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: Each observation represents a village (Note: We know this because, as stated above, the unit of observation in this dataset is villages). 
+\newline
+\fi
+
+4. Please substantively interpret the first observation in the dataset. (5 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: The first observation in the dataset represents village 2 in Gram Panchayat 1, which was assigned a female politician, and it had 10 new or repaired drinking water facilities and 0 new or repaired irrigation facilities since politicians were randomly assigned. (Note: the first observation consists of the following values: *village*="GP1\_village2", *female*=1, *water*=10, *irrigation*=0; we can interpret each value by using the description of the variables in Table 1.)
+\newline
+\fi
+
+5. For each variable in the dataset, please identify the type of variable (character vs. numeric binary vs. numeric non-binary) (10 points)
+\if1\solutions 
+\newline\newline\underline{Answer}: *village* is a character variable, *female* is numeric binary, *water* is numeric non-binary, and *irrigation* is numeric non-binary. (Recall: binary variables can only take two values, 0s and 1s, and non-binary variables can take more than two values.)
+\newline
+\fi
+
+6. How many observations are in the dataset? In other words, how many villages were part of this experiment? (Hint: the function \fu{dim()} might be helpful here.) Provide the R code you used (without the output) and provide the substantive answer. (10 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+    ```{r, collapse=TRUE, comment='##'}
+    dim(india) # provides dimensions of dataframe: rows, columns
+    ```
+\underline{Answer}: There were 322 villages in this experiment. (Recall: the first number provided by \fu{dim()} corresponds to the number of observations in the dataframe, the second number corresponds to the number of variables. Based on the output of dim(), there are 322 observations in the dataframe *india*. Since the unit of observation is villages, the dataframe *india* has data on 322 villages in India.)
+\fi
+
+

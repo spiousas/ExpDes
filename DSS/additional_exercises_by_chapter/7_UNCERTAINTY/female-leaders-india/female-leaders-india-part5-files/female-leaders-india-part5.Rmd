@@ -1,0 +1,113 @@
+---
+title: |
+        | \vspace{-.8cm} Do Women Promote Different Policies than Men? \newline Part V: Effect on Drinking Water Facilities \if1\solutions (with Solutions) \fi
+output:
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: mynewstyle_psets.tex
+header-includes: 
+   - \newcommand{\solutions}{1} # set to 1 to create PDF with solutions; leave blank to create PDF without solutions
+fontsize: 11pt
+---
+\vspace{-.5cm} Let's continue working with the data from the experiment in India. As a reminder, Table \ref{india} shows the names and descriptions of the variables in this dataset, where the unit of observation is villages.
+
+\begin{table}[h!!!]
+\begin{center}
+\begin{tabular}{ll}											
+\midrule
+variable & description\\
+\midrule \addlinespace[1.5pt]
+\textit{village} & village identifier ("Gram Panchayat number \_ village number") \\\addlinespace[1.5pt]
+\textit{female} & whether village was assigned a female politician: 1{=}yes, 0{=}no \\\addlinespace[1.5pt]
+\textit{water} & number of new (or repaired) drinking water facilities in the village since\\ & random assignment \\\addlinespace[1.5pt]
+\textit{irrigation} & number of new (or repaired) irrigation facilities in the village since\\ & random assignment \\\addlinespace[1.5pt]
+\midrule
+\end{tabular}
+\caption{Variables in "india.csv"}\label{india}
+\end{center}
+\end{table}
+
+\vspace{.5cm}
+In this problem set, we practice how to (1) estimate an average treatment effect using data from a randomized experiment, (2) determine whether the estimated average treatment effect is statistically significant at the 5\% level, and (3) determine the internal and external validity of the study.
+
+As always, we start by loading and looking at the data:
+
+```{r, collapse=TRUE, comment='##'}
+## load and look at the data
+india <- read.csv("india.csv") # reads and stores data
+head(india) # shows first observations
+```
+
+1. What is the estimated average casual effect of having a female politician on the number of new (or repaired) drinking water facilities?
+    a. Fit a linear model to the data in such a way that the estimated slope coefficient is equivalent to the difference-in-means estimator you are interested in and store the fitted model in an object called \textit{fit} (R code only). (2.5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        ## fit and store linear model
+        fit <- lm(india$water ~ india$female) # or
+        fit <- lm(water ~ female, data = india) 
+        ```
+$\textrm{\,}$
+\newline (Note: Remember that the \fu{lm()} function requires an argument of the form Y$\sim$X. Here, \textit{water} is the outcome variable, Y, and \textit{female} is the treatment variable, X.)
+\newline\fi
+    b. What is the estimated slope coefficient, $\widehat{\beta}$? (2.5 points)
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        fit # shows contents of object
+        ```
+$\textrm{\,}$
+\newline\underline{Answer}: The estimated slope coefficient, $\widehat{\beta}$, is `r round(coef(fit)[2],2)`.
+\newline
+\fi    
+    c. Now, let's answer the question: What is the estimated average treatment effect? Provide a full substantive answer (make sure to include the assumption, why the assumption is reasonable, the treatment, the outcome, as well as the direction, size, and unit of measurement of the average treatment effect) (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Let's start by figuring out each key element separately.\newline\newline 
+$\textrm{\,}$- \textit{What's the assumption?} We assume that the villages that were assigned to have a female politician (the treatment group) are comparable to the villages that were assigned to NOT have a female politician (the control group). (Note: If this assumption were not true the difference-in-means estimator would NOT produce a valid estimate of the average treatment effect.) \newline\newline 
+$\textrm{\,}$- \textit{Why is the assumption reasonable?} Because the female politicians were assigned at random OR because the data come from a randomized experiment. (Recall: Random treatment assignment makes the treatment and control groups on average identical to each other in all observed and unobserved pre-treatment characteristics.)\newline\newline 
+$\textrm{\,}$- \textit{What's the treatment?} Having a female politician. \newline\newline 
+$\textrm{\,}$- \textit{What's the outcome?} Number of new (or repaired) drinking water facilities. \newline\newline 
+$\textrm{\,}$- \textit{What's the direction, size, and unit of measurement of the average causal effect?} An increase of 9 facilities, on average. (Note: It is an increase because we are measuring change---the change in the outcome variable caused by the treatment---and $\widehat{\beta}$, which is equivalent here to the difference-in-means estimator, is positive. Recall that because X is the treatment variable and Y is the outcome variable, $\widehat{\beta}$ is equivalent to the difference-in-means estimator. In this case, the difference-in-means estimator = average number of facilities in villages with female politician - average number of facilities in villages with male politician = 24 facilities - 15 facilities = 9 facilities.)\newline\newline 
+\textit{Full answer}: Assuming that the villages that were randomly assigned to have a female politician were comparable to the villages that were randomly assigned to NOT have a female politician (a reasonable assumption since the female politicians were assigned at random), we estimate that having a female politician increases the number of new or repaired drinking water facilities by 9 facilities, on average.
+\newline\fi
+
+
+2. Is the effect statistically significant at the 5\% level?
+    a. Let's start by specifying the null and alternative hypotheses. Please provide both the mathematical notations and their meaning. (5 points) 
+\if1\solutions
+\newline\newline\underline{Answer}: The null and alternative hypotheses are:
+\newline\newline $H_0 {:} \,\, \beta{=}0$ (meaning: having a female politician has no average causal effect on the number of new or repaired drinking water facilities at the population level). 
+\newline\newline $H_1 {:} \,\, \beta{\neq}0$ (meaning: having a female politician  either increases or decreases the number of new or repaired drinking water facilities, on average, at the population level)
+\newline\newline (Note that the null and alternative hypotheses refer to $\beta$, which is the true average causal effect at the population level, not to $\widehat{\beta}$, which is the estimated average causal effect at the sample level.)
+\newline\fi
+    b. What is the value of the observed test statistic, $z^{obs}$? (Hint: the code \fu{summary()\$coeff} might be helpful here.) (2.5 points) 
+\if1\solutions
+\newline\newline\underline{R code}:
+        ```{r, collapse=TRUE, comment='##'}
+        summary(fit)$coeff
+        ```
+$\textrm{\,}$
+\newline\underline{Answer}: The value of the observed test statistic, $z^{obs}$, is `r round(summary(fit)$coeff[2,3],2)`. (Note: The observed test statistic for regression coefficients equals $\widehat{\beta}$ divided by the standard error of $\widehat{\beta}$. Here, it equals `r round(summary(fit)$coeff[2,1],5)`/`r round(summary(fit)$coeff[2,2],5)`= `r round(summary(fit)$coeff[2,3],2)`, which is exactly what R provides as the t-value for the coefficient affecting \textit{female}, that is, the value in the cell in the second row, third column.)
+\newline \fi
+    c. What is the associated p-value? (2.5 points)
+\if1\solutions
+\newline\newline \underline{Answer}: The associated p-value is 1.97e-02, which is $1.97\times10^{-2}\approx$ `r round(summary(fit)$coeff[2,4],2)`. (Note: We can interpret this as indicating that, if the null hypothesis were true, the probability of observing a test statistic equal to or larger than `r round(summary(fit)$coeff[2,3],2)` (in absolute value) is  about `r round(summary(fit)$coeff[2,4]*100,2)`\%. This is a small probability, well below 5\%, so we will reject the null hypothesis.)
+\newline \fi
+    d. Now, let's answer the question: Is the effect statistically significant at the 5\% level? Please provide your reasoning. (5 points)
+\if1\solutions
+\newline\newline \underline{Answer}: Yes, the effect is statistically significant at the 5\% level. Because (a) the absolute value of the observed test statistic is greater than 1.96 (|2.34|>1.96), and/or (b) the p-value is smaller than 0.05 (0.02<0.05), we reject the null hypothesis and conclude that there is likely to be an average treatment effect different than zero at the population level. In other words, we conclude that having a female politician is likely to have an average effect different than zero on the number of new (or repaired) drinking water facilities \textit{at the population level}. (Note: You do not need to provide both reasons, (a) and (b). One of them suffices since both procedures should lead to the same conclusion.)
+\newline \fi
+
+3. Can we interpret the estimated effect as causal? In other words, how strong is the internal validity of this study? Have the researchers accurately measured the average causal effect on the sample of villages that were part of the study? Please explain your reasoning. (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: Yes, we can interpret the estimated effect as causal. The internal validity of this study is strong because the treatment (having a female politician) was assigned at random. Random treatment assignment should have eliminated all confounding variables, making the villages with female politicians (the treatment group) and the villages without female politicians (the control group) comparable; that is, they should have the same observed and unobserved characteristics, on average, with the exception of the treatment. As a result, the difference-in-means estimator should provide a valid estimate of the average causal effect among the villages in the study. In other words, since the only systematic difference between the treatment and control groups is the treatment (having a female politician), we can conclude that the observed difference in the outcome (the additional 9 drinking water facilities) is the direct result of the treatment.)
+\newline
+\fi
+
+4. Can we generalize the results? In other words, how strong is the external validity of this study? Please explain your reasoning and be specific about what population you think the findings can or cannot be generalized to. (10 points)
+\if1\solutions
+\newline\newline\underline{Answer}: 
+The answer depends on (i) whether the treatment used in the study is representative of the real-world treatment for which we want to generalize the results, and (ii) whether the sample of observations in the study is representative of the population to which we want to generalize the results. In regards to the first point, the treatment in the study (having a female politician) was administered in the real world, and thus, it is realistic and representative of having a female politician in the real word. In regards to the second point, if the sample of villages that participated in the experiment is representative of all villages in India, we could generalize the results to all villages in India. Could we generalize the results to having a female politician in the whole of India? Probably not since the sample is, at best, representative of rural villages in India, but not of cities in India. Could we generalize the results to having a female politician in U.S. towns? Absolutely not. Rural villages in India are not representative of U.S. towns.
+\newline
+\fi

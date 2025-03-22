@@ -1,0 +1,208 @@
+---
+title: "tutorial_1"
+format: html
+editor: visual
+---
+
+# Tutoría 1. Práctica de R y tidyverse
+
+El desafio es sencillo, en esta notebook hay una serie de ejercicios para reproducir, no hay una sola respuesta (y no es la que da chatGPT), son todas tareas sencillas pero se pueden resolver de miles de formas distintas, traten de hacerlo de la forma mas original tratando de usar el minimo numero de lineas (que sea mas eficiente). Apoyense en google, stack overflow y busquedas sencillas de internet. Está lleno de problemas a los que nos enfrentamos los humanos todos los dias y la internet esta llena de explicaciones y comentarios.
+
+## Trump vs Kamala
+
+Lo que tienen en la siguiente línea es una base de datos con el perfil sociodemográfico de 500 votantes de estados unidos.
+
+#### Parte 1. Data cleaning
+
+Vamos a limpiar y explorar los datos. Los nombre sos un desastre, quizas quieran trabajar mas comodos con datos mas limpios. Si es asi exploren el paquete **janitor** que puede darles una mano\
+
+```{r}
+pacman::p_load(tidyverse, here)
+votantes <- read_csv(here("TPs/dataset_votantes_trump.csv"))
+```
+
+**Ejercicio 1.** Hagamos un pequeño analisis exploratorio sacando un resumen de la base. Pista, la funcion summary de R base es bastante buena para ello., prestemos atencion a los valores minimos y maximos
+
+```{r}
+summary(votantes)
+```
+
+**Ejercicio 2:** Hay valores negativos en numero de hijos e ingresos, suponiendo que hay un typo, vamos a convertir los valores negativos en valores positivos para "numero de hijos" y "Ingreso anual", asignenlo a columnas con el sufijo \_corregido. Pista: investiguen que hace la funcion *abs*.
+
+```{r}
+votantes <- votantes %>%
+  mutate(
+    Numero_Hijos_corregido = abs(`Número de hijos`),
+    Ingreso_Anual_corregido = abs(`Ingreso anual`)
+  )
+```
+
+**Ejercicio 3:** Hay algunas variables que estan guardadas como "character", sin embargo algunas son factores, vamos a convertir estado de residencia en un factor. Pistas: prueben trabajar con *factor*, *as.factor* (en R base) o *mutate* (en tidyverse), asignenlo a una nueva variable que se llame "estado_corregido". Cuando terminen hagan un summary de esa variable. Cuantos niveles tiene, son correctos?
+
+```{r}
+# opcion 1
+votantes$estado_corregido<-as.factor(votantes$`Estado de residencia`)
+
+#opcion 2
+votantes$estado_corregido<-factor(votantes$`Estado de residencia`
+                                  #, labels=c(), #### sirve para definir etiquetas,
+                                  # levels=c()###sirve para asignar que nivel tiene cada etiqueta, eventualmente se puede jugar con esto)
+                                  )
+
+#opcion 3
+votantes <- votantes %>%
+  mutate(estado_corregido = as.factor(`Estado de residencia`))
+
+summary(votantes$estado_corregido)
+```
+
+**Ejercicio 4:** corrijamos los typos en la variable original y despues volvamos a hacer el factor, hay muchas opciones para hacer esto, pueden explorar usar la funcion ifelse por ejemplo
+
+```{r}
+# un ejemplo
+
+votantes$`Estado de residencia`<-ifelse(votantes$`Estado de residencia`=="Califronia", "California",votantes$`Estado de residencia`)
+
+## se puede hacer una linea por cada uno o anidar ifelse, por ejemplo
+
+votantes$`Estado de residencia`<-ifelse(votantes$`Estado de residencia`=="Califronia", "California",ifelse(votantes$`Estado de residencia`=="Texaas","Texas",votantes$`Estado de residencia`))
+
+# Otra opción con if_else
+votantes <- votantes %>%
+  mutate(`Estado de residencia` = if_else(`Estado de residencia`=="Califronia", 
+                                          "California", # Si la condición es verdadera
+                                          `Estado de residencia`)) # Si no
+
+summary(as.factor(votantes$`Estado de residencia`))
+```
+
+**Ejercicio 5:** Vamos a hacer un dataset de "MAGA"s, vamos a seleccionar votantes de Trump. Seleccione gente que pueda votar (mayores de 18 años), que vayan a votar (que su intencion de voto sea distinta de "nunca") y que no tenga valores vacios en sexo, edad, ni nivel educativo. Cree una variable nueva que se llame "educacion_universitaria", con valores si o no si la educacion es universitaria o mayor (posgrado o doctorardo). Quizas quieran leer como se usa el case_when o if_else
+
+```{r}
+magas <- votantes %>%
+  filter(
+    Edad>= 18 &  # Mayores de 18 años
+      `Frecuencia de voto` != "Nunca" &  # Van a votar
+      !is.na(Género) & !is.na(Edad) & !is.na(`Nivel educativo`) &
+      # Sin valores vacíos en Sexo, Edad y Nivel Educativo
+      `Preferencia política` == "Trump"  # Solo votantes de Trump
+  ) %>%
+  # Crear la nueva variable educacion_universitaria
+  mutate(educacion_universitaria = case_when(
+    `Nivel educativo` %in% c("Universitario", "Posgrado", "Doctorado") ~ "si",
+    TRUE ~ "no"
+  ))
+
+# Usaría if_else en la segunda parte
+magas <- votantes %>%
+  filter(
+    Edad>= 18 &  # Mayores de 18 años
+      `Frecuencia de voto` != "Nunca" &  # Van a votar
+      !is.na(Género) & !is.na(Edad) & !is.na(`Nivel educativo`) &
+      # Sin valores vacíos en Sexo, Edad y Nivel Educativo
+      `Preferencia política` == "Trump"  # Solo votantes de Trump
+  ) %>%
+  # Crear la nueva variable educacion_universitaria
+  mutate(educacion_universitaria = if_else(`Nivel educativo` %in% c("Universitario", "Posgrado", "Doctorado"),
+                                           "si",
+                                           "no"
+  ))
+```
+
+#### Parte 2. Graficos
+
+**Ejercicio 1:** queremos conocer la distribucion de los ingresos entre hombres y mujeres. Hagamos con ggplot un grafico de densidad en donde se observen la distribucion de los ingresos en hombres y en mujeres. Sean creativos, se pueden hacer ambos en un mismo grafico (exploren que capa en *aes* hara que tengan distinto no se, color o relleno) o pueden animarse a usar *facet* y hacer dos graficos paralelos. O pueden mostrarlo de alguna otra forma, hay espacio para ser creativos. Nota, si las distribuciones van a estar superpuestas por ahi es una buena idea hacerlas un poco transparentes, investiguen como funciona el argumento *alpha*
+
+```{r}
+votantes %>%
+  ggplot(aes(x=`Ingreso anual`, fill=Género))+
+  geom_density()
+
+votantes %>%
+  ggplot(aes(x=`Ingreso anual`, fill=Género))+
+  geom_density()+
+  facet_wrap(~Género)
+```
+
+**Ejercicio 2:** Vamos a ver la relacion entre el ingreso de hombres y mujeres segun la edad, y segun si votarian a Trump o a Kamala. Hagamos un scatter plot en donde en el eje de las x este el ingreso, en las y la edad, en distintos colores los puntos si son hombres o mujeres, y que haya en realidad dos graficos, uno para los votantes de Trump y otro de Kamala. A su vez, cada uno debe tener una linea de ajuste lineal para sexo y preferencia de voto (investigen como funciona *geom_smooth*). Ojo que hay algunos sujetos que no dijeron a quien iban a votar, quizas convenga filtrar y obtener solo los que dijeron a quien van a votar antes de graficar
+
+```{r}
+votantes %>%
+  filter(!is.na(`Preferencia política`)) %>%
+  ggplot(aes(y = `Ingreso anual`, x = Edad, color = Género)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~`Preferencia política`)
+
+```
+
+**Ejercicio 3:** ¿cual es la correlacion entre ingreso y edad por sexo? Se anima a calcularla? Estaria bueno mostrar esa correlacion creando un grafico de puntos con la linea de tendencia (una por sexo) y anotar en el mismo color de la linea el valor de la correlacion. Pista pueden usar *geom_anotate* para agregar valores
+
+```{r}
+mujeres<-votantes %>% filter(Género=="Femenino" & 
+                               !is.na(Ingreso_Anual_corregido) &
+                               !is.na(Edad))
+cor_mujeres<-cor(mujeres$Ingreso_Anual_corregido, mujeres$Edad)
+cor_mujeres
+
+
+votantes %>% 
+  ggplot(aes(x=Edad, y=Ingreso_Anual_corregido, color=Género))+
+  geom_smooth(method = "lm")+
+  annotate("text",  x = 100, y = 40000,label = paste("Mujeres:", round(cor_mujeres, 2)), size = 5, color="red")
+  
+```
+
+#### Parte 2. Regresion para entender a los MAGAs
+
+Vamos a usar los sujetos de nuestra nueva base. Queremos predecir el ingreso anual que reportan en funcion de su genero, su edad, si fueron a la universidad o no y el numero de hijos.
+
+**Ejercicio 1.** Corramos una regresion lineal para responder esta pregunta
+
+```{r}
+modelo <- lm(Ingreso_Anual_corregido ~ Edad + Género + Numero_Hijos_corregido + educacion_universitaria, data = magas)
+
+summary(modelo)
+```
+
+**Ejercicio 2.** Como interpretaria el modelo? escriba un breve parrafo interpretando los coeficientes
+
+**Ejercicio 3**. Esta regresion cumple con los supuestos que debería. Chequee la distribucion normal de los residuos y haga un qqplot de los mismos.
+
+Puede chequear otros supuestos. Pruebe la funcion check_model del paquete performance
+
+#### Parte 3. Regresion logistica, prediciendo al votante de Trump
+
+Vamos a volver a nuestra base completa. Vamos a construir una regresion logistica para predecir un outcome binario (voto a trump o no). En funcion de la edad, el sexo, el ingreso anual y si es universitario o no. Recuerde excluir a los sujetos que tienen frecuencia de voto "nunca". Corramos esta linea para obtener la base limpia, solo tienen que correr el modelo
+
+```{r}
+##esta linea la dejo
+votantes$voto_trump<-votantes$`Preferencia política`=="Trump"
+
+votantes_filtrados <- votantes  %>% filter(
+    Edad>= 18 &  # Mayores de 18 años
+  `Frecuencia de voto` != "Nunca" &  # Van a votar
+    !is.na(Género) & !is.na(Edad) & !is.na(`Nivel educativo`)
+    # Sin valores vacíos en Sexo, Edad y Nivel Educativo
+  ) %>%
+  # Crear la nueva variable educacion_universitaria
+  mutate(educacion_universitaria = case_when(
+    `Nivel educativo` %in% c("Universitario", "Posgrado", "Doctorado") ~ "si",
+    TRUE ~ "no"
+  ))
+
+```
+
+```{r}
+modelo_logit<-glm(voto_trump ~ Edad+Género+Ingreso_Anual_corregido+educacion_universitaria, data = votantes_filtrados, family = "binomial")
+
+summary(modelo_logit)
+```
+
+**Ejercicio 1:** Interprete el modelo. Que significan los coeficientes obtenidos?
+
+**Ejercicio 2:** convierta los coeficientes en OR, como los interpreta?
+
+```{r}
+coef(modelo_logit, exp=T)
+```

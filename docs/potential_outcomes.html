@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,14 +17,15 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -38,8 +39,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,18 +68,20 @@ div.csl-indent {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -88,11 +90,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potential_outcomes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">*Potential outcomes*</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -100,12 +107,12 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -113,46 +120,53 @@ div.csl-indent {
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -161,14 +175,15 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#presentación" id="toc-presentación" class="nav-link active" data-scroll-target="#presentación"><span class="toc-section-number">3.1</span>  Presentación</a></li>
-  <li><a href="#potential-outcomes" id="toc-potential-outcomes" class="nav-link" data-scroll-target="#potential-outcomes"><span class="toc-section-number">3.2</span>  <em>Potential outcomes</em></a></li>
-  <li><a href="#efecto-promedio-del-tratamiento" id="toc-efecto-promedio-del-tratamiento" class="nav-link" data-scroll-target="#efecto-promedio-del-tratamiento"><span class="toc-section-number">3.3</span>  Efecto promedio del tratamiento</a></li>
-  <li><a href="#diferencia-de-medias-simple" id="toc-diferencia-de-medias-simple" class="nav-link" data-scroll-target="#diferencia-de-medias-simple"><span class="toc-section-number">3.4</span>  Diferencia de medias simple</a></li>
-  <li><a href="#independencia" id="toc-independencia" class="nav-link" data-scroll-target="#independencia"><span class="toc-section-number">3.5</span>  Independencia</a></li>
+  <li><a href="#guerra-fría-manos-y-contrafácticos." id="toc-guerra-fría-manos-y-contrafácticos." class="nav-link active" data-scroll-target="#guerra-fría-manos-y-contrafácticos."><span class="header-section-number">3.1</span> Guerra fría, manos y contrafácticos.</a></li>
+  <li><a href="#potential-outcomes" id="toc-potential-outcomes" class="nav-link" data-scroll-target="#potential-outcomes"><span class="header-section-number">3.2</span> <em>Potential outcomes</em></a></li>
+  <li><a href="#efecto-promedio-del-tratamiento" id="toc-efecto-promedio-del-tratamiento" class="nav-link" data-scroll-target="#efecto-promedio-del-tratamiento"><span class="header-section-number">3.3</span> Efecto promedio del tratamiento</a></li>
+  <li><a href="#diferencia-de-medias-simple" id="toc-diferencia-de-medias-simple" class="nav-link" data-scroll-target="#diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</a></li>
+  <li><a href="#independencia" id="toc-independencia" class="nav-link" data-scroll-target="#independencia"><span class="header-section-number">3.5</span> Independencia</a></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -177,7 +192,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-pot-outcomes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></h1>
+<h1 class="title"><span id="sec-pot-outcomes" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></h1>
 </div>
 
 
@@ -185,6 +200,7 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -192,10 +208,108 @@ div.csl-indent {
 </header>
 
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing package into 'C:/Users/Ismael laptop/AppData/Local/R/win-library/4.4'
+(as 'lib' is unspecified)</code></pre>
 </div>
-<section id="presentación" class="level2 page-columns page-full" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="presentación"><span class="header-section-number">3.1</span> Presentación</h2>
+<div class="cell-output cell-output-stderr">
+<pre><code>also installing the dependency 'dagitty'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>package 'dagitty' successfully unpacked and MD5 sums checked
+package 'ggdag' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\Ismael laptop\AppData\Local\Temp\RtmpkVprzI\downloaded_packages</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+ggdag installed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggdag' was built under R version 4.4.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing package into 'C:/Users/Ismael laptop/AppData/Local/R/win-library/4.4'
+(as 'lib' is unspecified)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>package 'stargazer' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\Ismael laptop\AppData\Local\Temp\RtmpkVprzI\downloaded_packages</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+stargazer installed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing package into 'C:/Users/Ismael laptop/AppData/Local/R/win-library/4.4'
+(as 'lib' is unspecified)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>also installing the dependency 'svglite'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>package 'svglite' successfully unpacked and MD5 sums checked
+package 'kableExtra' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\Ismael laptop\AppData\Local\Temp\RtmpkVprzI\downloaded_packages</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+kableExtra installed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'kableExtra' was built under R version 4.4.2</code></pre>
+</div>
+</div>
+<section id="guerra-fría-manos-y-contrafácticos." class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="guerra-fría-manos-y-contrafácticos."><span class="header-section-number">3.1</span> Guerra fría, manos y contrafácticos.</h2>
+<p>Son las 3 de la mañana del 26 de septiembre de 1983. Con una taza de café en mano, Stanislav Petrov vigila las alarmas de una estación de monitoreo de ataques nucleares a las afueras de Moscú. De pronto, los paneles se iluminan con un rojo furioso: tres misiles intercontinentales están en camino a la cúpula del Kremlin… o, quizás, el sistema tiene un error y se trata de una falsa alarma.</p>
+<p>Stanislav no duda. Sigue el protocolo y llama al Kremlin. En menos de tres minutos, Rusia lanza un ataque nuclear contra las principales ciudades de EE. UU. La contrarespuesta estadounidense borra Leningrado y Stalingrado unos 40 minutos después. Además de millones de muertos, los ataques levantan tal cantidad de polvo en la atmósfera que el mundo se sume en un invierno nuclear durante 30 años, provocando hambruna en gran parte del hemisferio norte. Menos afectada por los ataques, la economía africana mejora lentamente y se convierte en el principal proveedor de alimentos del mundo. Para 2025, el Imperio Panafricano es la principal potencia económica global.</p>
+<p>Todos sabemos que esto nunca ocurrió. Lo que realmente pasó fue que Stanislav Petrov pensó que se trataba de un error y nunca avisó a nadie (pueden ver la historia aquí: https://www.bbc.com/mundo/noticias/2013/09/130926_internacional_ruso_detuvo_ataque_nuclear_jrg).</p>
+<p>Este mundo posnuclear es un mundo donde los hechos ocurrieron de manera completamente distinta: un mundo alternativo, un “what if”, un escenario contrafáctico. Podemos especular sobre lo que habría sucedido si los eventos se hubieran desarrollado de otra forma, pero la realidad es que nunca ocurrieron. Por lo tanto, un contrafáctico, aunque posible, es siempre especulativo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig-01.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Contrafactico definicion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>aca tendriamos que poner una piola</p>
+</div>
+</div>
+<p>¿Para qué sirve entonces construir contrafácticos, imaginar cosas que no ocurrieron y que nunca ocurrirán? Veamos otra historia.</p>
+<p>Este cuadro se llama Las manos y fue pintado por Albrecht Durero. Es una de las obras más importantes de su siglo.</p>
+<p><img src="Study-of-Praying-Hands-Durer-Albrecht-1508-2.jpg" class="img-fluid" width="158"></p>
+<p>Los Durero eran una familia de mineros pobres del sur de Alemania. Dos de sus hijos, Albrecht y Joseph, tenían talento para el dibujo y decidieron hacer un pacto: uno estudiaría en Núremberg durante cuatro años mientras el otro trabajaría en las minas para pagar su educación. Decidiria quien con una moneda. Pasado ese tiempo, intercambiarían lugares.</p>
+<p>El azar favoreció a Albrecht. Durante esos cuatro años, se convirtió en un pintor famoso y regresó a casa para cumplir su parte del acuerdo. Sin embargo, al llegar, Joseph lo recibió con una triste noticia: era demasiado tarde. El arduo trabajo en la mina le había provocado una artritis severa, impidiéndole sostener un pincel. Como único tributo a su sacrificio, Albrecht decidió pintar sus manos.</p>
+<p>Ahora tenemos dos escenarios contrafacticos, lo que le hubiera sucedido a Albretch si se quedaba en la mina, y lo que le hubiera sucedido a Joseph si se iba a estudiar a Nuremberg. De modo que el escenario seria asi.</p>
+<p><img src="fig-02.png" class="img-fluid"></p>
+<p>Ambos son hermanos, comparten cierto talento y muchas cosas. Uno podria suponer que el destino de Joseph podria servir para suponer con mayor precision lo que le paso “le hubiera pasado a Albretch de no ir a Nuremberg” (escenario contrafactico) y el destino de Albetch “lo que le hubiera pasado a Joseph si hubiera podido ir a Nuremberg” (escenario contrafactico). Entonces imaginar escenarios contrafacticos nos permiten estimar el efecto de ir a Nuremberg o de quedarse. Para eso creamos los contrafacticos.</p>
+<p>Ahora bien, es Joseph lo mismo que Albrecth, si la moneda hubiera favorecido a Joseph, habria un Durero pintor famoso? Bueno no estamos seguros de eso, lo que si podemos estar seguros es que pese a parecidos no son exactamente el mismo y quizas hay diferencias en talentos o en suceptibilidad a la artritis lo que hace que el destino de uno funcione como un simil o proxy de su destino contrafactico pero no el destino en si mismo. Con estas ideas podemos armar un marco teorico donde esos efectos se puedan estimar. Este marco teorico se llama outcomes potenciales.</p>
 <p>Supongamos que quiero evaluar la efectividad de la aspirina para mitigar el dolor de cabeza. Me duele la cabeza y lo quiero es saber el efecto diferencial entre tomar y no tomar esa aspirina. Es decir, en el tiempo 0 estoy yo con dolor de cabeza y en el tiempo 1 debería haber dos versiones mías (como si una no fuera suficiente), la que tomó la aspirina y la que no. A cada una de ellas les tendría que preguntar cuánto les duele la cabeza, el <em>outcome</em> de mi comparación. No hace falta ser demasiado astuto para darse cuenta que esto es imposible ya que sólo nos será posible obsevar una de esas versiones mientras que la otra será un contrafáctico.</p>
 <p>De esto vamos a hablar en este capítulo, utilizando la tradición de los <em>potential outcomes</em>. Estas ideas terminan de tomar forma en la versión que conocemos en las ciencias sociales en <span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span></p>
 <div class="no-row-height column-margin column-container"></div></section>
@@ -213,7 +327,7 @@ Y_i = D_i Y_i^1 + (1-D_i) Y_i^0
 \delta_i = Y_i^1 - Y_i^0
 \tag{3.2}\]</span></span></p>
 <p>Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los <em>potential outcomes</em> debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal: Para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar (los contrafácticos)<span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-rubin1974estimating" class="csl-entry" role="doc-biblioentry">
+<div class="no-row-height column-margin column-container"><div id="ref-rubin1974estimating" class="csl-entry" role="listitem">
 Rubin, Donald B. 1974. <span>«Estimating causal effects of treatments in randomized and nonrandomized studies.»</span> <em>Journal of educational Psychology</em> 66 (5): 688.
 </div></div></section>
 <section id="efecto-promedio-del-tratamiento" class="level2 page-columns page-full" data-number="3.3">
@@ -264,7 +378,7 @@ _ATE &amp;=&amp; \pi ATT + (1-\pi) ATU \\
 \end{array}
 \tag{3.7}\]</span></span></p>
 <p>Con <span class="math inline">\(\pi = N_T/n\)</span> y <span class="math inline">\(1 - \pi = N_C/n\)</span>.</p>
-<div class="page-columns page-full"><p>Operando con la <a href="#eq-sesgos">Ecuación&nbsp;<span>3.8</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
+<div class="page-columns page-full"><p>Operando con la <a href="#eq-sesgos">Ecuación&nbsp;<span>3.8</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
 Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
 </div></li></div></div>
 <p><span id="eq-sesgos"><span class="math display">\[
@@ -350,9 +464,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -363,8 +491,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -400,24 +545,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
@@ -437,6 +686,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

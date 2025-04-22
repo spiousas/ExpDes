@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ignacio Spiousas">
-<meta name="author" content="Ismael Calandri">
 
-<title>Diseños experimentales y cuasiexperimentales</title>
+<title>9&nbsp; Variables instrumentales – Diseños experimentales y cuasiexperimentales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_R.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./reg_discontinua.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefacio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./var_instrumentales.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -116,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
@@ -170,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
   </div>
 </li>
@@ -182,22 +181,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
     </ul>
     </div>
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Índice</h2>
-   
-  <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio">Prefacio</a>
-  <ul class="collapse">
-  <li><a href="#lo-que-vas-a-aprender-en-este-libro" id="toc-lo-que-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</a></li>
-  <li><a href="#qué-es-este-libro" id="toc-qué-es-este-libro" class="nav-link" data-scroll-target="#qué-es-este-libro">¿Qué es este libro?</a></li>
-  <li><a href="#lo-que-no-vas-a-aprender-en-este-libro" id="toc-lo-que-no-vas-a-aprender-en-este-libro" class="nav-link" data-scroll-target="#lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</a></li>
-  <li><a href="#prerequisitos" id="toc-prerequisitos" class="nav-link" data-scroll-target="#prerequisitos">Prerequisitos</a></li>
-  <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
-  <li><a href="#contacto" id="toc-contacto" class="nav-link" data-scroll-target="#contacto">Contacto</a></li>
-  <li><a href="#licencia" id="toc-licencia" class="nav-link" data-scroll-target="#licencia">Licencia</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -208,35 +192,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Diseños experimentales y cuasiexperimentales</h1>
+<h1 class="title"><span id="sec-random-exp" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autores/as</div>
-  <div class="quarto-title-meta-heading">Afiliaciones</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Ignacio Spiousas <a href="mailto:ispiousas@udesa.edu.ar" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-0283-4696" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Conicet/UdeSA
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Ismael Calandri <a href="mailto:icalandri@fleni.org.ar" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-6983-1430" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Fleni/UdeSA
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -246,67 +209,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prefacio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefacio</h1>
-<p>Este libro surge con la intención de acompañar a los estudiantes de la materia Diseño experimentales y cuasiexperimentales correspondiente a la carrera de Licenciatura en Ciencias del Comportamiento de la <a href="https://udesa.edu.ar/">Universidad de San Andrés</a> (Victoria, Argentina). Sin embargo, este libro no contiene todo los materiales de la materia, sino más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.</p>
-<section id="lo-que-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-vas-a-aprender-en-este-libro">Lo que vas a aprender en este libro</h2>
-<p>El objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.</p>
-<p>Se espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y “apta para todo público”. Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental “ideal” (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-SIGA SIGA…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Si bien los ejemplos que se presentan en el libro están orientados a las ciencias del comportamiento, su contenido puede ser adaptado a cualquier ciencia experimental, desde la biología hasta la economía.</p>
-</div>
-</div>
-</section>
-<section id="qué-es-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="qué-es-este-libro">¿Qué es este libro?</h2>
-<p>En este libro no vas a encontrar grandes desarrollos teóricos ni ejemplos complejos. Es simplemente una guía de lectura que tiene como objetivo ser la puerta de entrada para algunos conceptos clave del diseño experimental y la inferencia causal. Para esto vamos a chapotear en <strong>R</strong> y <em>tidyverse</em>, mojar las patas en la estadística, aguantar un poco la respiración en inferencia y <em>potential outcomes</em>, bucear en diseños aleatorizados (experimentos) para finalmente sumergirnos (con la idea de volver a salir a flote) en las profundas aguas del diseño cuasiexperimental y la inferencia causal.</p>
-</section>
-<section id="lo-que-no-vas-a-aprender-en-este-libro" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-no-vas-a-aprender-en-este-libro">Lo que NO vas a aprender en este libro</h2>
-<p>Este libro no es un libro de inferencia estadística y no vamos a hablar de <em>tests</em> estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro <strong>NO</strong> es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.</p>
-<p>Este libro tampoco es un manual de programación ni de análisis de datos en R. Si bien en la primera sección del libro haremos una presentación de algunas de las funcionalidades de la colección de paquetes para análisis de datos que es el <em>tidyverse</em>, no vamos a repasar ninguna de las bases de R ni de Rstudio. Existen infinidad de recursos invreíbles para aprender esto y sentimos que no hay necesida de, a eso, sumarle uno mediocre.</p>
-</section>
-<section id="prerequisitos" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisitos">Prerequisitos</h2>
-<p>Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.</p>
-<div class="callout callout-style-default callout-warning no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-DON’T PANIC
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.</p>
-</div>
-</div>
-</section>
-<section id="agradecimientos" class="level2">
-<h2 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h2>
-</section>
-<section id="contacto" class="level2">
-<h2 class="anchored" data-anchor-id="contacto">Contacto</h2>
-<p>Ante cualquier duda pueden contactarme vía e-mail a <a href="mailto:ispiousas@udesa.edu.ar">ispiousas@udesa.edu.ar</a>.</p>
-</section>
-<section id="licencia" class="level2">
-<h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
-<p>Este sitio web es y siempre será gratuito, licencia bajo [CC BY-NC-ND 3.0 License]{https://creativecommons.org/licenses/by-nc-nd/3.0/us/}.</p>
+<p>En construcción 🚧</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -731,10 +636,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./reg_discontinua.html" class="pagination-link" aria-label="Regresión discontinua">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_R.html" class="pagination-link" aria-label="R y el tidyverse">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

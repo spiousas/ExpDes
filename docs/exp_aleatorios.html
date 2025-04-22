@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Diseños experimentales y cuasiexperimentales - 5&nbsp; Experimentos aleatorios</title>
+<title>5&nbsp; Experimentos aleatorios – Diseños experimentales y cuasiexperimentales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,10 +17,64 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./matching.html" rel="next">
 <link href="./dags.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -47,32 +101,74 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exp_aleatorios.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -80,12 +176,12 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -93,61 +189,117 @@ ul.task-list li input[type="checkbox"] {
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#por-qué-son-importantes-los-experimentos-aleatorios" id="toc-por-qué-son-importantes-los-experimentos-aleatorios" class="nav-link active" data-scroll-target="#por-qué-son-importantes-los-experimentos-aleatorios"><span class="header-section-number">5.1</span> ¿Por qué son importantes los experimentos aleatorios?</a></li>
+  <li><a href="#el-experimento-ideal" id="toc-el-experimento-ideal" class="nav-link" data-scroll-target="#el-experimento-ideal"><span class="header-section-number">5.2</span> El experimento ideal</a></li>
+  <li><a href="#cuando-la-cosa-no-es-tan-ideal" id="toc-cuando-la-cosa-no-es-tan-ideal" class="nav-link" data-scroll-target="#cuando-la-cosa-no-es-tan-ideal"><span class="header-section-number">5.3</span> Cuando la cosa no es tan ideal</a>
+  <ul class="collapse">
+  <li><a href="#aleatorización-por-bloques" id="toc-aleatorización-por-bloques" class="nav-link" data-scroll-target="#aleatorización-por-bloques"><span class="header-section-number">5.3.1</span> Aleatorización por bloques</a></li>
+  <li><a href="#spillover" id="toc-spillover" class="nav-link" data-scroll-target="#spillover"><span class="header-section-number">5.3.2</span> <em>Spillover</em></a></li>
+  <li><a href="#reversión-de-la-cadena-causal-o-reverse-causation" id="toc-reversión-de-la-cadena-causal-o-reverse-causation" class="nav-link" data-scroll-target="#reversión-de-la-cadena-causal-o-reverse-causation"><span class="header-section-number">5.3.3</span> Reversión de la cadena causal (o <em>reverse causation</em>)</a></li>
+  </ul></li>
+  <li><a href="#experimentos-between-groups" id="toc-experimentos-between-groups" class="nav-link" data-scroll-target="#experimentos-between-groups"><span class="header-section-number">5.4</span> Experimentos <em>between groups</em></a>
+  <ul class="collapse">
+  <li><a href="#sólo-posttest" id="toc-sólo-posttest" class="nav-link" data-scroll-target="#sólo-posttest"><span class="header-section-number">5.4.1</span> Sólo <em>posttest</em></a></li>
+  <li><a href="#pretest-posttest" id="toc-pretest-posttest" class="nav-link" data-scroll-target="#pretest-posttest"><span class="header-section-number">5.4.2</span> <em>Pretest-posttest</em></a></li>
+  </ul></li>
+  <li><a href="#diseños-clúster" id="toc-diseños-clúster" class="nav-link" data-scroll-target="#diseños-clúster"><span class="header-section-number">5.5</span> Diseños clúster</a>
+  <ul class="collapse">
+  <li><a href="#análisis-de-datos-jerárquicos" id="toc-análisis-de-datos-jerárquicos" class="nav-link" data-scroll-target="#análisis-de-datos-jerárquicos"><span class="header-section-number">5.5.1</span> Análisis de datos jerárquicos</a></li>
+  <li><a href="#la-potenncia-y-la-correlación-intraclase-icc" id="toc-la-potenncia-y-la-correlación-intraclase-icc" class="nav-link" data-scroll-target="#la-potenncia-y-la-correlación-intraclase-icc"><span class="header-section-number">5.5.2</span> La potenncia y la correlación intraclase (ICC)</a></li>
+  <li><a href="#un-ejemplo-con-datos" id="toc-un-ejemplo-con-datos" class="nav-link" data-scroll-target="#un-ejemplo-con-datos"><span class="header-section-number">5.5.3</span> Un ejemplo con datos</a></li>
+  </ul></li>
+  </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-random-exp" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></h1>
+<h1 class="title"><span id="sec-random-exp" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></h1>
 </div>
 
 
@@ -155,18 +307,426 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
+
 </header>
 
-<div class="cell">
+
+<p>El capítulo que sigue está en construcción 🚧. Por favor tengan paciencia.</p>
+<section id="por-qué-son-importantes-los-experimentos-aleatorios" class="level2 page-columns page-full" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="por-qué-son-importantes-los-experimentos-aleatorios"><span class="header-section-number">5.1</span> ¿Por qué son importantes los experimentos aleatorios?</h2>
+<p>En los experimentos aleatorios<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> los sujetos son asignados a los grupos (por ejemplo, tratamiento y control) aleatoriamente. Esto significa que en la asignación de los grupos aleatorios hay involucrado un proceso realmente aleatorio, como arrojar un moneda. Ojo con confundir el concepto de asignación aleatoria con el de muestra aleatoria: Que el muestreo sea aleatorio significa que los participantes son una muestra seleccionada al azar de una población más amplia, mientras que la asignación aleatoria significa que los participantes, independientemente de si fueron seleccionados de una población más amplia o no, son asignados al azar a diferentes condiciones experimentales.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;A lo largo del capítulo vamos a usar de forma intercambiable las expresiones experimentos aleatorios y experimentos aleatorizados. También vamos a usar la sigla <strong>RCT</strong> del inglés <em>randomized controlled trials</em>.</p></div></div><div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sobre la aleatoridad de las computadoras
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando hablamos de un evento aleatorio, hablamos de una entidad abstracta cuyo resultado no se puede predecir exactamente. Para poner este tipo de eventos en el mundo real solemos hechar mano de ejemplos clásicos que involucran una complejidad fìsica tal que resulta imposible predecirlos exactamente, como arrojar un dado o una moneda. El ejemplo de la moneda es la forma más usual de hablar de una variable aleatoria con dos posibles valores equiprobables (aunque parezca que no tanto <span class="citation" data-cites="bartovs2023fair">(<a href="references.html#ref-bartovs2023fair" role="doc-biblioref">Bartoš et&nbsp;al. 2023</a>)</span>). Sin embargo, esta aleatoridad es muy costosa de reproducir. Es por eso que las computadores utilizan lo que se llama generadores de números pseudo aleatorios<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Estos generadores utilizan series de números generados de forma pseudo aleatoria pero que puede ser recuperada determinìsticamente a partir de una “semilla”. Es por eso que cuando simulamos datos en este libro lo primero que hacemos es ejecutar <code>set.seed(42)</code> (42 o el número que sea), para de esa forma poder obtener el mismo resultado cada vez que replicamos, o el lector quiere replicar, las simulaciones.</p>
+<p>Dicho esto. A fines prácticos, es totalmente razonable utilizar un generador de números pseudo aleatorios para la asignación a grupos experimentales en los experimentos aleatorios.</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Para más información pueden ir a leer <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">esto</a>.</p></div></div><div class="no-row-height column-margin column-container"><div id="ref-bartovs2023fair" class="csl-entry" role="listitem">
+Bartoš, František, Alexandra Sarafoglou, Henrik R Godmann, Amir Sahrani, David Klein Leunk, Pierre Y Gui, David Voss, et&nbsp;al. 2023. <span>«Fair coins tend to land on the same side they started: Evidence from 350,757 flips»</span>. <em>arXiv preprint arXiv:2310.04153</em>.
+</div></div><p>Por ejemplo, en el caso más simple, esto significa que dada una muestra de personas, vamos a asignar a cada de una de ellas “tirando una moneda” al grupo control (<span class="math inline">\(D=0\)</span>) o tratamiento (<span class="math inline">\(D=1\)</span>) como se ve en la siguiente figura.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/exp_aleatorio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Los experimentos aleatorios son el <em>gold-standard</em> para estimar el efecto de un tratamiento. De hecho, al ser la asignación aleatoria, podemos asegurar que, como mencionamos en el capítulo <a href="potential_outcomes.html" class="quarto-xref"><span>Capítulo 3</span></a>, existe independencia (<span class="math inline">\((Y^0, Y^1) \perp D\)</span>). Esto nos asegura que la diferencia de medias de los grupos tratamiento y control son un estimador consistente del <strong>ATE</strong>. Dicho esto, veremos que hay formas más “eficientes” de estimar el <strong>ATE</strong>, es decir, con mayo potencia estadística.</p>
+<p>Hay una razón extra para que en este libro empecemos hablando en detalle de los experimentos aleatorizados, y es que cuando entremos de lleno en el mundo de los cuasiexperimentos nos será de gran ayuda entender cuál es el problema y cuál es la solución que se propone. Esto nos va a permitir tener una idea más concreta de las ventajas y limitaciones de cada uno de los diseños cuasiexperimentales que vamos a estudiar más adelante.</p>
+<p>En muchas ocasiones los experimentos aleatorios terminan siendo degradados a la categoría de cuasiexperimento. Por ejemplo: Supongamos que hay un estudio que quiere evaluar el efecto de un programa de <em>mindfulness</em> en la cantidad de hechos de violencia en un establecimiento educativo. Para esto se asigno aleatoriamente a diez escuelas al grupo <em>mindfulness</em> y diez escuelas al grupo control. Hasta acá todo muy lindo, deberíamos llevar adelante el programa, medir la cantidad de hechos de violencia en cada escuela, hacer la diferencia de medias y <em>voilá</em>, ya tenemos un estimador del <strong>ATE</strong>. Pero a veces las cosas no son tan sencillas y en el medio de este experimento van a pasar cosas. Por ejemplo, hay un grupo de colegios del grupo control que, por presión de los padres, incorporan un programa de <em>mindfulness</em> propio, mientras que otro grupo del colegios, esta vez del grupo tratamiento, deciden no implementar el programa de <em>mindfulness</em> propuesto por nosotros porque les interfiere con la curricula. Para colmo, varios colegios de ambos grupos deciden que la participación sea voluntaria. En fin, <strong>el horror</strong>. Lo que nos termina pasando es que, aunque el diseño sea un experimento aleatorio, la pérdida de control sobre la implementación y la participación voluntaria generan contaminación y sesgo de selección, degradando el estudio a un cuasiexperimento. Es decir, la comparación entre grupos ya no se basa en la aleatorización y vamos a requerir de otros controles estadísticos para corregir posibles sesgos. Más adelante vamos a charlar un poquito más de esto.</p>
+<p>Dicho esto volvamos al maravilloso mundo de los 🌈experimentos aleatorizados ideales🌈.</p>
+</section>
+<section id="el-experimento-ideal" class="level2 page-columns page-full" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="el-experimento-ideal"><span class="header-section-number">5.2</span> El experimento ideal</h2>
+<p>El experimento ideal es ese experimento tan bien planificado, tan bien implementado y tan bien acatado por sus participantes que en la realidad nunca ocurre. Sin embargo, hay una excepción y son, en general, los <em>medical trials</em>. De hecho hay algunas características que esperaríamos ver en un <strong>RCT</strong> y son las siguientes.</p>
+<ul>
+<li><strong>Controles adecuados</strong>: Si diseñamos un experimento para estimar el efecto de un tratamiento, debemos tener un grupo control adecuado con el que comparar. Por ejemplo, . Sin embargo, esto no significa que el <em>grupo control</em> sea siempre un grupo simplemente no expuesto al tratamiento. Por ejemplo, es muy conocido el ejemplo de la determinación de la efectividad de un fármaco, en los que al <em>grupo control</em> se le ofrece una pastilla que no contiene a la droga siendo estudiada sino unas pastilla de igual forma, tamaño y prescripción de consumo pero, típicamente, de azucar. Esto lo que nos permite es poder descontar el efecto de consumir un placebo en la estimación final de la efectividad del fármaco<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Si les interesa, también existen el efecto <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4804316/">nocebo</a> y <a href="https://themicrodose.substack.com/p/the-power-of-know-cebo-5-questions?publication_id=371945&amp;post_id=159587451&amp;isFreemail=true&amp;r=3zjda&amp;triedRedirect=true"><em>know-cebo</em></a>.</p></div></div><ul>
+<li><p><strong>Asignación aleatoria a los grupos experimentles</strong>: Como vimos en el capítulo <a href="potential_outcomes.html" class="quarto-xref"><span>Capítulo 3</span></a>, la mejor forma de asegurar que los grupos control y tratamiento son lo más iguales posibles es asignando aleatoriamente a los participantes. Esto, junto con una cantidad de participantes suficiente nos asegura que ambos grupos son iguales en todos los factores que pueden influenciar el resultado del experimento, incluyendo los factores de los que no sabemos.</p></li>
+<li><p><strong>Los individuos deben ser considerados en el grupo asignado</strong>: Los participantes asignados al grupo tratamiento deben ser considerados como tratamiento, independientemente de si se expusieron o no al mismo. Esto es conocidocomo el principio <em>intention to treat</em> y puede sonar un poco raro. Sin embargo, lo podemos pensar como un cambio del tratamiento que queremos evaluar. Por ejemplo, hay un experimento en el que se quiere evaluar el efecto de la estatinas en el colesterol LDL. Hay un grupo al que le dan estatinas y otro grupo al que le dan un placebo. Un <span class="math inline">\(18%\)</span> de los que fueron originalmente asignados al grupo estatinas dejó de tomarlas y un <span class="math inline">\(38%\)</span> de los que fueron asignados al grupo placebo empezó a tomar estatinas durante el trial. Esto significa que nuestro experimento no estimaría correctamente el efecto de <em>tomar</em> las estatinas, pero por otro lado, sí estimaría bien el efecto de <em>ser recetado</em> con estatinas. Y si lo pensamos un poco: ¿No es algo más razonable estimar el efecto de lo segundo?</p></li>
+<li><p><strong>Todos los grupos deben ser tratados igual</strong>: Por ejemplo, si en el ejemplo anterior invitamos a la gente del grupo de estatinas a controles médicos más seguidos, o los evaluamos con más dedicación, va a ser imposible separar los beneficios de la droga de los beneficios de las diferencias en cómo tratamos a los pacientes.</p></li>
+<li><p><strong>Blinded</strong>: Para que las estimaciones de un experimento no se contaminen, resulta necesario que los participantes (o unidad experimental) no conozcan a que grupo experimental pertenecen. Esto es importante porque podría haber algún tipo</p></li>
+<li><p><strong>Double blinded</strong>: Siguiendo con lo mencionado antes, también resulta deseable que los investigadores tampoco sepan a que grupo experimental pertenece un sujeto o unidad experimental. Esto tiene como objetivo reducir al mínimo las diferencias entre los grupos. Por ejemplo, en un experimento para estimar la efectividad de una campaña de comunicación para motivar la vacunación, los investigadores podrían espaciar menos las comunicaciones con alguno de los grupos experimentales, contaminando así el efecto de la intervención en sí misma.</p>
+<p>Por supuesto que esto no siempre es posible. Por ejemplo, si un experimento quiere estimar la efectividad de una nueva cirujía laparoscopica versus su alternativa tradicional, resulta imposible que el cirujano que va a llevar adelante la misma no sepa a qué grupo pertenece el paciente. Sin embargo, es importante que en estos casos la asignación al grupo se retrase lo más posible disminuyendo la posible influencia de otros participantes (por ejemplo, un investigador podría estar más atento a la preparación preoperatoria de algún grupo experimental).</p></li>
+<li><p><strong>Medir a todos los individuos</strong>: Todos los individuos que comenzaron el experimento deben ser medidos para evaluar el efecto del tratamiento. Esto no siempre pasa y es algo de lo que vamos a hablar más adelante en este capítulo.</p></li>
+</ul>
+<p>Que lindo es el diseño experimental. Todos somos felices, todo funciona. ¿El libro debería terminar acá?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/abogados.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Pues no mi ciela. Ojalá llevar adelante experimentos fuera tan fácil.</p>
+</section>
+<section id="cuando-la-cosa-no-es-tan-ideal" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="cuando-la-cosa-no-es-tan-ideal"><span class="header-section-number">5.3</span> Cuando la cosa no es tan ideal</h2>
+<section id="aleatorización-por-bloques" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="aleatorización-por-bloques"><span class="header-section-number">5.3.1</span> Aleatorización por bloques</h3>
+<p>Por ejemplo, se quiere testear la ventaja de una intervención laparoscópica sobre una cirugía tradicionales. Es razonable pensar que los cirujanos se vuelven mejores con el tiempo, por eso no es razonable separar todos los pacientes de una, sino más bien por bloques temporales.</p>
+</section>
+<section id="spillover" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="spillover"><span class="header-section-number">5.3.2</span> <em>Spillover</em></h3>
+<p>El concepto de <em>spillover</em></p>
+</section>
+<section id="reversión-de-la-cadena-causal-o-reverse-causation" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="reversión-de-la-cadena-causal-o-reverse-causation"><span class="header-section-number">5.3.3</span> Reversión de la cadena causal (o <em>reverse causation</em>)</h3>
+</section>
+</section>
+<section id="experimentos-between-groups" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="experimentos-between-groups"><span class="header-section-number">5.4</span> Experimentos <em>between groups</em></h2>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hablemos un poco de la nomenclatura
+</div>
+</div>
+<div class="callout-body-container callout-body">
 
 </div>
-<!-- ## Sdf -->
-<p>En construcción 🚧</p>
+</div>
+<section id="sólo-posttest" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="sólo-posttest"><span class="header-section-number">5.4.1</span> Sólo <em>posttest</em></h3>
+<p><span id="eq-cluster_model"><span class="math display">\[
+\begin{array}
+_Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
+\end{array}
+\tag{5.1}\]</span></span></p>
+<p>Donde <span class="math inline">\(T_i\)</span> es una variable indicadora que toma el valor <span class="math inline">\(1\)</span> si el participante pertenece al grupo tratamiento y el valor <span class="math inline">\(0\)</span> si no.</p>
+</section>
+<section id="pretest-posttest" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="pretest-posttest"><span class="header-section-number">5.4.2</span> <em>Pretest-posttest</em></h3>
+</section>
+</section>
+<section id="diseños-clúster" class="level2 page-columns page-full" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="diseños-clúster"><span class="header-section-number">5.5</span> Diseños clúster</h2>
+<p>Los diseños clúster son una forma de diseño experimental donde los sujetos son asignados a grupos (clústeres) y luego se asignan tratamientos a esos grupos. Este enfoque es útil cuando no es práctico o posible asignar tratamientos a individuos de manera independiente.</p>
+<p>Las ventajas de los diseños cluster son varias:</p>
+<ul>
+<li><p>A veces puede resultar más práctico o conveniente asignar aleatoriamente a grupos que a individuos. Por ejemplo, en el sistema escolar nos pueden permitir asignar cursos o escuelas a distintos tratamientos pero no a estudiantes</p></li>
+<li><p>La aleatorización a nivel clúster puede ser útiles para minimizar los efectos de difusión, imitación de tratamientos u otros problemas de adherencia. Por ejemplo, para un estudiante es más difícil ser <em>crossover</em> si el tratamiento diferente lo tienen en otro aula o escuela en lugar de su compañero de banco.</p></li>
+<li><p>Pueden ser necesarios para evitar los <em>spillovers</em>. En el estudio de la campaña de SMSs para mejorar la tasa de vacunación contra el HPV hubieran hecho la aleatorización a nivel barrio o cioudad, no hubieran tenido el <em>spillover</em> debido a que un vecino te comenta del SMS que recibió.</p></li>
+<li><p>Pueden ser necesarios para evitar las externalidades. Por ejemplo, si se está haciendo un experimento para evaluar el efecto de un tratamiento dentro de un determinado grupo cerrado (una ciudad), el aumento de empleabilidad para el grupo tratamiento puede generar que haya menos empleos disponibles para el grupo control y que baje su tasa de empleo, no como consecuencia de ser menos “empleables”. Aleatorizando por ciudad se puede reducir este efecto.</p></li>
+<li><p>Algunos programas se aplican sí o sí a grupos. Por ejemplo, una campaña mediática, una terapia de grupo o un cambio de política a nivel escuela.</p></li>
+<li><p>Los efectos pueden ser mayores cuando se aplican a todo un grupo. Esto tiene que ver con que debemos tener en cuenta que, si lo que queremos evaluar es una intervención que se va a aplicar a nivel grupo, si lo hacemos aleatorizando a nivel individual podemos estar subestimando su efecto. Por ejemplo, una intervención que mejore las habilidades de lectura de todo un curso puede tener un efecto sinergético que no estaría presente si sólo la mitad del curso está expuesto al tratamiento y la maestra debe alternar entre un subgrupo y el otro.</p></li>
+</ul>
+<p>Algo muy importante es que la aleatorización a nivel clúster no significa que vamos a dejar de prestar atención a los individuos y utilizar medidas a nivel clúster. De hecho todo lo contrario, si bien vamos a aleatorizar a nivel grupo, vamos a medir el <em>outcome</em> para cada individuo y la relaciòn entre la variabilidad entre e intra grupos va a jugar un papel importante (más de esto en las siguietne secciones). En caso de que aleatoricemos a nivel grupo y después tomemos simplemente un <em>outcome</em> por grupo no estamos ante un diseño clúster sino que simplemente cambiamos la unidad experimental del individuo al grupo.</p>
+<p>Todo parece ideal, ¿No? Pero nada de esto viene sin un costo. En general el costo es la potencia estadística. Es decir, para tener la misma potencia estadística que aleatorizando a nivel de individuo, vamos a necesitar más (y a veces muchos más) sujetos experimentales divididos en grupos. Más de eso en la sección que sigue.</p>
+<section id="análisis-de-datos-jerárquicos" class="level3 page-columns page-full" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="análisis-de-datos-jerárquicos"><span class="header-section-number">5.5.1</span> Análisis de datos jerárquicos</h3>
+<p>Para analizar este tipo de datos utilizamos modelos estadísticos que tienen en cuenta la estructura jerárquica de los datos. En este libro los vamos a llamar de forma general modelos jerárquicos<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. A continuación tenemos la estructura de un modelo lineal jerárquico con un sólo nivel de agrupamiento<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;También se pueden llamar <em>hierarchical linear models</em>, <em>linear mixed-effect model</em> , <em>mixed models</em>, <em>nested data models</em>, <em>random coefficient</em>, <em>random-effects models</em>, <em>random parameter models</em> o <em>split-plot designs</em>. Pero siempre estamos hablando de los mismo.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;Por ejemplo, sirve para modelar los estudiantes de una escuela, pero también podríamos tener modelos que nos permitan modelar los estudiantes de una escuela, que a su vez pertenece a un distrito escolar, a una provincia, etc. Teniendo más niveles de agrupamiento, pero eso queda afuera del alcance de este libro.</p></div></div><p><span id="eq-cluster_model"><span class="math display">\[
+\begin{array}
+_Y_{ij} &amp;=&amp; \mu_j + \epsilon_{ij} \\
+\mu_j &amp;=&amp; \beta_0 + \beta_T T_j + r_j
+\end{array}
+\tag{5.2}\]</span></span></p>
+<p>Donde tanto <span class="math inline">\(r_j\)</span> como <span class="math inline">\(\epsilon_{ij}\)</span> tiene esperanza cero y varianza <span class="math inline">\(\sigma^2_{inter-clúster}\)</span> y <span class="math inline">\(\sigma^2_{intra-clúster}\)</span> respectivamente. En la ecuación anterior <span class="math inline">\(T_j\)</span> es una variable indicadora que toma el valor <span class="math inline">\(1\)</span> si la escuela, y no el participante como antes, pertenece al grupo tratamiento y el valor <span class="math inline">\(0\)</span> si no. De esta forma, si la escuela pertenece al grupo tratamineto su media será <span class="math inline">\(\mu_{j|D_j=1} = \beta_0 + \beta_T + r_j\)</span> mientras que si pertenece al grupo control será <span class="math inline">\(\mu_{j|D_j=0} = \beta_0 + r_j\)</span>, y la esperanza de la diferencia entre ambas (dado que la esperanza de <span class="math inline">\(E(r_j)=0\)</span>) será justamente la magnitud del efecto del tratamiento <span class="math inline">\(\beta_T\)</span>.</p>
+</section>
+<section id="la-potenncia-y-la-correlación-intraclase-icc" class="level3 page-columns page-full" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="la-potenncia-y-la-correlación-intraclase-icc"><span class="header-section-number">5.5.2</span> La potenncia y la correlación intraclase (ICC)</h3>
+<p>La correlación intraclase (ICC) es una estadística descriptiva que indica en qué medida los resultados: 1) tienden a ser similares dentro de cada clúster, o 2) tienden a diferir entre distintos clústers, en relación con los resultados observados en otros grupos. Se define de la siguiente forma:</p>
+<p><span class="math display">\[
+ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{intra-clúster}}
+\]</span></p>
+<p>donde <span class="math inline">\(\sigma^2_{inter-clúster}\)</span> es la varianza entre clústers, es decir, cuánto se varían las medias de los clústers entre clústers, y <span class="math inline">\(\sigma^2_{intra-clúster}\)</span> es la varianza dentro de los clústers, es decir, cuánto varías las mediciones de cada individuo dentro de cada clúster.</p>
+<p>Como mencionamos anteriormente, la aleatorización a nivel de clúster tiene su costo. Si los outcomes dentro de cada clúster están altamente correlacionados y la magnitud de los resultados varía considerablemente entre clústers, entonces es probable que los participantes dentro de un mismo grupo tengan resultados similares, y el ICC será alto. En estos casos, los datos provenientes de un individuo aportan casi tanta información como si se incluyera a todos los miembros. Por lo tanto, el tamaño muestral efectivo se aproxima más al número de clústers que al tamaño total de la muestra de individuoos.</p>
+<p>Pasando en limpio. Si los clústers son más similares entre sí, el modelo estadístico será más potente, con un tamaño de muestra efectivo cercano a la cantidad de individuos mientras que si los clústers difieren mucho entre sí la potencia estadística cae, aproximándonos a un tamaño de muestra efectivo igual a la cantidad de clústers.</p>
+<p>Es por esto último que en la práctica siempre conviene agergar más clústers que individuos<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. Pero claro, eso es lo que suele ser más costoso.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Un ejemplo numérico, dado un total de <span class="math inline">\(1000\)</span> participantes, la potencia sería de <span class="math inline">\(0.75\)</span> si hubiera <span class="math inline">\(50\)</span> grupos de <span class="math inline">\(20\)</span> participantes cada uno, mientras que el poder sería sólo de <span class="math inline">\(0.45\)</span> con <span class="math inline">\(20\)</span> grupos de <span class="math inline">\(50\)</span> participantes cada uno, suponiendo un <span class="math inline">\(ICC\)</span> de <span class="math inline">\(0.1\)</span>.</p></div></div></section>
+<section id="un-ejemplo-con-datos" class="level3 page-columns page-full" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="un-ejemplo-con-datos"><span class="header-section-number">5.5.3</span> Un ejemplo con datos</h3>
+<p>Simulemos un pequeño ejemplo. Supongamos que, sin un ápice de creatividad, queremos evaluar la efectividad de una intervención educativa que sólo se puede aplicar a nivel de escuela. El <em>outcome</em> de interés a nivel estudiante va a ser la nota obtenida en un examen estandarizado de matemáticas. Tengamos en cuenta la ecuación <a href="#eq-cluster_model" class="quarto-xref">Ecuación&nbsp;<span>5.2</span></a>, en nuestro caso <span class="math inline">\(Y_{ij}\)</span> sería la nota de cada estudiante, mientras que <span class="math inline">\(mu_j\)</span> sería la media de cada colegio.</p>
+<p>Las medias de cada colegio las crearemos usitilizando los parámetros <span class="math inline">\(beta_0 = 50\)</span> y <span class="math inline">\(beta_T = 10\)</span>, es decir, la magnitud del efecto que deberíamos recuperar luego es <span class="math inline">\(10\)</span>. Además el error será <span class="math inline">\(r_j \sim \mathcal{N}(0, \sigma_{escuelas}^2)\)</span>, con <span class="math inline">\(\sigma_{escuelas} =   5\)</span>. Vamos a simular <span class="math inline">\(40\)</span> escuelas, asignando la mitad al grupo <em>tratamiento</em> y la otra mitad al grupo <em>control</em>. Veamos qué pasa con las medias de las escuelas que vamos a simular.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data jerárquica</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n_escuelas <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos que tengo n_escuelas escuelas, cada una de ellas tiene una media de la calificacion de nota de matemática</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mu_j <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_escuelas, <span class="dv">50</span>, <span class="dv">5</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Las primera 3 son asignadas al grupo tratamiento y las otrasa tres al grupo control</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Tratamiento"</span>, n_escuelas<span class="sc">/</span><span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"Control"</span>,  n_escuelas<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># El efecto del tratamiento es 10, entonces a la media de cada escuela que pertenece al grupo tratamiento</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># le sumamos 10</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>beta_T <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Armo un tibble con las escuelas</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>escuelas <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tratamiento =</span> d, <span class="at">media =</span> mu_j) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">media =</span> <span class="fu">if_else</span>(tratamiento <span class="sc">==</span> <span class="st">"Tratamiento"</span>, media <span class="sc">+</span> beta_T, media)) </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos los promedios de las escuelas</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>escuelas <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tratamiento, </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> media,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> tratamiento)) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">2</span>, </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1380A1"</span>, <span class="st">"#ED6A5A"</span>)) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Media de la escuela j"</span>) <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como era esperable, las medias de las escuelas en el grupo tratamiento están por encima de las medias en el grupo control. Sin embargo, hay escuelas para las que esto no es así. Es por eso que es muy importante modelar a la escuela (el clúster) como una posible fuente de variabilidad.</p>
+<p>Ahora lo que podemos hacer es simular las notas de los estudiantes dentro de cada colegio <span class="math inline">\(Y_{ij}\)</span>. Para eso vamos a echar mano a la primera línea de la ecuación <a href="#eq-cluster_model" class="quarto-xref">Ecuación&nbsp;<span>5.2</span></a>. En este caso el <span class="math inline">\(mu_j\)</span> será el obtenido en el punto anterior con un <span class="math inline">\(\epsilon_{ij} \sim \mathcal{N}(0, \sigma_{estudiante}^2)\)</span>, con <span class="math inline">\(\sigma_{estudiante} = 10\)</span>. Veamos ahora qué pinta tienen estos datos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data jerárquica</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora vamos a muestrear 20 estudiantes en cada escuela, con media mu_j y un sigma de 10</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>alumnos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tratamiento =</span> <span class="fu">rep</span>(d, <span class="at">each =</span> <span class="dv">20</span>), </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">order =</span><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_escuelas, <span class="at">each =</span> <span class="dv">20</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">escuela =</span> <span class="fu">rep</span>(<span class="fu">paste</span>(<span class="st">"Escuela"</span>, <span class="dv">1</span><span class="sc">:</span>n_escuelas), <span class="at">each =</span> <span class="dv">20</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">media =</span> <span class="fu">rep</span>(mu_j, <span class="at">each =</span> <span class="dv">20</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">media =</span> <span class="fu">if_else</span>(tratamiento <span class="sc">==</span> <span class="st">"Tratamiento"</span>, media <span class="sc">+</span> beta_T, media)) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Yij =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, media, <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>media)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos los promedios de las escuelas</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>alumnos <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span>  <span class="fu">fct_reorder</span>(escuela, <span class="fu">desc</span>(order)), </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> Yij,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> tratamiento)) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1380A1"</span>, <span class="st">"#ED6A5A"</span>)) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Yij"</span>) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Acá vemos que a la variabilidad de las escuelas se suma la variabilidad de los sujetos.</p>
+<p>Ahora vamos a tratar de recuperar el tamaño del efecto ajustando un modelo lineal de efectos mixtos<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Sin entrar en demasiado detalle, un modelo lineal de efectos mixtos tiene en cuenta la estructura jerarquica del efecto. En este caso en particular vamos a permitirle al modelo que el punto medio de cada colegio sea considerado un <em>factor aleatorio</em>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mlmer <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Yij <span class="sc">~</span> tratamiento <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>escuela), <span class="at">data =</span> alumnos)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Escuelas"</span><span class="ot">=</span> mlmer),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">coef_rename =</span> <span class="fu">c</span>(<span class="st">"tratamientoTratamiento"</span> <span class="ot">=</span> <span class="st">"Tratamiento"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">statistic =</span> <span class="fu">c</span>(<span class="st">"p = {p.value}"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">".*"</span>,)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<!-- preamble start -->
 
+    <script>
+
+      function styleCell_psc37y8c4b3o92gpjjbj(i, j, css_id) {
+          var table = document.getElementById("tinytable_psc37y8c4b3o92gpjjbj");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_psc37y8c4b3o92gpjjbj');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_psc37y8c4b3o92gpjjbj(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_psc37y8c4b3o92gpjjbj");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 6, j: 1 },  ], css_id: 'tinytable_css_ba4cvkiqq1qb3r6urcp9',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 },  ], css_id: 'tinytable_css_c5l6bs0cuyooeaniywog',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_b5tgmr0lkh0bysu0n201',}, 
+          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_etfg0i7a9qr1p7trfvm6',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 },  ], css_id: 'tinytable_css_0vdwj22mw55dj78zze6s',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_ry2byujm9pu0yc4dqqwv',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_psc37y8c4b3o92gpjjbj(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_ba4cvkiqq1qb3r6urcp9, .table th.tinytable_css_ba4cvkiqq1qb3r6urcp9 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_c5l6bs0cuyooeaniywog, .table th.tinytable_css_c5l6bs0cuyooeaniywog { text-align: center; }
+      .table td.tinytable_css_b5tgmr0lkh0bysu0n201, .table th.tinytable_css_b5tgmr0lkh0bysu0n201 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_etfg0i7a9qr1p7trfvm6, .table th.tinytable_css_etfg0i7a9qr1p7trfvm6 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_0vdwj22mw55dj78zze6s, .table th.tinytable_css_0vdwj22mw55dj78zze6s { text-align: left; }
+      .table td.tinytable_css_ry2byujm9pu0yc4dqqwv, .table th.tinytable_css_ry2byujm9pu0yc4dqqwv { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_psc37y8c4b3o92gpjjbj" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Escuelas</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>47.802</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>p = &lt;0.001</td>
+                </tr>
+                <tr>
+                  <td>Tratamiento</td>
+                  <td>12.923</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>p = &lt;0.001</td>
+                </tr>
+                <tr>
+                  <td>SD (Intercept escuela)</td>
+                  <td>6.260</td>
+                </tr>
+                <tr>
+                  <td>SD (Observations)</td>
+                  <td>9.733</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+<p>Tratemos de entender qué nos dice este modelo. <code>(Intecept)</code> no es otra cosa que <span class="math inline">\(\hat{\beta_0}\)</span> que, de acuerdo a lo que simulamos, debería valer <span class="math inline">\(50\)</span>, que era el valor del parámetro que usamos para generar las medias de las escuelas antes de sumarles el error <span class="math inline">\(r_j\)</span> y el efecto del tratamiento. Hablando del efecto del tratamiento, podemos ver que para esta simulación en particular, la estimación del efecto de la intervención <span class="math inline">\(\beta_T\)</span> que sabemos que vale <span class="math inline">\(10\)</span> es estimada como <span class="math inline">\(\hat{\beta_T} = 12.92\)</span>. Otra cosa interesante que podemos ver es que el modelo también estima la variabilidad de los errores donde <code>SD (Intercept escuela)</code> es una estimación de <span class="math inline">\(r_j\)</span> y <code>SD (Observations)</code> es una estimación de <span class="math inline">\(\epsilon_{ij}\)</span>, con un valor de <span class="math inline">\(9.73\)</span>. Ambos valores de variabilidad son similares a los que usamos para hacer las simulaciones.</p>
+<p>Pero… ¿Por qué el valor estimado del efecto es <span class="math inline">\(\hat{\beta_T} = 12.92\)</span> en lugar de <span class="math inline">\(10\)</span>? Bueno, porque se trata de una simulación con su respectiva variabilidad. Por ejemplo, veamos qué pasa si simulamos <span class="math inline">\(1000\)</span> experimentos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data jerárquica</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>n_escuelas <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>betalmer <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>beta_T <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Tratamiento"</span>, n_escuelas<span class="sc">/</span><span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"Control"</span>,  n_escuelas<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  mu_j <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_escuelas, <span class="dv">50</span>, <span class="dv">5</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  alumnos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tratamiento =</span> <span class="fu">rep</span>(d, <span class="at">each =</span> <span class="dv">20</span>), </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">escuela =</span> <span class="fu">rep</span>(<span class="fu">paste</span>(<span class="st">"Escuela"</span>, <span class="dv">1</span><span class="sc">:</span>n_escuelas), <span class="at">each =</span> <span class="dv">20</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">media =</span> <span class="fu">rep</span>(mu_j, <span class="at">each =</span> <span class="dv">20</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">media =</span> <span class="fu">if_else</span>(tratamiento <span class="sc">==</span> <span class="st">"Tratamiento"</span>, media <span class="sc">+</span> beta_T, media)) <span class="sc">|&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Yij =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, media, <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>media)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  mlmer <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Yij <span class="sc">~</span> tratamiento <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>escuela), <span class="at">data =</span> alumnos)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  betalmer <span class="ot">&lt;-</span> <span class="fu">c</span>(betalmer, <span class="fu">fixef</span>(mlmer)[<span class="dv">2</span>])</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>betas <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">betalmer =</span> betalmer)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>mean_beta <span class="ot">&lt;-</span> betas <span class="sc">|&gt;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">m_beta =</span> <span class="fu">mean</span>(betalmer))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>betas <span class="sc">|&gt;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> betalmer)) <span class="sc">+</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#1380A1"</span>, </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha =</span> .<span class="dv">6</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_beta<span class="sc">$</span>m_beta, </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"#1380A1"</span>, </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> mean_beta,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"Efecto promedio ="</span>, <span class="fu">round</span>(m_beta,<span class="dv">2</span>))),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="dv">10</span>, </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="dv">50</span>)  <span class="sc">+</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Estimación del efecto del tratamiento"</span>,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Vemos que si hacemos un histograma de todas las estimaciones del parámetro en base a las <span class="math inline">\(1000\)</span> simulaciones de los datos, el promedio es 10.02, un valor bastante cercano al valor real de <span class="math inline">\(10\)</span><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Ahora sí nos podemos quedar tranquilos.</p>
+
+
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Recordemos que en la práctica <strong>nunca</strong> vamos a conocer el valor real del parámetro y que esa es un ventaja que sólo tenemos en estos casos en los que simulamos “muestras” a partir de valores conocidos de los parámetros.</p></div></div>
+</section>
+</section>
 
 
 </main> <!-- /main -->
@@ -197,12 +757,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -210,18 +773,74 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -231,8 +850,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -244,49 +872,311 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dags.html" class="pagination-link">
+      <a href="./dags.html" class="pagination-link" aria-label="Grafos acíclicos dirigidos (DAGS)">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./matching.html" class="pagination-link" aria-label="Subclasificación y *matching*">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
-    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-left">
+<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+
 
 
 

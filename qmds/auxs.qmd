@@ -728,3 +728,8 @@ $$
 $$
 lm_2: wage_i = \alpha + \beta_{female} female_i + \beta_{occupation} occupation_i + \beta_{ability} ability_i+ \epsilon_i
 $$
+
+
+$$
+
+$$

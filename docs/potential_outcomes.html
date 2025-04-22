@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Diseños experimentales y cuasiexperimentales - 3&nbsp; Potential outcomes</title>
+<title>3&nbsp; Potential outcomes – Diseños experimentales y cuasiexperimentales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,14 +17,16 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -38,8 +40,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -66,21 +67,57 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,11 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potential_outcomes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -100,12 +142,12 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -113,46 +155,77 @@ div.csl-indent {
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -161,23 +234,24 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#guerra-fría-manos-y-contrafácticos." id="toc-guerra-fría-manos-y-contrafácticos." class="nav-link active" data-scroll-target="#guerra-fría-manos-y-contrafácticos."><span class="toc-section-number">3.1</span>  Guerra fría, manos y contrafácticos.</a></li>
-  <li><a href="#potential-outcomes" id="toc-potential-outcomes" class="nav-link" data-scroll-target="#potential-outcomes"><span class="toc-section-number">3.2</span>  <em>Potential outcomes</em></a></li>
-  <li><a href="#efecto-promedio-del-tratamiento" id="toc-efecto-promedio-del-tratamiento" class="nav-link" data-scroll-target="#efecto-promedio-del-tratamiento"><span class="toc-section-number">3.3</span>  Efecto promedio del tratamiento</a></li>
-  <li><a href="#diferencia-de-medias-simple" id="toc-diferencia-de-medias-simple" class="nav-link" data-scroll-target="#diferencia-de-medias-simple"><span class="toc-section-number">3.4</span>  Diferencia de medias simple</a></li>
-  <li><a href="#independencia" id="toc-independencia" class="nav-link" data-scroll-target="#independencia"><span class="toc-section-number">3.5</span>  Independencia</a></li>
+  <li><a href="#guerra-fría-manos-y-contrafácticos." id="toc-guerra-fría-manos-y-contrafácticos." class="nav-link active" data-scroll-target="#guerra-fría-manos-y-contrafácticos."><span class="header-section-number">3.1</span> Guerra fría, manos y contrafácticos.</a></li>
+  <li><a href="#potential-outcomes" id="toc-potential-outcomes" class="nav-link" data-scroll-target="#potential-outcomes"><span class="header-section-number">3.2</span> <em>Potential outcomes</em></a></li>
+  <li><a href="#efecto-promedio-del-tratamiento" id="toc-efecto-promedio-del-tratamiento" class="nav-link" data-scroll-target="#efecto-promedio-del-tratamiento"><span class="header-section-number">3.3</span> Efecto promedio del tratamiento</a></li>
+  <li><a href="#diferencia-de-medias-simple" id="toc-diferencia-de-medias-simple" class="nav-link" data-scroll-target="#diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</a></li>
+  <li><a href="#independencia" id="toc-independencia" class="nav-link" data-scroll-target="#independencia"><span class="header-section-number">3.5</span> Independencia</a></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-pot-outcomes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></h1>
+<h1 class="title"><span id="sec-pot-outcomes" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></h1>
 </div>
 
 
@@ -185,15 +259,15 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
+
 </header>
 
-<div class="cell">
 
-</div>
 <section id="guerra-fría-manos-y-contrafácticos." class="level2 page-columns page-full" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="guerra-fría-manos-y-contrafácticos."><span class="header-section-number">3.1</span> Guerra fría, manos y contrafácticos.</h2>
 <p>Son las 3 de la mañana del 26 de septiembre de 1983. Con una taza de café en mano, Stanislav Petrov vigila las alarmas de una estación de monitoreo de ataques nucleares a las afueras de Moscú. De pronto, los paneles se iluminan con un rojo furioso: tres misiles intercontinentales están en camino a la cúpula del Kremlin… o, quizás, el sistema tiene un error y se trata de una falsa alarma.</p>
@@ -202,21 +276,21 @@ div.csl-indent {
 <p>Este mundo posnuclear es un mundo donde los hechos ocurrieron de manera completamente distinta: un mundo alternativo, un <em>what if</em>, un escenario contrafáctico. Podemos especular sobre lo que habría sucedido si los eventos se hubieran desarrollado de otra forma, pero la realidad es que nunca ocurrieron. Por lo tanto, un contrafáctico, aunque posible, es siempre especulativo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/fig-01.png" class="img-fluid figure-img"></p>
+<p><img src="imgs/fig-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned page-columns page-full">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 De qué hablamos cuando hablamos de contrafactuales
 </div>
 </div>
-<div class="callout-body-container callout-body page-columns page-full">
+<div class="callout-body-container callout-body">
 <p>En el marco de los <em>potential outcomes</em> de Rubin<span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span>, un contrafactual es el resultado que habría ocurrido para una unidad (por ejemplo, una persona, un paciente, un sujeto experimental) si hubiera recibido un tratamiento diferente del que realmente recibió. Este concepto es fundamental para entender los efectos causales. Nos permite definir lo que entendemos por causa: la diferencia entre lo que realmente sucedió y lo que habría sucedido en un escenario alternativo.</p>
-<div class="no-row-height column-margin column-container"></div><p>En pocas palabras:</p>
+<p>En pocas palabras:</p>
 <ul>
 <li><p><strong>Para alguien que recibió el tratamiento, el contrafactual es lo que habría sucedido si no hubiera recibido el tratamiento</strong>. Por ejemplo, si un paciente recibió un nuevo medicamento y se recuperó, el resultado contrafactual es su estado de salud si no hubiera recibido el medicamento. Esto nos ayuda a aislar el efecto del medicamento.</p></li>
 <li><p><strong>Para alguien que no recibió el tratamiento, el contrafactual es lo que habría sucedido si hubiera recibido el tratamiento</strong>. Por ejemplo, si un estudiante no asistió a un programa de tutoría y reprobó un examen, el contrafactual es su calificación hipotética si hubiera asistido al programa.</p></li>
@@ -224,12 +298,12 @@ De qué hablamos cuando hablamos de contrafactuales
 <p>Dado que cada unidad recibe solo un tratamiento, solo podemos observar un resultado (el resultado real). El resultado contrafactual es, por definición, inobservable. Esto se conoce a menudo como el <strong>problema fundamental de la inferencia causal</strong>. Debido a que no podemos observar simultáneamente ambos resultados potenciales para el mismo individuo, vamos a usar métodos y suposiciones estadísticas para estimar los efectos promedio del tratamiento en grupos de individuos. Más de esto en los próximos capítulos.</p>
 </div>
 </div>
-<p>¿Para qué sirve entonces construir contrafácticos, imaginar cosas que no ocurrieron y que nunca ocurrirán? Veamos otra historia.</p>
+<div class="no-row-height column-margin column-container"></div><p>¿Para qué sirve entonces construir contrafácticos, imaginar cosas que no ocurrieron y que nunca ocurrirán? Veamos otra historia.</p>
 <p>Este cuadro se llama <em>Praying Hands</em> y fue pintado por Albrecht Durero. Es una de las obras más importantes de su siglo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/Study-of-Praying-Hands-Durer-Albrecht-1508-2.jpg" class="img-fluid figure-img" alt="*Praying Hands* de Albrecht Durero." width="300"></p>
-<p></p><figcaption class="figure-caption"><em>Praying Hands</em> de Albrecht Durero.</figcaption><p></p>
+<figcaption><em>Praying Hands</em> de Albrecht Durero.</figcaption>
 </figure>
 </div>
 <p>Los Durero eran una familia de mineros pobres del sur de Alemania. Dos de sus hijos, Albrecht y Joseph, tenían talento para el dibujo y decidieron hacer un pacto: uno estudiaría en Núremberg durante cuatro años mientras el otro trabajaría en las minas para pagar su educación. Decidiria quien con una moneda. Pasado ese tiempo, intercambiarían lugares.</p>
@@ -245,8 +319,8 @@ De qué hablamos cuando hablamos de contrafactuales
 <h2 data-number="3.2" class="anchored" data-anchor-id="potential-outcomes"><span class="header-section-number">3.2</span> <em>Potential outcomes</em></h2>
 <p>Lo que nos proponen los <em>potential outcomes</em> es la definición del efecto causal como la comparación de dos estados en el mundo. En una versión del mundo, la “actual”, me tomo una aspirina y a las dos horas registro la severidad de mi dolor de cabeza mientras que en la otra versión del mundo, la “contrafactual”, no me la tomo y las dos horas registro la severidad del dolor. A partir de esto, la tradición de los <em>potential outcomes</em> define al efecto causal de tomar una aspirina en el dolor de cabeza como la diferencia entre esas dos mediciones.</p>
 <p>Todo muy lindo, pero como ya estarán sospechando es imposible calcular un efecto que está expresado en función de un contrafactual, ya que este contrafactual no lo podemos observar. Pero no se preocupen que le vamos a encontrar la vuelta.</p>
-<div class="page-columns page-full"><p>Empecemos con un poco de notación que nos va a ayudar a acomodar las ideas. Por simplicidad vamos a asumir una variable binaria para la asignación del grupo (por ejemplo, tratamiento y control). Esta variable vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibe el tratamiento y <span class="math inline">\(0\)</span> si no. Cada unidad <span class="math inline">\(i\)</span> va a tener dos <em>potential outcomes</em>: <span class="math inline">\(Y_i^1\)</span> si la unidad recibió el tratamiento y <span class="math inline">\(Y_i^0\)</span> si no. Esto significa que una unidad experimental en el mismo momento del tiempo va a recibir y no recibir el tratamiento, o sea, alguno de estos va a ser contrafactual<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;De ahí el nombre de <em>potential</em>, porque se trata de posibles estados del mundo. Un estado en el que la unidad <span class="math inline">\(i\)</span> recibe el tratamiento y uno en el que no.</p></li></div></div>
-<p>Los <em>outcomes</em> observables difieren de los potenciales. Mientras que los potenciales son variables aleatorias hipotéticas, los observables son variables aleatorias factuales y medibles. Hay una ecuación que nos permite definir el <em>outcome</em> observable (<span class="math inline">\(Y^i\)</span>) en función de los potenciales, se llama la <em>switching equation</em>:</p>
+<p>Empecemos con un poco de notación que nos va a ayudar a acomodar las ideas. Por simplicidad vamos a asumir una variable binaria para la asignación del grupo (por ejemplo, tratamiento y control). Esta variable vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibe el tratamiento y <span class="math inline">\(0\)</span> si no. Cada unidad <span class="math inline">\(i\)</span> va a tener dos <em>potential outcomes</em>: <span class="math inline">\(Y_i^1\)</span> si la unidad recibió el tratamiento y <span class="math inline">\(Y_i^0\)</span> si no. Esto significa que una unidad experimental en el mismo momento del tiempo va a recibir y no recibir el tratamiento, o sea, alguno de estos va a ser contrafactual<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;De ahí el nombre de <em>potential</em>, porque se trata de posibles estados del mundo. Un estado en el que la unidad <span class="math inline">\(i\)</span> recibe el tratamiento y uno en el que no.</p></div></div><p>Los <em>outcomes</em> observables difieren de los potenciales. Mientras que los potenciales son variables aleatorias hipotéticas, los observables son variables aleatorias factuales y medibles. Hay una ecuación que nos permite definir el <em>outcome</em> observable (<span class="math inline">\(Y^i\)</span>) en función de los potenciales, se llama la <em>switching equation</em>:</p>
 <p><span id="eq-switching"><span class="math display">\[
 Y_i = D_i Y_i^1 + (1-D_i) Y_i^0
 \tag{3.1}\]</span></span></p>
@@ -255,13 +329,13 @@ Y_i = D_i Y_i^1 + (1-D_i) Y_i^0
 \delta_i = Y_i^1 - Y_i^0
 \tag{3.2}\]</span></span></p>
 <p>Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los <em>potential outcomes</em> debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal: Para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar (los contrafácticos)<span class="citation" data-cites="rubin1974estimating">(<a href="references.html#ref-rubin1974estimating" role="doc-biblioref">Rubin 1974</a>)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-rubin1974estimating" class="csl-entry" role="doc-biblioentry">
+<div class="no-row-height column-margin column-container"><div id="ref-rubin1974estimating" class="csl-entry" role="listitem">
 Rubin, Donald B. 1974. <span>«Estimating causal effects of treatments in randomized and nonrandomized studies.»</span> <em>Journal of educational Psychology</em> 66 (5): 688.
 </div></div></section>
 <section id="efecto-promedio-del-tratamiento" class="level2 page-columns page-full" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="efecto-promedio-del-tratamiento"><span class="header-section-number">3.3</span> Efecto promedio del tratamiento</h2>
-<div class="page-columns page-full"><p>Al igual que los <em>potential outcomes</em>, el efecto para la unidad <span class="math inline">\(i\)</span> (<span class="math inline">\(\delta_i\)</span>) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (<strong>ATE</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>). El <strong>ATE</strong> va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. El mismo se define de la siguiente forma:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Del inglés <em>Average treatment effect</em>.</p></li></div></div>
-<p><span id="eq-ATE"><span class="math display">\[
+<p>Al igual que los <em>potential outcomes</em>, el efecto para la unidad <span class="math inline">\(i\)</span> (<span class="math inline">\(\delta_i\)</span>) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (<strong>ATE</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>). El <strong>ATE</strong> va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. El mismo se define de la siguiente forma:</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Del inglés <em>Average treatment effect</em>.</p></div></div><p><span id="eq-ATE"><span class="math display">\[
 \begin{array}
 _ATE &amp;=&amp; E[\delta_i] \\
 &amp;=&amp; E[Y_i^1 - Y_i^0] \\
@@ -276,20 +350,20 @@ _ATT &amp;=&amp; E[\delta_i|D_i=1] \\
 &amp;=&amp; E[Y_i^1|D_i=1] - E[Y_i^0|D_i=1]
 \end{array}
 \tag{3.4}\]</span></span></p>
-<div class="page-columns page-full"><p>Esta magnitud se llama <strong>ATT</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> y se calcula de la misma forma que el <strong>ATE</strong> pero condicionando los <span class="math inline">\(\delta_i\)</span> al valor de <span class="math inline">\(D_i\)</span> igual a 1. De manera análoga definimos el efecto promedio pero para el grupo no tratado<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>(<span class="math inline">\(D_i=0\)</span>)</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Del inglés <em>Average treatment effect for the treated</em>.</p></li><li id="fn4"><p><sup>4</sup>&nbsp;Del inglés <em>Average treatment effect for the untreated</em>.</p></li></div></div>
-<p><span id="eq-ATU"><span class="math display">\[
+<p>Esta magnitud se llama <strong>ATT</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> y se calcula de la misma forma que el <strong>ATE</strong> pero condicionando los <span class="math inline">\(\delta_i\)</span> al valor de <span class="math inline">\(D_i\)</span> igual a 1. De manera análoga definimos el efecto promedio pero para el grupo no tratado<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>(<span class="math inline">\(D_i=0\)</span>)</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Del inglés <em>Average treatment effect for the treated</em>.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Del inglés <em>Average treatment effect for the untreated</em>.</p></div></div><p><span id="eq-ATU"><span class="math display">\[
 \begin{array}
 _ATU &amp;=&amp; E[\delta_i|D_i=0] \\
 &amp;=&amp; E[Y_i^1 - Y_i^0|D_i=0] \\
 &amp;=&amp; E[Y_i^1|D_i=0] - E[Y_i^0|D_i=0]
 \end{array}
 \tag{3.5}\]</span></span></p>
-<div class="page-columns page-full"><p>Ojo con confundir estos tres conceptos. Creo que el <strong>ATE</strong> es autoexplicativo, pero se suele confundir <strong>ATT</strong> y <strong>ATU</strong>. En el primer caso, estamos calculando la esperanza de los <span class="math inline">\(\delta_i\)</span> para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus <span class="math inline">\(Y^1_i\)</span> como sus <span class="math inline">\(Y^0_i\)</span>. Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el <strong>ATE</strong> no se pueden calcular en la práctica. En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, podemos estimar el <strong>ATE</strong> a partir de los <em>outcomes</em> observables.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Spoiler: Asignación aleatoria de las unidades experimentales a los grupos.</p></li></div></div>
-</section>
+<p>Ojo con confundir estos tres conceptos. Creo que el <strong>ATE</strong> es autoexplicativo, pero se suele confundir <strong>ATT</strong> y <strong>ATU</strong>. En el primer caso, estamos calculando la esperanza de los <span class="math inline">\(\delta_i\)</span> para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus <span class="math inline">\(Y^1_i\)</span> como sus <span class="math inline">\(Y^0_i\)</span>. Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el <strong>ATE</strong> no se pueden calcular en la práctica. En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, podemos estimar el <strong>ATE</strong> a partir de los <em>outcomes</em> observables.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Spoiler: Asignación aleatoria de las unidades experimentales a los grupos.</p></div></div></section>
 <section id="diferencia-de-medias-simple" class="level2 page-columns page-full" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</h2>
-<div class="page-columns page-full"><p>¿Qué es lo que sí podemos observar? Una magnitud que a priori podríamos creer que va aestar relacionada con el <strong>ATE</strong> y que podemos observar es la diferencia de medias entre los <em>outcomes</em> observados del grupo tratamiento y el grupo control. La vamos a llamar <strong>SDO</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> y se calcula de la siguiente forma:</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Del inglés <em>simple difference in outcomes</em>.</p></li></div></div>
-<p><span id="eq-SDO"><span class="math display">\[
+<p>¿Qué es lo que sí podemos observar? Una magnitud que a priori podríamos creer que va aestar relacionada con el <strong>ATE</strong> y que podemos observar es la diferencia de medias entre los <em>outcomes</em> observados del grupo tratamiento y el grupo control. La vamos a llamar <strong>SDO</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> y se calcula de la siguiente forma:</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Del inglés <em>simple difference in outcomes</em>.</p></div></div><p><span id="eq-SDO"><span class="math display">\[
 \begin{array}
 _SDO &amp;=&amp; E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] \\
 &amp;=&amp; \frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=1}^{N_C} (y_i|d_i=0)
@@ -306,10 +380,10 @@ _ATE &amp;=&amp; \pi ATT + (1-\pi) ATU \\
 \end{array}
 \tag{3.7}\]</span></span></p>
 <p>Con <span class="math inline">\(\pi = N_T/n\)</span> y <span class="math inline">\(1 - \pi = N_C/n\)</span>.</p>
-<div class="page-columns page-full"><p>Operando con la <a href="#eq-sesgos">Ecuación&nbsp;<span>3.8</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
+<p>Operando con la <a href="#eq-sesgos" class="quarto-xref">Ecuación&nbsp;<span>3.8</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
 Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
-</div></li></div></div>
-<p><span id="eq-sesgos"><span class="math display">\[
+</div></div></div><p><span id="eq-sesgos"><span class="math display">\[
 \begin{array}
 _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &amp;=&amp; ATE \\
 &amp;+&amp; ( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] ) \\
@@ -324,7 +398,7 @@ _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=
 &amp;+&amp; \underbrace{(1-\pi) (ATT - ATU)}_\text{Sesgo de efecto heterogéneo}
 \end{array}
 \tag{3.9}\]</span></span></p>
-<p>Lo que puede verse en <a href="#eq-SDOdecomp">Ecuación&nbsp;<span>3.9</span></a> es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el <strong>SDO</strong> sería un buen estimador del <strong>ATE</strong> que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.</p>
+<p>Lo que puede verse en <a href="#eq-SDOdecomp" class="quarto-xref">Ecuación&nbsp;<span>3.9</span></a> es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el <strong>SDO</strong> sería un buen estimador del <strong>ATE</strong> que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.</p>
 </section>
 <section id="independencia" class="level2 page-columns page-full" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="independencia"><span class="header-section-number">3.5</span> Independencia</h2>
@@ -340,8 +414,8 @@ _E[Y^1|D=1] - E[Y^1|D=0] &amp;=&amp; 0 \\
 E[Y^0|D=1] - E[Y^0|D=0] &amp;=&amp; 0
 \end{array}
 \tag{3.10}\]</span></span></p>
-<div class="page-columns page-full"><p>Es decir, que la esperanza de los <em>outcomes</em> para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en “mundo tratamiento”<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el “mundo control”[^indep]. Ojo que esto no implica que la esperanza del <em>outcome</em> para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=0] = 0\)</span>) ni igual a la esperanza no tratamiento de los tratados (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=1] = 0\)</span>).</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;Tengamos en cuenta que <span class="math inline">\(E[Y^1|D=0]\)</span> es un contrafáctico, ya que es el <em>outcome</em> habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con <span class="math inline">\(D=0\)</span>)</p></li></div></div>
-<p>¿Qué implicancias tiene las igualdades presentadas en <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a> en los sesgos que vimos en la ecuación <a href="#eq-sesgos">Ecuación&nbsp;<span>3.8</span></a>? Empecemos por el sesgo de selección (<span class="math inline">\(E[Y^0|D=1] + E[Y^0|D=0]\)</span>). Vemos que, deacuerdo a la primera línea de <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a> ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo <em>outcome</em> lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.</p>
+<p>Es decir, que la esperanza de los <em>outcomes</em> para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en “mundo tratamiento”<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el “mundo control”[^indep]. Ojo que esto no implica que la esperanza del <em>outcome</em> para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=0] = 0\)</span>) ni igual a la esperanza no tratamiento de los tratados (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=1] = 0\)</span>).</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Tengamos en cuenta que <span class="math inline">\(E[Y^1|D=0]\)</span> es un contrafáctico, ya que es el <em>outcome</em> habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con <span class="math inline">\(D=0\)</span>)</p></div></div><p>¿Qué implicancias tiene las igualdades presentadas en <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a> en los sesgos que vimos en la ecuación <a href="#eq-sesgos" class="quarto-xref">Ecuación&nbsp;<span>3.8</span></a>? Empecemos por el sesgo de selección (<span class="math inline">\(E[Y^0|D=1] + E[Y^0|D=0]\)</span>). Vemos que, deacuerdo a la primera línea de <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a> ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo <em>outcome</em> lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.</p>
 <p>La relación del sesgo de efecto heterogéneo (<span class="math inline">\((1-\pi) (ATT - ATU)\)</span>) con la independencia es un poquito más difícil de demostrar. Olvidémonos del <span class="math inline">\((1-\pi)\)</span> de momento. Reescribamos los efectos <strong>ATT</strong> y <strong>ATU</strong>:</p>
 <p><span class="math display">\[
 \begin{array}
@@ -356,7 +430,7 @@ _ATT - ATU &amp;=&amp; E[Y^1|D=1] - E[Y^0|D=1] - ( E[Y^1|D=0] - E[Y^0|D=0] )\\
 &amp;=&amp; \bigl\{ E[Y^1|D=1] - E[Y^1|D=0] \bigl\} + \bigl\{ E[Y^0|D=0] - E[Y^0|D=1] \bigl\}
 \end{array}
 \tag{3.11}\]</span></span></p>
-<p>Reescrito de esta forma podemos ver los dos primero términos de <a href="#eq-sesgohet">Ecuación&nbsp;<span>3.11</span></a> se hacen cero por la rpimero línea de <a href="#eq-independencia">Ecuación&nbsp;<span>3.10</span></a>, y los últimos dos se hacen cero por la segunda.</p>
+<p>Reescrito de esta forma podemos ver los dos primero términos de <a href="#eq-sesgohet" class="quarto-xref">Ecuación&nbsp;<span>3.11</span></a> se hacen cero por la rpimero línea de <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a>, y los últimos dos se hacen cero por la segunda.</p>
 <p>Finalmente, demostramos que si hay independencia en la asignación de los grupos, la diferencia de las medias entre el grupo tratado y el control es un buen estimador del <strong>ATE</strong>.</p>
 
 
@@ -392,12 +466,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -405,18 +482,74 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -426,8 +559,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -439,38 +581,292 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro_stat.html" class="pagination-link">
+      <a href="./intro_stat.html" class="pagination-link" aria-label="Repaso de probabilidad y estadística">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dags.html" class="pagination-link">
+      <a href="./dags.html" class="pagination-link" aria-label="Grafos acíclicos dirigidos (DAGS)">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -478,10 +874,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
-    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-left">
+<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+
 
 
 

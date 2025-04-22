@@ -790,13 +790,13 @@ betalmer <- c()
 for (i in 1:100) {
   set.seed(i)
   tb <- tibble(
-    student = rep(1:10000),
-    classroom = sample(1:60, 10000, replace = T)) |>
+    student = rep(1:300),
+    classroom = sample(1:10, 300, replace = T)) |>
     group_by(classroom) |>
     mutate(tratamiento = rbinom(1,1,.5),
-           mu_classroom = rnorm(1,200, 10) + tratamiento * 2) |>
+           mu_classroom = rnorm(1, 200, 100) + tratamiento * 40) |>
     ungroup() |>
-    mutate(Yij = mu_classroom + rnorm(10000,0,100))
+    mutate(Yij = mu_classroom + rnorm(300, 0, 40))
   
   
   # tb |> ggplot(aes(x = as.factor(tratamiento):as.factor(classroom),
@@ -813,6 +813,6 @@ for (i in 1:100) {
   betalm <- c(betalm, coef(mlm)[2])
   betalmer <- c(betalmer, fixef(mlmer)[2])
 }
-sd(betalm)
+mean(betalm)
 sd(betalmer)
 

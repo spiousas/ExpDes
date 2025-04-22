@@ -31,6 +31,10 @@ book:
     - potential_outcomes.qmd
     - dags.qmd
     - exp_aleatorios.qmd
+    - matching.qmd
+    - diff_in_diff.qmd
+    - reg_discontinua.qmd
+    - var_instrumentales.qmd
     - references.qmd
 
 bibliography: references.bib

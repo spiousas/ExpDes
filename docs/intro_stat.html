@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Diseños experimentales y cuasiexperimentales - 2&nbsp; Repaso de probabilidad y estadística</title>
+<title>2&nbsp; Repaso de probabilidad y estadística – Diseños experimentales y cuasiexperimentales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,11 +17,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -46,48 +47,20 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -101,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -129,21 +101,57 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -151,11 +159,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_stat.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -163,12 +176,12 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -176,46 +189,77 @@ div.csl-indent {
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -224,33 +268,34 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#variables-aleatorias" id="toc-variables-aleatorias" class="nav-link active" data-scroll-target="#variables-aleatorias"><span class="toc-section-number">2.1</span>  Variables aleatorias</a></li>
-  <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link" data-scroll-target="#probabilidad"><span class="toc-section-number">2.2</span>  Probabilidad</a></li>
-  <li><a href="#probabilidad-condicional" id="toc-probabilidad-condicional" class="nav-link" data-scroll-target="#probabilidad-condicional"><span class="toc-section-number">2.3</span>  Probabilidad condicional</a></li>
-  <li><a href="#probabilidad-total" id="toc-probabilidad-total" class="nav-link" data-scroll-target="#probabilidad-total"><span class="toc-section-number">2.4</span>  Probabilidad total</a></li>
-  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="toc-section-number">2.5</span>  Teorema de Bayes</a></li>
-  <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="toc-section-number">2.6</span>  Esperanza</a></li>
-  <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="toc-section-number">2.7</span>  Varianza y covarianza</a></li>
-  <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación"><span class="toc-section-number">2.8</span>  Correlación</a></li>
-  <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="toc-section-number">2.9</span>  Población y muestra</a></li>
-  <li><a href="#inferencia-estadística" id="toc-inferencia-estadística" class="nav-link" data-scroll-target="#inferencia-estadística"><span class="toc-section-number">2.10</span>  Inferencia estadística</a>
+  <li><a href="#variables-aleatorias" id="toc-variables-aleatorias" class="nav-link active" data-scroll-target="#variables-aleatorias"><span class="header-section-number">2.1</span> Variables aleatorias</a></li>
+  <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link" data-scroll-target="#probabilidad"><span class="header-section-number">2.2</span> Probabilidad</a></li>
+  <li><a href="#probabilidad-condicional" id="toc-probabilidad-condicional" class="nav-link" data-scroll-target="#probabilidad-condicional"><span class="header-section-number">2.3</span> Probabilidad condicional</a></li>
+  <li><a href="#probabilidad-total" id="toc-probabilidad-total" class="nav-link" data-scroll-target="#probabilidad-total"><span class="header-section-number">2.4</span> Probabilidad total</a></li>
+  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="header-section-number">2.5</span> Teorema de Bayes</a></li>
+  <li><a href="#esperanza" id="toc-esperanza" class="nav-link" data-scroll-target="#esperanza"><span class="header-section-number">2.6</span> Esperanza</a></li>
+  <li><a href="#varianza-y-covarianza" id="toc-varianza-y-covarianza" class="nav-link" data-scroll-target="#varianza-y-covarianza"><span class="header-section-number">2.7</span> Varianza y covarianza</a></li>
+  <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación"><span class="header-section-number">2.8</span> Correlación</a></li>
+  <li><a href="#población-y-muestra" id="toc-población-y-muestra" class="nav-link" data-scroll-target="#población-y-muestra"><span class="header-section-number">2.9</span> Población y muestra</a></li>
+  <li><a href="#inferencia-estadística" id="toc-inferencia-estadística" class="nav-link" data-scroll-target="#inferencia-estadística"><span class="header-section-number">2.10</span> Inferencia estadística</a>
   <ul class="collapse">
-  <li><a href="#qué-pasa-si-no-conozco-sigma" id="toc-qué-pasa-si-no-conozco-sigma" class="nav-link" data-scroll-target="#qué-pasa-si-no-conozco-sigma"><span class="toc-section-number">2.10.1</span>  ¿Qué pasa si no conozco <span class="math inline">\(\sigma\)</span>?</a></li>
-  <li><a href="#qué-pasa-si-x-no-se-distribuye-normalmente" id="toc-qué-pasa-si-x-no-se-distribuye-normalmente" class="nav-link" data-scroll-target="#qué-pasa-si-x-no-se-distribuye-normalmente"><span class="toc-section-number">2.10.2</span>  ¿Qué pasa si <span class="math inline">\(X\)</span> no se distribuye normalmente?</a></li>
+  <li><a href="#qué-pasa-si-no-conozco-sigma" id="toc-qué-pasa-si-no-conozco-sigma" class="nav-link" data-scroll-target="#qué-pasa-si-no-conozco-sigma"><span class="header-section-number">2.10.1</span> ¿Qué pasa si no conozco <span class="math inline">\(\sigma\)</span>?</a></li>
+  <li><a href="#qué-pasa-si-x-no-se-distribuye-normalmente" id="toc-qué-pasa-si-x-no-se-distribuye-normalmente" class="nav-link" data-scroll-target="#qué-pasa-si-x-no-se-distribuye-normalmente"><span class="header-section-number">2.10.2</span> ¿Qué pasa si <span class="math inline">\(X\)</span> no se distribuye normalmente?</a></li>
   </ul></li>
-  <li><a href="#potencia-estadística" id="toc-potencia-estadística" class="nav-link" data-scroll-target="#potencia-estadística"><span class="toc-section-number">2.11</span>  Potencia estadística</a></li>
+  <li><a href="#potencia-estadística" id="toc-potencia-estadística" class="nav-link" data-scroll-target="#potencia-estadística"><span class="header-section-number">2.11</span> Potencia estadística</a></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-intro_stat" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></h1>
+<h1 class="title"><span id="sec-intro_stat" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></h1>
 </div>
 
 
@@ -258,25 +303,25 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
+
 </header>
 
-<div class="cell">
 
-</div>
 <section id="variables-aleatorias" class="level2 page-columns page-full" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="variables-aleatorias"><span class="header-section-number">2.1</span> Variables aleatorias</h2>
 <p>Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales (<span class="math inline">\(X:\Omega \rightarrow \mathbb{R}\)</span>). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica es definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos.</p>
-<div class="no-row-height column-margin column-container"></div><div class="page-columns page-full"><p>Vamos con un ejemplo. Supongan que tiramos una moneda justa dos veces y tenemos la variabla aleatoria <span class="math inline">\(X\)</span> que cuenta la cantidad de caras (H)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Los posibles eventos <span class="math inline">\(\omega\)</span> del espacio de eventos <span class="math inline">\(\Omega\)</span> son <span class="math inline">\(\Omega = \{ TT, TH, HT, HH \}\)</span>. En este caso, la variable aleatoria <span class="math inline">\(X\)</span> va a tomar los valores <span class="math inline">\(X = \{ 0, 1, 1, 2\}\)</span> para cada <span class="math inline">\(\omega\)</span>. Esto, en resumidas cuentas, es lo que hace una variable aleatoria.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Del inglés <em>Head</em> y ceca sera T del inglés <em>Tail</em>.</p></li></div></div>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Del inglés <em>Head</em> y ceca sera T del inglés <em>Tail</em>.</p></div></div><p>Vamos con un ejemplo. Supongan que tiramos una moneda justa dos veces y tenemos la variabla aleatoria <span class="math inline">\(X\)</span> que cuenta la cantidad de caras (H)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Los posibles eventos <span class="math inline">\(\omega\)</span> del espacio de eventos <span class="math inline">\(\Omega\)</span> son <span class="math inline">\(\Omega = \{ TT, TH, HT, HH \}\)</span>. En este caso, la variable aleatoria <span class="math inline">\(X\)</span> va a tomar los valores <span class="math inline">\(X = \{ 0, 1, 1, 2\}\)</span> para cada <span class="math inline">\(\omega\)</span>. Esto, en resumidas cuentas, es lo que hace una variable aleatoria.</p>
 <p>El ejemplo anterior se trata de una variable aleatoria discreta, es decir, que sólo puede tomar algunos valores posibles, pero también existen variables aleatorias continuas como por ejemplo la altura de una nueva persona que nace.</p>
 </section>
 <section id="probabilidad" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="probabilidad"><span class="header-section-number">2.2</span> Probabilidad</h2>
 <p>Para una variable como la definida en el ejemplo anterior podemos definir fácilmente su probabilidad de ocurrencia. Debido que la moneda es justa, todos los eventos de <span class="math inline">\(\Omega\)</span> son equiprobables, y es por eso que podemos definir:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(\omega\)</span></th>
@@ -308,7 +353,7 @@ div.csl-indent {
 </tbody>
 </table>
 <p>Sin embargo, el concepto de probabilidad es algo complejo, pero, como esto no es un curso de probabilidad, vamos a confiar en que ustedes ya lo traen claro. Si tienen coraje puede ir a leer el capítulo 1 de <span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> y si quiere algo más terrenal pueden ir a ver el repaso de probabilidad de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> (disponible online).</p>
-<div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="doc-biblioentry">
+<div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
 Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
 </div></div><p>Cuando las variables aleatorias son continuas la cosa se complica un poco más ya que <span class="math inline">\(P(X=c)\)</span>, es decir, la probabilida de que una variable tome un valor dado, es cero. Esto lo vamos a repensar un poco en la siguiente sección, cuando definamos lo que nos importa para este libro: Las funciónes de densidad y de distribución.</p>
 </section>
@@ -318,8 +363,8 @@ Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university
 </section>
 <section id="probabilidad-total" class="level2 page-columns page-full" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="probabilidad-total"><span class="header-section-number">2.4</span> Probabilidad total</h2>
-<div class="page-columns page-full"><p>Ahora imaginemos que pasa si queremos calcular la probabilidad de B (<span class="math inline">\(P(B)\)</span>). Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió S y junto con la probabilidad de B dado que NO ocurrió S. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto sería<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Recordemos que <span class="math inline">\(\neg\)</span> es el símbolo lógico de la negación.</p></li></div></div>
-<p><span id="eq-test"><span class="math display">\[
+<p>Ahora imaginemos que pasa si queremos calcular la probabilidad de B (<span class="math inline">\(P(B)\)</span>). Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió S y junto con la probabilidad de B dado que NO ocurrió S. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto sería<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Recordemos que <span class="math inline">\(\neg\)</span> es el símbolo lógico de la negación.</p></div></div><p><span id="eq-test"><span class="math display">\[
 P(B) = P(B|A) \times P(A) +  P(B|\neg A) \times P(\neg A)
 \tag{2.1}\]</span></span></p>
 <p>Pensemosun ejemplo. Imaginemos que una perona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es <span class="math inline">\(0.35\)</span> y la probabilidad de que lo termine si no llueve es de <span class="math inline">\(0.95\)</span>. Si la probabilidad de que llueva es <span class="math inline">\(P(A)=0.4\)</span> ¿Cuál es la probabilidad (<span class="math inline">\(P(B)\)</span>) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:</p>
@@ -339,7 +384,7 @@ P(B) = \sum_n P(B|A_n) P(A_n)
 <section id="teorema-de-bayes" class="level2 page-columns page-full" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="teorema-de-bayes"><span class="header-section-number">2.5</span> Teorema de Bayes</h2>
 <p>Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de <span class="citation" data-cites="herzog2019understanding">(<a href="references.html#ref-herzog2019understanding" role="doc-biblioref">Herzog, Francis, y Clarke 2019</a>)</span>: Tenemos un test para identificar si somos portadores de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus (<span class="math inline">\(P(T^+|IKV)\)</span>) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus (<span class="math inline">\(P(T^-|\neg IKV)\)</span>). Sabemos también que la incidencia del virus IKV es de 1 en 10000.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-herzog2019understanding" class="csl-entry" role="doc-biblioentry">
+<div class="no-row-height column-margin column-container"><div id="ref-herzog2019understanding" class="csl-entry" role="listitem">
 Herzog, Michael H, Gregory Francis, y Aaron Clarke. 2019. <em>Understanding statistics and experimental design: how to not lie with statistics</em>. Springer Nature.
 </div></div><p>Supongamos que somos elegidos aleatoriamente para realizarnos el test y este da positivo ¿Qué probabilidad de ser portadores del virus tenemos (<span class="math inline">\(P(IKV|T^+)\)</span>)? La primera respuesta que se nos viene es 0.9999 ¿Verdad? Pero, si estuvimos prestando atención, ya a esta altura debemos saber que para invertir la condicionalidad de una probabilidad tenemos que acudir al bueno de Bayes. O sea:</p>
 <p><span id="eq-test"><span class="math display">\[
@@ -397,8 +442,8 @@ E(\sum_{i=1}^n X_i) &amp; = &amp; \sum_{i=1}^nE(X_i)
 </section>
 <section id="varianza-y-covarianza" class="level2 page-columns page-full" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="varianza-y-covarianza"><span class="header-section-number">2.7</span> Varianza y covarianza</h2>
-<div class="page-columns page-full"><p>La varianza nos da una idea de la variabilidad de los procesos aleatorios que generan una variable aleatorio<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. La varianza de la variable aleatoria <span class="math inline">\(X\)</span> se define como:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Dato que será de vital importancia para sentar las bases de la inferencia estadística.</p></li></div></div>
-<p><span id="eq-test"><span class="math display">\[
+<p>La varianza nos da una idea de la variabilidad de los procesos aleatorios que generan una variable aleatorio<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. La varianza de la variable aleatoria <span class="math inline">\(X\)</span> se define como:</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Dato que será de vital importancia para sentar las bases de la inferencia estadística.</p></div></div><p><span id="eq-test"><span class="math display">\[
 V(X) = \sigma^2 = E \left[ (X - E(X))^2 \right]
 \tag{2.12}\]</span></span></p>
 <p>Y se puede demostrar que:</p>
@@ -434,10 +479,10 @@ _Corr(X,Y) &amp;=&amp; Cov(W,Z) \\
 Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 \tag{2.17}\]</span></span></p>
 <p>Y como <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son constantes (en nuestro caso esperanzas), el único término que sobrevive es <span class="math inline">\(Cov(X,Y)\)</span>. Esta magnitud es también conocida como el coeficiente de correlación <span class="math inline">\(\rho\)</span>.</p>
-<div class="page-columns page-full"><p>Con esta definición en la mano, si yo les digo que dos variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tienen una covarianza de <span class="math inline">\(14.988\)</span> no les dice mucho, ¿No? Ahora, si les digo que el coeficiente de correlación es de <span class="math inline">\(0.788\)</span> probablemente entiendan rápidamente que ambas variables están muy relacionadas<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Si quieren divertirse y de paso convertise en ases de la determinación del coeficiente de correlación a <em>ojímetro</em> les recomiendo <a href="https://www.guessthecorrelation.com/">este juegazo</a>. Una estudiante ostenta el abultado récord de <span class="math inline">\(231\)</span> puntos ¿La pasaste?</p></li></div></div>
-<p>Veamos este ejemplo con números y de paso repasemos como se calcula la correlación en R:</p>
+<p>Con esta definición en la mano, si yo les digo que dos variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tienen una covarianza de <span class="math inline">\(14.988\)</span> no les dice mucho, ¿No? Ahora, si les digo que el coeficiente de correlación es de <span class="math inline">\(0.788\)</span> probablemente entiendan rápidamente que ambas variables están muy relacionadas<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Si quieren divertirse y de paso convertise en ases de la determinación del coeficiente de correlación a <em>ojímetro</em> les recomiendo <a href="https://www.guessthecorrelation.com/">este juegazo</a>. Una estudiante ostenta el abultado récord de <span class="math inline">\(231\)</span> puntos ¿La pasaste?</p></div></div><p>Veamos este ejemplo con números y de paso repasemos como se calcula la correlación en R:</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">20</span>, <span class="dv">4</span>)</span>
@@ -453,14 +498,14 @@ Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Relación lineal entre X e Y.</figcaption><p></p>
+<figcaption>Relación lineal entre X e Y.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Es muy importante tener en cuenta que el cueficiente de correlación nos dice cuán <strong>linealmente</strong> relacionadas están las variables. Veamos esto con un ejemplito:</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -476,7 +521,7 @@ Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Relación no lineal entre X e Y.</figcaption><p></p>
+<figcaption>Relación no lineal entre X e Y.</figcaption>
 </figure>
 </div>
 </div>
@@ -487,19 +532,19 @@ Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 <section id="población-y-muestra" class="level2 page-columns page-full" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.9</span> Población y muestra</h2>
 <p>Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.</p>
-<div class="page-columns page-full"><p>Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de <span class="math inline">\(\mu_{varones} = 175\)</span> y una desviación estándar <span class="math inline">\(\sigma_{varones} = 7\)</span>, o, como ya aprendimos a decir: <span class="math inline">\(H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)\)</span><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A continuación podemos ver la función de densidad:</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;<strong>h</strong> del inglés <em>height</em>.</p></li></div></div>
-<div class="cell" data-layout-align="center">
+<p>Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de <span class="math inline">\(\mu_{varones} = 175\)</span> y una desviación estándar <span class="math inline">\(\sigma_{varones} = 7\)</span>, o, como ya aprendimos a decir: <span class="math inline">\(H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)\)</span><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A continuación podemos ver la función de densidad:</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;<strong>h</strong> del inglés <em>height</em>.</p></div></div><div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption><p></p>
+<figcaption>Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Ahora bien, en la figura podemos ver la función <span class="math inline">\(f_X(x)\)</span> junto con una línea vertical que nos indica la media y dos líneas que nos indican los percentiles <span class="math inline">\(2.5\)</span> y <span class="math inline">\(97.5\)</span>, es decir, que contienen el 95% de la masa de probabilidad. Todo esto es muy lindo pero estamos jugando a ser dios (o el Doctor Manhattan, o en lo que ustedes crean). Es imposible conocer los parámetros de esta distribución pero lo que sí podemos hacer en la práctica es estimarlos. Estimar los parámetros de un modelo es el <em>pan y manteca</em> de la inferencia estadística y el <em>data mining</em>. Como podemos ver en esta hermosa figura de Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span>, la teoría de probabilidad nos ayuda a definir modelos para la generación de datos y la inferencia estadística nos ayuda a estimar estos parámetros.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-wasserman2004all" class="csl-entry" role="doc-biblioentry">
+<div class="no-row-height column-margin column-container"><div id="ref-wasserman2004all" class="csl-entry" role="listitem">
 Wasserman, Larry. 2004. <em>All of statistics: a concise course in statistical inference</em>. Springer Science &amp; Business Media.
 </div></div><p>Hay diversas formas de encontrar estimadores para los parámetros de un modelo (por ejemplo, método de los momentos, máxima verosimilitud, etc.) pero entenemos que eso excede los contenidos de este curso. Sin embargo, para estimar todos conocemos los estimadores de los parámetros poblacionales <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. Claro, el promedio <span class="math inline">\(\bar{x}\)</span> y el desvío muestral <span class="math inline">\(\hat{S}^2\)</span>:</p>
 <p><span id="eq-test"><span class="math display">\[
@@ -513,7 +558,7 @@ Wasserman, Larry. 2004. <em>All of statistics: a concise course in statistical i
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="intro_stat_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -524,20 +569,20 @@ Wasserman, Larry. 2004. <em>All of statistics: a concise course in statistical i
 <section id="inferencia-estadística" class="level2 page-columns page-full" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="inferencia-estadística"><span class="header-section-number">2.10</span> Inferencia estadística</h2>
 <p>Vamos a hacer un breve paseo por los conceptos clave de la inferencia estadística de la mano de un ejemplo.</p>
-<div class="callout-tip callout callout-style-default callout-captioned page-columns page-full">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 El ejemplo de inferencia
 </div>
 </div>
-<div class="callout-body-container callout-body page-columns page-full">
-<div class="page-columns page-full"><p>Supongamos que tenemos una página web de noticias y queremos probar una nueva <em>feature</em> con la que queremos aumentar el tiempo de retención de los usuarios. Para esto le vamos a presentar a los usuarios la versión nueva de la página y vamos a medir el tiempo que se mantienen en la página en <em>ms</em><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Probabilemente lo más correcto para responder esta pregunta sea un <em>A/B test</em>, pero ya hablaremos de eso más adelante.</p></li></div></div>
+<div class="callout-body-container callout-body">
+<p>Supongamos que tenemos una página web de noticias y queremos probar una nueva <em>feature</em> con la que queremos aumentar el tiempo de retención de los usuarios. Para esto le vamos a presentar a los usuarios la versión nueva de la página y vamos a medir el tiempo que se mantienen en la página en <em>ms</em><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>Primero definamos nuestra variable aleatoria: <span class="math inline">\(X\)</span>:“La diferencia de tiempo en <em>ms</em> entre después y antes del cambio”. Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si <span class="math inline">\(E(X)\)</span> es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>. Esta suposición no es tan loca ya que mucho procesos naturales se distribuyen de forma normal<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la <span class="math inline">\(\sigma^2\)</span> de <span class="math inline">\(X\)</span>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Además, como vamos a ver más adelante, cuando el <span class="math inline">\(n\)</span> es lo suficientemente grande, esta condición deja de importar tanto.</p></li></div></div>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Probabilemente lo más correcto para responder esta pregunta sea un <em>A/B test</em>, pero ya hablaremos de eso más adelante.</p></div><div id="fn7"><p><sup>7</sup>&nbsp;Además, como vamos a ver más adelante, cuando el <span class="math inline">\(n\)</span> es lo suficientemente grande, esta condición deja de importar tanto.</p></div></div><p>Primero definamos nuestra variable aleatoria: <span class="math inline">\(X\)</span>:“La diferencia de tiempo en <em>ms</em> entre después y antes del cambio”. Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si <span class="math inline">\(E(X)\)</span> es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>. Esta suposición no es tan loca ya que mucho procesos naturales se distribuyen de forma normal<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la <span class="math inline">\(\sigma^2\)</span> de <span class="math inline">\(X\)</span>.</p>
 <p>Como dijimos en el recuedro, si bien nuestro objetivo es probar si <span class="math inline">\(\mu\)</span> es diferente de <span class="math inline">\(0\)</span>, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\hat{\mu}=\bar{X}\)</span>, es decir, el promedio muestral. Ahora supongamos que el promedio nos da <span class="math inline">\(0.5\)</span>: ¿Es distinto de cero? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.</p>
 <p>Definamos primero las hipótesis:</p>
 <p><span id="eq-test"><span class="math display">\[
@@ -547,8 +592,8 @@ H_1 &amp;:&amp; \mu \neq 0
 \end{array}
 \tag{2.19}\]</span></span></p>
 <p>Lo que vamos a querer hacer es rechazar <span class="math inline">\(H_0\)</span> con cierto grado de confianza. Para esto vamos a comparar nuestra medición <span class="math inline">\(\bar{x}_{obs}\)</span> con la distribución de los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span>.</p>
-<div class="page-columns page-full"><p>Recordemos que si <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span> entonces <span class="math inline">\(\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)\)</span><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, donde <span class="math inline">\(n\)</span> es la cantidad de realizaciones con las que yo calculo mi <span class="math inline">\(\bar{X}\)</span>. Entonces si mi <span class="math inline">\(\bar{x}_{obs}\)</span> medida está lo suficientemente lejos de <span class="math inline">\(0\)</span> podemos decir que que <span class="math inline">\(\mu\)</span> es diferente de cero. Pero: ¿Qué es suficientemente lejos?</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una seciencia de <span class="math inline">\(n\)</span> realizaciones.</p></li></div></div>
-<p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o dalso positivo) o podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o dalso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.</p>
+<p>Recordemos que si <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span> entonces <span class="math inline">\(\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)\)</span><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, donde <span class="math inline">\(n\)</span> es la cantidad de realizaciones con las que yo calculo mi <span class="math inline">\(\bar{X}\)</span>. Entonces si mi <span class="math inline">\(\bar{x}_{obs}\)</span> medida está lo suficientemente lejos de <span class="math inline">\(0\)</span> podemos decir que que <span class="math inline">\(\mu\)</span> es diferente de cero. Pero: ¿Qué es suficientemente lejos?</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una seciencia de <span class="math inline">\(n\)</span> realizaciones.</p></div></div><p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o dalso positivo) o podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o dalso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.</p>
 <p>Para esto vamos a calcular qué tal probable es observar un valor igual o más alejado del cero que <span class="math inline">\(\bar{x}_{obs}\)</span> dado que <span class="math inline">\(H_0\)</span> es verdadera. Es decir, <span class="math inline">\(P(|\bar{X}|&gt;\bar{x}_{obs}|H_0)\)</span>. Esta magnitud es lo que se conoce como el viejo y querido p-valor o <em>p-value</em> (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando <span class="math inline">\(\bar{X}\)</span> de la siguiente forma:</p>
 <p><span id="eq-test"><span class="math display">\[
 Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
@@ -569,13 +614,13 @@ _p_{valor} &amp;=&amp; P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
 <p><span id="eq-test"><span class="math display">\[
 p_{valor} = 2 \phi(-|z_{\bar{x}}|)
 \tag{2.23}\]</span></span></p>
-<div class="page-columns page-full"><p>Y ahora que tenemos esta probabilidad qué hacemos. Bueno, lo que podemos hacer es decir: Si los datos vienen de <span class="math inline">\(H_0\)</span> podemos calcular que tan “raros” son, entonces pongamos una cota en esa probabilidad y de esa forma estaremos acotando el error de tipo I en el largo plazo<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Así es que surge el famoso <span class="math inline">\(\alpha\)</span> que normalmente hacemos valer <span class="math inline">\(0.05\)</span><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el <span class="math inline">\(5%\)</span> de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación “práctica” del p-valor (si se quedan con las ganas pueden ir a leer <a href="https://lakens.github.io/statistical_inferences/01-pvalue.html">esto</a>).</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.</p></li><li id="fn10"><p><sup>10</sup>&nbsp;Para una discusión más profunda sobre el tema de la selección de <span class="math inline">\(\alpha\)</span> en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens <span class="citation" data-cites="maier2022justify">(<a href="references.html#ref-maier2022justify" role="doc-biblioref">Maier y Lakens 2022</a>)</span>.</p><div id="ref-maier2022justify" class="csl-entry" role="doc-biblioentry">
+<p>Y ahora que tenemos esta probabilidad qué hacemos. Bueno, lo que podemos hacer es decir: Si los datos vienen de <span class="math inline">\(H_0\)</span> podemos calcular que tan “raros” son, entonces pongamos una cota en esa probabilidad y de esa forma estaremos acotando el error de tipo I en el largo plazo<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Así es que surge el famoso <span class="math inline">\(\alpha\)</span> que normalmente hacemos valer <span class="math inline">\(0.05\)</span><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el <span class="math inline">\(5%\)</span> de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación “práctica” del p-valor (si se quedan con las ganas pueden ir a leer <a href="https://lakens.github.io/statistical_inferences/01-pvalue.html">esto</a>).</p>
+<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.</p></div><div id="fn10"><p><sup>10</sup>&nbsp;Para una discusión más profunda sobre el tema de la selección de <span class="math inline">\(\alpha\)</span> en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens <span class="citation" data-cites="maier2022justify">(<a href="references.html#ref-maier2022justify" role="doc-biblioref">Maier y Lakens 2022</a>)</span>.</p><div id="ref-maier2022justify" class="csl-entry" role="listitem">
 Maier, Maximilian, y Daniël Lakens. 2022. <span>«Justify your alpha: A primer on two practical approaches»</span>. <em>Advances in Methods and Practices in Psychological Science</em> 5 (2): 25152459221080396.
-</div></li></div></div>
-<p>Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que <span class="math inline">\(\alpha\)</span> podemos decir que <span class="math inline">\(H_0\)</span> es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.</p>
+</div></div></div><p>Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que <span class="math inline">\(\alpha\)</span> podemos decir que <span class="math inline">\(H_0\)</span> es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.</p>
 <p>Simulemos un experimento para <span class="math inline">\(n=50\)</span> en el que nosotros conocemos tanto <span class="math inline">\(\sigma^2\)</span> como <span class="math inline">\(\mu\)</span>:</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
@@ -598,7 +643,7 @@ Maier, Maximilian, y Daniël Lakens. 2022. <span>«Justify your alpha: A primer 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption><p></p>
+<figcaption>Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption>
 </figure>
 </div>
 </div>
@@ -610,7 +655,7 @@ p_{valor} = 2 \phi(-|z_{\bar{x}}|) = 2 \phi(-2.011)
 \tag{2.24}\]</span></span></p>
 <p>Que en R lo podemos calcular como:</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)),<span class="dv">3</span>)))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.044</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +671,7 @@ S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
 \tag{2.25}\]</span></span></p>
 <p>Para nuestro ejemplo vale:</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"la estimación de sigma es:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(X), <span class="dv">3</span>)))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; la estimación de sigma es: 1.852</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,17 +688,17 @@ S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
 <p><span id="eq-test"><span class="math display">\[
 (n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
 \tag{2.27}\]</span></span></p>
-<div class="page-columns page-full"><p>Y la definición de <span class="math inline">\(t_{n-1}\)</span> es<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></li></div></div>
-<p><span id="eq-test"><span class="math display">\[
+<p>Y la definición de <span class="math inline">\(t_{n-1}\)</span> es<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></div></div><p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _U &amp;\sim&amp; \mathcal{N}(0,1) \\
 V &amp;\sim&amp; \chi^2_{n} \\
 \frac{U}{\sqrt{V/n}} &amp;\sim&amp; t_{n}
 \end{array}
 \tag{2.28}\]</span></span></p>
-<div class="page-columns page-full"><p>Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la <span class="math inline">\(\sigma\)</span> poblacional<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></li></div></div>
-<div class="cell">
-<details open="">
+<p>Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la <span class="math inline">\(\sigma\)</span> poblacional<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></div></div><div class="cell">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(X)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="at">df =</span> n<span class="dv">-1</span>),<span class="dv">4</span>)))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.0347</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -661,7 +706,7 @@ V &amp;\sim&amp; \chi^2_{n} \\
 </div>
 <p>Una buena noticia es que este p valor se puede calcular directamente con la función <code>t.test(X)</code> de la siguiente forma:</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -685,21 +730,21 @@ V &amp;\sim&amp; \chi^2_{n} \\
 <p><span id="eq-test"><span class="math display">\[
 \frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}  \xrightarrow{\mathcal{D}} \mathcal{N}(0,1)
 \tag{2.29}\]</span></span></p>
-<div class="page-columns page-full"><p>El mismo nos dice que distribución de la media estandarizada converge endistribución a una <span class="math inline">\(\mathcal{N}(0,1)\)</span> sin importar la distribución de <span class="math inline">\(X\)</span>. Esto significa que si el <span class="math inline">\(n\)</span> es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).</p></li></div></div>
-<p>Supongamos que hay una variable aleatoria <span class="math inline">\(V \sim \mathcal{E}(\lambda=1)\)</span> tal que <span class="math inline">\(E(V) = \lambda\)</span>. Si tomamos una muestra de <span class="math inline">\(n=100\)</span> de <span class="math inline">\(V\)</span>, el histograma de la misma se ve algo así:</p>
+<p>El mismo nos dice que distribución de la media estandarizada converge endistribución a una <span class="math inline">\(\mathcal{N}(0,1)\)</span> sin importar la distribución de <span class="math inline">\(X\)</span>. Esto significa que si el <span class="math inline">\(n\)</span> es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).</p></div></div><p>Supongamos que hay una variable aleatoria <span class="math inline">\(V \sim \mathcal{E}(\lambda=1)\)</span> tal que <span class="math inline">\(E(V) = \lambda\)</span>. Si tomamos una muestra de <span class="math inline">\(n=100\)</span> de <span class="math inline">\(V\)</span>, el histograma de la misma se ve algo así:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Histograma de una muestra de 100 datos de una exponencial con lambda=1</figcaption><p></p>
+<figcaption>Histograma de una muestra de 100 datos de una exponencial con lambda=1</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Donde en azul vemos el histograma y en negro la función de densidad para <span class="math inline">\(\mathcal{E}(\lambda=1)\)</span>. Ahora, qué pasa si tomamos <span class="math inline">\(1000\)</span> muestras y hacemos el histograma de sus medias:</p>
 <div class="cell" data-layout-align="center">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Zs <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
@@ -725,7 +770,7 @@ V &amp;\sim&amp; \chi^2_{n} \\
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Histograma de 1000 medias de muestras de 100 datos de una exponencial con lambda=1</figcaption><p></p>
+<figcaption>Histograma de 1000 medias de muestras de 100 datos de una exponencial con lambda=1</figcaption>
 </figure>
 </div>
 </div>
@@ -750,7 +795,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 \]</span></p>
 <p>Fijensé que para calcularla no sólo necesitamos a <span class="math inline">\(\sigma\)</span> (que podríamos estimar) sino también a <span class="math inline">\(mu\)</span>, que es nuestro parámetro de interés. Por ejemplo, podemos ver que la pontencia depende de <span class="math inline">\(\mu\)</span>, siendo más grande para valores de <span class="math inline">\(\mu\)</span> más alejados del cero. Esto tiene sentido ya que a medida que <span class="math inline">\(|\mu|\)</span> es mayor, es menor probable cometer errores tipo II.</p>
 <div class="cell" data-layout-align="center">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>potencia <span class="ot">&lt;-</span> <span class="cf">function</span>(sigma, mu, n, alpha) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span></span>
@@ -768,14 +813,14 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Potencia estadística en función de mu.</figcaption><p></p>
+<figcaption>Potencia estadística en función de mu.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Como es de esperarse, la potencia también depende del <span class="math inline">\(\alpha\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">20</span>,<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>), <span class="at">potencia =</span> pot)</span>
@@ -789,7 +834,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Potencia estadística en función de alfa.</figcaption><p></p>
+<figcaption>Potencia estadística en función de alfa.</figcaption>
 </figure>
 </div>
 </div>
@@ -797,7 +842,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <p>Con valores de potencia mayores para valores más garndes de <span class="math inline">\(\alpha\)</span>. Nuevamente esto tiene sentido ya que ser más restictivo con el rechazo de <span class="math inline">\(H_0\)</span> (o sea, que tenga que observar un valor más extremo) lleva a una disminución de <span class="math inline">\(\alpha\)</span>, a un aumento de los errores tipo II y con ello a una disminución de la potencia.</p>
 <p>Finalmente, la potencia también depende del <span class="math inline">\(n\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<details open="">
+<details open="" class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>),<span class="fl">0.05</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">n =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>), <span class="at">potencia =</span> pot)</span>
@@ -811,24 +856,24 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Potencia estadística en función de n.</figcaption><p></p>
+<figcaption>Potencia estadística en función de n.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>Con valores de potencia más altos para <span class="math inline">\(n\)</span> más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>. Esta última dependencia es muy importante.</p><div class="no-row-height column-margin column-container"><li id="fn14"><p><sup>14</sup>&nbsp;Las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se hacen más finas y hay menos solapamiento, recuerden que en ambas la varianza disminuye con <span class="math inline">\(1/n\)</span>.</p></li></div></div>
-<p>Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar cambios pequeños sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El <span class="math inline">\(\alpha\)</span> lo decidimos cuando acotamos el error de tipo I, a <span class="math inline">\(\mu\)</span> no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el <span class="math inline">\(n\)</span>.</p>
+<p>Con valores de potencia más altos para <span class="math inline">\(n\)</span> más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>. Esta última dependencia es muy importante.</p>
+<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;Las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se hacen más finas y hay menos solapamiento, recuerden que en ambas la varianza disminuye con <span class="math inline">\(1/n\)</span>.</p></div></div><p>Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar cambios pequeños sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El <span class="math inline">\(\alpha\)</span> lo decidimos cuando acotamos el error de tipo I, a <span class="math inline">\(\mu\)</span> no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el <span class="math inline">\(n\)</span>.</p>
 <p>El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:</p>
 <ol type="1">
 <li>Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.</li>
 <li>Determinamos el mínimo tamaño de efecto de interés (<em>SESOI</em><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaña de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.</li>
 <li>Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo <span class="math inline">\(0.9\)</span>) y un <span class="math inline">\(\alpha\)</span> dado (por ejemplo <span class="math inline">\(0.05\)</span>).</li>
 </ol>
-<div class="no-row-height column-margin column-container"><li id="fn15"><p><sup>15</sup>&nbsp;Del inglés <em>smallest effect size of interest</em>.</p></li></div><p>No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente <span class="math inline">\(n\)</span>, pero la forma de pensar el problema es siempre similar.</p>
+<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Del inglés <em>smallest effect size of interest</em>.</p></div></div><p>No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente <span class="math inline">\(n\)</span>, pero la forma de pensar el problema es siempre similar.</p>
 <p>Para más detalles sobre los procedimientos para justificar el temaño de muestra ver <span class="citation" data-cites="lakens2022sample">(<a href="references.html#ref-lakens2022sample" role="doc-biblioref">Lakens 2022</a>)</span>.</p>
 
 
-<div class="no-row-height column-margin column-container"><div id="ref-lakens2022sample" class="csl-entry" role="doc-biblioentry">
+<div class="no-row-height column-margin column-container"><div id="ref-lakens2022sample" class="csl-entry" role="listitem">
 Lakens, Daniel. 2022. <span>«Sample size justification»</span>. <em>Collabra: psychology</em> 8 (1): 33267.
 </div></div>
 </section>
@@ -862,12 +907,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -875,18 +923,74 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -896,8 +1000,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -909,38 +1022,292 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro_R.html" class="pagination-link">
+      <a href="./intro_R.html" class="pagination-link" aria-label="R y el tidyverse">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./potential_outcomes.html" class="pagination-link">
+      <a href="./potential_outcomes.html" class="pagination-link" aria-label="*Potential outcomes*">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -948,10 +1315,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
-    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-left">
+<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+
 
 
 

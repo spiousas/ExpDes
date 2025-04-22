@@ -1,0 +1,16 @@
+# Subclasificación y *matching* {#sec-matching}
+
+```{r}
+#| echo: false
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 13))
+ggplot2::update_geom_defaults("point", list(color = "#1380A1",
+                                            fill = "#1380A1",
+                                            size = 3,
+                                            alpha = .7))
+ggplot2::update_geom_defaults("line", list(color = "#ED6A5A"))
+ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A")) 
+
+source("../R/_common.R")
+```
+
+En construcción `r emo::ji("construction")`

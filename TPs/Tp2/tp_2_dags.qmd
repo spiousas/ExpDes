@@ -1,0 +1,184 @@
+---
+title: "Trabajo Practico 2"
+format: html
+editor: visual
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(ggdag)
+library(dagitty)
+library(modelsummary)
+```
+
+## Actividad 1.
+
+## Lluvias e inundaciones
+
+El DAG que observan a continuacion representa el modelo causal de un investiador que quiere estudiar el efecto de la **tropicalizacion de los ecosistemas** (que su clima se haya vuelto mas lluvioso y cálido durante todo el año) sobre las **inundaciones** en las ciudades de ese ecosistema. Para eso definio estas variables operacionales en donde:
+
+-   **Lluvias**, es la cantidad de mm acumulados que llovió el año de observación
+
+-   **Vegetación**: es índice de cobertura arbolada de la ciudad observada
+
+-   **Imperm**: se refiere al porcentaje de superficie impermeable de la ciudad estudiada (o lo que es lo mismo el porcentaje de cobertura de su superficie con asfalto o edificaciones)
+
+-   **Actividad**, se refiere a la actividad humana, es un indice compuesto por la densidad poblacional y de industrias en la ciudad
+
+-   **Obra_publica**: es el dinero destinado durante el último año para la infraestructura urbana que evite inundaciones
+
+```{r, warning=FALSE, message=FALSE}
+cambio_climatico<-dagitty("dag {
+Obra_publica -> inundaciones
+Actividad -> Tropicalizacion
+Actividad -> imperm
+Actividad -> vegetacion
+Tropicalizacion -> lluvias
+Tropicalizacion -> vegetacion
+imperm -> inundaciones
+lluvias -> inundaciones
+lluvias -> vegetacion
+vegetacion -> imperm
+vegetacion -> inundaciones
+}")
+
+ggdag(cambio_climatico) + theme_dag()+
+  geom_dag_node(color ="pink") + 
+  geom_dag_text(color = "darkgreen", size=3.5)+
+  geom_dag_edges(size = 1.5)
+```
+
+### 1. Caminos de causalidad
+
+¿Cuantos caminos de causalidad abiertos identifica en este DAG? Grafiquelos
+
+```{r}
+# escriba el codigo aquí
+```
+
+*------------------------------------------------------------------------------------------------------*
+
+*Aquí sus respuestas*
+
+*-------------------------------------------------------------------------------------------------------*
+
+### 2. Creando un modelo apropiado
+
+Ayude a este investigador a navegar su modelo causal y sugierale el mejor modelo para evaluar la hipotesis de causalidad que se plantea (que la tropicalizacion de los ecosistemas es la responsable de las inundaciones). Si el modelo va a incluir covariables justifique la decision de cual de ellas incluir y por qué.
+
+*------------------------------------------------------------------------------------------------------*
+
+*Aquí sus respuestas*
+
+*-------------------------------------------------------------------------------------------------------*
+
+## Actividad 2.
+
+## Pantallas y obesidad
+
+Un investigador está interesado en el **tiempo que pasan los niños frente a las pantallas** *(exposición)* como un desencadenante de la **obesidad infantil** *(outcome).*
+
+Para ello estudio a 1000 niños de entre 10 y 12 años y armo el dataset que esta a continuación en donde recabo:
+
+-   nivel socioeconomico (como una variable ordinal)
+
+-   educacion (en años)
+
+-   una escala de actividad fisica (que va de -3: sedentarismo total, a +3: estilo de vida muy activo)
+
+-   una escala de autoestima que va de -10 (imagen personal muy negativa) a +10 (imagen personal extremadamente positiva).
+
+-   Horas diarias que pasan frente a una pantalla (de 0 a 24)
+
+-   presencia o no de obesidad.
+
+Para plasmar su marco teórico construyó este **DAG:**
+
+```{r, warning=FALSE, message=FALSE}
+# DAG
+set.seed(124)
+dag <- dagitty("dag {
+  A_fisica -> Obesidad
+  N_socioeconomico -> T_pantalla
+  N_socioeconomico -> Educacion
+  T_pantalla -> A_fisica
+  T_pantalla -> Autoestima
+  Educacion -> A_fisica
+  Educacion -> T_pantalla
+  Educacion -> Autoestima
+  Educacion -> Obesidad
+  Obesidad -> Autoestima
+}")
+
+ggdag(dag) + theme_dag()+
+  geom_dag_node(color ="pink") + 
+  geom_dag_text(color = "darkgreen", size=3.5)+
+  geom_dag_edges(size = 1.5)
+
+```
+
+Esta es la base de datos con la que vamos a a trabajar
+
+```{r, warning=FALSE, message=FALSE}
+library(readr)
+obesidad_pantallas <- read_csv("obesidad_pantallas.csv")
+```
+
+## Modelos
+
+En funcion de su DAG el investigador construyo los siguientes modelos
+
+```{r}
+Model1<- glm(obesidad ~ tiempo_pantalla, data = obesidad_pantallas, family = binomial)
+Model2<-glm(obesidad ~ tiempo_pantalla+actividad_fisica, data = obesidad_pantallas, family = binomial)
+Model3<-glm(obesidad ~ tiempo_pantalla+autoestima, data = obesidad_pantallas, family = binomial)
+
+models<-list(Model1,Model2,Model3)
+
+modelsummary(models)
+
+modelplot(models, coef_omit = 'Interc')
+```
+
+### 1. Interpretacion
+
+Ahora que tiene los modelos y esta tabla de resultados escriba un texto breve interpretando cada uno de los modelos y los efectos de las variables incluidas. *Si tiene que hacer algun calculo extra puede hacerlo*
+
+*------------------------------------------------------------------------------------------------------*
+
+*Aquí sus respuestas*
+
+*-------------------------------------------------------------------------------------------------------*
+
+### **2. Interpretando el efecto de las pantallas**
+
+Ayude al investigador a resolver su pregunta principal, ¿La exposicion a las pantallas puede causar obesidad? Justifique su respuesta con datos obtenidos de los modelos.
+
+*------------------------------------------------------------------------------------------------------*
+
+*Aquí sus respuestas*
+
+*-------------------------------------------------------------------------------------------------------*
+
+### **3. Seleccionando modelos**
+
+En la salida anterior podemos ver junto con los modelos tambien las métricas de performance de los mismos. ¿Cuál es el mejor modelo?
+
+*------------------------------------------------------------------------------------------------------*
+
+*Aquí sus respuestas*
+
+*-------------------------------------------------------------------------------------------------------*
+
+### 4. Proponiendo nuevas formas de analizar los datos
+
+Hay variables que el investigador no ha incluído en el modelo, ¿ud que piensa?, ¿incluiría alguna de ellas?, ¿podria generar un modelo que a su parecer sea superador? Escribalo, corralo e interpretelo
+
+```{r}
+# corra su modelo aqui
+```
+
+*------------------------------------------------------------------------------------------------------*
+
+Justifique aquí su selección del modelo e interprete los resultados
+
+*-------------------------------------------------------------------------------------------------------*

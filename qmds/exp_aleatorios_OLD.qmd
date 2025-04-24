@@ -1,0 +1,255 @@
+# Experimentos aleatorios {#sec-random-exp}
+
+```{r}
+#| echo: false
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 13))
+ggplot2::update_geom_defaults("point", list(color = "#1380A1",
+                                            fill = "#1380A1",
+                                            size = 3,
+                                            alpha = .7))
+ggplot2::update_geom_defaults("line", list(color = "#ED6A5A"))
+ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A")) 
+
+source("../R/_common.R")
+```
+
+## ¿Por qué son importantes los experimentos aleatorios?
+
+En los experimentos aleatorios[^aleatorio] los sujetos son asignados a los grupos (por ejemplo, tratamiento y control) aleatoriamente. Esto significa que en la asignación de los grupos aleatorios hay involucrado un proceso realmente aleatorio, como arrojar un moneda. Ojo con confundir el concepto de asignación aleatoria con el de muestra aleatoria: Que el muestreo sea aleatorio significa que los participantes son una muestra seleccionada al azar de una población más amplia, mientras que la asignación aleatoria significa que los participantes, independientemente de si fueron seleccionados de una población más amplia o no, son asignados al azar a diferentes condiciones experimentales.
+
+[^aleatorio]: A lo largo del capítulo vamos a usar de forma intercambiable las expresiones experimentos aleatorios y experimentos aleatorizados. También vamos a usar la sigla **RCT** del inglés *randomized controlled trials*.
+
+::: {.callout-warning icon="false"}
+## Sobre la aleatoridad de las computadoras
+
+Cuando hablamos de un evento aleatorio, hablamos de una entidad abstracta cuyo resultado no se puede predecir exactamente. Para poner este tipo de eventos en el mundo real solemos hechar mano de ejemplos clásicos que involucran una complejidad fìsica tal que resulta imposible predecirlos exactamente, como arrojar un dado o una moneda. El ejemplo de la moneda es la forma más usual de hablar de una variable aleatoria con dos posibles valores equiprobables (aunque parezca que no tanto [@bartovs2023fair]). Sin embargo, esta aleatoridad es muy costosa de reproducir. Es por eso que las computadores utilizan lo que se llama generadores de números pseudo aleatorios[^pseudo-random]. Estos generadores utilizan series de números generados de forma pseudo aleatoria pero que puede ser recuperada determinìsticamente a partir de una "semilla". Es por eso que cuando simulamos datos en este libro lo primero que hacemos es ejecutar `set.seed(42)` (42 o el número que sea), para de esa forma poder obtener el mismo resultado cada vez que replicamos, o el lector quiere replicar, las simulaciones.
+
+Dicho esto. A fines prácticos, es totalmente razonable utilizar un generador de números pseudo aleatorios para la asignación a grupos experimentales en los experimentos aleatorios.
+:::
+
+[^pseudo-random]: Para más información pueden ir a leer [esto](https://en.wikipedia.org/wiki/Pseudorandom_number_generator).
+
+Por ejemplo, en el caso más simple, esto significa que dada una muestra de personas, vamos a asignar a cada de una de ellas "tirando una moneda" al grupo control ($D=0$) o tratamiento ($D=1$) como se ve en la siguiente figura.
+
+![](imgs/exp_aleatorio.png){fig-align="center"}
+
+Los experimentos aleatorios son el *gold-standard* para estimar el efecto de un tratamiento. De hecho, al ser la asignación aleatoria, podemos asegurar que, como mencionamos en el capítulo [@sec-pot-outcomes], existe independencia ($(Y^0, Y^1) \perp D$). Esto nos asegura que la diferencia de medias de los grupos tratamiento y control son un estimador consistente del **ATE**. Dicho esto, veremos que hay formas más "eficientes" de estimar el **ATE**, es decir, con mayo potencia estadística.
+
+Hay una razón extra para que en este libro empecemos hablando en detalle de los experimentos aleatorizados, y es que cuando entremos de lleno en el mundo de los cuasiexperimentos nos será de gran ayuda entender cuál es el problema y cuál es la solución que se propone. Esto nos va a permitir tener una idea más concreta de las ventajas y limitaciones de cada uno de los diseños cuasiexperimentales que vamos a estudiar más adelante. 
+
+En muchas ocasiones los experimentos aleatorios terminan siendo degradados a la categoría de cuasiexperimento. Por ejemplo: Supongamos que hay un estudio que quiere evaluar el efecto de un programa de *mindfulness* en la cantidad de hechos de violencia en un establecimiento educativo. Para esto se asigno aleatoriamente a diez escuelas al grupo *mindfulness* y diez escuelas al grupo control. Hasta acá todo muy lindo, deberíamos llevar adelante el programa, medir la cantidad de hechos de violencia en cada escuela, hacer la diferencia de medias y *voilá*, ya tenemos un estimador del **ATE**. Pero a veces las cosas no son tan sencillas y en el medio de este experimento van a pasar cosas. Por ejemplo, hay un grupo de colegios del grupo control que, por presión de los padres, incorporan un programa de *mindfulness* propio, mientras que otro grupo del colegios, esta vez del grupo tratamiento, deciden no implementar el programa de *mindfulness* propuesto por nosotros porque les interfiere con la curricula. Para colmo, varios colegios de ambos grupos deciden que la participación sea voluntaria. En fin, **el horror**. Lo que nos termina pasando es que, aunque el diseño sea un experimento aleatorio, la pérdida de control sobre la implementación y la participación voluntaria generan contaminación y sesgo de selección, degradando el estudio a un cuasiexperimento. Es decir, la comparación entre grupos ya no se basa en la aleatorización y vamos a requerir de otros controles estadísticos para corregir posibles sesgos. Más adelante vamos a charlar un poquito más de esto.
+
+Dicho esto volvamos al maravilloso mundo de los `r emo::ji("rainbow")`experimentos aleatorizados ideales`r emo::ji("rainbow")`.
+
+## El experimento ideal
+
+El experimento ideal es ese experimento tan bien planificado, tan bien implementado y tan bien acatado por sus participantes que en la realidad nunca ocurre. Hay algunas características que esperaríamos ver en un **RCT** y son las siguientes.
+
+* **Controles adecuados**: Si diseñamos un experimento para estimar el efecto de un tratamiento, debemos tener un grupo control adecuado con el que comparar. Por ejemplo, . Sin embargo, esto no significa que el *grupo control* sea siempre un grupo simplemente no expuesto al tratamiento. Por ejemplo, es muy conocido el ejemplo de la determinación de la efectividad de un fármaco, en los que al *grupo control* se le ofrece una pastilla que no contiene a la droga siendo estudiada sino unas pastilla de igual forma, tamaño y prescripción de consumo pero, típicamente, de azucar. Esto lo que nos permite es poder descontar el efecto de consumir un placebo en la estimación final de la efectividad del fármaco[^nocebo].
+
+[^nocebo]: Si les interesa, también existen el efecto [nocebo](https://pmc.ncbi.nlm.nih.gov/articles/PMC4804316/) y [*know-cebo*](https://themicrodose.substack.com/p/the-power-of-know-cebo-5-questions?publication_id=371945&post_id=159587451&isFreemail=true&r=3zjda&triedRedirect=true).
+
+* **Asignación aleatoria a los grupos experimentles**: Puede ser aleatorio (por ej. RCTs) o no aleatorio.
+
+* **Los individuos deben ser considerados en el grupo asignado**: Concepto de intention to treat.
+
+Intention to treat. Por ejemplo, hay un experimento en el que se quiere evaluar el efecto de la estatinas en el colesterol LDL. Hay un grupo al que le dan estatinas y otro grupo al que le dan un placebo. Un 18% de los que fueron originalmente asignados al grupo estatinas dejó de tomarlas y un 38% de los que fueron asignados al grupo placebo empezó a tomar estatinas durante el trial.
+
+Los grupos deben ser igualmente tratados.
+
+* **Blinded**: En lo posible los miembros no deben saber a qué grupo pertenecen.
+
+* **Double blinded**: En lo posible los que midan el efecto tampoco tienen que saber a qué grupo pertenece cada individuo.
+
+* **Hay que medir a TODOS los individuos**.
+
+## Cuando la cosa no es tan ideal
+
+### Aleatorización por bloques
+
+Por ejemplo, se quiere testear la ventaja de una intervención laparoscópica sobre una cirugía tradicionales. Es razonable pensar que los cirujanos se vuelven mejores con el tiempo, por eso no es razonable separar todos los pacientes de una, sino más bien por bloques temporales.
+
+### *Spillover*
+
+El concepto de *spillover* es relativmen
+
+### Reversión de la cadena causal (o *reverse causation*)
+
+## Experimentos *between groups*
+
+::: {.callout-warning icon="false"}
+## Hablemos un poco de la nomenclatura
+:::
+
+### Sólo *posttest*
+
+$$
+\begin{array}
+_Y_{i} &=& \beta_0 + \beta_T T_i + \epsilon_{i}
+\end{array}
+$${#eq-cluster_model}
+
+Donde $T_i$ es una variable indicadora que toma el valor $1$ si el participante pertenece al grupo tratamiento y el valor $0$ si no.
+
+### *Pretest-posttest*
+
+## Diseños clúster
+
+Los diseños clúster son una forma de diseño experimental donde los sujetos son asignados a grupos (clústeres) y luego se asignan tratamientos a esos grupos. Este enfoque es útil cuando no es práctico o posible asignar tratamientos a individuos de manera independiente. 
+
+En este ejemplo, se simulará un diseño clúster con 10 grupos y 5 sujetos por grupo. Se asignará un tratamiento a cada grupo y se medirá la respuesta de los sujetos. Luego, se analizarán los datos para evaluar el efecto del tratamiento.
+
+
+$$
+\begin{array}
+_Y_{ij} &=& \mu_j + \epsilon_{ij} \\
+\mu_j &=& \beta_0 + \beta_T T_j + r_j 
+\end{array}
+$${#eq-cluster_model}
+
+Donde $T_j$ es una variable indicadora que toma el valor $1$ si la escuela, y no el participante como antes, pertenece al grupo tratamiento y el valor $0$ si no. De esta forma, si la escuela pertenece al grupo tratamineto su media será $\mu_{j|D_j=1} = \beta_0 + \beta_T + r_j$ mientras que si pertenece al grupo control será $\mu_{j|D_j=0} = \beta_0 + r_j$, y la esperanza de la diferencia entre ambas (dado que la esperanza de $E(r_j)=0$) será justamente la magnitud del efecto del tratamiento $\beta_T$. 
+
+### Un ejemplo con datos
+
+Simulemos un pequeño ejemplo. Supongamos que, sin un ápice de creatividad, queremos evaluar la efectividad de una intervención educativa que sólo se puede aplicar a nivel de escuela. El *outcome* de interés a nivel estudiante va a ser la nota obtenida en un examen estandarizado de matemáticas. Tengamos en cuenta la ecuación @eq-cluster_model, en nuestro caso $Y_{ij}$ sería la nota de cada estudiante, mientras que $mu_j$ sería la media de cada colegio.
+
+Las medias de cada colegio las crearemos usitilizando los parámetros $beta_0 = 50$ y $beta_T = 10$, es decir, la magnitud del efecto que deberíamos recuperar luego es $10$. Además el error será $r_j \sim \mathcal{N}(0, \sigma_{escuelas}^2)$, con $\sigma_{escuelas} =   5$. Vamos a simular $40$ escuelas, asignando la mitad al grupo *tratamiento* y la otra mitad al grupo *control*. Veamos qué pasa con las medias de las escuelas que vamos a simular.
+
+```{r}
+#| code-fold: true
+# Data jerárquica
+set.seed(42)
+n_escuelas <- 40
+
+# Supongamos que tengo n_escuelas escuelas, cada una de ellas tiene una media de la calificacion de nota de matemática
+mu_j <- rnorm(n_escuelas, 50, 5)
+  
+# Las primera 3 son asignadas al grupo tratamiento y las otrasa tres al grupo control
+d <- c(rep("Tratamiento", n_escuelas/2), rep("Control",  n_escuelas/2))
+
+# El efecto del tratamiento es 10, entonces a la media de cada escuela que pertenece al grupo tratamiento
+# le sumamos 10
+beta_T <- 10
+
+# Armo un tibble con las escuelas
+escuelas <- tibble(tratamiento = d, media = mu_j) |>
+    mutate(media = if_else(tratamiento == "Tratamiento", media + beta_T, media)) 
+
+# Graficamos los promedios de las escuelas
+escuelas |>
+  ggplot(aes(x = tratamiento, 
+             y = media,
+             color = tratamiento)) +
+  geom_jitter(size = 2, 
+              alpha = .6,
+              width = .2) +
+  scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+  labs(color = NULL, x = NULL, y = "Media de la escuela j") +
+  theme_bw() +
+  theme(legend.position = "top")
+
+```
+
+Como era esperable, las medias de las escuelas en el grupo tratamiento están por encima de las medias en el grupo control. Sin embargo, hay escuelas para las que esto no es así. Es por eso que es muy importante modelar a la escuela (el clúster) como una posible fuente de variabilidad. 
+
+Ahora lo que podemos hacer es simular las notas de los estudiantes dentro de cada colegio $Y_{ij}$. Para eso vamos a echar mano a la primera línea de la ecuación @eq-cluster_model. En este caso el $mu_j$ será el obtenido en el punto anterior con un $\epsilon_{ij} \sim \mathcal{N}(0, \sigma_{estudiante}^2)$, con $\sigma_{estudiante} = 10$. Veamos ahora qué pinta tienen estos datos.
+
+```{r}
+#| code-fold: true
+#| fig-width: 9
+#| fig-height: 12
+# Data jerárquica
+
+# Ahora vamos a muestrear 20 estudiantes en cada escuela, con media mu_j y un sigma de 10
+alumnos <- tibble(tratamiento = rep(d, each = 20), 
+                  order =rep(1:n_escuelas, each = 20),
+                  escuela = rep(paste("Escuela", 1:n_escuelas), each = 20),
+                  media = rep(mu_j, each = 20)) |>
+  mutate(media = if_else(tratamiento == "Tratamiento", media + beta_T, media)) |>
+  rowwise() |>
+  mutate(Yij = rnorm(1, media, 10)) |>
+  select(-media)
+
+# Graficamos los promedios de las escuelas
+alumnos |>
+  ggplot(aes(x =  fct_reorder(escuela, desc(order)), 
+             y = Yij,
+             color = tratamiento)) +
+  geom_jitter(size = 1, 
+              alpha = .6,
+              width = .2) +
+  scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+  labs(color = NULL, x = NULL, y = "Yij") +
+  coord_flip() +
+  theme(legend.position = "top")
+
+```
+
+Acá vemos que a la variabilidad de las escuelas se suma la variabilidad de los sujetos.
+
+Ahora vamos a tratar de recuperar el tamaño del efecto ajustando un modelo lineal de efectos mixtos[^lmem].
+
+[^lmem]: Sin entrar en demasiado detalle, un modelo lineal de efectos mixtos tiene en cuenta la estructura jerarquica del efecto. En este caso en particular vamos a permitirle al modelo que el punto medio de cada colegio sea considerado un *factor aleatorio*.
+
+```{r}
+#| code-fold: true
+mlmer <- lmer(Yij ~ tratamiento + (1|escuela), data = alumnos)
+modelsummary(list("Escuelas"= mlmer),
+             coef_rename = c("tratamientoTratamiento" = "Tratamiento"),
+             statistic = c("p = {p.value}"),
+             gof_omit = ".*",)
+```
+
+Tratemos de entender qué nos dice este modelo. `(Intecept)` no es otra cosa que $\hat{\beta_0}$ que, de acuerdo a lo que simulamos, debería valer $50$, que era el valor del parámetro que usamos para generar las medias de las escuelas antes de sumarles el error $r_j$ y el efecto del tratamiento. Hablando del efecto del tratamiento, podemos ver que para esta simulación en particular, la estimación del efecto de la intervención $\beta_T$ que sabemos que vale $10$ es estimada como $\hat{\beta_T} = 12.92$. Otra cosa interesante que podemos ver es que el modelo también estima la variabilidad de los errores donde `SD (Intercept escuela)` es una estimación de $r_j$ y `SD (Observations)` es una estimación de $\epsilon_{ij}$, con un valor de $9.73$. Ambos valores de variabilidad son similares a los que usamos para hacer las simulaciones.
+
+Pero... ¿Por qué el valor estimado del efecto es $\hat{\beta_T} = 12.92$ en lugar de $10$? Bueno, porque se trata de una simulación con su respectiva variabilidad. Por ejemplo, veamos qué pasa si simulamos $1000$ experimentos.
+
+```{r}
+#| code-fold: true
+# Data jerárquica
+set.seed(12)
+
+n_escuelas <- 100
+betalmer <- c()
+beta_T <- 10
+d <- c(rep("Tratamiento", n_escuelas/2), rep("Control",  n_escuelas/2))
+
+for (i in 1:100) {
+  mu_j <- rnorm(n_escuelas, 50, 5)
+  
+  alumnos <- tibble(tratamiento = rep(d, each = 20), 
+                    escuela = rep(paste("Escuela", 1:n_escuelas), each = 20),
+                    media = rep(mu_j, each = 20)) |>
+    mutate(media = if_else(tratamiento == "Tratamiento", media + beta_T, media)) |>
+    rowwise() |>
+    mutate(Yij = rnorm(1, media, 10)) |>
+    select(-media)
+  
+  mlmer <- lmer(Yij ~ tratamiento + (1|escuela), data = alumnos)
+  betalmer <- c(betalmer, fixef(mlmer)[2])
+}
+
+betas <- tibble(betalmer = betalmer)
+mean_beta <- betas |>
+  summarise(m_beta = mean(betalmer))
+
+betas |>
+  ggplot(aes(x = betalmer)) +
+  geom_histogram(fill = "#1380A1", 
+                 alpha = .6,
+                 bins = 30) +
+  geom_vline(xintercept = mean_beta$m_beta, 
+             color = "#1380A1", 
+             linewidth = 1) +
+  geom_label(data = mean_beta,
+            aes(label = paste("Efecto promedio =", round(m_beta,2))),
+            x = 10, 
+            y = 50)  +
+  labs(x = "Estimación del efecto del tratamiento",
+       y = NULL) +
+  theme_bw()
+```
+
+Vemos que si hacemos un histograma de todas las estimaciones del parámetro en base a las $1000$ simulaciones de los datos, el promedio es `r round(mean_beta$m_beta,2)`, un valor bastante cercano al valor real de $10$[^simulaciones]. Ahora sí nos podemos quedar tranquilos.
+
+[^simulaciones]: Recordemos que en la práctica **nunca** vamos a conocer el valor real del parámetro y que esa es un ventaja que sólo tenemos en estos casos en los que simulamos "muestras" a partir de valores conocidos de los parámetros.

@@ -762,4 +762,4 @@ Bueno por un par de razones:
 
 2.  **Puede ser más relevante calcular el ITT que el ATE**, sobretodo en políticas públicas o en intervenciones con humanos, el grupo investigador (y el grupo que aplicará los resultados) sólo pueden llegar al grado de una recomendación, es decir por ejemplo, le dicen a un grupo de personas que coman salmón tres veces por semana, no se lo meten en la boca. Pensemos en nuestro ejemplo anterior, el gobierno de Bolivia quiere iniciar una campaña de concientización de la dieta y quiere reducir el colesterol de la población indicándole comer salmón. En el país es muy caro el salmón asi que pese a la sugerencia la mitad de la población no puede comprarlo, el efecto de esta campaña se parecerá más al **ITT** o al **ATE**. Exacto, el **ITT** es un mejor estimador de los escenarios del *mundo real* (que al fin al cabo es lo qué queremos explicar) porque si una intervención es muy buena pero no la pueden recibir todos los sujetos a los que se la asignan (por que es muy cara, o porque da efectos adversos, o miles de causas más), bueno no es tan buena.
 
-![](imgs/enfoques.jpg)
+![](imgs/enfoques.jpg){ fig-align="center" width="300"}

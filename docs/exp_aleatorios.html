@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Diseños experimentales y cuasiexperimentales - 5&nbsp; Experimentos aleatorios</title>
+<title>5&nbsp; Experimentos aleatorios – Diseños experimentales y cuasiexperimentales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,11 +17,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -46,48 +47,20 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -101,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -129,21 +101,57 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -151,11 +159,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exp_aleatorios.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -163,12 +176,12 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -176,66 +189,77 @@ div.csl-indent {
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./matching.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></a>
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></a>
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></a>
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -244,37 +268,43 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#por-qué-son-importantes-los-experimentos-aleatorios" id="toc-por-qué-son-importantes-los-experimentos-aleatorios" class="nav-link active" data-scroll-target="#por-qué-son-importantes-los-experimentos-aleatorios"><span class="toc-section-number">5.1</span>  ¿Por qué son importantes los experimentos aleatorios?</a></li>
-  <li><a href="#el-experimento-ideal" id="toc-el-experimento-ideal" class="nav-link" data-scroll-target="#el-experimento-ideal"><span class="toc-section-number">5.2</span>  El experimento ideal</a></li>
-  <li><a href="#cuando-la-cosa-no-es-tan-ideal" id="toc-cuando-la-cosa-no-es-tan-ideal" class="nav-link" data-scroll-target="#cuando-la-cosa-no-es-tan-ideal"><span class="toc-section-number">5.3</span>  Cuando la cosa no es tan ideal</a>
+  <li><a href="#por-qué-son-importantes-los-experimentos-aleatorios" id="toc-por-qué-son-importantes-los-experimentos-aleatorios" class="nav-link active" data-scroll-target="#por-qué-son-importantes-los-experimentos-aleatorios"><span class="header-section-number">5.1</span> ¿Por qué son importantes los experimentos aleatorios?</a></li>
+  <li><a href="#el-experimento-ideal" id="toc-el-experimento-ideal" class="nav-link" data-scroll-target="#el-experimento-ideal"><span class="header-section-number">5.2</span> El experimento ideal</a></li>
+  <li><a href="#cuando-la-cosa-no-es-tan-ideal" id="toc-cuando-la-cosa-no-es-tan-ideal" class="nav-link" data-scroll-target="#cuando-la-cosa-no-es-tan-ideal"><span class="header-section-number">5.3</span> Cuando la cosa no es tan ideal</a>
   <ul class="collapse">
-  <li><a href="#aleatorización-por-bloques" id="toc-aleatorización-por-bloques" class="nav-link" data-scroll-target="#aleatorización-por-bloques"><span class="toc-section-number">5.3.1</span>  Aleatorización por bloques</a></li>
-  <li><a href="#spillover" id="toc-spillover" class="nav-link" data-scroll-target="#spillover"><span class="toc-section-number">5.3.2</span>  <em>Spillover</em></a></li>
-  <li><a href="#reversión-de-la-cadena-causal-o-reverse-causation" id="toc-reversión-de-la-cadena-causal-o-reverse-causation" class="nav-link" data-scroll-target="#reversión-de-la-cadena-causal-o-reverse-causation"><span class="toc-section-number">5.3.3</span>  Reversión de la cadena causal (o <em>reverse causation</em>)</a></li>
+  <li><a href="#aleatorización-por-bloques" id="toc-aleatorización-por-bloques" class="nav-link" data-scroll-target="#aleatorización-por-bloques"><span class="header-section-number">5.3.1</span> Aleatorización por bloques</a></li>
+  <li><a href="#spillover" id="toc-spillover" class="nav-link" data-scroll-target="#spillover"><span class="header-section-number">5.3.2</span> <em>Spillover</em></a></li>
+  <li><a href="#reversión-de-la-cadena-causal-o-reverse-causation" id="toc-reversión-de-la-cadena-causal-o-reverse-causation" class="nav-link" data-scroll-target="#reversión-de-la-cadena-causal-o-reverse-causation"><span class="header-section-number">5.3.3</span> Reversión de la cadena causal (o <em>reverse causation</em>)</a></li>
   </ul></li>
-  <li><a href="#experimentos-between-groups" id="toc-experimentos-between-groups" class="nav-link" data-scroll-target="#experimentos-between-groups"><span class="toc-section-number">5.4</span>  Experimentos <em>between groups</em></a>
+  <li><a href="#experimentos-between-groups" id="toc-experimentos-between-groups" class="nav-link" data-scroll-target="#experimentos-between-groups"><span class="header-section-number">5.4</span> Experimentos <em>between groups</em></a>
   <ul class="collapse">
-  <li><a href="#sólo-posttest" id="toc-sólo-posttest" class="nav-link" data-scroll-target="#sólo-posttest"><span class="toc-section-number">5.4.1</span>  Sólo <em>posttest</em></a></li>
-  <li><a href="#pretest-posttest" id="toc-pretest-posttest" class="nav-link" data-scroll-target="#pretest-posttest"><span class="toc-section-number">5.4.2</span>  <em>Pretest-posttest</em></a></li>
+  <li><a href="#sólo-posttest" id="toc-sólo-posttest" class="nav-link" data-scroll-target="#sólo-posttest"><span class="header-section-number">5.4.1</span> Sólo <em>posttest</em></a></li>
+  <li><a href="#pretest-posttest" id="toc-pretest-posttest" class="nav-link" data-scroll-target="#pretest-posttest"><span class="header-section-number">5.4.2</span> <em>Pretest-posttest</em></a></li>
   </ul></li>
-  <li><a href="#diseños-clúster" id="toc-diseños-clúster" class="nav-link" data-scroll-target="#diseños-clúster"><span class="toc-section-number">5.5</span>  Diseños clúster</a>
+  <li><a href="#diseños-clúster" id="toc-diseños-clúster" class="nav-link" data-scroll-target="#diseños-clúster"><span class="header-section-number">5.5</span> Diseños clúster</a>
   <ul class="collapse">
-  <li><a href="#análisis-de-datos-jerárquicos" id="toc-análisis-de-datos-jerárquicos" class="nav-link" data-scroll-target="#análisis-de-datos-jerárquicos"><span class="toc-section-number">5.5.1</span>  Análisis de datos jerárquicos</a></li>
-  <li><a href="#la-potenncia-y-la-correlación-intraclase-icc" id="toc-la-potenncia-y-la-correlación-intraclase-icc" class="nav-link" data-scroll-target="#la-potenncia-y-la-correlación-intraclase-icc"><span class="toc-section-number">5.5.2</span>  La potenncia y la correlación intraclase (ICC)</a></li>
-  <li><a href="#un-ejemplo-con-datos" id="toc-un-ejemplo-con-datos" class="nav-link" data-scroll-target="#un-ejemplo-con-datos"><span class="toc-section-number">5.5.3</span>  Un ejemplo con datos</a></li>
+  <li><a href="#análisis-de-datos-jerárquicos" id="toc-análisis-de-datos-jerárquicos" class="nav-link" data-scroll-target="#análisis-de-datos-jerárquicos"><span class="header-section-number">5.5.1</span> Análisis de datos jerárquicos</a></li>
+  <li><a href="#la-potenncia-y-la-correlación-intraclase-icc" id="toc-la-potenncia-y-la-correlación-intraclase-icc" class="nav-link" data-scroll-target="#la-potenncia-y-la-correlación-intraclase-icc"><span class="header-section-number">5.5.2</span> La potenncia y la correlación intraclase (ICC)</a></li>
+  <li><a href="#un-ejemplo-con-datos" id="toc-un-ejemplo-con-datos" class="nav-link" data-scroll-target="#un-ejemplo-con-datos"><span class="header-section-number">5.5.3</span> Un ejemplo con datos</a></li>
+  </ul></li>
+  <li><a href="#falta-de-cumplimiento-del-tratamiento-asignado" id="toc-falta-de-cumplimiento-del-tratamiento-asignado" class="nav-link" data-scroll-target="#falta-de-cumplimiento-del-tratamiento-asignado"><span class="header-section-number">5.6</span> Falta de cumplimiento del tratamiento asignado</a>
+  <ul class="collapse">
+  <li><a href="#estrategias-para-estimar-el-ate-en-no-cumplimiento" id="toc-estrategias-para-estimar-el-ate-en-no-cumplimiento" class="nav-link" data-scroll-target="#estrategias-para-estimar-el-ate-en-no-cumplimiento"><span class="header-section-number">5.6.1</span> Estrategias para estimar el ATE en no cumplimiento</a></li>
+  <li><a href="#enfoque-por-intencion-de-tratamiento" id="toc-enfoque-por-intencion-de-tratamiento" class="nav-link" data-scroll-target="#enfoque-por-intencion-de-tratamiento"><span class="header-section-number">5.6.2</span> Enfoque por <strong>intencion de tratamiento</strong></a></li>
   </ul></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-random-exp" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></h1>
+<h1 class="title"><span id="sec-random-exp" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></h1>
 </div>
 
 
@@ -282,59 +312,58 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
+
 </header>
 
-<div class="cell">
 
-</div>
-<p>El capítulo que sigue está en construcción 🚧. Por favor tengan paciencia.</p>
 <section id="por-qué-son-importantes-los-experimentos-aleatorios" class="level2 page-columns page-full" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="por-qué-son-importantes-los-experimentos-aleatorios"><span class="header-section-number">5.1</span> ¿Por qué son importantes los experimentos aleatorios?</h2>
-<div class="page-columns page-full"><p>En los experimentos aleatorios<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> los sujetos son asignados a los grupos (por ejemplo, tratamiento y control) aleatoriamente. Esto significa que en la asignación de los grupos aleatorios hay involucrado un proceso realmente aleatorio, como arrojar un moneda. Ojo con confundir el concepto de asignación aleatoria con el de muestra aleatoria: Que el muestreo sea aleatorio significa que los participantes son una muestra seleccionada al azar de una población más amplia, mientras que la asignación aleatoria significa que los participantes, independientemente de si fueron seleccionados de una población más amplia o no, son asignados al azar a diferentes condiciones experimentales.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;A lo largo del capítulo vamos a usar de forma intercambiable las expresiones experimentos aleatorios y experimentos aleatorizados. También vamos a usar la sigla <strong>RCT</strong> del inglés <em>randomized controlled trials</em>.</p></li></div></div>
-<div class="callout-warning callout callout-style-default no-icon callout-captioned page-columns page-full">
+<p>En los experimentos aleatorios<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> los sujetos son asignados a los grupos (por ejemplo, tratamiento y control) aleatoriamente. Esto significa que en la asignación de los grupos aleatorios hay involucrado un proceso realmente aleatorio, como arrojar un moneda. Ojo con confundir el concepto de asignación aleatoria con el de muestra aleatoria: Que el muestreo sea aleatorio significa que los participantes son una muestra seleccionada al azar de una población más amplia, mientras que la asignación aleatoria significa que los participantes, independientemente de si fueron seleccionados de una población más amplia o no, son asignados al azar a diferentes condiciones experimentales.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;A lo largo del capítulo vamos a usar de forma intercambiable las expresiones experimentos aleatorios y experimentos aleatorizados. También vamos a usar la sigla <strong>RCT</strong> del inglés <em>randomized controlled trials</em>.</p></div></div><div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Sobre la aleatoridad de las computadoras
 </div>
 </div>
-<div class="callout-body-container callout-body page-columns page-full">
+<div class="callout-body-container callout-body">
 <p>Cuando hablamos de un evento aleatorio, hablamos de una entidad abstracta cuyo resultado no se puede predecir exactamente. Para poner este tipo de eventos en el mundo real solemos hechar mano de ejemplos clásicos que involucran una complejidad fìsica tal que resulta imposible predecirlos exactamente, como arrojar un dado o una moneda. El ejemplo de la moneda es la forma más usual de hablar de una variable aleatoria con dos posibles valores equiprobables (aunque parezca que no tanto <span class="citation" data-cites="bartovs2023fair">(<a href="references.html#ref-bartovs2023fair" role="doc-biblioref">Bartoš et&nbsp;al. 2023</a>)</span>). Sin embargo, esta aleatoridad es muy costosa de reproducir. Es por eso que las computadores utilizan lo que se llama generadores de números pseudo aleatorios<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Estos generadores utilizan series de números generados de forma pseudo aleatoria pero que puede ser recuperada determinìsticamente a partir de una “semilla”. Es por eso que cuando simulamos datos en este libro lo primero que hacemos es ejecutar <code>set.seed(42)</code> (42 o el número que sea), para de esa forma poder obtener el mismo resultado cada vez que replicamos, o el lector quiere replicar, las simulaciones.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-bartovs2023fair" class="csl-entry" role="doc-biblioentry">
+<p>Dicho esto. A fines prácticos, es totalmente razonable utilizar un generador de números pseudo aleatorios para la asignación a grupos experimentales en los experimentos aleatorios.</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Para más información pueden ir a leer <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">esto</a>.</p></div></div><div class="no-row-height column-margin column-container"><div id="ref-bartovs2023fair" class="csl-entry" role="listitem">
 Bartoš, František, Alexandra Sarafoglou, Henrik R Godmann, Amir Sahrani, David Klein Leunk, Pierre Y Gui, David Voss, et&nbsp;al. 2023. <span>«Fair coins tend to land on the same side they started: Evidence from 350,757 flips»</span>. <em>arXiv preprint arXiv:2310.04153</em>.
-</div><li id="fn2"><p><sup>2</sup>&nbsp;Para más información pueden ir a leer <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">esto</a>.</p></li></div><p>Dicho esto. A fines prácticos, es totalmente razonable utilizar un generador de números pseudo aleatorios para la asignación a grupos experimentales en los experimentos aleatorios.</p>
-</div>
-</div>
-<p>Por ejemplo, en el caso más simple, esto significa que dada una muestra de personas, vamos a asignar a cada de una de ellas “tirando una moneda” al grupo control (<span class="math inline">\(D=0\)</span>) o tratamiento (<span class="math inline">\(D=1\)</span>) como se ve en la siguiente figura.</p>
+</div></div><p>Por ejemplo, en el caso más simple, esto significa que dada una muestra de personas, vamos a asignar a cada de una de ellas “tirando una moneda” al grupo control (<span class="math inline">\(D=0\)</span>) o tratamiento (<span class="math inline">\(D=1\)</span>) como se ve en la siguiente figura.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/exp_aleatorio.png" class="img-fluid figure-img"></p>
+<p><img src="imgs/exp_aleatorio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p>Los experimentos aleatorios son el <em>gold-standard</em> para estimar el efecto de un tratamiento. De hecho, al ser la asignación aleatoria, podemos asegurar que, como mencionamos en el capítulo <a href="potential_outcomes.html"><span>Capítulo&nbsp;3</span></a>, existe independencia (<span class="math inline">\((Y^0, Y^1) \perp D\)</span>). Esto nos asegura que la diferencia de medias de los grupos tratamiento y control son un estimador consistente del <strong>ATE</strong>. Dicho esto, veremos que hay formas más “eficientes” de estimar el <strong>ATE</strong>, es decir, con mayo potencia estadística.</p>
+<p>Los experimentos aleatorios son el <em>gold-standard</em> para estimar el efecto de un tratamiento. De hecho, al ser la asignación aleatoria, podemos asegurar que, como mencionamos en el capítulo <a href="potential_outcomes.html" class="quarto-xref"><span>Capítulo 3</span></a>, existe independencia (<span class="math inline">\((Y^0, Y^1) \perp D\)</span>). Esto nos asegura que la diferencia de medias de los grupos tratamiento y control son un estimador consistente del <strong>ATE</strong>. Dicho esto, veremos que hay formas más “eficientes” de estimar el <strong>ATE</strong>, es decir, con mayo potencia estadística.</p>
 <p>Hay una razón extra para que en este libro empecemos hablando en detalle de los experimentos aleatorizados, y es que cuando entremos de lleno en el mundo de los cuasiexperimentos nos será de gran ayuda entender cuál es el problema y cuál es la solución que se propone. Esto nos va a permitir tener una idea más concreta de las ventajas y limitaciones de cada uno de los diseños cuasiexperimentales que vamos a estudiar más adelante.</p>
 <p>En muchas ocasiones los experimentos aleatorios terminan siendo degradados a la categoría de cuasiexperimento. Por ejemplo: Supongamos que hay un estudio que quiere evaluar el efecto de un programa de <em>mindfulness</em> en la cantidad de hechos de violencia en un establecimiento educativo. Para esto se asigno aleatoriamente a diez escuelas al grupo <em>mindfulness</em> y diez escuelas al grupo control. Hasta acá todo muy lindo, deberíamos llevar adelante el programa, medir la cantidad de hechos de violencia en cada escuela, hacer la diferencia de medias y <em>voilá</em>, ya tenemos un estimador del <strong>ATE</strong>. Pero a veces las cosas no son tan sencillas y en el medio de este experimento van a pasar cosas. Por ejemplo, hay un grupo de colegios del grupo control que, por presión de los padres, incorporan un programa de <em>mindfulness</em> propio, mientras que otro grupo del colegios, esta vez del grupo tratamiento, deciden no implementar el programa de <em>mindfulness</em> propuesto por nosotros porque les interfiere con la curricula. Para colmo, varios colegios de ambos grupos deciden que la participación sea voluntaria. En fin, <strong>el horror</strong>. Lo que nos termina pasando es que, aunque el diseño sea un experimento aleatorio, la pérdida de control sobre la implementación y la participación voluntaria generan contaminación y sesgo de selección, degradando el estudio a un cuasiexperimento. Es decir, la comparación entre grupos ya no se basa en la aleatorización y vamos a requerir de otros controles estadísticos para corregir posibles sesgos. Más adelante vamos a charlar un poquito más de esto.</p>
 <p>Dicho esto volvamos al maravilloso mundo de los 🌈experimentos aleatorizados ideales🌈.</p>
 </section>
 <section id="el-experimento-ideal" class="level2 page-columns page-full" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="el-experimento-ideal"><span class="header-section-number">5.2</span> El experimento ideal</h2>
-<div class="page-columns page-full"><p>El experimento ideal es ese experimento tan bien planificado, tan bien implementado y tan bien acatado por sus participantes que en la realidad nunca ocurre. Sin embargo, hay una excepción y son, en general, los <em>medical trials</em>. De hecho hay algunas características que esperaríamos ver en un <strong>RCT</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> y son las siguientes.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;<em>Randomized clinical trials</em>, o ensayos clínicos aleatorizados. Son estudios experimentales que se utilizan para testear la eficacia o la seguridad de procedimientos médicos o tratamientos.</p></li></div></div>
-<ul>
-<li><strong>Controles adecuados</strong>: Si diseñamos un experimento para estimar el efecto de un tratamiento, debemos tener un grupo control adecuado con el que comparar. Sin embargo, esto no significa que el <em>grupo control</em> sea siempre un grupo simplemente no expuesto al tratamiento. Por ejemplo, es muy conocido el ejemplo de la determinación de la efectividad de un fármaco, en los que al <em>grupo control</em> se le ofrece una pastilla que no contiene a la droga siendo estudiada sino unas pastilla de igual forma, tamaño y prescripción de consumo pero, típicamente, de azucar. Esto lo que nos permite es poder descontar el efecto de consumir un placebo en la estimación final de la efectividad del fármaco<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.También es posible que por consideraciones éticas no podamos dejar al grupo control con un tratamiento placebo (por ejemplo cuando ya existe un tratamiento efectivo para la enfermedad que estamos estudiando, si lo hicieramos privaríamos a los sujetos del grupo control de su derecho a la salud), en estos casos el <em>grupo control</em> recibe el tratamiento típico y el <em>grupo intervención</em> el del estudio, en estos casos descontaremos el efecto del tratamiento común y nuestro ATE es el efecto de la intervencion <em>por encima del tratamiento usual</em></li>
+<p>El experimento ideal es ese experimento tan bien planificado, tan bien implementado y tan bien acatado por sus participantes que en la realidad nunca ocurre. Sin embargo, hay una excepción y son, en general, los <em>medical trials</em>. De hecho hay algunas características que esperaríamos ver en un <strong>RCT</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> y son las siguientes.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;<em>Randomized clinical trials</em>, o ensayos clínicos aleatorizados. Son estudios experimentales que se utilizan para testear la eficacia o la seguridad de procedimientos médicos o tratamientos.</p></div></div><ul>
+<li><strong>Controles adecuados</strong>: Si diseñamos un experimento para estimar el efecto de un tratamiento, debemos tener un grupo control adecuado con el que comparar. Sin embargo, esto no significa que el <em>grupo control</em> sea siempre un grupo simplemente no expuesto al tratamiento. Por ejemplo, es muy conocido el ejemplo de la determinación de la efectividad de un fármaco, en los que al <em>grupo control</em> se le ofrece una pastilla que no contiene a la droga siendo estudiada sino unas pastilla de igual forma, tamaño y prescripción de consumo pero, típicamente, de azucar. Esto lo que nos permite es poder descontar el efecto de consumir un placebo en la estimación final de la efectividad del fármaco<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.También es posible que por consideraciones éticas no podamos dejar al grupo control con un tratamiento placebo (por ejemplo cuando ya existe un tratamiento efectivo para la enfermedad que estamos estudiando, si lo hicieramos privaríamos a los sujetos del grupo control de su derecho a la salud), en estos casos el <em>grupo control</em> recibe el tratamiento típico y el <em>grupo tratamiento</em> el del estudio, en estos casos descontaremos el efecto del tratamiento común y nuestro ATE es el efecto de la intervencion <em>por encima del tratamiento usual</em></li>
 </ul>
 <!-- -->
-<div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Si les interesa, también existen el efecto <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4804316/">nocebo</a> y <a href="https://themicrodose.substack.com/p/the-power-of-know-cebo-5-questions?publication_id=371945&amp;post_id=159587451&amp;isFreemail=true&amp;r=3zjda&amp;triedRedirect=true"><em>know-cebo</em></a>.</p></li></div><ul>
-<li><p><strong>Asignación aleatoria a los grupos experimentles</strong>: Como vimos en el capítulo <a href="potential_outcomes.html"><span>Capítulo&nbsp;3</span></a>, la mejor forma de asegurar que los grupos control y tratamiento son lo más iguales posibles es asignando aleatoriamente a los participantes. Esto, junto con una cantidad de participantes suficiente nos asegura que ambos grupos son iguales en todos los factores que pueden influenciar el resultado del experimento, incluyendo los factores de los que no sabemos.</p></li>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Si les interesa, también existen el efecto <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4804316/">nocebo</a> y <a href="https://themicrodose.substack.com/p/the-power-of-know-cebo-5-questions?publication_id=371945&amp;post_id=159587451&amp;isFreemail=true&amp;r=3zjda&amp;triedRedirect=true"><em>know-cebo</em></a>.</p></div></div><ul>
+<li><p><strong>Asignación aleatoria a los grupos experimentles</strong>: Como vimos en el capítulo <a href="potential_outcomes.html" class="quarto-xref"><span>Capítulo 3</span></a>, la mejor forma de asegurar que los grupos control y tratamiento son lo más iguales posibles es asignando aleatoriamente a los participantes. Esto, junto con una cantidad de participantes suficiente nos asegura que ambos grupos son iguales en todos los factores que pueden influenciar el resultado del experimento, incluyendo los factores de los que no sabemos.</p></li>
 <li><p><strong>Los individuos deben ser considerados en el grupo asignado</strong>: Los participantes asignados al grupo tratamiento deben ser considerados como tratamiento, independientemente de si se expusieron o no al mismo. Esto es conocido como el principio <em>intention to treat</em> y puede sonar un poco raro. Sin embargo, lo podemos pensar como un cambio del tratamiento que queremos evaluar. Por ejemplo, hay un experimento en el que se quiere evaluar el efecto de la estatinas en el colesterol LDL. Hay un grupo al que le dan estatinas y otro grupo al que le dan un placebo. Un $18% $ de los que fueron originalmente asignados al grupo estatinas dejó de tomarlas y un $38% $ de los que fueron asignados al grupo placebo empezó a tomar estatinas durante el trial. Esto significa que nuestro experimento no estimaría correctamente el efecto de <em>tomar</em> las estatinas, pero por otro lado, sí estimaría bien el efecto de <em>ser recetado</em> con estatinas. Y si lo pensamos un poco: ¿No es algo más razonable estimar el efecto de lo segundo?<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
 </ul>
 <!-- -->
-<div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Una mejor explicación de este enfoque y su contraparte (no recomendada), el análisis por protocolo pueden visitar este paper[esto] https://onlinelibrary.wiley.com/doi/10.1111/nep.13709</p></li></div><ul>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Una mejor explicación de este enfoque y su contraparte (no recomendada), el análisis por protocolo pueden visitar este paper[esto] https://onlinelibrary.wiley.com/doi/10.1111/nep.13709</p></div></div><ul>
 <li><p><strong>Todos los grupos deben ser tratados igual</strong>: Por ejemplo, si en el ejemplo anterior invitamos a la gente del grupo de estatinas a controles médicos más seguidos, o los evaluamos con más dedicación, va a ser imposible separar los beneficios de la droga de los beneficios de las diferencias en cómo tratamos a los pacientes.</p></li>
 <li><p><strong>Blinded</strong>: Para que las estimaciones de un experimento no se contaminen, resulta necesario que los participantes (o unidad experimental) no conozcan a que grupo experimental pertenecen. Esto es importante porque podría haber algún tipo de contaminación del efecto como por ejemplo que los sujetos que sepan que reciben la intervención se esfuercen para rendir mejor en el outcome o lo contrario al saberse “abandonados” al grupo control tiendan a rendir peor.</p></li>
 <li><p><strong>Double blinded</strong>: Siguiendo con lo mencionado antes, también resulta deseable que los investigadores tampoco sepan a que grupo experimental pertenece un sujeto o unidad experimental. Esto tiene como objetivo reducir al mínimo las diferencias entre los grupos. Por ejemplo, en un experimento para estimar la efectividad de una campaña de comunicación para motivar la vacunación, los investigadores podrían espaciar menos las comunicaciones con alguno de los grupos experimentales, contaminando así el efecto de la intervención en sí misma.</p>
@@ -344,7 +373,7 @@ Bartoš, František, Alexandra Sarafoglou, Henrik R Godmann, Amir Sahrani, David
 <p>Que lindo es el diseño experimental. Todos somos felices, todo funciona. ¿El libro debería terminar acá?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/abogados.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="imgs/abogados.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Pues no mi ciela. Ojalá llevar adelante experimentos fuera tan fácil.</p>
@@ -353,10 +382,10 @@ Bartoš, František, Alexandra Sarafoglou, Henrik R Godmann, Amir Sahrani, David
 <h2 data-number="5.3" class="anchored" data-anchor-id="cuando-la-cosa-no-es-tan-ideal"><span class="header-section-number">5.3</span> Cuando la cosa no es tan ideal</h2>
 <section id="aleatorización-por-bloques" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="aleatorización-por-bloques"><span class="header-section-number">5.3.1</span> Aleatorización por bloques</h3>
-<p>Intuitivamente pensamos que la aleatorizacion de los sujetos a un grupo control o un grupo intervencion es tan simple como lanzar una moneda (y muchas veces lo es), este método se conoce como <strong>aletorización simple</strong>. Sin embargo puede que este método no sea siempre deseado. Por ejemplo, se quiere testear la ventaja de una intervención laparoscópica (mínimamente invasiva) sobre una cirugía tradicional (en la que se abre el abdomen). Es razonable pensar que los cirujanos se vuelven mejores con el tiempo sin importar a que tipo de cirugía, porque la práctica hace al maestro. Bueno imaginemos que aplicamos un proceso de aleatorización simple, es posible que los primeros sujetos sean asignados con más frecuencia al grupo intervencion que al grupo control y los últimos viceversa (ya que la randomizacion es un proceso independiente, la asignación del sujeto anterior no condiciona al que sigue, y esto es posible). En este escenario hipotetico pero posible, el ATE que queremos estimar se encuentra contaminado por una variable confusora (la habilidad del cirujano). ¿Cómo evitamos esto? Bueno una forma razonable es evitar que los sujetos se asignen al grupo todos juntos sino a medida que el cirujano va <em>aprendiendo</em>. Para hacer esto se pueden crear bloques temporales, por ejemplo, los 10 primeros voluntarios, los 10 siguientes y así sucesivamente. Dentro de cada bloque hacemos una asignación aleatoria, de esta forma nos aseguramos que haya un numero mas o menos balanceado de sujetos en el grupo control e intervencion expuestos al cirujano torpe, intermedio y master level.</p>
+<p>Intuitivamente pensamos que la aleatorizacion de los sujetos a un grupo control o un grupo tratamiento es tan simple como lanzar una moneda (y muchas veces lo es), este método se conoce como <strong>aletorización simple</strong>. Sin embargo puede que este método no sea siempre deseado. Por ejemplo, se quiere testear la ventaja de una intervención laparoscópica (mínimamente invasiva) sobre una cirugía tradicional (en la que se abre el abdomen). Es razonable pensar que los cirujanos se vuelven mejores con el tiempo sin importar a que tipo de cirugía, porque la práctica hace al maestro. Bueno imaginemos que aplicamos un proceso de aleatorización simple, es posible que los primeros sujetos sean asignados con más frecuencia al grupo tratamiento que al grupo control y los últimos viceversa (ya que la randomizacion es un proceso independiente, la asignación del sujeto anterior no condiciona al que sigue, y esto es posible). En este escenario hipotetico pero posible, el ATE que queremos estimar se encuentra contaminado por una variable confusora (la habilidad del cirujano). ¿Cómo evitamos esto? Bueno una forma razonable es evitar que los sujetos se asignen al grupo todos juntos sino a medida que el cirujano va <em>aprendiendo</em>. Para hacer esto se pueden crear bloques temporales, por ejemplo, los 10 primeros voluntarios, los 10 siguientes y así sucesivamente. Dentro de cada bloque hacemos una asignación aleatoria, de esta forma nos aseguramos que haya un numero mas o menos balanceado de sujetos en el grupo control e intervencion expuestos al cirujano torpe, intermedio y master level.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/block_aleatorizacion.jpg" class="img-fluid figure-img"></p>
+<p><img src="imgs/block_aleatorizacion.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section>
@@ -364,8 +393,8 @@ Bartoš, František, Alexandra Sarafoglou, Henrik R Godmann, Amir Sahrani, David
 <h3 data-number="5.3.2" class="anchored" data-anchor-id="spillover"><span class="header-section-number">5.3.2</span> <em>Spillover</em></h3>
 <p>En un experimento ideal, los sujetos son asignados aletoriamente a los grupos experimentales <strong>y se quedan ahí</strong>. El efecto <em>spillover</em> o derrame sucede cuando los sujetos del grupo control reciben en forma indirecta parte o todo el tratamiento que esta diseñado para el grupo de intervención. ¿Cómo es esto posible? Es muy posible, sobre todo en intervenciones conductuales. Pongamos ejemplos para que se entienda. Supongamos que queremos ver el efecto de una intervención educativa como hábitos saludables para prevenir cierta enfermedad, algunos sujetos son asignados a la intervención y reciben una charla educativa y otros nada. Un par de amigos (<em>i</em> y <em>j</em>) han sido aleatorizados a un grupo y al otro respectivamente. Al terminar la intervención el sujeto intervenido (<em>i</em>) le cuenta la charla al sujeto del grupo control (<em>j</em>) y este “recibe el tratamiento”. En este ejemplo un sujeto asignado a un grupo control recibe el tratamiento destinado al grupo intervención. Es decir, el grupo tratamiento <em>ha derramado</em> hacia el grupo control.</p>
 <p><img src="imgs/spillover.jpg" class="img-fluid"></p>
-<div class="page-columns page-full"><p>Vale la pena preguntarse por qué el spillover es relevante en los estudios aleatorizados. Si volvemos al capítulo 3 y a repasar outcomes potenciales podemos ver que este marco requiere una asuncion a la que llamamos <strong>SUTVA</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> o en otras palabras este supuesto establece que los resultados potenciales del sujeto <em>j</em> dependen únicamente de su propio estado de tratamiento (el que fue asignado), sin verse afectados por el tratamiento recibido por otro sujeto <em>i</em>. Sin embargo esto no es así, ya que <em>i</em> es responsable del resultado potencial de <em>j</em> porque “le ha aplicado” el tratamiento. Al violar esta asunción, estimar el <strong>ATE</strong> a través de una diferencia de medias puede estar francamente sesgado por este efecto. El spillover es un efecto difícil de rastrear y sobretodo difícil de corregir, es frecuente en intervenciones que tienen que ver con comunicacion o informacion, ya que la comunicación fluye despues de la intervención de forma incontrolable para los investigadores. El mejor enfoque es preveer esta posibilidad e instaurar barreras a priori para disminuir el contagio que una intervención pueda tener sobr el grupo control.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Del inglés <em>stable unit treatment value assumption</em>.</p></li></div></div>
-</section>
+<p>Vale la pena preguntarse por qué el spillover es relevante en los estudios aleatorizados. Si volvemos al capítulo 3 y a repasar outcomes potenciales podemos ver que este marco requiere una asuncion a la que llamamos <strong>SUTVA</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> o en otras palabras este supuesto establece que los resultados potenciales del sujeto <em>j</em> dependen únicamente de su propio estado de tratamiento (el que fue asignado), sin verse afectados por el tratamiento recibido por otro sujeto <em>i</em>. Sin embargo esto no es así, ya que <em>i</em> es responsable del resultado potencial de <em>j</em> porque “le ha aplicado” el tratamiento. Al violar esta asunción, estimar el <strong>ATE</strong> a través de una diferencia de medias puede estar francamente sesgado por este efecto. El spillover es un efecto difícil de rastrear y sobretodo difícil de corregir, es frecuente en intervenciones que tienen que ver con comunicacion o informacion, ya que la comunicación fluye despues de la intervención de forma incontrolable para los investigadores. El mejor enfoque es preveer esta posibilidad e instaurar barreras a priori para disminuir el contagio que una intervención pueda tener sobr el grupo control.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Del inglés <em>stable unit treatment value assumption</em>.</p></div></div></section>
 <section id="reversión-de-la-cadena-causal-o-reverse-causation" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="reversión-de-la-cadena-causal-o-reverse-causation"><span class="header-section-number">5.3.3</span> Reversión de la cadena causal (o <em>reverse causation</em>)</h3>
 <p>La reversión causal es uno de los sesgos que pueden plagar nuestra interpretación de la cadena causa-efecto, sobre todo en los estudios observacionales.</p>
@@ -376,12 +405,12 @@ Bartoš, František, Alexandra Sarafoglou, Henrik R Godmann, Amir Sahrani, David
 <li><p><strong>Efectos anticipados o comportamiento reactivo</strong> A veces, los participantes modifican su comportamiento en respuesta a saber su asignación. Ejemplo: alguien asignado al grupo control empieza a buscar alternativas por su cuenta (porque no recibió tratamiento), y eso afecta su resultado. O alguien en el grupo tratado ya anticipa que tendrá mejoríay cambia su comportamiento desde antes del tratamiento real. El resultado cambia en respuesta a la expectativa del tratamiento, y no necesariamente al tratamiento en sí.</p></li>
 <li><p><strong>Mediciones mal temporizadas</strong> En algunos experimentos, puede que la variable de outcome sea medida antes de que el tratamiento surta efecto, o incluso antes de aplicarlo bien. Si los resultados se usan para definir o cambiar el tratamiento asignado (por error o por diseño), ya no hay garantía de temporalidad: el resultado podría estar influyendo en el tratamiento.</p></li>
 </ul>
-<div class="callout-warning callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Advertencia
 </div>
 </div>
@@ -393,12 +422,12 @@ Advertencia
 </section>
 <section id="experimentos-between-groups" class="level2 page-columns page-full" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="experimentos-between-groups"><span class="header-section-number">5.4</span> Experimentos <em>between groups</em></h2>
-<div class="callout-warning callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hablemos un poco de la nomenclatura
 </div>
 </div>
@@ -445,9 +474,9 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
 <h4 data-number="5.4.1.1" class="anchored" data-anchor-id="un-ab-test"><span class="header-section-number">5.4.1.1</span> Un A/B test</h4>
 <p>Un <strong>A/B test</strong> es un experimento aletorizado muy popular en el campo del diseño de páginas web. El mismo consiste en presentar a los usuarios con dos versiones del mismo sitio web (la versión A y la versión B) y medir su comportamiento en función de la versión que se les presenta. Por ejemplo, se puede medir el tiempo que los usuarios pasan en el sitio web, la tasa de clics en un botón o cualquier otra métrica relevante. La idea es comparar el rendimiento de las dos versiones para determinar cuál es más efectiva.</p>
 <p>En nuestro ejemplo vamnos a asignar aleatoriamente a los usuarios a dos versiones distintas de un sitio web (la version anterior <strong>Website A</strong> o control, y la version nueva <strong>Website B</strong> o intervención) y mediremos el tiempo de permanencia en segundos. Es decir, queremos ver si el cambio de diseño de la página web tiene un efecto positivo en el tiempo que los usuarios pasan en el sitio. En este caso, el tiempo de permanencia es nuestro outcome y la variable de tratamiento es la versión del sitio web.</p>
-<div class="page-columns page-full"><p>Vamos a simular los datos para <span class="math inline">\(100\)</span> usuarios (50 en cada grupo) y luego vamos a estimar el <strong>ATE</strong> usando un modelo lineal. Como los datos son simulados, conocemos el efecto real de la intervención (el <strong>ATE</strong>) que es de <span class="math inline">\(5\)</span> segundos. De hecho, sabemos que el tiempo promedio de permanencia en la versión A es de <span class="math inline">\(50\)</span> segundos y en la versión B es de <span class="math inline">\(55\)</span> segundos <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;asdfasdf</p></li></div></div>
-<div class="cell">
-<details>
+<p>Vamos a simular los datos para <span class="math inline">\(100\)</span> usuarios (50 en cada grupo) y luego vamos a estimar el <strong>ATE</strong> usando un modelo lineal. Como los datos son simulados, conocemos el efecto real de la intervención (el <strong>ATE</strong>) que es de <span class="math inline">\(5\)</span> segundos. De hecho, sabemos que el tiempo promedio de permanencia en la versión A es de <span class="math inline">\(50\)</span> segundos y en la versión B es de <span class="math inline">\(55\)</span> segundos <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;¿Por qué decimos que la asignación es aleatoria si en ningún momento tiramos una moneda? Bueno, si miran el código que utilizamos para la simulación de los datos, vamos a ver que los tiempos base (antes de sumar el tratamiento, <span class="math inline">\(\beta_0 + \epsilon_{i}\)</span> en nuestro modelo) son muestras de una <span class="math inline">\(\mathcal{N}(50, 10^2)\)</span>, es decir, una normal con media <span class="math inline">\(50\)</span> y desviación estándar <span class="math inline">\(10\)</span>. Luego asignamos la mitad para el grupo control y la mitad para el grupo tratamiento (a los que les sumamos <span class="math inline">\(\beta_T\)</span>). Como nuestros sujetos no tienen una “identidad”, al separar mitad padra cada lado dado que son muestras aleatorias tomadas de una distribución es como si estuviéramos asignando aleatoriamente a los grupos experimentales.</p></div></div><div class="cell">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulamos el experimento</span></span>
@@ -472,19 +501,23 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>En nuestro caso la versión del modelo de la ecuación <a href="#eq-postest_model">Ecuación&nbsp;<span>5.2</span></a> es la siguiente:</p>
-<p><span id="eq-postest_model"><span class="math display">\[
+</div>
+<p>En nuestro caso la versión del modelo de la ecuación <a href="#eq-postest_model" class="quarto-xref">Ecuación&nbsp;<span>5.1</span></a> es la siguiente:</p>
+<p><span class="math display">\[
 \begin{array}
 _t_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
 \end{array}
-\tag{5.2}\]</span></span></p>
+\]</span></p>
 <p>Donde <span class="math inline">\(t_i\)</span> es el tiempo de permanencia en segundos, y <span class="math inline">\(T_i\)</span> es una variable indicadora que toma el valor <span class="math inline">\(1\)</span> si el participante pertenece al grupo tratamiento (<strong>Website B</strong>) y el valor <span class="math inline">\(0\)</span> si pertenece al grupo control (<strong>Website B</strong>). En este caso, <span class="math inline">\(\beta_T\)</span> representa la diferencia promedio entre los dos grupos, es decir, el <strong>ATE</strong>.</p>
 <p>Ajustemos un modelo lineal y veamos cómo da la cosa.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model_postets_only <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data, tiempo <span class="sc">~</span> condicion, <span class="at">model =</span> T)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"A/B Postest only"</span><span class="ot">=</span> model_postets_only),</span>
@@ -493,71 +526,22 @@ _t_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">".*"</span>,)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
- 
-
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_drwszvl64uvhct1r2wsj</title>
-    <style>
-.table td.tinytable_css_896rho98ie2ljxmghigt, .table th.tinytable_css_896rho98ie2ljxmghigt {    border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_j5s3q8mpb9mqxforemi9, .table th.tinytable_css_j5s3q8mpb9mqxforemi9 {    text-align: left; }
-.table td.tinytable_css_c0ap9eg7z59qjonff2vk, .table th.tinytable_css_c0ap9eg7z59qjonff2vk {    text-align: center; }
-    </style>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-    </script>
-  
-
-  
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_drwszvl64uvhct1r2wsj" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col"> </th>
-                <th scope="col">A/B Postest only</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>(Intercept)</td>
-                  <td>49.643                </td>
-                </tr>
-                <tr>
-                  <td>           </td>
-                  <td>Error estándar = 1.477</td>
-                </tr>
-                <tr>
-                  <td>Website B  </td>
-                  <td>6.364                 </td>
-                </tr>
-                <tr>
-                  <td>           </td>
-                  <td>Error estándar = 2.089</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- preamble start -->
 
     <script>
-      function styleCell_tinytable_t4ljar8mpairkzlotkk5(i, j, css_id) {
-        var table = document.getElementById("tinytable_drwszvl64uvhct1r2wsj");
-        table.rows[i].cells[j].classList.add(css_id);
+
+      function styleCell_2cb0tu5f968o2hresjof(i, j, css_id) {
+          var table = document.getElementById("tinytable_2cb0tu5f968o2hresjof");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_drwszvl64uvhct1r2wsj');
+        var table = document.getElementById('tinytable_2cb0tu5f968o2hresjof');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -565,8 +549,8 @@ _t_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_tinytable_t4ljar8mpairkzlotkk5(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_drwszvl64uvhct1r2wsj");
+      function spanCell_2cb0tu5f968o2hresjof(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_2cb0tu5f968o2hresjof");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -592,31 +576,74 @@ _t_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \epsilon_{i}
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 4, j: 1 },  ], css_id: 'tinytable_css_99x3opwli5oto18a5u4d',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 },  ], css_id: 'tinytable_css_896rho98ie2ljxmghigt',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_drwszvl64uvhct1r2wsj',}, 
+          { positions: [ { i: 4, j: 0 },  ], css_id: 'tinytable_css_9n6db9o1yxquqfznkjaw',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 },  ], css_id: 'tinytable_css_t4ljar8mpairkzlotkk5',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_nwlpjekxo0darhxzje6q',}, 
+          ];
 
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(0, 0, 'tinytable_css_896rho98ie2ljxmghigt') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(0, 1, 'tinytable_css_896rho98ie2ljxmghigt') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(0, 0, 'tinytable_css_j5s3q8mpb9mqxforemi9') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(1, 0, 'tinytable_css_j5s3q8mpb9mqxforemi9') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(2, 0, 'tinytable_css_j5s3q8mpb9mqxforemi9') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(3, 0, 'tinytable_css_j5s3q8mpb9mqxforemi9') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(4, 0, 'tinytable_css_j5s3q8mpb9mqxforemi9') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(0, 1, 'tinytable_css_c0ap9eg7z59qjonff2vk') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(1, 1, 'tinytable_css_c0ap9eg7z59qjonff2vk') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(2, 1, 'tinytable_css_c0ap9eg7z59qjonff2vk') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(3, 1, 'tinytable_css_c0ap9eg7z59qjonff2vk') })
-window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkzlotkk5(4, 1, 'tinytable_css_c0ap9eg7z59qjonff2vk') })
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_2cb0tu5f968o2hresjof(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
     </script>
 
-  
-
-
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_99x3opwli5oto18a5u4d, .table th.tinytable_css_99x3opwli5oto18a5u4d { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_896rho98ie2ljxmghigt, .table th.tinytable_css_896rho98ie2ljxmghigt { text-align: center; }
+      .table td.tinytable_css_drwszvl64uvhct1r2wsj, .table th.tinytable_css_drwszvl64uvhct1r2wsj { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_9n6db9o1yxquqfznkjaw, .table th.tinytable_css_9n6db9o1yxquqfznkjaw { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_t4ljar8mpairkzlotkk5, .table th.tinytable_css_t4ljar8mpairkzlotkk5 { text-align: left; }
+      .table td.tinytable_css_nwlpjekxo0darhxzje6q, .table th.tinytable_css_nwlpjekxo0darhxzje6q { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_2cb0tu5f968o2hresjof" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">A/B Postest only</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>49.643</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Error estándar = 1.477</td>
+                </tr>
+                <tr>
+                  <td>Website B</td>
+                  <td>6.364</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Error estándar = 2.089</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
 <p>Como podemos ver, la estimación del efecto del tratamiento es de 6.36 segundos. Esto significa que la nueva versión del sitio web tiene un efecto positivo en el tiempo de permanencia de los usuarios en comparación con la versión anterior.</p>
-<div class="page-columns page-full"><p>¿Pero no era que el efecto real era de <span class="math inline">\(5\)</span> segundos y que el <span class="math inline">\(\hat\beta_T\)</span> era un estimador insesgado del efecto porque se trata de un experimento aleatorio?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> La respuesta es simple y complicada al mismo tiempo. Al simular los datos del experimento estamos tomando una muestra aleatorio y este <span class="math inline">\(\hat\beta_T\)</span> no es más que una estimación, es decir, una realización. Esto tiene que ver con que si bien el parámetro <span class="math inline">\(\beta_T\)</span> vale <span class="math inline">\(5\)</span> sus estimaciones no son siempre exactamente <span class="math inline">\(5\)</span>. Lo que si nos asegura el experimento aleatorizado es que el estimador <span class="math inline">\(\hat\beta_T\)</span> es un estimador insesgado del parámetro <span class="math inline">\(\beta_T\)</span>. Es decir, si repitiéramos el experimento muchas veces, la media de todas las estimaciones <span class="math inline">\(\hat\beta_T\)</span> sería igual a <span class="math inline">\(5\)</span>.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;asdfasf</p></li></div></div>
-<p>Como simulamos los datos, podemos simular <span class="math inline">\(1000\)</span> realizaciones del experiento y ver qué pinta tiene esto, ¿No?</p>
+<p>¿Pero no era que el efecto real era de <span class="math inline">\(5\)</span> segundos y que el <span class="math inline">\(\hat\beta_T\)</span> era un estimador insesgado del efecto porque se trata de un experimento aleatorio?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> La respuesta es simple y complicada al mismo tiempo. Al simular los datos del experimento estamos tomando una muestra aleatorio y este <span class="math inline">\(\hat\beta_T\)</span> no es más que una estimación, es decir, una realización. Esto tiene que ver con que si bien el parámetro <span class="math inline">\(\beta_T\)</span> vale <span class="math inline">\(5\)</span> sus estimaciones no son siempre exactamente <span class="math inline">\(5\)</span>. Lo que si nos asegura el experimento aleatorizado es que el estimador <span class="math inline">\(\hat\beta_T\)</span> es un estimador insesgado del parámetro <span class="math inline">\(\beta_T\)</span>. Es decir, si repitiéramos el experimento muchas veces, la media de todas las estimaciones <span class="math inline">\(\hat\beta_T\)</span> sería igual a <span class="math inline">\(5\)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;No confundamos esa diferencia de 1.36 con un sesgo como el que vimos en el capítulo [#sec-pot-outcomes]. En ese caso recordemos que había esperanzas involucradas.</p></div></div><p>Como simulamos los datos, podemos simular <span class="math inline">\(1000\)</span> realizaciones del experiento y ver qué pinta tiene esto, ¿No?</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulemos mil experimentos</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -661,7 +688,11 @@ window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkz
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Bueno, el promedio de las mil estimaciones de <span class="math inline">\(\beta_T\)</span> es de 4.99, ya podemos dormir sin frazada.</p>
@@ -679,7 +710,7 @@ window.addEventListener('load', function () { styleCell_tinytable_t4ljar8mpairkz
 \begin{array}
 _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
 \end{array}
-\tag{5.3}\]</span></span></p>
+\tag{5.2}\]</span></span></p>
 <p>Donde todo representa lo mismo que en la ecuación [#eq-postest_model], pero ahora <span class="math inline">\(X_i\)</span> es la medida <em>pre</em> del sujeto <span class="math inline">\(i\)</span>. En este caso, <span class="math inline">\(\beta_T\)</span> representa de nuevo el efecto del tratamiento y <span class="math inline">\(\beta_X\)</span> representa el efecto de la medida <em>pre</em>.</p>
 <p>Veamos como se adaptaría el ejemplo de la sección anterior si agregamos una medición</p>
 <section id="midamos-algo-antes-en-el-ab-test" class="level4" data-number="5.4.2.1">
@@ -687,7 +718,7 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
 <p>A los datos que simulamos anteriormente les vamos a agergar una nueva medida, el tiempo que están en el sitio web antes de la intervención. Vamos a suponer, igual que en el ejemplo anterior, que el tiempo promedio de permanencia en la versión A es de <span class="math inline">\(50\)</span> segundos y en la versión B es de <span class="math inline">\(55\)</span> segundos. Vamos a simular de nuevo los datos para <span class="math inline">\(100\)</span> usuarios (<span class="math inline">\(50\)</span> en cada grupo).</p>
 <p>Empecemos mirando los datos como los vimos antes</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretest-posttest ####</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -718,12 +749,16 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Se ve bastante parecido a lo que vimos antes ¿No? Tratemos de medir el efecto del tratamiento como lo hicimos en el ejemplo anterior, usando la ecuación [#eq-postest_model]. Si ajustamos ese modelo, que no tiene en cuenta a la medida <em>pre</em>, vamos a obtener las mismas estimaciones que en el ejemplo previo. Tiene sentido ¿No? Claro que sí, porque usamos la misma semilla para generar los datos.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>modelo_pre_basico <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data_pre, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        tiempo_post <span class="sc">~</span> condicion)</span>
@@ -734,72 +769,22 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">'DF|Deviance|R2|AIC|BIC|Log.Lik|F'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
- 
-
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_8a5vbiqvqt3nr25zt9oz</title>
-    <style>
-.table td.tinytable_css_o3elnefi7uf8at9xjd5h, .table th.tinytable_css_o3elnefi7uf8at9xjd5h {    border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_6yulflswu7ntmvgpmpz7, .table th.tinytable_css_6yulflswu7ntmvgpmpz7 {    text-align: left; }
-.table td.tinytable_css_ez2wprpgm970f1dbp778, .table th.tinytable_css_ez2wprpgm970f1dbp778 {    text-align: center; }
-.table td.tinytable_css_w21086csjdf6zboqcj9t, .table th.tinytable_css_w21086csjdf6zboqcj9t {    border-bottom: solid 0.05em black; }
-    </style>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-    </script>
-  
-
-  
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_8a5vbiqvqt3nr25zt9oz" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col"> </th>
-                <th scope="col">A/B Sin incluir el tiempo pre</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>(Intercept)</td>
-                  <td>50.344</td>
-                </tr>
-                <tr>
-                  <td>Website B  </td>
-                  <td>6.120 </td>
-                </tr>
-                <tr>
-                  <td>Num.Obs.   </td>
-                  <td>100   </td>
-                </tr>
-                <tr>
-                  <td>RMSE       </td>
-                  <td>9.07  </td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- preamble start -->
 
     <script>
-      function styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(i, j, css_id) {
-        var table = document.getElementById("tinytable_8a5vbiqvqt3nr25zt9oz");
-        table.rows[i].cells[j].classList.add(css_id);
+
+      function styleCell_cn2h1bc5fyzqqym2u1m2(i, j, css_id) {
+          var table = document.getElementById("tinytable_cn2h1bc5fyzqqym2u1m2");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_8a5vbiqvqt3nr25zt9oz');
+        var table = document.getElementById('tinytable_cn2h1bc5fyzqqym2u1m2');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -807,8 +792,8 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_tinytable_ccutlt9f4zwfrbr1b5fe(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_8a5vbiqvqt3nr25zt9oz");
+      function spanCell_cn2h1bc5fyzqqym2u1m2(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_cn2h1bc5fyzqqym2u1m2");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -834,31 +819,76 @@ _Y_{i} &amp;=&amp; \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 4, j: 1 },  ], css_id: 'tinytable_css_196zmxn3smaw2wtx1jdo',}, 
+          { positions: [ { i: 2, j: 1 },  ], css_id: 'tinytable_css_17ak6m79g55rvyrj04aj',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 3, j: 1 },  ], css_id: 'tinytable_css_o3elnefi7uf8at9xjd5h',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_8a5vbiqvqt3nr25zt9oz',}, 
+          { positions: [ { i: 4, j: 0 },  ], css_id: 'tinytable_css_i2wwaz9nrhgj8a74s59p',}, 
+          { positions: [ { i: 2, j: 0 },  ], css_id: 'tinytable_css_ccutlt9f4zwfrbr1b5fe',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 3, j: 0 },  ], css_id: 'tinytable_css_o2hvgvpcjjsjt79gha1i',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_8tut8zxlrswibxkgbtyt',}, 
+          ];
 
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(0, 0, 'tinytable_css_o3elnefi7uf8at9xjd5h') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(0, 1, 'tinytable_css_o3elnefi7uf8at9xjd5h') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(0, 0, 'tinytable_css_6yulflswu7ntmvgpmpz7') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(1, 0, 'tinytable_css_6yulflswu7ntmvgpmpz7') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(2, 0, 'tinytable_css_6yulflswu7ntmvgpmpz7') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(3, 0, 'tinytable_css_6yulflswu7ntmvgpmpz7') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(4, 0, 'tinytable_css_6yulflswu7ntmvgpmpz7') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(0, 1, 'tinytable_css_ez2wprpgm970f1dbp778') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(1, 1, 'tinytable_css_ez2wprpgm970f1dbp778') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(2, 1, 'tinytable_css_ez2wprpgm970f1dbp778') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(3, 1, 'tinytable_css_ez2wprpgm970f1dbp778') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(4, 1, 'tinytable_css_ez2wprpgm970f1dbp778') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(2, 0, 'tinytable_css_w21086csjdf6zboqcj9t') })
-window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrbr1b5fe(2, 1, 'tinytable_css_w21086csjdf6zboqcj9t') })
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_cn2h1bc5fyzqqym2u1m2(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
     </script>
 
-  
-
-
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_196zmxn3smaw2wtx1jdo, .table th.tinytable_css_196zmxn3smaw2wtx1jdo { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_17ak6m79g55rvyrj04aj, .table th.tinytable_css_17ak6m79g55rvyrj04aj { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_o3elnefi7uf8at9xjd5h, .table th.tinytable_css_o3elnefi7uf8at9xjd5h { text-align: center; }
+      .table td.tinytable_css_8a5vbiqvqt3nr25zt9oz, .table th.tinytable_css_8a5vbiqvqt3nr25zt9oz { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_i2wwaz9nrhgj8a74s59p, .table th.tinytable_css_i2wwaz9nrhgj8a74s59p { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ccutlt9f4zwfrbr1b5fe, .table th.tinytable_css_ccutlt9f4zwfrbr1b5fe { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_o2hvgvpcjjsjt79gha1i, .table th.tinytable_css_o2hvgvpcjjsjt79gha1i { text-align: left; }
+      .table td.tinytable_css_8tut8zxlrswibxkgbtyt, .table th.tinytable_css_8tut8zxlrswibxkgbtyt { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_cn2h1bc5fyzqqym2u1m2" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">A/B Sin incluir el tiempo pre</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>50.344</td>
+                </tr>
+                <tr>
+                  <td>Website B</td>
+                  <td>6.120</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>RMSE</td>
+                  <td>9.07</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
 <p>¿Esto está mal? Por supuesto que no. Pero miremos los datos, pero esta vez usando el tiempo pre como predictor.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_pre <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tiempo_pre, <span class="at">y =</span> tiempo_post, <span class="at">color =</span> condicion)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
@@ -872,12 +902,16 @@ window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrb
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Lo que podemos ver es que, debido a cómo simulamos los datos, el tiempo <em>pre</em> y el tiempo <em>post</em> están correlacionados, es decir, parte de la variabilidad que tenemos en el tiempo <em>post</em> la podemos explicar por diferencias en el tiempo <em>pre</em>. Entonces vamos a incorporar el tiempo <em>pre</em> como predictor en nuestro modelo. En este caso (usando la ecuación [#eq-pre_postest_model]). Comparemos las estimaciones de este modelo con las del de la ecuación [#eq-postest_model].</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>modelo_pre_basico <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data_pre, tiempo_post <span class="sc">~</span> condicion)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>modelo_pre <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> data_pre, tiempo_post <span class="sc">~</span> condicion <span class="sc">+</span> tiempo_pre)</span>
@@ -890,37 +924,92 @@ window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrb
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">'DF|Deviance|R2|AIC|BIC|Log.Lik|F'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<!-- preamble start -->
 
- 
-
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_4kuzqm2e6xuhhy8eg6t7</title>
-    <style>
-.table td.tinytable_css_08yo1a3jahd2r2rsmemn, .table th.tinytable_css_08yo1a3jahd2r2rsmemn {    border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_kosjsccy4cmr7nfamtvq, .table th.tinytable_css_kosjsccy4cmr7nfamtvq {    text-align: left; }
-.table td.tinytable_css_e09lzotq8iyxmbeys6sx, .table th.tinytable_css_e09lzotq8iyxmbeys6sx {    text-align: center; }
-.table td.tinytable_css_809m5vfpf1xdtrkmto53, .table th.tinytable_css_809m5vfpf1xdtrkmto53 {    text-align: center; }
-.table td.tinytable_css_29rb20wzcecthpzz2oat, .table th.tinytable_css_29rb20wzcecthpzz2oat {    border-bottom: solid 0.05em black; }
-    </style>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-    </script>
-  
 
-  
+      function styleCell_21086csjdf6zboqcj9tb(i, j, css_id) {
+          var table = document.getElementById("tinytable_21086csjdf6zboqcj9tb");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_21086csjdf6zboqcj9tb');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_21086csjdf6zboqcj9tb(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_21086csjdf6zboqcj9tb");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 5, j: 1 }, { i: 5, j: 2 },  ], css_id: 'tinytable_css_szjm41hbch98ysli7w14',}, 
+          { positions: [ { i: 3, j: 2 }, { i: 3, j: 1 },  ], css_id: 'tinytable_css_ag6iedpqgwhjq98uihrk',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 1, j: 2 }, { i: 4, j: 1 }, { i: 2, j: 1 }, { i: 2, j: 2 }, { i: 4, j: 2 },  ], css_id: 'tinytable_css_awak92yxrc715mgvd6c7',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_91emy158moel7sk8xa36',}, 
+          { positions: [ { i: 5, j: 0 },  ], css_id: 'tinytable_css_m4nvoa9eu9ny97v6gjw9',}, 
+          { positions: [ { i: 3, j: 0 },  ], css_id: 'tinytable_css_m70aaeeeeoz263n32a9s',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 4, j: 0 },  ], css_id: 'tinytable_css_0rt3pa4ziyw4mok4b1h3',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_76eimy5639g72dr58wix',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_21086csjdf6zboqcj9tb(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_szjm41hbch98ysli7w14, .table th.tinytable_css_szjm41hbch98ysli7w14 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ag6iedpqgwhjq98uihrk, .table th.tinytable_css_ag6iedpqgwhjq98uihrk { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_awak92yxrc715mgvd6c7, .table th.tinytable_css_awak92yxrc715mgvd6c7 { text-align: center; }
+      .table td.tinytable_css_91emy158moel7sk8xa36, .table th.tinytable_css_91emy158moel7sk8xa36 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_m4nvoa9eu9ny97v6gjw9, .table th.tinytable_css_m4nvoa9eu9ny97v6gjw9 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_m70aaeeeeoz263n32a9s, .table th.tinytable_css_m70aaeeeeoz263n32a9s { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_0rt3pa4ziyw4mok4b1h3, .table th.tinytable_css_0rt3pa4ziyw4mok4b1h3 { text-align: left; }
+      .table td.tinytable_css_76eimy5639g72dr58wix, .table th.tinytable_css_76eimy5639g72dr58wix { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_4kuzqm2e6xuhhy8eg6t7" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_21086csjdf6zboqcj9tb" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -937,106 +1026,35 @@ window.addEventListener('load', function () { styleCell_tinytable_ccutlt9f4zwfrb
                   <td>11.614</td>
                 </tr>
                 <tr>
-                  <td>Website B  </td>
-                  <td>6.120 </td>
-                  <td>5.236 </td>
+                  <td>Website B</td>
+                  <td>6.120</td>
+                  <td>5.236</td>
                 </tr>
                 <tr>
-                  <td>Tiempo-pre </td>
-                  <td>      </td>
-                  <td>0.789 </td>
+                  <td>Tiempo-pre</td>
+                  <td></td>
+                  <td>0.789</td>
                 </tr>
                 <tr>
-                  <td>Num.Obs.   </td>
-                  <td>100   </td>
-                  <td>100   </td>
+                  <td>Num.Obs.</td>
+                  <td>100</td>
+                  <td>100</td>
                 </tr>
                 <tr>
-                  <td>RMSE       </td>
-                  <td>9.07  </td>
-                  <td>4.42  </td>
+                  <td>RMSE</td>
+                  <td>9.07</td>
+                  <td>4.42</td>
                 </tr>
         </tbody>
       </table>
     </div>
-
-    <script>
-      function styleCell_tinytable_7ag6iedpqgwhjq98uihr(i, j, css_id) {
-        var table = document.getElementById("tinytable_4kuzqm2e6xuhhy8eg6t7");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_4kuzqm2e6xuhhy8eg6t7');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_tinytable_7ag6iedpqgwhjq98uihr(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_4kuzqm2e6xuhhy8eg6t7");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(0, 0, 'tinytable_css_08yo1a3jahd2r2rsmemn') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(0, 1, 'tinytable_css_08yo1a3jahd2r2rsmemn') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(0, 2, 'tinytable_css_08yo1a3jahd2r2rsmemn') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(0, 0, 'tinytable_css_kosjsccy4cmr7nfamtvq') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(1, 0, 'tinytable_css_kosjsccy4cmr7nfamtvq') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(2, 0, 'tinytable_css_kosjsccy4cmr7nfamtvq') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(3, 0, 'tinytable_css_kosjsccy4cmr7nfamtvq') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(4, 0, 'tinytable_css_kosjsccy4cmr7nfamtvq') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(5, 0, 'tinytable_css_kosjsccy4cmr7nfamtvq') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(0, 1, 'tinytable_css_e09lzotq8iyxmbeys6sx') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(1, 1, 'tinytable_css_e09lzotq8iyxmbeys6sx') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(2, 1, 'tinytable_css_e09lzotq8iyxmbeys6sx') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(3, 1, 'tinytable_css_e09lzotq8iyxmbeys6sx') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(4, 1, 'tinytable_css_e09lzotq8iyxmbeys6sx') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(5, 1, 'tinytable_css_e09lzotq8iyxmbeys6sx') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(0, 2, 'tinytable_css_809m5vfpf1xdtrkmto53') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(1, 2, 'tinytable_css_809m5vfpf1xdtrkmto53') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(2, 2, 'tinytable_css_809m5vfpf1xdtrkmto53') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(3, 2, 'tinytable_css_809m5vfpf1xdtrkmto53') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(4, 2, 'tinytable_css_809m5vfpf1xdtrkmto53') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(5, 2, 'tinytable_css_809m5vfpf1xdtrkmto53') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(3, 0, 'tinytable_css_29rb20wzcecthpzz2oat') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(3, 1, 'tinytable_css_29rb20wzcecthpzz2oat') })
-window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq98uihr(3, 2, 'tinytable_css_29rb20wzcecthpzz2oat') })
-    </script>
-
-  
-
-
+<!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
 <p>Ahora el estimador del modelo pretest-postest es de 5.24 segundos. Una estimación más cercana al valor del parámetro <span class="math inline">\(\beta_T\)</span> que sabemos que es <span class="math inline">\(5\)</span>. Esto, como ya vimos en el ejemplo anterior, no significa que el estimador sea sesgado en el caso de no usar el timpo <em>pre</em>. Pero vamos a ver que la estimación es mejor y vamos a ver por qué.</p>
 <p>Repitamos la simulación de <span class="math inline">\(1000\)</span> experimentos, pero ahora usando el modelo pretest-postest. Vamos a ver cómo se distribuyen las estimaciones de <span class="math inline">\(\beta_T\)</span> incluyendo y no incluyendo el tiempo <em>pre</em>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulemos mil experimentos</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1101,7 +1119,11 @@ window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Acá viene lo importante. Podemos ver que cuando incluimos la medición del tiempo <em>pre</em> en el modelo, la distribución de las estimaciones de <span class="math inline">\(\beta_T\)</span> es más angosta. Esto significa que la variabilidad de las estimaciones es menor y que el error estándar de la estimación del efecto del tratamiento es menor. En otras palabras, al incluir la medición <em>pre</em> en el modelo, estamos reduciendo la varianza no explicada por el modelo y, por lo tanto, mejorando la precisión de nuestras estimaciones y con ella la potencia estadística de nuestro test.</p>
@@ -1112,7 +1134,7 @@ window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq
 <p>Donde <span class="math inline">\(\sigma^2_{\epsilon \,pre-post}\)</span> es la varianza del término de error en el modelo que incluye la medida <em>pre</em> y <span class="math inline">\(\sigma^2_{\epsilon \, post}\)</span> es la varianza del término de error en el modelo que no incluye la medida <em>pre</em>. <span class="math inline">\(\rho_{pre-post}\)</span> es la correlación entre las medidas <em>pre</em> y <em>post</em>. Esta relación nos dice que al incluir la medida <em>pre</em> en el modelo, estamos reduciendo la varianza del término de error en un porcentaje igual a <span class="math inline">\(1 - \rho_{pre-post}^2\)</span>. Esto significa que cuanto mayor sea la correlación entre las medidas <em>pre</em> y <em>post</em>, mayor será la reducción de la varianza del término de error y, por lo tanto, mayor será la mejora en la precisión de nuestras estimaciones y la potencia estadística de nuestros tests.</p>
 <p>Esta relación para <strong>n infinito</strong> podemos verla gráficamente en la siguiente figura. En la figura se muestra la relación entre la correlación entre las medidas <em>pre</em> y <em>post</em> y el error estándar de la estimación del efecto del tratamiento.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>errores <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">rho =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>),</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sigma_Ancova =</span> (<span class="dv">1</span><span class="sc">-</span>rho<span class="sc">^</span><span class="dv">2</span>))</span>
@@ -1126,7 +1148,11 @@ window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Podemos ver que con correlación <span class="math inline">\(1\)</span> entre las medidas <em>pre</em> y <em>post</em> la potencia sería infinita, pero bueno, recordemos que esto es para <strong>n infinito</strong>.</p>
@@ -1149,8 +1175,8 @@ window.addEventListener('load', function () { styleCell_tinytable_7ag6iedpqgwhjq
 <p>Todo parece ideal, ¿No? Pero nada de esto viene sin un costo. En general el costo es la potencia estadística. Es decir, para tener la misma potencia estadística que aleatorizando a nivel de individuo, vamos a necesitar más (y a veces muchos más) sujetos experimentales divididos en grupos. Más de eso en la sección que sigue.</p>
 <section id="análisis-de-datos-jerárquicos" class="level3 page-columns page-full" data-number="5.5.1">
 <h3 data-number="5.5.1" class="anchored" data-anchor-id="análisis-de-datos-jerárquicos"><span class="header-section-number">5.5.1</span> Análisis de datos jerárquicos</h3>
-<div class="page-columns page-full"><p>Para analizar este tipo de datos utilizamos modelos estadísticos que tienen en cuenta la estructura jerárquica de los datos. En este libro los vamos a llamar de forma general modelos jerárquicos<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. A continuación tenemos la estructura de un modelo lineal jerárquico con un sólo nivel de agrupamiento<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;También se pueden llamar <em>hierarchical linear models</em>, <em>linear mixed-effect model</em> , <em>mixed models</em>, <em>nested data models</em>, <em>random coefficient</em>, <em>random-effects models</em>, <em>random parameter models</em> o <em>split-plot designs</em>. Pero siempre estamos hablando de los mismo.</p></li><li id="fn10"><p><sup>10</sup>&nbsp;Por ejemplo, sirve para modelar los estudiantes de una escuela, pero también podríamos tener modelos que nos permitan modelar los estudiantes de una escuela, que a su vez pertenece a un distrito escolar, a una provincia, etc. Teniendo más niveles de agrupamiento, pero eso queda afuera del alcance de este libro.</p></li></div></div>
-<p><span class="math display">\[
+<p>Para analizar este tipo de datos utilizamos modelos estadísticos que tienen en cuenta la estructura jerárquica de los datos. En este libro los vamos a llamar de forma general modelos jerárquicos<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. A continuación tenemos la estructura de un modelo lineal jerárquico con un sólo nivel de agrupamiento<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;También se pueden llamar <em>hierarchical linear models</em>, <em>linear mixed-effect model</em> , <em>mixed models</em>, <em>nested data models</em>, <em>random coefficient</em>, <em>random-effects models</em>, <em>random parameter models</em> o <em>split-plot designs</em>. Pero siempre estamos hablando de los mismo.</p></div><div id="fn10"><p><sup>10</sup>&nbsp;Por ejemplo, sirve para modelar los estudiantes de una escuela, pero también podríamos tener modelos que nos permitan modelar los estudiantes de una escuela, que a su vez pertenece a un distrito escolar, a una provincia, etc. Teniendo más niveles de agrupamiento, pero eso queda afuera del alcance de este libro.</p></div></div><p><span class="math display">\[
 \begin{array}
 _Y_{ij} &amp;=&amp; \mu_j + \epsilon_{ij} \\
 \mu_j &amp;=&amp; \beta_0 + \beta_T T_j + r_j
@@ -1167,14 +1193,14 @@ ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{int
 <p>donde <span class="math inline">\(\sigma^2_{inter-clúster}\)</span> es la varianza entre clústers, es decir, cuánto se varían las medias de los clústers entre clústers, y <span class="math inline">\(\sigma^2_{intra-clúster}\)</span> es la varianza dentro de los clústers, es decir, cuánto varías las mediciones de cada individuo dentro de cada clúster.</p>
 <p>Como mencionamos anteriormente, la aleatorización a nivel de clúster tiene su costo. Si los outcomes dentro de cada clúster están altamente correlacionados y la magnitud de los resultados varía considerablemente entre clústers, entonces es probable que los participantes dentro de un mismo grupo tengan resultados similares, y el ICC será alto. En estos casos, los datos provenientes de un individuo aportan casi tanta información como si se incluyera a todos los miembros. Por lo tanto, el tamaño muestral efectivo se aproxima más al número de clústers que al tamaño total de la muestra de individuoos.</p>
 <p>Pasando en limpio. Si los clústers son más similares entre sí, el modelo estadístico será más potente, con un tamaño de muestra efectivo cercano a la cantidad de individuos mientras que si los clústers difieren mucho entre sí la potencia estadística cae, aproximándonos a un tamaño de muestra efectivo igual a la cantidad de clústers.</p>
-<div class="page-columns page-full"><p>Es por esto último que en la práctica siempre conviene agergar más clústers que individuos<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>. Pero claro, eso es lo que suele ser más costoso.</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Un ejemplo numérico, dado un total de <span class="math inline">\(1000\)</span> participantes, la potencia sería de <span class="math inline">\(0.75\)</span> si hubiera <span class="math inline">\(50\)</span> grupos de <span class="math inline">\(20\)</span> participantes cada uno, mientras que el poder sería sólo de <span class="math inline">\(0.45\)</span> con <span class="math inline">\(20\)</span> grupos de <span class="math inline">\(50\)</span> participantes cada uno, suponiendo un <span class="math inline">\(ICC\)</span> de <span class="math inline">\(0.1\)</span>.</p></li></div></div>
-</section>
+<p>Es por esto último que en la práctica siempre conviene agergar más clústers que individuos<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>. Pero claro, eso es lo que suele ser más costoso.</p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Un ejemplo numérico, dado un total de <span class="math inline">\(1000\)</span> participantes, la potencia sería de <span class="math inline">\(0.75\)</span> si hubiera <span class="math inline">\(50\)</span> grupos de <span class="math inline">\(20\)</span> participantes cada uno, mientras que el poder sería sólo de <span class="math inline">\(0.45\)</span> con <span class="math inline">\(20\)</span> grupos de <span class="math inline">\(50\)</span> participantes cada uno, suponiendo un <span class="math inline">\(ICC\)</span> de <span class="math inline">\(0.1\)</span>.</p></div></div></section>
 <section id="un-ejemplo-con-datos" class="level3 page-columns page-full" data-number="5.5.3">
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="un-ejemplo-con-datos"><span class="header-section-number">5.5.3</span> Un ejemplo con datos</h3>
 <p>Simulemos un pequeño ejemplo. Supongamos que, sin un ápice de creatividad, queremos evaluar la efectividad de una intervención educativa que sólo se puede aplicar a nivel de escuela. El <em>outcome</em> de interés a nivel estudiante va a ser la nota obtenida en un examen estandarizado de matemáticas. Tengamos en cuenta la ecuación <span class="quarto-unresolved-ref">?eq-cluster_model</span>, en nuestro caso <span class="math inline">\(Y_{ij}\)</span> sería la nota de cada estudiante, mientras que <span class="math inline">\(mu_j\)</span> sería la media de cada colegio.</p>
 <p>Las medias de cada colegio las crearemos usitilizando los parámetros <span class="math inline">\(beta_0 = 50\)</span> y <span class="math inline">\(beta_T = 10\)</span>, es decir, la magnitud del efecto que deberíamos recuperar luego es <span class="math inline">\(10\)</span>. Además el error será <span class="math inline">\(r_j \sim \mathcal{N}(0, \sigma_{escuelas}^2)\)</span>, con <span class="math inline">\(\sigma_{escuelas} = 5\)</span>. Vamos a simular <span class="math inline">\(40\)</span> escuelas, asignando la mitad al grupo <em>tratamiento</em> y la otra mitad al grupo <em>control</em>. Veamos qué pasa con las medias de las escuelas que vamos a simular.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data jerárquica</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
@@ -1208,13 +1234,17 @@ ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{int
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Como era esperable, las medias de las escuelas en el grupo tratamiento están por encima de las medias en el grupo control. Sin embargo, hay escuelas para las que esto no es así. Es por eso que es muy importante modelar a la escuela (el clúster) como una posible fuente de variabilidad.</p>
 <p>Ahora lo que podemos hacer es simular las notas de los estudiantes dentro de cada colegio <span class="math inline">\(Y_{ij}\)</span>. Para eso vamos a echar mano a la primera línea de la ecuación <span class="quarto-unresolved-ref">?eq-cluster_model</span>. En este caso el <span class="math inline">\(mu_j\)</span> será el obtenido en el punto anterior con un <span class="math inline">\(\epsilon_{ij} \sim \mathcal{N}(0, \sigma_{estudiante}^2)\)</span>, con <span class="math inline">\(\sigma_{estudiante} = 10\)</span>. Veamos ahora qué pinta tienen estos datos.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data jerárquica</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1242,13 +1272,17 @@ ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{int
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Acá vemos que a la variabilidad de las escuelas se suma la variabilidad de los sujetos.</p>
-<div class="page-columns page-full"><p>Ahora vamos a tratar de recuperar el tamaño del efecto ajustando un modelo lineal de efectos mixtos<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Sin entrar en demasiado detalle, un modelo lineal de efectos mixtos tiene en cuenta la estructura jerarquica del efecto. En este caso en particular vamos a permitirle al modelo que el punto medio de cada colegio sea considerado un <em>factor aleatorio</em>.</p></li></div></div>
-<div class="cell">
-<details>
+<p>Ahora vamos a tratar de recuperar el tamaño del efecto ajustando un modelo lineal de efectos mixtos<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Sin entrar en demasiado detalle, un modelo lineal de efectos mixtos tiene en cuenta la estructura jerarquica del efecto. En este caso en particular vamos a permitirle al modelo que el punto medio de cada colegio sea considerado un <em>factor aleatorio</em>.</p></div></div><div class="cell">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mlmer <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Yij <span class="sc">~</span> tratamiento <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>escuela), <span class="at">data =</span> alumnos)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Escuelas"</span><span class="ot">=</span> mlmer),</span>
@@ -1257,84 +1291,22 @@ ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{int
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">'DF|Deviance|R2|AIC|BIC|Log.Lik|F'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
- 
-
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_c5l6bs0cuyooeaniywog</title>
-    <style>
-.table td.tinytable_css_ba4cvkiqq1qb3r6urcp9, .table th.tinytable_css_ba4cvkiqq1qb3r6urcp9 {    border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_q8rebhefmbahce33mcrj, .table th.tinytable_css_q8rebhefmbahce33mcrj {    text-align: left; }
-.table td.tinytable_css_dum5xtt6d7u2ovbiocf4, .table th.tinytable_css_dum5xtt6d7u2ovbiocf4 {    text-align: center; }
-.table td.tinytable_css_7b1wibem0ct1y052wb55, .table th.tinytable_css_7b1wibem0ct1y052wb55 {    border-bottom: solid 0.05em black; }
-    </style>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-    </script>
-  
-
-  
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_c5l6bs0cuyooeaniywog" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col"> </th>
-                <th scope="col">Escuelas</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>(Intercept)           </td>
-                  <td>47.802</td>
-                </tr>
-                <tr>
-                  <td>Tratamiento           </td>
-                  <td>12.923</td>
-                </tr>
-                <tr>
-                  <td>SD (Intercept escuela)</td>
-                  <td>6.260 </td>
-                </tr>
-                <tr>
-                  <td>SD (Observations)     </td>
-                  <td>9.733 </td>
-                </tr>
-                <tr>
-                  <td>Num.Obs.              </td>
-                  <td>800   </td>
-                </tr>
-                <tr>
-                  <td>ICC                   </td>
-                  <td>0.3   </td>
-                </tr>
-                <tr>
-                  <td>RMSE                  </td>
-                  <td>9.51  </td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- preamble start -->
 
     <script>
-      function styleCell_tinytable_etfg0i7a9qr1p7trfvm6(i, j, css_id) {
-        var table = document.getElementById("tinytable_c5l6bs0cuyooeaniywog");
-        table.rows[i].cells[j].classList.add(css_id);
+
+      function styleCell_psc37y8c4b3o92gpjjbj(i, j, css_id) {
+          var table = document.getElementById("tinytable_psc37y8c4b3o92gpjjbj");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_c5l6bs0cuyooeaniywog');
+        var table = document.getElementById('tinytable_psc37y8c4b3o92gpjjbj');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1342,8 +1314,8 @@ ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{int
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_tinytable_etfg0i7a9qr1p7trfvm6(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_c5l6bs0cuyooeaniywog");
+      function spanCell_psc37y8c4b3o92gpjjbj(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_psc37y8c4b3o92gpjjbj");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1369,38 +1341,89 @@ ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{int
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 7, j: 1 },  ], css_id: 'tinytable_css_bdbvjml3c4zjwt88cxus',}, 
+          { positions: [ { i: 4, j: 1 },  ], css_id: 'tinytable_css_020681dkshblroyp8wdq',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 },  ], css_id: 'tinytable_css_ba4cvkiqq1qb3r6urcp9',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_c5l6bs0cuyooeaniywog',}, 
+          { positions: [ { i: 7, j: 0 },  ], css_id: 'tinytable_css_b5tgmr0lkh0bysu0n201',}, 
+          { positions: [ { i: 4, j: 0 },  ], css_id: 'tinytable_css_etfg0i7a9qr1p7trfvm6',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 },  ], css_id: 'tinytable_css_0vdwj22mw55dj78zze6s',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_ry2byujm9pu0yc4dqqwv',}, 
+          ];
 
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(0, 0, 'tinytable_css_ba4cvkiqq1qb3r6urcp9') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(0, 1, 'tinytable_css_ba4cvkiqq1qb3r6urcp9') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(0, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(1, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(2, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(3, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(4, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(5, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(6, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(7, 0, 'tinytable_css_q8rebhefmbahce33mcrj') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(0, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(1, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(2, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(3, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(4, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(5, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(6, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(7, 1, 'tinytable_css_dum5xtt6d7u2ovbiocf4') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(4, 0, 'tinytable_css_7b1wibem0ct1y052wb55') })
-window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7trfvm6(4, 1, 'tinytable_css_7b1wibem0ct1y052wb55') })
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_psc37y8c4b3o92gpjjbj(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
     </script>
 
-  
-
-
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_bdbvjml3c4zjwt88cxus, .table th.tinytable_css_bdbvjml3c4zjwt88cxus { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_020681dkshblroyp8wdq, .table th.tinytable_css_020681dkshblroyp8wdq { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_ba4cvkiqq1qb3r6urcp9, .table th.tinytable_css_ba4cvkiqq1qb3r6urcp9 { text-align: center; }
+      .table td.tinytable_css_c5l6bs0cuyooeaniywog, .table th.tinytable_css_c5l6bs0cuyooeaniywog { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_b5tgmr0lkh0bysu0n201, .table th.tinytable_css_b5tgmr0lkh0bysu0n201 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_etfg0i7a9qr1p7trfvm6, .table th.tinytable_css_etfg0i7a9qr1p7trfvm6 { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_0vdwj22mw55dj78zze6s, .table th.tinytable_css_0vdwj22mw55dj78zze6s { text-align: left; }
+      .table td.tinytable_css_ry2byujm9pu0yc4dqqwv, .table th.tinytable_css_ry2byujm9pu0yc4dqqwv { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_psc37y8c4b3o92gpjjbj" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Escuelas</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>47.802</td>
+                </tr>
+                <tr>
+                  <td>Tratamiento</td>
+                  <td>12.923</td>
+                </tr>
+                <tr>
+                  <td>SD (Intercept escuela)</td>
+                  <td>6.260</td>
+                </tr>
+                <tr>
+                  <td>SD (Observations)</td>
+                  <td>9.733</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>800</td>
+                </tr>
+                <tr>
+                  <td>ICC</td>
+                  <td>0.3</td>
+                </tr>
+                <tr>
+                  <td>RMSE</td>
+                  <td>9.51</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
 <p>Tratemos de entender qué nos dice este modelo. <code>(Intecept)</code> no es otra cosa que <span class="math inline">\(\hat{\beta_0}\)</span> que, de acuerdo a lo que simulamos, debería valer <span class="math inline">\(50\)</span>, que era el valor del parámetro que usamos para generar las medias de las escuelas antes de sumarles el error <span class="math inline">\(r_j\)</span> y el efecto del tratamiento. Hablando del efecto del tratamiento, podemos ver que para esta simulación en particular, la estimación del efecto de la intervención <span class="math inline">\(\beta_T\)</span> que sabemos que vale <span class="math inline">\(10\)</span> es estimada como <span class="math inline">\(\hat{\beta_T} = 12.92\)</span>. Otra cosa interesante que podemos ver es que el modelo también estima la variabilidad de los errores donde <code>SD (Intercept escuela)</code> es una estimación de <span class="math inline">\(r_j\)</span> y <code>SD (Observations)</code> es una estimación de <span class="math inline">\(\epsilon_{ij}\)</span>, con un valor de <span class="math inline">\(9.73\)</span>. Ambos valores de variabilidad son similares a los que usamos para hacer las simulaciones.</p>
 <p>Pero… ¿Por qué el valor estimado del efecto es <span class="math inline">\(\hat{\beta_T} = 12.92\)</span> en lugar de <span class="math inline">\(10\)</span>? Bueno, porque se trata de una simulación con su respectiva variabilidad. Por ejemplo, veamos qué pasa si simulamos <span class="math inline">\(1000\)</span> experimentos.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data jerárquica</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
@@ -1446,10 +1469,107 @@ window.addEventListener('load', function () { styleCell_tinytable_etfg0i7a9qr1p7
 <span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="exp_aleatorios_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<div class="page-columns page-full"><p>Vemos que si hacemos un histograma de todas las estimaciones del parámetro en base a las <span class="math inline">\(1000\)</span> simulaciones de los datos, el promedio es 10.02, un valor bastante cercano al valor real de <span class="math inline">\(10\)</span><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Ahora sí nos podemos quedar tranquilos.</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Recordemos que en la práctica <strong>nunca</strong> vamos a conocer el valor real del parámetro y que esa es un ventaja que sólo tenemos en estos casos en los que simulamos “muestras” a partir de valores conocidos de los parámetros.</p></li></div></div>
+</div>
+<p>Vemos que si hacemos un histograma de todas las estimaciones del parámetro en base a las <span class="math inline">\(1000\)</span> simulaciones de los datos, el promedio es 10.02, un valor bastante cercano al valor real de <span class="math inline">\(10\)</span><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Ahora sí nos podemos quedar tranquilos.</p>
+<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;Recordemos que en la práctica <strong>nunca</strong> vamos a conocer el valor real del parámetro y que esa es un ventaja que sólo tenemos en estos casos en los que simulamos “muestras” a partir de valores conocidos de los parámetros.</p></div></div></section>
+</section>
+<section id="falta-de-cumplimiento-del-tratamiento-asignado" class="level2 page-columns page-full" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="falta-de-cumplimiento-del-tratamiento-asignado"><span class="header-section-number">5.6</span> Falta de cumplimiento del tratamiento asignado</h2>
+<p>En este capítulo vimos como los experimentos aleatorios deberían ser idealmente pero que la realidad a veces tiene otros planes. Hasta ahora hemos visto que los sujetos pueden no distribuirse aleatoriamente a través de una variable, por ejemplo, temporal (y debemos solucionarlo con una <strong>aletorización por bloques</strong>), puede ser que interpretemos inadecuadamente la cadena causal (el <strong>reverse causation bias</strong>) e incluso puede pasar que los sujetos del grupo control se contamine indirectamente con la intervención (el <strong>spillover</strong>). Pero ninguno de estos escenarios explica un tercer problema, ¿qué pasa si los individuos no siguen la intervencion que se le propone (la del grupo tratamiento o del grupo control)? Esta situación se llama <strong>“incumplimiento” (o no adherencia) a la asignación del tratamiento</strong></p>
+<p>Hay dos tipos de no-adherencia:</p>
+<ul>
+<li><p><strong>Participantes <em>no-shows</em></strong>: esta condición sucede cuando los participantes asignados aleatoriamente a la condición de tratamiento podrían negarse a recibir el tratamiento, no presentarse a la sesión de tratamiento o preferir el tratamiento de comparación y buscarlo en lugar del tratamiento experimental al que habían sido asignados. En otras palabras son sujetos que siguiendo la notación de potential outcomes,s erían: <span class="math inline">\(D_0 T_1\)</span> <a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p></li>
+<li><p><strong>Participantes <em>crossovers</em></strong>: en estos casos la condición es opuesta, algunos participantes asignados aleatoriamente a la condición de comparación podrían enterarse del tratamiento y, de alguna manera, conseguir entrar a la condición de tratamiento o recibir un tratamiento similar fuera del ámbito del estudio. O bien, los investigadores (motivados por otras causas externas al diseño) podrían violar el protocolo de asignación aleatoria y exponer a algunos participantes a la condición de tratamiento que originalmente estaban asignados a la condición de comparación. O sea <span class="math inline">\(D_1 T_0\)</span></p>
+<p><img src="imgs/no-adherence-03.jpg" class="img-fluid"></p></li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;Recordemos que en la notacion de potential outcomes definiamos <span class="math inline">\(D\)</span> a recibir el tratamiento y <span class="math inline">\(T\)</span> al grupo que estaba asignados.</p></div></div><div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Crossovers vs spillovers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En este punto es probable que esten confundiendo estos dos términos. Clarifiquemos. La diferencia puede parecer sutil pero en el <strong>spillover</strong> se vulnera la separación entre los grupos, por lo que la intervención <em>contamina</em> sujetos del grupo control pero este efecto es indirecto (es posible que el sujeto reciba la intervención parcial, o si la condición de control es otro tratamiento, termine con recibiendo dos intervenciones -la de su grupo y aquella con la que se contamino-). En cambio en el <strong>crossover</strong> hay una reasignación no intencionada o violación del protocolo, un sujeto asignado al grupo control, pasa al grupo de tratamiento.</p>
+<p>Tratemos de resumir las diferencias en esta tabla:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 47%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Crossover</th>
+<th>Spillover</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Quién cambia?</td>
+<td>El participante recibe otra condición, es el equivalente a cambiar de grupo</td>
+<td>El participante no cambia de grupo</td>
+</tr>
+<tr class="even">
+<td>¿Qué falla?</td>
+<td>La adherencia al grupo asignado</td>
+<td>El aislamiento entre grupos</td>
+</tr>
+<tr class="odd">
+<td>¿Por qué se produce?</td>
+<td>Violación del protocolo</td>
+<td>Influencias indirectas entre participantes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Como habiamos visto anteriormente los spillovers comprometen la condicion <strong>SUTVA</strong> sobre la que se asienta la estimación del <strong>ATE</strong> como una diferencia entre los outcomes de ambos grupos. En este caso la no adherencia compromete la validez interna, ya que puede sesgar las estimaciones de los efectos del tratamiento. Para mantener la comparabilidad de los participantes en las condiciones de tratamiento, lo mejor es tratar de minimizar el incumplimiento de los protocolos de tratamiento.</p>
+<p>Se pueden implementar varias estrategias para impedir que esto ocurra, por ejemplo:</p>
+<ul>
+<li><p>Hacer ambos grupos atractivos. La tentación inicial a la hora de diseñar un experimento es que el grupo control no reciba absolutamente nada. Esto hace que los individuos en el grupo control rápidamente se sientan a disgusto ya que esperan algo de beneficio en el participar y busquen moverse al grupo tratamiento.</p></li>
+<li><p>Tratar de hacer ambos grupos “fáciles de seguir” para los participantes. En ocasiones el grupo tratamiento tiene que seguir un montón de tareas, mientras que el grupo control sólo unas pocas. Este escenario hace que muchos sujetos se desanimen en el grupo tratamiento y se conviertan en <em>no-shows</em>.</p></li>
+<li><p>Asegurarse antes de la asignacion que los individuos serán capaces de cumplir con cualquiera de las intervenciones. Es importante hacer el compromiso explícito con los sujetos que van a completar la intervención, no obstante los criterios de exclusión deben diseñarse concienzudamente para eliminar a aquellos sujetos que no van a poder cumplir con ella. Por ejemplo, es poco probable que un sujeto con un trabajo de <span class="math inline">\(8\)</span> horas diarias pueda cumplir con una intervencion de <span class="math inline">\(6\)</span> horas de caminata diaria.</p></li>
+</ul>
+<p>Dijimos que vamos a tratar de evitar la falta de cumplimiento, no obstante trabajamos con seres humanos y es muy probable que podamos minimizar este hecho pero vaya a seguir ocurriendo. En estas condiciones el <strong>ATE</strong> no puede ser estimado como <strong>SDO</strong> porque no todos los sujetos asignados a cada grupo cumplió a rajatabla. Pero no desesperen que hay alternativas.</p>
+<section id="estrategias-para-estimar-el-ate-en-no-cumplimiento" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="estrategias-para-estimar-el-ate-en-no-cumplimiento"><span class="header-section-number">5.6.1</span> Estrategias para estimar el ATE en no cumplimiento</h3>
+<section id="análisis-tratamiento-como-recibido" class="level4" data-number="5.6.1.1">
+<h4 data-number="5.6.1.1" class="anchored" data-anchor-id="análisis-tratamiento-como-recibido"><span class="header-section-number">5.6.1.1</span> Análisis <em>tratamiento como recibido</em></h4>
+<p>Pensemos en los escenarios planteados previamente, cuando se dan <em>no-shows</em> y <em>crossovers</em> decimos que los sujetos “se cambian de grupo” al recibir o no recibir el tratamiento. Si eso ocurre ¿no sería lógico analizar a los sujetos de acuerdo al tratamiento recibido en el grupo que corresponde?</p>
+<p>A ver formalicemos un poco el escenario. En los análisis por <em>tratamiento recibido</em>, se conforman dos nuevos grupos: <strong>a)</strong> un grupo tratamiento que contiene a los <span class="math inline">\(D_1 T_1\)</span> (asignados al tratamiento y que recibieron el tratamiento) y a los <span class="math inline">\(D_1 T_0\)</span> (los asignados a la condicion control que recibieron el tratamiento, los crossover) y <strong>b)</strong> un grupo control conformado por los <span class="math inline">\(D_0 T_0\)</span> y por los <span class="math inline">\(D_0 T_1\)</span> (los asignados al grupo tratamiento que decidieron no hacerla o se pasaron al control, es decir los <em>no-shows</em>)</p>
+<p>Parece lógico pero cual es el problema. Bueno el problema radical de este enfoque es que ocurre <em>después de la asignación aleatoria</em>, entonces pueden existir diferencias sistemáticas entre los grupos.</p>
+<p>Pensemos esto con un ejemplo. Supongamos que un estudio quiere probar el efecto de una nueva droga contra el cáncer de pulmón. Al asignar aleatoriamente a los grupos existen sujetos con distinto grado de severidad de la enfermedad en ambos grupos. No obstante los sujetos con mayor severidad del grupo control están muy preocupados por su enfermedad y deciden buscar el tratamiento por su cuenta (se pasan al grupo tratamiento), creando una diferencia sistemática. Ahora el grupo tratamiento tiene sujetos con cuadros clínicos más severos. Sabemos que los sujetos con cuadros más severos progresan peor, entonces, si el tratamiento es efectivo, esta análisis tiende a subestimar el efecto de la droga. También este análisis es suceptible de incluir un sesgo de causalidad reversa (revisen la sección correspondiente).</p>
+</section>
+<section id="análisis-por-protocolo" class="level4" data-number="5.6.1.2">
+<h4 data-number="5.6.1.2" class="anchored" data-anchor-id="análisis-por-protocolo"><span class="header-section-number">5.6.1.2</span> Análisis <em>por protocolo</em></h4>
+<p>Este análisis es otro enfoque que, aunque puede parecer atractivo a simple vista, no se recomienda. Este análisis compara <strong>únicamente</strong> a quienes completaron los protocolos de tratamiento tal como les fueron asignados originalmente o sea a los <span class="math inline">\(D_1 T_1\)</span> (en el grupo tratamiento) y <span class="math inline">\(D_0 T_0\)</span> (en el grupo control),los sujetos <span class="math inline">\(D_1 T_0\)</span> y los <span class="math inline">\(D_0 T_1\)</span> son directamente excluídos de todo análisis.</p>
+<p>Este análisis tiene el mismo problema que el enfoque anterior. ¿Por qué?, porque vuelve a generar diferencias sistemáticas entre los grupos. Hay que pensar que los sujetos no abandonan uno u otro grupo de forma aleatoria (como la que generó los grupos) sino por condiciones claves (muchas veces relacionadas con la misma asignación al grupo) como vimos en el ejemplo anterior. De esta manera los grupos controles pueden perder a por ejemplo sujetos con cuadros más severos, porque estos deciden pasarse a tratamiento, o el grupo tratamiento perder a sujetos con poca respuesta al tratamiento, porque ante la baja respuesta deciden abandonar y pasarse al grupo control. De esta forma y dependiendo el caso este enfoque tiene a subestimar o sobrestimar el efecto. No se aconseja su uso.</p>
+</section>
+</section>
+<section id="enfoque-por-intencion-de-tratamiento" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="enfoque-por-intencion-de-tratamiento"><span class="header-section-number">5.6.2</span> Enfoque por <strong>intencion de tratamiento</strong></h3>
+<p>También llamado <em>intention-to-treat</em> este enfoque es el que se prefiere por encima de cualquier otro. En los otros dos vimos que la asignación o la exclusion de un grupo post-aleatorizacion genera errores sistemáticos que contaminan la estimación del efecto y pueden abrir una puerta al sesgo de causalidad reversa. Entonces la mejor solución es sencillamente no modificar la situación de los sujetos post aletorización, o sea este enfoque. El lema de este enfoque es <strong>analízalos como los aleatorizaste</strong> es decir en el grupo control se incluyen a todos los sujetos asignados aleatoriamente al grupo control (<span class="math inline">\(T_0\)</span>) independiente si recibieron la intervención o no (cualquier estado de <span class="math inline">\(D\)</span>) y en el grupo tratamiento todas los <span class="math inline">\(T_1\)</span> igualmente.</p>
+<p>Cuando hacemos este enfoque, la estimación del efecto cobra otra realidad y la llamamos estimación de la intención de tratamiento (o <em>estimate ITT</em>) y tiene la siguiente forma:</p>
+<p><span class="math display">\[ \text{ITT estimate} = \bar{Y}_T - \bar{Y}_C \ \]</span></p>
+<p>donde <span class="math inline">\(\bar{Y}_T\)</span> es el resultado medio para el grupo de tratamiento según fue originalmente asignado, y <span class="math inline">\(\bar{Y}_C\)</span> es el resultado medio para el grupo de comparación según fue originalmente asignado.</p>
+<p>La estimación <strong>ITT</strong> tiene la ventaja de comparar participantes que son <strong>aleatoriamente equivalentes</strong>. Pero puede ser difícil de interpretar, dado que es el <em>efecto promedio de haber ofrecido el tratamiento en comparación con no haberlo ofrecido</em>, más que el efecto promedio del tratamiento si todos hubieran recibido el protocolo de tratamiento asignado.</p>
+<p>Pongamos un ejemplo, se asigna a sujetos a comer salmón tres veces por semana para bajar el colesterol, esta intervención tiene un efecto real de reducir el colesterol en un <span class="math inline">\(20%\)</span> (este sería el <strong>ATE</strong> en un mundo ideal). Pero sucede que al aplicar la intervención la mitad de los sujetos no consumen el salmón (o sea que son <em>no-shows</em>), ellos no tienen un efecto, o sea que tienen un <span class="math inline">\(0%\)</span> de cambio. Si hacemos un análisis de <strong>ITT</strong>; la <em>media</em> de cambio en los sujetos asignados al grupo tratamiento (<span class="math inline">\(\bar{Y}_T\)</span> ) es del <span class="math inline">\(10%\)</span> (la mitad cambio un <span class="math inline">\(20%\)</span> y la otra mitad <span class="math inline">\(0%\)</span>) y la media de cambio del otro grupo (el control,<span class="math inline">\(\bar{Y}_C\)</span> ) es <span class="math inline">\(0%\)</span> (no incluimos <em>crossover</em> en este ejemplo para no complicarnos). O sea que el estimador <strong>ITT</strong> es del <span class="math inline">\(10%\)</span>. El efecto es menor, ¿por qué este enfoque es mejor?</p>
+<p>Bueno por un par de razones:</p>
+<ol type="1">
+<li><p><strong>No hay errores en la direccion de la cadena causal</strong>, nuestro objetivo es evaluar como un tratamiento (causa) genera un efecto. Como vimos en los enfoques anteriores, al ocurrir un cambio de grupo después de la aletorización es frecuente que este cambio esté motivado por el efecto mismo de la intervención (una intervención que no funciona motiva a que los sujetos se pasen al grupo control, o una intervención muy eficaz seduce al grupo control a pasarse a la intervención) de esta manera la cadena causal se invierte y es el efecto el que genera el tratamiento o no de los sujetos. Al analizar los sujetos como fueron asignados no existe una puerta de atrás abierta a la reversión de la causalidad.</p></li>
+<li><p><strong>Puede ser más relevante calcular el ITT que el ATE</strong>, sobretodo en políticas públicas o en intervenciones con humanos, el grupo investigador (y el grupo que aplicará los resultados) sólo pueden llegar al grado de una recomendación, es decir por ejemplo, le dicen a un grupo de personas que coman salmón tres veces por semana, no se lo meten en la boca. Pensemos en nuestro ejemplo anterior, el gobierno de Bolivia quiere iniciar una campaña de concientización de la dieta y quiere reducir el colesterol de la población indicándole comer salmón. En el país es muy caro el salmón asi que pese a la sugerencia la mitad de la población no puede comprarlo, el efecto de esta campaña se parecerá más al <strong>ITT</strong> o al <strong>ATE</strong>. Exacto, el <strong>ITT</strong> es un mejor estimador de los escenarios del <em>mundo real</em> (que al fin al cabo es lo qué queremos explicar) porque si una intervención es muy buena pero no la pueden recibir todos los sujetos a los que se la asignan (por que es muy cara, o porque da efectos adversos, o miles de causas más), bueno no es tan buena.</p></li>
+</ol>
+<p><img src="imgs/enfoques.jpg" class="img-fluid"></p>
 
 
 
@@ -1485,12 +1605,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1498,18 +1621,74 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1519,8 +1698,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1532,38 +1720,292 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dags.html" class="pagination-link">
+      <a href="./dags.html" class="pagination-link" aria-label="Grafos acíclicos dirigidos (DAGS)">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./matching.html" class="pagination-link">
+      <a href="./matching.html" class="pagination-link" aria-label="Subclasificación y *matching*">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1571,10 +2013,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
-    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-left">
+<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+
 
 
 

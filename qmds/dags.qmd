@@ -327,7 +327,7 @@ dag_Vit %>% ggdag_paths(from = "Vits", to = "BD",
 Ahora sí, el único camino abierto es $Vits \rightarrow DC$, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:
 
 $$
-DC_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + + \epsilon_i
+BD_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + + \epsilon_i
 $$
 
 Donde $\beta_{Vits}$ es un estimador del efecto causal que queremos estudiar.

@@ -36,6 +36,8 @@ El libro comienza con un breve repaso de conceptos básicos de probabilidad y es
 
 ## Agradecimientos
 
+Agradecemos profundamente a **Magdalena Cobb**, **Juan Cruz Menutti** y **Teresa Laszeki**, alumnos asistentes de investigación de la clase 2025, por su colaboración en la revisión de los contenidos y la edición del libro. También a los alumnos de la clase 2024 y 2025 por sus comentarios y sugerencias durante el desarrollo del libro.
+
 ## Contacto
 
 Ante cualquier duda pueden contactarme vía e-mail a [ispiousas\@udesa.edu.ar](mailto:ispiousas@udesa.edu.ar).

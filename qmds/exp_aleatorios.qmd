@@ -521,7 +521,7 @@ $$
 
 Donde tanto $r_j$ como $\epsilon_{ij}$ tiene esperanza cero y varianza $\sigma^2_{inter-clúster}$ y $\sigma^2_{intra-clúster}$ respectivamente. En la ecuación anterior $T_j$ es una variable indicadora que toma el valor $1$ si la escuela, y no el participante como antes, pertenece al grupo tratamiento y el valor $0$ si no. De esta forma, si la escuela pertenece al grupo tratamineto su media será $\mu_{j|D_j=1} = \beta_0 + \beta_T + r_j$ mientras que si pertenece al grupo control será $\mu_{j|D_j=0} = \beta_0 + r_j$, y la esperanza de la diferencia entre ambas (dado que la esperanza de $E(r_j)=0$) será justamente la magnitud del efecto del tratamiento $\beta_T$.
 
-### La potenncia y la correlación intraclase (ICC)
+### La potencia y la correlación intraclase (ICC)
 
 La correlación intraclase (ICC) es una estadística descriptiva que indica en qué medida los resultados: 1) tienden a ser similares dentro de cada clúster, o 2) tienden a diferir entre distintos clústers, en relación con los resultados observados en otros grupos. Se define de la siguiente forma:
 
@@ -529,7 +529,7 @@ $$
 ICC = \frac{\sigma^2_{inter-clúster}}{\sigma^2_{inter-clúster} + \sigma^2_{intra-clúster}}
 $$
 
-donde $\sigma^2_{inter-clúster}$ es la varianza entre clústers, es decir, cuánto se varían las medias de los clústers entre clústers, y $\sigma^2_{intra-clúster}$ es la varianza dentro de los clústers, es decir, cuánto varías las mediciones de cada individuo dentro de cada clúster.
+donde $\sigma^2_{inter-clúster}$ es la varianza entre clústers, es decir, cuánto se varían las medias de los clústers, y $\sigma^2_{intra-clúster}$ es la varianza dentro de los clústers, es decir, cuánto varías las mediciones de cada individuo dentro de cada clúster.
 
 Como mencionamos anteriormente, la aleatorización a nivel de clúster tiene su costo. Si los outcomes dentro de cada clúster están altamente correlacionados y la magnitud de los resultados varía considerablemente entre clústers, entonces es probable que los participantes dentro de un mismo grupo tengan resultados similares, y el ICC será alto. En estos casos, los datos provenientes de un individuo aportan casi tanta información como si se incluyera a todos los miembros. Por lo tanto, el tamaño muestral efectivo se aproxima más al número de clústers que al tamaño total de la muestra de individuoos.
 

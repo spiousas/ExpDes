@@ -302,7 +302,7 @@ _Y_{i} &=& \beta_0 + \beta_T T_i + \beta_X X_i + \epsilon_{i}
 \end{array}
 $$ {#eq-pre_postest_model}
 
-Donde todo representa lo mismo que en la ecuación \[#eq-postest_model\], pero ahora $X_i$ es la medida *pre* del sujeto $i$. En este caso, $\beta_T$ representa de nuevo el efecto del tratamiento y $\beta_X$ representa el efecto de la medida *pre*.
+Donde todo representa lo mismo que en la ecuación [@eq-postest_model], pero ahora $X_i$ es la medida *pre* del sujeto $i$. En este caso, $\beta_T$ representa de nuevo el efecto del tratamiento y $\beta_X$ representa el efecto de la medida *pre*.
 
 Veamos como se adaptaría el ejemplo de la sección anterior si agregamos una medición
 
@@ -342,7 +342,7 @@ data_pre %>% ggplot(aes(x = condicion,
   theme(legend.position = "top")
 ```
 
-Se ve bastante parecido a lo que vimos antes ¿No? Tratemos de medir el efecto del tratamiento como lo hicimos en el ejemplo anterior, usando la ecuación \[#eq-postest_model\]. Si ajustamos ese modelo, que no tiene en cuenta a la medida *pre*, vamos a obtener las mismas estimaciones que en el ejemplo previo. Tiene sentido ¿No? Claro que sí, porque usamos la misma semilla para generar los datos.
+Se ve bastante parecido a lo que vimos antes ¿No? Tratemos de medir el efecto del tratamiento como lo hicimos en el ejemplo anterior, usando la ecuación [@eq-postest_model]. Si ajustamos ese modelo, que no tiene en cuenta a la medida *pre*, vamos a obtener las mismas estimaciones que en el ejemplo previo. Tiene sentido ¿No? Claro que sí, porque usamos la misma semilla para generar los datos.
 
 ```{r}
 #| code-fold: true
@@ -370,7 +370,7 @@ data_pre %>% ggplot(aes(x = tiempo_pre, y = tiempo_post, color = condicion)) +
   theme(legend.position = "top")
 ```
 
-Lo que podemos ver es que, debido a cómo simulamos los datos, el tiempo *pre* y el tiempo *post* están correlacionados, es decir, parte de la variabilidad que tenemos en el tiempo *post* la podemos explicar por diferencias en el tiempo *pre*. Entonces vamos a incorporar el tiempo *pre* como predictor en nuestro modelo. En este caso (usando la ecuación \[#eq-pre_postest_model\]). Comparemos las estimaciones de este modelo con las del de la ecuación \[#eq-postest_model\].
+Lo que podemos ver es que, debido a cómo simulamos los datos, el tiempo *pre* y el tiempo *post* están correlacionados, es decir, parte de la variabilidad que tenemos en el tiempo *post* la podemos explicar por diferencias en el tiempo *pre*. Entonces vamos a incorporar el tiempo *pre* como predictor en nuestro modelo. En este caso (usando la ecuación [@eq-pre_postest_model]). Comparemos las estimaciones de este modelo con las del de la ecuación [@eq-postest_model].
 
 ```{r}
 #| code-fold: true

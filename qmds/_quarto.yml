@@ -48,7 +48,9 @@ caption-location: margin
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
+      dark: darkly
     code-fold: show
     code-summary: "Ver el código"
   pdf:

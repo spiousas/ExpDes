@@ -317,7 +317,7 @@ window.Quarto = {
 
 <section id="variables-aleatorias" class="level2 page-columns page-full" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="variables-aleatorias"><span class="header-section-number">2.1</span> Variables aleatorias</h2>
-<p>Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales (<span class="math inline">\(X:\Omega \rightarrow \mathbb{R}\)</span>). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica es definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos.</p>
+<p>Wasserman<span class="citation" data-cites="wasserman2004all">(<a href="references.html#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span> nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales (<span class="math inline">\(X:\Omega \rightarrow \mathbb{R}\)</span>). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica esta definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Del inglés <em>Head</em> y ceca sera T del inglés <em>Tail</em>.</p></div></div><p>Vamos con un ejemplo. Supongan que tiramos una moneda justa dos veces y tenemos la variabla aleatoria <span class="math inline">\(X\)</span> que cuenta la cantidad de caras (H)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Los posibles eventos <span class="math inline">\(\omega\)</span> del espacio de eventos <span class="math inline">\(\Omega\)</span> son <span class="math inline">\(\Omega = \{ TT, TH, HT, HH \}\)</span>. En este caso, la variable aleatoria <span class="math inline">\(X\)</span> va a tomar los valores <span class="math inline">\(X = \{ 0, 1, 1, 2\}\)</span> para cada <span class="math inline">\(\omega\)</span>. Esto, en resumidas cuentas, es lo que hace una variable aleatoria.</p>
 <p>El ejemplo anterior se trata de una variable aleatoria discreta, es decir, que sólo puede tomar algunos valores posibles, pero también existen variables aleatorias continuas como por ejemplo la altura de una nueva persona que nace.</p>
 </section>
@@ -370,7 +370,7 @@ Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Recordemos que <span class="math inline">\(\neg\)</span> es el símbolo lógico de la negación.</p></div></div><p><span id="eq-test"><span class="math display">\[
 P(B) = P(B|A) \times P(A) +  P(B|\neg A) \times P(\neg A)
 \tag{2.1}\]</span></span></p>
-<p>Pensemosun ejemplo. Imaginemos que una perona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es <span class="math inline">\(0.35\)</span> y la probabilidad de que lo termine si no llueve es de <span class="math inline">\(0.95\)</span>. Si la probabilidad de que llueva es <span class="math inline">\(P(A)=0.4\)</span> ¿Cuál es la probabilidad (<span class="math inline">\(P(B)\)</span>) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:</p>
+<p>Pensemos un ejemplo. Imaginemos que una persona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es <span class="math inline">\(0.35\)</span> y la probabilidad de que lo termine si no llueve es de <span class="math inline">\(0.95\)</span>. Si la probabilidad de que llueva es <span class="math inline">\(P(A)=0.4\)</span> ¿Cuál es la probabilidad (<span class="math inline">\(P(B)\)</span>) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:</p>
 <p><span id="eq-probTotalEj"><span class="math display">\[
 \begin{array}
 _P(B) &amp;=&amp; P(B|A) \times P(A) + P(B|\neg A) \times P(\neg A) \\
@@ -453,7 +453,7 @@ V(X) = \sigma^2 = E \left[ (X - E(X))^2 \right]
 <p><span id="eq-test"><span class="math display">\[
 V(X) = E(X^2) - E^2(X)
 \tag{2.13}\]</span></span></p>
-<p>Por otro lado, la covarianza es mide la cantidad de dependencia lineal entre dos variables aleatorias. La msma se define como</p>
+<p>Por otro lado, la covarianza mide la cantidad de dependencia lineal entre dos variables aleatorias. La misma se define como</p>
 <p><span id="eq-test"><span class="math display">\[
 Cov(X,Y) = E(XY) - E(X)E(Y)
 \tag{2.14}\]</span></span></p>
@@ -485,7 +485,7 @@ Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 <p>Con esta definición en la mano, si yo les digo que dos variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tienen una covarianza de <span class="math inline">\(14.988\)</span> no les dice mucho, ¿No? Ahora, si les digo que el coeficiente de correlación es de <span class="math inline">\(0.788\)</span> probablemente entiendan rápidamente que ambas variables están muy relacionadas<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Si quieren divertirse y de paso convertise en ases de la determinación del coeficiente de correlación a <em>ojímetro</em> les recomiendo <a href="https://www.guessthecorrelation.com/">este juegazo</a>. Una estudiante ostenta el abultado récord de <span class="math inline">\(231\)</span> puntos ¿La pasaste?</p></div></div><p>Veamos este ejemplo con números y de paso repasemos como se calcula la correlación en R:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">20</span>, <span class="dv">4</span>)</span>
@@ -506,9 +506,9 @@ Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 </div>
 </div>
 </div>
-<p>Es muy importante tener en cuenta que el cueficiente de correlación nos dice cuán <strong>linealmente</strong> relacionadas están las variables. Veamos esto con un ejemplito:</p>
+<p>Es muy importante tener en cuenta que el coeficiente de correlación nos dice cuán <strong>linealmente</strong> relacionadas están las variables. Veamos esto con un ejemplito:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -530,7 +530,7 @@ Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
 </div>
 </div>
 <p>En este caso vemos que claramente hay uan relación entre <strong>X</strong> e <strong>Y</strong> (no son una nube de puntos sin estructura) pero como esta relación no es lineal (cuadrática en nuestro caso), el coeficiente de correlación es cercano a cero.</p>
-<p>Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre <span class="math inline">\(-1\)</span> y <span class="math inline">\(1\)</span>. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra. Cuanto más cerca esté el coeficiente de <span class="math inline">\(1\)</span> o, más fuerte es la relación lineal.</p>
+<p>Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre <span class="math inline">\(-1\)</span> y <span class="math inline">\(1\)</span>. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra). Cuanto más cerca esté el coeficiente de <span class="math inline">\(1\)</span> o, más fuerte es la relación lineal.</p>
 </section>
 <section id="población-y-muestra" class="level2 page-columns page-full" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="población-y-muestra"><span class="header-section-number">2.9</span> Población y muestra</h2>
@@ -561,7 +561,8 @@ Wasserman, Larry. 2004. <em>All of statistics: a concise course in statistical i
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="intro_stat_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="intro_stat_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption>Distribución de la altura de los varones argentinos para distintos valores de n</figcaption>
 </figure>
 </div>
 </div>
@@ -596,12 +597,12 @@ H_1 &amp;:&amp; \mu \neq 0
 \tag{2.19}\]</span></span></p>
 <p>Lo que vamos a querer hacer es rechazar <span class="math inline">\(H_0\)</span> con cierto grado de confianza. Para esto vamos a comparar nuestra medición <span class="math inline">\(\bar{x}_{obs}\)</span> con la distribución de los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span>.</p>
 <p>Recordemos que si <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span> entonces <span class="math inline">\(\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)\)</span><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, donde <span class="math inline">\(n\)</span> es la cantidad de realizaciones con las que yo calculo mi <span class="math inline">\(\bar{X}\)</span>. Entonces si mi <span class="math inline">\(\bar{x}_{obs}\)</span> medida está lo suficientemente lejos de <span class="math inline">\(0\)</span> podemos decir que que <span class="math inline">\(\mu\)</span> es diferente de cero. Pero: ¿Qué es suficientemente lejos?</p>
-<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una seciencia de <span class="math inline">\(n\)</span> realizaciones.</p></div></div><p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o dalso positivo) o podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o dalso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.</p>
-<p>Para esto vamos a calcular qué tal probable es observar un valor igual o más alejado del cero que <span class="math inline">\(\bar{x}_{obs}\)</span> dado que <span class="math inline">\(H_0\)</span> es verdadera. Es decir, <span class="math inline">\(P(|\bar{X}|&gt;\bar{x}_{obs}|H_0)\)</span>. Esta magnitud es lo que se conoce como el viejo y querido p-valor o <em>p-value</em> (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando <span class="math inline">\(\bar{X}\)</span> de la siguiente forma:</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una seciencia de <span class="math inline">\(n\)</span> realizaciones.</p></div></div><p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.</p>
+<p>Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado del cero que <span class="math inline">\(\bar{x}_{obs}\)</span> dado que <span class="math inline">\(H_0\)</span> es verdadera. Es decir, <span class="math inline">\(P(|\bar{X}|&gt;\bar{x}_{obs}|H_0)\)</span>. Esta magnitud es lo que se conoce como el viejo y querido p-valor o <em>p-value</em> (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando <span class="math inline">\(\bar{X}\)</span> de la siguiente forma:</p>
 <p><span id="eq-test"><span class="math display">\[
 Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 \tag{2.20}\]</span></span></p>
-<p>Qque bajo <span class="math inline">\(H_0\)</span> es:</p>
+<p>Que bajo <span class="math inline">\(H_0\)</span> es:</p>
 <p><span id="eq-test"><span class="math display">\[
 Z_{H_0} = \frac{\bar{X}}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 \tag{2.21}\]</span></span></p>
@@ -623,7 +624,7 @@ Maier, Maximilian, y Daniël Lakens. 2022. <span>«Justify your alpha: A primer 
 </div></div></div><p>Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que <span class="math inline">\(\alpha\)</span> podemos decir que <span class="math inline">\(H_0\)</span> es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.</p>
 <p>Simulemos un experimento para <span class="math inline">\(n=50\)</span> en el que nosotros conocemos tanto <span class="math inline">\(\sigma^2\)</span> como <span class="math inline">\(\mu\)</span>:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
@@ -658,7 +659,7 @@ p_{valor} = 2 \phi(-|z_{\bar{x}}|) = 2 \phi(-2.011)
 \tag{2.24}\]</span></span></p>
 <p>Que en R lo podemos calcular como:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)),<span class="dv">3</span>)))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.044</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -674,7 +675,7 @@ S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
 \tag{2.25}\]</span></span></p>
 <p>Para nuestro ejemplo vale:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"la estimación de sigma es:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(X), <span class="dv">3</span>)))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; la estimación de sigma es: 1.852</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -701,7 +702,7 @@ V &amp;\sim&amp; \chi^2_{n} \\
 \tag{2.28}\]</span></span></p>
 <p>Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la <span class="math inline">\(\sigma\)</span> poblacional<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>:</p>
 <div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(X)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="at">df =</span> n<span class="dv">-1</span>),<span class="dv">4</span>)))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.0347</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -709,7 +710,7 @@ V &amp;\sim&amp; \chi^2_{n} \\
 </div>
 <p>Una buena noticia es que este p valor se puede calcular directamente con la función <code>t.test(X)</code> de la siguiente forma:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -747,7 +748,7 @@ V &amp;\sim&amp; \chi^2_{n} \\
 </div>
 <p>Donde en azul vemos el histograma y en negro la función de densidad para <span class="math inline">\(\mathcal{E}(\lambda=1)\)</span>. Ahora, qué pasa si tomamos <span class="math inline">\(1000\)</span> muestras y hacemos el histograma de sus medias:</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Zs <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
@@ -798,7 +799,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 \]</span></p>
 <p>Fijensé que para calcularla no sólo necesitamos a <span class="math inline">\(\sigma\)</span> (que podríamos estimar) sino también a <span class="math inline">\(mu\)</span>, que es nuestro parámetro de interés. Por ejemplo, podemos ver que la pontencia depende de <span class="math inline">\(\mu\)</span>, siendo más grande para valores de <span class="math inline">\(\mu\)</span> más alejados del cero. Esto tiene sentido ya que a medida que <span class="math inline">\(|\mu|\)</span> es mayor, es menor probable cometer errores tipo II.</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>potencia <span class="ot">&lt;-</span> <span class="cf">function</span>(sigma, mu, n, alpha) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span></span>
@@ -823,7 +824,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 </div>
 <p>Como es de esperarse, la potencia también depende del <span class="math inline">\(\alpha\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">20</span>,<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>), <span class="at">potencia =</span> pot)</span>
@@ -845,7 +846,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <p>Con valores de potencia mayores para valores más garndes de <span class="math inline">\(\alpha\)</span>. Nuevamente esto tiene sentido ya que ser más restictivo con el rechazo de <span class="math inline">\(H_0\)</span> (o sea, que tenga que observar un valor más extremo) lleva a una disminución de <span class="math inline">\(\alpha\)</span>, a un aumento de los errores tipo II y con ello a una disminución de la potencia.</p>
 <p>Finalmente, la potencia también depende del <span class="math inline">\(n\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>),<span class="fl">0.05</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">n =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>), <span class="at">potencia =</span> pot)</span>
@@ -869,7 +870,7 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <p>El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:</p>
 <ol type="1">
 <li>Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.</li>
-<li>Determinamos el mínimo tamaño de efecto de interés (<em>SESOI</em><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaña de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.</li>
+<li>Determinamos el mínimo tamaño de efecto de interés (<em>SESOI</em><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaño de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.</li>
 <li>Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo <span class="math inline">\(0.9\)</span>) y un <span class="math inline">\(\alpha\)</span> dado (por ejemplo <span class="math inline">\(0.05\)</span>).</li>
 </ol>
 <div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Del inglés <em>smallest effect size of interest</em>.</p></div></div><p>No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente <span class="math inline">\(n\)</span>, pero la forma de pensar el problema es siempre similar.</p>

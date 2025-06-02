@@ -13,4 +13,533 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-En construcción `r emo::ji("construction")`
+## Subclasificación
+
+### ¿Por qué subclasificar? Motivación y objetivo
+
+En estudios observacionales la asignación al “tratamiento” muchas veces ocurre de forma completamente no aleatoria. Por ejemplo, supongamos que queremos medir el efecto de ofrecer un descuento en la cantidad de ventas de tiendas, pero el descuento se aplicó principalmente en aquellas regiones donde las ventas siempre fueron más bajas. 
+
+Si sólo comparamos el promedio de ventas de tiendas con descuento frente a las que no lo recibieron, el resultado estará sesgado, porque la asignación del “tratamiento” (el descuento) no fue aleatoria. Es decir, el efecto reflejará tanto el descuento como las características de la región.
+
+El objetivo de la subclasificación es, entonces, estimar el efecto causal del descuento como si la asignación hubiera sido aleatoria dentro de cada región. Para ello, se divide el conjunto de tiendas en estratos según la región, se calcula la diferencia de ventas entre tiendas con y sin descuento en cada estrato, y luego se combinan esos efectos de forma ponderada. De este modo, se logra balancear la comparación y acercarse a un estimador no sesgado del efecto promedio del descuento.
+
+### Independencia vs. independencia condicional
+
+Hablamos de **independencia**, cuando tenemos un experimento con asignación completamente aleatoria:
+
+$$
+D \perp (Y_0,Y_1)
+$$
+
+Es decir, la decisión de asignar a tratamiento o no (D) es independiente de los potential outcomes, y por lo tanto la diferencia de medias entre tratados y controles ofrece una estimación válida del ATE.
+
+Sin embargo, en muchos cuasiexperimentos la “aleatorización” sólo ocurre **condicional** a alguna característica observable X. Esto nos lleva a la **asunción de independencia condicional** (CIA[^cia]), que podemos escribir como:
+
+$$
+D \perp (Y_0,Y_1) | X
+$$
+
+[^cia]: Del inglés *Conditional Independence Assumption*.
+
+osea, **una vez que fijamos X**, la asignación al tratamiento se comporta como si fuera aleatoria.
+
+En estudios observacionales como el de las tiendas y descuentos, la **región** (X) influye tanto en la probabilidad de recibir descuento ($D$) como en las ventas ($Y$), lo que genera un camino en el que $X$ es confusor ($D \leftarrow X \rightarrow Y$). Si ignoramos esa ruta, la comparación global de medias mezclará el efecto real del descuento con las diferencias regionales, produciendo un sesgo.
+
+Para entender por qué la subclasificación corrige esto, podemos representar el problema en un DAG:
+
+```{r}
+#| echo: false
+#| fig-cap: "DAG que representa la relación entre D e Y teniendo a A como confusor."
+#| fig-width: 4
+#| fig-align: center
+
+dag <- dagitty::dagitty('dag {
+D [exposure,pos="-1.50,1.5"]
+Y [outcome,pos="1.500,1.5"]
+X [pos="0,0"]
+D -> Y
+X -> Y
+X -> D
+}')
+
+tidy_dag <- tidy_dagitty(dag)
+ggdag(tidy_dag) +
+  theme_dag() +
+  coord_cartesian(clip = "off")
+```
+
+Al condicionar en $X$ (es decir, subclasificar o estratificar por región), cerramos el backdoor $D \leftarrow X \rightarrow Y$. Dentro de cada región, la asignación del descuento ya no está correlacionada con las ventas antes del tratamiento.
+
+### Supuestos (scott explica 1.CIA y 2.Soporte común)(es necesario?)
+
+
+
+### El estimador de subclasificación: Un ejemplo dcon descuento
+
+## Matching
+
+Una forma alternativa de lidiar con la independencia condicional y el cierre de backdoors es el **matching**. La idea central es fácil: en vez de comparar cada unidad tratada con el promedio de todas las unidades no tratadas, buscamos **comparar cada unidad tratada con una unidad no tratada que se le parezca lo más posible** en función de ciertas características observables (como la edad, la región, los ingresos, etc.).
+
+Pero, ¿por qué antes comparábamos “cada unidad tratada con el promedio de todas las unidades no tratadas”?
+
+Para entenderlo, recordemos que en el anterior enfoque cada unidad tratada compara su resultado con la media del control. Esto sería:
+
+-Ecuación de efecto individual igual a Yi menos Ypromedio control
+
+Pero luego, promediamos esas diferencias individuales, y llegamos al efecto total.
+
+-Ecuación de sumatoria de los efectos individuales promediada por n.
+
+Entonces, con matching, en lugar de usar el promedio del grupo control como contrafactual, usamos un individuo que se parezca al que fue tratado.
+
+Esto nos permite construir un estimador que sea más creíble. Es intuitivo: **si queremos estimar el efecto de un curso sobre los ingresos, tiene más sentido comparar a una persona de 25 años que hizo el programa con otra también de 25 años que no lo hizo, en lugar de con el promedio de todas las personas que no lo hicieron**. De esta manera, el matching busca que cada comparación sea más consistente, emparejando unidades comparables.
+
+Para esto, vamos a poder usar exact matching o approximate matching, dependiendo de cada caso.
+
+### *Exact Matching*
+
+*Exact Matching* consiste en emparejar unidades tratadas y no tratadas que compartan exactamente los mismos valores de ciertas covariables X. Además, cuando hay más de un control con esas mismas características, se promedian sus resultados (los de los controles) para generar un único contrafactual.
+Imaginemos un estudio sobre un programa de capacitación laboral en el que conocemos la edad de cada participante y su ingreso después del curso. Para cada persona tratada de, digamos, 30 años, buscamos todas las personas no tratadas que también tengan 30 años. Si aparecen dos controles de 30 años, tomamos el promedio de sus ingresos como contrafactual de nuestro participante. La diferencia entre el ingreso del tratado y este promedio, es la estimación individual del efecto del programa.
+Para obtener el ATT, simplemente sumamos y promediamos esas diferencias individuales. Si Yi​ es el ingreso observado del tratado i y Y_{j:X_j=X_i}Yˉj:Xj​=Xi​​ el promedio de los controles que coinciden en Xi​, el ATT se calcula como:
+(ecuación de ATT estimado)
+Este cálculo nos dice, de forma directa, cuánto cambió en promedio el resultado de los que sí recibieron el tratamiento.
+La ventaja del exact matching es que asegura que las comparaciones se hagan entre unidades idénticas en las covariables X. Sin embargo, cuando queremos emparejar según muchas características al mismo tiempo, encontrar controles con valores idénticos se vuelve muy difícil. Por ejemplo, si emparejamos solo por edad hay pocas categorías y es fácil encontrar controles; pero si agregamos otras variables como región, nivel de ingreso o tamaño de la tienda, las combinaciones posibles crecen exponencialmente. A esto último se lo conoce como el problema de la dimensionalidad, y puede generar que nos queden individuos sin ningún control idéntico.
+
+### *Approximate Matching*
+
+Cuando no encontramos controles que coincidan exactamente en todas las covariables $X$[^Xvector], recurrimos al *approximate matching*. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de $X$ sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.
+
+[^Xvector]: Cuando hablamos de $X$ nos referimos a un vector de covariables, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector $X$ podría ser algo así como: $X = (región, edad)$.
+
+Pero, ¿qué significa “parecida”? Para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio[^euclidea].
+
+(formula de euclidea y grafico de ppt)
+
+[^euclidea]: Básicamente el módulo del vector que une los dos puntos en el espacio de covariables (ahre). 
+
+Otra opción es la distancia de **Mahalanobis**, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí.
+
+(formula de euclidea y grafico de ppt)
+
+La distancia de Mahalanobis es útil cuando las covariables tienen diferentes escalas o están correlacionadas entre sí. Ejemplo del bello.
+
+Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclideana (es fácil de demostrar si tienen ganas y, claro, tiempo).
+
+### Euclideana vs. Mahalanobis, la batalla final
+
+En mi experiencia, entender claramente la diferencia entre estas dos distancia no es cosa sencilla y, si bien no es vital para entender **matching**, es una excelente excusa pensar un poco en qué significa **ser parecido**. Vamos al lio.
+
+Supongamos que queremos estudiar el efecto de la entrega de un bono en la satisfacción con la empresa. Para esto identificamos dos confusores y vamos a *matchear* a los sujetos del grupo tratamiento (recibieron un bono) con sus controles correspondientes (no recibieron bono). Los confusores que identificamos son la edad y el salario de los empleados. Vamos a generar una base de datos con $200$ empleados, $100$ del grupo tratamiento y $100$ del grupo control y ver algunos datos tomados al azar.
+
+```{r}
+#| fig-cap: "Datos de seis filas tomadas al azar."
+# Generamos los datos
+set.seed(12)
+empleados_tbl <- tibble(Grupo = c(rep("tratamiento", 100), rep("control", 100)),
+                        Edad = rnorm(n = 200, mean = 35, sd = 5),
+                        Salario = Edad*1500 + rnorm(n = 200, mean = 0, sd = 5000))
+
+set.seed(12)
+empleados_tbl |> 
+  sample_n(6) |> 
+  gt()
+```
+
+Como es de esperarse (y lo esperamos mucho porque los datos los generamos nosotros), la edad y el salario están correlacionados (r=`r round(cor(empleados_tbl$Edad, empleados_tbl$Salario, use="complete.obs"), 2)`). Vamos a graficar los datos.
+
+```{r}
+#| fig-cap: "DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento."
+# Y los graficamos
+# El texto de la correlación
+text_tbl <- tibble(x = min(empleados_tbl$Edad, na.rm = T),
+                   y = max(empleados_tbl$Salario, na.rm = T),
+                   label = paste("r pearson =", round(cor(empleados_tbl$Edad, empleados_tbl$Salario, use="complete.obs"), 2)))
+
+empleados_tbl |> ggplot(aes(x = Edad,
+                            y = Salario)) +
+  geom_point(aes(color = Grupo)) +
+  geom_smooth(method = "lm", color = "black", se = F) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = NULL) +
+  geom_text(data = text_tbl, aes(x = x, y = y, label = label), hjust = 0) +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+Ahora, qué pasa si queremos emparejar a un empleado del grupo tratamiento (el que tiene el ID $I_{emp} = 2$) con uno del grupo control. Si usamos la distancia euclidiana, vamos a calcular la distancia entre cada empleado del grupo tratamiento y todos los del grupo control, y luego elegimos el más cercano.
+
+```{r}
+#| fig-cap: "DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento."
+I_emp <- 2 # Al que le queremos encontrar la distancia más cercana
+
+empleados_tbl |> ggplot(aes(x = Edad,
+                            y = Salario)) +
+  geom_point(aes(color = Grupo), alpha = 0.2) +
+  geom_point(data = empleados_tbl[I_emp,], color = "black", size = 3) +
+  geom_magnify(from = c(empleados_tbl$Edad[I_emp]*.98, empleados_tbl$Edad[I_emp]*1.01, 
+                        empleados_tbl$Salario[I_emp]*.98, empleados_tbl$Salario[I_emp]*1.01), 
+               to = c(35, 45, 3E4, 5E4)) +
+  theme_bw() +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = NULL) +
+  theme(legend.position = "top")
+```
+
+```{r}
+#| fig-cap: "DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento."
+# Calculamos las distancias
+matriz_varianzas <- matrix(c(var(empleados_tbl$Edad), 0, 0, var(empleados_tbl$Salario)),
+                           ncol = 2)
+matriz_varianzas_inv <- solve(matriz_varianzas)
+
+matriz_covarianzas <- var(as.matrix(empleados_tbl[,2:3]))
+matriz_covarianzas_inv <- solve(matriz_covarianzas)
+
+euclidean <- rep(NA, nrow(empleados_tbl))
+mahalanobis <- rep(NA, nrow(empleados_tbl))
+
+for (i in 1:nrow(empleados_tbl)) {
+  resta <- as.matrix(empleados_tbl[I_emp,2:3])-as.matrix(empleados_tbl[i,2:3])
+  euclidean[i] <- resta %*% matriz_varianzas_inv %*% t(resta)
+  mahalanobis[i] <- resta %*% matriz_covarianzas_inv %*% t(resta)
+}
+min_euclidean <- which.min(euclidean[101:200]) + 100
+min_mahalab <- which.min(mahalanobis[101:200]) + 100
+
+# Las vizualizamos
+empleados_tbl |> ggplot(aes(x = Edad,
+                            y = Salario)) +
+  geom_point(aes(color = Grupo), alpha = 0.2) +
+  geom_point(data = empleados_tbl[I_emp,], color = "black", size = 3) +
+  geom_point(data = empleados_tbl[min_euclidean,], size = 3, color = "darkred") +
+  geom_point(data = empleados_tbl[min_mahalab,], size = 3, color = "steelblue") +
+  theme_bw() +
+  geom_magnify(from = c(empleados_tbl$Edad[I_emp]*.98, empleados_tbl$Edad[I_emp]*1.01, 
+                        empleados_tbl$Salario[I_emp]*.98, empleados_tbl$Salario[I_emp]*1.01), 
+               to = c(35, 45, 3E4, 5E4)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = NULL) +
+  theme(legend.position = "top")
+```
+
+¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul?
+
+## *Matching* vs. regresión[^fuente]
+
+[^fuente]: Toda esta sección está fuertemente "inspirada" en [este](https://www.franciscoyira.com/post/matching-in-r-2-differences-regression/) *blogpost* que uso y recomiendo
+
+En el ejemplo anterior, vimos cómo el *matching* busca emparejar unidades tratadas y no tratadas basándose en sus características observables. Pero, ¿qué pasa si en lugar de emparejar, simplemente ajustamos un modelo de regresión que incluya esas mismas covariables? ¿No era la forma en la que controlábamos por los confusores antes de este capítulo? Bueno, sí y no. La regresión y el *matching* son dos enfoques diferentes para obtener la tan ansiada independencia condicional, pero cada uno tiene sus propias ventajas y desventajas. Vamos con un ejemplo paradigmático para que podamos entender un poquito más de que estamos hablando.
+
+```{r}
+#| fig-cap: "Cada uno de los sujetos pertenecientes al grupo control y tratamiento con sus respectivos valores de outcome y covariable x."
+# Genero la data ####
+df <- tibble(
+  # x es un confusor
+  x = runif(1000, -1, 4),
+  # Afecta la probabilidad de recibir el tratamiento de forma NO LINEAL (función escalón)
+  prob_d = ifelse(x > 0.5 & x < 2.5, 0.1, 0.9),
+  d = rbinom(1000, 1, prob_d),
+  noise = rnorm(1000, sd = 0.1),
+  # Pra simplificar, el ATE es homogeneo y vale 1
+  treat_effect = 1,
+  # x afecta al outcome de manera no lineal (una función seno)
+  outcome = sin(x) + d*treat_effect + noise
+) %>% 
+  mutate(d_factor = factor(d,
+                           levels=c(0,1), labels=c("No tratado",
+                                                   "Tratado")))
+
+ggplot(df,
+       aes(x, outcome, color = d_factor)) +
+  geom_point(size = 1) + 
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Estado del tratamiento") +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+De estos datos podemos ver dos cosas claras: 1) $x$ es claramente un confusor, ya que el valor de $x$ no solo afecta al *outcome* sino también a la probabilidad de recibir el tratamiento (los sujetos del medio son más "No tratados"), y 2) la relación entre $x$ y el *outcome* es no lineal. El efecto del tratamiento es homogéneo y vale $1$, y esto lo sabemos porque generamos los datos nosotros mismos.
+
+Ahora probemos dos cosas: Estimar el efecto del tratamiento usando una regresión lineal y luego usando *matching* aproximado con la librería `MatchIt`(para detalles pueden ver el código).  A continuación tenemos los efectos estimados con los dos métodos:
+
+```{r}
+#| fig-cap: "Estimaciones del efecto del tratamiento utiliando regresión y matching."
+# Ajustemos un modelo lineal ####
+linear_model1 <- lm(outcome ~ d + x, data = df)
+
+# Con matching ####
+library(MatchIt)
+nearest_control <- matchit(d ~ x, 
+                           data = df,
+                           method = "nearest", 
+                           distance = "mahalanobis",
+                           replace = T,
+                           ratio = 1)
+
+match_df <- match.data(nearest_control)
+
+matching_model1 <- lm(outcome ~ d + x, 
+                      data = match_df, 
+                      weights = weights)
+
+# Comparamos los modelos
+modelsummary(list("Regresión"= linear_model1,
+                  "Matching" = matching_model1),
+             coef_rename = c("d" = "Tratamiento"),
+             statistic = NULL, 
+             gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F|RMSE',
+             output = "gt") |>
+  gt_highlight_rows(rows = 2, 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+
+```
+
+Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de $0.220$, mientras que el *matching* nos da un estimador de $0.992$. ¿Por qué esta diferencia? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento. 
+
+Veamos qué forma tiene el modelo lineal ajustado con estos datos:
+
+```{r}
+#| fig-cap: "La regresión lineal ajustada."
+# Regression
+df_linear <- df %>%
+  modelr::add_predictions(linear_model1, var = "pred_linear")
+
+plot_linear <-
+  ggplot(df_linear) +
+  aes(x = x, color = d_factor) +
+  geom_point(aes(y = outcome), alpha = 0.3, size = 1) +
+  geom_line(aes(y = pred_linear), size = 1) +
+  labs(color = "Treatment status") +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Estado del tratamiento") +
+  theme_bw() +
+  theme(legend.position = "top")
+plot_linear
+```
+
+Todo esto es esperable, porque los datos son claramente no lineales. Ahora, usemos un suavizado de los datos para reflejar, más o menos, qué es lo que está haciendo el algoritmo de *matching* para estimar el efecto.
+
+```{r}
+#| fig-cap: "Algo parecido a lo que usa el matching para estimar el efecto."
+# Matching
+knn1 <- knn.reg(
+  train = dplyr::select(df, x, d),
+  y = df$outcome,
+  test = dplyr::select(df, x, d),
+  k = 10,
+  algorithm = "brute"
+)
+
+df_knn <- df %>% 
+  mutate(pred_knn = knn1$pred)
+
+plot_matching <- 
+  ggplot(df_knn) +
+  aes(x = x, color = d_factor) +
+  geom_point(aes(y = outcome), alpha = 0.3, size = 1) +
+  geom_line(aes(y = pred_knn), linewidth = 1) +
+  labs(color = "Treatment status") +  
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Estado del tratamiento") +
+  theme_bw() +
+  theme(legend.position = "top")
+plot_matching
+```
+
+Podemos ver a todas luces que esto tiene mucho sentido. Ahora, ¿Usamos siempre *matching* o alguna vez puede no convenirnos?
+
+Uno de los supuestos de los modelos lineales era la linealidad de la relación entre, en este caso, *x* y el *outcome*. Si esto no se cumple, el modelo lineal no va a capturar bien la relación y, por lo tanto, el estimador del efecto del tratamiento va a estar sesgado. En cambio, el *matching* no asume una relación lineal entre las covariables y el *outcome*, por lo que puede ser más robusto en estos casos. Sin embargo, recordemos que uno de los supuestos del *matching* es la necesidad de **soporte común**. En el ejemplo anterior había soporte común, es decir, en el mismo rango de $x$ había tanto tratados como no tratados. Veamos un ejemplo donde esto no es así.
+
+```{r}
+#| fig-cap: "Datos pero ahora sin soporte común."
+# Datos sin soporte común ####
+df_wo_common_support <- tibble(
+  # x es un confusor
+  x = runif(1000, -1, 4),
+  # No hay más prob_d, es determinístico
+  d = ifelse(x > 0.5 & x < 2.5, 0, 1),
+  noise = rnorm(1000, sd = 0.1),
+  # Pra simplificar, el ATE es homogeneo y vale 1
+  treat_effect = 1,
+  # x afecta al outcome de manera no lineal (una función seno)
+  outcome = sin(x) + d*treat_effect + noise
+) %>% 
+  mutate(d_factor = factor(d,
+                           levels=c(0,1), labels=c("No tratado",
+                                                   "Tratado")))
+
+ggplot(df_wo_common_support,
+       aes(x, outcome, color = d_factor)) +
+  geom_point(size = 1) + 
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Estado del tratamiento") +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+En este ejemplo podemos ver claramente que todos los sujetos del grupo tratamiento tienen valores de $x$ mayores a $0.5$ y menores a $2.5$. Es decir, ya no hay más soporte común.
+
+A estos datos le vamos a ajustar dos modelos, uno de *matching* usando `MatchIt` y otro de regresión lineal pero con un pequeño truquito dado que sabemos la forma funcional. Lo que vamos a ajustar es el siguiente modelo:
+
+$$
+Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
+$$
+
+Es decir, estamos asumiendo que la relación entre $x$ y el *outcome* es una función seno, y no lineal[^es_lineal]. Vamos a ver qué pasa.
+
+[^es_lineal]: Recordemos que, a pesar de que aparece $\sin(X)$, la regresión lineal sigue siendo lineal en los parámetros, por lo que no estamos violando ningún supuesto de la regresión lineal. 
+
+```{r}
+#| fig-cap: "Estimaciones del efecto del tratamiento utiliando regresión y matching para los datos sin soporte común."
+# Modelo lineal sin soporte comun ####
+reg_wo_common_support <- lm(outcome ~ d + sin(x), data = df_wo_common_support)
+
+# Matching sin soporte común ####
+nearest_control <- matchit(d ~ x, 
+                           data = df_wo_common_support,
+                           method = "nearest", 
+                           distance = "mahalanobis",
+                           replace = T,
+                           ratio = 1)
+
+match_df_wo_common_support <- match.data(nearest_control)
+
+mathing_wo_common_support <- lm(outcome ~ d + x, 
+                     data = match_df_wo_common_support, 
+                     weights = weights)
+
+# Comparamos los modelos
+modelsummary(list("Regresión"= reg_wo_common_support,
+                  "Matching" = mathing_wo_common_support),
+             coef_rename = c("d" = "Tratamiento"),
+             statistic = NULL, 
+             gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F|RMSE',
+             output = "gt") |>
+  gt_highlight_rows(rows = 2, 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+```
+
+```{r}
+#| fig-cap: "La regresión lineal ajustada conociendo la forma de la relación entre x y el outcome (seno). La línea punteada representa la fracción de x que es extrapolada por el modelo para estos datos sin soporte común."
+# Esto es sólo una cosa para plotar los datos
+df_wo_common_support <- df_wo_common_support %>%
+  mutate(group = case_when(
+    x < 0.5 ~ "segment1",
+    x > 2.5 ~ "segment3",
+    TRUE ~ "segment2"
+  ))
+
+# Los labels a una función
+creating_factor_d <- function(x) factor(x,
+                                        levels = c(0, 1),
+                                        labels = c("No tratado",
+                                                   "Tratado"))
+
+df_wo_cs_treated <- df_wo_common_support %>% 
+  mutate(extrapolation = ifelse(d == 1, "No", "Yes"),
+         d = 1,
+         d_factor = creating_factor_d(d)) %>% 
+  modelr::add_predictions(reg_wo_common_support, var = "pred_treated")
+
+df_wo_cs_untreated <- df_wo_common_support %>% 
+  mutate(extrapolation = ifelse(d == 0, "No", "Yes"),
+         d = 0,
+         d_factor = creating_factor_d(d)) %>% 
+  modelr::add_predictions(reg_wo_common_support, var = "pred_untreated")
+
+plot_wo_cs_reg <- 
+  ggplot() +
+  aes(x, outcome, color = d_factor) +
+  geom_point(data= df_wo_common_support, alpha = 0.3, size = 1) +
+  geom_line(data = df_wo_cs_untreated,
+            aes(y = pred_untreated,
+                alpha = extrapolation,
+                linetype = extrapolation,
+                group = group), size = 1) +
+  geom_line(data = df_wo_cs_treated,
+            aes(y = pred_treated,
+                alpha = extrapolation,
+                linetype = extrapolation,
+                group = group), size = 1) +
+  scale_alpha_manual(values = c("Yes" = 0.5, "No" = 1)) +
+  scale_linetype_manual(values = c("Yes" = "dashed", "No" = "solid")) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Estado del tratamiento",
+       linetype = "Extrapolación") +
+  guides(alpha = FALSE,
+         linetype = FALSE) +
+  theme_bw() +
+  theme(legend.position = "top")
+
+plot_wo_cs_reg
+
+```
+
+```{r}
+#| fig-cap: "Algo parecido a lo que usa el matching para estimar el efecto pero ahora sin soporte común."
+x_values <- df_wo_common_support %>% dplyr::select(x)
+
+knn_wo_cs_treated <- knn.reg(
+  train = df_wo_common_support %>% 
+    filter(d == 1) %>% 
+    dplyr::select(x),
+  y = df_wo_common_support %>% 
+    filter(d == 1) %>% 
+    dplyr::pull(outcome),
+  test = x_values,
+  k = 15,
+  algorithm = "brute"
+)
+
+knn_wo_cs_untreated <- knn.reg(
+  train = df_wo_common_support %>% 
+    filter(d == 0) %>% 
+    dplyr::select(x),
+  y = df_wo_common_support %>% 
+    filter(d == 0) %>% 
+    dplyr::pull(outcome),
+  test = x_values,
+  k = 15,
+  algorithm = "brute"
+)
+
+df_untr_matching_wo_cs <-
+  tibble(
+    y_pred = knn_wo_cs_untreated$pred,
+    x = df_wo_common_support$x,
+    d = 0
+  ) %>%
+  mutate(d_factor = creating_factor_d(d))
+
+df_tr_matching_wo_cs <-
+  tibble(
+    y_pred = knn_wo_cs_treated$pred,
+    x = df_wo_common_support$x,
+    d = 1
+  ) %>%
+  mutate(d_factor = creating_factor_d(d),
+         group = case_when(
+           x < 0.5 ~ "segment1",
+           x > 2.5 ~ "segment3",
+           TRUE ~ "segment2"
+         ))
+
+plot_matching_wo_cs <- 
+  ggplot() +
+  aes(x, outcome, color = d_factor) +
+  geom_point(data= df_wo_common_support, alpha = 0.3, size = 1) +
+  geom_line(data = df_untr_matching_wo_cs,
+            aes(y = y_pred), size = 1) +
+  geom_line(data = df_tr_matching_wo_cs,
+            aes(y = y_pred, group = group), size = 1) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Estado del tratamiento") +
+  theme_bw() +
+  theme(legend.position = "top")
+
+plot_matching_wo_cs
+```
+
+

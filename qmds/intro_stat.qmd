@@ -8,7 +8,7 @@ source("../R/_common.R")
 
 ## Variables aleatorias
 
-Wasserman[@wasserman2004all] nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales ($X:\Omega \rightarrow \mathbb{R}$). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica es definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos.
+Wasserman[@wasserman2004all] nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales ($X:\Omega \rightarrow \mathbb{R}$). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica esta definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos.
 
 Vamos con un ejemplo. Supongan que tiramos una moneda justa dos veces y tenemos la variabla aleatoria $X$ que cuenta la cantidad de caras (H)[^intro_stat-1]. Los posibles eventos $\omega$ del espacio de eventos $\Omega$ son $\Omega = \{ TT, TH, HT, HH \}$. En este caso, la variable aleatoria $X$ va a tomar los valores $X = \{ 0, 1, 1, 2\}$ para cada $\omega$. Esto, en resumidas cuentas, es lo que hace una variable aleatoria.
 
@@ -45,7 +45,7 @@ $$
 P(B) = P(B|A) \times P(A) +  P(B|\neg A) \times P(\neg A)
 $${#eq-test}
 
-Pensemosun ejemplo. Imaginemos que una perona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es $0.35$ y la probabilidad de que lo termine si no llueve es de $0.95$. Si la probabilidad de que llueva es $P(A)=0.4$ ¿Cuál es la probabilidad ($P(B)$) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:
+Pensemos un ejemplo. Imaginemos que una persona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es $0.35$ y la probabilidad de que lo termine si no llueve es de $0.95$. Si la probabilidad de que llueva es $P(A)=0.4$ ¿Cuál es la probabilidad ($P(B)$) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:
 
 $$
 \begin{array}
@@ -157,7 +157,7 @@ $$
 V(X) = E(X^2) - E^2(X)
 $${#eq-test}
 
-Por otro lado, la covarianza es mide la cantidad de dependencia lineal entre dos variables aleatorias. La msma se define como 
+Por otro lado, la covarianza mide la cantidad de dependencia lineal entre dos variables aleatorias. La misma se define como 
 
 $$
 Cov(X,Y) = E(XY) - E(X)E(Y)
@@ -219,7 +219,7 @@ tibble(x,y) |>
   geom_point()
 ```
 
-Es muy importante tener en cuenta que el cueficiente de correlación nos dice cuán **linealmente** relacionadas están las variables. Veamos esto con un ejemplito:
+Es muy importante tener en cuenta que el coeficiente de correlación nos dice cuán **linealmente** relacionadas están las variables. Veamos esto con un ejemplito:
 
 
 ```{r}
@@ -242,7 +242,7 @@ tibble(x,y) |>
 
 En este caso vemos que claramente hay uan relación entre **X** e **Y** (no son una nube de puntos sin estructura) pero como esta relación no es lineal (cuadrática en nuestro caso), el coeficiente de correlación es cercano a cero.
 
-Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre $-1$ y $1$. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra. Cuanto más cerca esté el coeficiente de $1$ o, más fuerte es la relación lineal.
+Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre $-1$ y $1$. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra). Cuanto más cerca esté el coeficiente de $1$ o, más fuerte es la relación lineal.
 
 ## Población y muestra
 
@@ -291,7 +291,7 @@ Simulemos tres experimento tomando 10, 50 y 100 mediciones ($n$) y veamos los hi
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #| fig-width: 8
 #| fig-asp: .4
-#| fig-cap: 
+#| fig-cap: "Distribución de la altura de los varones argentinos para distintos valores de n"
 #| fig-align: center
 set.seed(10)
 data_h <- tibble(n = 10, h = rnorm(10, mu, sigma)) %>%
@@ -353,15 +353,15 @@ Recordemos que si $X \sim \mathcal{N}(\mu, \sigma^2)$ entonces $\bar{X}_n \sim \
 
 [^n]: La $n$ en $\bar{X}_n$ es simplemente para enfatizar que es el promedio de una seciencia de $n$ realizaciones.
 
-Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que $\mu$ es diferente de cero cuando no lo es (Error tipo I o dalso positivo) o podemos cometer el error de decir que $\mu$ no es diferente de cero cuando sí lo es (Error tipo II o dalso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.
+Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que $\mu$ es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos cometer el error de decir que $\mu$ no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.
 
-Para esto vamos a calcular qué tal probable es observar un valor igual o más alejado del cero que $\bar{x}_{obs}$ dado que $H_0$ es verdadera. Es decir, $P(|\bar{X}|>\bar{x}_{obs}|H_0)$. Esta magnitud es lo que se conoce como el viejo y querido p-valor o *p-value* (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando $\bar{X}$ de la siguiente forma:
+Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado del cero que $\bar{x}_{obs}$ dado que $H_0$ es verdadera. Es decir, $P(|\bar{X}|>\bar{x}_{obs}|H_0)$. Esta magnitud es lo que se conoce como el viejo y querido p-valor o *p-value* (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando $\bar{X}$ de la siguiente forma:
 
 $$
 Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 $${#eq-test}
 
-Qque bajo $H_0$ es:
+Que bajo $H_0$ es:
 
 $$
 Z_{H_0} = \frac{\bar{X}}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
@@ -647,7 +647,7 @@ Hay una interpretación que me gusta que es la siguiente, la potencia estadísti
 El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:
 
 1. Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.
-2. Determinamos el mínimo tamaño de efecto de interés (*SESOI*[^sesoi]). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaña de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.
+2. Determinamos el mínimo tamaño de efecto de interés (*SESOI*[^sesoi]). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaño de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.
 3. Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo $0.9$) y un $\alpha$ dado (por ejemplo $0.05$).
 
 No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente $n$, pero la forma de pensar el problema es siempre similar.

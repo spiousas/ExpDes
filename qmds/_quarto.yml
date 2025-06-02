@@ -51,7 +51,7 @@ format:
     theme:
       light: cosmo
       dark: darkly
-    code-fold: show
+    code-fold: true 
     code-summary: "Ver el código"
   pdf:
     documentclass: scrreprt

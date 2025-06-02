@@ -91,10 +91,12 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -181,6 +183,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -328,7 +331,7 @@ DAGS en R
 <p>Para realizar los DAGS que aparecen en este capítulo utilizamos la librería <em>{ggdag}</em>. Para esto primero debemos hacer un esquema de nuestro DAG en <a href="https://www.dagitty.net/dags.html#">Daggity</a> y luego copiar parte de lo generado en la definición de nuestro DAG en <strong>R</strong>. En el desarrollo del capítulo utilizaremos algunas de las herramientas de <em>{ggdag}</em>, varias de las cuales pueden encontrar en <a href="https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1">este tutorial</a>. Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la <a href="https://r-causal.github.io/ggdag/">documentación del mismo</a>.</p>
 </div>
 </div>
-<p>¿Así de simple? Sí y no ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra “correlación no implica causalidad” la relación entre venta de helados (<strong>Hel</strong>) y accidentes por mordidas de tiburón en Australia(<strong>Sh</strong>). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿No?. Entonces, ¿Qué está pasando? ¿Qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación en este caso lo que tenemos es una común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (<strong>T</strong>). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:</p>
+<p>¿Así de simple? Sí y no ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra “correlación no implica causalidad” la relación entre venta de helados (<strong>Hel</strong>) y accidentes por mordidas de tiburón en Australia(<strong>Sh</strong>). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿No?. Entonces, ¿Qué está pasando? ¿Qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación en este caso lo que tenemos es una causa común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (<strong>T</strong>). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -353,7 +356,7 @@ Hel \longleftarrow T \longrightarrow Sh
 <p>El primero es lo que se llama un <em>camino directo</em> y es lo relación causal que queremos estudiar. Por otro lado, el segundo (<span class="math inline">\(Hel \leftarrow T \rightarrow Sh\)</span>) es lo que se llama una <em>puerta de atrás</em> y lo identíficamos porque, al menos en alguna de sus relaciones causales, la flechita va para la izquierda. Identificar estos caminos <em>puerta de atrás</em> es una parte fundamental de controlar la variabilidad espúrea en nuestras relaciones causales. En particular en este ejemplo, tenemos un claro confusor y lo que queremos es controlar por <strong>T</strong>.</p>
 <p>Simulemos esta relación y veamos que pasa.</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1414</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>helados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -613,7 +616,7 @@ F Statistic
 </div>
 </div>
 </div>
-<p>Ya uqe sabemos que la edad tienen un. efecto en el uso de aplicaciones móviles y, podemos suponer, que la gente que se infecta de COVID-19 tiende a reportar más sus datos en la aplicación. Ahora veamos los caminos:</p>
+<p>Ya que sabemos que la edad tienen un efecto en el uso de aplicaciones móviles y, podemos suponer, que la gente que se infecta de COVID-19 tiende a reportar más sus datos en la aplicación. Ahora veamos los caminos:</p>
 <p><span class="math display">\[
 \begin{array}
 _Age    \longrightarrow Cov \\
@@ -621,7 +624,7 @@ Age \longrightarrow App \longleftarrow Cov
 \end{array}
 \]</span> Repitamos el ejercicio de simulación que utilizamos en el ejemplo de los confusores, sólo que esta vez Covid es una variable dicotómica y, por lo tanto, debemos muestrarla de una distribución Bernoulli<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p>
 <div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -854,7 +857,7 @@ El criterio de las puertas traseras
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En resumen, el <strong>criterio de las puertas traseras</strong> nos dice que para estimar la relación causal principal debemos cerrar todas las <em>puertas traseras</em> (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un <em>collider</em> el camino està cerrado y al controlar por él lo abrimos.</p>
+<p>En resumen, el <strong>criterio de las puertas traseras</strong> nos dice que para estimar la relación causal principal debemos cerrar todas las <em>puertas traseras</em> (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un <em>collider</em> el camino está cerrado y al controlar por él lo abrimos.</p>
 </div>
 </div>
 </section>
@@ -862,7 +865,7 @@ El criterio de las puertas traseras
 <h2 data-number="4.4" class="anchored" data-anchor-id="un-ejemplo"><span class="header-section-number">4.4</span> Un ejemplo</h2>
 <p>Analicemos un ejemplo que tiene un poquito de todo. En el mismo queremos estudiar la el efecto de las vitaminas (<strong>Vits</strong>) en los defectos de nacimiento (<strong>BD</strong>). Además de esta relación, podemos identificar otras variables que podrían influir en ellas: La dificultad para concebir un embarazo (<strong>DC</strong>); El cuidado pre-natal (<strong>PNC</strong>); el status socioeconómico (<strong>SES</strong>); y aspectos genéticos (<strong>Gen</strong>). El flujo de causalidad propuesto entre las variables puede verse representado en el siguiente DAG<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Recuerden que el diagrama causal no es un problema estadístico sino más bien se plantea previo a cualquier consideración estadística, usando como insumo el conocimiento del dominio que tenemos.</p></div></div><div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="ot">&lt;-</span> dagitty<span class="sc">::</span><span class="fu">dagitty</span>(<span class="st">'dag {</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">                          BD [outcome,pos="0.109,0.631"]</span></span>
@@ -894,9 +897,9 @@ El criterio de las puertas traseras
 </div>
 </div>
 </div>
-<p>Si tebemos todos estos datos observados y queremos estimar el efecto causal de las vitaminas en los defectos de nacimiento, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función <code>ggdag_paths</code> del paquete <em>{ggdags}</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A continuación vemos un ejemplo de uso de esta función:</p>
+<p>Si tenemos todos estos datos observados y queremos estimar el efecto causal de las vitaminas en los defectos de nacimiento, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función <code>ggdag_paths</code> del paquete <em>{ggdags}</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A continuación vemos un ejemplo de uso de esta función:</p>
 <div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></div></div><div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
@@ -922,7 +925,7 @@ Vits \longleftarrow SES \longrightarrow PNC \longrightarrow BD
 \]</span></p>
 <p>Pero ¿Por qué no está abierto el camino <span class="math inline">\(Vits \leftarrow SES \rightarrow PNC \leftarrow DC \leftarrow Gen \rightarrow BD\)</span>? ¡Exacto! Está cerrado, porque para ese camino <strong>PNC</strong> es un <em>collider</em>, ya que está causada tanto por <strong>SES</strong> como por <strong>DC</strong>. Resulta importante notar que una variable es un <em>collider</em> o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que <strong>PNC</strong> actúa como un confusor en el camino <span class="math inline">\(Vits \leftarrow PNC \rightarrow BD\)</span>. La función <code>ggdag_collider</code> también nos puede ayudar a identificar un <em>collider</em>.</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_collider</span>() <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
@@ -937,9 +940,9 @@ Vits \longleftarrow SES \longrightarrow PNC \longrightarrow BD
 </div>
 </div>
 </div>
-<p>Entonces tenemos cuatro caminos abiertos, el que queremos estudiar y tres <em>puertas de atráss</em>. Sin embargo, tenemos la suerte que controlando sólo por <strong>PNC</strong> Todo indica que tenemos que controlar por <strong>Diab</strong> y listo ¿No? Apliquemos esto agregando el parámetro <code>adjust_for = "Diab"</code> a la función <code>ggdag_paths</code>:</p>
+<p>Entonces tenemos cuatro caminos abiertos, el que queremos estudiar y tres <em>puertas de atrás</em>. Sin embargo, todo indica que tenemos que controlar por <strong>PNC</strong> y listo ¿No? Apliquemos esto agregando el parámetro <code>adjust_for = "PNC"</code> a la función <code>ggdag_paths</code>:</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="st">"PNC"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
@@ -965,7 +968,7 @@ Vits \leftarrow SES \rightarrow PNC \leftarrow DC \leftarrow Gen \rightarrow BD
 \]</span></p>
 <p>¿Qué pasó? Bueno, lo que pasó es que al controlar por un <em>collider</em> abrimos un camino que estaba cerrado. Miremos qué pasa si controlamos por <strong>PNC</strong> y <strong>DC</strong>:</p>
 <div class="cell" data-layout-align="center">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="fu">c</span>(<span class="st">"PNC"</span>, <span class="st">"DC"</span>), <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
@@ -982,9 +985,9 @@ Vits \leftarrow SES \rightarrow PNC \leftarrow DC \leftarrow Gen \rightarrow BD
 </div>
 </div>
 </div>
-<p>Ahora sí, el único camino abierto es <span class="math inline">\(Vits \rightarrow DC\)</span>, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:</p>
+<p>Ahora sí, el único camino abierto es <span class="math inline">\(Vits \rightarrow BD\)</span>, que es la relación causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:</p>
 <p><span class="math display">\[
-BD_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + + \epsilon_i
+BD_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + \epsilon_i
 \]</span></p>
 <p>Donde <span class="math inline">\(\beta_{Vits}\)</span> es un estimador del efecto causal que queremos estudiar.</p>
 <p>Para más ejemplos y detalles sobre los DAGS pueden consultar <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> o <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>. El canal de <a href="https://www.youtube.com/@NickHuntingtonKlein">YouTube de Nick Huntington-Klein</a> también es un excelente recurso para profundizar sobre estos temas<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
@@ -1019,6 +1022,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

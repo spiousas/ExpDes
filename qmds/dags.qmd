@@ -37,7 +37,7 @@ ggdag(tidy_dag) +
 Para realizar los DAGS que aparecen en este capítulo utilizamos la librería *{ggdag}*. Para esto primero debemos hacer un esquema de nuestro DAG en [Daggity](https://www.dagitty.net/dags.html#) y luego copiar parte de lo generado en la definición de nuestro DAG en **R**. En el desarrollo del capítulo utilizaremos algunas de las herramientas de *{ggdag}*, varias de las cuales pueden encontrar en [este tutorial](https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1). Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la [documentación del mismo](https://r-causal.github.io/ggdag/).
 :::
 
-¿Así de simple? Sí y no ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra "correlación no implica causalidad" la relación entre venta de helados (**Hel**) y accidentes por mordidas de tiburón en Australia(**Sh**). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿No?. Entonces, ¿Qué está pasando? ¿Qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación en este caso lo que tenemos es una común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (**T**). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:
+¿Así de simple? Sí y no ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra "correlación no implica causalidad" la relación entre venta de helados (**Hel**) y accidentes por mordidas de tiburón en Australia(**Sh**). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿No?. Entonces, ¿Qué está pasando? ¿Qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación en este caso lo que tenemos es una causa común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (**T**). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:
 
 ```{r, fig.height=4}
 #| echo: false
@@ -150,7 +150,7 @@ ggdag(tidy_dag) +
   theme_dag()
 ```
 
-Ya uqe sabemos que la edad tienen un. efecto en el uso de aplicaciones móviles y, podemos suponer, que la gente que se infecta de COVID-19 tiende a reportar más sus datos en la aplicación. Ahora veamos los caminos:
+Ya que sabemos que la edad tienen un efecto en el uso de aplicaciones móviles y, podemos suponer, que la gente que se infecta de COVID-19 tiende a reportar más sus datos en la aplicación. Ahora veamos los caminos:
 
 $$
 \begin{array}
@@ -216,7 +216,7 @@ La estimación del efecto correcta sería la del modelos sin controlar pero ¿Po
 ::: {.callout-tip icon="false"}
 ## El criterio de las puertas traseras
 
-En resumen, el **criterio de las puertas traseras** nos dice que para estimar la relación causal principal debemos cerrar todas las *puertas traseras* (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un *collider* el camino està cerrado y al controlar por él lo abrimos.
+En resumen, el **criterio de las puertas traseras** nos dice que para estimar la relación causal principal debemos cerrar todas las *puertas traseras* (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un *collider* el camino está cerrado y al controlar por él lo abrimos.
 :::
 
 ## Un ejemplo
@@ -251,7 +251,7 @@ ggdag(tidy_dag) +
   theme_dag()
 ```
 
-Si tebemos todos estos datos observados y queremos estimar el efecto causal de las vitaminas en los defectos de nacimiento, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función `ggdag_paths` del paquete *{ggdags}*[^dags-3]. A continuación vemos un ejemplo de uso de esta función:
+Si tenemos todos estos datos observados y queremos estimar el efecto causal de las vitaminas en los defectos de nacimiento, lo primero que tenemos que hacer es plantear todos los caminos abiertos. Esto lo podemos hacer a ojo, pero también nos podemos ayudar con la función `ggdag_paths` del paquete *{ggdags}*[^dags-3]. A continuación vemos un ejemplo de uso de esta función:
 
 [^dags-3]: Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.
 
@@ -287,7 +287,7 @@ dag_Vit %>% ggdag_collider() +
      scale_color_brewer(palette = "Dark2")
 ```
 
-Entonces tenemos cuatro caminos abiertos, el que queremos estudiar y tres *puertas de atráss*. Sin embargo, tenemos la suerte que controlando sólo por **PNC** Todo indica que tenemos que controlar por **Diab** y listo ¿No? Apliquemos esto agregando el parámetro `adjust_for = "Diab"` a la función `ggdag_paths`:
+Entonces tenemos cuatro caminos abiertos, el que queremos estudiar y tres *puertas de atrás*. Sin embargo, todo indica que tenemos que controlar por **PNC** y listo ¿No? Apliquemos esto agregando el parámetro `adjust_for = "PNC"` a la función `ggdag_paths`:
 
 ```{r}
 #| echo: true
@@ -324,10 +324,10 @@ dag_Vit %>% ggdag_paths(from = "Vits", to = "BD",
   theme(legend.position = "bottom")
 ```
 
-Ahora sí, el único camino abierto es $Vits \rightarrow DC$, que es la relaciòn causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:
+Ahora sí, el único camino abierto es $Vits \rightarrow BD$, que es la relación causal que queremos estudiar. Finalmente, el modelo que deberíamos ajustar es:
 
 $$
-BD_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + + \epsilon_i
+BD_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + \epsilon_i
 $$
 
 Donde $\beta_{Vits}$ es un estimador del efecto causal que queremos estudiar.

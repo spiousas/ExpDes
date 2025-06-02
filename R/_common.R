@@ -1,9 +1,10 @@
 set.seed(1014)
 
 pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble, forcats, patchwork, ggdag, 
-               dagitty, stargazer, kableExtra, kableExtra, lme4, modelsummary)
+               dagitty, stargazer, kableExtra, kableExtra, lme4, modelsummary,
+               MatchIt, gtExtras, FNN)
 
-pacman::p_load_gh("hadley/emo")
+pacman::p_load_gh("hadley/emo", "ggmagnify")
 
 knitr::opts_chunk$set(
   comment = "#>",

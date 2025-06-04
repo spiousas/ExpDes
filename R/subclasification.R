@@ -148,4 +148,4 @@ ggplot(customers_4_plot) +
   theme_minimal() +
   labs(color = NULL) +
   theme(legend.position = "top")
-
+  

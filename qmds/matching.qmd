@@ -13,6 +13,8 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
+Lo que sigue no es una versión final y está e n construcción `r emo::ji("construction")`
+
 ## Subclasificación
 
 ### ¿Por qué subclasificar? Motivación y objetivo
@@ -41,7 +43,7 @@ $$
 
 [^cia]: Del inglés *Conditional Independence Assumption*.
 
-osea, **una vez que fijamos X**, la asignación al tratamiento se comporta como si fuera aleatoria.
+O sea, **una vez que fijamos X**, la asignación al tratamiento se comporta como si fuera aleatoria.
 
 En estudios observacionales como el de las tiendas y descuentos, la **región** (X) influye tanto en la probabilidad de recibir descuento ($D$) como en las ventas ($Y$), lo que genera un camino en el que $X$ es confusor ($D \leftarrow X \rightarrow Y$). Si ignoramos esa ruta, la comparación global de medias mezclará el efecto real del descuento con las diferencias regionales, produciendo un sesgo.
 
@@ -74,9 +76,183 @@ Al condicionar en $X$ (es decir, subclasificar o estratificar por región), cerr
 
 
 
-### El estimador de subclasificación: Un ejemplo dcon descuento
+### El estimador de subclasificación: Un ejemplo con descuento
 
-## Matching
+¿Cómo aplicamos esta idea de la subclasificación a un ejemplo real? Bueno, empecemos con un ejemplo "real". 
+
+Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuenta que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste(compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
+
+Como todas las simulaciones que hicimos a lo largo del libro (si es que a esto se le puede llamar libro) conocemos el tamaño del efecto que queremos estimar y tiene como valor medio \$$300$. Otra cosa a la que vamos a poder ecceder es a ambos *potential outcomes*, es decir, tanto al observado como al contrafáctico (si es que a esto se le puede llamar contrafáctico). Estos son lujos que nos podemos dar (si es que a esto se le puede llamar un lujo). Veamos $5$ filas al azar de los datos simulados.
+
+```{r}
+# Simulación de los datos ####
+set.seed(1989)
+
+n_este <- 130
+n_oeste <- 220
+n_norte <- 500
+n_total <- n_este + n_oeste + n_norte
+
+customers <-
+  tibble(
+    customer_id = seq(n_total),
+    region = c(rep("Este", n_este),
+               rep("Oeste", n_oeste),
+               rep("Norte", n_norte)),
+    # El efecto del tratamiento es 300USD + ruido [N(300,200)]
+    treatment_effect = rnorm(n_total, mean = 300, sd = 200),
+    # Ventas por cliente cuando no se ofrece ning'un descuento (no tratado)
+    y0 = c(
+      rnorm(n_este, mean = 3000, sd = 200),
+      rnorm(n_oeste, mean = 2000, sd = 200),
+      rnorm(n_norte, mean = 3500, sd = 200)
+    ),
+    # Ventas cuando se ofrece un descuento
+    y1 = y0 + treatment_effect,
+    # El vector de asignación de tratamiento D
+    d = c(
+      rbinom(n_este, 1, 0.5),
+      rbinom(n_oeste, 1, 0.8),
+      rbinom(n_norte, 1, 0.2)
+    ),
+    # Switching equation
+    y = y0 + treatment_effect*d
+  ) %>%
+  mutate(tratamiento = if_else(d == 0, "Control", "Tratamiento"))
+
+sample_n(customers, 5) %>%
+  gt::gt() %>%
+  gt::tab_header(
+    title = "Datos de clientes con descuento (5 filas al azar)"
+  )
+```
+
+Lo primero que uno pensaría en estos casos (aunque cualquier lector o lectora de este libro podría intuir por qué es incorrecto) es en tomar los sujetos del grupo tratamiento y los del control y calcular la diferencia simple entre medias (**SDO**). Veamos que pinta tiene eso gráficamente y después calculemoslo.
+
+```{r}
+customers %>%
+  ggplot(aes(x = tratamiento, 
+             y = y, 
+             color = tratamiento)) +
+  geom_jitter(alpha = .3, width = .1, size = 1) + 
+  stat_summary(color = "black", width = .4) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = NULL, y = "Ventas por mes por cliente", color = NULL) +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+¿Pero no era que el tratamiento tenía un efecto conocido de \$$300$? A ver, tomemos un respiro y calculemos el **SDO**, recordemos cómo calcularlo:
+
+$$
+SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=0),
+$$
+
+o, en lenguaje computacional:
+
+`SDO <- mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0])`.
+
+Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es nmegativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegudar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso al asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
+
+Veamos ahora las ventas para grupo tratamiento y control pero por región.
+
+
+```{r}
+customers %>%
+  ggplot(aes(x = tratamiento, 
+             y = y, 
+             color = tratamiento)) +
+  geom_jitter(alpha = .3, width = .1, size = 1) + 
+  stat_summary(color = "black", width = .4) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = NULL, y = "Ventas por mes por cliente", color = NULL) +
+  facet_wrap(~region) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+Apa, la cosa ahora es distinta. Tal como lo esperábamos, en cada grupo el efecto del tratamiento es un aumento en las ventas. Lo que ocurre es una combinación de sesgo de selección con el tamaño de las regiones. La región del norte, que es la más grande, tiene más sujetos asignados a control, por lo tanto, los controles tienen una sobrerepresentación de clientes que tienden a comprar más. Por el contrario, la región del oesta, que es la más chica, tiene más sujetos asignados al grupo tratamiento, lo cual genera una sobrerepresentación de ratone... clientes que gastan menos en el grupo tratamiento.
+
+¿Se les ocurre alguna solución elegante `r emo::ji("top_hat")`? Claro, podemos calcular el efecto del tratamiento dentro de cada grupo (una especie de **SDO** local) y después vemos qué hacemos. Empecemos por eso.
+
+```{r}
+SDO_este <- mean(customers$y[customers$region=="Este" & customers$d==1]) - 
+  mean(customers$y[customers$region=="Este" & customers$d==0])
+
+SDO_norte <- mean(customers$y[customers$region=="Norte" & customers$d==1]) - 
+  mean(customers$y[customers$region=="Norte" & customers$d==0])
+
+SDO_oeste <- mean(customers$y[customers$region=="Oeste" & customers$d==1]) - 
+  mean(customers$y[customers$region=="Oeste" & customers$d==0])
+
+tibble(Región = c("Este", "Norte", "Oeste"),
+       SDO = c(SDO_este, SDO_norte, SDO_oeste)) %>%
+  gt()
+```
+
+Efectivamente el efecto en cada región se acerca a los \$$300$. Pero para hacer una única estimación del efecto vamos a usar el estimador de subclasifiación, que no es otra cosa que un promedio ponderado de estos **SDOs** por región. Formalmente sería algo así:
+
+$$
+\hat\delta_{ATE} = \sum_{k=1}^K SDO_k \times \frac{N_k}{N_k}  
+$$
+
+donde $k$ es un índice que codifica al grupo, $K$ es la cantidad total de grupos, $SDO_k$ la diferencia de medias para el grupo $k$, $N_k$ la cantidad de individuos del grupo $k$ y $N_t$ la cantidad total de individuos. Un promedio pesado, bah. En lenguaje de **R** sería algo como:
+
+`subclas_estimator <- SDO_este * (n_este/n_total) +
+  SDO_norte * (n_norte/n_total) +
+  SDO_oeste * (n_oeste/n_total)`
+
+En nuestro caso el estimador vale \$`r round(SDO_este * (n_este/n_total) + SDO_norte * (n_norte/n_total) + SDO_oeste * (n_oeste/n_total))`. Bastante bien, ¿no?
+
+Pero ¿por qué pasó esto? Veamos algunas figuritas que nos ayuden a entender un poco. Para esto vamos a echar mano a la ventaja de haber generado los datos y vamos a graficar tanto el observable ($Y_0$ si son grupo control o $Y_1$ si son grupo tratamiento) como el contrafáctico ($Y_1$ si son grupo control o $Y_0$ si son grupo tratamiento).
+
+```{r}
+# Plots de independencia ####
+# Armo un tibble para plotear
+customers_4_plot <- customers %>% 
+  select(region, d, y1, y0, tratamiento) %>% 
+  pivot_longer(cols = c(y1, y0),
+               names_to = "potential_outcome",
+               values_to = "value")
+```
+
+```{r}
+# Independencia
+ggplot(customers_4_plot) +
+  aes(potential_outcome, value, colour = tratamiento) +
+  geom_boxplot() +
+  labs(x = "Potential Outcome",
+       y = "Ventas por mes por cliente",
+       colour = "Treatment status",) +
+  scale_color_brewer(palette = "Dark2") +
+  theme_minimal() +
+  labs(color = NULL) +
+  theme(legend.position = "top")
+```
+
+En esta figura lo que estamos viendo es que la asignación a los grupos depende fuertemente del *outcome* ya que podemos ver que los del grupo control tienden a tener *outcomes* más altos tanto observado como contrafáctico. O sea, no se cumple la independencia ($D \perp (Y_0,Y_1)$). Ke sad bro `r emo::ji("person_frowning")`. Ahora, ¿Qué pasa si vemos esto mismo pero para cada región?
+
+```{r}
+# Independencia condicional a la región
+ggplot(customers_4_plot) +
+  aes(potential_outcome, value, colour = tratamiento) +
+  geom_boxplot() +
+  facet_wrap(~region) +
+  labs(x = "Potential Outcome",
+       y = "Ventas por mes por cliente",
+       colour = "Treatment status",) +
+  scale_color_brewer(palette = "Dark2") +
+  theme_minimal() +
+  labs(color = NULL) +
+  theme(legend.position = "top")
+  
+```
+
+*Et voilá*, acá la cosa cambia. Que significa esto, que si bien el problema no tiene independencia, sí podemos obtener la independencia condicional controlando por región ($D \perp (Y_0,Y_1) | Grupo$).
+
+Todo esto es muy lindo, pero que pasa si en lugar de tener grupos tenemos que esta dependencia en la asignación depende de una variable continua o, peor aún, de varias. Tranquilos amigos, *matching* es el camino.
+
+## *Matching*
 
 Una forma alternativa de lidiar con la independencia condicional y el cierre de backdoors es el **matching**. La idea central es fácil: en vez de comparar cada unidad tratada con el promedio de todas las unidades no tratadas, buscamos **comparar cada unidad tratada con una unidad no tratada que se le parezca lo más posible** en función de ciertas características observables (como la edad, la región, los ingresos, etc.).
 
@@ -230,6 +406,8 @@ empleados_tbl |> ggplot(aes(x = Edad,
 
 En el ejemplo anterior, vimos cómo el *matching* busca emparejar unidades tratadas y no tratadas basándose en sus características observables. Pero, ¿qué pasa si en lugar de emparejar, simplemente ajustamos un modelo de regresión que incluya esas mismas covariables? ¿No era la forma en la que controlábamos por los confusores antes de este capítulo? Bueno, sí y no. La regresión y el *matching* son dos enfoques diferentes para obtener la tan ansiada independencia condicional, pero cada uno tiene sus propias ventajas y desventajas. Vamos con un ejemplo paradigmático para que podamos entender un poquito más de que estamos hablando.
 
+Vamos a generar un conjunto de datos donde $x$ es un confusor, el tratamiento $d$ se asigna de forma no lineal en función de $x$, y el *outcome* también depende de $x$ de forma no lineal, y el efecto del tratamiento es homogéneo y vale $1$.
+
 ```{r}
 #| fig-cap: "Cada uno de los sujetos pertenecientes al grupo control y tratamiento con sus respectivos valores de outcome y covariable x."
 # Genero la data ####
@@ -263,7 +441,7 @@ De estos datos podemos ver dos cosas claras: 1) $x$ es claramente un confusor, y
 Ahora probemos dos cosas: Estimar el efecto del tratamiento usando una regresión lineal y luego usando *matching* aproximado con la librería `MatchIt`(para detalles pueden ver el código).  A continuación tenemos los efectos estimados con los dos métodos:
 
 ```{r}
-#| fig-cap: "Estimaciones del efecto del tratamiento utiliando regresión y matching."
+#| fig-cap: "Estimaciones del efecto del tratamiento utilizando regresión y matching."
 # Ajustemos un modelo lineal ####
 linear_model1 <- lm(outcome ~ d + x, data = df)
 
@@ -295,7 +473,9 @@ modelsummary(list("Regresión"= linear_model1,
 
 ```
 
-Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de $0.220$, mientras que el *matching* nos da un estimador de $0.992$. ¿Por qué esta diferencia? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento. 
+Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de $0.220$, mientras que el *matching* nos da un estimador de $0.992$. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento[^tamanio_muestra]. 
+
+[^tamanio_muestra]: Otra cosa interesante que podemos observar, es que al estimar el efecto con *matching*, el tamaño de la muestra efectivo es menor que al estimar con regresión lineal. Esto se debe a que el *matching* elimina las unidades que no tienen un par cercano en el grupo de control, lo que reduce el tamaño de la muestra efectiva.
 
 Veamos qué forma tiene el modelo lineal ajustado con estos datos:
 
@@ -318,7 +498,7 @@ plot_linear <-
 plot_linear
 ```
 
-Todo esto es esperable, porque los datos son claramente no lineales. Ahora, usemos un suavizado de los datos para reflejar, más o menos, qué es lo que está haciendo el algoritmo de *matching* para estimar el efecto.
+Entonces esto es esperable porque los datos son claramente no lineales. Ahora, usemos un suavizado de los datos para reflejar, más o menos, qué es lo que está haciendo el algoritmo de *matching* para estimar el efecto.
 
 ```{r}
 #| fig-cap: "Algo parecido a lo que usa el matching para estimar el efecto."
@@ -349,7 +529,7 @@ plot_matching
 
 Podemos ver a todas luces que esto tiene mucho sentido. Ahora, ¿Usamos siempre *matching* o alguna vez puede no convenirnos?
 
-Uno de los supuestos de los modelos lineales era la linealidad de la relación entre, en este caso, *x* y el *outcome*. Si esto no se cumple, el modelo lineal no va a capturar bien la relación y, por lo tanto, el estimador del efecto del tratamiento va a estar sesgado. En cambio, el *matching* no asume una relación lineal entre las covariables y el *outcome*, por lo que puede ser más robusto en estos casos. Sin embargo, recordemos que uno de los supuestos del *matching* es la necesidad de **soporte común**. En el ejemplo anterior había soporte común, es decir, en el mismo rango de $x$ había tanto tratados como no tratados. Veamos un ejemplo donde esto no es así.
+Uno de los supuestos de los modelos lineales es la linealidad de la relación entre, en este caso, *x* y el *outcome*. Si esto no se cumple, el modelo lineal no va a capturar bien la relación y, por lo tanto, el estimador del efecto del tratamiento va a estar sesgado. En cambio, el *matching* no asume una relación lineal entre las covariables y el *outcome*, por lo que puede ser más robusto en estos casos. Sin embargo, recordemos que uno de los supuestos del *matching* es la necesidad de **soporte común**. En el ejemplo anterior había soporte común, es decir, en el mismo rango de $x$ había tanto tratados como no tratados. Veamos un ejemplo donde esto no es así.
 
 ```{r}
 #| fig-cap: "Datos pero ahora sin soporte común."
@@ -391,7 +571,7 @@ Es decir, estamos asumiendo que la relación entre $x$ y el *outcome* es una fun
 [^es_lineal]: Recordemos que, a pesar de que aparece $\sin(X)$, la regresión lineal sigue siendo lineal en los parámetros, por lo que no estamos violando ningún supuesto de la regresión lineal. 
 
 ```{r}
-#| fig-cap: "Estimaciones del efecto del tratamiento utiliando regresión y matching para los datos sin soporte común."
+#| fig-cap: "Estimaciones del efecto del tratamiento utilizando regresión y matching para los datos sin soporte común."
 # Modelo lineal sin soporte comun ####
 reg_wo_common_support <- lm(outcome ~ d + sin(x), data = df_wo_common_support)
 
@@ -420,6 +600,10 @@ modelsummary(list("Regresión"= reg_wo_common_support,
                     fill = "lightyellow",
                     font_weight = "bold")
 ```
+
+Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de doporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, $1.022$. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es $0.02$, es decir, un efecto casi nulo. 
+
+Volvamos a ver las cosas gráficamente a ver si esto nos echa un poco de luz sobre lo que está ocurriendo. Primero veamos la regresión lineal ajustada:
 
 ```{r}
 #| fig-cap: "La regresión lineal ajustada conociendo la forma de la relación entre x y el outcome (seno). La línea punteada representa la fracción de x que es extrapolada por el modelo para estos datos sin soporte común."
@@ -474,8 +658,9 @@ plot_wo_cs_reg <-
   theme(legend.position = "top")
 
 plot_wo_cs_reg
-
 ```
+
+En este caso podemos ver que al ajustar la regresión lineal, el modelo extrapola los valores de $x$ y la distancia entre ambas curvas es, efectivamente cercana a $1$ (que es el valor del parámetro poblacional). ¿Y si vemos la estimación de *matching*?
 
 ```{r}
 #| fig-cap: "Algo parecido a lo que usa el matching para estimar el efecto pero ahora sin soporte común."
@@ -542,4 +727,6 @@ plot_matching_wo_cs <-
 plot_matching_wo_cs
 ```
 
+Podemos ver que para los valores de $x$ donde no hay soporte común, el *matching* hace una estimaciones que están muy lejos del valor real del parámetro poblacional, $1$. Esto se debe a que el *matching* no puede extrapolar y, por lo tanto, no puede estimar el efecto del tratamiento en esos valores de $x$ donde no hay unidades tratadas.
 
+En resumen, la regresión lineal puede ser una herramienta conveniente para obtener la independencia condicional, pero si la relación entre las covariables y el *outcome* no es lineal (y no la conocemos)  , el estimador del efecto del tratamiento puede estar sesgado. En cambio, el *matching* no asume una relación lineal y puede ser más robusto en estos casos, pero requiere soporte común para poder extrapolar. Si no hay soporte común, el *matching* no puede estimar el efecto del tratamiento en esos valores de las covariables donde no hay unidades tratadas.

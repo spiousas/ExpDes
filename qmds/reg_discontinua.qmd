@@ -13,4 +13,147 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-En construcción `r emo::ji("construction")`
+Lo que sigue no es una versión final y está en construcción `r emo::ji("construction")`
+
+## El problema de controlar por variables no observables
+
+Al igual que en Diffs-in-Diffs, usamos el contexto para aislar el efecto causal en nuestro problema.
+
+Regresión discontinua:
+Una regla arbitraria define la asignación de grupos.
+
+Muy común en la asignación a, por ejemplo, programas sociales (por ejemplo, ayudas directas).
+
+A partir de cierto, por ejemplo, ingreso, se puede acceder a un beneficio de un programa social.
+
+Hablar del DAG
+
+Comentar el ejemplo de Turnout
+
+### Un ejemplo to *rule them all*
+
+```{r}
+tutoring <- read_csv(here("data/tutoring_program.csv")) %>% 
+  mutate(tutoring = factor(tutoring, levels = c(0, 1), 
+                           labels = c("No", "Sí")))
+```
+
+```{r}
+# Determinemos si el proceso de asignación al tratamiento depende de una regla ####
+ggplot(tutoring, aes(x = entrance_exam, 
+                     y = tutoring, 
+                     color = tutoring)) +
+  # Hacemos los puntos semitransparentes y los movemos un poco
+  geom_point(size = 1.5, alpha = 0.5, 
+             position = position_jitter(width = 0, height = 0.25, seed = 1234)) + 
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") + 
+  # Labels
+  labs(x = "Puntaje en el examen de entrada", y = "Participación en el programa de tutorías") + 
+  # Sacó la leyenda de color
+  guides(color = FALSE) +
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal()
+```
+
+```{r}
+rect_claro <- tibble(xmin = 60, xmax = 80, ymin = 0, ymax = 3)
+rect_oscuro <- tibble(xmin = 65, xmax = 75, ymin = 0, ymax = 3)
+
+ggplot(tutoring) +
+  # Los rectángulos
+  geom_rect(data = rect_claro, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), 
+            fill = "gray20", color = "white", alpha = .2) +
+  geom_rect(data = rect_oscuro, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), 
+            fill = "gray20", color = "gray80", alpha = .4) +
+  # Hacemos los puntos semitransparentes y los movemos un poco
+  geom_point( aes(x = entrance_exam, 
+                  y = tutoring, 
+                  color = tutoring),
+              size = 1.5, alpha = 0.5, 
+             position = position_jitter(width = 0, height = 0.25, seed = 1234)) + 
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "yellow", linetype = "dashed") + 
+  # Labels
+  labs(x = "Puntaje en el examen de entrada", y = "Participación en el programa de tutorías") + 
+  # Sacó la leyenda de color
+  guides(color = FALSE) +
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal()
+```
+
+```{r}
+datasummary_skim(data = tutoring, by = "tutoring", 
+                 output = "gt") |>
+  gt_highlight_rows(rows = c(3,4), 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+
+```
+
+```{r}
+# Ahora miremos como se comporta la variable outcomes en función de la running variable ####
+tutoring_centered <- tutoring |> 
+  mutate(entrance_centered = entrance_exam - 70)
+
+modelo_lm <- lm(exit_exam ~ entrance_centered + tutoring, 
+                data = tutoring_centered)
+
+ggplot(tutoring, aes(x = entrance_exam, 
+                     y = exit_exam, 
+                     color = tutoring,
+                     fill = tutoring)) +
+  geom_point(size = 1.5, alpha = .3) + 
+  # Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+  geom_smooth(data = filter(tutoring, entrance_exam <= 70), method = "lm") +
+  # Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+  geom_smooth(data = filter(tutoring, entrance_exam > 70), method = "lm") +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") + 
+  # Un segmento con el efecto del modelo
+  geom_segment(aes(x = 70, y = modelo_lm$coefficients[1], 
+                   xend = 70, yend = modelo_lm$coefficients[1] + modelo_lm$coefficients[3]), 
+               color = "darkblue", linewidth = 2) +
+  annotate("label", 
+           x = 75, y = modelo_lm$coefficients[1] + modelo_lm$coefficients[3]/2,
+           label = "LATE", 
+           color = "darkblue", size = 4, hjust = 0.5) +
+  # Las lables
+  labs(x = "Puntaje en el examen de entrada", 
+       y = "Puntaje en el examen de salida",
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+
+## ¿Cómo se estima el efecto causal?
+
+
+
+### Paramétricas vs. no paramétricas
+
+### Ancho de banda
+
+### Kernels
+
+## Limitaciones de la regresión discontinua
+
+### Data greedy
+
+### Es limitada en alcance
+
+### Puede haber problemas de **manipulación**
+
+## Un ejemplo *to rule them all*
+

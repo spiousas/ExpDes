@@ -13,7 +13,7 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-Lo que sigue no es una versión final y está e n construcción `r emo::ji("construction")`
+Lo que sigue no es una versión final y está en construcción `r emo::ji("construction")`
 
 ## Subclasificación
 

@@ -17,57 +17,41 @@ Lo que sigue no es una versión final y está en construcción `r emo::ji("const
 
 ## El problema de controlar por variables no observables
 
-Al igual que en Diffs-in-Diffs, usamos el contexto para aislar el efecto causal en nuestro problema.
+En la mayoría de los capítulos anteriores, vimos formas de controlar por confusores observables. Cuando hablamos de DAGs y agregar variable como covariables a un modelo de regresión o cuando usamops algún estimador de subclasificación o *matching*, lo que estamos haciendo es aislar la variabilidad debida a confusores observados y sustraerla de nuestra relación causal. Pero, ¿Qué pasa cuando los confusores por los que queremos controlar no son observables? Una respuesta a esta pregunta la tuvimos en el capítulo de diferencias en diferencias en el que vimos que, para un problema de una forma en particular[^dif], la solución era estimar el contrafáctico con un grupo comparable.
 
-Regresión discontinua:
-Una regla arbitraria define la asignación de grupos.
+[^dif]: Un problema con un tratamiento que se aplica en el tiempo y para el cual tenemos una medición antes y después para un grupo al que se le aplicó el tratamiento y una medición para los mismos puntos temporales pero para un grupo comparable (para más detalles ver el @sec-diff-in-diff). 
 
-Muy común en la asignación a, por ejemplo, programas sociales (por ejemplo, ayudas directas).
+La solución que vamos a proponer en este capítulo, al igual que en diferencias en diferencias, utiliza el contexto de mi cuasiexperimento para aislar el efecto causal.
 
-A partir de cierto, por ejemplo, ingreso, se puede acceder a un beneficio de un programa social.
+## *One rule to rule them all*
 
-Hablar del DAG
+La idea básica detrás de la regresión discontinua es que la separación entre grupo tratamiento y control está dada por una discontinuidad en alguna variable[^running]. Es decir, a partir de un cierto valor de esta variable un sujeto es asignado a un determinado grupo. Por ejemplo, a partir un valor de ingreso mensual, un individuo podría tener acceso a un programa de ayuda social. Supongamos que ese límite es \$$350000$ mensuales. ¿En qué se diferencian dos individuos que cobran \$$349999$ y \$$350001$ respectivamente? Probablemente en mucho, ¿no? Pero ¿y si comparamos $100$ individuos de cada ingreso? Es bastante razonable pensar que en todas las demás características, estos individuos son comparables. Es decir, que la única diferencia entre ellos es que uno de ellos accede a un programa social y el otro no. Bueno, es en esta idea en la que se cimenta (ah bueno, se puso fino el autor) la regresión discontinua. En líneas generales vamos a comprar unidades experimentales cerquita de un lado del unmbral de la *running variable* con unidades experimentales cerquita del otro lado del umbral. 
 
-Comentar el ejemplo de Turnout
+[^running]: Que a partir de ahora llamaremos *running variable*.
 
-### Un ejemplo to *rule them all*
+Empecemos a jugar con un ejemplo con datos simulados. En este ejemplo tenemos datos de la asignación de estudiantes de un curso de estadística a un programa de tutorías. La cosa es así: Los estudiantes se someten a un examen inicial y dependiendo de su puntaje, son asignados a un programa de tutorías o no. El umbral para la asignación es un puntaje de $70$ puntos. Si el estudiante saca menos de $70$ puntos, no participa del programa de tutorías. Si saca $70$ o más, sí participa. Luego, a cada estudiante se le evalúa con un examen final. La pregunta que nos hacemos es: ¿El programa de tutorías mejora el puntaje en el examen final? Veamos qué pinta tienen los datos viendo las primeras 5 filas del dataset.
 
 ```{r}
 tutoring <- read_csv(here("data/tutoring_program.csv")) %>% 
   mutate(tutoring = factor(tutoring, levels = c(0, 1), 
                            labels = c("No", "Sí")))
+
+tutoring %>%
+  head() %>%
+  gt()
 ```
 
-```{r}
-# Determinemos si el proceso de asignación al tratamiento depende de una regla ####
-ggplot(tutoring, aes(x = entrance_exam, 
-                     y = tutoring, 
-                     color = tutoring)) +
-  # Hacemos los puntos semitransparentes y los movemos un poco
-  geom_point(size = 1.5, alpha = 0.5, 
-             position = position_jitter(width = 0, height = 0.25, seed = 1234)) + 
-  # Ponemos una línea vertical en el umbral
-  geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") + 
-  # Labels
-  labs(x = "Puntaje en el examen de entrada", y = "Participación en el programa de tutorías") + 
-  # Sacó la leyenda de color
-  guides(color = FALSE) +
-  # Colores más chetos
-  scale_color_brewer(palette = "Dark2") +
-  # Theme sin fondo gris
-  theme_minimal()
-```
+Por ejemplo, vemos que el estudiante de la primera fila tiene un puntaje de $92.4$ puntos en el examen de entrada y, efectivamente, no participa en el programa de tutorías. Por otro lado, el estudiante de la tercera fila, con sus magros $53.7$ puntos en el examen de entrada, sí participó del programa de tutorías.
+
+Veamos las notas de entrada y como afecta eso a la participación en las tutorías:
 
 ```{r}
-rect_claro <- tibble(xmin = 60, xmax = 80, ymin = 0, ymax = 3)
-rect_oscuro <- tibble(xmin = 65, xmax = 75, ymin = 0, ymax = 3)
+rect_claro <- tibble(xmin = 65, xmax = 75, ymin = 0, ymax = 3)
 
 ggplot(tutoring) +
   # Los rectángulos
   geom_rect(data = rect_claro, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), 
             fill = "gray20", color = "white", alpha = .2) +
-  geom_rect(data = rect_oscuro, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), 
-            fill = "gray20", color = "gray80", alpha = .4) +
   # Hacemos los puntos semitransparentes y los movemos un poco
   geom_point( aes(x = entrance_exam, 
                   y = tutoring, 
@@ -86,14 +70,9 @@ ggplot(tutoring) +
   theme_minimal()
 ```
 
-```{r}
-datasummary_skim(data = tutoring, by = "tutoring", 
-                 output = "gt") |>
-  gt_highlight_rows(rows = c(3,4), 
-                    fill = "lightyellow",
-                    font_weight = "bold")
+Vemos claramente que los estudiantes con más de $70$ puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de $70$ no. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a $70$? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí. 
 
-```
+Pero recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de $70$ puntos en el examen de entrada.
 
 ```{r}
 # Ahora miremos como se comporta la variable outcomes en función de la running variable ####
@@ -155,5 +134,4 @@ ggplot(tutoring, aes(x = entrance_exam,
 
 ### Puede haber problemas de **manipulación**
 
-## Un ejemplo *to rule them all*
 

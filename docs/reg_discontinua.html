@@ -105,10 +105,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -222,23 +251,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#el-problema-de-controlar-por-variables-no-observables" id="toc-el-problema-de-controlar-por-variables-no-observables" class="nav-link active" data-scroll-target="#el-problema-de-controlar-por-variables-no-observables"><span class="header-section-number">8.1</span> El problema de controlar por variables no observables</a>
+  <li><a href="#el-problema-de-controlar-por-variables-no-observables" id="toc-el-problema-de-controlar-por-variables-no-observables" class="nav-link active" data-scroll-target="#el-problema-de-controlar-por-variables-no-observables"><span class="header-section-number">8.1</span> El problema de controlar por variables no observables</a></li>
+  <li><a href="#one-rule-to-rule-them-all" id="toc-one-rule-to-rule-them-all" class="nav-link" data-scroll-target="#one-rule-to-rule-them-all"><span class="header-section-number">8.2</span> <em>One rule to rule them all</em></a></li>
+  <li><a href="#cómo-se-estima-el-efecto-causal" id="toc-cómo-se-estima-el-efecto-causal" class="nav-link" data-scroll-target="#cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.3</span> ¿Cómo se estima el efecto causal?</a>
   <ul class="collapse">
-  <li><a href="#un-ejemplo-to-rule-them-all" id="toc-un-ejemplo-to-rule-them-all" class="nav-link" data-scroll-target="#un-ejemplo-to-rule-them-all"><span class="header-section-number">8.1.1</span> Un ejemplo to <em>rule them all</em></a></li>
+  <li><a href="#paramétricas-vs.-no-paramétricas" id="toc-paramétricas-vs.-no-paramétricas" class="nav-link" data-scroll-target="#paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.3.1</span> Paramétricas vs.&nbsp;no paramétricas</a></li>
+  <li><a href="#ancho-de-banda" id="toc-ancho-de-banda" class="nav-link" data-scroll-target="#ancho-de-banda"><span class="header-section-number">8.3.2</span> Ancho de banda</a></li>
+  <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels"><span class="header-section-number">8.3.3</span> Kernels</a></li>
   </ul></li>
-  <li><a href="#cómo-se-estima-el-efecto-causal" id="toc-cómo-se-estima-el-efecto-causal" class="nav-link" data-scroll-target="#cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.2</span> ¿Cómo se estima el efecto causal?</a>
+  <li><a href="#limitaciones-de-la-regresión-discontinua" id="toc-limitaciones-de-la-regresión-discontinua" class="nav-link" data-scroll-target="#limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.4</span> Limitaciones de la regresión discontinua</a>
   <ul class="collapse">
-  <li><a href="#paramétricas-vs.-no-paramétricas" id="toc-paramétricas-vs.-no-paramétricas" class="nav-link" data-scroll-target="#paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.2.1</span> Paramétricas vs.&nbsp;no paramétricas</a></li>
-  <li><a href="#ancho-de-banda" id="toc-ancho-de-banda" class="nav-link" data-scroll-target="#ancho-de-banda"><span class="header-section-number">8.2.2</span> Ancho de banda</a></li>
-  <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels"><span class="header-section-number">8.2.3</span> Kernels</a></li>
+  <li><a href="#data-greedy" id="toc-data-greedy" class="nav-link" data-scroll-target="#data-greedy"><span class="header-section-number">8.4.1</span> Data greedy</a></li>
+  <li><a href="#es-limitada-en-alcance" id="toc-es-limitada-en-alcance" class="nav-link" data-scroll-target="#es-limitada-en-alcance"><span class="header-section-number">8.4.2</span> Es limitada en alcance</a></li>
+  <li><a href="#puede-haber-problemas-de-manipulación" id="toc-puede-haber-problemas-de-manipulación" class="nav-link" data-scroll-target="#puede-haber-problemas-de-manipulación"><span class="header-section-number">8.4.3</span> Puede haber problemas de <strong>manipulación</strong></a></li>
   </ul></li>
-  <li><a href="#limitaciones-de-la-regresión-discontinua" id="toc-limitaciones-de-la-regresión-discontinua" class="nav-link" data-scroll-target="#limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.3</span> Limitaciones de la regresión discontinua</a>
-  <ul class="collapse">
-  <li><a href="#data-greedy" id="toc-data-greedy" class="nav-link" data-scroll-target="#data-greedy"><span class="header-section-number">8.3.1</span> Data greedy</a></li>
-  <li><a href="#es-limitada-en-alcance" id="toc-es-limitada-en-alcance" class="nav-link" data-scroll-target="#es-limitada-en-alcance"><span class="header-section-number">8.3.2</span> Es limitada en alcance</a></li>
-  <li><a href="#puede-haber-problemas-de-manipulación" id="toc-puede-haber-problemas-de-manipulación" class="nav-link" data-scroll-target="#puede-haber-problemas-de-manipulación"><span class="header-section-number">8.3.3</span> Puede haber problemas de <strong>manipulación</strong></a></li>
-  </ul></li>
-  <li><a href="#un-ejemplo-to-rule-them-all-1" id="toc-un-ejemplo-to-rule-them-all-1" class="nav-link" data-scroll-target="#un-ejemplo-to-rule-them-all-1"><span class="header-section-number">8.4</span> Un ejemplo <em>to rule them all</em></a></li>
   </ul>
 </nav>
 </nav>
@@ -247,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -269,16 +295,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Lo que sigue no es una versión final y está en construcción 🚧</p>
-<section id="el-problema-de-controlar-por-variables-no-observables" class="level2" data-number="8.1">
+<section id="el-problema-de-controlar-por-variables-no-observables" class="level2 page-columns page-full" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="el-problema-de-controlar-por-variables-no-observables"><span class="header-section-number">8.1</span> El problema de controlar por variables no observables</h2>
-<p>Al igual que en Diffs-in-Diffs, usamos el contexto para aislar el efecto causal en nuestro problema.</p>
-<p>Regresión discontinua: Una regla arbitraria define la asignación de grupos.</p>
-<p>Muy común en la asignación a, por ejemplo, programas sociales (por ejemplo, ayudas directas).</p>
-<p>A partir de cierto, por ejemplo, ingreso, se puede acceder a un beneficio de un programa social.</p>
-<p>Hablar del DAG</p>
-<p>Comentar el ejemplo de Turnout</p>
-<section id="un-ejemplo-to-rule-them-all" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="un-ejemplo-to-rule-them-all"><span class="header-section-number">8.1.1</span> Un ejemplo to <em>rule them all</em></h3>
+<p>En la mayoría de los capítulos anteriores, vimos formas de controlar por confusores observables. Cuando hablamos de DAGs y agregar variable como covariables a un modelo de regresión o cuando usamops algún estimador de subclasificación o <em>matching</em>, lo que estamos haciendo es aislar la variabilidad debida a confusores observados y sustraerla de nuestra relación causal. Pero, ¿Qué pasa cuando los confusores por los que queremos controlar no son observables? Una respuesta a esta pregunta la tuvimos en el capítulo de diferencias en diferencias en el que vimos que, para un problema de una forma en particular<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la solución era estimar el contrafáctico con un grupo comparable.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Un problema con un tratamiento que se aplica en el tiempo y para el cual tenemos una medición antes y después para un grupo al que se le aplicó el tratamiento y una medición para los mismos puntos temporales pero para un grupo comparable (para más detalles ver el <a href="diff_in_diff.html" class="quarto-xref"><span>Capítulo 7</span></a>).</p></div></div><p>La solución que vamos a proponer en este capítulo, al igual que en diferencias en diferencias, utiliza el contexto de mi cuasiexperimento para aislar el efecto causal.</p>
+</section>
+<section id="one-rule-to-rule-them-all" class="level2 page-columns page-full" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="one-rule-to-rule-them-all"><span class="header-section-number">8.2</span> <em>One rule to rule them all</em></h2>
+<p>La idea básica detrás de la regresión discontinua es que la separación entre grupo tratamiento y control está dada por una discontinuidad en alguna variable<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Es decir, a partir de un cierto valor de esta variable un sujeto es asignado a un determinado grupo. Por ejemplo, a partir un valor de ingreso mensual, un individuo podría tener acceso a un programa de ayuda social. Supongamos que ese límite es $<span class="math inline">\(350000\)</span> mensuales. ¿En qué se diferencian dos individuos que cobran $<span class="math inline">\(349999\)</span> y $<span class="math inline">\(350001\)</span> respectivamente? Probablemente en mucho, ¿no? Pero ¿y si comparamos <span class="math inline">\(100\)</span> individuos de cada ingreso? Es bastante razonable pensar que en todas las demás características, estos individuos son comparables. Es decir, que la única diferencia entre ellos es que uno de ellos accede a un programa social y el otro no. Bueno, es en esta idea en la que se cimenta (ah bueno, se puso fino el autor) la regresión discontinua. En líneas generales vamos a comprar unidades experimentales cerquita de un lado del unmbral de la <em>running variable</em> con unidades experimentales cerquita del otro lado del umbral.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Que a partir de ahora llamaremos <em>running variable</em>.</p></div></div><p>Empecemos a jugar con un ejemplo con datos simulados. En este ejemplo tenemos datos de la asignación de estudiantes de un curso de estadística a un programa de tutorías. La cosa es así: Los estudiantes se someten a un examen inicial y dependiendo de su puntaje, son asignados a un programa de tutorías o no. El umbral para la asignación es un puntaje de <span class="math inline">\(70\)</span> puntos. Si el estudiante saca menos de <span class="math inline">\(70\)</span> puntos, no participa del programa de tutorías. Si saca <span class="math inline">\(70\)</span> o más, sí participa. Luego, a cada estudiante se le evalúa con un examen final. La pregunta que nos hacemos es: ¿El programa de tutorías mejora el puntaje en el examen final? Veamos qué pinta tienen los datos viendo las primeras 5 filas del dataset.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Ver el código</summary>
@@ -292,89 +317,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lgl (1): tutoring</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determinemos si el proceso de asignación al tratamiento depende de una regla ####</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> tutoring, </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hacemos los puntos semitransparentes y los movemos un poco</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.25</span>, <span class="at">seed =</span> <span class="dv">1234</span>)) <span class="sc">+</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, <span class="at">y =</span> <span class="st">"Participación en el programa de tutorías"</span>) <span class="sc">+</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sacó la leyenda de color</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; as of ggplot2 3.3.4.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rect_claro <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xmin =</span> <span class="dv">60</span>, <span class="at">xmax =</span> <span class="dv">80</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">3</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rect_oscuro <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xmin =</span> <span class="dv">65</span>, <span class="at">xmax =</span> <span class="dv">75</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">3</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Los rectángulos</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> rect_claro, <span class="fu">aes</span>(<span class="at">xmin =</span> xmin, <span class="at">xmax =</span> xmax, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray20"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> rect_oscuro, <span class="fu">aes</span>(<span class="at">xmin =</span> xmin, <span class="at">xmax =</span> xmax, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray20"</span>, <span class="at">color =</span> <span class="st">"gray80"</span>, <span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hacemos los puntos semitransparentes y los movemos un poco</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> tutoring, </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> tutoring),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.25</span>, <span class="at">seed =</span> <span class="dv">1234</span>)) <span class="sc">+</span> </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"yellow"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, <span class="at">y =</span> <span class="st">"Participación en el programa de tutorías"</span>) <span class="sc">+</span> </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sacó la leyenda de color</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_skim</span>(<span class="at">data =</span> tutoring, <span class="at">by =</span> <span class="st">"tutoring"</span>, </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">output =</span> <span class="st">"gt"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_highlight_rows</span>(<span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>), </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> <span class="st">"lightyellow"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Inline histograms in `datasummary_skim()` are only supported for</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   tables produced by the `tinytable` backend.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: `type='all'` is only supported for the `tinytable` backend. Set the</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `type` argument explicitly to suppress this warning.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>tutoring <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -830,83 +777,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
-<th id="tutoring" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">tutoring</th>
-<th id="Unique" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Unique</th>
-<th id="Missing-Pct." class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Missing Pct.</th>
-<th id="Mean" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Mean</th>
-<th id="SD" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">SD</th>
-<th id="Min" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Min</th>
-<th id="Median" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Median</th>
-<th id="Max" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Max</th>
+<th id="id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">id</th>
+<th id="entrance_exam" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">entrance_exam</th>
+<th id="exit_exam" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">exit_exam</th>
+<th id="tutoring" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">tutoring</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers=" ">id</td>
-<td class="gt_row gt_left" headers="tutoring">No</td>
-<td class="gt_row gt_left" headers="Unique">759</td>
-<td class="gt_row gt_left" headers="Missing Pct.">0</td>
-<td class="gt_row gt_left" headers="Mean">501.2</td>
-<td class="gt_row gt_left" headers="SD">289.9</td>
-<td class="gt_row gt_left" headers="Min">1.0</td>
-<td class="gt_row gt_left" headers="Median">507.0</td>
-<td class="gt_row gt_left" headers="Max">1000.0</td>
+<td class="gt_row gt_right" headers="id">1</td>
+<td class="gt_row gt_right" headers="entrance_exam">92.4</td>
+<td class="gt_row gt_right" headers="exit_exam">78.1</td>
+<td class="gt_row gt_center" headers="tutoring">No</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers=" "></td>
-<td class="gt_row gt_left" headers="tutoring">Sí</td>
-<td class="gt_row gt_left" headers="Unique">241</td>
-<td class="gt_row gt_left" headers="Missing Pct.">0</td>
-<td class="gt_row gt_left" headers="Mean">498.3</td>
-<td class="gt_row gt_left" headers="SD">285.9</td>
-<td class="gt_row gt_left" headers="Min">3.0</td>
-<td class="gt_row gt_left" headers="Median">479.0</td>
-<td class="gt_row gt_left" headers="Max">999.0</td>
+<td class="gt_row gt_right" headers="id">2</td>
+<td class="gt_row gt_right" headers="entrance_exam">72.8</td>
+<td class="gt_row gt_right" headers="exit_exam">58.2</td>
+<td class="gt_row gt_center" headers="tutoring">No</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">entrance_exam</td>
-<td class="gt_row gt_left" headers="tutoring" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">No</td>
-<td class="gt_row gt_left" headers="Unique" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">261</td>
-<td class="gt_row gt_left" headers="Missing Pct." style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">0</td>
-<td class="gt_row gt_left" headers="Mean" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">83.9</td>
-<td class="gt_row gt_left" headers="SD" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">7.3</td>
-<td class="gt_row gt_left" headers="Min" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">70.1</td>
-<td class="gt_row gt_left" headers="Median" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">83.9</td>
-<td class="gt_row gt_left" headers="Max" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">99.8</td>
+<td class="gt_row gt_right" headers="id">3</td>
+<td class="gt_row gt_right" headers="entrance_exam">53.7</td>
+<td class="gt_row gt_right" headers="exit_exam">62.0</td>
+<td class="gt_row gt_center" headers="tutoring">Sí</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold"></td>
-<td class="gt_row gt_left" headers="tutoring" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Sí</td>
-<td class="gt_row gt_left" headers="Unique" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">156</td>
-<td class="gt_row gt_left" headers="Missing Pct." style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">0</td>
-<td class="gt_row gt_left" headers="Mean" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">60.1</td>
-<td class="gt_row gt_left" headers="SD" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">8.7</td>
-<td class="gt_row gt_left" headers="Min" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">28.8</td>
-<td class="gt_row gt_left" headers="Median" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">63.0</td>
-<td class="gt_row gt_left" headers="Max" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">70.0</td>
+<td class="gt_row gt_right" headers="id">4</td>
+<td class="gt_row gt_right" headers="entrance_exam">98.3</td>
+<td class="gt_row gt_right" headers="exit_exam">67.5</td>
+<td class="gt_row gt_center" headers="tutoring">No</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers=" ">exit_exam</td>
-<td class="gt_row gt_left" headers="tutoring">No</td>
-<td class="gt_row gt_left" headers="Unique">286</td>
-<td class="gt_row gt_left" headers="Missing Pct.">0</td>
-<td class="gt_row gt_left" headers="Mean">66.5</td>
-<td class="gt_row gt_left" headers="SD">7.5</td>
-<td class="gt_row gt_left" headers="Min">44.0</td>
-<td class="gt_row gt_left" headers="Median">66.6</td>
-<td class="gt_row gt_left" headers="Max">84.5</td>
+<td class="gt_row gt_right" headers="id">5</td>
+<td class="gt_row gt_right" headers="entrance_exam">69.7</td>
+<td class="gt_row gt_right" headers="exit_exam">54.1</td>
+<td class="gt_row gt_center" headers="tutoring">Sí</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers=" "></td>
-<td class="gt_row gt_left" headers="tutoring">Sí</td>
-<td class="gt_row gt_left" headers="Unique">162</td>
-<td class="gt_row gt_left" headers="Missing Pct.">0</td>
-<td class="gt_row gt_left" headers="Mean">65.2</td>
-<td class="gt_row gt_left" headers="SD">7.9</td>
-<td class="gt_row gt_left" headers="Min">42.8</td>
-<td class="gt_row gt_left" headers="Median">65.4</td>
-<td class="gt_row gt_left" headers="Max">80.4</td>
+<td class="gt_row gt_right" headers="id">6</td>
+<td class="gt_row gt_right" headers="entrance_exam">68.1</td>
+<td class="gt_row gt_right" headers="exit_exam">60.1</td>
+<td class="gt_row gt_center" headers="tutoring">Sí</td>
 </tr>
 </tbody>
 </table>
@@ -914,88 +826,125 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Por ejemplo, vemos que el estudiante de la primera fila tiene un puntaje de <span class="math inline">\(92.4\)</span> puntos en el examen de entrada y, efectivamente, no participa en el programa de tutorías. Por otro lado, el estudiante de la tercera fila, con sus magros <span class="math inline">\(53.7\)</span> puntos en el examen de entrada, sí participó del programa de tutorías.</p>
+<p>Veamos las notas de entrada y como afecta eso a la participación en las tutorías:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora miremos como se comporta la variable outcomes en función de la running variable ####</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="ot">&lt;-</span> tutoring <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entrance_centered =</span> entrance_exam <span class="sc">-</span> <span class="dv">70</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>modelo_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered <span class="sc">+</span> tutoring, </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tutoring_centered)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam, </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable menor a 70</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&lt;=</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable mayor a 70</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&gt;</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Un segmento con el efecto del modelo</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend =</span> <span class="dv">70</span>, <span class="at">yend =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]), </span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, </span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">75</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"LATE"</span>, </span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rect_claro <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xmin =</span> <span class="dv">65</span>, <span class="at">xmax =</span> <span class="dv">75</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Los rectángulos</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> rect_claro, <span class="fu">aes</span>(<span class="at">xmin =</span> xmin, <span class="at">xmax =</span> xmax, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"gray20"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hacemos los puntos semitransparentes y los movemos un poco</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> tutoring, </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> tutoring),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.25</span>, <span class="at">seed =</span> <span class="dv">1234</span>)) <span class="sc">+</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"yellow"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, <span class="at">y =</span> <span class="st">"Participación en el programa de tutorías"</span>) <span class="sc">+</span> </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sacó la leyenda de color</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; as of ggplot2 3.3.4.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Vemos claramente que los estudiantes con más de <span class="math inline">\(70\)</span> puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de <span class="math inline">\(70\)</span> no. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a <span class="math inline">\(70\)</span>? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí.</p>
+<p>Pero recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de <span class="math inline">\(70\)</span> puntos en el examen de entrada.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora miremos como se comporta la variable outcomes en función de la running variable ####</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="ot">&lt;-</span> tutoring <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entrance_centered =</span> entrance_exam <span class="sc">-</span> <span class="dv">70</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>modelo_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered <span class="sc">+</span> tutoring, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tutoring_centered)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable menor a 70</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&lt;=</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable mayor a 70</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&gt;</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Un segmento con el efecto del modelo</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend =</span> <span class="dv">70</span>, <span class="at">yend =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]), </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">75</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"LATE"</span>, </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
+<section id="cómo-se-estima-el-efecto-causal" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.3</span> ¿Cómo se estima el efecto causal?</h2>
+<section id="paramétricas-vs.-no-paramétricas" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.3.1</span> Paramétricas vs.&nbsp;no paramétricas</h3>
 </section>
-<section id="cómo-se-estima-el-efecto-causal" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.2</span> ¿Cómo se estima el efecto causal?</h2>
-<section id="paramétricas-vs.-no-paramétricas" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.2.1</span> Paramétricas vs.&nbsp;no paramétricas</h3>
+<section id="ancho-de-banda" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="ancho-de-banda"><span class="header-section-number">8.3.2</span> Ancho de banda</h3>
 </section>
-<section id="ancho-de-banda" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="ancho-de-banda"><span class="header-section-number">8.2.2</span> Ancho de banda</h3>
-</section>
-<section id="kernels" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="kernels"><span class="header-section-number">8.2.3</span> Kernels</h3>
-</section>
-</section>
-<section id="limitaciones-de-la-regresión-discontinua" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.3</span> Limitaciones de la regresión discontinua</h2>
-<section id="data-greedy" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="data-greedy"><span class="header-section-number">8.3.1</span> Data greedy</h3>
-</section>
-<section id="es-limitada-en-alcance" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="es-limitada-en-alcance"><span class="header-section-number">8.3.2</span> Es limitada en alcance</h3>
-</section>
-<section id="puede-haber-problemas-de-manipulación" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="puede-haber-problemas-de-manipulación"><span class="header-section-number">8.3.3</span> Puede haber problemas de <strong>manipulación</strong></h3>
+<section id="kernels" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="kernels"><span class="header-section-number">8.3.3</span> Kernels</h3>
 </section>
 </section>
-<section id="un-ejemplo-to-rule-them-all-1" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="un-ejemplo-to-rule-them-all-1"><span class="header-section-number">8.4</span> Un ejemplo <em>to rule them all</em></h2>
+<section id="limitaciones-de-la-regresión-discontinua" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.4</span> Limitaciones de la regresión discontinua</h2>
+<section id="data-greedy" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="data-greedy"><span class="header-section-number">8.4.1</span> Data greedy</h3>
+</section>
+<section id="es-limitada-en-alcance" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="es-limitada-en-alcance"><span class="header-section-number">8.4.2</span> Es limitada en alcance</h3>
+</section>
+<section id="puede-haber-problemas-de-manipulación" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="puede-haber-problemas-de-manipulación"><span class="header-section-number">8.4.3</span> Puede haber problemas de <strong>manipulación</strong></h3>
 
 
 </section>
+</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

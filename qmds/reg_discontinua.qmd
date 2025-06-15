@@ -46,6 +46,7 @@ Por ejemplo, vemos que el estudiante de la primera fila tiene un puntaje de $92.
 Veamos las notas de entrada y como afecta eso a la participación en las tutorías:
 
 ```{r}
+#| fig-cap: "Efecto de las notas de entrada (la running variable) en la participación en las tutorías."
 rect_claro <- tibble(xmin = 65, xmax = 75, ymin = 0, ymax = 3)
 
 ggplot(tutoring) +
@@ -70,12 +71,70 @@ ggplot(tutoring) +
   theme_minimal()
 ```
 
-Vemos claramente que los estudiantes con más de $70$ puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de $70$ no. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a $70$? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí. 
+Vemos claramente que los estudiantes con más de $70$ puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de $70$ no. Parece que el umbral divide bastante bien a los grupos. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a $70$? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí. 
 
-Pero recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de $70$ puntos en el examen de entrada.
+Recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de $70$ puntos en el examen de entrada.
 
 ```{r}
+#| fig-cap: "Notas de entrada vs. notas de salida."
 # Ahora miremos como se comporta la variable outcomes en función de la running variable ####
+ggplot(tutoring, aes(x = entrance_exam, 
+                     y = exit_exam, 
+                     color = tutoring,
+                     fill = tutoring)) +
+  geom_point(size = 1.5, alpha = .3) + 
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") + 
+  # Las lables
+  labs(x = "Puntaje en el examen de entrada", 
+       y = "Puntaje en el examen de salida",
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+Pareciera que hay una relación entre la nota de entrada y de salida. Esto tiene bastante sentido, ya que es esperable que los estudiantes a los que les fue bien a la entrada les vaya bien a la salida. Pero también se ve otra cosa, en esta relación entre ambas notas puede verse una discontinuidad en el umbral de $70$ puntos. Es decir, parece que los estudiantes que participaron del programa de tutorías tienen un puntaje más alto en el examen de salida, para mismo puntaje en el examen de entrada, que los que no participaron. Tracemos unas líneas y veamos si esto es así.
+
+```{r}
+#| fig-cap: "Notas de entrada vs. notas de salida con líneas de regresión ajustadas a cada grupo."
+# Ahora miremos como se comporta la variable outcomes en función de la running variable ####
+ggplot(tutoring, aes(x = entrance_exam, 
+                     y = exit_exam, 
+                     color = tutoring,
+                     fill = tutoring)) +
+  geom_point(size = 1.5, alpha = .3) + 
+  # Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+  geom_smooth(data = filter(tutoring, entrance_exam <= 70), method = "lm") +
+  # Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+  geom_smooth(data = filter(tutoring, entrance_exam > 70), method = "lm") +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") + 
+  # Las lables
+  labs(x = "Puntaje en el examen de entrada", 
+       y = "Puntaje en el examen de salida",
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+Vemos que efectivamente, la línea de regresión para los estudiantes que participaron del programa de tutorías es más alta que la de los que no participaron, mostrando que el hubo un efeco del programa de tutorías en la relación entre la nota de entrada y de salida. Pero, ¿cómo podemos estimar este efecto? ¿No dijimos que los estudiantes que eran comparables eran los que estaban cerca del umbral? Dejemos esta última pregunta para más adelante y avancemos con la estimación del efecto del programa de tutorías.
+
+En la siguiente figura vemos que la diferencia en el umbral, luego de ajustar una recta a cada grupo de estudiantes, es la que nos da el efecto del programa de tutorías. En este caso no deja de ser la diferencia de ordenadas al origen de las rectas ajustadas a cada grupo, pero ya vamos a ver que no siempre es así.
+
+```{r}
+#| fig-cap: "Notas de entrada vs. notas de salida con líneas de regresión ajustadas a cada grupo. La línea azul representa el LATE."
 tutoring_centered <- tutoring |> 
   mutate(entrance_centered = entrance_exam - 70)
 
@@ -115,23 +174,430 @@ ggplot(tutoring, aes(x = entrance_exam,
 
 ```
 
+En la figura llamamos al efecto **LATE**[^late], pero, ¿qué tiene de local el efecto? Bueno, como vmaos a desarrollar un poco más adelante, ese efecto es local porque, en teoría, sólo tiene validez para los individuos que están a un lado uy otro del umbral. Es decir, no representa el efecto a individuos que están lejos del umbral. Sin embargo, y como en todas estas cosas, podemos justificar que ese efecto sí es válido para individuos que están un poco más lejos del umbral, pero eso requiere que conozcamos el problema.
+
+Creo que, si bien se deben estar creyendo lo que les cuento, también deben tener un millón y medio de preguntas sobre cómo se calcula este hermoso **LATE** y qué condiciones debe cumplir la *running variable* y el sesgo. Para eso nos queda una buena parte del capítulo, pero por ahora me quedo contento con que la idea detrás del método me quedo contento: **Las unidades experimentales a uno y otro lado del umbral son, en promedio, comparables en todas las características observadas y no observadas salvo en la asignación o no al tratamiento**.
+
+[^late]: Del inglés *Local Average Treatment Effect*.
+
+## Un ejemplo con los husos[^husos] horarios
+
+[^husos]: Sí, es **husos** y no **usos**, no es un *typo*.
+
+@schafer2020time
 
 ## ¿Cómo se estima el efecto causal?
 
-
+Si vemos la figura XXX, podemos ver que la diferencia entre las dos rectas es el efecto del programa de tutorías. Pero, ¿cómo se estima? Bueno, la forma más sencilla de hacerlo es ajustar un modelo lineal a los datos y calcular la diferencia entre las ordenadas al origen de las rectas ajustadas a cada grupo. Pero esta no es la única forma de calcularl el **LATE**. En lo que sigue vamos a explorar variantes de esta estimación y ver cómo afectan en el efecto estimado. 
 
 ### Paramétricas vs. no paramétricas
 
+Una de las alternativas que tenemos es hacer una estimación paramétrica o no paramétrica. Pero, ¿a qué nos referimos con esto? En una estimación paramétrica, como la que vimos en el ejemplo anterior, ajustamos un modelo a los datos que está definido por parámetros, como podría ser un modelo lineal.
+
+El primero modelo que vamos a ajustar es el siguiente:
+
+$$
+y = \beta_0 + \beta_1 \text{Running variable (centrada)} + \beta_2 \text{indicadora del tratamiento}
+$$
+
+Que en nuestro caso sería más bien:
+
+$$
+nota_{salida} = \beta_0 + \beta_1 (nota_{entrada}-70) + \beta_2 \mathbb{I}_{tutoria}
+$$
+
+donde $\mathbb{I}_{tutoria}$ es una variable indicadora que toma el valor de $1$ si el estudiante participó del programa de tutorías y $0$ si no, $nota_{entrada}$ es la nota del examen de entrada y $nota_{salida}$ es la nota del examen de salida. Pero ¿por qué le restamos $70$ a la nota de entrada? Bueno, porque queremos centrar la *running variable* en el umbral. Es decir, queremos que el umbral sea $0$ y que los valores a la izquierda del umbral sean negativos y los valores a la derecha sean positivos. Esto nos va a permitir interpretar mejor los coeficientes del modelo[^centrada].
+
+[^centrada]: En realidad, no es necesario centrar la *running variable* cuando el ajuste es una recta, pero cuando no lo es, queremos que la diferencia en ordenadas al origen (cuando la *running variable* vale $0$) sea el **LATE**. Igualmente es una buena práctica centrar la *running variable*.
+
+```{r}
+#| fig-cap: "Estimaciones del LATE utilizando un modelo lineal."
+modelsummary(list("Lineal"= modelo_lm),
+             coef_rename = c("entrance_centered" = "Nota inicial centrada",
+                             "tutoringSí" = "Participó en la tutoría"),
+             statistic = NULL, 
+             gof_omit = ".*",
+             output = "gt") |>
+  gt_highlight_rows(rows = 3, 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+```
+
+
+El coeficiente de la variable indicadora del tratamiento es el **LATE**. En este caso, el modelo nos dice que el programa de tutorías aumenta en `r round(predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "Sí")) - predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "No")), 1)` puntos la nota del examen de salida, en promedio, para los estudiantes que están cerca del umbral. Si vemos la figura XXX, podemos ver que esta estimación tiene sentido.
+
+También podríamos ajustar otro modelo lineal[^lineal], en el que suponemos que la relación entre la *running variable* y el resultado es cuadrática. No vamos a escribie el modelo porque se complica un poco ya que ajustamos una parábola a cada lado de la discontinuidad. Pero la idea es la misma: ajustamos un modelo lineal a los datos y calculamos la diferencia entre las estimaciones de los modelos para el umbral (la *running variable* centrada igual a 0)[^detalles].
+
+[^lineal]: ¿Por qué esto sigue siendo un modelo lineal?
+
+[^detalles]: Para detalles del ajuste pueden ver el código que acompaña a la Figura XXX.
+
+```{r}
+#| fig-cap: "Notas de entrada vs. notas de salida con ajuste lineal, cuadrático y cúbico para cada grupo."
+tutoring_centered <- tutoring_centered |> 
+  mutate(entrance_centered_2 = entrance_centered^2,
+         entrance_centered_3 = entrance_centered^3)
+
+modelo_sq_1 <- lm(exit_exam ~ entrance_centered_2, 
+                  data = tutoring_centered %>%
+                    filter(entrance_centered <= 0))
+
+modelo_sq_2 <- lm(exit_exam ~ entrance_centered_2,
+                  data = tutoring_centered %>%
+                    filter(entrance_centered > 0))
+
+modelo_cub_1 <- lm(exit_exam ~ entrance_centered_3, 
+                  data = tutoring_centered %>%
+                    filter(entrance_centered <= 0))
+
+modelo_cub_2 <- lm(exit_exam ~ entrance_centered_3,
+                  data = tutoring_centered %>%
+                    filter(entrance_centered > 0))
+
+tutoring_centered <- tutoring_centered %>%
+  add_predictions(modelo_lm, var = "exit_pred_lm") %>%
+  add_predictions(modelo_sq_1, var = "exit_pred_sq1") %>%
+  add_predictions(modelo_sq_2, var = "exit_pred_sq2") %>%
+  add_predictions(modelo_cub_1, var = "exit_pred_cub1") %>%
+  add_predictions(modelo_cub_2, var = "exit_pred_cub2")
+
+colors <- c("Lineal" = "darkgreen", 
+            "Cuadrático" = "darkred", 
+            "Cúbico" = "darkorange")
+
+ggplot(tutoring_centered, aes(x = entrance_centered, 
+                     y = exit_exam)) +
+  geom_point(size = 1.5, alpha = .2) + 
+  # Agregamos una linea basada en un modelo lineal para la running variable centrada menor a 0
+  geom_line(aes(y = exit_pred_lm, color = "Lineal"), linewidth = 1) +
+  # Agregamos una linea basada en un modelo lineal para la running variable centrada al cuadrado menor a 0
+  geom_line(data = filter(tutoring_centered, entrance_centered <= 0), aes(y = exit_pred_sq1, color = "Cuadrático"), 
+            linewidth = 1) +
+  # Agregamos una linea basada en un modelo lineal para la running variable centrada al cuadrado mayor a 0
+  geom_line(data = filter(tutoring_centered, entrance_centered > 0), aes(y = exit_pred_sq2, color = "Cuadrático"), 
+            linewidth = 1) +
+    # Agregamos una linea basada en un modelo lineal para la running variable centrada al cubo menor a 0
+  geom_line(data = filter(tutoring_centered, entrance_centered <= 0), aes(y = exit_pred_cub1, color = "Cúbico"), 
+            linewidth = 1) +
+  # Agregamos una linea basada en un modelo lineal para la running variable centrada al cubo mayor a 0
+  geom_line(data = filter(tutoring_centered, entrance_centered > 0), aes(y = exit_pred_cub2, color = "Cúbico"), 
+            linewidth = 1) +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 0, color = "steelblue", linetype = "dashed") + 
+  # Las lables
+  labs(x = "Puntaje en el examen de entrada (centrado)", 
+       y = "Puntaje en el examen de salida",
+       color = NULL,
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_manual(values = colors) +
+  #scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+Como vemos en al Figura XXX, depende cómo ajustemos el modelo, el efecto del programa de tutorías cambia. En este caso, el ajuste lineal nos da un efecto de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`, el cuadrático de `r round(predict(modelo_sq_1, newdata = tibble(entrance_centered_2 = 0)) - predict(modelo_sq_2, newdata = tibble(entrance_centered_2 = 0)),1)` y el cúbico de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`. Es decir, la elección de cómo ajustamos a los datos a cada lado del umbral afecta mi **LATE**.
+
+Entonces: ¿Cómo decidimos qué ajuste usar? Esto, como vamos a ver más adelante no tiene una respuesta concreta, hay que ver los datos y, más importante aún, ver cuán sensibles son nuestros resultados a estas elecciones. Por ejemplo, si al pasar de una recta a una parábola el efecto pasa de $100$ a $0$, entonces es probable que la elección de la forma de ajuste sea importante y debamos justificarla. Si, por el contrario, el efecto no cambia mucho, entonces podemos estar más tranquilos.
+
+```{r}
+#| fig-cap: "Tabla con las estimaciones de los distintos ajustes."
+
+# Armo una tabla con los valores de los ajustes
+tutoring_centered %>%
+  summarise("Lineal" = round(predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "Sí")) - predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "No")), 1),
+            "Cuadrático" = round(predict(modelo_sq_1, newdata = tibble(entrance_centered_2 = 0)) - 
+                                   predict(modelo_sq_2, newdata = tibble(entrance_centered_2 = 0)), 1),
+            "Cúbico" = round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - 
+                               predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)), 1)) %>%
+  pivot_longer(everything(), names_to = "Modelo", values_to = "LATE") %>%
+  gt() |>
+  tab_header(title = "Estimaciones del LATE para distintos ajustes") %>%
+  fmt_number(columns = vars(LATE), decimals = 1) %>%
+  gt_highlight_cols(columns = 2, 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+```
+
 ### Ancho de banda
 
-### Kernels
+Volvamos a la idea de por qué usamos todos los datos si en realidad queremos comparar a un lado y otro del umbral. Bueno, una forma de lidiar con esto es limitar el análisis a un cierto rango de la *running variable*. Es decir, podemos decidir que sólo vamos a comparar a los estudiantes que están dentro de un cierto rango del umbral. Por ejemplo, podríamos decidir que sólo vamos a comparar a los estudiantes que están entre $65$ y $75$ puntos en el examen de entrada. Esto se conoce como **ancho de banda** y es una forma de limitar el análisis a los estudiantes que están más cerca del umbral.
+
+Repitamos el ajuste lineal de los estudiantes de cada lado del umbral pero limitando el ancho de banda. Primero con ancho de banda total, luego con ancho de banda de $10$ punto (es decir, sólo analizando los datos entre $60$ y $80$ puntos) y finalmente con un ancho de banda de $5$ puntos (es decir, sólo analizando los datos entre $65$ y $75$ puntos).
+
+```{r}
+#| fig-cap: "Estimaciones del LATE utilizando un modelo lineal con distintos anchos de banda."
+
+# Ahora probemos bajando el bandwidth
+# BW = 10
+model_bw_10 <- lm(exit_exam ~ entrance_centered + tutoring,
+                  data = filter(tutoring_centered,
+                                entrance_centered >= -10 & 
+                                  entrance_centered <= 10))
+tidy(model_bw_10)
+
+# BW = 5
+model_bw_5 <- lm(exit_exam ~ entrance_centered + tutoring,
+                 data = filter(tutoring_centered,
+                               entrance_centered >= -5 & 
+                                 entrance_centered <= 5))
+tidy(model_bw_5)
+
+# Veamos el ajuste de cada uno de estos modelos
+# Full BW
+p_full <- ggplot(tutoring, aes(x = entrance_exam, 
+                               y = exit_exam, 
+                               color = tutoring,
+                               fill = tutoring)) +
+  geom_point(size = 1.5, alpha = 0.5) + 
+  # Add a line based on a linear model for the people scoring 70 or less
+  geom_segment(x = min(tutoring$entrance_exam), xend = 70,
+               y = modelo_lm$coefficients[1]+min(tutoring_centered$entrance_centered)*modelo_lm$coefficients[2] +
+                 modelo_lm$coefficients[3],
+               yend = modelo_lm$coefficients[1] + modelo_lm$coefficients[3],
+               color = "gray30", linewidth = 1) +
+  # Add a line based on a linear model for the people scoring more than 70
+  geom_segment(x = 70, xend = max(tutoring$entrance_exam),
+               y = modelo_lm$coefficients[1],
+               yend = modelo_lm$coefficients[1] + modelo_lm$coefficients[2]*max(tutoring_centered$entrance_centered),
+               color = "gray30", linewidth = 1) +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "darkblue", linetype = "dashed") + 
+  # Las labels
+  labs(x = NULL, 
+       y = NULL,
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+# BW = 10
+p_bw10 <- tutoring_centered |>
+  dplyr::filter(between(entrance_centered, -10, 10)) |>
+  ggplot(aes(x = entrance_exam, 
+             y = exit_exam, 
+             color = tutoring,
+             fill = tutoring)) +
+  geom_point(size = 1.5, alpha = 0.5) + 
+  geom_point(data = tutoring_centered |>
+               dplyr::filter(!between(entrance_centered, -10, 10)), 
+             size = 1.5, alpha = 0.3, color = "gray") + 
+  # Add a line based on a linear model for the people scoring 70 or less
+  geom_segment(x = 60, xend = 70,
+               y = model_bw_10$coefficients[1]-10*model_bw_10$coefficients[2] +
+                 model_bw_10$coefficients[3],
+               yend = model_bw_10$coefficients[1] + model_bw_10$coefficients[3],
+               color = "gray30", linewidth = 1) +
+  # Add a line based on a linear model for the people scoring more than 70
+  geom_segment(x = 70, xend = 80,
+               y = model_bw_10$coefficients[1],
+               yend = model_bw_10$coefficients[1] + model_bw_10$coefficients[2]*10,
+               color = "gray30", linewidth = 1) +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "darkblue", linetype = "dashed") + 
+  # Las labels
+  labs(x = NULL, 
+       y = "Puntaje en el examen de salida",
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# BW = 5
+p_bw5 <- tutoring_centered |>
+  dplyr::filter(between(entrance_centered, -5, 5)) |>
+  ggplot(aes(x = entrance_exam, 
+             y = exit_exam, 
+             color = tutoring,
+             fill = tutoring)) +
+  geom_point(size = 1.5, alpha = 0.5) + 
+  geom_point(data = tutoring_centered |>
+               dplyr::filter(!between(entrance_centered, -5, 5)), 
+             size = 1.5, alpha = 0.3, color = "gray") + 
+  # Add a line based on a linear model for the people scoring 70 or less
+  geom_segment(x = 65, xend = 70,
+               y = model_bw_5$coefficients[1]-5*model_bw_5$coefficients[2] +
+                 model_bw_5$coefficients[3],
+               yend = model_bw_5$coefficients[1] + model_bw_5$coefficients[3],
+               color = "gray30", linewidth = 1) +
+  # Add a line based on a linear model for the people scoring more than 70
+  geom_segment(x = 70, xend = 75,
+               y = model_bw_5$coefficients[1],
+               yend = model_bw_5$coefficients[1] + model_bw_5$coefficients[2]*5,
+               color = "gray30", linewidth = 1) +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 70, color = "darkblue", linetype = "dashed") + 
+  # Las labels
+  labs(x = "Puntaje en el examen de entrada", 
+       y = NULL,
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "none")
+
+library(patchwork)
+p_full / p_bw10 / p_bw5 + plot_layout(guides = "collect")
+```
+
+En la figura vemos que los ajustes son ligeramente distintos, pero no se llega a ver una difrencia. Qué pasa si vemos las estimaciones del modelo:
+
+
+```{r}
+# Las estimaciones y el sample size
+modelsummary(list("Full data" = modelo_lm, 
+                  "Bandwidth = 10" = model_bw_10, 
+                  "Bandwidth = 5" = model_bw_5), 
+             coef_rename = c("entrance_centered" = "Nota inicial centrada",
+                             "tutoringSí" = "Participó en la tutoría"),
+             gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F|RMSE',
+             statistic = "p = {p.value}", 
+             output = "gt") |>
+  gt_highlight_rows(rows = 5, 
+                    fill = "lightyellow",
+                    font_weight = "bold") |>
+  gt_highlight_rows(rows = 7, 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+```
+
+Hay tres cosas que quiero que vean. Primero, que el **LATE** es bastante similar en los tres casos pero se ve afectado por el ancho de banda. Segundo, el ancho de banda afecta el tamaño de la muestra y, por lo tanto, la potencia estadística. Y tercero, algo de lo que no habíamos hablado hasta el momento era de la variabilidad de las estimaciones. Por ejemplo, en este caso que el **LATE** es un parámetro de un modelo lineal como los que ya conocemos, podemos utilizar las herramientas usuales de inferencia estadística (como el p-valor que ven abajo de la estimación en la tabla) para sacar conclusiones al respecto.
+
+### *Kernels*
+
+Como vimos, achicar el ancho de banda mejoraría la estimación (porque estamos considerando a los sujetos más "parecido") pero disminuye el tamaño de muestra efectivo. Una alternativa a esto es conservar el ancho de banda pero darle más peso a los puntos que están cerca del umbral. Por ejemplo, podríamos darle más peso a los puntos que están a $1$ punto del umbral que a los que están a $10$ puntos. Esto se hace utilizando un **kernel**. Un kernel es una función que asigna un peso a cada punto en función de su distancia al umbral. Los *kernels* pueden tener diversas formas, como triangular o gaussiano[^rectangular]. 
+
+[^rectangular]: Cuando achicamos el ancho de banda en la sección anterior podemos considerar como si hubiéramos utilizado un kernel rectangular, es decir, que todos los puntos dentro del ancho de banda tienen el mismo peso.
+
+Dejenme mostrarles la forma de algunos kernels que vamos a probar:
+
+```{r}
+#| fig-cap: "Kernel rectancular, triangular y Epanechnikov."
+
+kernels <- tibble(x = seq(-1.5, 1.5, length.out = 200)) %>%
+  mutate(rectangular = ifelse(abs(x) <= 1, 1, 0),
+         triangular = ifelse(abs(x) <= 1, 1 - abs(x), 0),
+         epanechnikov = ifelse(abs(x) <= 1, 0.75 * (1 - x^2), 0))
+
+ggplot(kernels, aes(x = x)) +
+  geom_line(aes(y = rectangular, color = "Rectangular"), size = 1) +
+  geom_line(aes(y = triangular, color = "Triangular"), size = 1) +
+  geom_line(aes(y = epanechnikov, color = "Epanechnikov"), size = 1) +
+  labs(x = "Distancia al umbral", y = "Peso", color = NULL) +
+  scale_color_brewer(palette = "Dark2") +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+Podemos ver que cada kernel pesa los puntos de forma distinta. El kernel rectangular le da el mismo peso a todos los puntos dentro del ancho de banda, el triangular le da más peso a los puntos que están cerca del umbral y el Epanechnikov es un poco menos águdo que el triangular.
+
+La elección del kernel, al igual que en el caso del ancho de banda, afecta la estimación del **LATE**. 
+
+### Ajustes no paramétricos
+
+Finalmente, una alternativa bastante usual es la de estimar el **LATE** utilizando un ajuste no paramétrico. Esto significa que no vamos a asumir una forma funcional específica para la relación entre la *running variable* y el *outcome*. En cambio, vamos a utilizar técnicas como los *splines* o los *Locally estimated/weighted scatterplot smoothing (LOESS)* para ajustar una curva a los datos.
+
+Por ejemplo, veamos cómo se ve la estimación del **LATE** en este caso.
+
+```{r}
+ggplot(tutoring_centered, aes(x = entrance_centered, 
+                              y = exit_exam, 
+                              color = tutoring,
+                              fill = tutoring)) +
+  geom_point(size = 1.5, alpha = .3) + 
+  # Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+  geom_smooth(data = filter(tutoring_centered, tutoring == "Sí")) +
+  # Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+  geom_smooth(data = filter(tutoring_centered, tutoring == "No")) +
+  # Ponemos una línea vertical en el umbral
+  geom_vline(xintercept = 0, color = "darkblue", linetype = "dashed") + 
+  # Las lables
+  labs(x = "Puntaje en el examen de entrada (centrado)", 
+       y = "Puntaje en el examen de salida",
+       color = "Participó en la tutoría",
+       fill = "Participó en la tutoría") + 
+  # Colores más chetos
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  # Theme sin fondo gris
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+En este caso estamos usando la función de *regresión local* `geom_smooth()` de `ggplot2` para ajustar una curva a los datos. Esta función utiliza un ajuste *LOESS* por defecto, pero también podemos especificar otros métodos de ajuste. Podemos ver que no se trata de una curva suave sino más bien de una especie de promedio móvil pesado que va siguiendo a mis punto. 
+
+En la estimación no paramétrica como en la paramétrica vamos a calcular el **LATE** como la diferencia entre las estimaciones del modelo de cada lado del umbral, y como en el caso anterior, la elección del ancho de banda y del kernel afecta la estimación del **LATE**.
+
+### ¿Cómo tomamos decisiones?
 
 ## Limitaciones de la regresión discontinua
 
-### Data greedy
+La regresión discontinua es una herramienta muy interesante y con mucho auge en la investigación causal, especialmente cuando tenemos confusores no observados. Pero, como vimos, requiere de algunas condiciones particulares para poder aplicarla: tener una *running variable* que sea continua y que tenga un umbral, y que los sujetos a uno y otro lado del umbral sean comparables (ya vamos a hablar un poco de esto). En esta sección vamos a nombrar brevemente tres de las pincipales limitacinoes de la regresión discontinua.
+
+### Es *data greedy*
+
+Una de las principales limitaciones de la regresión discontinua es que requiere una gran cantidad de datos para poder estimar el efecto causal. Esto se debe a que los sujetos que son comparables para una estimación confiables del **LATE** son aquellos que están cerca del umbral. Por lo tanto, nuestra muestra puede ser grande, pero una vez que fijamos el ancho de banda se puede reducir notablemente.
+
+[^cerca]: ¿Cuán cerca? Ya tuvimos una discusión sobre esto en la sección anterior.
 
 ### Es limitada en alcance
 
+Otra limitación de la regresión discontinua es que el efecto estimado es local, es decir, sólo es válido para los sujetos que están cerca del umbral. Esto significa que no debemos generalizar esta estimación a toda la población, es decir, tenemos un problema de validez externa. Esto podría ser un problema ya que normalmente queremos estimar el efecto para la pobleación de interés.
+
+Acá cabe una breve reflexión: ¿No son todos los efectos que calculamos de algún modo locales? Entonces, resulta interesante pensar cuáles son las condiciones necesarias para que el **LATE** estimado sea generalizable. Por ejemplo: ¿Creen que el ejemplo del padrón electoral es generalizable? Cada problema se enfrenta con esa pregunta y cada respuesta requiere de un conocimiento del dominio y de la muestra con la que se está trabajando para responderla.
+
 ### Puede haber problemas de **manipulación**
 
+Recordemos algo: Al asumir que los participantes de un lado y del otro de la discontinuidad son comparables, estamos asumiendo que hay continuiidad en la esperanza de los *potential outcomes*, es decir, que si un sujeto estuviera en el grupo tratamiento tendría en el umbral el mismo *outcome* que que tendría un miembro del grupo control si hubiera sido asignado al tratamiento. Es un trabalengüas, ¿no? Veamos primero las cuentas y pensemos después en un ejemplo.
 
+Con continuidad de los *potential outcomes* no referimos a que los *potential outcomes* no cambian abruptamente en el umbral, es decir, que la esperanza de los *potential outcomes* es continua en el umbral. En difícil: que $E[Y_i^1]$ y $E[Y_i^0]$ son continuas en el umbral. En términos de la *running variable* $X$ y siendo su umbral $c$, esto significa que:
+
+$$
+\begin{align*}
+\lim_{x \to c^-} E[Y_i^1] = \lim_{x \to c^+} E[Y_i^1] \\
+\lim_{x \to c^-} E[Y_i^0] = \lim_{x \to c^+} E[Y_i^0]
+\end{align*}
+$$
+
+O gráficamente:
+
+```{r}
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+
+data <- tibble(x0 = runif(100, -10, 10), 
+               x1 = runif(100, -10, 10),
+               y1 = x1 + 5 + rnorm(100, 0, 2), 
+               y0 = x0 + rnorm(100, 0, 2))
+
+ggplot(data, aes(x = x0, y = y0)) +
+  geom_point(color = "darkred", alpha = 0.5) +
+  geom_point(aes(x = x1, y = y1), color = "darkblue", alpha = 0.5) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray") +
+  geom_segment(aes(x = -10, xend = 0, y = -9, yend = -9), 
+               color = "darkred", linewidth = 1) +
+  geom_segment(aes(x = 0, xend = 10, y = -9, yend = -9), 
+               color = "darkblue", linewidth = 1) +
+  labs(x = "Running variable (X)", 
+       y = "Potential outcomes (Y)",
+       title = "Continuidad de los potential outcomes en el umbral") +
+  theme_minimal()
+```
+
+Pensemos qué implicancias tiene esto. Esto significa que la *running variable* no puede ser manipulada por los sujetos. Es decir, que los sujetos no pueden elegir estar a un lado o del otro del umbral. Por ejemplo, si por algún motivo en nuestro ejemplo los alumnos conocieran la regla de selección y se sacaran peor nota para tener una tutoría gratuita, en ese caso estaríamos hablando de **manipulación** y la estimación del efecto del tratamiento estaría sesgada.
+
+Vamos con un ejemplo bien concreto. Imaginemos que queremos evaluar la política pública de la que hablamos al principio del capítulo, esa a la que uno califica por cobrar menos de \$$350000$ mensuales. Imaginen que soy un cuentapropista que tengo ese beneficio y a dos días de terminar el mes ya facturé \$$349999$. De golpe me llaman para ofrecerme un trabajo de \$$500$, ¿qué creen que voy a decir? Bueno, si la política es lo suficientemente beneficiosa (más que \$$499$) probablemente voy a decir que no. ¿Por qué? Porque si acepto el trabajo, voy a perder el beneficio de la política pública. Entonces, en este caso, la *running variable* (mi ingreso mensual) fue manipulado y, por lo tanto, la continuidad de los *potential outcomes* no se cumple. Sé que es un ejemplo un poco irreal, pero tómense el tiempo de pensar cuántas veces podemos ver este tipo de manipulación en la vida real.

@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -242,7 +262,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referencias</span></a>
   </div>
 </li>
     </ul>
@@ -253,17 +273,20 @@ window.Quarto = {
   <ul>
   <li><a href="#el-problema-de-controlar-por-variables-no-observables" id="toc-el-problema-de-controlar-por-variables-no-observables" class="nav-link active" data-scroll-target="#el-problema-de-controlar-por-variables-no-observables"><span class="header-section-number">8.1</span> El problema de controlar por variables no observables</a></li>
   <li><a href="#one-rule-to-rule-them-all" id="toc-one-rule-to-rule-them-all" class="nav-link" data-scroll-target="#one-rule-to-rule-them-all"><span class="header-section-number">8.2</span> <em>One rule to rule them all</em></a></li>
-  <li><a href="#cómo-se-estima-el-efecto-causal" id="toc-cómo-se-estima-el-efecto-causal" class="nav-link" data-scroll-target="#cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.3</span> ¿Cómo se estima el efecto causal?</a>
+  <li><a href="#un-ejemplo-con-los-husoshusos-horarios" id="toc-un-ejemplo-con-los-husoshusos-horarios" class="nav-link" data-scroll-target="#un-ejemplo-con-los-husoshusos-horarios"><span class="header-section-number">8.3</span> Un ejemplo con los husos horarios</a></li>
+  <li><a href="#cómo-se-estima-el-efecto-causal" id="toc-cómo-se-estima-el-efecto-causal" class="nav-link" data-scroll-target="#cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.4</span> ¿Cómo se estima el efecto causal?</a>
   <ul class="collapse">
-  <li><a href="#paramétricas-vs.-no-paramétricas" id="toc-paramétricas-vs.-no-paramétricas" class="nav-link" data-scroll-target="#paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.3.1</span> Paramétricas vs.&nbsp;no paramétricas</a></li>
-  <li><a href="#ancho-de-banda" id="toc-ancho-de-banda" class="nav-link" data-scroll-target="#ancho-de-banda"><span class="header-section-number">8.3.2</span> Ancho de banda</a></li>
-  <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels"><span class="header-section-number">8.3.3</span> Kernels</a></li>
+  <li><a href="#paramétricas-vs.-no-paramétricas" id="toc-paramétricas-vs.-no-paramétricas" class="nav-link" data-scroll-target="#paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.4.1</span> Paramétricas vs.&nbsp;no paramétricas</a></li>
+  <li><a href="#ancho-de-banda" id="toc-ancho-de-banda" class="nav-link" data-scroll-target="#ancho-de-banda"><span class="header-section-number">8.4.2</span> Ancho de banda</a></li>
+  <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels"><span class="header-section-number">8.4.3</span> <em>Kernels</em></a></li>
+  <li><a href="#ajustes-no-paramétricos" id="toc-ajustes-no-paramétricos" class="nav-link" data-scroll-target="#ajustes-no-paramétricos"><span class="header-section-number">8.4.4</span> Ajustes no paramétricos</a></li>
+  <li><a href="#cómo-tomamos-decisiones" id="toc-cómo-tomamos-decisiones" class="nav-link" data-scroll-target="#cómo-tomamos-decisiones"><span class="header-section-number">8.4.5</span> ¿Cómo tomamos decisiones?</a></li>
   </ul></li>
-  <li><a href="#limitaciones-de-la-regresión-discontinua" id="toc-limitaciones-de-la-regresión-discontinua" class="nav-link" data-scroll-target="#limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.4</span> Limitaciones de la regresión discontinua</a>
+  <li><a href="#limitaciones-de-la-regresión-discontinua" id="toc-limitaciones-de-la-regresión-discontinua" class="nav-link" data-scroll-target="#limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.5</span> Limitaciones de la regresión discontinua</a>
   <ul class="collapse">
-  <li><a href="#data-greedy" id="toc-data-greedy" class="nav-link" data-scroll-target="#data-greedy"><span class="header-section-number">8.4.1</span> Data greedy</a></li>
-  <li><a href="#es-limitada-en-alcance" id="toc-es-limitada-en-alcance" class="nav-link" data-scroll-target="#es-limitada-en-alcance"><span class="header-section-number">8.4.2</span> Es limitada en alcance</a></li>
-  <li><a href="#puede-haber-problemas-de-manipulación" id="toc-puede-haber-problemas-de-manipulación" class="nav-link" data-scroll-target="#puede-haber-problemas-de-manipulación"><span class="header-section-number">8.4.3</span> Puede haber problemas de <strong>manipulación</strong></a></li>
+  <li><a href="#es-data-greedy" id="toc-es-data-greedy" class="nav-link" data-scroll-target="#es-data-greedy"><span class="header-section-number">8.5.1</span> Es <em>data greedy</em></a></li>
+  <li><a href="#es-limitada-en-alcance" id="toc-es-limitada-en-alcance" class="nav-link" data-scroll-target="#es-limitada-en-alcance"><span class="header-section-number">8.5.2</span> Es limitada en alcance</a></li>
+  <li><a href="#puede-haber-problemas-de-manipulación" id="toc-puede-haber-problemas-de-manipulación" class="nav-link" data-scroll-target="#puede-haber-problemas-de-manipulación"><span class="header-section-number">8.5.3</span> Puede haber problemas de <strong>manipulación</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -857,89 +880,2062 @@ window.Quarto = {
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; as of ggplot2 3.3.4.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="reg_discontinua_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Efecto de las notas de entrada (la running variable) en la participación en las tutorías.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Vemos claramente que los estudiantes con más de <span class="math inline">\(70\)</span> puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de <span class="math inline">\(70\)</span> no. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a <span class="math inline">\(70\)</span>? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí.</p>
-<p>Pero recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de <span class="math inline">\(70\)</span> puntos en el examen de entrada.</p>
+<p>Vemos claramente que los estudiantes con más de <span class="math inline">\(70\)</span> puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de <span class="math inline">\(70\)</span> no. Parece que el umbral divide bastante bien a los grupos. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a <span class="math inline">\(70\)</span>? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí.</p>
+<p>Recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de <span class="math inline">\(70\)</span> puntos en el examen de entrada.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora miremos como se comporta la variable outcomes en función de la running variable ####</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="ot">&lt;-</span> tutoring <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entrance_centered =</span> entrance_exam <span class="sc">-</span> <span class="dv">70</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>modelo_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered <span class="sc">+</span> tutoring, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tutoring_centered)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam, </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable menor a 70</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&lt;=</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable mayor a 70</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&gt;</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Un segmento con el efecto del modelo</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend =</span> <span class="dv">70</span>, <span class="at">yend =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]), </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">75</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"LATE"</span>, </span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="reg_discontinua_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Notas de entrada vs.&nbsp;notas de salida.</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Pareciera que hay una relación entre la nota de entrada y de salida. Esto tiene bastante sentido, ya que es esperable que los estudiantes a los que les fue bien a la entrada les vaya bien a la salida. Pero también se ve otra cosa, en esta relación entre ambas notas puede verse una discontinuidad en el umbral de <span class="math inline">\(70\)</span> puntos. Es decir, parece que los estudiantes que participaron del programa de tutorías tienen un puntaje más alto en el examen de salida, para mismo puntaje en el examen de entrada, que los que no participaron. Tracemos unas líneas y veamos si esto es así.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora miremos como se comporta la variable outcomes en función de la running variable ####</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable menor a 70</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&lt;=</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable mayor a 70</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&gt;</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Notas de entrada vs.&nbsp;notas de salida con líneas de regresión ajustadas a cada grupo.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Vemos que efectivamente, la línea de regresión para los estudiantes que participaron del programa de tutorías es más alta que la de los que no participaron, mostrando que el hubo un efeco del programa de tutorías en la relación entre la nota de entrada y de salida. Pero, ¿cómo podemos estimar este efecto? ¿No dijimos que los estudiantes que eran comparables eran los que estaban cerca del umbral? Dejemos esta última pregunta para más adelante y avancemos con la estimación del efecto del programa de tutorías.</p>
+<p>En la siguiente figura vemos que la diferencia en el umbral, luego de ajustar una recta a cada grupo de estudiantes, es la que nos da el efecto del programa de tutorías. En este caso no deja de ser la diferencia de ordenadas al origen de las rectas ajustadas a cada grupo, pero ya vamos a ver que no siempre es así.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="ot">&lt;-</span> tutoring <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entrance_centered =</span> entrance_exam <span class="sc">-</span> <span class="dv">70</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>modelo_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered <span class="sc">+</span> tutoring, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tutoring_centered)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> tutoring,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable menor a 70</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&lt;=</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable mayor a 70</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring, entrance_exam <span class="sc">&gt;</span> <span class="dv">70</span>), <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Un segmento con el efecto del modelo</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend =</span> <span class="dv">70</span>, <span class="at">yend =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]), </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">75</span>, <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>]<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"LATE"</span>, </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Notas de entrada vs.&nbsp;notas de salida con líneas de regresión ajustadas a cada grupo. La línea azul representa el LATE.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En la figura llamamos al efecto <strong>LATE</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, pero, ¿qué tiene de local el efecto? Bueno, como vmaos a desarrollar un poco más adelante, ese efecto es local porque, en teoría, sólo tiene validez para los individuos que están a un lado uy otro del umbral. Es decir, no representa el efecto a individuos que están lejos del umbral. Sin embargo, y como en todas estas cosas, podemos justificar que ese efecto sí es válido para individuos que están un poco más lejos del umbral, pero eso requiere que conozcamos el problema.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Del inglés <em>Local Average Treatment Effect</em>.</p></div></div><p>Creo que, si bien se deben estar creyendo lo que les cuento, también deben tener un millón y medio de preguntas sobre cómo se calcula este hermoso <strong>LATE</strong> y qué condiciones debe cumplir la <em>running variable</em> y el sesgo. Para eso nos queda una buena parte del capítulo, pero por ahora me quedo contento con que la idea detrás del método me quedo contento: <strong>Las unidades experimentales a uno y otro lado del umbral son, en promedio, comparables en todas las características observadas y no observadas salvo en la asignación o no al tratamiento</strong>.</p>
 </section>
-<section id="cómo-se-estima-el-efecto-causal" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.3</span> ¿Cómo se estima el efecto causal?</h2>
-<section id="paramétricas-vs.-no-paramétricas" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.3.1</span> Paramétricas vs.&nbsp;no paramétricas</h3>
+<section id="un-ejemplo-con-los-husoshusos-horarios" class="level2 page-columns page-full" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="un-ejemplo-con-los-husoshusos-horarios"><span class="header-section-number">8.3</span> Un ejemplo con los husos<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> horarios</h2>
+<p><span class="citation" data-cites="schafer2020time">Schafer y Holbein (<a href="references.html#ref-schafer2020time" role="doc-biblioref">2020</a>)</span></p>
+<div class="no-row-height column-margin column-container"><div id="ref-schafer2020time" class="csl-entry" role="listitem">
+Schafer, Jerome, y John B Holbein. 2020. <span>«When time is of the essence: A natural experiment on how time constraints influence elections»</span>. <em>The Journal of Politics</em> 82 (2): 418-32.
+</div></div></section>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Sí, es <strong>husos</strong> y no <strong>usos</strong>, no es un <em>typo</em>.</p></div></div><section id="cómo-se-estima-el-efecto-causal" class="level2 page-columns page-full" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="cómo-se-estima-el-efecto-causal"><span class="header-section-number">8.4</span> ¿Cómo se estima el efecto causal?</h2>
+<p>Si vemos la figura XXX, podemos ver que la diferencia entre las dos rectas es el efecto del programa de tutorías. Pero, ¿cómo se estima? Bueno, la forma más sencilla de hacerlo es ajustar un modelo lineal a los datos y calcular la diferencia entre las ordenadas al origen de las rectas ajustadas a cada grupo. Pero esta no es la única forma de calcularl el <strong>LATE</strong>. En lo que sigue vamos a explorar variantes de esta estimación y ver cómo afectan en el efecto estimado.</p>
+<section id="paramétricas-vs.-no-paramétricas" class="level3 page-columns page-full" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="paramétricas-vs.-no-paramétricas"><span class="header-section-number">8.4.1</span> Paramétricas vs.&nbsp;no paramétricas</h3>
+<p>Una de las alternativas que tenemos es hacer una estimación paramétrica o no paramétrica. Pero, ¿a qué nos referimos con esto? En una estimación paramétrica, como la que vimos en el ejemplo anterior, ajustamos un modelo a los datos que está definido por parámetros, como podría ser un modelo lineal.</p>
+<p>El primero modelo que vamos a ajustar es el siguiente:</p>
+<p><span class="math display">\[
+y = \beta_0 + \beta_1 \text{Running variable (centrada)} + \beta_2 \text{indicadora del tratamiento}
+\]</span></p>
+<p>Que en nuestro caso sería más bien:</p>
+<p><span class="math display">\[
+nota_{salida} = \beta_0 + \beta_1 (nota_{entrada}-70) + \beta_2 \mathbb{I}_{tutoria}
+\]</span></p>
+<p>donde <span class="math inline">\(\mathbb{I}_{tutoria}\)</span> es una variable indicadora que toma el valor de <span class="math inline">\(1\)</span> si el estudiante participó del programa de tutorías y <span class="math inline">\(0\)</span> si no, <span class="math inline">\(nota_{entrada}\)</span> es la nota del examen de entrada y <span class="math inline">\(nota_{salida}\)</span> es la nota del examen de salida. Pero ¿por qué le restamos <span class="math inline">\(70\)</span> a la nota de entrada? Bueno, porque queremos centrar la <em>running variable</em> en el umbral. Es decir, queremos que el umbral sea <span class="math inline">\(0\)</span> y que los valores a la izquierda del umbral sean negativos y los valores a la derecha sean positivos. Esto nos va a permitir interpretar mejor los coeficientes del modelo<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;En realidad, no es necesario centrar la <em>running variable</em> cuando el ajuste es una recta, pero cuando no lo es, queremos que la diferencia en ordenadas al origen (cuando la <em>running variable</em> vale <span class="math inline">\(0\)</span>) sea el <strong>LATE</strong>. Igualmente es una buena práctica centrar la <em>running variable</em>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Lineal"</span><span class="ot">=</span> modelo_lm),</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">coef_rename =</span> <span class="fu">c</span>(<span class="st">"entrance_centered"</span> <span class="ot">=</span> <span class="st">"Nota inicial centrada"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"tutoringSí"</span> <span class="ot">=</span> <span class="st">"Participó en la tutoría"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">statistic =</span> <span class="cn">NULL</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">".*"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">output =</span> <span class="st">"gt"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_highlight_rows</span>(<span class="at">rows =</span> <span class="dv">3</span>, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> <span class="st">"lightyellow"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eexombwkke table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#eexombwkke thead, #eexombwkke tbody, #eexombwkke tfoot, #eexombwkke tr, #eexombwkke td, #eexombwkke th {
+  border-style: none;
+}
+
+#eexombwkke p {
+  margin: 0;
+  padding: 0;
+}
+
+#eexombwkke .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eexombwkke .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#eexombwkke .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#eexombwkke .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#eexombwkke .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eexombwkke .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eexombwkke .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eexombwkke .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eexombwkke .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eexombwkke .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#eexombwkke .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#eexombwkke .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eexombwkke .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eexombwkke .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eexombwkke .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eexombwkke .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#eexombwkke .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#eexombwkke .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#eexombwkke .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#eexombwkke .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#eexombwkke .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eexombwkke .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eexombwkke .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_left {
+  text-align: left;
+}
+
+#eexombwkke .gt_center {
+  text-align: center;
+}
+
+#eexombwkke .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eexombwkke .gt_font_normal {
+  font-weight: normal;
+}
+
+#eexombwkke .gt_font_bold {
+  font-weight: bold;
+}
+
+#eexombwkke .gt_font_italic {
+  font-style: italic;
+}
+
+#eexombwkke .gt_super {
+  font-size: 65%;
+}
+
+#eexombwkke .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#eexombwkke .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#eexombwkke .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#eexombwkke .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#eexombwkke .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#eexombwkke .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#eexombwkke .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#eexombwkke .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#eexombwkke div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Lineal" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Lineal</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">(Intercept)</td>
+<td class="gt_row gt_center" headers="Lineal">59.411</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" ">Nota inicial centrada</td>
+<td class="gt_row gt_center" headers="Lineal">0.510</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Participó en la tutoría</td>
+<td class="gt_row gt_center" headers="Lineal" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">10.800</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p>Estimaciones del LATE utilizando un modelo lineal.</p>
+</div>
+</div>
+<p>El coeficiente de la variable indicadora del tratamiento es el <strong>LATE</strong>. En este caso, el modelo nos dice que el programa de tutorías aumenta en 10.8 puntos la nota del examen de salida, en promedio, para los estudiantes que están cerca del umbral. Si vemos la figura XXX, podemos ver que esta estimación tiene sentido.</p>
+<p>También podríamos ajustar otro modelo lineal<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, en el que suponemos que la relación entre la <em>running variable</em> y el resultado es cuadrática. No vamos a escribie el modelo porque se complica un poco ya que ajustamos una parábola a cada lado de la discontinuidad. Pero la idea es la misma: ajustamos un modelo lineal a los datos y calculamos la diferencia entre las estimaciones de los modelos para el umbral (la <em>running variable</em> centrada igual a 0)<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;¿Por qué esto sigue siendo un modelo lineal?</p></div><div id="fn7"><p><sup>7</sup>&nbsp;Para detalles del ajuste pueden ver el código que acompaña a la Figura XXX.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="ot">&lt;-</span> tutoring_centered <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entrance_centered_2 =</span> entrance_centered<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">entrance_centered_3 =</span> entrance_centered<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>modelo_sq_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered_2, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> tutoring_centered <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(entrance_centered <span class="sc">&lt;=</span> <span class="dv">0</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>modelo_sq_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered_2,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> tutoring_centered <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(entrance_centered <span class="sc">&gt;</span> <span class="dv">0</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>modelo_cub_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered_3, </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> tutoring_centered <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(entrance_centered <span class="sc">&lt;=</span> <span class="dv">0</span>))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>modelo_cub_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered_3,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> tutoring_centered <span class="sc">%&gt;%</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(entrance_centered <span class="sc">&gt;</span> <span class="dv">0</span>))</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="ot">&lt;-</span> tutoring_centered <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(modelo_lm, <span class="at">var =</span> <span class="st">"exit_pred_lm"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(modelo_sq_1, <span class="at">var =</span> <span class="st">"exit_pred_sq1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(modelo_sq_2, <span class="at">var =</span> <span class="st">"exit_pred_sq2"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(modelo_cub_1, <span class="at">var =</span> <span class="st">"exit_pred_cub1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(modelo_cub_2, <span class="at">var =</span> <span class="st">"exit_pred_cub2"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Lineal"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>, </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Cuadrático"</span> <span class="ot">=</span> <span class="st">"darkred"</span>, </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Cúbico"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring_centered, <span class="fu">aes</span>(<span class="at">x =</span> entrance_centered, </span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> exit_exam)) <span class="sc">+</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable centrada menor a 0</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> exit_pred_lm, <span class="at">color =</span> <span class="st">"Lineal"</span>), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable centrada al cuadrado menor a 0</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered, entrance_centered <span class="sc">&lt;=</span> <span class="dv">0</span>), <span class="fu">aes</span>(<span class="at">y =</span> exit_pred_sq1, <span class="at">color =</span> <span class="st">"Cuadrático"</span>), </span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable centrada al cuadrado mayor a 0</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered, entrance_centered <span class="sc">&gt;</span> <span class="dv">0</span>), <span class="fu">aes</span>(<span class="at">y =</span> exit_pred_sq2, <span class="at">color =</span> <span class="st">"Cuadrático"</span>), </span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable centrada al cubo menor a 0</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered, entrance_centered <span class="sc">&lt;=</span> <span class="dv">0</span>), <span class="fu">aes</span>(<span class="at">y =</span> exit_pred_cub1, <span class="at">color =</span> <span class="st">"Cúbico"</span>), </span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable centrada al cubo mayor a 0</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered, entrance_centered <span class="sc">&gt;</span> <span class="dv">0</span>), <span class="fu">aes</span>(<span class="at">y =</span> exit_pred_cub2, <span class="at">color =</span> <span class="st">"Cúbico"</span>), </span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada (centrado)"</span>, </span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_color_brewer(palette = "Dark2") +</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Notas de entrada vs.&nbsp;notas de salida con ajuste lineal, cuadrático y cúbico para cada grupo.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Como vemos en al Figura XXX, depende cómo ajustemos el modelo, el efecto del programa de tutorías cambia. En este caso, el ajuste lineal nos da un efecto de 3.6, el cuadrático de 5.7 y el cúbico de 3.6. Es decir, la elección de cómo ajustamos a los datos a cada lado del umbral afecta mi <strong>LATE</strong>.</p>
+<p>Entonces: ¿Cómo decidimos qué ajuste usar? Esto, como vamos a ver más adelante no tiene una respuesta concreta, hay que ver los datos y, más importante aún, ver cuán sensibles son nuestros resultados a estas elecciones. Por ejemplo, si al pasar de una recta a una parábola el efecto pasa de <span class="math inline">\(100\)</span> a <span class="math inline">\(0\)</span>, entonces es probable que la elección de la forma de ajuste sea importante y debamos justificarla. Si, por el contrario, el efecto no cambia mucho, entonces podemos estar más tranquilos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Armo una tabla con los valores de los ajustes</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tutoring_centered <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Lineal"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">predict</span>(modelo_lm, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">entrance_centered =</span> <span class="dv">0</span>, <span class="at">tutoring =</span> <span class="st">"Sí"</span>)) <span class="sc">-</span> <span class="fu">predict</span>(modelo_lm, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">entrance_centered =</span> <span class="dv">0</span>, <span class="at">tutoring =</span> <span class="st">"No"</span>)), <span class="dv">1</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Cuadrático"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">predict</span>(modelo_sq_1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">entrance_centered_2 =</span> <span class="dv">0</span>)) <span class="sc">-</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">predict</span>(modelo_sq_2, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">entrance_centered_2 =</span> <span class="dv">0</span>)), <span class="dv">1</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Cúbico"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">predict</span>(modelo_cub_1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">entrance_centered_3 =</span> <span class="dv">0</span>)) <span class="sc">-</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">predict</span>(modelo_cub_2, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">entrance_centered_3 =</span> <span class="dv">0</span>)), <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Modelo"</span>, <span class="at">values_to =</span> <span class="st">"LATE"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Estimaciones del LATE para distintos ajustes"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">vars</span>(LATE), <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_highlight_cols</span>(<span class="at">columns =</span> <span class="dv">2</span>, </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> <span class="st">"lightyellow"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Since gt v0.3.0, `columns = vars(...)` has been deprecated.</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; • Please use `columns = c(...)` instead.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ulbfdpbcyv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ulbfdpbcyv thead, #ulbfdpbcyv tbody, #ulbfdpbcyv tfoot, #ulbfdpbcyv tr, #ulbfdpbcyv td, #ulbfdpbcyv th {
+  border-style: none;
+}
+
+#ulbfdpbcyv p {
+  margin: 0;
+  padding: 0;
+}
+
+#ulbfdpbcyv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ulbfdpbcyv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ulbfdpbcyv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ulbfdpbcyv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ulbfdpbcyv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ulbfdpbcyv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ulbfdpbcyv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ulbfdpbcyv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ulbfdpbcyv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ulbfdpbcyv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ulbfdpbcyv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ulbfdpbcyv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ulbfdpbcyv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ulbfdpbcyv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_left {
+  text-align: left;
+}
+
+#ulbfdpbcyv .gt_center {
+  text-align: center;
+}
+
+#ulbfdpbcyv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ulbfdpbcyv .gt_font_normal {
+  font-weight: normal;
+}
+
+#ulbfdpbcyv .gt_font_bold {
+  font-weight: bold;
+}
+
+#ulbfdpbcyv .gt_font_italic {
+  font-style: italic;
+}
+
+#ulbfdpbcyv .gt_super {
+  font-size: 65%;
+}
+
+#ulbfdpbcyv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ulbfdpbcyv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ulbfdpbcyv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ulbfdpbcyv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ulbfdpbcyv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ulbfdpbcyv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ulbfdpbcyv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ulbfdpbcyv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ulbfdpbcyv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Estimaciones del LATE para distintos ajustes</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Modelo</th>
+<th id="LATE" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LATE</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Modelo">Lineal</td>
+<td class="gt_row gt_right" headers="LATE" style="background-color: #FFFFE0; color: #000000; font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: lightyellow; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: lightyellow">10.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Modelo">Cuadrático</td>
+<td class="gt_row gt_right" headers="LATE" style="background-color: #FFFFE0; color: #000000; font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: lightyellow; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: lightyellow">5.7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Modelo">Cúbico</td>
+<td class="gt_row gt_right" headers="LATE" style="background-color: #FFFFE0; color: #000000; font-weight: bold; border-top-width: 1px; border-top-style: solid; border-top-color: lightyellow; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: lightyellow">3.6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p>Tabla con las estimaciones de los distintos ajustes.</p>
+</div>
+</div>
 </section>
-<section id="ancho-de-banda" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="ancho-de-banda"><span class="header-section-number">8.3.2</span> Ancho de banda</h3>
+<section id="ancho-de-banda" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="ancho-de-banda"><span class="header-section-number">8.4.2</span> Ancho de banda</h3>
+<p>Volvamos a la idea de por qué usamos todos los datos si en realidad queremos comparar a un lado y otro del umbral. Bueno, una forma de lidiar con esto es limitar el análisis a un cierto rango de la <em>running variable</em>. Es decir, podemos decidir que sólo vamos a comparar a los estudiantes que están dentro de un cierto rango del umbral. Por ejemplo, podríamos decidir que sólo vamos a comparar a los estudiantes que están entre <span class="math inline">\(65\)</span> y <span class="math inline">\(75\)</span> puntos en el examen de entrada. Esto se conoce como <strong>ancho de banda</strong> y es una forma de limitar el análisis a los estudiantes que están más cerca del umbral.</p>
+<p>Repitamos el ajuste lineal de los estudiantes de cada lado del umbral pero limitando el ancho de banda. Primero con ancho de banda total, luego con ancho de banda de <span class="math inline">\(10\)</span> punto (es decir, sólo analizando los datos entre <span class="math inline">\(60\)</span> y <span class="math inline">\(80\)</span> puntos) y finalmente con un ancho de banda de <span class="math inline">\(5\)</span> puntos (es decir, sólo analizando los datos entre <span class="math inline">\(65\)</span> y <span class="math inline">\(75\)</span> puntos).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora probemos bajando el bandwidth</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BW = 10</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>model_bw_10 <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered <span class="sc">+</span> tutoring,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                entrance_centered <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">10</span> <span class="sc">&amp;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                  entrance_centered <span class="sc">&lt;=</span> <span class="dv">10</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_bw_10)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   term              estimate std.error statistic   p.value</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 (Intercept)         60.4       0.752     80.3  2.99e-249</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 entrance_centered    0.388     0.114      3.40 7.45e-  4</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 tutoringSí           9.27      1.31       7.09 6.27e- 12</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># BW = 5</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>model_bw_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(exit_exam <span class="sc">~</span> entrance_centered <span class="sc">+</span> tutoring,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                               entrance_centered <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                                 entrance_centered <span class="sc">&lt;=</span> <span class="dv">5</span>))</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_bw_5)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   term              estimate std.error statistic   p.value</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 (Intercept)         60.6       1.12      54.3  4.78e-118</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 entrance_centered    0.380     0.331      1.15 2.53e-  1</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 tutoringSí           9.12      1.91       4.77 3.66e-  6</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Veamos el ajuste de cada uno de estos modelos</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Full BW</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>p_full <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tutoring, <span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> exit_exam, </span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                               <span class="at">color =</span> tutoring,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                               <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a line based on a linear model for the people scoring 70 or less</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="fu">min</span>(tutoring<span class="sc">$</span>entrance_exam), <span class="at">xend =</span> <span class="dv">70</span>,</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">min</span>(tutoring_centered<span class="sc">$</span>entrance_centered)<span class="sc">*</span>modelo_lm<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                 modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>],</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>               <span class="at">yend =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">3</span>],</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a line based on a linear model for the people scoring more than 70</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">xend =</span> <span class="fu">max</span>(tutoring<span class="sc">$</span>entrance_exam),</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>               <span class="at">yend =</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> modelo_lm<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span><span class="fu">max</span>(tutoring_centered<span class="sc">$</span>entrance_centered),</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las labels</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="co"># BW = 10</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>p_bw10 <span class="ot">&lt;-</span> tutoring_centered <span class="sc">|&gt;</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(entrance_centered, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> exit_exam, </span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> tutoring,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> tutoring_centered <span class="sc">|&gt;</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>               dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">between</span>(entrance_centered, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>)), </span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span> </span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a line based on a linear model for the people scoring 70 or less</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">xend =</span> <span class="dv">70</span>,</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> model_bw_10<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">-</span><span class="dv">10</span><span class="sc">*</span>model_bw_10<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>                 model_bw_10<span class="sc">$</span>coefficients[<span class="dv">3</span>],</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>               <span class="at">yend =</span> model_bw_10<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model_bw_10<span class="sc">$</span>coefficients[<span class="dv">3</span>],</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a line based on a linear model for the people scoring more than 70</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">xend =</span> <span class="dv">80</span>,</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> model_bw_10<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>               <span class="at">yend =</span> model_bw_10<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model_bw_10<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">10</span>,</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las labels</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="co"># BW = 5</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>p_bw5 <span class="ot">&lt;-</span> tutoring_centered <span class="sc">|&gt;</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">between</span>(entrance_centered, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> entrance_exam, </span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> exit_exam, </span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> tutoring,</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> tutoring_centered <span class="sc">|&gt;</span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>               dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">between</span>(entrance_centered, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)), </span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span> </span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a line based on a linear model for the people scoring 70 or less</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">65</span>, <span class="at">xend =</span> <span class="dv">70</span>,</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> model_bw_5<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span>model_bw_5<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>                 model_bw_5<span class="sc">$</span>coefficients[<span class="dv">3</span>],</span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>               <span class="at">yend =</span> model_bw_5<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model_bw_5<span class="sc">$</span>coefficients[<span class="dv">3</span>],</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a line based on a linear model for the people scoring more than 70</span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">70</span>, <span class="at">xend =</span> <span class="dv">75</span>,</span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> model_bw_5<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>               <span class="at">yend =</span> model_bw_5<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model_bw_5<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">5</span>,</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las labels</span></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada"</span>, </span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>p_full <span class="sc">/</span> p_bw10 <span class="sc">/</span> p_bw5 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Estimaciones del LATE utilizando un modelo lineal con distintos anchos de banda.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En la figura vemos que los ajustes son ligeramente distintos, pero no se llega a ver una difrencia. Qué pasa si vemos las estimaciones del modelo:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Las estimaciones y el sample size</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Full data"</span> <span class="ot">=</span> modelo_lm, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Bandwidth = 10"</span> <span class="ot">=</span> model_bw_10, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Bandwidth = 5"</span> <span class="ot">=</span> model_bw_5), </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">coef_rename =</span> <span class="fu">c</span>(<span class="st">"entrance_centered"</span> <span class="ot">=</span> <span class="st">"Nota inicial centrada"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"tutoringSí"</span> <span class="ot">=</span> <span class="st">"Participó en la tutoría"</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">'DF|Deviance|R2|AIC|BIC|Log.Lik|F|RMSE'</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">statistic =</span> <span class="st">"p = {p.value}"</span>, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">output =</span> <span class="st">"gt"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_highlight_rows</span>(<span class="at">rows =</span> <span class="dv">5</span>, </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> <span class="st">"lightyellow"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_highlight_rows</span>(<span class="at">rows =</span> <span class="dv">7</span>, </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> <span class="st">"lightyellow"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kgufivjubq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kgufivjubq thead, #kgufivjubq tbody, #kgufivjubq tfoot, #kgufivjubq tr, #kgufivjubq td, #kgufivjubq th {
+  border-style: none;
+}
+
+#kgufivjubq p {
+  margin: 0;
+  padding: 0;
+}
+
+#kgufivjubq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kgufivjubq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kgufivjubq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kgufivjubq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kgufivjubq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kgufivjubq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kgufivjubq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kgufivjubq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kgufivjubq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kgufivjubq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kgufivjubq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kgufivjubq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kgufivjubq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kgufivjubq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kgufivjubq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kgufivjubq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kgufivjubq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kgufivjubq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kgufivjubq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kgufivjubq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_left {
+  text-align: left;
+}
+
+#kgufivjubq .gt_center {
+  text-align: center;
+}
+
+#kgufivjubq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kgufivjubq .gt_font_normal {
+  font-weight: normal;
+}
+
+#kgufivjubq .gt_font_bold {
+  font-weight: bold;
+}
+
+#kgufivjubq .gt_font_italic {
+  font-style: italic;
+}
+
+#kgufivjubq .gt_super {
+  font-size: 65%;
+}
+
+#kgufivjubq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kgufivjubq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kgufivjubq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kgufivjubq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kgufivjubq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kgufivjubq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kgufivjubq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kgufivjubq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kgufivjubq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Full-data" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Full data</th>
+<th id="Bandwidth-=-10" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Bandwidth = 10</th>
+<th id="Bandwidth-=-5" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Bandwidth = 5</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">(Intercept)</td>
+<td class="gt_row gt_center" headers="Full data">59.411</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10">60.377</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5">60.631</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Full data">p = &lt;0.001</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10">p = &lt;0.001</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5">p = &lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Nota inicial centrada</td>
+<td class="gt_row gt_center" headers="Full data">0.510</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10">0.388</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5">0.380</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Full data">p = &lt;0.001</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10">p = &lt;0.001</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5">p = 0.253</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Participó en la tutoría</td>
+<td class="gt_row gt_center" headers="Full data" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">10.800</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">9.273</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">9.122</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" " style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000"></td>
+<td class="gt_row gt_center" headers="Full data" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">p = &lt;0.001</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">p = &lt;0.001</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">p = &lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Num.Obs.</td>
+<td class="gt_row gt_center" headers="Full data" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">1000</td>
+<td class="gt_row gt_center" headers="Bandwidth = 10" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">404</td>
+<td class="gt_row gt_center" headers="Bandwidth = 5" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">194</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Hay tres cosas que quiero que vean. Primero, que el <strong>LATE</strong> es bastante similar en los tres casos pero se ve afectado por el ancho de banda. Segundo, el ancho de banda afecta el tamaño de la muestra y, por lo tanto, la potencia estadística. Y tercero, algo de lo que no habíamos hablado hasta el momento era de la variabilidad de las estimaciones. Por ejemplo, en este caso que el <strong>LATE</strong> es un parámetro de un modelo lineal como los que ya conocemos, podemos utilizar las herramientas usuales de inferencia estadística (como el p-valor que ven abajo de la estimación en la tabla) para sacar conclusiones al respecto.</p>
 </section>
-<section id="kernels" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="kernels"><span class="header-section-number">8.3.3</span> Kernels</h3>
+<section id="kernels" class="level3 page-columns page-full" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="kernels"><span class="header-section-number">8.4.3</span> <em>Kernels</em></h3>
+<p>Como vimos, achicar el ancho de banda mejoraría la estimación (porque estamos considerando a los sujetos más “parecido”) pero disminuye el tamaño de muestra efectivo. Una alternativa a esto es conservar el ancho de banda pero darle más peso a los puntos que están cerca del umbral. Por ejemplo, podríamos darle más peso a los puntos que están a <span class="math inline">\(1\)</span> punto del umbral que a los que están a <span class="math inline">\(10\)</span> puntos. Esto se hace utilizando un <strong>kernel</strong>. Un kernel es una función que asigna un peso a cada punto en función de su distancia al umbral. Los <em>kernels</em> pueden tener diversas formas, como triangular o gaussiano<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Cuando achicamos el ancho de banda en la sección anterior podemos considerar como si hubiéramos utilizado un kernel rectangular, es decir, que todos los puntos dentro del ancho de banda tienen el mismo peso.</p></div></div><p>Dejenme mostrarles la forma de algunos kernels que vamos a probar:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>kernels <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="at">length.out =</span> <span class="dv">200</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rectangular =</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(x) <span class="sc">&lt;=</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">triangular =</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(x) <span class="sc">&lt;=</span> <span class="dv">1</span>, <span class="dv">1</span> <span class="sc">-</span> <span class="fu">abs</span>(x), <span class="dv">0</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">epanechnikov =</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(x) <span class="sc">&lt;=</span> <span class="dv">1</span>, <span class="fl">0.75</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x<span class="sc">^</span><span class="dv">2</span>), <span class="dv">0</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(kernels, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> rectangular, <span class="at">color =</span> <span class="st">"Rectangular"</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> triangular, <span class="at">color =</span> <span class="st">"Triangular"</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> epanechnikov, <span class="at">color =</span> <span class="st">"Epanechnikov"</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Distancia al umbral"</span>, <span class="at">y =</span> <span class="st">"Peso"</span>, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Kernel rectancular, triangular y Epanechnikov.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos ver que cada kernel pesa los puntos de forma distinta. El kernel rectangular le da el mismo peso a todos los puntos dentro del ancho de banda, el triangular le da más peso a los puntos que están cerca del umbral y el Epanechnikov es un poco menos águdo que el triangular.</p>
+<p>La elección del kernel, al igual que en el caso del ancho de banda, afecta la estimación del <strong>LATE</strong>.</p>
+</section>
+<section id="ajustes-no-paramétricos" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="ajustes-no-paramétricos"><span class="header-section-number">8.4.4</span> Ajustes no paramétricos</h3>
+<p>Finalmente, una alternativa bastante usual es la de estimar el <strong>LATE</strong> utilizando un ajuste no paramétrico. Esto significa que no vamos a asumir una forma funcional específica para la relación entre la <em>running variable</em> y el <em>outcome</em>. En cambio, vamos a utilizar técnicas como los <em>splines</em> o los <em>Locally estimated/weighted scatterplot smoothing (LOESS)</em> para ajustar una curva a los datos.</p>
+<p>Por ejemplo, veamos cómo se ve la estimación del <strong>LATE</strong> en este caso.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tutoring_centered, <span class="fu">aes</span>(<span class="at">x =</span> entrance_centered, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> exit_exam, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> tutoring,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fill =</span> tutoring)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable menor a 70</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered, tutoring <span class="sc">==</span> <span class="st">"Sí"</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agregamos una linea basada en un modelo lineal para la running variable mayor a 70</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(tutoring_centered, tutoring <span class="sc">==</span> <span class="st">"No"</span>)) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ponemos una línea vertical en el umbral</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Las lables</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Puntaje en el examen de entrada (centrado)"</span>, </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Puntaje en el examen de salida"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Participó en la tutoría"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Participó en la tutoría"</span>) <span class="sc">+</span> </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores más chetos</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme sin fondo gris</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este caso estamos usando la función de <em>regresión local</em> <code>geom_smooth()</code> de <code>ggplot2</code> para ajustar una curva a los datos. Esta función utiliza un ajuste <em>LOESS</em> por defecto, pero también podemos especificar otros métodos de ajuste. Podemos ver que no se trata de una curva suave sino más bien de una especie de promedio móvil pesado que va siguiendo a mis punto.</p>
+<p>En la estimación no paramétrica como en la paramétrica vamos a calcular el <strong>LATE</strong> como la diferencia entre las estimaciones del modelo de cada lado del umbral, y como en el caso anterior, la elección del ancho de banda y del kernel afecta la estimación del <strong>LATE</strong>.</p>
+</section>
+<section id="cómo-tomamos-decisiones" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="cómo-tomamos-decisiones"><span class="header-section-number">8.4.5</span> ¿Cómo tomamos decisiones?</h3>
 </section>
 </section>
-<section id="limitaciones-de-la-regresión-discontinua" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.4</span> Limitaciones de la regresión discontinua</h2>
-<section id="data-greedy" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="data-greedy"><span class="header-section-number">8.4.1</span> Data greedy</h3>
+<section id="limitaciones-de-la-regresión-discontinua" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="limitaciones-de-la-regresión-discontinua"><span class="header-section-number">8.5</span> Limitaciones de la regresión discontinua</h2>
+<p>La regresión discontinua es una herramienta muy interesante y con mucho auge en la investigación causal, especialmente cuando tenemos confusores no observados. Pero, como vimos, requiere de algunas condiciones particulares para poder aplicarla: tener una <em>running variable</em> que sea continua y que tenga un umbral, y que los sujetos a uno y otro lado del umbral sean comparables (ya vamos a hablar un poco de esto). En esta sección vamos a nombrar brevemente tres de las pincipales limitacinoes de la regresión discontinua.</p>
+<section id="es-data-greedy" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="es-data-greedy"><span class="header-section-number">8.5.1</span> Es <em>data greedy</em></h3>
+<p>Una de las principales limitaciones de la regresión discontinua es que requiere una gran cantidad de datos para poder estimar el efecto causal. Esto se debe a que los sujetos que son comparables para una estimación confiables del <strong>LATE</strong> son aquellos que están cerca del umbral. Por lo tanto, nuestra muestra puede ser grande, pero una vez que fijamos el ancho de banda se puede reducir notablemente.</p>
 </section>
-<section id="es-limitada-en-alcance" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="es-limitada-en-alcance"><span class="header-section-number">8.4.2</span> Es limitada en alcance</h3>
+<section id="es-limitada-en-alcance" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="es-limitada-en-alcance"><span class="header-section-number">8.5.2</span> Es limitada en alcance</h3>
+<p>Otra limitación de la regresión discontinua es que el efecto estimado es local, es decir, sólo es válido para los sujetos que están cerca del umbral. Esto significa que no debemos generalizar esta estimación a toda la población, es decir, tenemos un problema de validez externa. Esto podría ser un problema ya que normalmente queremos estimar el efecto para la pobleación de interés.</p>
+<p>Acá cabe una breve reflexión: ¿No son todos los efectos que calculamos de algún modo locales? Entonces, resulta interesante pensar cuáles son las condiciones necesarias para que el <strong>LATE</strong> estimado sea generalizable. Por ejemplo: ¿Creen que el ejemplo del padrón electoral es generalizable? Cada problema se enfrenta con esa pregunta y cada respuesta requiere de un conocimiento del dominio y de la muestra con la que se está trabajando para responderla.</p>
 </section>
-<section id="puede-haber-problemas-de-manipulación" class="level3" data-number="8.4.3">
-<h3 data-number="8.4.3" class="anchored" data-anchor-id="puede-haber-problemas-de-manipulación"><span class="header-section-number">8.4.3</span> Puede haber problemas de <strong>manipulación</strong></h3>
+<section id="puede-haber-problemas-de-manipulación" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="puede-haber-problemas-de-manipulación"><span class="header-section-number">8.5.3</span> Puede haber problemas de <strong>manipulación</strong></h3>
+<p>Recordemos algo: Al asumir que los participantes de un lado y del otro de la discontinuidad son comparables, estamos asumiendo que hay continuiidad en la esperanza de los <em>potential outcomes</em>, es decir, que si un sujeto estuviera en el grupo tratamiento tendría en el umbral el mismo <em>outcome</em> que que tendría un miembro del grupo control si hubiera sido asignado al tratamiento. Es un trabalengüas, ¿no? Veamos primero las cuentas y pensemos después en un ejemplo.</p>
+<p>Con continuidad de los <em>potential outcomes</em> no referimos a que los <em>potential outcomes</em> no cambian abruptamente en el umbral, es decir, que la esperanza de los <em>potential outcomes</em> es continua en el umbral. En difícil: que <span class="math inline">\(E[Y_i^1]\)</span> y <span class="math inline">\(E[Y_i^0]\)</span> son continuas en el umbral. En términos de la <em>running variable</em> <span class="math inline">\(X\)</span> y siendo su umbral <span class="math inline">\(c\)</span>, esto significa que:</p>
+<p><span class="math display">\[
+\begin{align*}
+\lim_{x \to c^-} E[Y_i^1] = \lim_{x \to c^+} E[Y_i^1] \\
+\lim_{x \to c^-} E[Y_i^0] = \lim_{x \to c^+} E[Y_i^0]
+\end{align*}
+\]</span></p>
+<p>O gráficamente:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x0 =</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">x1 =</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">y1 =</span> x1 <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>), </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">y0 =</span> x0 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x0, <span class="at">y =</span> y0)) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1), <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">9</span>, <span class="at">yend =</span> <span class="sc">-</span><span class="dv">9</span>), </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">9</span>, <span class="at">yend =</span> <span class="sc">-</span><span class="dv">9</span>), </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Running variable (X)"</span>, </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Potential outcomes (Y)"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Continuidad de los potential outcomes en el umbral"</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in geom_segment(aes(x = -10, xend = 0, y = -9, yend = -9), color = "darkred", : All aesthetics have length 1, but the data has 100 rows.</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please consider using `annotate()` or provide this layer with data</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   containing a single row.</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in geom_segment(aes(x = 0, xend = 10, y = -9, yend = -9), color = "darkblue", : All aesthetics have length 1, but the data has 100 rows.</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please consider using `annotate()` or provide this layer with data</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   containing a single row.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reg_discontinua_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Continuidad de los potential outcomes en el umbral.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Pensemos qué implicancias tiene esto. Esto significa que la <em>running variable</em> no puede ser manipulada por los sujetos. Es decir, que los sujetos no pueden elegir estar a un lado o del otro del umbral. Por ejemplo, si por algún motivo en nuestro ejemplo los alumnos conocieran la regla de selección y se sacaran peor nota para tener una tutoría gratuita, en ese caso estaríamos hablando de <strong>manipulación</strong> y la estimación del efecto del tratamiento estaría sesgada.</p>
+<p>Vamos con un ejemplo bien concreto. Imaginemos que queremos evaluar la política pública de la que hablamos al principio del capítulo, esa a la que uno califica por cobrar menos de $<span class="math inline">\(350000\)</span> mensuales. Imaginen que soy un cuentapropista que tengo ese beneficio y a dos días de terminar el mes ya facturé $<span class="math inline">\(349999\)</span>. De golpe me llaman para ofrecerme un trabajo de $<span class="math inline">\(500\)</span>, ¿qué creen que voy a decir? Bueno, si la política es lo suficientemente beneficiosa (más que $<span class="math inline">\(499\)</span>) probablemente voy a decir que no. ¿Por qué? Porque si acepto el trabajo, voy a perder el beneficio de la política pública. Entonces, en este caso, la <em>running variable</em> (mi ingreso mensual) fue manipulado y, por lo tanto, la continuidad de los <em>potential outcomes</em> no se cumple. Sé que es un ejemplo un poco irreal, pero tómense el tiempo de pensar cuántas veces podemos ver este tipo de manipulación en la vida real.</p>
+
 
 
 </section>

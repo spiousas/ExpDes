@@ -2,7 +2,7 @@ set.seed(1014)
 
 pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble, forcats, patchwork, ggdag, 
                dagitty, stargazer, kableExtra, kableExtra, lme4, modelsummary,
-               MatchIt, gtExtras, FNN, here, rdrobust, modelr)
+               MatchIt, gtExtras, FNN, here, rdrobust, modelr, rdrobust, rddensity)
 
 pacman::p_load_gh("hadley/emo", "ggmagnify")
 

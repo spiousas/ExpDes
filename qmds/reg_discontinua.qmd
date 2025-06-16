@@ -13,8 +13,6 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-Lo que sigue no es una versión final y está en construcción `r emo::ji("construction")`
-
 ## El problema de controlar por variables no observables
 
 En la mayoría de los capítulos anteriores, vimos formas de controlar por confusores observables. Cuando hablamos de DAGs y agregar variable como covariables a un modelo de regresión o cuando usamops algún estimador de subclasificación o *matching*, lo que estamos haciendo es aislar la variabilidad debida a confusores observados y sustraerla de nuestra relación causal. Pero, ¿Qué pasa cuando los confusores por los que queremos controlar no son observables? Una respuesta a esta pregunta la tuvimos en el capítulo de diferencias en diferencias en el que vimos que, para un problema de una forma en particular[^dif], la solución era estimar el contrafáctico con un grupo comparable.
@@ -135,6 +133,7 @@ En la siguiente figura vemos que la diferencia en el umbral, luego de ajustar un
 
 ```{r}
 #| fig-cap: "Notas de entrada vs. notas de salida con líneas de regresión ajustadas a cada grupo. La línea azul representa el LATE."
+#| label: fig-LATE-lm
 tutoring_centered <- tutoring |> 
   mutate(entrance_centered = entrance_exam - 70)
 
@@ -184,13 +183,29 @@ Creo que, si bien se deben estar creyendo lo que les cuento, también deben tene
 
 [^husos]: Sí, es **husos** y no **usos**, no es un *typo*.
 
-@schafer2020time
+Exiten múltiples ejemplos en la literatura científica del uso de regresión discontinua para estimar el efecto causal de un tratamiento en datos observacionales. Políticas públicas, programas sociales, programas educativos, etc. Pero en esta sección les voy a contar un ejemplo que utiliza una *running variable* un tanto particular: los husos horarios.
+
+Este trabajo (@schafer2020time) analiza cómo las restricciones de tiempo (horarios escolares, laborales, etc.) afectan la participación electoral en los Estados Unidos (un tema muy relevante ya que el voto no es obligatorio), utilizando un diseño de regresión discontinua geográfica que aprovecha las fronteras de las zonas horarias de EE. UU. como discontinuidades. En este diseño, el umbral es la línea divisoria de la zona horaria. La *running variable* es la distancia geográfica bidimensional, específicamente la distancia latitudinal y longitudinal (medida en grados) desde el centro de un condado hasta la frontera de la zona horaria más cercana. 
+
+Veamos como muestran esto gráficamente en el artículo:
+
+![Condados utilizados en la comparación en @schafer2020time a uno y otro lado del cambio de huso horario.](imgs/RDD_fig-01.png){fig-align="center"}
+
+Esto significa que a un lado y al otro de la zona horaria los condados son comparables en todas las características observadas y no observadas, salvo en la zona horaria y el efecto de ella en las restricciones de tiempo. Es decir, que los condados a un lado y al otro de la frontera horaria son comparables en todas las características excepto en la hora local.
+
+Aprovechando esto, los autores estiman el efecto con un modelo de regresión discontinua[^detalles]. En la figura siguiente se puede ver cómo se comporta la participación electoral en función de la distancia a la frontera horaria:
+
+[^detalles]: Los detalles de cómo se llevan adelante estas estimaciones los vamos a ver más adelante.
+
+![Participación electoral en función de la running variable. El 0 es el cambio de huso horario. La discontinuidad en la distancia cero es la estimación del efecto causal. @schafer2020time.](imgs/RDD_fig-02.png){fig-align="center"}
+
+Es con estas herramientas que el estudio concluye que los ciudadanos que viven en el lado inmediatamente oriental de una frontera horaria votan significativamente menos (entre $1.5$ y $3$ puntos porcentuales) que aquellos en el lado occidental.
 
 ## ¿Cómo se estima el efecto causal?
 
-Si vemos la figura XXX, podemos ver que la diferencia entre las dos rectas es el efecto del programa de tutorías. Pero, ¿cómo se estima? Bueno, la forma más sencilla de hacerlo es ajustar un modelo lineal a los datos y calcular la diferencia entre las ordenadas al origen de las rectas ajustadas a cada grupo. Pero esta no es la única forma de calcularl el **LATE**. En lo que sigue vamos a explorar variantes de esta estimación y ver cómo afectan en el efecto estimado. 
+Si vemos la figura @fig-LATE-lmx, podemos ver que la diferencia entre las dos rectas es el efecto del programa de tutorías. Pero, ¿cómo se estima? Bueno, la forma más sencilla de hacerlo es ajustar un modelo lineal a los datos y calcular la diferencia entre las ordenadas al origen de las rectas ajustadas a cada grupo. Pero esta no es la única forma de calcularl el **LATE**. En lo que sigue vamos a explorar variantes de esta estimación y ver cómo afectan en el efecto estimado. 
 
-### Paramétricas vs. no paramétricas
+### Estimación paramétrica
 
 Una de las alternativas que tenemos es hacer una estimación paramétrica o no paramétrica. Pero, ¿a qué nos referimos con esto? En una estimación paramétrica, como la que vimos en el ejemplo anterior, ajustamos un modelo a los datos que está definido por parámetros, como podría ser un modelo lineal.
 
@@ -224,16 +239,17 @@ modelsummary(list("Lineal"= modelo_lm),
 ```
 
 
-El coeficiente de la variable indicadora del tratamiento es el **LATE**. En este caso, el modelo nos dice que el programa de tutorías aumenta en `r round(predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "Sí")) - predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "No")), 1)` puntos la nota del examen de salida, en promedio, para los estudiantes que están cerca del umbral. Si vemos la figura XXX, podemos ver que esta estimación tiene sentido.
+El coeficiente de la variable indicadora del tratamiento es el **LATE**. En este caso, el modelo nos dice que el programa de tutorías aumenta en `r round(predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "Sí")) - predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "No")), 1)` puntos la nota del examen de salida, en promedio, para los estudiantes que están cerca del umbral. Si vemos la figura @fig-LATE-lmx, podemos ver que esta estimación tiene sentido.
 
 También podríamos ajustar otro modelo lineal[^lineal], en el que suponemos que la relación entre la *running variable* y el resultado es cuadrática. No vamos a escribie el modelo porque se complica un poco ya que ajustamos una parábola a cada lado de la discontinuidad. Pero la idea es la misma: ajustamos un modelo lineal a los datos y calculamos la diferencia entre las estimaciones de los modelos para el umbral (la *running variable* centrada igual a 0)[^detalles].
 
 [^lineal]: ¿Por qué esto sigue siendo un modelo lineal?
 
-[^detalles]: Para detalles del ajuste pueden ver el código que acompaña a la Figura XXX.
+[^detalles]: Para detalles del ajuste pueden ver el código que acompaña a la Figura @fig-LATE-nolineal.
 
 ```{r}
 #| fig-cap: "Notas de entrada vs. notas de salida con ajuste lineal, cuadrático y cúbico para cada grupo."
+#| label: fig-LATE-nolineal
 tutoring_centered <- tutoring_centered |> 
   mutate(entrance_centered_2 = entrance_centered^2,
          entrance_centered_3 = entrance_centered^3)
@@ -299,7 +315,7 @@ ggplot(tutoring_centered, aes(x = entrance_centered,
 
 ```
 
-Como vemos en al Figura XXX, depende cómo ajustemos el modelo, el efecto del programa de tutorías cambia. En este caso, el ajuste lineal nos da un efecto de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`, el cuadrático de `r round(predict(modelo_sq_1, newdata = tibble(entrance_centered_2 = 0)) - predict(modelo_sq_2, newdata = tibble(entrance_centered_2 = 0)),1)` y el cúbico de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`. Es decir, la elección de cómo ajustamos a los datos a cada lado del umbral afecta mi **LATE**.
+Como vemos en al Figura @fig-LATE-nolineal, depende cómo ajustemos el modelo, el efecto del programa de tutorías cambia. En este caso, el ajuste lineal nos da un efecto de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`, el cuadrático de `r round(predict(modelo_sq_1, newdata = tibble(entrance_centered_2 = 0)) - predict(modelo_sq_2, newdata = tibble(entrance_centered_2 = 0)),1)` y el cúbico de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`. Es decir, la elección de cómo ajustamos a los datos a cada lado del umbral afecta mi **LATE**.
 
 Entonces: ¿Cómo decidimos qué ajuste usar? Esto, como vamos a ver más adelante no tiene una respuesta concreta, hay que ver los datos y, más importante aún, ver cuán sensibles son nuestros resultados a estas elecciones. Por ejemplo, si al pasar de una recta a una parábola el efecto pasa de $100$ a $0$, entonces es probable que la elección de la forma de ajuste sea importante y debamos justificarla. Si, por el contrario, el efecto no cambia mucho, entonces podemos estar más tranquilos.
 
@@ -543,7 +559,95 @@ En este caso estamos usando la función de *regresión local* `geom_smooth()` de
 
 En la estimación no paramétrica como en la paramétrica vamos a calcular el **LATE** como la diferencia entre las estimaciones del modelo de cada lado del umbral, y como en el caso anterior, la elección del ancho de banda y del kernel afecta la estimación del **LATE**.
 
+Acás ya no es tan fácil obtener la estimación del efecto ajustando modelos lineales así que vamos a hechar mano de un paquete para esto: `rdrobust`. Este paquete nos permite ajustar modelos de regresión discontinua de forma sencilla y rápida, y nos da una serie de opciones para ajustar el ancho de banda y el kernel. Empecemos utilizando los valores por defecto.
+
+```{r}
+#| code-fold: false
+full <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) 
+summary(full)
+```
+
+Vemos que hay mucha información, como el kernel (triangular), el ancho de banda ($9.969$)[^ancho], el número de observaciones, etc. Más interesante, al final podemos ver la estimación del **LATE** que en este caso, el **LATE** es de `r -round(full$Estimate[1], 1)` puntos.
+
+[^ancho]: La estimación del ancho de banda utiliza un algoritmo *data-drive* al que no vamos a entrar en detalle, pero que se basa en la idea de que el ancho de banda óptimo es aquel que minimiza el error cuadrático medio de la estimación del **LATE**. Si quieren ver más detalles pueden consultar la documentación del paquete `rdrobust`.
+
+Vamos a ver el ajuste qué pinta tiene utilizando la función `rdplot()` del mismo paquete. Esta función nos permite visualizar el ajuste de la regresión discontinua y ver cómo se ve la estimación del **LATE**.
+
+```{r}
+#| fig-cap: "Estimación del LATE utilizando un ajuste no paramétrico."
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) 
+```
+
+¿Cómo cambia esta estimación si duplicamos el ancho de banda? 
+
+```{r}
+#| fig-cap: "Estimación del LATE utilizando un ajuste no paramétrico con el doble del ancho de banda estimado de los datos."
+doble <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969 * 2)
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 2*9.969)
+```
+
+Veamos las estimaciones del **LATE** para el ancho de banda completo, el doble y la mitad del ancho de banda estimado.
+
+```{r}
+# Un approach posible es usar el recomendado, el doble y la mitad
+mitad <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969 * 0.5) 
+
+tibble(BW = c("Full = 9.97", "Doble = 19.94", "Mitad = 4.99"),
+       Estimate = -round(c(full$Estimate[1], doble$Estimate[1], mitad$Estimate[1]), 3)) |> 
+  gt()
+```
+
+Si bien hay diferencias, podemos ver que la estimación es bastante consistente, algo que es deseable y que no indica que, al menos en esa región, el efecto es relativamente constante.
+
+Algo que podemos modificar también es el kernel utilizado. Cambiemos de triangular a uniforme y veamos el ajuste.
+
+```{r}
+#| fig-cap: "Estimación del LATE utilizando un ajuste no paramétrico con kernel uniforme."
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969, kernel = "uniform")
+```
+
+Y veamos cómo esta elección afecta a la estimación del **LATE**. 
+
+```{r}
+triangular <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, kernel = "triangular")
+epanechnikov <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, kernel = "epanechnikov")
+uniforme <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, kernel = "uniform")
+
+tibble(Kernel = c("Triangular", "Epanechnikov", "Uniforme"),
+       Estimate = -round(c(triangular$Estimate[1], epanechnikov$Estimate[1], uniforme$Estimate[1]), 3)) |> 
+  gt()
+```
+
+De nuevo, vemos que no hay garndes cambios.
+
 ### ¿Cómo tomamos decisiones?
+
+Creo que de la sección anterior ya queda un poco claro cómo es la mano: Hay que probar y ver que pasa. Es muy importante que las estimaciones del **LATE** sean robustas a las decisiones que tomamos. Por ejemplo, si al cambiar el ancho de banda o el kernel la estimación del **LATE** cambia drásticamente, entonces tenemos que pensar por qué y justificar nuestra elección. Si, por el contrario, la estimación es bastante consistente, entonces podemos estar más tranquilos.
+
+Miremos que hacen, por ejemplo, en @schafer2020time. En la siguiente figura se estima el efecto para distintos valores de la *running variable* (en este caso, la diferencia de horas entre el horario de verano y el horario estándar) y se ve que la estimación del **LATE** es bastante consistente[^bonus].
+
+[^bonus]: BONUS: ¿Por qué creen que la estimación del ancho de banda más chico tiene el error más grande?
+
+![Tamaño del efecto estimado en @schafer2020time en función del ancho de banda.](imgs/RDD_fig-03.png){fig-align="center"}
+
+En nuestro ejemplo de juguete podemos hacer algo parecido, comparar todas las estimaciones que fuimos haciendo a lo largo del capítulo:
+
+```{r}
+tabla_results <- tibble(Método = c(rep("Paramétrico", 3), rep("No paramétrico", 5)),
+                        Kernel = c(rep("No pesado",3), rep("Triangular",3), "Epanechnikov", "Uniforme"),
+                        BW = c("Full", 10, 5, round(c(full$bws[1,1], doble$bws[1,1], mitad$bws[1,1], epanechnikov$bws[1,1], uniforme$bws[1,1]), 3)),
+                        Estimate = round(c(modelo_lm$coefficients[3], model_bw_10$coefficients[3], model_bw_5$coefficients[3], 
+                                           -full$Estimate[1], -doble$Estimate[1], -mitad$Estimate[1], -epanechnikov$Estimate[1], -uniforme$Estimate[1]), 3))
+
+tabla_results |> 
+  gt() |>
+  gt_highlight_rows(rows = 4, 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+```
+
+
+Vemos que, en general, no hay grandes diferencias entre las estimaciones del efecto. La línea resaltada es tal vez el efecto que elegiría si tuviera que quedarme con uno, ya que el ancho de banda está elegido basado en los datos, el ajuste es no paramétrico y el kernel le da más importancia a los datos cerca del umbral. Pero, como vimos en @schafer2020time, tal vez sea una buena idea presentar todas las estimaciones y discutirlas.
 
 ## Limitaciones de la regresión discontinua
 
@@ -579,25 +683,48 @@ O gráficamente:
 ```{r}
 #| fig-cap: "Continuidad de los potential outcomes en el umbral."
 
-data <- tibble(x0 = runif(100, -10, 10), 
-               x1 = runif(100, -10, 10),
-               y1 = x1 + 5 + rnorm(100, 0, 2), 
-               y0 = x0 + rnorm(100, 0, 2))
+set.seed(123)
+data <- tibble(x = runif(200, -10, 10),
+               y = x + c(rnorm(100, mean = 5, sd = 2), 
+                     rnorm(100, mean = 0, sd = 2)),
+               outcome = c(rep("Y1", 100), rep("Y0", 100))) %>%
+  mutate(status = if_else((outcome == "Y1" & x>0) | (outcome == "Y0" & x<=0), 
+                          "Observable", "Contrafáctico"))
 
-ggplot(data, aes(x = x0, y = y0)) +
-  geom_point(color = "darkred", alpha = 0.5) +
-  geom_point(aes(x = x1, y = y1), color = "darkblue", alpha = 0.5) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "gray") +
-  geom_segment(aes(x = -10, xend = 0, y = -9, yend = -9), 
-               color = "darkred", linewidth = 1) +
-  geom_segment(aes(x = 0, xend = 10, y = -9, yend = -9), 
-               color = "darkblue", linewidth = 1) +
+lines <- tibble(intercept = c(5, 0),
+                slope = c(1, 1),
+                outcome = c("Y1", "Y0"))
+
+ggplot(data, aes(x = x, y = y, color = outcome)) +
+  geom_point(aes(alpha = status), size = 2) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "darkblue") +
+  geom_abline(data = lines, aes(slope = slope, intercept = intercept, color = outcome), linewidth = 1) +
   labs(x = "Running variable (X)", 
        y = "Potential outcomes (Y)",
-       title = "Continuidad de los potential outcomes en el umbral") +
-  theme_minimal()
+       color = NULL,
+       alpha = NULL) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_alpha_manual(values = c(.2, 1)) +
+  theme_minimal() +
+  theme(legend.position = "top", legend.box="vertical")
 ```
+
+En esta figura vemos como puntos llenos a los observables y como puntos grisados a los contrafácticos, las líneas, son las esperanzas de estos *outcomes*. Lo que nos interesa pensar es que, si bien en los datos observados vemos un salto al cruzar el umbral (es decir, al pasar de no estar expuesto a estar expuesto al tratamiento), si pudiéramos observar los *potential outcomes* al cruzar el umbral veríamos que son continuos. Es decir, que si un sujeto estuviera en el grupo tratamiento tendría en el umbral el mismo *outcome* que que tendría un miembro del grupo control si hubiera sido asignado al tratamiento.
 
 Pensemos qué implicancias tiene esto. Esto significa que la *running variable* no puede ser manipulada por los sujetos. Es decir, que los sujetos no pueden elegir estar a un lado o del otro del umbral. Por ejemplo, si por algún motivo en nuestro ejemplo los alumnos conocieran la regla de selección y se sacaran peor nota para tener una tutoría gratuita, en ese caso estaríamos hablando de **manipulación** y la estimación del efecto del tratamiento estaría sesgada.
 
 Vamos con un ejemplo bien concreto. Imaginemos que queremos evaluar la política pública de la que hablamos al principio del capítulo, esa a la que uno califica por cobrar menos de \$$350000$ mensuales. Imaginen que soy un cuentapropista que tengo ese beneficio y a dos días de terminar el mes ya facturé \$$349999$. De golpe me llaman para ofrecerme un trabajo de \$$500$, ¿qué creen que voy a decir? Bueno, si la política es lo suficientemente beneficiosa (más que \$$499$) probablemente voy a decir que no. ¿Por qué? Porque si acepto el trabajo, voy a perder el beneficio de la política pública. Entonces, en este caso, la *running variable* (mi ingreso mensual) fue manipulado y, por lo tanto, la continuidad de los *potential outcomes* no se cumple. Sé que es un ejemplo un poco irreal, pero tómense el tiempo de pensar cuántas veces podemos ver este tipo de manipulación en la vida real.
+
+Existen diversas formas de detectar la manipulación en los datos. Una de las más comunes es la de observar la densidad de la *running variable* alrededor del umbral. Si hay manipulación, deberíamos ver un salto en la densidad de la *running variable* en el umbral. Esto se debe a que los sujetos que están cerca del umbral son los que tienen más probabilidades de ser manipulados. Existe algo llamado test de densidad de McCrary que sirve para verificar esto (@mccrary2008manipulation), pero no vamos a entrar en demasiado detalle. Este test está implementado en la función `rddensity()` del paquete `rddensity`.
+
+Veamos cómo se ve la densidad de la *running variable* en nuestro ejemplo de las tutorías (utilizando las funciones `rddensity` y `rdplotdensity`). 
+
+```{r}
+#| fig-cap: "Testeamos la posible manipulación en el ejemplo de las tutorías."
+test_density <- rddensity(tutoring$entrance_exam, c = 70)
+plot_density_test <- rdplotdensity(rdd = test_density, 
+                                   X = tutoring$entrance_exam, 
+                                   type = "both")
+```
+
+Es razonable decir que no hay manipulación ¿no?

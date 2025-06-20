@@ -1,0 +1,512 @@
+mean_beta
+set.seed(123)
+# Simulamos el experimento
+n <- 50 # Sujetos por condición
+betapostest <- c()
+betaprepostest <- c()
+beta_T <- 5
+d <- c(rep("Website A", n), rep("Website B", n))
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data_pre <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data_pre, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data_pre <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data_pre, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+betas <- tibble(beta = c(betapostest, betaprepostest),
+modelo = c(rep("Posttest only", 1000), rep("Pretest-posttest", 1000)))
+betas <- tibble(beta = c(betapostest, betaprepostest),
+modelo = c(rep("Posttest only", 1000), rep("Pretest-posttest", 1000)))
+set.seed(123)
+# Simulamos el experimento
+n <- 50 # Sujetos por condición
+betapostest <- c()
+betaprepostest <- c()
+beta_T <- 5
+d <- c(rep("Website A", n), rep("Website B", n))
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data_pre <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data_pre, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data_pre <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data_pre, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+betas <- tibble(beta = c(betapostest, betaprepostest),
+modelo = c(rep("Posttest only", 1000), rep("Pretest-posttest", 1000)))
+set.seed(123)
+# Simulamos el experimento
+n <- 50 # Sujetos por condición
+betapostest <- c()
+betaprepostest <- c()
+beta_T <- 5
+d <- c(rep("Website A", n), rep("Website B", n))
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data_pre <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data_pre, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+betas <- tibble(beta = c(betapostest, betaprepostest),
+modelo = c(rep("Posttest only", 1000), rep("Pretest-posttest", 1000)))
+mean_beta <- betas |>
+group_by(modelo) |>
+summarise(m_beta = mean(beta))
+mean_beta
+betas_post |>
+ggplot(aes(x = betapostest, fill = modelo)) +
+geom_histogram(\alpha = .3,
+betas_post |>
+ggplot(aes(x = betas, fill = modelo)) +
+geom_histogram(\alpha = .3,
+betas_post |>
+ggplot(aes(x = betas, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(xintercept = mean_beta$m_beta,
+color = "#1380A1",
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2))),
+x = 5,
+y = 50)  +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL) +
+theme_bw()
+betas_post |>
+ggplot(aes(x = betas, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30)
+betas
+betas_post |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30)
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30)
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2))),
+x = 5,
+y = 50)  +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL
+fill = NULL) +
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta),
+linewidth = 1)
+betas |>
+ggplot(aes(x = beta, color = modelo, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta),
+linewidth = 1)
+betas |>
+ggplot(aes(x = beta, color = modelo, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1)
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2))),
+x = 5,
+y = 50)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL
+fill = NULL) +
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30) +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2))),
+x = 5,
+y = 50)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL) +
+theme_bw()
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2))),
+x = 5,
+y = 50)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL) +
+theme_bw()
+mean_beta <- betas |>
+group_by(modelo) |>
+summarise(m_beta = mean(beta)) |>
+mutate(ypos = c(50, 80))
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL) +
+theme_bw()
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5,
+show.legend=FALSE)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL,
+color = NULL) +
+theme_bw()
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5,
+show.legend=FALSE)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL,
+color = NULL) +
+theme_bw() +
+theme(legend.position = "top")
+mean_beta <- betas |>
+group_by(modelo) |>
+summarise(m_beta = mean(beta)) |>
+mutate(ypos = c(50, 100))
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .3,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5,
+show.legend=FALSE)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL,
+color = NULL) +
+theme_bw() +
+theme(legend.position = "top")
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .5,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5,
+show.legend=FALSE)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL,
+color = NULL) +
+theme_bw() +
+theme(legend.position = "top")
+#| code-fold: true
+errores <- tibble(rho = seq(0, 1, 0.01),
+sigma_Ancova = (1-rho^2))
+errores %>% ggplot(aes(x = rho,
+y = sigma_Ancova)) +
+geom_line(linewidth = 1) +
+geom_hline(yintercept = c(0,1), linetype = "dashed") +
+labs(x = "Correlación entre pre y post",
+y = "Error estándar de la estimación del efecto del tratamiento") +
+theme_bw()
+#| code-fold: true
+# Simulemos mil experimentos
+set.seed(123)
+# Simulamos el experimento
+n <- 50 # Sujetos por condición
+betapostest <- c()
+betaprepostest <- c()
+beta_T <- 5
+d <- c(rep("Website A", n), rep("Website B", n))
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data_pre, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+betas <- tibble(beta = c(betapostest, betaprepostest),
+modelo = c(rep("Posttest only", 1000), rep("Pretest-posttest", 1000)))
+mean_beta <- betas |>
+group_by(modelo) |>
+summarise(m_beta = mean(beta)) |>
+mutate(ypos = c(50, 100))
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .5,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5,
+show.legend=FALSE)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL,
+color = NULL) +
+theme_bw() +
+theme(legend.position = "top")
+#| code-fold: true
+# Pretest-posttest ####
+set.seed(123)
+n <- 50
+time_post <- rnorm(2*n, 50, 10)
+time_pre <-time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + 5
+data_pre <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = c(rep("Website A", n), rep("Website B", n)))
+data_pre %>% ggplot(aes(x = condicion,
+y = tiempo_post,
+color = condicion)) +
+geom_jitter(width = .2) +
+geom_smooth(method = "lm", se = F) +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = NULL,
+y = "Tiempo post (s)",
+color = NULL) +
+theme_bw() +
+theme(legend.position = "top")
+#| code-fold: true
+modelo_pre_basico <- lm(data = data_pre,
+tiempo_post ~ condicion)
+modelsummary(list("A/B Sin incluir el tiempo pre"= modelo_pre_basico),
+coef_rename = c("condicionWebsite B" = "Website B"),
+statistic = NULL,
+gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F')
+#| code-fold: true
+modelo_pre_basico <- lm(data = data_pre, tiempo_post ~ condicion)
+modelo_pre <- lm(data = data_pre, tiempo_post ~ condicion + tiempo_pre)
+modelsummary(list("A/B Sin incluir el tiempo pre"= modelo_pre_basico,
+"A/B Pretest-postest only"= modelo_pre),
+coef_rename = c("condicionWebsite B" = "Website B",
+"tiempo_pre" = "Tiempo-pre"),
+statistic = NULL,
+gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F')
+modelo_pre$residuals
+sd(modelo_pre$residuals)
+sd(modelo_pre$residuals)*49/50
+sd(modelo_pre$residuals)*50/49
+rmse(modelo_pre$residuals)
+summary(modelo_pre$residuals)
+summary(modelo_pre)
+summary(modelo_pre)$sigma
+#| code-fold: true
+# Simulemos mil experimentos
+set.seed(123)
+# Simulamos el experimento
+n <- 50 # Sujetos por condición
+betapostest <- c()
+betaprepostest <- c()
+beta_T <- 5
+d <- c(rep("Website A", n), rep("Website B", n))
+for (i in 1:1000) {
+time_post <- rnorm(2*n, 50, 10)
+time_pre <- time_post + rnorm(n,  0, 5)
+control_pre  <- time_pre[1:n]
+tratamiento_pre  <- time_pre[(n+1):(2*n)]
+control_post <- time_post[1:n]
+tratamiento_post <- time_post[(n+1):(2*n)] + beta_T
+data <- tibble(tiempo_pre = c(control_pre, tratamiento_pre),
+tiempo_post = c(control_post, tratamiento_post),
+condicion = d)
+model_postets_only <- lm(data = data, tiempo_post ~ condicion, model = T)
+betapostest <- c(betapostest, coef(model_postets_only)[2])
+model_pre_postets <- lm(data = data, tiempo_post ~ condicion + tiempo_pre, model = T)
+betaprepostest <- c(betaprepostest, coef(model_pre_postets)[2])
+}
+betas <- tibble(beta = c(betapostest, betaprepostest),
+modelo = c(rep("Posttest only", 1000), rep("Pretest-posttest", 1000)))
+mean_beta <- betas |>
+group_by(modelo) |>
+summarise(m_beta = mean(beta)) |>
+mutate(ypos = c(50, 100))
+betas |>
+ggplot(aes(x = beta, fill = modelo)) +
+geom_histogram(alpha = .5,
+bins = 30,
+position = "identity") +
+geom_vline(data = mean_beta,
+aes(xintercept = m_beta,
+color = modelo),
+linewidth = 1) +
+geom_label(data = mean_beta,
+aes(label = paste("Efecto promedio =", round(m_beta,2)),
+y = ypos),
+x = 5,
+show.legend=FALSE)  +
+scale_color_manual(values = c("#1380A1", "#ED6A5A")) +
+scale_fill_manual(values = c("#1380A1", "#ED6A5A")) +
+labs(x = "Estimación del efecto del tratamiento",
+y = NULL,
+fill = NULL,
+color = NULL) +
+theme_bw() +
+theme(legend.position = "top")
+round(cor(data_pre$tiempo_pre, data_pre$tiempo_post), 2)
+r round(1 - cor(data_pre$tiempo_pre, data_pre$tiempo_post)^2, 2)
+round(1 - cor(data_pre$tiempo_pre, data_pre$tiempo_post)^2, 2)
+9.07*.7

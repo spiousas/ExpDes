@@ -13,8 +13,6 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-Lo que sigue no es una versión final y está en construcción `r emo::ji("construction")`
-
 ## Subclasificación
 
 ### ¿Por qué subclasificar? Motivación y objetivo
@@ -71,10 +69,6 @@ ggdag(tidy_dag) +
 ```
 
 Al condicionar en $X$ (es decir, subclasificar o estratificar por región), cerramos el backdoor $D \leftarrow X \rightarrow Y$. Dentro de cada región, la asignación del descuento ya no está correlacionada con las ventas antes del tratamiento.
-
-### Supuestos (scott explica 1.CIA y 2.Soporte común)(es necesario?)
-
-
 
 ### El estimador de subclasificación: Un ejemplo con descuento
 
@@ -155,7 +149,6 @@ o, en lenguaje computacional:
 Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es nmegativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegudar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso al asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
 
 Veamos ahora las ventas para grupo tratamiento y control pero por región.
-
 
 ```{r}
 customers %>%
@@ -254,52 +247,521 @@ Todo esto es muy lindo, pero que pasa si en lugar de tener grupos tenemos que es
 
 ## *Matching*
 
-Una forma alternativa de lidiar con la independencia condicional y el cierre de backdoors es el **matching**. La idea central es fácil: en vez de comparar cada unidad tratada con el promedio de todas las unidades no tratadas, buscamos **comparar cada unidad tratada con una unidad no tratada que se le parezca lo más posible** en función de ciertas características observables (como la edad, la región, los ingresos, etc.).
+Una forma alternativa de lidiar con la independencia condicional y el cierre de backdoors es el **matching**. La idea central es fácil: en vez de comparar el promedio de las unidades tratadas con el promedio de todas las unidades no tratadas, buscamos **comparar cada unidad tratada con una unidad no tratada que se le parezca lo más posible** en función de ciertas características observables (como la edad, la región, los ingresos, etc.) que sean confusoras de nuestra relación causal.
 
-Pero, ¿por qué antes comparábamos “cada unidad tratada con el promedio de todas las unidades no tratadas”?
-
-Para entenderlo, recordemos que en el anterior enfoque cada unidad tratada compara su resultado con la media del control. Esto sería:
-
--Ecuación de efecto individual igual a Yi menos Ypromedio control
-
-Pero luego, promediamos esas diferencias individuales, y llegamos al efecto total.
-
--Ecuación de sumatoria de los efectos individuales promediada por n.
-
-Entonces, con matching, en lugar de usar el promedio del grupo control como contrafactual, usamos un individuo que se parezca al que fue tratado.
+ntonces, con matching, en lugar de usar el promedio del grupo control como contrafactual, usamos un individuo que se parezca al que fue tratado.
 
 Esto nos permite construir un estimador que sea más creíble. Es intuitivo: **si queremos estimar el efecto de un curso sobre los ingresos, tiene más sentido comparar a una persona de 25 años que hizo el programa con otra también de 25 años que no lo hizo, en lugar de con el promedio de todas las personas que no lo hicieron**. De esta manera, el matching busca que cada comparación sea más consistente, emparejando unidades comparables.
 
 Para esto, vamos a poder usar exact matching o approximate matching, dependiendo de cada caso.
 
+
+Pensemos en un caso simple en el que tenemos sólo una confusora observable $X$. 
+
+Pero, ¿por qué antes comparábamos *cada unidad tratada con el promedio de todas las unidades no tratadas*?
+
+Para entenderlo, recordemos que en el anterior enfoque cada unidad tratada compara su resultado con la media del control. Esto sería:
+
+$$
+\widehat{\delta}_i = Y_i - Y_{j(i)}
+$$
+donde $Y_i$ es el resultado observado de la unidad tratada $i$, y $Y_{j(i)}$ es una unidad control $j$ que comparte el mismo valor de $X$ que la $i$ (representada por el índice $j(i)$).
+
+Pero luego, promediamos esas diferencias individuales, y llegamos al efecto total.
+
 ### *Exact Matching*
 
-*Exact Matching* consiste en emparejar unidades tratadas y no tratadas que compartan exactamente los mismos valores de ciertas covariables X. Además, cuando hay más de un control con esas mismas características, se promedian sus resultados (los de los controles) para generar un único contrafactual.
-Imaginemos un estudio sobre un programa de capacitación laboral en el que conocemos la edad de cada participante y su ingreso después del curso. Para cada persona tratada de, digamos, 30 años, buscamos todas las personas no tratadas que también tengan 30 años. Si aparecen dos controles de 30 años, tomamos el promedio de sus ingresos como contrafactual de nuestro participante. La diferencia entre el ingreso del tratado y este promedio, es la estimación individual del efecto del programa.
-Para obtener el ATT, simplemente sumamos y promediamos esas diferencias individuales. Si Yi​ es el ingreso observado del tratado i y Y_{j:X_j=X_i}Yˉj:Xj​=Xi​​ el promedio de los controles que coinciden en Xi​, el ATT se calcula como:
-(ecuación de ATT estimado)
-Este cálculo nos dice, de forma directa, cuánto cambió en promedio el resultado de los que sí recibieron el tratamiento.
-La ventaja del exact matching es que asegura que las comparaciones se hagan entre unidades idénticas en las covariables X. Sin embargo, cuando queremos emparejar según muchas características al mismo tiempo, encontrar controles con valores idénticos se vuelve muy difícil. Por ejemplo, si emparejamos solo por edad hay pocas categorías y es fácil encontrar controles; pero si agregamos otras variables como región, nivel de ingreso o tamaño de la tienda, las combinaciones posibles crecen exponencialmente. A esto último se lo conoce como el problema de la dimensionalidad, y puede generar que nos queden individuos sin ningún control idéntico.
+Hablamos de emparejar o *matchear* unidades tratadas con controles lo más parecidos posibles. Lo primero que uno piensa es: Si quiero comparar el efecto de una política pública en las apuestas online y la edad es un confusor, es razonable comparar el monto que apostó una persona de $25$ años que estuvo expuesta a esa política con el monto que apostó otra persona de $25$ años que no estuvo expuesta. Cuando buscamos una unidad control que tenga exactamente el mismo nivel de la variable confusora hablamos de *exact matching*. Entonces, el *exact matching* consiste en emparejar unidades tratadas y no tratadas que compartan exactamente los mismos valores de ciertas covariables, supongamos $X$. 
+
+En este caso, podemos decir que el efecto en la unidad tratada $i$ es la diferencia entre su resultado observado $Y_i$ y el resultado contrafactual de la unidad control $Y_{j(i)}$ que comparte el mismo valor de $X_i$:
+
+$$
+\widehat{\delta}_i = Y_i(D_i=1) - Y_{j(i)}
+$$
+Entonces, podríamos decir que el efecto promedio de las unidades tratadas [^ATT] sería lo siguiente:
+
+[^ATT] Que se llama **ATT**, ¿se acuerdan?
+
+$$
+\widehat{\delta}_{ATT} = \dfrac{1}{N_T} \sum_{i=1}^{N_T}(Y_i(D_i=1) - Y_{j(i)})
+$$
+
+Donde $N_T$ es el número de unidades tratadas e $Y_{j(i)}$ es el resultado de la unidad control que comparte el mismo valor de $X_i$ que la unidad tratada $i$.
+
+Hasta acá muy lindo, pero la cosa no va a estar linda por mucho tiempo. Por ejemplo, una pregunta que alguien puede tener es: ¿Y si tenemos más de un control de $25$ años qué hacemos? ¿Nos quedamos con uno de los dos? Bueno, lo más razonable que podemos hacer es tomar el promedio de los resultados de los controles que coinciden con la unidad tratada. Entonces, si tenemos $m$ controles que comparten el mismo valor de $X_i$, el efecto individual del tratado $i$ sería:
+
+$$
+\widehat{\delta}_i = Y_i(D_i=1) - \sum_{m=1}^{m_i} \dfrac{1}{m_i} Y_{jm}
+$$
+
+Entonces, el **ATT** con exact matching podemos decir que tiene esta forma:
+
+$$
+\widehat{\delta}_{ATT} = \dfrac{1}{N_T} \sum_{i=1}^{N_T} \left( Y_i(D_i=1) - \sum_{m=1}^{m_i} \dfrac{1}{m_i} Y_{jm} \right)
+$$ {#eq-att_estim}
+
+donde $m_i$ es el número de controles que comparten el mismo valor de $X_i$ que la unidad tratada $i$.
+
+¿Se puede calcular el **ATE**? Vamos a ver brevemente que sí, pero también los problemas que ello conlleva.
+
+Miremos un ejemplo y veamos cómo se calculan estas cosas. Vamos a usar los datos de un programa de capacitación que se realizó en una empresa ficticia. En este caso, lo que queremos no es otra cosa que estimar el efecto de una capacitación laborala en el ingreso de los empleados. Para eso, tenemos la edad del empleado, si participó o no en el programa de capacitación y su salarion. Veamos unos datos de ejemplo.
+
+```{r}
+trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
+                        show_col_types=FALSE) %>% 
+  rename(Capacitación = trainees,
+         Edad = age,
+         Unidad = unit,
+         Salario = earnings)
+
+trainees_df %>%
+  mutate(Capacitación = factor(Capacitación,
+                               levels = c(0, 1),
+                               labels = c("Sí", "No"))) %>%
+  sample_n(5) %>%
+  gt::gt() %>%
+  gt::tab_header(
+    title = "Datos de participantes en un programa de capacitación (5 filas al azar)"
+  )
+```
+
+Si uno no hubiera leído nada de este libro, se sentiría tentado a calcular la diferencia entre las medias entre los que participaron y los que no. Pero, como ya sabemos, eso no es correcto porque **la asignación al tratamiento no es aleatoria**. De hecho, podemos calcular ese efecto y da \$`r round(mean(trainees_df$Salario[trainees_df$Capacitación==1]) - mean(trainees_df$Salario[trainees_df$Capacitación==0]))`. Pero, ¿qué pasa si vemos la relación entre la edad, el salario y la capacitación? ¿Podemos ver si hay algún confusor?
+
+```{r}
+# Vemos las distribuciones marginales
+trainees_df %>%
+  mutate(Capacitación = factor(Capacitación,
+                               levels = c(0, 1),
+                               labels = c("Sí", "No"))) %>%
+  ggplot() +
+  aes(Edad, Salario, color = Capacitación) +
+  geom_jitter() +
+  geom_xsidedensity(
+    aes(
+      y = after_stat(density),
+      fill = Capacitación
+    ),
+    alpha = 0.5,
+    size = 1,
+    position = "identity"
+  ) +
+  geom_ysidedensity(
+    aes(
+      x = after_stat(density),
+      fill = Capacitación
+    ),
+    alpha = 0.5,
+    size = 1,
+    position = "identity"
+  ) + 
+  theme(
+    ggside.panel.scale.x = 0.3,
+    ggside.panel.scale.y = 0.3,
+    ggside.axis.text.y = element_blank(),
+    ggside.axis.ticks.y = element_blank(),
+    ggside.axis.text.x = element_blank(),
+    ggside.axis.ticks.x = element_blank()
+  ) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme_minimal() +
+  labs(color = "Capacitación", fill = "Capacitación") +
+  theme(legend.position = "top")
+```
+
+Al parecer, la gente de más edad (y que naturalemte tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran **red flag** metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos *exact matching* para emparejar a los participantes tratados con controls que tengan la misma edad y estimemos el **ATT**.
+
+Escribamos una función a mano para calcular el **ATT**[^ATT_estimator]:
+
+[^ATT_estimator]: Básicamente es una función que busca los puntos iguales en la covariable, calcula el promedio, los efectos individuales y el promedio final. Es decir, lo que aparece en la @eq-att_estim.
+
+```{r}
+# Función para estimar el ATT con matching ####
+# Extact Matching Estimator of the ATT
+exact_matching_estimator_att <- function(df, #dataframe
+                                         outcome, # nombre de la variable outcome
+                                         treatment, # nombre de la variable donde está el tratamiento
+                                         covariates # string o vector de strings
+) {
+  
+  # Renombro la columna como outcome
+  df <- df %>%
+    rename(outcome := {{ outcome }}) %>% 
+    mutate(id = 1:n())
+  
+  # Creo un dataset sólo con las unidades tratadas
+  treated_df <- df %>% 
+    filter({{ treatment }} == 1)
+  
+  # Creo un dataset sólo con las unidades NO tratadas
+  control_df <- df %>% 
+    filter({{ treatment }} == 0)
+  
+  # Matcheo las tratadas y no tratadas para iguales valores de las covariates
+  treated_matched <- treated_df %>% 
+    left_join(control_df, by = covariates,
+              suffix = c("_i", "_j"))
+  
+  # El estimador
+  estimate_att <- 
+    treated_matched %>% 
+    # Promedio si hay más de un match
+    group_by(id_i) %>%
+    summarise(outcome_j = mean(outcome_j),
+              outcome_i = first(outcome_i)) %>%
+    # Calculo las diferencias de cada unidad con su match
+    mutate(treat_effect = outcome_i - outcome_j) %>% 
+    # Promedio las diferencias
+    summarise(estimate_att = mean(treat_effect)) %>% 
+    # Me quedo con la variable
+    pull(estimate_att)
+  
+  estimate_att
+}
+```
+
+Y ahora lo calculamos con el siguiente código:
+
+```{r}
+#| code-fold: false
+#| warning: false
+ATT <- 
+  exact_matching_estimator_att(
+    trainees_df,
+    outcome = Salario,
+    treatment = Capacitación,
+    covariates = "Edad")
+```
+
+```{r}
+tibble(Método = c("SDO", "Exact Matching"),
+       Estimación = c(
+         round(mean(trainees_df$Salario[trainees_df$Capacitación==1]) - 
+                 mean(trainees_df$Salario[trainees_df$Capacitación==0])),
+         round(ATT, 2))) %>%
+  gt() %>%
+  tab_header(
+    title = "Estimación del efecto de la capacitación"
+  )
+```
+
+Vemos que utilizar sólo la diferencia de las medias no sólo era una estiamción sesgada sino que sugería una dirección del efecto contraria a la obtenida con **Exact Matching**. 
+
+Vamos a aventurarnos a calcular el **ATE**. Para esto vamos a buscar controles matcheados para cada unidad tratada, y unidades tratadas matcheadas para cada control. Es decir, vamos a hacer un *exact matching* en ambos sentidos. Luego, vamos a calcular el efecto individual de cada unidad y vamos a calcular el promedio[^no_eq]. Primero definimos la función para calcular el **ATE**:
+
+[^no_eq]: Ni me gasto en poner ecuaciones porque nos vamos a confundir más de lo que ya estamos pero si quieren la pueden ver en [el libro de Cunningham](https://mixtape.scunning.com/05-matching_and_subclassification#exact-matching).
+
+```{r}
+# Función para estimar el ATE con matching ####
+# Extact Matching Estimator of the ATE
+exact_matching_estimator_ate <- function(df, #dataframe
+                                         outcome, # nombre de la variable outcome
+                                         treatment, # nombre de la variable donde está el tratamiento
+                                         covariates # string o vector de strings
+) {
+  df <- df %>%
+    # Renombro outcome y tratemiento
+    rename(outcome := {{ outcome }},
+           treatment := {{ treatment }}) %>% 
+    mutate(id = 1:n())
+  
+  treated_df <- df %>% 
+    filter(treatment == 1)
+  
+  control_df <- df %>% 
+    filter(treatment == 0)
+  
+  treated_matched <- treated_df %>% 
+    left_join(control_df, by = covariates,
+              suffix = c("_i", "_j"))
+  
+  # Ahora matcheo también los controles
+  control_matched <- control_df %>% 
+    left_join(treated_df, by = covariates,
+              suffix = c("_i", "_j"))
+  
+  estimate_ate <- 
+    # Juntamos las dos muestras matcheadas
+    bind_rows(
+      treated_matched,
+      control_matched
+    ) %>% 
+    group_by(id_i) %>%
+    summarise(outcome_j = mean(outcome_j),
+              outcome_i = first(outcome_i),
+              treatment_i = first(treatment_i)) %>%
+    mutate(treat_effect = outcome_i - outcome_j,
+           # Multiplicamos por -1 la diferencia entre controles
+           # y sus matches. Porque es como el "anti tratamiento"
+           treat_effect = ifelse(
+             treatment_i == 1,
+             yes = treat_effect,
+             no = -1*treat_effect
+           )) %>%
+    summarise(estimate_ate = mean(treat_effect)) %>% 
+    pull(estimate_ate)
+  
+  estimate_ate
+}
+```
+
+Y ahora lo calculamos con esta línea de código:
+
+```{r}
+#| code-fold: false
+#| warning: false
+ATE <- 
+  exact_matching_estimator_ate(
+    trainees_df,
+    outcome = Salario,
+    treatment = Capacitación,
+    covariates = "Edad")
+```
+
+```{r}
+tibble(Método = c("SDO", "Exact Matching ATT", "Exact Matching ATE"),
+       Estimación = c(
+         round(mean(trainees_df$Salario[trainees_df$Capacitación==1]) - 
+                 mean(trainees_df$Salario[trainees_df$Capacitación==0])),
+         round(ATT, 2),
+         ATE)) %>%
+  gt() %>%
+  tab_header(
+    title = "Estimación del efecto de la capacitación"
+  )
+```
+
+
+Pero el **ATE** nos da `NA`. ¿Por qué? Bueno, porque no hay controles que coincidan exactamente con los tratados. En este caso, el **ATE** no se puede estimar con *exact matching* porque no hay suficientes controles que compartan el mismo valor de la covariable $X$ (en este caso, la edad) que las unidades tratadas. Es por eso que de acá en adelante vamos a hablar más del **ATT** que del **ATE**. No sólo porque es más fácil de estimar sino porque es lo que se calcula en la mayoría de los casos. Recuerden que si tenemos motivos razonables para creer que no existen sesgos de efecto heterogéneo, el **ATT** y el **ATE** son iguales.
+
+La ventaja del *exact matching* es que asegura que las comparaciones se hagan entre unidades idénticas en las covariables $X$. Sin embargo, cuando queremos emparejar según muchas características al mismo tiempo, encontrar controles con valores idénticos se vuelve muy difícil. Por ejemplo, si emparejamos solo por edad hay pocas categorías y es fácil encontrar controles; pero si agregamos otras variables como región, nivel de ingreso o tamaño de la tienda, las combinaciones posibles crecen exponencialmente. A esto último se lo conoce como la maldición de la dimensionalidad y tiene que ver con el hecho que los datos se vuelven más dispersos a medida que aumentamos el número de dimensiones (o covariables) en nuestro espacio de análisis. Imaginen que tenemos 5 datos en una línea de largo $10$. Bueno, ¿qué pasa si los pasamos a un cuadrado de $10$ x $10$? ¿Y a un cubo de $10$ x $10$ x $10$? Los datos empiezan a estar más lejos. Es por eso que para encontrar controles iguales deberíamos aumentar mucho el tamaño de nuestra muestra.
+
+Algo que se deben estar preguntando es ¿y si en lugar de buscar un control de $25$ años para el caso anterior buscamos uno que esté "bastante" cerca? Buenos, permítanme decirles que no son nada originales, eso existe y se llama *Approximate Matching*.
 
 ### *Approximate Matching*
 
-Cuando no encontramos controles que coincidan exactamente en todas las covariables $X$[^Xvector], recurrimos al *approximate matching*. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de $X$ sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.
+Como dijimos en la sección anterior, cuando no encontramos controles que coincidan exactamente en todas las covariables $X$[^Xvector], recurrimos al *approximate matching*. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de $X$ sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.
 
-[^Xvector]: Cuando hablamos de $X$ nos referimos a un vector de covariables, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector $X$ podría ser algo así como: $X = (región, edad)$.
+[^Xvector]: Cuando hablamos de $X$ nos referimos a un vector de covariables por las que queremos controlar, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector $X$ podría ser algo así como: $X = (región, edad)$.
 
-Pero, ¿qué significa “parecida”? Para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio[^euclidea].
-
-(formula de euclidea y grafico de ppt)
+Pero, ¿qué significa “parecida”? Si tenemos una sola covariable será la más cercana en número, pero como discutimos, el espacio de covariables puede ser (y normalmente es) de más de una dimensión. En este caso, para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio[^euclidea]. Por ejemplo, si tenemos que que las covariables son edad y salario, la distancia euclidiana entre dos puntos $(edad_1, salario_1)$ y $(edad_2, salario_2)$ sería:
 
 [^euclidea]: Básicamente el módulo del vector que une los dos puntos en el espacio de covariables (ahre). 
 
-Otra opción es la distancia de **Mahalanobis**, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí.
+$$
+distancimatch_medicine <- match.data(nearest_control)a_{euclidea} = \sqrt{(edad_1 - edad_2)^2 + (salario_1 - salario_2)^2}
+$$
 
-(formula de euclidea y grafico de ppt)
+¿Pero esto es siempre así? Veamos un ejemplo y reflexionemos un poco.
 
-La distancia de Mahalanobis es útil cuando las covariables tienen diferentes escalas o están correlacionadas entre sí. Ejemplo del bello.
+```{r}
+# La mitad son asignados al grupo tratamiento y la mitad al grupo control
+set.seed(12)
+empleados_tbl <- tibble(Grupo = c(rep("tratamiento", 10), rep("control", 10)),
+                        Edad = rnorm(n = 20, mean = 35, sd = 5),
+                        Salario = Edad*1500 + rnorm(n = 20, mean = 0, sd = 5000))
 
-Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclideana (es fácil de demostrar si tienen ganas y, claro, tiempo).
+empleados_tbl |> ggplot(aes(x = Edad,
+                            y = Salario,
+                            color = Grupo)) +
+  geom_point(alpha = .2) + 
+  geom_point(data = empleados_tbl[c(9, 10, 18),]) + 
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = NULL) +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+Imaginen qeu queremos encontrar al empleado más cercano al empleado verde lleno (el empleado $18$). Los candidatos serían los dos naranjas (los empleados $9$ el de la izquierda y $10$ el de la derecha) ¿no? Y estamos de acuerdo que el que está hacia la derecha es el más cercano (o sea el empleado $10$), ¿no? Bueno, calculemos las distancias y veamos qué pasa.
+
+```{r}
+# Defino una función para calcular la distancia euclidiana entre dos puntos en el espacio de covariables de dos dimensiones. 
+distancia_euclidea <- function(x_i, x_j) {
+  dist <- sqrt((x_i[1]-x_j[1])^2 + (x_i[2]-x_j[2])^2)
+  dist
+}
+
+distancia_a_9 <- distancia_euclidea(empleados_tbl[9, c("Edad", "Salario")],
+                                    empleados_tbl[18, c("Edad", "Salario")])
+
+distancia_a_10 <- distancia_euclidea(empleados_tbl[10, c("Edad", "Salario")],
+                                     empleados_tbl[18, c("Edad", "Salario")])
+
+tibble(Empleado = c("9", "10"),
+       Distancia = c(distancia_a_9, distancia_a_10)) %>%
+  gt() %>%
+  tab_header(
+    title = "Distancias euclidianas entre el empleado 18 y los empleados 9 y 10"
+  )
+```
+
+Esto dice que el más cercano es el $10$, pero si lo miramos en el gráfico, claramente el $9$ es el más cercano. ¿Por qué pasa esto? Bueno, porque las covariables no tienen la misma escala. La edad está en un rango de $20$ a $50$ y el salario en un rango de $10,000$ a $100,000$. Entonces, la distancia euclidiana está siendo dominada por la variable salario. Es decir, que si bien el empleado $9$ está más cerca en términos de edad, el empleado $10$ está más cerca en términos de salario y la distancia euclidiana no puede distinguir entre estas dos dimensiones.
+
+¿Cómo resolvemos esto? Pues estandarizando las covariables[^estandar]. Veamos la misma figura pero estandarizada:
+
+[^estandar]: Es decir, le restamos la media y dividimos por la desviación estándar.
+
+```{r}
+# Estandarizamos las covariables
+empleados_tbl_estandarizado <- empleados_tbl |> 
+  mutate(Edad_st = (Edad - mean(Edad)) / sd(Edad),
+         Salario_st = (Salario - mean(Salario)) / sd(Salario))
+
+empleados_tbl_estandarizado %>% 
+  ggplot(aes(x = Edad_st,
+             y = Salario_st,
+             color = Grupo)) +
+  geom_point(alpha = .2) + 
+  geom_point(data = empleados_tbl_estandarizado[c(9, 10, 18),]) + 
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = NULL, x = "Edad estandarizada", y = "Salario estandarizado") +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+Pero se ve igual. ¿*EMOSIDO ENGAÑADO*? No, la relación geométrica va a seguir siendo la misma y está perfecto que así sea, pero calculemos de nuevo las distancias y veamos qué punto es el más cercano.
+
+```{r}
+distancia_a_9_st <- distancia_euclidea(empleados_tbl_estandarizado[9, c("Edad_st", "Salario_st")],
+                                        empleados_tbl_estandarizado[18, c("Edad_st", "Salario_st")])
+
+distancia_a_10_st <- distancia_euclidea(empleados_tbl_estandarizado[10, c("Edad_st", "Salario_st")],
+                                         empleados_tbl_estandarizado[18, c("Edad_st", "Salario_st")])
+
+tibble(Empleado = c("9", "10"),
+       Distancia = c(distancia_a_9_st, distancia_a_10_st)) %>%
+  gt() %>%
+  tab_header(
+    title = "Distancias euclidianas entre el empleado 18 y los empleados 9 y 10 (estandarizado)"
+  )
+```
+
+Ahora sí el más cercano es el empleado $9$.
+
+Otra opción es la distancia de **Mahalanobis**, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí. Es decir, si las variables están correlacionadas, la distancia de Mahalanobis las considera más cercanas que la distancia euclidiana [^mahala_no_eq].
+
+[^mahala_no_eq]: NSi tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo [este video](https://www.youtube.com/watch?v=eutzTEGgLpE&t=139s).
+
+Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclideana (es fácil de demostrar si tienen ganas y, claro, tiempo). 
+
+Una última aclaración, en esta distancia no es necesario estandarizar las covariables porque la distancia de Mahalanobis ya lo hace por nosotros. Entonces, si tenemos dos puntos $(edad_1, salario_1)$ y $(edad_2, salario_2)$, la distancia de Mahalanobis sería:
+
+$$
+distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S^{-1} \cdot (edad_1 - edad_2, salario_1 - salario_2)^T}
+$$
+
+Donde $S$ es la matriz de covarianzas de las variables $edad$ y $salario$. Esta distancia nos dice qué tan lejos están los puntos considerando no solo sus diferencias individuales, sino también cómo se relacionan entre sí.
+
+Dejemos un poquito las comparaciones entre métricas de distancia para más adelante y veamos cómo podemos usar estas distancias para hacer *matching*.
+
+En este caso vamos a analizar un ejemplo en el que queremos evaluar la efectividad en la recuperación de una determinada medicina. En este caso (supongamos que hicimos el **DAG**, identificamos los *backdoors*, etc.) queremos controlar por tres variables: Edad, Sexo y Severidad (el famoso vector $X$). Veamos $5$ datos la azar.
+
+```{r}
+medicine_impact_recovery <- 
+  read_csv("https://raw.githubusercontent.com/matheusfacure/python-causality-handbook/master/causal-inference-for-the-brave-and-true/data/medicine_impact_recovery.csv",
+           show_col_types = FALSE) %>%
+  rename(Recuperación = recovery,
+         Medicina = medication,
+         Sexo = sex,
+         Edad = age,
+         Severidad = severity)
+
+set.seed(1)
+medicine_impact_recovery |> 
+  sample_n(5) |> 
+  gt::gt() |> 
+  gt::tab_header(
+    title = "Datos de un experimento sobre el impacto de una medicina en la recuperación"
+  )
+```
+
+Y ahora veamos cómo se distribuyen los datos en las variables Edad y Severidad.
+
+```{r}
+#| fig-cap: "Como se distribuyen los datos en las variables edad y severidad."
+
+medicine_impact_recovery |> 
+  ggplot(aes(x = Edad,
+             y = Severidad,
+             color = factor(Medicina))) +
+  geom_point(size = .2) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(color = "Medicina") +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+Vemos que claramente calcular el **SDO** no es una buena idea porque la asignación al tratamiento no es aleatoria (igual dejemos anotado que vale `r round(mean(medicine_impact_recovery$Recuperación[medicine_impact_recovery$Medicina==1]) - mean(medicine_impact_recovery$Recuperación[medicine_impact_recovery$Medicina==0]), 2)`). También podemos ver qué pasa con el sexo.
+
+```{r}
+#| fig-cap: "Tratados por sexo."
+
+medicine_impact_recovery |> 
+  group_by(Sexo) |>
+  summarise(No_Medicina = sum(Medicina == 0),
+            Medicina = sum(Medicina == 1)) |>
+  gt()
+```
+
+Y aquí vemos dos cosas. Que en sexo $0$ la mayoría son tratados y en sexo $1$ no es tan así. Y que, en general hay más tratados que controles[^tratados].
+
+[^tratados]: Algo que va a hacer que sea más fácil encontrarle controles *matcheados* a los tratados y no viceverse.
+
+Vamos a estimar el **ATT** utilizando la función `matchit` del paquete `MatchIt`[^matchit]. Esta función nos permite hacer *matching* de forma sencilla y rápida. Vamos a usar la distancia de Mahalanobis para emparejar los tratados con los controles.
+
+[^matchit]: Para más detalles de cómo funciona el paquete `MatchIt` pueden ver la [documentación oficial](https://cran.r-project.org/web/packages/MatchIt/vignettes/MatchIt.html).
+
+```{r}
+#| code-fold: false
+nearest_control <- matchit(Medicina ~ Sexo + Edad + Severidad, 
+                           data = medicine_impact_recovery,
+                           method = "nearest", 
+                           distance = "mahalanobis",
+                           replace = T,
+                           ratio = 1)
+
+summary(nearest_control, un = F)$nn[4:5,]
+```
+
+Vewmos que de los $20000$ datos originales, los $6924$ individuos tratados fueron emparejados con $733$ controles. ¿Cómo pueden ser menos controles que tratados? Bueno, resumidamente, porque al decirle `replace = T` le estamos diciendo que puede usar el mismo control más de una vez. Es decir, que un control puede ser emparejado con más de un tratado. Esto es útil cuando tenemos pocos controles y muchos tratados, como en este caso.
+
+Ahora calculemos el tamaño del efecto:
+
+```{r}
+match_medicine <- match.data(nearest_control)
+
+matching_model_medicine <- lm(Recuperación ~ Medicina + Sexo + Edad + Severidad, 
+                              data = match_medicine, 
+                              weights = weights)
+
+modelsummary(list("Matching"= matching_model_medicine),
+             statistic = "p.value", 
+             gof_omit = ".*",
+             output = "gt") |>
+  gt_highlight_rows(rows = c(3,4), 
+                    fill = "lightyellow",
+                    font_weight = "bold")
+```
+
+Vemos que hay un efecto negativo de la medicación en la recuperación, algo que hubiéramos malinterpretado totalmente si hubiéramos usado el **SDO**. Recordemos que:
+
+```{r}
+tibble(Método = c("SDO", "Matching"),
+       Estimación = c(round(mean(medicine_impact_recovery$Recuperación[medicine_impact_recovery$Medicina==1]) - 
+                 mean(medicine_impact_recovery$Recuperación[medicine_impact_recovery$Medicina==0]), 2),
+                 round(coef(matching_model_medicine)["Medicina"], 2))) %>%
+  gt() %>%
+  tab_header(
+    title = "Estimación del efecto de la medicina en la recuperación"
+  )
+```
+
+Recordemos que la estimación de *approximate matching* en este caso es una estimación del **ATT**, ya que lo que hicimos fue encontrar controles *matcheados* para los sujetos tratados. Es decir, que estamos estimando el efecto de la medicina en la recuperación de los pacientes que recibieron la medicina y que tienen un perfil similar a los controles. Podemos tener buenas razones para creer que el **ATT** es igual al **ATE** en este caso... O no.
+
+### La queso(porte común)
+
+En la sección anterior vimos cómo hacer *matching* con la distancia de Mahalanobis y cómo calcular el **ATT**. Pero, ¿qué pasa si queremos hacer *matching* con más de una covariable? Como adelantamos cuando mencionamos la maldición de la dimensionalidad, la cosa se puede complicar, y mucho. Es por eso que una de las condiciones necesarias para hacer *matching* es que los datos tengan **soporte común**.
+
+Pero, ¿de qué hablamos cuando hablamos de soporte común? Básicamente, nos referimos a que las covariables $X$ deben tener valores que se superpongan entre los grupos de tratamiento y control. Es decir, que debe haber sujetos tratados y no tratados con valores similares en las covariables que estamos usando para emparejar. Suena a algo básico, pero no siempre es el caso (en la sección @#sec-matching_vs_reg discutimos un poquito esto).
 
 ### Euclideana vs. Mahalanobis, la batalla final
 
@@ -400,7 +862,7 @@ empleados_tbl |> ggplot(aes(x = Edad,
 
 ¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul?
 
-## *Matching* vs. regresión[^fuente]
+## *Matching* vs. regresión[^fuente] {#sec-matching_vs_reg}
 
 [^fuente]: Toda esta sección está fuertemente "inspirada" en [este](https://www.franciscoyira.com/post/matching-in-r-2-differences-regression/) *blogpost* que uso y recomiendo
 
@@ -465,7 +927,7 @@ modelsummary(list("Regresión"= linear_model1,
                   "Matching" = matching_model1),
              coef_rename = c("d" = "Tratamiento"),
              statistic = NULL, 
-             gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F|RMSE',
+               gof_omit = 'DF|Deviance|R2|AIC|BIC|Log.Lik|F|RMSE',
              output = "gt") |>
   gt_highlight_rows(rows = 2, 
                     fill = "lightyellow",

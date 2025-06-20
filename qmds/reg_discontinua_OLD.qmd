@@ -15,7 +15,7 @@ source("../R/_common.R")
 
 ## El problema de controlar por variables no observables
 
-En la mayoría de los capítulos anteriores, vimos formas de controlar por confusores observables. Cuando hablamos de DAGs y agregar variables como covariables a un modelo de regresión o cuando usamos algún estimador de subclasificación o *matching*, lo que estamos haciendo es aislar la variabilidad debida a confusores observados y sustraerla de nuestra relación causal. Pero, ¿Qué pasa cuando los confusores por los que queremos controlar no son observables? Una respuesta a esta pregunta la tuvimos en el capítulo de diferencias en diferencias en el que vimos que, para un problema de una forma en particular[^dif], la solución era estimar el contrafáctico con un grupo comparable.
+En la mayoría de los capítulos anteriores, vimos formas de controlar por confusores observables. Cuando hablamos de DAGs y agregar variable como covariables a un modelo de regresión o cuando usamops algún estimador de subclasificación o *matching*, lo que estamos haciendo es aislar la variabilidad debida a confusores observados y sustraerla de nuestra relación causal. Pero, ¿Qué pasa cuando los confusores por los que queremos controlar no son observables? Una respuesta a esta pregunta la tuvimos en el capítulo de diferencias en diferencias en el que vimos que, para un problema de una forma en particular[^dif], la solución era estimar el contrafáctico con un grupo comparable.
 
 [^dif]: Un problema con un tratamiento que se aplica en el tiempo y para el cual tenemos una medición antes y después para un grupo al que se le aplicó el tratamiento y una medición para los mismos puntos temporales pero para un grupo comparable (para más detalles ver el @sec-diff-in-diff). 
 
@@ -27,11 +27,11 @@ La idea básica detrás de la regresión discontinua es que la separación entre
 
 [^running]: Que a partir de ahora llamaremos *running variable*.
 
-Empecemos a jugar con un ejemplo con datos simulados. En este ejemplo tenemos datos de la asignación de estudiantes de un curso de estadística a un programa de tutorías. La cosa es así: Los estudiantes se someten a un examen inicial y dependiendo de su puntaje, son asignados a un programa de tutorías o no. El umbral para la asignación es un puntaje de $70$ puntos. Si el estudiante saca menos de $70$ puntos, participa del programa de tutorías. Si saca $70$ o más, no participa. Luego, a cada estudiante se le evalúa con un examen final. La pregunta que nos hacemos es: ¿El programa de tutorías mejora el puntaje en el examen final? Veamos qué pinta tienen los datos viendo las primeras 5 filas del dataset.
+Empecemos a jugar con un ejemplo con datos simulados. En este ejemplo tenemos datos de la asignación de estudiantes de un curso de estadística a un programa de tutorías. La cosa es así: Los estudiantes se someten a un examen inicial y dependiendo de su puntaje, son asignados a un programa de tutorías o no. El umbral para la asignación es un puntaje de $70$ puntos. Si el estudiante saca menos de $70$ puntos, no participa del programa de tutorías. Si saca $70$ o más, sí participa. Luego, a cada estudiante se le evalúa con un examen final. La pregunta que nos hacemos es: ¿El programa de tutorías mejora el puntaje en el examen final? Veamos qué pinta tienen los datos viendo las primeras 5 filas del dataset.
 
 ```{r}
 tutoring <- read_csv(here("data/tutoring_program.csv")) %>% 
-  mutate(tutoring = factor(tutoring, levels = c(FALSE, TRUE), 
+  mutate(tutoring = factor(tutoring, levels = c(0, 1), 
                            labels = c("No", "Sí")))
 
 tutoring %>%
@@ -69,9 +69,9 @@ ggplot(tutoring) +
   theme_minimal()
 ```
 
-Vemos claramente que los estudiantes con más de $70$ puntos en el examen de entrada no participan del programa de tutorías, mientras que los que sacaron menos de $70$ sí. Parece que el umbral divide bastante bien a los grupos. Pero, pensando de nuevo en el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a $70$? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí. 
+Vemos claramente que los estudiantes con más de $70$ puntos en el examen de entrada participan del programa de tutorías, mientras que los que sacaron menos de $70$ no. Parece que el umbral divide bastante bien a los grupos. Pero, pensando de nuevo el el ejemplo del ingreso, ¿qué pasa con los estudiantes que sacaron puntajes cercanos a $70$? ¿Son comparables? ¿Podemos asumir que la única diferencia entre ellos es la participación en el programa de tutorías? Es razonable asumir que sí. 
 
-Recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En el mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de $70$ puntos en el examen de entrada.
+Recordemos que la pregunta era ¿cómo afecta el programa de tutorías a la nota del examen final de los alumnos? Vamos a ver las notas de entrada y de salida de cada individuo en un gráfico. En le mismo gráfico vamos a colorear los puntos según si el estudiante participó o no del programa de tutorías y vamos a marcar como una línea vertical el umbral de $70$ puntos en el examen de entrada.
 
 ```{r}
 #| fig-cap: "Notas de entrada vs. notas de salida."
@@ -127,7 +127,7 @@ ggplot(tutoring, aes(x = entrance_exam,
 
 ```
 
-Vemos que efectivamente, la línea de regresión para los estudiantes que participaron del programa de tutorías es más alta que la de los que no participaron, mostrando que hubo un efecto del programa de tutorías en la relación entre la nota de entrada y de salida. Pero, ¿cómo podemos estimar este efecto? ¿No dijimos que los estudiantes que eran comparables eran los que estaban cerca del umbral? Dejemos esta última pregunta para más adelante y avancemos con la estimación del efecto del programa de tutorías.
+Vemos que efectivamente, la línea de regresión para los estudiantes que participaron del programa de tutorías es más alta que la de los que no participaron, mostrando que el hubo un efeco del programa de tutorías en la relación entre la nota de entrada y de salida. Pero, ¿cómo podemos estimar este efecto? ¿No dijimos que los estudiantes que eran comparables eran los que estaban cerca del umbral? Dejemos esta última pregunta para más adelante y avancemos con la estimación del efecto del programa de tutorías.
 
 En la siguiente figura vemos que la diferencia en el umbral, luego de ajustar una recta a cada grupo de estudiantes, es la que nos da el efecto del programa de tutorías. En este caso no deja de ser la diferencia de ordenadas al origen de las rectas ajustadas a cada grupo, pero ya vamos a ver que no siempre es así.
 
@@ -173,9 +173,9 @@ ggplot(tutoring, aes(x = entrance_exam,
 
 ```
 
-En la figura llamamos al efecto **LATE**[^late], pero, ¿qué tiene de local el efecto? Bueno, como vamos a desarrollar un poco más adelante, ese efecto es local porque, en teoría, sólo tiene validez para los individuos que están a un lado u otro del umbral. Es decir, no representa el efecto a individuos que están lejos del umbral. Sin embargo, y como en todas estas cosas, podemos justificar que ese efecto sí es válido para individuos que están un poco más lejos del umbral, pero eso requiere que conozcamos el problema.
+En la figura llamamos al efecto **LATE**[^late], pero, ¿qué tiene de local el efecto? Bueno, como vmaos a desarrollar un poco más adelante, ese efecto es local porque, en teoría, sólo tiene validez para los individuos que están a un lado uy otro del umbral. Es decir, no representa el efecto a individuos que están lejos del umbral. Sin embargo, y como en todas estas cosas, podemos justificar que ese efecto sí es válido para individuos que están un poco más lejos del umbral, pero eso requiere que conozcamos el problema.
 
-Creo que, si bien se deben estar creyendo lo que les cuento, también deben tener un millón y medio de preguntas sobre cómo se calcula este hermoso **LATE** y qué condiciones debe cumplir la *running variable* y el sesgo. Para eso nos queda una buena parte del capítulo, pero por ahora me quedo contento con que la idea detrás del método es: **Las unidades experimentales a uno y otro lado del umbral son, en promedio, comparables en todas las características observadas y no observadas salvo en la asignación o no al tratamiento**.
+Creo que, si bien se deben estar creyendo lo que les cuento, también deben tener un millón y medio de preguntas sobre cómo se calcula este hermoso **LATE** y qué condiciones debe cumplir la *running variable* y el sesgo. Para eso nos queda una buena parte del capítulo, pero por ahora me quedo contento con que la idea detrás del método me quedo contento: **Las unidades experimentales a uno y otro lado del umbral son, en promedio, comparables en todas las características observadas y no observadas salvo en la asignación o no al tratamiento**.
 
 [^late]: Del inglés *Local Average Treatment Effect*.
 
@@ -203,13 +203,13 @@ Es con estas herramientas que el estudio concluye que los ciudadanos que viven e
 
 ## ¿Cómo se estima el efecto causal?
 
-Si vemos la @fig-LATE-lm, podemos ver que la diferencia entre las dos rectas es el efecto del programa de tutorías. Pero, ¿cómo se estima? Bueno, la forma más sencilla de hacerlo es ajustar un modelo lineal a los datos y calcular la diferencia entre las ordenadas al origen de las rectas ajustadas a cada grupo. Pero esta no es la única forma de calcular el **LATE**. En lo que sigue vamos a explorar variantes de esta estimación y ver cómo afectan en el efecto estimado. 
+Si vemos la figura @fig-LATE-lmx, podemos ver que la diferencia entre las dos rectas es el efecto del programa de tutorías. Pero, ¿cómo se estima? Bueno, la forma más sencilla de hacerlo es ajustar un modelo lineal a los datos y calcular la diferencia entre las ordenadas al origen de las rectas ajustadas a cada grupo. Pero esta no es la única forma de calcularl el **LATE**. En lo que sigue vamos a explorar variantes de esta estimación y ver cómo afectan en el efecto estimado. 
 
 ### Estimación paramétrica
 
 Una de las alternativas que tenemos es hacer una estimación paramétrica o no paramétrica. Pero, ¿a qué nos referimos con esto? En una estimación paramétrica, como la que vimos en el ejemplo anterior, ajustamos un modelo a los datos que está definido por parámetros, como podría ser un modelo lineal.
 
-El primer modelo que vamos a ajustar es el siguiente:
+El primero modelo que vamos a ajustar es el siguiente:
 
 $$
 y = \beta_0 + \beta_1 \text{Running variable (centrada)} + \beta_2 \text{indicadora del tratamiento}
@@ -239,13 +239,13 @@ modelsummary(list("Lineal"= modelo_lm),
 ```
 
 
-El coeficiente de la variable indicadora del tratamiento es el **LATE**. En este caso, el modelo nos dice que el programa de tutorías aumenta en `r round(predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "Sí")) - predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "No")), 1)` puntos la nota del examen de salida, en promedio, para los estudiantes que están cerca del umbral. Si vemos la @fig-LATE-lm, podemos ver que esta estimación tiene sentido.
+El coeficiente de la variable indicadora del tratamiento es el **LATE**. En este caso, el modelo nos dice que el programa de tutorías aumenta en `r round(predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "Sí")) - predict(modelo_lm, newdata = tibble(entrance_centered = 0, tutoring = "No")), 1)` puntos la nota del examen de salida, en promedio, para los estudiantes que están cerca del umbral. Si vemos la figura @fig-LATE-lmx, podemos ver que esta estimación tiene sentido.
 
-También podríamos ajustar otro modelo lineal[^lineal], en el que suponemos que la relación entre la *running variable* y el resultado es cuadrática. No vamos a escribir el modelo porque se complica un poco ya que ajustamos una parábola a cada lado de la discontinuidad. Pero la idea es la misma: ajustamos un modelo lineal a los datos y calculamos la diferencia entre las estimaciones de los modelos para el umbral (la *running variable* centrada igual a 0)[^detalles].
+También podríamos ajustar otro modelo lineal[^lineal], en el que suponemos que la relación entre la *running variable* y el resultado es cuadrática. No vamos a escribie el modelo porque se complica un poco ya que ajustamos una parábola a cada lado de la discontinuidad. Pero la idea es la misma: ajustamos un modelo lineal a los datos y calculamos la diferencia entre las estimaciones de los modelos para el umbral (la *running variable* centrada igual a 0)[^detalles].
 
 [^lineal]: ¿Por qué esto sigue siendo un modelo lineal?
 
-[^detalles]: Para detalles del ajuste pueden ver el código que acompaña a la @fig-LATE-nolineal.
+[^detalles]: Para detalles del ajuste pueden ver el código que acompaña a la Figura @fig-LATE-nolineal.
 
 ```{r}
 #| fig-cap: "Notas de entrada vs. notas de salida con ajuste lineal, cuadrático y cúbico para cada grupo."
@@ -315,7 +315,7 @@ ggplot(tutoring_centered, aes(x = entrance_centered,
 
 ```
 
-Como vemos en la @fig-LATE-nolineal, depende cómo ajustemos el modelo, el efecto del programa de tutorías cambia. En este caso, el ajuste lineal nos da un efecto de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`, el cuadrático de `r round(predict(modelo_sq_1, newdata = tibble(entrance_centered_2 = 0)) - predict(modelo_sq_2, newdata = tibble(entrance_centered_2 = 0)),1)` y el cúbico de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`. Es decir, la elección de cómo ajustamos a los datos a cada lado del umbral afecta mi **LATE**.
+Como vemos en al Figura @fig-LATE-nolineal, depende cómo ajustemos el modelo, el efecto del programa de tutorías cambia. En este caso, el ajuste lineal nos da un efecto de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`, el cuadrático de `r round(predict(modelo_sq_1, newdata = tibble(entrance_centered_2 = 0)) - predict(modelo_sq_2, newdata = tibble(entrance_centered_2 = 0)),1)` y el cúbico de `r round(predict(modelo_cub_1, newdata = tibble(entrance_centered_3 = 0)) - predict(modelo_cub_2, newdata = tibble(entrance_centered_3 = 0)),1)`. Es decir, la elección de cómo ajustamos a los datos a cada lado del umbral afecta mi **LATE**.
 
 Entonces: ¿Cómo decidimos qué ajuste usar? Esto, como vamos a ver más adelante no tiene una respuesta concreta, hay que ver los datos y, más importante aún, ver cuán sensibles son nuestros resultados a estas elecciones. Por ejemplo, si al pasar de una recta a una parábola el efecto pasa de $100$ a $0$, entonces es probable que la elección de la forma de ajuste sea importante y debamos justificarla. Si, por el contrario, el efecto no cambia mucho, entonces podemos estar más tranquilos.
 
@@ -597,7 +597,7 @@ tibble(BW = c("Full = 9.97", "Doble = 19.94", "Mitad = 4.99"),
   gt()
 ```
 
-Si bien hay diferencias, podemos ver que la estimación es bastante consistente, algo que es deseable y que nos indica que, al menos en esa región, el efecto es relativamente constante.
+Si bien hay diferencias, podemos ver que la estimación es bastante consistente, algo que es deseable y que no indica que, al menos en esa región, el efecto es relativamente constante.
 
 Algo que podemos modificar también es el kernel utilizado. Cambiemos de triangular a uniforme y veamos el ajuste.
 
@@ -661,15 +661,15 @@ Una de las principales limitaciones de la regresión discontinua es que requiere
 
 ### Es limitada en alcance
 
-Otra limitación de la regresión discontinua es que el efecto estimado es local, es decir, sólo es válido para los sujetos que están cerca del umbral. Esto significa que no debemos generalizar esta estimación a toda la población, es decir, tenemos un problema de validez externa. Esto podría ser un problema ya que normalmente queremos estimar el efecto para la población de interés.
+Otra limitación de la regresión discontinua es que el efecto estimado es local, es decir, sólo es válido para los sujetos que están cerca del umbral. Esto significa que no debemos generalizar esta estimación a toda la población, es decir, tenemos un problema de validez externa. Esto podría ser un problema ya que normalmente queremos estimar el efecto para la pobleación de interés.
 
 Acá cabe una breve reflexión: ¿No son todos los efectos que calculamos de algún modo locales? Entonces, resulta interesante pensar cuáles son las condiciones necesarias para que el **LATE** estimado sea generalizable. Por ejemplo: ¿Creen que el ejemplo del padrón electoral es generalizable? Cada problema se enfrenta con esa pregunta y cada respuesta requiere de un conocimiento del dominio y de la muestra con la que se está trabajando para responderla.
 
 ### Puede haber problemas de **manipulación**
 
-Recordemos algo: Al asumir que los participantes de un lado y del otro de la discontinuidad son comparables, estamos asumiendo que hay continuidad en la esperanza de los *potential outcomes*, es decir, que si un sujeto estuviera en el grupo tratamiento tendría en el umbral el mismo *outcome* que tendría un miembro del grupo control si hubiera sido asignado al tratamiento. Es un trabalenguas, ¿no? Veamos primero las cuentas y pensemos después en un ejemplo.
+Recordemos algo: Al asumir que los participantes de un lado y del otro de la discontinuidad son comparables, estamos asumiendo que hay continuiidad en la esperanza de los *potential outcomes*, es decir, que si un sujeto estuviera en el grupo tratamiento tendría en el umbral el mismo *outcome* que que tendría un miembro del grupo control si hubiera sido asignado al tratamiento. Es un trabalengüas, ¿no? Veamos primero las cuentas y pensemos después en un ejemplo.
 
-Con continuidad de los *potential outcomes* nos referimos a que los *potential outcomes* no cambian abruptamente en el umbral, es decir, que la esperanza de los *potential outcomes* es continua en el umbral. En difícil: que $E[Y_i^1]$ y $E[Y_i^0]$ son continuas en el umbral. En términos de la *running variable* $X$ y siendo su umbral $c$, esto significa que:
+Con continuidad de los *potential outcomes* no referimos a que los *potential outcomes* no cambian abruptamente en el umbral, es decir, que la esperanza de los *potential outcomes* es continua en el umbral. En difícil: que $E[Y_i^1]$ y $E[Y_i^0]$ son continuas en el umbral. En términos de la *running variable* $X$ y siendo su umbral $c$, esto significa que:
 
 $$
 \begin{align*}

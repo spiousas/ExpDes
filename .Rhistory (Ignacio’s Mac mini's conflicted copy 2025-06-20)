@@ -1,0 +1,512 @@
+font_weight = "bold") |>
+gt_highlight_rows(rows = 7,
+fill = "lightyellow",
+font_weight = "bold")
+#| fig-cap: "Kernel rectancular, triangular y Epanechnikov."
+kernels <- tibble(x = seq(-1.5, 1.5, length.out = 200)) %>%
+mutate(rectangular = ifelse(abs(x) <= 1, 1, 0),
+triangular = ifelse(abs(x) <= 1, 1 - abs(x), 0),
+epanechnikov = ifelse(abs(x) <= 1, 0.75 * (1 - x^2), 0))
+ggplot(kernels, aes(x = x)) +
+geom_line(aes(y = rectangular, color = "Rectangular"), size = 1) +
+geom_line(aes(y = triangular, color = "Triangular"), size = 1) +
+geom_line(aes(y = epanechnikov, color = "Epanechnikov"), size = 1) +
+labs(x = "Distancia al umbral", y = "Peso", color = NULL) +
+scale_color_brewer(palette = "Dark2") +
+theme_minimal() +
+theme(legend.position = "top")
+ggplot(tutoring_centered, aes(x = entrance_centered,
+y = exit_exam,
+color = tutoring,
+fill = tutoring)) +
+geom_point(size = 1.5, alpha = .3) +
+# Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+geom_smooth(data = filter(tutoring_centered, tutoring)) +
+# Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+geom_smooth(data = filter(tutoring_centered, !tutoring)) +
+# Ponemos una línea vertical en el umbral
+geom_vline(xintercept = 0, color = "darkblue", linetype = "dashed") +
+# Las lables
+labs(x = "Puntaje en el examen de entrada (centrado)",
+y = "Puntaje en el examen de salida",
+color = "Participó en la tutoría",
+fill = "Participó en la tutoría") +
+# Colores más chetos
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+# Theme sin fondo gris
+theme_minimal() +
+theme(legend.position = "top")
+tutoring_centered
+ggplot(tutoring_centered, aes(x = entrance_centered,
+y = exit_exam,
+color = tutoring,
+fill = tutoring)) +
+geom_point(size = 1.5, alpha = .3) +
+# Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+geom_smooth(data = filter(tutoring_centered, tutoring == "Sí")) +
+# Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+geom_smooth(data = filter(tutoring_centered, tutoring == "No")) +
+# Ponemos una línea vertical en el umbral
+geom_vline(xintercept = 0, color = "darkblue", linetype = "dashed") +
+# Las lables
+labs(x = "Puntaje en el examen de entrada (centrado)",
+y = "Puntaje en el examen de salida",
+color = "Participó en la tutoría",
+fill = "Participó en la tutoría") +
+# Colores más chetos
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+# Theme sin fondo gris
+theme_minimal() +
+theme(legend.position = "top")
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+tutoring_centered %>%
+ggplot(aes(x = entrance_centered,
+y = exit_exam)) +
+geom_point(size = 1.5, alpha = .3) +
+# Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+geom_smooth(data = filter(tutoring_centered, entrance_centered <= 0), method = "lm") +
+# Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+geom_smooth(data = filter(tutoring_centered, entrance_centered > 0), method = "lm") +
+# Ponemos una línea vertical en el umbral
+geom_vline(xintercept = 0, color = "darkblue", linetype = "dashed") +
+# Las lables
+labs(x = "Puntaje en el examen de entrada (centrado)",
+y = "Puntaje en el examen de salida") +
+# Colores más chetos
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+# Theme sin fondo gris
+theme_minimal() +
+theme(legend.position = "top")
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x = c(-10, 10, 100),
+y1 = x + 1 + rand(0, 2),
+y0 = x + rand(0, 2))
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x = c(-10, 10, 100),
+y1 = x + 1 + randn(0, 2),
+y0 = x + randn(0, 2))
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x = c(-10, 10, 100),
+y1 = x + 1 + rnorm(0, 2),
+y0 = x + rnorm(0, 2))
+tibble(x = c(-10, 10, 100),
+y1 = x + 1 + rnorm(0, 2),
+y0 = x + rnorm(0, 2))
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x = c(-10, 10, 100),
+y1 = x + 1 + rnorm(100, 0, 2),
+y0 = x + rnorm(100, 0, 2))
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x = seq(-10, 10, 100),
+y1 = x + 1 + rnorm(100, 0, 2),
+y0 = x + rnorm(100, 0, 2))
+ggplot(data, aes(x = x)) +
+geom_line(aes(y = y1, color = "E[Y_i^1]"), size = 1) +
+geom_line(aes(y = y0, color = "E[Y_i^0]"), size = 1) +
+geom_vline(xintercept = 0, linetype = "dashed", color = "darkblue") +
+labs(x = "Running variable", y = "Potential outcomes",
+color = "Potential outcome") +
+scale_color_brewer(palette = "Dark2") +
+theme_minimal() +
+theme(legend.position = "top")
+seq(-10, 10, 100)
+seq(0,4)
+seq(0,4,.1)
+data <- tibble(x0 = runif(100, -10, 10),
+x1 = runif(100, -10, 10),
+y1 = x1 + 1 + rnorm(100, 0, 2),
+y0 = x0 + rnorm(100, 0, 2))
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x0 = runif(100, -10, 10),
+x1 = runif(100, -10, 10),
+y1 = x1 + 1 + rnorm(100, 0, 2),
+y0 = x0 + rnorm(100, 0, 2))
+ggplot(data, aes(x = x0, y = y0)) +
+geom_point(color = "darkred", alpha = 0.5) +
+geom_point(aes(x = x1, y = y1), color = "darkblue", alpha = 0.5) +
+geom_vline(xintercept = 0, linetype = "dashed", color = "gray") +
+geom_segment(aes(x = -10, xend = 0, y = -9, yend = -9),
+color = "darkred", linewidth = 1) +
+geom_segment(aes(x = 0, xend = 10, y = -9, yend = -9),
+color = "darkblue", linewidth = 1) +
+labs(x = "Running variable (X)",
+y = "Potential outcomes (Y)",
+title = "Continuidad de los potential outcomes en el umbral") +
+theme_minimal()
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+data <- tibble(x0 = runif(100, -10, 10),
+x1 = runif(100, -10, 10),
+y1 = x1 + 5 + rnorm(100, 0, 2),
+y0 = x0 + rnorm(100, 0, 2))
+ggplot(data, aes(x = x0, y = y0)) +
+geom_point(color = "darkred", alpha = 0.5) +
+geom_point(aes(x = x1, y = y1), color = "darkblue", alpha = 0.5) +
+geom_vline(xintercept = 0, linetype = "dashed", color = "gray") +
+geom_segment(aes(x = -10, xend = 0, y = -9, yend = -9),
+color = "darkred", linewidth = 1) +
+geom_segment(aes(x = 0, xend = 10, y = -9, yend = -9),
+color = "darkblue", linewidth = 1) +
+labs(x = "Running variable (X)",
+y = "Potential outcomes (Y)",
+title = "Continuidad de los potential outcomes en el umbral") +
+theme_minimal()
+#| fig-cap: "Continuidad de los potential outcomes en el umbral."
+set.seed(123)
+data <- tibble(x = runif(200, -10, 10),
+y = x + c(rnorm(100, mean = 5, sd = 2),
+rnorm(100, mean = 0, sd = 2)),
+outcome = c(rep("Y1", 100), rep("Y0", 100))) %>%
+mutate(status = if_else((outcome == "Y1" & x>0) | (outcome == "Y0" & x<=0),
+"Observable", "Contrafáctico"))
+lines <- tibble(intercept = c(5, 0),
+slope = c(1, 1),
+outcome = c("Y1", "Y0"))
+ggplot(data, aes(x = x, y = y, color = outcome)) +
+geom_point(aes(alpha = status), size = 2) +
+geom_vline(xintercept = 0, linetype = "dashed", color = "darkblue") +
+geom_abline(data = lines, aes(slope = slope, intercept = intercept, color = outcome), linewidth = 1) +
+labs(x = "Running variable (X)",
+y = "Potential outcomes (Y)",
+color = NULL,
+alpha = NULL) +
+scale_color_brewer(palette = "Dark2") +
+scale_alpha_manual(values = c(.2, 1)) +
+theme_minimal() +
+theme(legend.position = "top", legend.box="vertical")
+pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble, forcats, patchwork, ggdag,
+dagitty, stargazer, kableExtra, kableExtra, lme4, modelsummary,
+MatchIt, gtExtras, FNN, here, rdrobust, modelr, rdrobust)
+rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) |>
+summary()
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70)
+rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) |>
+summary() %>%
+gt()
+rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) |>
+summary() %>%
+gt()
+rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) |>
+summary() %>%
+gt()
+model_no_param <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70)
+model_no_param
+model_no_param$Estimate
+model_no_param$coef
+model_no_param$bws
+model_no_param$kernel
+ggplot(tutoring, aes(x = entrance_exam,
+y = exit_exam,
+color = tutoring,
+fill = tutoring)) +
+geom_point(size = 1.5, alpha = .3) +
+# Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+geom_line(data = model_no_param$preds %>% filter(tutoring == "Sí"),
+aes(x = x, y = yhat), color = "darkgreen", linewidth = 1) +
+# Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+geom_line(data = model_no_param$preds %>% filter(tutoring == "No"),
+aes(x = x, y = yhat), color = "darkred", linewidth = 1) +
+# Ponemos una línea vertical en el umbral
+geom_vline(xintercept = 70, color = "darkblue", linetype = "dashed") +
+# Las lables
+labs(x = "Puntaje en el examen de entrada (centrado)",
+y = "Puntaje en el examen de salida",
+color = "Participó en la tutoría",
+fill = "Participó en la tutoría") +
+# Colores más chetos
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+# Theme sin fondo gris
+theme_minimal() +
+theme(legend.position = "top")
+ggplot(tutoring, aes(x = entrance_exam,
+y = exit_exam,
+color = tutoring,
+fill = tutoring)) +
+geom_point(size = 1.5, alpha = .3)
+model_no_param$preds
+predict(model_no_param)
+model_no_param$all
+model_no_param$p
+model_no_param$Estimate
+model_no_param$beta_Y_p_r
+rdplot(model_no_param)
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70)
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) +
+theme_bw()
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) +
+theme_minimal()
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) +
+theme_void()
+#| fig-cap: "Estimación del LATE utilizando un ajuste no paramétrico."
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70)
+# Cómo elige el BW
+rdbwselect(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70) |>
+summary()
+# Cuales son los posibles
+rdbwselect(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, all = TRUE) |>
+summary()
+# Un approach posible es usar el recomendado, el doble y la mitad
+full <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969)
+doble <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969 * 2)
+mitad <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969 * 0.5)
+tibble(BW = c("Full = 9.97", "Doble = 19.94", "Mitad = 4.99"),
+Estimate = -round(c(full$Estimate[1], doble$Estimate[1], mitad$Estimate[1]), 3)) |>
+gt()
+triangular <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, kernel = "triangular")
+epanechnikov <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, kernel = "epanechnikov")
+uniforme <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, kernel = "uniform")
+tibble(Kernel = c("Triangular", "Epanechnikov", "Uniforme"),
+Estimate = -round(c(triangular$Estimate[1], epanechnikov$Estimate[1], uniforme$Estimate[1]), 3)) |>
+gt()
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969, kernel = "uniform")
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969, kernel = "triangular")
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 9.969, kernel = "epanechnikov")
+tabla_results <- tibble(Método = c(rep("Paramétrico", 3), rep("No paramétrico", 5)),
+Kernel = c(rep("No pesado",3), rep("Triangular",3), "Epanechnikov", "Uniforme"),
+BW = c("Full", 10, 5, round(c(full$bws[1,1], doble$bws[1,1], mitad$bws[1,1], epanechnikov$bws[1,1], uniforme$bws[1,1]), 3)),
+Estimate = round(c(model_simple$coefficients[3], model_bw_10$coefficients[3], model_bw_5$coefficients[3],
+-full$Estimate[1], -doble$Estimate[1], -mitad$Estimate[1], -epanechnikov$Estimate[1], -uniforme$Estimate[1]), 3))
+tabla_results <- tibble(Método = c(rep("Paramétrico", 3), rep("No paramétrico", 5)),
+Kernel = c(rep("No pesado",3), rep("Triangular",3), "Epanechnikov", "Uniforme"),
+BW = c("Full", 10, 5, round(c(full$bws[1,1], doble$bws[1,1], mitad$bws[1,1], epanechnikov$bws[1,1], uniforme$bws[1,1]), 3)),
+Estimate = round(c(model_lm$coefficients[3], model_bw_10$coefficients[3], model_bw_5$coefficients[3],
+-full$Estimate[1], -doble$Estimate[1], -mitad$Estimate[1], -epanechnikov$Estimate[1], -uniforme$Estimate[1]), 3))
+tabla_results <- tibble(Método = c(rep("Paramétrico", 3), rep("No paramétrico", 5)),
+Kernel = c(rep("No pesado",3), rep("Triangular",3), "Epanechnikov", "Uniforme"),
+BW = c("Full", 10, 5, round(c(full$bws[1,1], doble$bws[1,1], mitad$bws[1,1], epanechnikov$bws[1,1], uniforme$bws[1,1]), 3)),
+Estimate = round(c(modelo_lm$coefficients[3], model_bw_10$coefficients[3], model_bw_5$coefficients[3],
+-full$Estimate[1], -doble$Estimate[1], -mitad$Estimate[1], -epanechnikov$Estimate[1], -uniforme$Estimate[1]), 3))
+tabla_results |>
+gt() |>
+gt_highlight_rows(rows = 4,
+fill = "lightyellow",
+font_weight = "bold")
+pacman::p_load(dplyr, readr, tidyr, ggplot2, tibble, forcats, patchwork, ggdag,
+dagitty, stargazer, kableExtra, kableExtra, lme4, modelsummary,
+MatchIt, gtExtras, FNN, here, rdrobust, modelr, rdrobust, rddensity)
+test_density <- rddensity(tutoring$entrance_exam, c = 70)
+plot_density_test <- rdplotdensity(rdd = test_density,
+X = tutoring$entrance_exam,
+type = "both")
+plot_density_test <- rdplotdensity(rdd = test_density,
+X = tutoring$entrance_exam,
+type = "both") +
+geom_vline(xintercept = 70, color = "darkblue", linetype = "dashed")
+rddensity(tutoring$entrance_exam, c = 70)
+#| fig-cap: "Testeamos la posible manipulación en el ejemplo de las tutorías."
+test_density <- rddensity(tutoring$entrance_exam, c = 70)
+summary(test_density)
+model_no_param <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70)
+model_no_param %>%
+tidy() |>
+select(Estimate, Std.Error, p.value) |>
+mutate(Estimate = round(Estimate, 3),
+`Std. Error` = round(`Std. Error`, 3),
+`p-value` = format.pval(p.value, digits = 2, eps = 0.001)) |>
+gt() |>
+tab_header(title = "Estimación del LATE utilizando un ajuste no paramétrico") |>
+gt_highlight_rows(rows = 1,
+fill = "lightyellow",
+font_weight = "bold")
+model_no_param <- rdrobust(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70)
+model_no_param %>%
+tidy()
+model_no_param %>%
+kable()
+summary(model_no_param)
+round(model_no_param$SE[1], 3)
+summary(test_density-round(model_no_param$Estimate[1], 3))
+-round(model_no_param$Estimate[1], 3)
+#| fig-cap: "Estimación del LATE utilizando un ajuste no paramétrico con el doble del ancho de banda estimado de los datos."
+rdplot(y = tutoring$exit_exam, x = tutoring$entrance_exam, c = 70, h = 2*9.969)
+_rdrobust
+?rdrobust
+#| fig-cap: "Notas de entrada vs. notas de salida con líneas de regresión ajustadas a cada grupo."
+# Ahora miremos como se comporta la variable outcomes en función de la running variable ####
+ggplot(tutoring, aes(x = entrance_exam,
+y = exit_exam,
+color = tutoring,
+fill = tutoring)) +
+geom_point(size = 1.5, alpha = .3) +
+# Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+geom_smooth(data = filter(tutoring, entrance_exam <= 70), method = "lm") +
+# Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+geom_smooth(data = filter(tutoring, entrance_exam > 70), method = "lm") +
+# Ponemos una línea vertical en el umbral
+geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") +
+# Las lables
+labs(x = "Puntaje en el examen de entrada",
+y = "Puntaje en el examen de salida",
+color = "Participó en la tutoría",
+fill = "Participó en la tutoría") +
+# Colores más chetos
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+# Theme sin fondo gris
+theme_minimal() +
+theme(legend.position = "top")
+#| fig-cap: "Notas de entrada vs. notas de salida con líneas de regresión ajustadas a cada grupo. La línea azul representa el LATE."
+tutoring_centered <- tutoring |>
+mutate(entrance_centered = entrance_exam - 70)
+modelo_lm <- lm(exit_exam ~ entrance_centered + tutoring,
+data = tutoring_centered)
+ggplot(tutoring, aes(x = entrance_exam,
+y = exit_exam,
+color = tutoring,
+fill = tutoring)) +
+geom_point(size = 1.5, alpha = .3) +
+# Agregamos una linea basada en un modelo lineal para la running variable menor a 70
+geom_smooth(data = filter(tutoring, entrance_exam <= 70), method = "lm") +
+# Agregamos una linea basada en un modelo lineal para la running variable mayor a 70
+geom_smooth(data = filter(tutoring, entrance_exam > 70), method = "lm") +
+# Ponemos una línea vertical en el umbral
+geom_vline(xintercept = 70, color = "steelblue", linetype = "dashed") +
+# Un segmento con el efecto del modelo
+geom_segment(aes(x = 70, y = modelo_lm$coefficients[1],
+xend = 70, yend = modelo_lm$coefficients[1] + modelo_lm$coefficients[3]),
+color = "darkblue", linewidth = 2) +
+annotate("label",
+x = 75, y = modelo_lm$coefficients[1] + modelo_lm$coefficients[3]/2,
+label = "LATE",
+color = "darkblue", size = 4, hjust = 0.5) +
+# Las lables
+labs(x = "Puntaje en el examen de entrada",
+y = "Puntaje en el examen de salida",
+color = "Participó en la tutoría",
+fill = "Participó en la tutoría") +
+# Colores más chetos
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+# Theme sin fondo gris
+theme_minimal() +
+theme(legend.position = "top")
+# Cargamos los datos ####
+trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
+show_col_types=FALSE) %>%
+rename(trainee = trainees)
+trainees_df
+# install.packages("ggside")
+library(ggside)
+library(tidyverse)
+# Cargamos los datos ####
+trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
+show_col_types=FALSE) %>%
+rename(trainee = trainees)
+trainees_df
+trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
+show_col_types=FALSE) %>%
+rename(Capacitación = trainees,
+Edad = age,
+Unidad = unit,
+Salario = earnings)
+trainees_df |>
+sample_n(5) |>
+gt::gt() |>
+gt::tab_header(
+title = "Datos de participantes en un programa de capacitación (5 filas al azar)"
+)
+trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
+show_col_types=FALSE) %>%
+rename(Capacitación = trainees,
+Edad = age,
+Unidad = unit,
+Salario = earnings) %>%
+mutate(Capacitación = factor(Capacitación,
+levels = c(0, 1),
+labels = c("Trainee", "Not Trainee")))
+trainees_df |>
+sample_n(5) |>
+gt::gt() |>
+gt::tab_header(
+title = "Datos de participantes en un programa de capacitación (5 filas al azar)"
+)
+# Vemos las distribuciones marginales
+trainees_df %>%
+ggplot() +
+aes(Edad, Salario, color = Capacitación) +
+geom_jitter() +
+geom_xsidedensity(
+aes(
+y = after_stat(density),
+fill = Capacitación
+),
+alpha = 0.5,
+size = 1,
+position = "identity"
+) +
+geom_ysidedensity(
+aes(
+x = after_stat(density),
+fill = Capacitación
+),
+alpha = 0.5,
+size = 1,
+position = "identity"
+) +
+theme(
+ggside.panel.scale.x = 0.3,
+ggside.panel.scale.y = 0.3,
+ggside.axis.text.y = element_blank(),
+ggside.axis.ticks.y = element_blank(),
+ggside.axis.text.x = element_blank(),
+ggside.axis.ticks.x = element_blank()
+) +
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+theme_minimal() +
+labs(color = NULL, fill = NULL) +
+theme(legend.position = "top")
+trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
+show_col_types=FALSE) %>%
+rename(Capacitación = trainees,
+Edad = age,
+Unidad = unit,
+Salario = earnings) %>%
+mutate(Capacitación = factor(Capacitación,
+levels = c(0, 1),
+labels = c("Sí", "No")))
+trainees_df |>
+sample_n(5) |>
+gt::gt() |>
+gt::tab_header(
+title = "Datos de participantes en un programa de capacitación (5 filas al azar)"
+)
+# Vemos las distribuciones marginales
+trainees_df %>%
+ggplot() +
+aes(Edad, Salario, color = Capacitación) +
+geom_jitter() +
+geom_xsidedensity(
+aes(
+y = after_stat(density),
+fill = Capacitación
+),
+alpha = 0.5,
+size = 1,
+position = "identity"
+) +
+geom_ysidedensity(
+aes(
+x = after_stat(density),
+fill = Capacitación
+),
+alpha = 0.5,
+size = 1,
+position = "identity"
+) +
+theme(
+ggside.panel.scale.x = 0.3,
+ggside.panel.scale.y = 0.3,
+ggside.axis.text.y = element_blank(),
+ggside.axis.ticks.y = element_blank(),
+ggside.axis.text.x = element_blank(),
+ggside.axis.ticks.x = element_blank()
+) +
+scale_color_brewer(palette = "Dark2") +
+scale_fill_brewer(palette = "Dark2") +
+theme_minimal() +
+labs(color = NULL, fill = NULL) +
+theme(legend.position = "top")

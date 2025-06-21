@@ -186,7 +186,7 @@ tibble(Región = c("Este", "Norte", "Oeste"),
 Efectivamente el efecto en cada región se acerca a los \$$300$. Pero para hacer una única estimación del efecto vamos a usar el estimador de subclasifiación, que no es otra cosa que un promedio ponderado de estos **SDOs** por región. Formalmente sería algo así:
 
 $$
-\hat\delta_{ATE} = \sum_{k=1}^K SDO_k \times \frac{N_k}{N_k}  
+\hat\delta_{ATE} = \sum_{k=1}^K SDO_k \times \frac{N_k}{N}  
 $$
 
 donde $k$ es un índice que codifica al grupo, $K$ es la cantidad total de grupos, $SDO_k$ la diferencia de medias para el grupo $k$, $N_k$ la cantidad de individuos del grupo $k$ y $N_t$ la cantidad total de individuos. Un promedio pesado, bah. En lenguaje de **R** sería algo como:

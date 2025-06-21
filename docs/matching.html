@@ -1460,7 +1460,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 </div>
 <p>Efectivamente el efecto en cada región se acerca a los $<span class="math inline">\(300\)</span>. Pero para hacer una única estimación del efecto vamos a usar el estimador de subclasifiación, que no es otra cosa que un promedio ponderado de estos <strong>SDOs</strong> por región. Formalmente sería algo así:</p>
 <p><span class="math display">\[
-\hat\delta_{ATE} = \sum_{k=1}^K SDO_k \times \frac{N_k}{N_k}  
+\hat\delta_{ATE} = \sum_{k=1}^K SDO_k \times \frac{N_k}{N}  
 \]</span></p>
 <p>donde <span class="math inline">\(k\)</span> es un índice que codifica al grupo, <span class="math inline">\(K\)</span> es la cantidad total de grupos, <span class="math inline">\(SDO_k\)</span> la diferencia de medias para el grupo <span class="math inline">\(k\)</span>, <span class="math inline">\(N_k\)</span> la cantidad de individuos del grupo <span class="math inline">\(k\)</span> y <span class="math inline">\(N_t\)</span> la cantidad total de individuos. Un promedio pesado, bah. En lenguaje de <strong>R</strong> sería algo como:</p>
 <p><code>subclas_estimator &lt;- SDO_este * (n_este/n_total) +   SDO_norte * (n_norte/n_total) +   SDO_oeste * (n_oeste/n_total)</code></p>

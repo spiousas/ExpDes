@@ -702,7 +702,7 @@ medicine_impact_recovery |>
   gt()
 ```
 
-Y aquí vemos dos cosas. Que en sexo $0$ la mayoría son tratados y en sexo $1$ no es tan así. Y que, en general hay más tratados que controles[^tratados].
+Y aquí vemos dos cosas. Que en sexo $0$ la mayoría son controles y en sexo $1$ no es tan así. Y que, en general hay más controles que tratados[^tratados].
 
 [^tratados]: Algo que va a hacer que sea más fácil encontrarle controles *matcheados* a los tratados y no viceverse.
 

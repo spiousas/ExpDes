@@ -23,7 +23,7 @@ La solución que vamos a proponer en este capítulo, al igual que en diferencias
 
 ## *One rule to rule them all*
 
-La idea básica detrás de la regresión discontinua es que la separación entre grupo tratamiento y control está dada por una discontinuidad en alguna variable[^running]. Es decir, a partir de un cierto valor de esta variable un sujeto es asignado a un determinado grupo. Por ejemplo, a partir un valor de ingreso mensual, un individuo podría tener acceso a un programa de ayuda social. Supongamos que ese límite es \$$350000$ mensuales. ¿En qué se diferencian dos individuos que cobran \$$349999$ y \$$350001$ respectivamente? Probablemente en mucho, ¿no? Pero ¿y si comparamos $100$ individuos de cada ingreso? Es bastante razonable pensar que en todas las demás características, estos individuos son comparables. Es decir, que la única diferencia entre ellos es que uno de ellos accede a un programa social y el otro no. Bueno, es en esta idea en la que se cimenta (ah bueno, se puso fino el autor) la regresión discontinua. En líneas generales vamos a comprar unidades experimentales cerquita de un lado del unmbral de la *running variable* con unidades experimentales cerquita del otro lado del umbral. 
+La idea básica detrás de la regresión discontinua es que la separación entre grupo tratamiento y control está dada por una discontinuidad en alguna variable[^running]. Es decir, a partir de un cierto valor de esta variable un sujeto es asignado a un determinado grupo. Por ejemplo, a partir un valor de ingreso mensual, un individuo podría tener acceso a un programa de ayuda social. Supongamos que ese límite es \$$350000$ mensuales. ¿En qué se diferencian dos individuos que cobran \$$349999$ y \$$350001$ respectivamente? Probablemente en mucho, ¿no? Pero ¿y si comparamos $100$ individuos de cada ingreso? Es bastante razonable pensar que en todas las demás características, estos individuos son comparables. Es decir, que la única diferencia entre ellos es que uno de ellos accede a un programa social y el otro no. Bueno, es en esta idea en la que se cimenta (ah bueno, se puso fino el autor) la regresión discontinua. En líneas generales vamos a comprar unidades experimentales cerquita de un lado del umbral de la *running variable* con unidades experimentales cerquita del otro lado del umbral. 
 
 [^running]: Que a partir de ahora llamaremos *running variable*.
 
@@ -555,11 +555,11 @@ ggplot(tutoring_centered, aes(x = entrance_centered,
   theme(legend.position = "top")
 ```
 
-En este caso estamos usando la función de *regresión local* `geom_smooth()` de `ggplot2` para ajustar una curva a los datos. Esta función utiliza un ajuste *LOESS* por defecto, pero también podemos especificar otros métodos de ajuste. Podemos ver que no se trata de una curva suave sino más bien de una especie de promedio móvil pesado que va siguiendo a mis punto. 
+En este caso estamos usando la función de *regresión local* `geom_smooth()` de `ggplot2` para ajustar una curva a los datos. Esta función utiliza un ajuste *LOESS* por defecto, pero también podemos especificar otros métodos de ajuste. Podemos ver que no se trata de una curva suave sino más bien de una especie de promedio móvil pesado que va siguiendo a los puntos. 
 
 En la estimación no paramétrica como en la paramétrica vamos a calcular el **LATE** como la diferencia entre las estimaciones del modelo de cada lado del umbral, y como en el caso anterior, la elección del ancho de banda y del kernel afecta la estimación del **LATE**.
 
-Acás ya no es tan fácil obtener la estimación del efecto ajustando modelos lineales así que vamos a hechar mano de un paquete para esto: `rdrobust`. Este paquete nos permite ajustar modelos de regresión discontinua de forma sencilla y rápida, y nos da una serie de opciones para ajustar el ancho de banda y el kernel. Empecemos utilizando los valores por defecto.
+Acá ya no es tan fácil obtener la estimación del efecto ajustando modelos lineales así que vamos a hechar mano de un paquete para esto: `rdrobust`. Este paquete nos permite ajustar modelos de regresión discontinua de forma sencilla y rápida, y nos da una serie de opciones para ajustar el ancho de banda y el kernel. Empecemos utilizando los valores por defecto.
 
 ```{r}
 #| code-fold: false
@@ -618,7 +618,7 @@ tibble(Kernel = c("Triangular", "Epanechnikov", "Uniforme"),
   gt()
 ```
 
-De nuevo, vemos que no hay garndes cambios.
+De nuevo, vemos que no hay grandes cambios.
 
 ### ¿Cómo tomamos decisiones?
 

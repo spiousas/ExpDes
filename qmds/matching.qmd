@@ -74,7 +74,7 @@ Al condicionar en $X$ (es decir, subclasificar o estratificar por región), cerr
 
 ¿Cómo aplicamos esta idea de la subclasificación a un ejemplo real? Bueno, empecemos con un ejemplo "real". 
 
-Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuenta que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste(compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
+Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuento que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste(compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
 
 Como todas las simulaciones que hicimos a lo largo del libro (si es que a esto se le puede llamar libro) conocemos el tamaño del efecto que queremos estimar y tiene como valor medio \$$300$. Otra cosa a la que vamos a poder ecceder es a ambos *potential outcomes*, es decir, tanto al observado como al contrafáctico (si es que a esto se le puede llamar contrafáctico). Estos son lujos que nos podemos dar (si es que a esto se le puede llamar un lujo). Veamos $5$ filas al azar de los datos simulados.
 
@@ -146,7 +146,7 @@ o, en lenguaje computacional:
 
 `SDO <- mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0])`.
 
-Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es nmegativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegudar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso al asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
+Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es negativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegurar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso al asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
 
 Veamos ahora las ventas para grupo tratamiento y control pero por región.
 
@@ -164,7 +164,7 @@ customers %>%
   theme(legend.position = "top")
 ```
 
-Apa, la cosa ahora es distinta. Tal como lo esperábamos, en cada grupo el efecto del tratamiento es un aumento en las ventas. Lo que ocurre es una combinación de sesgo de selección con el tamaño de las regiones. La región del norte, que es la más grande, tiene más sujetos asignados a control, por lo tanto, los controles tienen una sobrerepresentación de clientes que tienden a comprar más. Por el contrario, la región del oesta, que es la más chica, tiene más sujetos asignados al grupo tratamiento, lo cual genera una sobrerepresentación de ratone... clientes que gastan menos en el grupo tratamiento.
+Apa, la cosa ahora es distinta. Tal como lo esperábamos, en cada grupo el efecto del tratamiento es un aumento en las ventas. Lo que ocurre es una combinación de sesgo de selección con el tamaño de las regiones. La región del norte, que es la más grande, tiene más sujetos asignados a control, por lo tanto, los controles tienen una sobrerepresentación de clientes que tienden a comprar más. Por el contrario, la región del oeste, que es la más chica, tiene más sujetos asignados al grupo tratamiento, lo cual genera una sobrerepresentación de ratone... clientes que gastan menos en el grupo tratamiento.
 
 ¿Se les ocurre alguna solución elegante `r emo::ji("top_hat")`? Claro, podemos calcular el efecto del tratamiento dentro de cada grupo (una especie de **SDO** local) y después vemos qué hacemos. Empecemos por eso.
 
@@ -249,12 +249,11 @@ Todo esto es muy lindo, pero que pasa si en lugar de tener grupos tenemos que es
 
 Una forma alternativa de lidiar con la independencia condicional y el cierre de backdoors es el **matching**. La idea central es fácil: en vez de comparar el promedio de las unidades tratadas con el promedio de todas las unidades no tratadas, buscamos **comparar cada unidad tratada con una unidad no tratada que se le parezca lo más posible** en función de ciertas características observables (como la edad, la región, los ingresos, etc.) que sean confusoras de nuestra relación causal.
 
-ntonces, con matching, en lugar de usar el promedio del grupo control como contrafactual, usamos un individuo que se parezca al que fue tratado.
+Entonces, con matching, en lugar de usar el promedio del grupo control como contrafactual, usamos un individuo que se parezca al que fue tratado.
 
 Esto nos permite construir un estimador que sea más creíble. Es intuitivo: **si queremos estimar el efecto de un curso sobre los ingresos, tiene más sentido comparar a una persona de 25 años que hizo el programa con otra también de 25 años que no lo hizo, en lugar de con el promedio de todas las personas que no lo hicieron**. De esta manera, el matching busca que cada comparación sea más consistente, emparejando unidades comparables.
 
-Para esto, vamos a poder usar exact matching o approximate matching, dependiendo de cada caso.
-
+Para esto, vamos a poder usar *exact matching* o *approximate matching*, dependiendo de cada caso.
 
 Pensemos en un caso simple en el que tenemos sólo una confusora observable $X$. 
 
@@ -304,7 +303,7 @@ donde $m_i$ es el número de controles que comparten el mismo valor de $X_i$ que
 
 ¿Se puede calcular el **ATE**? Vamos a ver brevemente que sí, pero también los problemas que ello conlleva.
 
-Miremos un ejemplo y veamos cómo se calculan estas cosas. Vamos a usar los datos de un programa de capacitación que se realizó en una empresa ficticia. En este caso, lo que queremos no es otra cosa que estimar el efecto de una capacitación laborala en el ingreso de los empleados. Para eso, tenemos la edad del empleado, si participó o no en el programa de capacitación y su salarion. Veamos unos datos de ejemplo.
+Miremos un ejemplo y veamos cómo se calculan estas cosas. Vamos a usar los datos de un programa de capacitación que se realizó en una empresa ficticia. En este caso, lo que queremos no es otra cosa que estimar el efecto de una capacitación laboral en el ingreso de los empleados. Para eso, tenemos la edad del empleado, si participó o no en el programa de capacitación y su salario. Veamos unos datos de ejemplo.
 
 ```{r}
 trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv",
@@ -369,7 +368,7 @@ trainees_df %>%
   theme(legend.position = "top")
 ```
 
-Al parecer, la gente de más edad (y que naturalemte tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran **red flag** metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos *exact matching* para emparejar a los participantes tratados con controls que tengan la misma edad y estimemos el **ATT**.
+Al parecer, la gente de más edad (y que naturalemte tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran **red flag** metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos *exact matching* para emparejar a los participantes tratados con controles que tengan la misma edad y estimemos el **ATT**.
 
 Escribamos una función a mano para calcular el **ATT**[^ATT_estimator]:
 
@@ -445,7 +444,7 @@ tibble(Método = c("SDO", "Exact Matching"),
   )
 ```
 
-Vemos que utilizar sólo la diferencia de las medias no sólo era una estiamción sesgada sino que sugería una dirección del efecto contraria a la obtenida con **Exact Matching**. 
+Vemos que utilizar sólo la diferencia de las medias no sólo era una estimación sesgada sino que sugería una dirección del efecto contraria a la obtenida con **Exact Matching**. 
 
 Vamos a aventurarnos a calcular el **ATE**. Para esto vamos a buscar controles matcheados para cada unidad tratada, y unidades tratadas matcheadas para cada control. Es decir, vamos a hacer un *exact matching* en ambos sentidos. Luego, vamos a calcular el efecto individual de cada unidad y vamos a calcular el promedio[^no_eq]. Primero definimos la función para calcular el **ATE**:
 
@@ -572,7 +571,7 @@ empleados_tbl |> ggplot(aes(x = Edad,
   theme(legend.position = "top")
 ```
 
-Imaginen qeu queremos encontrar al empleado más cercano al empleado verde lleno (el empleado $18$). Los candidatos serían los dos naranjas (los empleados $9$ el de la izquierda y $10$ el de la derecha) ¿no? Y estamos de acuerdo que el que está hacia la derecha es el más cercano (o sea el empleado $10$), ¿no? Bueno, calculemos las distancias y veamos qué pasa.
+Imaginen que queremos encontrar al empleado más cercano al empleado verde lleno (el empleado $18$). Los candidatos serían los dos naranjas (los empleados $9$ el de la izquierda y $10$ el de la derecha) ¿no? Y estamos de acuerdo que el que está hacia la derecha es el más cercano (o sea el empleado $10$), ¿no? Bueno, calculemos las distancias y veamos qué pasa.
 
 ```{r}
 # Defino una función para calcular la distancia euclidiana entre dos puntos en el espacio de covariables de dos dimensiones. 
@@ -595,7 +594,7 @@ tibble(Empleado = c("9", "10"),
   )
 ```
 
-Esto dice que el más cercano es el $10$, pero si lo miramos en el gráfico, claramente el $9$ es el más cercano. ¿Por qué pasa esto? Bueno, porque las covariables no tienen la misma escala. La edad está en un rango de $20$ a $50$ y el salario en un rango de $10,000$ a $100,000$. Entonces, la distancia euclidiana está siendo dominada por la variable salario. Es decir, que si bien el empleado $9$ está más cerca en términos de edad, el empleado $10$ está más cerca en términos de salario y la distancia euclidiana no puede distinguir entre estas dos dimensiones.
+Esto dice que el más cercano es el $9$, pero si lo miramos en el gráfico, claramente el $10$ es el más cercano. ¿Por qué pasa esto? Bueno, porque las covariables no tienen la misma escala. La edad está en un rango de $20$ a $50$ y el salario en un rango de $10,000$ a $100,000$. Entonces, la distancia euclidiana está siendo dominada por la variable salario. Es decir, que si bien el el empleado $10$ está más cerca en general, el empleado $9$ está más cerca en términos de salario, que es una magnitud con un rango más amplio.
 
 ¿Cómo resolvemos esto? Pues estandarizando las covariables[^estandar]. Veamos la misma figura pero estandarizada:
 
@@ -722,7 +721,7 @@ nearest_control <- matchit(Medicina ~ Sexo + Edad + Severidad,
 summary(nearest_control, un = F)$nn[4:5,]
 ```
 
-Vewmos que de los $20000$ datos originales, los $6924$ individuos tratados fueron emparejados con $733$ controles. ¿Cómo pueden ser menos controles que tratados? Bueno, resumidamente, porque al decirle `replace = T` le estamos diciendo que puede usar el mismo control más de una vez. Es decir, que un control puede ser emparejado con más de un tratado. Esto es útil cuando tenemos pocos controles y muchos tratados, como en este caso.
+Vemos que de los $20000$ datos originales, los $6924$ individuos tratados fueron emparejados con $733$ controles. ¿Cómo pueden ser menos controles que tratados? Bueno, resumidamente, porque al decirle `replace = T` le estamos diciendo que puede usar el mismo control más de una vez. Es decir, que un control puede ser emparejado con más de un tratado. Esto es útil cuando tenemos pocos controles y muchos tratados, como en este caso.
 
 Ahora calculemos el tamaño del efecto:
 
@@ -786,7 +785,7 @@ empleados_tbl |>
 Como es de esperarse (y lo esperamos mucho porque los datos los generamos nosotros), la edad y el salario están correlacionados (r=`r round(cor(empleados_tbl$Edad, empleados_tbl$Salario, use="complete.obs"), 2)`). Vamos a graficar los datos.
 
 ```{r}
-#| fig-cap: "DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento."
+#| fig-cap: "Edad y salario de los empleados."
 # Y los graficamos
 # El texto de la correlación
 text_tbl <- tibble(x = min(empleados_tbl$Edad, na.rm = T),
@@ -1020,7 +1019,7 @@ ggplot(df_wo_common_support,
   theme(legend.position = "top")
 ```
 
-En este ejemplo podemos ver claramente que todos los sujetos del grupo tratamiento tienen valores de $x$ mayores a $0.5$ y menores a $2.5$. Es decir, ya no hay más soporte común.
+En este ejemplo podemos ver claramente que todos los sujetos del grupo control tienen valores de $x$ mayores a $0.5$ y menores a $2.5$. Es decir, ya no hay más soporte común.
 
 A estos datos le vamos a ajustar dos modelos, uno de *matching* usando `MatchIt` y otro de regresión lineal pero con un pequeño truquito dado que sabemos la forma funcional. Lo que vamos a ajustar es el siguiente modelo:
 
@@ -1063,7 +1062,7 @@ modelsummary(list("Regresión"= reg_wo_common_support,
                     font_weight = "bold")
 ```
 
-Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de doporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, $1.022$. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es $0.02$, es decir, un efecto casi nulo. 
+Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de soporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, $1.022$. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es $0.02$, es decir, un efecto casi nulo. 
 
 Volvamos a ver las cosas gráficamente a ver si esto nos echa un poco de luz sobre lo que está ocurriendo. Primero veamos la regresión lineal ajustada:
 

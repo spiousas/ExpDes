@@ -778,6 +778,8 @@ empleados_tbl <- tibble(Grupo = c(rep("tratamiento", 100), rep("control", 100)),
 
 set.seed(12)
 empleados_tbl |> 
+  mutate(Salario = round(Salario, 2),
+         Edad = round(Edad, 2)) |>
   sample_n(6) |> 
   gt()
 ```
@@ -806,7 +808,8 @@ empleados_tbl |> ggplot(aes(x = Edad,
 Ahora, qué pasa si queremos emparejar a un empleado del grupo tratamiento (el que tiene el ID $I_{emp} = 2$) con uno del grupo control. Si usamos la distancia euclidiana, vamos a calcular la distancia entre cada empleado del grupo tratamiento y todos los del grupo control, y luego elegimos el más cercano.
 
 ```{r}
-#| fig-cap: "DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento."
+#| fig-cap: "Edad y salario de los empleados. En oscuro el punto al que le queremos buscar el más cercano."
+#| warning: false
 I_emp <- 2 # Al que le queremos encontrar la distancia más cercana
 
 empleados_tbl |> ggplot(aes(x = Edad,
@@ -823,7 +826,8 @@ empleados_tbl |> ggplot(aes(x = Edad,
 ```
 
 ```{r}
-#| fig-cap: "DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento."
+#| fig-cap: "Edad y salario de los empleados. En oscuro el punto al que le queremos buscar el más cercano y sus candidatos."
+#| warning: false
 # Calculamos las distancias
 matriz_varianzas <- matrix(c(var(empleados_tbl$Edad), 0, 0, var(empleados_tbl$Salario)),
                            ncol = 2)
@@ -859,7 +863,9 @@ empleados_tbl |> ggplot(aes(x = Edad,
   theme(legend.position = "top")
 ```
 
-¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul?
+¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul? Bueno, si calculamos la distancia euclídea efectivamente el punto más cercano es el rojo, pero si lo hacemos utilizando la distancia de Mahalanobis, el más cercano es el azul. ¿Por qué? Bueno, en este caso, la distancia de Mahalanobis considera que el punto azul está más cerca porque tiene en cuenta que la edad y el salario están correlacionados. Es decir son más "parecidas" dos personas con una relación entre edad y salario similar.
+
+Dicho esto, vuelvo sobre la idea de que siempre conviene utilizar la distancia de Mahalanobis para hacer *matching* porque es la que mejor refleja las relaciones entre las covariables. Además, en el caso de que no tengamon correlación entre las covariables, la distancia de Mahalanobis se reduce a la distancia euclídea.
 
 ## *Matching* vs. regresión[^fuente] {#sec-matching_vs_reg}
 

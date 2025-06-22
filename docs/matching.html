@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Diseños experimentales y cuasiexperimentales - 6&nbsp; Subclasificación y matching</title>
+<title>6&nbsp; Subclasificación y matching – Diseños experimentales y cuasiexperimentales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,11 +17,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -112,21 +83,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sín resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -134,11 +141,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matching.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -146,13 +158,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -160,66 +172,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./matching.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></a>
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></a>
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></a>
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">Referencias</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
   </div>
 </li>
     </ul>
@@ -228,32 +251,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#subclasificación" id="toc-subclasificación" class="nav-link active" data-scroll-target="#subclasificación"><span class="toc-section-number">6.1</span>  Subclasificación</a>
+  <li><a href="#subclasificación" id="toc-subclasificación" class="nav-link active" data-scroll-target="#subclasificación"><span class="header-section-number">6.1</span> Subclasificación</a>
   <ul class="collapse">
-  <li><a href="#por-qué-subclasificar-motivación-y-objetivo" id="toc-por-qué-subclasificar-motivación-y-objetivo" class="nav-link" data-scroll-target="#por-qué-subclasificar-motivación-y-objetivo"><span class="toc-section-number">6.1.1</span>  ¿Por qué subclasificar? Motivación y objetivo</a></li>
-  <li><a href="#independencia-vs.-independencia-condicional" id="toc-independencia-vs.-independencia-condicional" class="nav-link" data-scroll-target="#independencia-vs.-independencia-condicional"><span class="toc-section-number">6.1.2</span>  Independencia vs.&nbsp;independencia condicional</a></li>
-  <li><a href="#el-estimador-de-subclasificación-un-ejemplo-con-descuento" id="toc-el-estimador-de-subclasificación-un-ejemplo-con-descuento" class="nav-link" data-scroll-target="#el-estimador-de-subclasificación-un-ejemplo-con-descuento"><span class="toc-section-number">6.1.3</span>  El estimador de subclasificación: Un ejemplo con descuento</a></li>
+  <li><a href="#por-qué-subclasificar-motivación-y-objetivo" id="toc-por-qué-subclasificar-motivación-y-objetivo" class="nav-link" data-scroll-target="#por-qué-subclasificar-motivación-y-objetivo"><span class="header-section-number">6.1.1</span> ¿Por qué subclasificar? Motivación y objetivo</a></li>
+  <li><a href="#independencia-vs.-independencia-condicional" id="toc-independencia-vs.-independencia-condicional" class="nav-link" data-scroll-target="#independencia-vs.-independencia-condicional"><span class="header-section-number">6.1.2</span> Independencia vs.&nbsp;independencia condicional</a></li>
+  <li><a href="#el-estimador-de-subclasificación-un-ejemplo-con-descuento" id="toc-el-estimador-de-subclasificación-un-ejemplo-con-descuento" class="nav-link" data-scroll-target="#el-estimador-de-subclasificación-un-ejemplo-con-descuento"><span class="header-section-number">6.1.3</span> El estimador de subclasificación: Un ejemplo con descuento</a></li>
   </ul></li>
-  <li><a href="#matching" id="toc-matching" class="nav-link" data-scroll-target="#matching"><span class="toc-section-number">6.2</span>  <em>Matching</em></a>
+  <li><a href="#matching" id="toc-matching" class="nav-link" data-scroll-target="#matching"><span class="header-section-number">6.2</span> <em>Matching</em></a>
   <ul class="collapse">
-  <li><a href="#exact-matching" id="toc-exact-matching" class="nav-link" data-scroll-target="#exact-matching"><span class="toc-section-number">6.2.1</span>  <em>Exact Matching</em></a></li>
-  <li><a href="#approximate-matching" id="toc-approximate-matching" class="nav-link" data-scroll-target="#approximate-matching"><span class="toc-section-number">6.2.2</span>  <em>Approximate Matching</em></a></li>
-  <li><a href="#la-quesoporte-común" id="toc-la-quesoporte-común" class="nav-link" data-scroll-target="#la-quesoporte-común"><span class="toc-section-number">6.2.3</span>  La queso(porte común)</a></li>
-  <li><a href="#euclideana-vs.-mahalanobis-la-batalla-final" id="toc-euclideana-vs.-mahalanobis-la-batalla-final" class="nav-link" data-scroll-target="#euclideana-vs.-mahalanobis-la-batalla-final"><span class="toc-section-number">6.2.4</span>  Euclideana vs.&nbsp;Mahalanobis, la batalla final</a></li>
+  <li><a href="#exact-matching" id="toc-exact-matching" class="nav-link" data-scroll-target="#exact-matching"><span class="header-section-number">6.2.1</span> <em>Exact Matching</em></a></li>
+  <li><a href="#approximate-matching" id="toc-approximate-matching" class="nav-link" data-scroll-target="#approximate-matching"><span class="header-section-number">6.2.2</span> <em>Approximate Matching</em></a></li>
+  <li><a href="#la-quesoporte-común" id="toc-la-quesoporte-común" class="nav-link" data-scroll-target="#la-quesoporte-común"><span class="header-section-number">6.2.3</span> La queso(porte común)</a></li>
+  <li><a href="#euclideana-vs.-mahalanobis-la-batalla-final" id="toc-euclideana-vs.-mahalanobis-la-batalla-final" class="nav-link" data-scroll-target="#euclideana-vs.-mahalanobis-la-batalla-final"><span class="header-section-number">6.2.4</span> Euclideana vs.&nbsp;Mahalanobis, la batalla final</a></li>
   </ul></li>
-  <li><a href="#sec-matching_vs_reg" id="toc-sec-matching_vs_reg" class="nav-link" data-scroll-target="#sec-matching_vs_reg"><span class="toc-section-number">6.3</span>  <em>Matching</em> vs.&nbsp;regresión</a></li>
+  <li><a href="#sec-matching_vs_reg" id="toc-sec-matching_vs_reg" class="nav-link" data-scroll-target="#sec-matching_vs_reg"><span class="header-section-number">6.3</span> <em>Matching</em> vs.&nbsp;regresión</a></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-matching" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></h1>
+<h1 class="title"><span id="sec-matching" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></h1>
 </div>
 
 
@@ -261,15 +285,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
+
 </header>
 
-<div class="cell">
 
-</div>
 <section id="subclasificación" class="level2 page-columns page-full" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="subclasificación"><span class="header-section-number">6.1</span> Subclasificación</h2>
 <section id="por-qué-subclasificar-motivación-y-objetivo" class="level3" data-number="6.1.1">
@@ -285,8 +309,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 D \perp (Y_0,Y_1)
 \]</span></p>
 <p>Es decir, la decisión de asignar a tratamiento o no (D) es independiente de los potential outcomes, y por lo tanto la diferencia de medias entre tratados y controles ofrece una estimación válida del ATE.</p>
-<div class="page-columns page-full"><p>Sin embargo, en muchos cuasiexperimentos la “aleatorización” sólo ocurre <strong>condicional</strong> a alguna característica observable X. Esto nos lleva a la <strong>asunción de independencia condicional</strong> (CIA<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>), que podemos escribir como:</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Del inglés <em>Conditional Independence Assumption</em>.</p></li></div></div>
-<p><span class="math display">\[
+<p>Sin embargo, en muchos cuasiexperimentos la “aleatorización” sólo ocurre <strong>condicional</strong> a alguna característica observable X. Esto nos lleva a la <strong>asunción de independencia condicional</strong> (CIA<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>), que podemos escribir como:</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Del inglés <em>Conditional Independence Assumption</em>.</p></div></div><p><span class="math display">\[
 D \perp (Y_0,Y_1) | X
 \]</span></p>
 <p>O sea, <strong>una vez que fijamos X</strong>, la asignación al tratamiento se comporta como si fuera aleatoria.</p>
@@ -297,7 +321,7 @@ D \perp (Y_0,Y_1) | X
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="384"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación entre D e Y teniendo a A como confusor.</figcaption><p></p>
+<figcaption>DAG que representa la relación entre D e Y teniendo a A como confusor.</figcaption>
 </figure>
 </div>
 </div>
@@ -310,7 +334,7 @@ D \perp (Y_0,Y_1) | X
 <p>Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuento que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo “¿Y si les ofrecemos más descuentos a la región que menos compra?”. Los clientes que menos compran son los del oeste(compra promedio $<span class="math inline">\(2000\)</span>), y por eso tienen una <span class="math inline">\(p=0.8\)</span> de recibir el descuento. Los del norte (compra promedio $<span class="math inline">\(3500\)</span>) tienen una <span class="math inline">\(p=0.2\)</span> y los del este (compra promedio $<span class="math inline">\(3000\)</span>) una <span class="math inline">\(p=0.5\)</span>. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene <span class="math inline">\(220\)</span> clientes, el norte <span class="math inline">\(500\)</span> y el este sólo <span class="math inline">\(130\)</span>.</p>
 <p>Como todas las simulaciones que hicimos a lo largo del libro (si es que a esto se le puede llamar libro) conocemos el tamaño del efecto que queremos estimar y tiene como valor medio $<span class="math inline">\(300\)</span>. Otra cosa a la que vamos a poder ecceder es a ambos <em>potential outcomes</em>, es decir, tanto al observado como al contrafáctico (si es que a esto se le puede llamar contrafáctico). Estos son lujos que nos podemos dar (si es que a esto se le puede llamar un lujo). Veamos <span class="math inline">\(5\)</span> filas al azar de los datos simulados.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de los datos ####</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1989</span>)</span>
@@ -354,7 +378,6 @@ D \perp (Y_0,Y_1) | X
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="lvvgstlgyk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#lvvgstlgyk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -804,74 +827,83 @@ D \perp (Y_0,Y_1) | X
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Datos de clientes con descuento (5 filas al azar)</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="customer_id">customer_id</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="region">region</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="treatment_effect">treatment_effect</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="y0">y0</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="y1">y1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="d">d</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="y">y</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="tratamiento">tratamiento</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="customer_id" class="gt_row gt_right">241</td>
-<td headers="region" class="gt_row gt_left">Oeste</td>
-<td headers="treatment_effect" class="gt_row gt_right">338.1579</td>
-<td headers="y0" class="gt_row gt_right">1841.329</td>
-<td headers="y1" class="gt_row gt_right">2179.487</td>
-<td headers="d" class="gt_row gt_right">1</td>
-<td headers="y" class="gt_row gt_right">2179.487</td>
-<td headers="tratamiento" class="gt_row gt_left">Tratamiento</td></tr>
-    <tr><td headers="customer_id" class="gt_row gt_right">585</td>
-<td headers="region" class="gt_row gt_left">Norte</td>
-<td headers="treatment_effect" class="gt_row gt_right">113.7443</td>
-<td headers="y0" class="gt_row gt_right">3323.805</td>
-<td headers="y1" class="gt_row gt_right">3437.550</td>
-<td headers="d" class="gt_row gt_right">0</td>
-<td headers="y" class="gt_row gt_right">3323.805</td>
-<td headers="tratamiento" class="gt_row gt_left">Control</td></tr>
-    <tr><td headers="customer_id" class="gt_row gt_right">845</td>
-<td headers="region" class="gt_row gt_left">Norte</td>
-<td headers="treatment_effect" class="gt_row gt_right">599.7978</td>
-<td headers="y0" class="gt_row gt_right">3735.531</td>
-<td headers="y1" class="gt_row gt_right">4335.329</td>
-<td headers="d" class="gt_row gt_right">0</td>
-<td headers="y" class="gt_row gt_right">3735.531</td>
-<td headers="tratamiento" class="gt_row gt_left">Control</td></tr>
-    <tr><td headers="customer_id" class="gt_row gt_right">347</td>
-<td headers="region" class="gt_row gt_left">Oeste</td>
-<td headers="treatment_effect" class="gt_row gt_right">468.4059</td>
-<td headers="y0" class="gt_row gt_right">2004.665</td>
-<td headers="y1" class="gt_row gt_right">2473.071</td>
-<td headers="d" class="gt_row gt_right">0</td>
-<td headers="y" class="gt_row gt_right">2004.665</td>
-<td headers="tratamiento" class="gt_row gt_left">Control</td></tr>
-    <tr><td headers="customer_id" class="gt_row gt_right">732</td>
-<td headers="region" class="gt_row gt_left">Norte</td>
-<td headers="treatment_effect" class="gt_row gt_right">371.6284</td>
-<td headers="y0" class="gt_row gt_right">3544.635</td>
-<td headers="y1" class="gt_row gt_right">3916.264</td>
-<td headers="d" class="gt_row gt_right">0</td>
-<td headers="y" class="gt_row gt_right">3544.635</td>
-<td headers="tratamiento" class="gt_row gt_left">Control</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Datos de clientes con descuento (5 filas al azar)</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="customer_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">customer_id</th>
+<th id="region" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">region</th>
+<th id="treatment_effect" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">treatment_effect</th>
+<th id="y0" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y0</th>
+<th id="y1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y1</th>
+<th id="d" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">d</th>
+<th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
+<th id="tratamiento" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">tratamiento</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="customer_id">241</td>
+<td class="gt_row gt_left" headers="region">Oeste</td>
+<td class="gt_row gt_right" headers="treatment_effect">338.1579</td>
+<td class="gt_row gt_right" headers="y0">1841.329</td>
+<td class="gt_row gt_right" headers="y1">2179.487</td>
+<td class="gt_row gt_right" headers="d">1</td>
+<td class="gt_row gt_right" headers="y">2179.487</td>
+<td class="gt_row gt_left" headers="tratamiento">Tratamiento</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="customer_id">585</td>
+<td class="gt_row gt_left" headers="region">Norte</td>
+<td class="gt_row gt_right" headers="treatment_effect">113.7443</td>
+<td class="gt_row gt_right" headers="y0">3323.805</td>
+<td class="gt_row gt_right" headers="y1">3437.550</td>
+<td class="gt_row gt_right" headers="d">0</td>
+<td class="gt_row gt_right" headers="y">3323.805</td>
+<td class="gt_row gt_left" headers="tratamiento">Control</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="customer_id">845</td>
+<td class="gt_row gt_left" headers="region">Norte</td>
+<td class="gt_row gt_right" headers="treatment_effect">599.7978</td>
+<td class="gt_row gt_right" headers="y0">3735.531</td>
+<td class="gt_row gt_right" headers="y1">4335.329</td>
+<td class="gt_row gt_right" headers="d">0</td>
+<td class="gt_row gt_right" headers="y">3735.531</td>
+<td class="gt_row gt_left" headers="tratamiento">Control</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="customer_id">347</td>
+<td class="gt_row gt_left" headers="region">Oeste</td>
+<td class="gt_row gt_right" headers="treatment_effect">468.4059</td>
+<td class="gt_row gt_right" headers="y0">2004.665</td>
+<td class="gt_row gt_right" headers="y1">2473.071</td>
+<td class="gt_row gt_right" headers="d">0</td>
+<td class="gt_row gt_right" headers="y">2004.665</td>
+<td class="gt_row gt_left" headers="tratamiento">Control</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="customer_id">732</td>
+<td class="gt_row gt_left" headers="region">Norte</td>
+<td class="gt_row gt_right" headers="treatment_effect">371.6284</td>
+<td class="gt_row gt_right" headers="y0">3544.635</td>
+<td class="gt_row gt_right" headers="y1">3916.264</td>
+<td class="gt_row gt_right" headers="d">0</td>
+<td class="gt_row gt_right" headers="y">3544.635</td>
+<td class="gt_row gt_left" headers="tratamiento">Control</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Lo primero que uno pensaría en estos casos (aunque cualquier lector o lectora de este libro podría intuir por qué es incorrecto) es en tomar los sujetos del grupo tratamiento y los del control y calcular la diferencia simple entre medias (<strong>SDO</strong>). Veamos que pinta tiene eso gráficamente y después calculemoslo.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tratamiento, </span>
@@ -888,7 +920,11 @@ D \perp (Y_0,Y_1) | X
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No summary function supplied, defaulting to `mean_se()`</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>¿Pero no era que el tratamiento tenía un efecto conocido de $<span class="math inline">\(300\)</span>? A ver, tomemos un respiro y calculemos el <strong>SDO</strong>, recordemos cómo calcularlo:</p>
@@ -900,7 +936,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <p>Si lo calculamos nos da efectivamente $-334. Es decir, no sólo no vale $<span class="math inline">\(300\)</span> sino que su valor es negativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones <strong>NO</strong> son aleatorias, no podemos asegurar que el <strong>SDO</strong> sea un buen estimador del <strong>ATE</strong>. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso al asignación al grupo tratamiento de alguno de los <em>outcome</em> potenciales? La respuesta es un rotundo <strong>SÍ</strong>, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.</p>
 <p>Veamos ahora las ventas para grupo tratamiento y control pero por región.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tratamiento, </span>
@@ -920,13 +956,17 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No summary function supplied, defaulting to `mean_se()`</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Apa, la cosa ahora es distinta. Tal como lo esperábamos, en cada grupo el efecto del tratamiento es un aumento en las ventas. Lo que ocurre es una combinación de sesgo de selección con el tamaño de las regiones. La región del norte, que es la más grande, tiene más sujetos asignados a control, por lo tanto, los controles tienen una sobrerepresentación de clientes que tienden a comprar más. Por el contrario, la región del oeste, que es la más chica, tiene más sujetos asignados al grupo tratamiento, lo cual genera una sobrerepresentación de ratone… clientes que gastan menos en el grupo tratamiento.</p>
 <p>¿Se les ocurre alguna solución elegante 🎩? Claro, podemos calcular el efecto del tratamiento dentro de cada grupo (una especie de <strong>SDO</strong> local) y después vemos qué hacemos. Empecemos por eso.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SDO_este <span class="ot">&lt;-</span> <span class="fu">mean</span>(customers<span class="sc">$</span>y[customers<span class="sc">$</span>region<span class="sc">==</span><span class="st">"Este"</span> <span class="sc">&amp;</span> customers<span class="sc">$</span>d<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(customers<span class="sc">$</span>y[customers<span class="sc">$</span>region<span class="sc">==</span><span class="st">"Este"</span> <span class="sc">&amp;</span> customers<span class="sc">$</span>d<span class="sc">==</span><span class="dv">0</span>])</span>
@@ -942,7 +982,6 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="egyvmitcct" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#egyvmitcct table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1392,24 +1431,30 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Región">Región</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SDO">SDO</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Región" class="gt_row gt_left">Este</td>
-<td headers="SDO" class="gt_row gt_right">320.3419</td></tr>
-    <tr><td headers="Región" class="gt_row gt_left">Norte</td>
-<td headers="SDO" class="gt_row gt_right">303.3541</td></tr>
-    <tr><td headers="Región" class="gt_row gt_left">Oeste</td>
-<td headers="SDO" class="gt_row gt_right">327.8227</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Región" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Región</th>
+<th id="SDO" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SDO</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Región">Este</td>
+<td class="gt_row gt_right" headers="SDO">320.3419</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Región">Norte</td>
+<td class="gt_row gt_right" headers="SDO">303.3541</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Región">Oeste</td>
+<td class="gt_row gt_right" headers="SDO">327.8227</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1422,7 +1467,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <p>En nuestro caso el estimador vale $312. Bastante bien, ¿no?</p>
 <p>Pero ¿por qué pasó esto? Veamos algunas figuritas que nos ayuden a entender un poco. Para esto vamos a echar mano a la ventaja de haber generado los datos y vamos a graficar tanto el observable (<span class="math inline">\(Y_0\)</span> si son grupo control o <span class="math inline">\(Y_1\)</span> si son grupo tratamiento) como el contrafáctico (<span class="math inline">\(Y_1\)</span> si son grupo control o <span class="math inline">\(Y_0\)</span> si son grupo tratamiento).</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots de independencia ####</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Armo un tibble para plotear</span></span>
@@ -1434,7 +1479,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Independencia</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(customers_4_plot) <span class="sc">+</span></span>
@@ -1449,12 +1494,16 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En esta figura lo que estamos viendo es que la asignación a los grupos depende fuertemente del <em>outcome</em> ya que podemos ver que los del grupo control tienden a tener <em>outcomes</em> más altos tanto observado como contrafáctico. O sea, no se cumple la independencia (<span class="math inline">\(D \perp (Y_0,Y_1)\)</span>). Ke sad bro 🙍. Ahora, ¿Qué pasa si vemos esto mismo pero para cada región?</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Independencia condicional a la región</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(customers_4_plot) <span class="sc">+</span></span>
@@ -1471,7 +1520,11 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><em>Et voilá</em>, acá la cosa cambia. Que significa esto, que si bien el problema no tiene independencia, sí podemos obtener la independencia condicional controlando por región (<span class="math inline">\(D \perp (Y_0,Y_1) | Grupo\)</span>).</p>
@@ -1515,7 +1568,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <p>¿Se puede calcular el <strong>ATE</strong>? Vamos a ver brevemente que sí, pero también los problemas que ello conlleva.</p>
 <p>Miremos un ejemplo y veamos cómo se calculan estas cosas. Vamos a usar los datos de un programa de capacitación que se realizó en una empresa ficticia. En este caso, lo que queremos no es otra cosa que estimar el efecto de una capacitación laboral en el ingreso de los empleados. Para eso, tenemos la edad del empleado, si participó o no en el programa de capacitación y su salario. Veamos unos datos de ejemplo.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>trainees_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/matheusfacure/python-causality-handbook/raw/master/causal-inference-for-the-brave-and-true/data/trainees.csv"</span>,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
@@ -1535,7 +1588,6 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="yyjzorrbsx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#yyjzorrbsx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1985,50 +2037,59 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Datos de participantes en un programa de capacitación (5 filas al azar)</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Unidad">Unidad</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Capacitación">Capacitación</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Edad">Edad</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Salario">Salario</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Unidad" class="gt_row gt_right">14</td>
-<td headers="Capacitación" class="gt_row gt_center">No</td>
-<td headers="Edad" class="gt_row gt_right">24</td>
-<td headers="Salario" class="gt_row gt_right">19700</td></tr>
-    <tr><td headers="Unidad" class="gt_row gt_right">38</td>
-<td headers="Capacitación" class="gt_row gt_center">Sí</td>
-<td headers="Edad" class="gt_row gt_right">35</td>
-<td headers="Salario" class="gt_row gt_right">30200</td></tr>
-    <tr><td headers="Unidad" class="gt_row gt_right">7</td>
-<td headers="Capacitación" class="gt_row gt_center">No</td>
-<td headers="Edad" class="gt_row gt_right">33</td>
-<td headers="Salario" class="gt_row gt_right">21900</td></tr>
-    <tr><td headers="Unidad" class="gt_row gt_right">25</td>
-<td headers="Capacitación" class="gt_row gt_center">Sí</td>
-<td headers="Edad" class="gt_row gt_right">48</td>
-<td headers="Salario" class="gt_row gt_right">29800</td></tr>
-    <tr><td headers="Unidad" class="gt_row gt_right">39</td>
-<td headers="Capacitación" class="gt_row gt_center">Sí</td>
-<td headers="Edad" class="gt_row gt_right">32</td>
-<td headers="Salario" class="gt_row gt_right">17800</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Datos de participantes en un programa de capacitación (5 filas al azar)</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Unidad" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Unidad</th>
+<th id="Capacitación" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Capacitación</th>
+<th id="Edad" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Edad</th>
+<th id="Salario" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Salario</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Unidad">14</td>
+<td class="gt_row gt_center" headers="Capacitación">No</td>
+<td class="gt_row gt_right" headers="Edad">24</td>
+<td class="gt_row gt_right" headers="Salario">19700</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Unidad">38</td>
+<td class="gt_row gt_center" headers="Capacitación">Sí</td>
+<td class="gt_row gt_right" headers="Edad">35</td>
+<td class="gt_row gt_right" headers="Salario">30200</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Unidad">7</td>
+<td class="gt_row gt_center" headers="Capacitación">No</td>
+<td class="gt_row gt_right" headers="Edad">33</td>
+<td class="gt_row gt_right" headers="Salario">21900</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Unidad">25</td>
+<td class="gt_row gt_center" headers="Capacitación">Sí</td>
+<td class="gt_row gt_right" headers="Edad">48</td>
+<td class="gt_row gt_right" headers="Salario">29800</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Unidad">39</td>
+<td class="gt_row gt_center" headers="Capacitación">Sí</td>
+<td class="gt_row gt_right" headers="Edad">32</td>
+<td class="gt_row gt_right" headers="Salario">17800</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Si uno no hubiera leído nada de este libro, se sentiría tentado a calcular la diferencia entre las medias entre los que participaron y los que no. Pero, como ya sabemos, eso no es correcto porque <strong>la asignación al tratamiento no es aleatoria</strong>. De hecho, podemos calcular ese efecto y da $-4297. Pero, ¿qué pasa si vemos la relación entre la edad, el salario y la capacitación? ¿Podemos ver si hay algún confusor?</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vemos las distribuciones marginales</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>trainees_df <span class="sc">%&gt;%</span></span>
@@ -2073,13 +2134,17 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `is_ggproto()` instead.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Al parecer, la gente de más edad (y que naturalemte tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran <strong>red flag</strong> metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos <em>exact matching</em> para emparejar a los participantes tratados con controles que tengan la misma edad y estimemos el <strong>ATT</strong>.</p>
-<div class="page-columns page-full"><p>Escribamos una función a mano para calcular el <strong>ATT</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Básicamente es una función que busca los puntos iguales en la covariable, calcula el promedio, los efectos individuales y el promedio final. Es decir, lo que aparece en la <a href="#eq-att_estim">Ecuación&nbsp;<span>6.1</span></a>.</p></li></div></div>
-<div class="cell">
-<details>
+<p>Escribamos una función a mano para calcular el <strong>ATT</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Básicamente es una función que busca los puntos iguales en la covariable, calcula el promedio, los efectos individuales y el promedio final. Es decir, lo que aparece en la <a href="#eq-att_estim" class="quarto-xref">Ecuación&nbsp;<span>6.1</span></a>.</p></div></div><div class="cell">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para estimar el ATT con matching ####</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extact Matching Estimator of the ATT</span></span>
@@ -2135,7 +2200,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">covariates =</span> <span class="st">"Edad"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Método <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"SDO"</span>, <span class="st">"Exact Matching"</span>),</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       Estimación <span class="ot">=</span> <span class="fu">c</span>(</span>
@@ -2148,7 +2213,6 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="fkvchnkmyt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fkvchnkmyt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2598,33 +2662,36 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Estimación del efecto de la capacitación</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Método">Método</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Estimación">Estimación</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Método" class="gt_row gt_left">SDO</td>
-<td headers="Estimación" class="gt_row gt_right">-4297</td></tr>
-    <tr><td headers="Método" class="gt_row gt_left">Exact Matching</td>
-<td headers="Estimación" class="gt_row gt_right">2450</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Estimación del efecto de la capacitación</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Método" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Método</th>
+<th id="Estimación" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estimación</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Método">SDO</td>
+<td class="gt_row gt_right" headers="Estimación">-4297</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Método">Exact Matching</td>
+<td class="gt_row gt_right" headers="Estimación">2450</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Vemos que utilizar sólo la diferencia de las medias no sólo era una estimación sesgada sino que sugería una dirección del efecto contraria a la obtenida con <strong>Exact Matching</strong>.</p>
-<div class="page-columns page-full"><p>Vamos a aventurarnos a calcular el <strong>ATE</strong>. Para esto vamos a buscar controles matcheados para cada unidad tratada, y unidades tratadas matcheadas para cada control. Es decir, vamos a hacer un <em>exact matching</em> en ambos sentidos. Luego, vamos a calcular el efecto individual de cada unidad y vamos a calcular el promedio<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Primero definimos la función para calcular el <strong>ATE</strong>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Ni me gasto en poner ecuaciones porque nos vamos a confundir más de lo que ya estamos pero si quieren la pueden ver en <a href="https://mixtape.scunning.com/05-matching_and_subclassification#exact-matching">el libro de Cunningham</a>.</p></li></div></div>
-<div class="cell">
-<details>
+<p>Vamos a aventurarnos a calcular el <strong>ATE</strong>. Para esto vamos a buscar controles matcheados para cada unidad tratada, y unidades tratadas matcheadas para cada control. Es decir, vamos a hacer un <em>exact matching</em> en ambos sentidos. Luego, vamos a calcular el efecto individual de cada unidad y vamos a calcular el promedio<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Primero definimos la función para calcular el <strong>ATE</strong>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Ni me gasto en poner ecuaciones porque nos vamos a confundir más de lo que ya estamos pero si quieren la pueden ver en <a href="https://mixtape.scunning.com/05-matching_and_subclassification#exact-matching">el libro de Cunningham</a>.</p></div></div><div class="cell">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para estimar el ATE con matching ####</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extact Matching Estimator of the ATE</span></span>
@@ -2689,7 +2756,7 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">covariates =</span> <span class="st">"Edad"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Método <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"SDO"</span>, <span class="st">"Exact Matching ATT"</span>, <span class="st">"Exact Matching ATE"</span>),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       Estimación <span class="ot">=</span> <span class="fu">c</span>(</span>
@@ -2703,7 +2770,6 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="ngbkovndbt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ngbkovndbt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -3153,28 +3219,33 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Estimación del efecto de la capacitación</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Método">Método</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Estimación">Estimación</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Método" class="gt_row gt_left">SDO</td>
-<td headers="Estimación" class="gt_row gt_right">-4297</td></tr>
-    <tr><td headers="Método" class="gt_row gt_left">Exact Matching ATT</td>
-<td headers="Estimación" class="gt_row gt_right">2450</td></tr>
-    <tr><td headers="Método" class="gt_row gt_left">Exact Matching ATE</td>
-<td headers="Estimación" class="gt_row gt_right">NA</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Estimación del efecto de la capacitación</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Método" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Método</th>
+<th id="Estimación" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estimación</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Método">SDO</td>
+<td class="gt_row gt_right" headers="Estimación">-4297</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Método">Exact Matching ATT</td>
+<td class="gt_row gt_right" headers="Estimación">2450</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Método">Exact Matching ATE</td>
+<td class="gt_row gt_right" headers="Estimación">NA</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -3184,14 +3255,14 @@ SDO = \frac{1}{N_t} \sum_{i=1}^n (y_i | d_i=1) - \frac{1}{N_t} \sum_{i=1}^n (y_i
 </section>
 <section id="approximate-matching" class="level3 page-columns page-full" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="approximate-matching"><span class="header-section-number">6.2.2</span> <em>Approximate Matching</em></h3>
-<div class="page-columns page-full"><p>Como dijimos en la sección anterior, cuando no encontramos controles que coincidan exactamente en todas las covariables <span class="math inline">\(X\)</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, recurrimos al <em>approximate matching</em>. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de <span class="math inline">\(X\)</span> sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Cuando hablamos de <span class="math inline">\(X\)</span> nos referimos a un vector de covariables por las que queremos controlar, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector <span class="math inline">\(X\)</span> podría ser algo así como: <span class="math inline">\(X = (región, edad)\)</span>.</p></li></div></div>
-<div class="page-columns page-full"><p>Pero, ¿qué significa “parecida”? Si tenemos una sola covariable será la más cercana en número, pero como discutimos, el espacio de covariables puede ser (y normalmente es) de más de una dimensión. En este caso, para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Por ejemplo, si tenemos que que las covariables son edad y salario, la distancia euclidiana entre dos puntos <span class="math inline">\((edad_1, salario_1)\)</span> y <span class="math inline">\((edad_2, salario_2)\)</span> sería:</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Básicamente el módulo del vector que une los dos puntos en el espacio de covariables (ahre).</p></li></div></div>
+<p>Como dijimos en la sección anterior, cuando no encontramos controles que coincidan exactamente en todas las covariables <span class="math inline">\(X\)</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, recurrimos al <em>approximate matching</em>. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de <span class="math inline">\(X\)</span> sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Cuando hablamos de <span class="math inline">\(X\)</span> nos referimos a un vector de covariables por las que queremos controlar, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector <span class="math inline">\(X\)</span> podría ser algo así como: <span class="math inline">\(X = (región, edad)\)</span>.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;Básicamente el módulo del vector que une los dos puntos en el espacio de covariables (ahre).</p></div></div><p>Pero, ¿qué significa “parecida”? Si tenemos una sola covariable será la más cercana en número, pero como discutimos, el espacio de covariables puede ser (y normalmente es) de más de una dimensión. En este caso, para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Por ejemplo, si tenemos que que las covariables son edad y salario, la distancia euclidiana entre dos puntos <span class="math inline">\((edad_1, salario_1)\)</span> y <span class="math inline">\((edad_2, salario_2)\)</span> sería:</p>
 <p><span class="math display">\[
 distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(edad_1 - edad_2)^2 + (salario_1 - salario_2)^2}
 \]</span></p>
 <p>¿Pero esto es siempre así? Veamos un ejemplo y reflexionemos un poco.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La mitad son asignados al grupo tratamiento y la mitad al grupo control</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
@@ -3210,12 +3281,16 @@ distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(ed
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Imaginen que queremos encontrar al empleado más cercano al empleado verde lleno (el empleado <span class="math inline">\(18\)</span>). Los candidatos serían los dos naranjas (los empleados <span class="math inline">\(9\)</span> el de la izquierda y <span class="math inline">\(10\)</span> el de la derecha) ¿no? Y estamos de acuerdo que el que está hacia la derecha es el más cercano (o sea el empleado <span class="math inline">\(10\)</span>), ¿no? Bueno, calculemos las distancias y veamos qué pasa.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defino una función para calcular la distancia euclidiana entre dos puntos en el espacio de covariables de dos dimensiones. </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>distancia_euclidea <span class="ot">&lt;-</span> <span class="cf">function</span>(x_i, x_j) {</span>
@@ -3237,7 +3312,6 @@ distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(ed
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="txugjhohgn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txugjhohgn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -3687,33 +3761,36 @@ distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(ed
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Distancias euclidianas entre el empleado 18 y los empleados 9 y 10</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Empleado">Empleado</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Distancia">Distancia</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Empleado" class="gt_row gt_right">9</td>
-<td headers="Distancia" class="gt_row gt_center">225.7699</td></tr>
-    <tr><td headers="Empleado" class="gt_row gt_right">10</td>
-<td headers="Distancia" class="gt_row gt_center">4864.155</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Distancias euclidianas entre el empleado 18 y los empleados 9 y 10</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Empleado" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Empleado</th>
+<th id="Distancia" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Distancia</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Empleado">9</td>
+<td class="gt_row gt_center" headers="Distancia">225.7699</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Empleado">10</td>
+<td class="gt_row gt_center" headers="Distancia">4864.155</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Esto dice que el más cercano es el <span class="math inline">\(9\)</span>, pero si lo miramos en el gráfico, claramente el <span class="math inline">\(10\)</span> es el más cercano. ¿Por qué pasa esto? Bueno, porque las covariables no tienen la misma escala. La edad está en un rango de <span class="math inline">\(20\)</span> a <span class="math inline">\(50\)</span> y el salario en un rango de <span class="math inline">\(10,000\)</span> a <span class="math inline">\(100,000\)</span>. Entonces, la distancia euclidiana está siendo dominada por la variable salario. Es decir, que si bien el el empleado <span class="math inline">\(10\)</span> está más cerca en general, el empleado <span class="math inline">\(9\)</span> está más cerca en términos de salario, que es una magnitud con un rango más amplio.</p>
-<div class="page-columns page-full"><p>¿Cómo resolvemos esto? Pues estandarizando las covariables<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. Veamos la misma figura pero estandarizada:</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Es decir, le restamos la media y dividimos por la desviación estándar.</p></li></div></div>
-<div class="cell">
-<details>
+<p>¿Cómo resolvemos esto? Pues estandarizando las covariables<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. Veamos la misma figura pero estandarizada:</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Es decir, le restamos la media y dividimos por la desviación estándar.</p></div></div><div class="cell">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estandarizamos las covariables</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>empleados_tbl_estandarizado <span class="ot">&lt;-</span> empleados_tbl <span class="sc">|&gt;</span> </span>
@@ -3732,12 +3809,16 @@ distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(ed
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="matching_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="matching_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Pero se ve igual. ¿<em>EMOSIDO ENGAÑADO</em>? No, la relación geométrica va a seguir siendo la misma y está perfecto que así sea, pero calculemos de nuevo las distancias y veamos qué punto es el más cercano.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>distancia_a_9_st <span class="ot">&lt;-</span> <span class="fu">distancia_euclidea</span>(empleados_tbl_estandarizado[<span class="dv">9</span>, <span class="fu">c</span>(<span class="st">"Edad_st"</span>, <span class="st">"Salario_st"</span>)],</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                        empleados_tbl_estandarizado[<span class="dv">18</span>, <span class="fu">c</span>(<span class="st">"Edad_st"</span>, <span class="st">"Salario_st"</span>)])</span>
@@ -3753,7 +3834,6 @@ distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(ed
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="pjbljhepek" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#pjbljhepek table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4203,32 +4283,35 @@ distancimatch_medicine &lt;- match.data(nearest_control)a_{euclidea} = \sqrt{(ed
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Distancias euclidianas entre el empleado 18 y los empleados 9 y 10 (estandarizado)</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Empleado">Empleado</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Distancia">Distancia</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Empleado" class="gt_row gt_right">9</td>
-<td headers="Distancia" class="gt_row gt_center">0.5162689</td></tr>
-    <tr><td headers="Empleado" class="gt_row gt_right">10</td>
-<td headers="Distancia" class="gt_row gt_center">0.5684286</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Distancias euclidianas entre el empleado 18 y los empleados 9 y 10 (estandarizado)</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Empleado" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Empleado</th>
+<th id="Distancia" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Distancia</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Empleado">9</td>
+<td class="gt_row gt_center" headers="Distancia">0.5162689</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Empleado">10</td>
+<td class="gt_row gt_center" headers="Distancia">0.5684286</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Ahora sí el más cercano es el empleado <span class="math inline">\(9\)</span>.</p>
-<div class="page-columns page-full"><p>Otra opción es la distancia de <strong>Mahalanobis</strong>, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí. Es decir, si las variables están correlacionadas, la distancia de Mahalanobis las considera más cercanas que la distancia euclidiana <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;NSi tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo <a href="https://www.youtube.com/watch?v=eutzTEGgLpE&amp;t=139s">este video</a>.</p></li></div></div>
-<p>Siempre que podamos vamos a usar la distancia de <strong>Mahalanobis</strong>, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclideana (es fácil de demostrar si tienen ganas y, claro, tiempo).</p>
+<p>Otra opción es la distancia de <strong>Mahalanobis</strong>, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí. Es decir, si las variables están correlacionadas, la distancia de Mahalanobis las considera más cercanas que la distancia euclidiana <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;NSi tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo <a href="https://www.youtube.com/watch?v=eutzTEGgLpE&amp;t=139s">este video</a>.</p></div></div><p>Siempre que podamos vamos a usar la distancia de <strong>Mahalanobis</strong>, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclideana (es fácil de demostrar si tienen ganas y, claro, tiempo).</p>
 <p>Una última aclaración, en esta distancia no es necesario estandarizar las covariables porque la distancia de Mahalanobis ya lo hace por nosotros. Entonces, si tenemos dos puntos <span class="math inline">\((edad_1, salario_1)\)</span> y <span class="math inline">\((edad_2, salario_2)\)</span>, la distancia de Mahalanobis sería:</p>
 <p><span class="math display">\[
 distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S^{-1} \cdot (edad_1 - edad_2, salario_1 - salario_2)^T}
@@ -4237,7 +4320,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <p>Dejemos un poquito las comparaciones entre métricas de distancia para más adelante y veamos cómo podemos usar estas distancias para hacer <em>matching</em>.</p>
 <p>En este caso vamos a analizar un ejemplo en el que queremos evaluar la efectividad en la recuperación de una determinada medicina. En este caso (supongamos que hicimos el <strong>DAG</strong>, identificamos los <em>backdoors</em>, etc.) queremos controlar por tres variables: Edad, Sexo y Severidad (el famoso vector <span class="math inline">\(X\)</span>). Veamos <span class="math inline">\(5\)</span> datos la azar.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>medicine_impact_recovery <span class="ot">&lt;-</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/matheusfacure/python-causality-handbook/master/causal-inference-for-the-brave-and-true/data/medicine_impact_recovery.csv"</span>,</span>
@@ -4257,7 +4340,6 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="rsauujvnjg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rsauujvnjg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4707,56 +4789,65 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Datos de un experimento sobre el impacto de una medicina en la recuperación</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sexo">Sexo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Edad">Edad</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Severidad">Severidad</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Medicina">Medicina</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Recuperación">Recuperación</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Sexo" class="gt_row gt_right">0</td>
-<td headers="Edad" class="gt_row gt_right">47.67569</td>
-<td headers="Severidad" class="gt_row gt_right">0.43410184</td>
-<td headers="Medicina" class="gt_row gt_right">0</td>
-<td headers="Recuperación" class="gt_row gt_right">37</td></tr>
-    <tr><td headers="Sexo" class="gt_row gt_right">0</td>
-<td headers="Edad" class="gt_row gt_right">19.89644</td>
-<td headers="Severidad" class="gt_row gt_right">0.24021836</td>
-<td headers="Medicina" class="gt_row gt_right">0</td>
-<td headers="Recuperación" class="gt_row gt_right">15</td></tr>
-    <tr><td headers="Sexo" class="gt_row gt_right">1</td>
-<td headers="Edad" class="gt_row gt_right">26.93100</td>
-<td headers="Severidad" class="gt_row gt_right">0.09442637</td>
-<td headers="Medicina" class="gt_row gt_right">0</td>
-<td headers="Recuperación" class="gt_row gt_right">13</td></tr>
-    <tr><td headers="Sexo" class="gt_row gt_right">1</td>
-<td headers="Edad" class="gt_row gt_right">11.63124</td>
-<td headers="Severidad" class="gt_row gt_right">0.33707949</td>
-<td headers="Medicina" class="gt_row gt_right">0</td>
-<td headers="Recuperación" class="gt_row gt_right">24</td></tr>
-    <tr><td headers="Sexo" class="gt_row gt_right">0</td>
-<td headers="Edad" class="gt_row gt_right">58.04307</td>
-<td headers="Severidad" class="gt_row gt_right">0.91946590</td>
-<td headers="Medicina" class="gt_row gt_right">1</td>
-<td headers="Recuperación" class="gt_row gt_right">45</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Datos de un experimento sobre el impacto de una medicina en la recuperación</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Sexo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sexo</th>
+<th id="Edad" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Edad</th>
+<th id="Severidad" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Severidad</th>
+<th id="Medicina" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Medicina</th>
+<th id="Recuperación" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Recuperación</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Sexo">0</td>
+<td class="gt_row gt_right" headers="Edad">47.67569</td>
+<td class="gt_row gt_right" headers="Severidad">0.43410184</td>
+<td class="gt_row gt_right" headers="Medicina">0</td>
+<td class="gt_row gt_right" headers="Recuperación">37</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Sexo">0</td>
+<td class="gt_row gt_right" headers="Edad">19.89644</td>
+<td class="gt_row gt_right" headers="Severidad">0.24021836</td>
+<td class="gt_row gt_right" headers="Medicina">0</td>
+<td class="gt_row gt_right" headers="Recuperación">15</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Sexo">1</td>
+<td class="gt_row gt_right" headers="Edad">26.93100</td>
+<td class="gt_row gt_right" headers="Severidad">0.09442637</td>
+<td class="gt_row gt_right" headers="Medicina">0</td>
+<td class="gt_row gt_right" headers="Recuperación">13</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Sexo">1</td>
+<td class="gt_row gt_right" headers="Edad">11.63124</td>
+<td class="gt_row gt_right" headers="Severidad">0.33707949</td>
+<td class="gt_row gt_right" headers="Medicina">0</td>
+<td class="gt_row gt_right" headers="Recuperación">24</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Sexo">0</td>
+<td class="gt_row gt_right" headers="Edad">58.04307</td>
+<td class="gt_row gt_right" headers="Severidad">0.91946590</td>
+<td class="gt_row gt_right" headers="Medicina">1</td>
+<td class="gt_row gt_right" headers="Recuperación">45</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Y ahora veamos cómo se distribuyen los datos en las variables Edad y Severidad.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>medicine_impact_recovery <span class="sc">|&gt;</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Edad,</span>
@@ -4772,14 +4863,14 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Como se distribuyen los datos en las variables edad y severidad.</figcaption><p></p>
+<figcaption>Como se distribuyen los datos en las variables edad y severidad.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Vemos que claramente calcular el <strong>SDO</strong> no es una buena idea porque la asignación al tratamiento no es aleatoria (igual dejemos anotado que vale 16.9). También podemos ver qué pasa con el sexo.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>medicine_impact_recovery <span class="sc">|&gt;</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sexo) <span class="sc">|&gt;</span></span>
@@ -4788,7 +4879,6 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="ioueiyneeb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ioueiyneeb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5238,31 +5328,35 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sexo">Sexo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="No_Medicina">No_Medicina</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Medicina">Medicina</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Sexo" class="gt_row gt_right">0</td>
-<td headers="No_Medicina" class="gt_row gt_right">7134</td>
-<td headers="Medicina" class="gt_row gt_right">2896</td></tr>
-    <tr><td headers="Sexo" class="gt_row gt_right">1</td>
-<td headers="No_Medicina" class="gt_row gt_right">5942</td>
-<td headers="Medicina" class="gt_row gt_right">4028</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Sexo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sexo</th>
+<th id="No_Medicina" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">No_Medicina</th>
+<th id="Medicina" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Medicina</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Sexo">0</td>
+<td class="gt_row gt_right" headers="No_Medicina">7134</td>
+<td class="gt_row gt_right" headers="Medicina">2896</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Sexo">1</td>
+<td class="gt_row gt_right" headers="No_Medicina">5942</td>
+<td class="gt_row gt_right" headers="Medicina">4028</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 <p>Tratados por sexo.</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>Y aquí vemos dos cosas. Que en sexo <span class="math inline">\(0\)</span> la mayoría son controles y en sexo <span class="math inline">\(1\)</span> no es tan así. Y que, en general hay más controles que tratados<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;Algo que va a hacer que sea más fácil encontrarle controles <em>matcheados</em> a los tratados y no viceverse.</p></li></div></div>
-<div class="page-columns page-full"><p>Vamos a estimar el <strong>ATT</strong> utilizando la función <code>matchit</code> del paquete <code>MatchIt</code><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Esta función nos permite hacer <em>matching</em> de forma sencilla y rápida. Vamos a usar la distancia de Mahalanobis para emparejar los tratados con los controles.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Para más detalles de cómo funciona el paquete <code>MatchIt</code> pueden ver la <a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/MatchIt.html">documentación oficial</a>.</p></li></div></div>
+<p>Y aquí vemos dos cosas. Que en sexo <span class="math inline">\(0\)</span> la mayoría son controles y en sexo <span class="math inline">\(1\)</span> no es tan así. Y que, en general hay más controles que tratados<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Algo que va a hacer que sea más fácil encontrarle controles <em>matcheados</em> a los tratados y no viceverse.</p></div><div id="fn9"><p><sup>9</sup>&nbsp;Para más detalles de cómo funciona el paquete <code>MatchIt</code> pueden ver la <a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/MatchIt.html">documentación oficial</a>.</p></div></div><p>Vamos a estimar el <strong>ATT</strong> utilizando la función <code>matchit</code> del paquete <code>MatchIt</code><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Esta función nos permite hacer <em>matching</em> de forma sencilla y rápida. Vamos a usar la distancia de Mahalanobis para emparejar los tratados con los controles.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>nearest_control <span class="ot">&lt;-</span> <span class="fu">matchit</span>(Medicina <span class="sc">~</span> Sexo <span class="sc">+</span> Edad <span class="sc">+</span> Severidad, </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> medicine_impact_recovery,</span>
@@ -5279,7 +5373,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <p>Vemos que de los <span class="math inline">\(20000\)</span> datos originales, los <span class="math inline">\(6924\)</span> individuos tratados fueron emparejados con <span class="math inline">\(733\)</span> controles. ¿Cómo pueden ser menos controles que tratados? Bueno, resumidamente, porque al decirle <code>replace = T</code> le estamos diciendo que puede usar el mismo control más de una vez. Es decir, que un control puede ser emparejado con más de un tratado. Esto es útil cuando tenemos pocos controles y muchos tratados, como en este caso.</p>
 <p>Ahora calculemos el tamaño del efecto:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>match_medicine <span class="ot">&lt;-</span> <span class="fu">match.data</span>(nearest_control)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -5296,7 +5390,6 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="jyloatcfjj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jyloatcfjj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5746,44 +5839,64 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a-"> </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Matching">Matching</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers=" " class="gt_row gt_left">(Intercept)</td>
-<td headers="Matching" class="gt_row gt_center">-3.831</td></tr>
-    <tr><td headers=" " class="gt_row gt_left"></td>
-<td headers="Matching" class="gt_row gt_center">(&lt;0.001)</td></tr>
-    <tr><td headers=" " class="gt_row gt_left" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">Medicina</td>
-<td headers="Matching" class="gt_row gt_center" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">-9.944</td></tr>
-    <tr><td headers=" " class="gt_row gt_left" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;"></td>
-<td headers="Matching" class="gt_row gt_center" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">(&lt;0.001)</td></tr>
-    <tr><td headers=" " class="gt_row gt_left">Sexo</td>
-<td headers="Matching" class="gt_row gt_center">12.946</td></tr>
-    <tr><td headers=" " class="gt_row gt_left"></td>
-<td headers="Matching" class="gt_row gt_center">(&lt;0.001)</td></tr>
-    <tr><td headers=" " class="gt_row gt_left">Edad</td>
-<td headers="Matching" class="gt_row gt_center">0.554</td></tr>
-    <tr><td headers=" " class="gt_row gt_left"></td>
-<td headers="Matching" class="gt_row gt_center">(&lt;0.001)</td></tr>
-    <tr><td headers=" " class="gt_row gt_left">Severidad</td>
-<td headers="Matching" class="gt_row gt_center">29.696</td></tr>
-    <tr><td headers=" " class="gt_row gt_left"></td>
-<td headers="Matching" class="gt_row gt_center">(&lt;0.001)</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Matching" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Matching</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">(Intercept)</td>
+<td class="gt_row gt_center" headers="Matching">-3.831</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Matching">(&lt;0.001)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Medicina</td>
+<td class="gt_row gt_center" headers="Matching" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">-9.944</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold"></td>
+<td class="gt_row gt_center" headers="Matching" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">(&lt;0.001)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Sexo</td>
+<td class="gt_row gt_center" headers="Matching">12.946</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Matching">(&lt;0.001)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Edad</td>
+<td class="gt_row gt_center" headers="Matching">0.554</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Matching">(&lt;0.001)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Severidad</td>
+<td class="gt_row gt_center" headers="Matching">29.696</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Matching">(&lt;0.001)</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Vemos que hay un efecto negativo de la medicación en la recuperación, algo que hubiéramos malinterpretado totalmente si hubiéramos usado el <strong>SDO</strong>. Recordemos que:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Método <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"SDO"</span>, <span class="st">"Matching"</span>),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>       Estimación <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">mean</span>(medicine_impact_recovery<span class="sc">$</span>Recuperación[medicine_impact_recovery<span class="sc">$</span>Medicina<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> </span>
@@ -5795,7 +5908,6 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="fottzlywfy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fottzlywfy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6245,26 +6357,29 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Estimación del efecto de la medicina en la recuperación</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Método">Método</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Estimación">Estimación</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Método" class="gt_row gt_left">SDO</td>
-<td headers="Estimación" class="gt_row gt_right">16.90</td></tr>
-    <tr><td headers="Método" class="gt_row gt_left">Matching</td>
-<td headers="Estimación" class="gt_row gt_right">-9.94</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Estimación del efecto de la medicina en la recuperación</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Método" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Método</th>
+<th id="Estimación" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estimación</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Método">SDO</td>
+<td class="gt_row gt_right" headers="Estimación">16.90</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Método">Matching</td>
+<td class="gt_row gt_right" headers="Estimación">-9.94</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -6280,7 +6395,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <p>En mi experiencia, entender claramente la diferencia entre estas dos distancia no es cosa sencilla y, si bien no es vital para entender <strong>matching</strong>, es una excelente excusa pensar un poco en qué significa <strong>ser parecido</strong>. Vamos al lio.</p>
 <p>Supongamos que queremos estudiar el efecto de la entrega de un bono en la satisfacción con la empresa. Para esto identificamos dos confusores y vamos a <em>matchear</em> a los sujetos del grupo tratamiento (recibieron un bono) con sus controles correspondientes (no recibieron bono). Los confusores que identificamos son la edad y el salario de los empleados. Vamos a generar una base de datos con <span class="math inline">\(200\)</span> empleados, <span class="math inline">\(100\)</span> del grupo tratamiento y <span class="math inline">\(100\)</span> del grupo control y ver algunos datos tomados al azar.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generamos los datos</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
@@ -6290,11 +6405,12 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>empleados_tbl <span class="sc">|&gt;</span> </span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">6</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Salario =</span> <span class="fu">round</span>(Salario, <span class="dv">2</span>),</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">Edad =</span> <span class="fu">round</span>(Edad, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="bhrryfljzg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bhrryfljzg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6744,44 +6860,56 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Grupo">Grupo</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Edad">Edad</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Salario">Salario</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Grupo" class="gt_row gt_left">control</td>
-<td headers="Edad" class="gt_row gt_right">37.59256</td>
-<td headers="Salario" class="gt_row gt_right">48814.57</td></tr>
-    <tr><td headers="Grupo" class="gt_row gt_left">tratamiento</td>
-<td headers="Edad" class="gt_row gt_right">30.18301</td>
-<td headers="Salario" class="gt_row gt_right">50000.95</td></tr>
-    <tr><td headers="Grupo" class="gt_row gt_left">tratamiento</td>
-<td headers="Edad" class="gt_row gt_right">34.11016</td>
-<td headers="Salario" class="gt_row gt_right">59497.67</td></tr>
-    <tr><td headers="Grupo" class="gt_row gt_left">tratamiento</td>
-<td headers="Edad" class="gt_row gt_right">36.88224</td>
-<td headers="Salario" class="gt_row gt_right">55811.62</td></tr>
-    <tr><td headers="Grupo" class="gt_row gt_left">control</td>
-<td headers="Edad" class="gt_row gt_right">33.29116</td>
-<td headers="Salario" class="gt_row gt_right">61942.17</td></tr>
-    <tr><td headers="Grupo" class="gt_row gt_left">tratamiento</td>
-<td headers="Edad" class="gt_row gt_right">39.85560</td>
-<td headers="Salario" class="gt_row gt_right">68503.98</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Grupo" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Grupo</th>
+<th id="Edad" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Edad</th>
+<th id="Salario" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Salario</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">control</td>
+<td class="gt_row gt_right" headers="Edad">37.59</td>
+<td class="gt_row gt_right" headers="Salario">48814.57</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">tratamiento</td>
+<td class="gt_row gt_right" headers="Edad">30.18</td>
+<td class="gt_row gt_right" headers="Salario">50000.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">tratamiento</td>
+<td class="gt_row gt_right" headers="Edad">34.11</td>
+<td class="gt_row gt_right" headers="Salario">59497.67</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">tratamiento</td>
+<td class="gt_row gt_right" headers="Edad">36.88</td>
+<td class="gt_row gt_right" headers="Salario">55811.62</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">control</td>
+<td class="gt_row gt_right" headers="Edad">33.29</td>
+<td class="gt_row gt_right" headers="Salario">61942.17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">tratamiento</td>
+<td class="gt_row gt_right" headers="Edad">39.86</td>
+<td class="gt_row gt_right" headers="Salario">68503.98</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 <p>Datos de seis filas tomadas al azar.</p>
 </div>
 </div>
 <p>Como es de esperarse (y lo esperamos mucho porque los datos los generamos nosotros), la edad y el salario están correlacionados (r=0.83). Vamos a graficar los datos.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Y los graficamos</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># El texto de la correlación</span></span>
@@ -6804,14 +6932,14 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Edad y salario de los empleados.</figcaption><p></p>
+<figcaption>Edad y salario de los empleados.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Ahora, qué pasa si queremos emparejar a un empleado del grupo tratamiento (el que tiene el ID <span class="math inline">\(I_{emp} = 2\)</span>) con uno del grupo control. Si usamos la distancia euclidiana, vamos a calcular la distancia entre cada empleado del grupo tratamiento y todos los del grupo control, y luego elegimos el más cercano.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>I_emp <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># Al que le queremos encontrar la distancia más cercana</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -6825,85 +6953,19 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento.</figcaption><p></p>
+<figcaption>Edad y salario de los empleados. En oscuro el punto al que le queremos buscar el más cercano.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos las distancias</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>matriz_varianzas <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">var</span>(empleados_tbl<span class="sc">$</span>Edad), <span class="dv">0</span>, <span class="dv">0</span>, <span class="fu">var</span>(empleados_tbl<span class="sc">$</span>Salario)),</span>
@@ -6937,92 +6999,27 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>               <span class="at">to =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">45</span>, <span class="fl">3E4</span>, <span class="fl">5E4</span>)) <span class="sc">+</span></span>
 <span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
 <span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
-<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-91"><a href="#cb29-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-92"><a href="#cb29-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-94"><a href="#cb29-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-95"><a href="#cb29-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-96"><a href="#cb29-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-97"><a href="#cb29-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span>
-<span id="cb29-98"><a href="#cb29-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in .setMask(mask$f, mask$ref): Ignored alpha mask (not supported on</span></span>
-<span id="cb29-99"><a href="#cb29-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; this device)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento.</figcaption><p></p>
+<figcaption>Edad y salario de los empleados. En oscuro el punto al que le queremos buscar el más cercano y sus candidatos.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul?</p>
+<p>¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul? Bueno, si calculamos la distancia euclídea efectivamente el punto más cercano es el rojo, pero si lo hacemos utilizando la distancia de Mahalanobis, el más cercano es el azul. ¿Por qué? Bueno, en este caso, la distancia de Mahalanobis considera que el punto azul está más cerca porque tiene en cuenta que la edad y el salario están correlacionados. Es decir son más “parecidas” dos personas con una relación entre edad y salario similar.</p>
+<p>Dicho esto, vuelvo sobre la idea de que siempre conviene utilizar la distancia de Mahalanobis para hacer <em>matching</em> porque es la que mejor refleja las relaciones entre las covariables. Además, en el caso de que no tengamon correlación entre las covariables, la distancia de Mahalanobis se reduce a la distancia euclídea.</p>
 </section>
 </section>
 <section id="sec-matching_vs_reg" class="level2 page-columns page-full" data-number="6.3">
-<h2 data-number="6.3" class="anchored page-columns page-full" data-anchor-id="sec-matching_vs_reg"><span class="header-section-number">6.3</span> <em>Matching</em> vs.&nbsp;regresión<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;Toda esta sección está fuertemente “inspirada” en <a href="https://www.franciscoyira.com/post/matching-in-r-2-differences-regression/">este</a> <em>blogpost</em> que uso y recomiendo</p></li></div></h2>
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-matching_vs_reg"><span class="header-section-number">6.3</span> <em>Matching</em> vs.&nbsp;regresión<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></h2>
 <p>En el ejemplo anterior, vimos cómo el <em>matching</em> busca emparejar unidades tratadas y no tratadas basándose en sus características observables. Pero, ¿qué pasa si en lugar de emparejar, simplemente ajustamos un modelo de regresión que incluya esas mismas covariables? ¿No era la forma en la que controlábamos por los confusores antes de este capítulo? Bueno, sí y no. La regresión y el <em>matching</em> son dos enfoques diferentes para obtener la tan ansiada independencia condicional, pero cada uno tiene sus propias ventajas y desventajas. Vamos con un ejemplo paradigmático para que podamos entender un poquito más de que estamos hablando.</p>
 <p>Vamos a generar un conjunto de datos donde <span class="math inline">\(x\)</span> es un confusor, el tratamiento <span class="math inline">\(d\)</span> se asigna de forma no lineal en función de <span class="math inline">\(x\)</span>, y el <em>outcome</em> también depende de <span class="math inline">\(x\)</span> de forma no lineal, y el efecto del tratamiento es homogéneo y vale <span class="math inline">\(1\)</span>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Genero la data ####</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -7053,7 +7050,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Cada uno de los sujetos pertenecientes al grupo control y tratamiento con sus respectivos valores de outcome y covariable x.</figcaption><p></p>
+<figcaption>Cada uno de los sujetos pertenecientes al grupo control y tratamiento con sus respectivos valores de outcome y covariable x.</figcaption>
 </figure>
 </div>
 </div>
@@ -7061,7 +7058,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <p>De estos datos podemos ver dos cosas claras: 1) <span class="math inline">\(x\)</span> es claramente un confusor, ya que el valor de <span class="math inline">\(x\)</span> no solo afecta al <em>outcome</em> sino también a la probabilidad de recibir el tratamiento (los sujetos del medio son más “No tratados”), y 2) la relación entre <span class="math inline">\(x\)</span> y el <em>outcome</em> es no lineal. El efecto del tratamiento es homogéneo y vale <span class="math inline">\(1\)</span>, y esto lo sabemos porque generamos los datos nosotros mismos.</p>
 <p>Ahora probemos dos cosas: Estimar el efecto del tratamiento usando una regresión lineal y luego usando <em>matching</em> aproximado con la librería <code>MatchIt</code>(para detalles pueden ver el código). A continuación tenemos los efectos estimados con los dos métodos:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustemos un modelo lineal ####</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>linear_model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> d <span class="sc">+</span> x, <span class="at">data =</span> df)</span>
@@ -7093,7 +7090,6 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="dddwpubkde" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#dddwpubkde table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7543,39 +7539,47 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a-"> </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Regresión">Regresión</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Matching">Matching</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers=" " class="gt_row gt_left">(Intercept)</td>
-<td headers="Regresión" class="gt_row gt_center">0.630</td>
-<td headers="Matching" class="gt_row gt_center">-0.139</td></tr>
-    <tr><td headers=" " class="gt_row gt_left" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">Tratamiento</td>
-<td headers="Regresión" class="gt_row gt_center" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">0.247</td>
-<td headers="Matching" class="gt_row gt_center" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">1.004</td></tr>
-    <tr><td headers=" " class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">x</td>
-<td headers="Regresión" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">0.036</td>
-<td headers="Matching" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">0.044</td></tr>
-    <tr><td headers=" " class="gt_row gt_left">Num.Obs.</td>
-<td headers="Regresión" class="gt_row gt_center">1000</td>
-<td headers="Matching" class="gt_row gt_center">665</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Regresión" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Regresión</th>
+<th id="Matching" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Matching</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">(Intercept)</td>
+<td class="gt_row gt_center" headers="Regresión">0.630</td>
+<td class="gt_row gt_center" headers="Matching">-0.139</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Tratamiento</td>
+<td class="gt_row gt_center" headers="Regresión" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">0.247</td>
+<td class="gt_row gt_center" headers="Matching" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">1.004</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" " style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">x</td>
+<td class="gt_row gt_center" headers="Regresión" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">0.036</td>
+<td class="gt_row gt_center" headers="Matching" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">0.044</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" ">Num.Obs.</td>
+<td class="gt_row gt_center" headers="Regresión">1000</td>
+<td class="gt_row gt_center" headers="Matching">665</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 <p>Estimaciones del efecto del tratamiento utilizando regresión y matching.</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de <span class="math inline">\(0.220\)</span>, mientras que el <em>matching</em> nos da un estimador de <span class="math inline">\(0.992\)</span>. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre <span class="math inline">\(x\)</span> y el <em>outcome</em>, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre <span class="math inline">\(x\)</span> y el <em>outcome</em>, lo que sesga el estimador del efecto del tratamiento<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Otra cosa interesante que podemos observar, es que al estimar el efecto con <em>matching</em>, el tamaño de la muestra efectivo es menor que al estimar con regresión lineal. Esto se debe a que el <em>matching</em> elimina las unidades que no tienen un par cercano en el grupo de control, lo que reduce el tamaño de la muestra efectiva.</p></li></div></div>
-<p>Veamos qué forma tiene el modelo lineal ajustado con estos datos:</p>
+<p>Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de <span class="math inline">\(0.220\)</span>, mientras que el <em>matching</em> nos da un estimador de <span class="math inline">\(0.992\)</span>. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre <span class="math inline">\(x\)</span> y el <em>outcome</em>, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre <span class="math inline">\(x\)</span> y el <em>outcome</em>, lo que sesga el estimador del efecto del tratamiento<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Otra cosa interesante que podemos observar, es que al estimar el efecto con <em>matching</em>, el tamaño de la muestra efectivo es menor que al estimar con regresión lineal. Esto se debe a que el <em>matching</em> elimina las unidades que no tienen un par cercano en el grupo de control, lo que reduce el tamaño de la muestra efectiva.</p></div></div><p>Veamos qué forma tiene el modelo lineal ajustado con estos datos:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df_linear <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -7599,14 +7603,14 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">La regresión lineal ajustada.</figcaption><p></p>
+<figcaption>La regresión lineal ajustada.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Entonces esto es esperable porque los datos son claramente no lineales. Ahora, usemos un suavizado de los datos para reflejar, más o menos, qué es lo que está haciendo el algoritmo de <em>matching</em> para estimar el efecto.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matching</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>knn1 <span class="ot">&lt;-</span> <span class="fu">knn.reg</span>(</span>
@@ -7636,7 +7640,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Algo parecido a lo que usa el matching para estimar el efecto.</figcaption><p></p>
+<figcaption>Algo parecido a lo que usa el matching para estimar el efecto.</figcaption>
 </figure>
 </div>
 </div>
@@ -7644,7 +7648,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <p>Podemos ver a todas luces que esto tiene mucho sentido. Ahora, ¿Usamos siempre <em>matching</em> o alguna vez puede no convenirnos?</p>
 <p>Uno de los supuestos de los modelos lineales es la linealidad de la relación entre, en este caso, <em>x</em> y el <em>outcome</em>. Si esto no se cumple, el modelo lineal no va a capturar bien la relación y, por lo tanto, el estimador del efecto del tratamiento va a estar sesgado. En cambio, el <em>matching</em> no asume una relación lineal entre las covariables y el <em>outcome</em>, por lo que puede ser más robusto en estos casos. Sin embargo, recordemos que uno de los supuestos del <em>matching</em> es la necesidad de <strong>soporte común</strong>. En el ejemplo anterior había soporte común, es decir, en el mismo rango de <span class="math inline">\(x\)</span> había tanto tratados como no tratados. Veamos un ejemplo donde esto no es así.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos sin soporte común ####</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df_wo_common_support <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -7674,7 +7678,7 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Datos pero ahora sin soporte común.</figcaption><p></p>
+<figcaption>Datos pero ahora sin soporte común.</figcaption>
 </figure>
 </div>
 </div>
@@ -7684,9 +7688,9 @@ distancia_{mahalanobis} = \sqrt{(edad_1 - edad_2, salario_1 - salario_2) \cdot S
 <p><span class="math display">\[
 Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 \]</span></p>
-<div class="page-columns page-full"><p>Es decir, estamos asumiendo que la relación entre <span class="math inline">\(x\)</span> y el <em>outcome</em> es una función seno, y no lineal<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. Vamos a ver qué pasa.</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Recordemos que, a pesar de que aparece <span class="math inline">\(\sin(X)\)</span>, la regresión lineal sigue siendo lineal en los parámetros, por lo que no estamos violando ningún supuesto de la regresión lineal.</p></li></div></div>
-<div class="cell">
-<details>
+<p>Es decir, estamos asumiendo que la relación entre <span class="math inline">\(x\)</span> y el <em>outcome</em> es una función seno, y no lineal<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. Vamos a ver qué pasa.</p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Recordemos que, a pesar de que aparece <span class="math inline">\(\sin(X)\)</span>, la regresión lineal sigue siendo lineal en los parámetros, por lo que no estamos violando ningún supuesto de la regresión lineal.</p></div></div><div class="cell">
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo lineal sin soporte comun ####</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>reg_wo_common_support <span class="ot">&lt;-</span> <span class="fu">lm</span>(outcome <span class="sc">~</span> d <span class="sc">+</span> <span class="fu">sin</span>(x), <span class="at">data =</span> df_wo_common_support)</span>
@@ -7717,7 +7721,6 @@ Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 <span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">font_weight =</span> <span class="st">"bold"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div id="epxppztsig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#epxppztsig table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -8167,34 +8170,44 @@ Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a-"> </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Regresión">Regresión</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Matching">Matching</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers=" " class="gt_row gt_left">(Intercept)</td>
-<td headers="Regresión" class="gt_row gt_center">-0.018</td>
-<td headers="Matching" class="gt_row gt_center">0.437</td></tr>
-    <tr><td headers=" " class="gt_row gt_left" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">Tratamiento</td>
-<td headers="Regresión" class="gt_row gt_center" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">1.022</td>
-<td headers="Matching" class="gt_row gt_center" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold;">0.367</td></tr>
-    <tr><td headers=" " class="gt_row gt_left">sin(x)</td>
-<td headers="Regresión" class="gt_row gt_center">1.015</td>
-<td headers="Matching" class="gt_row gt_center"></td></tr>
-    <tr><td headers=" " class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">x</td>
-<td headers="Regresión" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
-<td headers="Matching" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">0.020</td></tr>
-    <tr><td headers=" " class="gt_row gt_left">Num.Obs.</td>
-<td headers="Regresión" class="gt_row gt_center">1000</td>
-<td headers="Matching" class="gt_row gt_center">590</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Regresión" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Regresión</th>
+<th id="Matching" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Matching</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">(Intercept)</td>
+<td class="gt_row gt_center" headers="Regresión">-0.018</td>
+<td class="gt_row gt_center" headers="Matching">0.437</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" " style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">Tratamiento</td>
+<td class="gt_row gt_center" headers="Regresión" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">1.022</td>
+<td class="gt_row gt_center" headers="Matching" style="background-color: rgba(255,255,224,0.8); color: #000000; font-weight: bold">0.367</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">sin(x)</td>
+<td class="gt_row gt_center" headers="Regresión">1.015</td>
+<td class="gt_row gt_center" headers="Matching"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" " style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">x</td>
+<td class="gt_row gt_center" headers="Regresión" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000"></td>
+<td class="gt_row gt_center" headers="Matching" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">0.020</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Num.Obs.</td>
+<td class="gt_row gt_center" headers="Regresión">1000</td>
+<td class="gt_row gt_center" headers="Matching">590</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 <p>Estimaciones del efecto del tratamiento utilizando regresión y matching para los datos sin soporte común.</p>
 </div>
@@ -8202,7 +8215,7 @@ Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 <p>Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de soporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, <span class="math inline">\(1.022\)</span>. En cambio, el <em>matching</em> no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es <span class="math inline">\(0.02\)</span>, es decir, un efecto casi nulo.</p>
 <p>Volvamos a ver las cosas gráficamente a ver si esto nos echa un poco de luz sobre lo que está ocurriendo. Primero veamos la regresión lineal ajustada:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Esto es sólo una cosa para plotar los datos</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df_wo_common_support <span class="ot">&lt;-</span> df_wo_common_support <span class="sc">%&gt;%</span></span>
@@ -8262,14 +8275,14 @@ Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">La regresión lineal ajustada conociendo la forma de la relación entre x y el outcome (seno). La línea punteada representa la fracción de x que es extrapolada por el modelo para estos datos sin soporte común.</figcaption><p></p>
+<figcaption>La regresión lineal ajustada conociendo la forma de la relación entre x y el outcome (seno). La línea punteada representa la fracción de x que es extrapolada por el modelo para estos datos sin soporte común.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>En este caso podemos ver que al ajustar la regresión lineal, el modelo extrapola los valores de <span class="math inline">\(x\)</span> y la distancia entre ambas curvas es, efectivamente cercana a <span class="math inline">\(1\)</span> (que es el valor del parámetro poblacional). ¿Y si vemos la estimación de <em>matching</em>?</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> df_wo_common_support <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(x)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -8337,7 +8350,7 @@ Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="matching_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="576"></p>
-<p></p><figcaption class="figure-caption">Algo parecido a lo que usa el matching para estimar el efecto pero ahora sin soporte común.</figcaption><p></p>
+<figcaption>Algo parecido a lo que usa el matching para estimar el efecto pero ahora sin soporte común.</figcaption>
 </figure>
 </div>
 </div>
@@ -8347,7 +8360,7 @@ Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 
 
 </section>
-
+<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;Toda esta sección está fuertemente “inspirada” en <a href="https://www.franciscoyira.com/post/matching-in-r-2-differences-regression/">este</a> <em>blogpost</em> que uso y recomiendo</p></div></div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -8391,6 +8404,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -8459,13 +8499,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -8482,7 +8524,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -8490,12 +8534,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -8503,18 +8550,74 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -8524,8 +8627,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -8537,38 +8649,292 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./exp_aleatorios.html" class="pagination-link">
+      <a href="./exp_aleatorios.html" class="pagination-link" aria-label="Experimentos aleatorios">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./diff_in_diff.html" class="pagination-link">
+      <a href="./diff_in_diff.html" class="pagination-link" aria-label="Diferencias en diferencias">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -8576,10 +8942,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
-    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-left">
+<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+
 
 
 

@@ -13,7 +13,12 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-Versión recontra en borrador, condumir con precaución `r emo::ji("construction")`
+::: {.callout-warning icon="false"}
+## `r emo::ji("skull")` ¡¡¡CUIDADO!!! `r emo::ji("skull")`
+
+`r emo::ji("eye")` Versión generada con NotebookLM a partir de los capítulos sobre el tema de @cunningham2021causal y @huntington2021effect. Consumir bajo su propio riesgo ya que la información **no está chequeada**. `r emo::ji("eye")`
+:::
+
 
 Así como Arquímedes dijo: “Dadme un punto de apoyo, y moveré el mundo,” con una variable instrumental lo suficientemente buena, se podría decir que es posible identificar cualquier efecto causal. Si bien esto es una hipérbole, el diseño de **variables instrumentales (VI)** es potencialmente uno de los diseños de investigación más importantes jamás concebidos. Es único porque es una de las pocas instancias en las que el estimador econométrico no fue simplemente "tomado prestado" de la estadística o importado de otro campo; las VI fueron inventadas por un economista, y su historia es fascinante.
 

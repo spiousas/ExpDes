@@ -1,4 +1,4 @@
-# Diferencias en diferencias {#sec-diff-in-diff}
+# Diferencias en diferencias {#sec-did}
 
 ```{r}
 #| echo: false
@@ -13,4 +13,231 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-En construcción `r emo::ji("construction")`
+
+En esta seccion vamos a hablar de uno de los diseños quasiexperimentales más populares. Este tipo de diseño, si bien ha sido definido formalmente en tiempos mas modernos, ha existido en formas rudimentaria como una aproximacion intuitiva en las investigaciones observacionales que se han hecho en los ultimos 300 años.
+
+Debido a su caracter tan intuitivo vamos a tratar de arrimarnos a su concepcion a través de un enfoque historico.
+
+## Barcos, naranjas y chocolates `r emo::ji("tangerine")`
+
+Entre los siglos XVI y XVII, la humanidad vivió una transformación social sin precedentes. Tras la era de los grandes navegantes, la sociedad occidental se expandió por todo el globo, estableciendo rutas comerciales que circunnavegaban la Tierra con frecuencia, sin necesidad de tocar puerto. Estas rutas conectaban Europa con la India, China y América en un flujo constante de tráfico marítimo, aunque cada viaje podía durar varios meses.
+
+Con esta expansión surgió también una enfermedad devastadora: la llamada "melancolía del mar". Una proporción significativa de marineros, especialmente en los viajes más largos, comenzaba a experimentar una fatiga creciente, aparición de manchas ásperas en la piel, úlceras en las encías, pérdida de dientes e incluso la muerte, que podía ocurrir pocas semanas después de los primeros síntomas. Esta enfermedad pasó a conocerse como *escorbuto*, nombre derivado de una palabra escandinava que hacía referencia a las úlceras en el paladar.
+
+El escorbuto se convirtió en un problema grave de salud, y también económico: en cada travesía hacia la India, por ejemplo, hasta un 10 % de la tripulación podía morir o quedar gravemente afectada por la enfermedad.
+
+Dispuesto a resolver el problema el Dr James Lind (sin t al final que esos son los chocolates, y esa es la unica mencion a los chocolates) en 1747 se dio cuenta que todos los que opinaban sobre la enfermedad nunca se habian subido a un barco, decidido que la unica alternativa era la observacion del fenomeno se subio a un barco de Liverpool a la India, se agarro escorbuto y llego a la idea de que toda la tripulacion tenia mayor o menormente los sintomas, pero algunos marineros parecian estar significativamente mejor, eran los que habian traido desde sus casas alguna conservas o licores caseros (fundamentalmente de frutas).
+
+Con esta observación, Lind propuso un diseño cuasi-experimental para investigar el escorbuto. Aunque los datos originales se han perdido con el tiempo, podemos imaginar cómo pudo haber sido el experimento. Lind planteó comparar dos barcos —el Marigold y el Endeavour— que zarparían desde Liverpool rumbo a la India, llevando productos textiles y regresando con materias primas. La diferencia clave: durante el viaje de regreso, solo la tripulación del Marigold recibiría una naranja diaria. En cada uno de los cuatro viajes, se registrarían los casos de escorbuto, resultando en una tabla como la siguiente:
+
+| Barco     | Casos (Liverpool–India) | Marineros (Liverpool–India) | Casos (India–Liverpool) | Marineros (India–Liverpool) |
+|---------------|---------------|---------------|---------------|---------------|
+| Marigold  | 72                      | 180                         | 18                      | 200                         |
+| Endeavour | 60                      | 180                         | 50                      | 150                         |
+
+> **Spoiler alert** Lind descubrio que el escorbuto se debía a un factor nutricional desconocido presente en frutas y vegetales frescos y en sus derivados. Más tarde sabriamos que es la vitamina C.
+
+## De las naranjas a las diferencias en diferencias
+
+Lind parece tener todo listo para demostrar el efecto de su tratamiento: las naranjas. La primera tentación sería comparar directamente los casos de escorbuto en el viaje de regreso, de India a Liverpool, entre los dos barcos: el Marigold (grupo tratado) y el Endeavour (grupo control). La otra posibilidad sería comparar los casos del Marigold al ir a la India (control), y al volver con naranjas (tratamiento). Vamos a analizar cada enfoque
+
+### Enfoque 1: Comparar post-intervención entre grupos
+
+Este enfoque suena sencillo y, además, bastante lógico: hay un tratamiento claro (las naranjas) y un grupo que no lo recibió. La comparación directa entre los casos de escorbuto en el viaje de regreso (*India–Liverpool*) entre el *Marigold* (grupo tratado) y el *Endeavour* (grupo control) parece una forma intuitiva de evaluar el efecto.
+
+Pero si venís siguiendo este libro con atención, probablemente ya se te prendieron algunas alarmas. Y si no lo hiciste todavía, dejame señalar una advertencia clave —que vale la pena destacar:
+
+> **⚠️ La utilización del *SDO* (Simple Difference of Outcomes) como estimador del *ATE* (Average Treatment Effect) solo es válida si la asignación a los grupos fue aleatoria.**
+
+En este caso, formar parte de la tripulación del *Marigold* o del *Endeavour* no fue una decisión aleatoria. Y eso es un problema. Hay muchas razones —algunas conocidas, otras ocultas— por las que los marineros de un barco podrían diferir sistemáticamente de los del otro. Por ejemplo, quizás un capitán recluta tripulación en una región donde los marineros suelen llevar licores o frutas fermentadas que podrían, sin quererlo, ofrecer protección contra el escorbuto. El otro capitán no.
+
+Eso significa que pertenecer a uno u otro barco no solo influye en la probabilidad de recibir el tratamiento (las naranjas), sino que también puede afectar directamente el resultado (los casos de escorbuto). En otras palabras: hay un **efecto fijo** ligado a cada barco que no estamos controlando, y eso debilita el valor contrafactual de la comparación entre grupos.
+
+Para entender mejor este problema, tratemos de formalizarlo un poco.
+
+Supongamos que cada barco tiene un efecto propio, constante, sobre el número de casos de escorbuto. Es decir, más allá del tratamiento, hay algo estructural —el barco en sí— que influye en los resultados: el liderazgo del capitán, la experiencia de los marineros, las condiciones sanitarias a bordo, etc.
+
+Estos **efectos fijos** actúan como una especie de “firma” del barco sobre el resultado. Por eso, aunque a uno le demos naranjas y al otro no, no podemos estar completamente seguros de que las diferencias en los casos se deban al tratamiento.
+
+Para ordenar las ideas, usemos un poco de notación:
+
+-   **Y**: número de casos de escorbuto\
+-   **D**: tratamiento (naranjas: sí o no)\
+-   *M* y *E*: efectos fijos del *Marigold* y *Endeavour*, respectivamente
+
+Entonces podemos representar los casos de escorbuto así:
+
+| Barco     | Casos (Viaje de regreso) |
+|-----------|--------------------------|
+| Marigold  | **Y** = **D** + *M*      |
+| Endeavour | **Y** = *E*              |
+
+En este modelo, si simplemente restamos los casos entre grupos post-tratamiento (como haríamos con un *SDO*), obtenemos:
+
+$ Y\_{\text{Marigold}} - Y\_{\text{Endeavour}} = D + (M - E) $
+
+Aquí aparece un problema clave: el término ( M - E ) representa una diferencia estructural entre barcos —y puede interpretarse como un **sesgo de selección**.
+
+::: callout
+Si nos queda dudas de si esto es el sesgo de seleccion, podemos redefinir los efectos fijos en términos de resultados potenciales así:
+
+-  $ M = Y_1\^M - Y_0\^M $: diferencia entre el resultado del *Marigold* con tratamiento y sin tratamiento\
+-  $ E = Y_0\^E $: resultado potencial del *Endeavour* sin tratamiento
+
+Entonces, el resultado observado del *Marigold* puede escribirse como:
+
+$$
+Y_{\text{Marigold}} = Y_1^M = Y_0^M + D
+$$
+
+Y el resultado del *Endeavour*, al no recibir tratamiento, es:
+
+$$
+Y_{\text{Endeavour}} = Y_0^E
+$$
+
+Por lo tanto, la diferencia observada entre barcos es:
+
+$$
+Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
+$$
+
+El término $ Y_0\^M - Y_0\^E $ es exactamente el **sesgo de selección**: la diferencia preexistente entre los grupos en ausencia de tratamiento. Si este valor no es cero, el estimador SDO estará sesgado.
+:::
+
+### Enfoque 2: Comparar el barco pre y post-intervención
+
+En el enfoque anterior vimos que no podemos simplemente comparar dos unidades diferentes (como barcos) porque existe el riesgo de sesgo de selección. Pero, entonces, ¿podemos comparar una unidad consigo misma antes y después del tratamiento?
+
+Esta idea es intuitiva y tiene nombre: se trata de una **serie de tiempo interrumpida**. En este caso, compararíamos al *Marigold* antes y después de recibir naranjas. Veamos una tabla simplificada:
+
+| Barco    | Viaje (*t*)               | Casos               |
+|----------|---------------------------|---------------------|
+| Marigold | Ida (sin tratamiento)     |  Y = M            |
+| Marigold | Regreso (con tratamiento) |  Y = M + (t + D)  |
+
+Este enfoque tiene una ventaja: al comparar la unidad consigo misma, el **efecto fijo del barco** queda eliminado. Ya no tenemos el problema de las diferencias estructurales entre barcos. Pero ahora aparece otro problema.
+
+Aunque este procedimiento elimina con éxito el sesgo asociado a diferencias entre barcos, **no nos da una estimación no sesgada del efecto del tratamiento**. ¿Por qué? Porque el estimador basado en la **Simple Difference of Outcomes (SDO)** no puede corregir los **cambios naturales a lo largo del tiempo**.
+
+En otras palabras, el número de casos puede cambiar simplemente porque el viaje de regreso fue diferente, porque hubo una nueva ola de escorbuto, o por cualquier otro factor relacionado con el tiempo. A esto lo representamos con el término ( t ) en la fórmula.
+
+Entonces, aunque ya no estamos comparando peras con manzanas (barcos distintos), ahora estamos asumiendo erróneamente que el contexto temporal antes y después del tratamiento es equivalente, lo cual tampoco es cierto. Por eso, **tampoco podemos confiar en esta comparación para estimar el efecto real del tratamiento**.
+
+
+### Enfoque 3: Diferencia en diferencias (DiD)
+
+Recién vimos que:
+
+-   Comparar un barco con otro introduce un **sesgo de selección**, porque no fueron asignados aleatoriamente.
+-   Comparar un barco consigo mismo antes y después elimina ese sesgo, pero introduce una **variable confundidora no medida**: el tiempo.
+
+La intuición detrás de la estrategia de **diferencia en diferencias (DiD)** es sorprendentemente simple: combinar ambos enfoques básicos de forma que, por turnos, se eliminen tanto el sesgo de selección como el efecto del tiempo.
+
+Veámoslo en la siguiente tabla:
+
+| Barco     | Viaje (*t*)    | Tratamiento (N) | Casos         |
+|-----------|----------------|-----------------|---------------|
+| Marigold  | Ida (pre)      | No              | Y = M         |
+| Marigold  | Regreso (post) | Sí              | Y = M + D + t |
+| Endeavour | Ida (pre)      | No              | Y = E         |
+| Endeavour | Regreso (post) | No              | Y = E + t     |
+
+\smallskip
+
+\medskip
+
+La idea ahora es usar las diferencias de cada barco en el tiempo, y luego restar esas diferencias entre sí.
+
+Vamos a ponerlo en una tabla para ver si es mas claro
+
+| Barco     | Viaje (*t*)    | Tratamiento (N) | Casos                   | Diferencias pre-post | Diferencias de las diferencias |
+|------------|------------|------------|------------|------------|------------|
+| Marigold  | Ida (pre)      | No              | **Y** = M               |                      |                                |
+| Marigold  | Regreso (post) | Sí              | **Y** = M + **D** + *t* | *t*+**D**            |                                |
+| Endeavour | Ida (pre)      | No              | **Y** = E               |                      |                                |
+| Endeavour | Regreso (post) | No              | **Y** = E + *t*         | *t*                  | **D**                          |
+
+Es decir:
+
+$$
+\text{DiD} = \left( Y_{\text{Marigold}}^{\text{post}} - Y_{\text{Marigold}}^{\text{pre}} \right) - \left( Y_{\text{Endeavour}}^{\text{post}} - Y_{\text{Endeavour}}^{\text{pre}} \right)
+$$
+
+Reemplazando con las expresiones de la tabla:
+
+$$
+\text{DiD} = \left( M + D + t - M \right) - \left( E + t - E \right) = D
+$$
+
+¡Y ahí lo tenés! El efecto del tratamiento queda aislado: el efecto del barco se elimina porque comparamos cada barco consigo mismo, y el efecto del tiempo se elimina porque está presente en ambos barcos y se cancela en la resta.
+
+El diseño de diferencia en diferencias (DiD) es una herramienta poderosa, pero no funciona por arte de magia. Para que nos dé una estimación válida del efecto del tratamiento, hay un **supuesto fundamental** que debemos aceptar —y que, de hecho, ya estaba implícito en la tabla que vimos más arriba.
+
+¿Qué estamos asumiendo sin decirlo? Que **no existen factores no observados que varíen en el tiempo y que sean específicos de cada unidad** (en nuestro caso, cada barco). Es decir, que no hay nada especial que le pase solo al *Marigold* en el viaje de regreso, además del tratamiento, que esté afectando la cantidad de casos de escorbuto.
+
+O, formulado de otra manera: estamos asumiendo que **el cambio en el tiempo sería el mismo en ambos barcos si ninguno hubiese recibido tratamiento**.
+
+Este supuesto se conoce como el de **tendencias paralelas** (*parallel trends assumption*), y lo podemos expresar en notación así:
+
+$$
+\delta_t^{\text{Marigold}} = \delta_t^{\text{Endeavour}}
+$$
+
+\smallskip
+
+Este $\delta_t$ representa el cambio natural que ocurre entre el viaje de ida y el de regreso (por ejemplo, por una ola de escorbuto que afecta a todos por igual). Si esa tendencia es paralela entre unidades tratadas y no tratadas, entonces podemos confiar en que la diferencia adicional observada en el *Marigold* se debe realmente al tratamiento —y no a algún otro cambio no observado.
+
+> Volveremos una y otra vez a este supuesto a lo largo del capítulo, porque es el corazón del motor que hace andar este diseño.
+
+Cuando este supuesto se cumple, **DiD nos permite identificar el efecto causal del tratamiento**, incluso sin asignación aleatoria. Y lo hace de forma sorprendentemente simple: usando observaciones repetidas en unidades tratadas y no tratadas (como los viajes de ida y vuelta de ambos barcos), eliminamos tanto la heterogeneidad entre unidades como los cambios compartidos en el tiempo. Una vez definido el escenario básico nos vamos a poner a hablar formalmente de este tipo de diseño.
+
+> Es posible que llegado este punto esten preocupados por el escorbuto, no se preocupen la vitamina C que tienen los mates que tomaron leyendo esto es más que suficiente para evitarlo, pero por las dudas...vamos a seguir leyendo ...
+>
+> ![](imgs/pepe_mate.jpg){width="300"}
+
+## Definicion formal de Diferencias en diferencias
+
+El caso que hemos presentado es el caso mas sencillo de diseño DD que se suele llamar **DD2x2**. Este diseño incluye un **grupo tratado** y un **grupo no tratado**. Hay un **período previo** para el grupo tratado (`pre(k)`), un **período posterior** para el grupo tratado (`post(k)`), un **período previo** para el grupo no tratado (`pre(U)`) y un **período posterior** para el grupo no tratado (`post(U)`). Entonces:
+
+$$
+\hat{\delta}^{\text{2x2}}_{\text{kU}} = (\bar{Y}_{k_\text{post}} - \bar{Y}_{k_\text{pre}}) - (\bar{Y}_{U_\text{post}} - \bar{Y}_{U_\text{pre}})
+$$
+
+donde:
+
+* $\hat{\delta}^{\text{2x2}}_{\text{kU}}$ es la estimación del efecto promedio del tratamiento en el grupo k (el **ATT**)
+* $\bar{Y}}$ representa el promedio muestral de ese grupo particular en ese tiempo particular
+
+El primer término, $\bar{Y}_{k_\text{post}} - \bar{Y}_{k_\text{pre}}$ es la diferencia antes-después para el grupo tratado. El segundo término ($\bar{Y}_{U_\text{post}} - \bar{Y}_{U_\text{pre}}$) es la misma diferencia, pero para el grupo no tratado. Luego restamos la segunda diferencia de la primera.
+
+Pero esto es simplemente la **mecánica del cálculo**. ¿A qué corresponde exactamente este parámetro estimado? Para entender eso, debemos convertir estos promedios muestrales en **valores esperados condicionales de resultados potenciales**. Por suerte, eso es fácil de hacer cuando trabajamos con promedios, como veremos ahora.
+
+Primero, reescribamos la expresión como una **esperanza condicional**.
+
+$$
+\hat{\delta}^{\text{2x2}}_{\text{kU}} = (E[Y_k|Post] - E[Y_k|Pre]) - (E[Y_U|Post] - E[Y_U|Pre])
+$$
+
+Luego, usamos la ecuación de cambio (*switching equation*), que transforma observaciones históricas en resultados potenciales. Como ya hicimos antes, vamos a hacer un pequeño truco: **sumar cero** en el lado derecho para poder reorganizar los términos y destacar algo importante.
+
+$$
+\hat{\delta}^{\text{2x2}}_{\text{kU}} = \underbrace{(E[Y^1_k|post] -E[Y^0_k|pre])-(E[Y^0_U|post] -E[Y^0_U|pre])}_{\text{switching equation}} + \underbrace{(E[Y^0_k|post] -E[Y^0_k|ppost])}_{\text{suma cero}}
+$$
+
+Al reorganizar estos términos, obtenemos la descomposición de la estimación DD en función de **valores esperados condicionales de resultados potenciales**:
+
+$$
+\hat{\delta}^{\text{2x2}}_{\text{kU}} = 
+\underbrace{\left( E[Y^1_k \mid \text{post}] - E[Y^0_k \mid \text{post}] \right)}_{\text{ATT}} + 
+\underbrace{\left[ \left( E[Y^0_k \mid \text{post}] - E[Y^0_k \mid \text{pre}] \right) - \left( E[Y^0_U \mid \text{post}] - E[Y^0_U \mid \text{pre}] \right) \right]}_{\text{Bias due to non-parallel trends in 2x2}}
+$$
+
+Estudiemos ahora ese último término. Este diseño DD sencillo **aisla el ATT** (primer término) **si y solo si** el segundo término se anula. ¿Pero por qué se anularía ese segundo término? Se anula si la **primera diferencia del grupo tratado** (`E[Y(0) | D=1, t=1] - E[Y(0) | D=1, t=0]`) es igual a la **segunda diferencia del grupo no tratado** (`E[Y(0) | D=0, t=1] - E[Y(0) | D=0, t=0]`).
+
+Pero fíjate en el término de la segunda línea. ¿Notas algo extraño? El objeto de interés es `E[Y(0) | D=1, t=1]`, es decir, el resultado en el **grupo tratado** en el **período posterior**, pero **en un mundo sin tratamiento**. Según la *switching equation*, este resultado **no es observable**. Y como hemos repetido varias veces: **los contrafactuales no se pueden observar**.
+
+Esta conclusión se conoce como el **supuesto de tendencias paralelas** (*parallel trends assumption*), y **por definición, no es contrastable** empíricamente, ya que no podemos observar ese valor esperado contrafactual.
+
+Volveremos sobre este tema más adelante, pero por ahora, lo presentamos para que lo tengas presente.
+

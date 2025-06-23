@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -74,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -206,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -227,8 +247,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Versión recontra en borrador, condumir con precaución 🚧</p>
-<p>Así como Arquímedes dijo: “Dadme un punto de apoyo, y moveré el mundo,” con una variable instrumental lo suficientemente buena, se podría decir que es posible identificar cualquier efecto causal. Si bien esto es una hipérbole, el diseño de <strong>variables instrumentales (VI)</strong> es potencialmente uno de los diseños de investigación más importantes jamás concebidos. Es único porque es una de las pocas instancias en las que el estimador econométrico no fue simplemente “tomado prestado” de la estadística o importado de otro campo; las VI fueron inventadas por un economista, y su historia es fascinante.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💀 ¡¡¡CUIDADO!!! 💀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>👁 Versión generada con NotebookLM a partir de los capítulos sobre el tema de <span class="citation" data-cites="cunningham2021causal">Cunningham (<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">2021</a>)</span> y <span class="citation" data-cites="huntington2021effect">Huntington-Klein (<a href="references.html#ref-huntington2021effect" role="doc-biblioref">2021</a>)</span>. Consumir bajo su propio riesgo ya que la información <strong>no está chequeada</strong>. 👁</p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="ref-huntington2021effect" class="csl-entry" role="listitem">
+Huntington-Klein, Nick. 2021. <em>The effect: An introduction to research design and causality</em>. Chapman; Hall/CRC.
+</div></div><div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
+Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
+</div></div><p>Así como Arquímedes dijo: “Dadme un punto de apoyo, y moveré el mundo,” con una variable instrumental lo suficientemente buena, se podría decir que es posible identificar cualquier efecto causal. Si bien esto es una hipérbole, el diseño de <strong>variables instrumentales (VI)</strong> es potencialmente uno de los diseños de investigación más importantes jamás concebidos. Es único porque es una de las pocas instancias en las que el estimador econométrico no fue simplemente “tomado prestado” de la estadística o importado de otro campo; las VI fueron inventadas por un economista, y su historia es fascinante.</p>
 <section id="historia-de-las-variables-instrumentales-padre-e-hijo" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="historia-de-las-variables-instrumentales-padre-e-hijo"><span class="header-section-number">9.1</span> Historia de las Variables Instrumentales: Padre e Hijo</h2>
 <p>La historia de las variables instrumentales está entrelazada con la vida de Philip Wright (nacido en 1861, fallecido en 1934) y su hijo, Sewall Wright (nacido en 1889). Philip fue un prolífico autor en economía, publicando en revistas destacadas como <em>Quarterly Journal of Economics</em> y <em>American Economic Review</em>. Un tema recurrente en sus publicaciones fue el <strong>problema de identificación</strong>, que buscó resolver intensamente.</p>
@@ -293,6 +329,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Análisis de Heterogeneidad y Canales:</strong> * <strong>Servicio en tiempos de paz vs.&nbsp;guerra:</strong> El efecto de la conscripción sobre el crimen es <strong>mayor para aquellos reclutas en las cohortes que participaron en la Guerra de Malvinas</strong> (1982), aunque el efecto sigue siendo significativo para las cohortes que sirvieron en tiempos de paz, que constituyen la mayor parte de la muestra (Tabla 6). Esto destaca la distinción entre el trauma de combate y los efectos generales de la conscripción. * <strong>Duración del servicio:</strong> El efecto sobre el crimen fue <strong>mayor para quienes sirvieron en la Armada (dos años) en comparación con el Ejército o la Fuerza Aérea (un año)</strong> (Tabla 6). Este resultado es consistente con la hipótesis de que las experiencias tempranas en el mercado laboral son un canal a través del cual el servicio militar afecta el comportamiento criminal. * <strong>Tipo de delito:</strong> El servicio militar aumenta la probabilidad de desarrollar un expediente criminal, especialmente para <strong>delitos pecuniarios</strong> (contra la propiedad y de cuello blanco) (Tabla 7). Esto apoya la idea de que la conscripción podría afectar negativamente las perspectivas laborales de los jóvenes, llevándolos a cometer este tipo de delitos. * <strong>Resultados en el mercado laboral:</strong> El estudio encuentra que los hombres que sirvieron en el ejército tienen una <strong>menor probabilidad de participar en el mercado laboral formal, una tasa de desempleo más alta (aunque no significativa) y menores ingresos futuros</strong> (Tabla 8). Estos hallazgos de efectos perjudiciales a largo plazo en el mercado laboral respaldan la hipótesis de que la conscripción aumenta la criminalidad a través de este canal.</p>
 <p><strong>Pruebas de Falsificación (Experimentos Falsos):</strong> Para reforzar la exogeneidad del instrumento, los autores realizaron tres “experimentos falsos”: 1. <strong>Restricción a números de lotería bajos:</strong> Dividieron el grupo no elegible por la mediana y asignaron un “falso estatus de tratamiento”. No encontraron diferencias en las tasas de criminalidad entre estos grupos, lo que confirma la aleatoriedad de la lotería. 2. <strong>Cohortes no reclutadas:</strong> Analizaron las cohortes de 1956 y 1957, que saltaron el servicio militar debido a un cambio de edad. Al imputarles resultados de lotería de cohortes posteriores, no se observaron diferencias significativas en las tasas de criminalidad, como era de esperar. 3. <strong>Lotería sin incorporación:</strong> La cohorte de 1976 pasó por la lotería pero no fue incorporada al servicio militar. Al crear un “falso número de corte”, no se encontraron diferencias en las tasas de criminalidad entre los grupos “elegibles” y “no elegibles” falsos. Esta prueba es importante porque aborda la preocupación de que el resultado de la lotería pudiera tener un efecto directo en la moral de los jóvenes, independientemente de la participación real en el servicio.</p>
 <p>En conclusión, este estudio demuestra de manera convincente un <strong>efecto causal de la conscripción en tiempos de paz en el aumento de la probabilidad de desarrollar un expediente criminal</strong>. Los hallazgos sugieren que, a pesar de los posibles beneficios (disciplina, incapacitación), los mecanismos que operan en la dirección opuesta (retraso en la inserción laboral) dominan, llevando a mayores tasas de criminalidad, especialmente en delitos pecuniarios.</p>
+
 
 
 </section>

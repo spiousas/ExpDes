@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Diferencias en diferencias – Diseños experimentales y cuasiexperimentales</title>
+<title>Diseños experimentales y cuasiexperimentales - 7&nbsp; Diferencias en diferencias</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
 </style>
@@ -49,57 +49,21 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "Sín resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la búsqueda",
-    "search-hide-matches-text": "Ocultar resultados adicionales",
-    "search-more-match-text": "resultado adicional en este documento",
-    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
     "search-clear-button-title": "Borrar",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Buscar"
+    "search-submit-button-title": "Eviar"
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -107,16 +71,11 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./diff_in_diff.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -124,13 +83,13 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -138,77 +97,66 @@ window.Quarto = {
 </div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Buscar"></div>
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Prefacio</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Referencias</span></a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">Referencias</a>
   </div>
 </li>
     </ul>
@@ -217,27 +165,31 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#barcos-naranjas-y-chocolates" id="toc-barcos-naranjas-y-chocolates" class="nav-link active" data-scroll-target="#barcos-naranjas-y-chocolates"><span class="header-section-number">7.1</span> Barcos, naranjas y chocolates 🍊</a></li>
-  <li><a href="#de-las-naranjas-a-las-diferencias-en-diferencias" id="toc-de-las-naranjas-a-las-diferencias-en-diferencias" class="nav-link" data-scroll-target="#de-las-naranjas-a-las-diferencias-en-diferencias"><span class="header-section-number">7.2</span> De las naranjas a las diferencias en diferencias</a>
+  <li><a href="#barcos-naranjas-y-chocolates" id="toc-barcos-naranjas-y-chocolates" class="nav-link active" data-scroll-target="#barcos-naranjas-y-chocolates"><span class="toc-section-number">7.1</span>  Barcos, naranjas y chocolates 🍊</a></li>
+  <li><a href="#de-las-naranjas-a-las-diferencias-en-diferencias" id="toc-de-las-naranjas-a-las-diferencias-en-diferencias" class="nav-link" data-scroll-target="#de-las-naranjas-a-las-diferencias-en-diferencias"><span class="toc-section-number">7.2</span>  De las naranjas a las diferencias en diferencias</a>
   <ul class="collapse">
-  <li><a href="#enfoque-1-comparar-post-intervención-entre-grupos" id="toc-enfoque-1-comparar-post-intervención-entre-grupos" class="nav-link" data-scroll-target="#enfoque-1-comparar-post-intervención-entre-grupos"><span class="header-section-number">7.2.1</span> Enfoque 1: Comparar post-intervención entre grupos</a></li>
-  <li><a href="#enfoque-2-comparar-el-barco-pre-y-post-intervención" id="toc-enfoque-2-comparar-el-barco-pre-y-post-intervención" class="nav-link" data-scroll-target="#enfoque-2-comparar-el-barco-pre-y-post-intervención"><span class="header-section-number">7.2.2</span> Enfoque 2: Comparar el barco pre y post-intervención</a></li>
-  <li><a href="#enfoque-3-diferencia-en-diferencias-did" id="toc-enfoque-3-diferencia-en-diferencias-did" class="nav-link" data-scroll-target="#enfoque-3-diferencia-en-diferencias-did"><span class="header-section-number">7.2.3</span> Enfoque 3: Diferencia en diferencias (DiD)</a></li>
+  <li><a href="#enfoque-1-comparar-post-intervención-entre-grupos" id="toc-enfoque-1-comparar-post-intervención-entre-grupos" class="nav-link" data-scroll-target="#enfoque-1-comparar-post-intervención-entre-grupos"><span class="toc-section-number">7.2.1</span>  Enfoque 1: Comparar post-intervención entre grupos</a></li>
+  <li><a href="#enfoque-2-comparar-el-barco-pre-y-post-intervención" id="toc-enfoque-2-comparar-el-barco-pre-y-post-intervención" class="nav-link" data-scroll-target="#enfoque-2-comparar-el-barco-pre-y-post-intervención"><span class="toc-section-number">7.2.2</span>  Enfoque 2: Comparar el barco pre y post-intervención</a></li>
+  <li><a href="#enfoque-3-diferencia-en-diferencias-did" id="toc-enfoque-3-diferencia-en-diferencias-did" class="nav-link" data-scroll-target="#enfoque-3-diferencia-en-diferencias-did"><span class="toc-section-number">7.2.3</span>  Enfoque 3: Diferencia en diferencias (DiD)</a></li>
   </ul></li>
-  <li><a href="#definicion-formal-de-diferencias-en-diferencias" id="toc-definicion-formal-de-diferencias-en-diferencias" class="nav-link" data-scroll-target="#definicion-formal-de-diferencias-en-diferencias"><span class="header-section-number">7.3</span> Definicion formal de Diferencias en diferencias</a></li>
+  <li><a href="#definicion-formal-de-diferencias-en-diferencias" id="toc-definicion-formal-de-diferencias-en-diferencias" class="nav-link" data-scroll-target="#definicion-formal-de-diferencias-en-diferencias"><span class="toc-section-number">7.3</span>  Definicion formal de Diferencias en diferencias</a></li>
+  <li><a href="#el-supuesto-de-las-tendencias-paralelas" id="toc-el-supuesto-de-las-tendencias-paralelas" class="nav-link" data-scroll-target="#el-supuesto-de-las-tendencias-paralelas"><span class="toc-section-number">7.4</span>  El supuesto de las tendencias paralelas</a>
+  <ul class="collapse">
+  <li><a href="#evidencia-a-favor-del-supuesto-de-pendientes-paralelas" id="toc-evidencia-a-favor-del-supuesto-de-pendientes-paralelas" class="nav-link" data-scroll-target="#evidencia-a-favor-del-supuesto-de-pendientes-paralelas"><span class="toc-section-number">7.4.1</span>  Evidencia a favor del supuesto de pendientes paralelas</a></li>
+  </ul></li>
+  <li><a href="#la-importancia-delplacebo" id="toc-la-importancia-delplacebo" class="nav-link" data-scroll-target="#la-importancia-delplacebo"><span class="toc-section-number">7.5</span>  La importancia delplacebo</a></li>
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-did" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></h1>
+<h1 class="title"><span id="sec-did" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></h1>
 </div>
 
 
@@ -245,15 +197,15 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
 
-
 </header>
 
+<div class="cell">
 
+</div>
 <p>En esta seccion vamos a hablar de uno de los diseños quasiexperimentales más populares. Este tipo de diseño, si bien ha sido definido formalmente en tiempos mas modernos, ha existido en formas rudimentaria como una aproximacion intuitiva en las investigaciones observacionales que se han hecho en los ultimos 300 años.</p>
 <p>Debido a su caracter tan intuitivo vamos a tratar de arrimarnos a su concepcion a través de un enfoque historico.</p>
 <section id="barcos-naranjas-y-chocolates" class="level2" data-number="7.1">
@@ -263,7 +215,7 @@ window.Quarto = {
 <p>El escorbuto se convirtió en un problema grave de salud, y también económico: en cada travesía hacia la India, por ejemplo, hasta un 10 % de la tripulación podía morir o quedar gravemente afectada por la enfermedad.</p>
 <p>Dispuesto a resolver el problema el Dr James Lind (sin t al final que esos son los chocolates, y esa es la unica mencion a los chocolates) en 1747 se dio cuenta que todos los que opinaban sobre la enfermedad nunca se habian subido a un barco, decidido que la unica alternativa era la observacion del fenomeno se subio a un barco de Liverpool a la India, se agarro escorbuto y llego a la idea de que toda la tripulacion tenia mayor o menormente los sintomas, pero algunos marineros parecian estar significativamente mejor, eran los que habian traido desde sus casas alguna conservas o licores caseros (fundamentalmente de frutas).</p>
 <p>Con esta observación, Lind propuso un diseño cuasi-experimental para investigar el escorbuto. Aunque los datos originales se han perdido con el tiempo, podemos imaginar cómo pudo haber sido el experimento. Lind planteó comparar dos barcos —el Marigold y el Endeavour— que zarparían desde Liverpool rumbo a la India, llevando productos textiles y regresando con materias primas. La diferencia clave: durante el viaje de regreso, solo la tripulación del Marigold recibiría una naranja diaria. En cada uno de los cuatro viajes, se registrarían los casos de escorbuto, resultando en una tabla como la siguiente:</p>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -325,7 +277,7 @@ window.Quarto = {
 <li><em>M</em> y <em>E</em>: efectos fijos del <em>Marigold</em> y <em>Endeavour</em>, respectivamente</li>
 </ul>
 <p>Entonces podemos representar los casos de escorbuto así:</p>
-<table class="caption-top table">
+<table class="table">
 <thead>
 <tr class="header">
 <th>Barco</th>
@@ -346,7 +298,7 @@ window.Quarto = {
 <p>En este modelo, si simplemente restamos los casos entre grupos post-tratamiento (como haríamos con un <em>SDO</em>), obtenemos:</p>
 <p>$ Y_{} - Y_{} = D + (M - E) $</p>
 <p>Aquí aparece un problema clave: el término ( M - E ) representa una diferencia estructural entre barcos —y puede interpretarse como un <strong>sesgo de selección</strong>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -379,7 +331,7 @@ Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
 <h3 data-number="7.2.2" class="anchored" data-anchor-id="enfoque-2-comparar-el-barco-pre-y-post-intervención"><span class="header-section-number">7.2.2</span> Enfoque 2: Comparar el barco pre y post-intervención</h3>
 <p>En el enfoque anterior vimos que no podemos simplemente comparar dos unidades diferentes (como barcos) porque existe el riesgo de sesgo de selección. Pero, entonces, ¿podemos comparar una unidad consigo misma antes y después del tratamiento?</p>
 <p>Esta idea es intuitiva y tiene nombre: se trata de una <strong>serie de tiempo interrumpida</strong>. En este caso, compararíamos al <em>Marigold</em> antes y después de recibir naranjas. Veamos una tabla simplificada:</p>
-<table class="caption-top table">
+<table class="table">
 <thead>
 <tr class="header">
 <th>Barco</th>
@@ -414,7 +366,7 @@ Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
 </ul>
 <p>La intuición detrás de la estrategia de <strong>diferencia en diferencias (DiD)</strong> es sorprendentemente simple: combinar ambos enfoques básicos de forma que, por turnos, se eliminen tanto el sesgo de selección como el efecto del tiempo.</p>
 <p>Veámoslo en la siguiente tabla:</p>
-<table class="caption-top table">
+<table class="table">
 <thead>
 <tr class="header">
 <th>Barco</th>
@@ -452,7 +404,7 @@ Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
 </table>
 <p>La idea ahora es usar las diferencias de cada barco en el tiempo, y luego restar esas diferencias entre sí.</p>
 <p>Vamos a ponerlo en una tabla para ver si es mas claro</p>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -529,7 +481,7 @@ Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
 <p>Cuando este supuesto se cumple, <strong>DiD nos permite identificar el efecto causal del tratamiento</strong>, incluso sin asignación aleatoria. Y lo hace de forma sorprendentemente simple: usando observaciones repetidas en unidades tratadas y no tratadas (como los viajes de ida y vuelta de ambos barcos), eliminamos tanto la heterogeneidad entre unidades como los cambios compartidos en el tiempo. Una vez definido el escenario básico nos vamos a poner a hablar formalmente de este tipo de diseño.</p>
 <blockquote class="blockquote">
 <p>Es posible que llegado este punto esten preocupados por el escorbuto, no se preocupen la vitamina C que tienen los mates que tomaron leyendo esto es más que suficiente para evitarlo, pero por las dudas…vamos a seguir leyendo …</p>
-<p><img src="imgs/pepe_mate.jpg" class="img-fluid" width="300"></p>
+<p><img src="images/pepe_mate.jpg" class="img-fluid" width="458"></p>
 </blockquote>
 </section>
 </section>
@@ -542,7 +494,7 @@ Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
 <p>donde:</p>
 <ul>
 <li><span class="math inline">\(\hat{\delta}^{\text{2x2}}_{\text{kU}}\)</span> es la estimación del efecto promedio del tratamiento en el grupo k (el <strong>ATT</strong>)</li>
-<li><span class="math inline">\(\bar{Y}}\)</span> representa el promedio muestral de ese grupo particular en ese tiempo particular</li>
+<li><span class="math inline">\(\bar{Y}\)</span> representa el promedio muestral de ese grupo particular en ese tiempo particular</li>
 </ul>
 <p>El primer término, <span class="math inline">\(\bar{Y}_{k_\text{post}} - \bar{Y}_{k_\text{pre}}\)</span> es la diferencia antes-después para el grupo tratado. El segundo término (<span class="math inline">\(\bar{Y}_{U_\text{post}} - \bar{Y}_{U_\text{pre}}\)</span>) es la misma diferencia, pero para el grupo no tratado. Luego restamos la segunda diferencia de la primera.</p>
 <p>Pero esto es simplemente la <strong>mecánica del cálculo</strong>. ¿A qué corresponde exactamente este parámetro estimado? Para entender eso, debemos convertir estos promedios muestrales en <strong>valores esperados condicionales de resultados potenciales</strong>. Por suerte, eso es fácil de hacer cuando trabajamos con promedios, como veremos ahora.</p>
@@ -564,6 +516,103 @@ Y_1^M - Y_0^E = (Y_0^M + N) - Y_0^E = D + (Y_0^M - Y_0^E)
 <p>Pero fíjate en el término de la segunda línea. ¿Notas algo extraño? El objeto de interés es <code>E[Y(0) | D=1, t=1]</code>, es decir, el resultado en el <strong>grupo tratado</strong> en el <strong>período posterior</strong>, pero <strong>en un mundo sin tratamiento</strong>. Según la <em>switching equation</em>, este resultado <strong>no es observable</strong>. Y como hemos repetido varias veces: <strong>los contrafactuales no se pueden observar</strong>.</p>
 <p>Esta conclusión se conoce como el <strong>supuesto de tendencias paralelas</strong> (<em>parallel trends assumption</em>), y <strong>por definición, no es contrastable</strong> empíricamente, ya que no podemos observar ese valor esperado contrafactual.</p>
 <p>Volveremos sobre este tema más adelante, pero por ahora, lo presentamos para que lo tengas presente.</p>
+</section>
+<section id="el-supuesto-de-las-tendencias-paralelas" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="el-supuesto-de-las-tendencias-paralelas"><span class="header-section-number">7.4</span> El supuesto de las tendencias paralelas</h2>
+<p>Vamos a tratar de entender mejor el problema de las tendencias paralelas. Vamos para ello a utilizar el trabajo clasico de Card y Krueger (1994). Estos investigadores aprovechando que dos estados vecinos: New Jersey -NJ- que iba a fijar un cambio de su salario minimo y Pennsylvania -PA- que iba a mantenerlo tal cual, decidieron estudiar su impacto sobre el empleo. Evaluaron el numero de empleos antes y despues de la medida en ambos estados. Es decir un diseño 2x2DiD</p>
+<p>es decir que podriamos el ATT de esta forma:</p>
+<p><span class="math display">\[
+\hat{\delta}^{\text{2x2}}_{\text{NJ,PA}} =
+\underbrace{\left( E[Y^1_\text{NJ} \mid \text{post}] - E[Y^0_\text{NJ} \mid \text{post}] \right)}_{\text{ATT}} +
+\underbrace{\left[ \left( E[Y^0_\text{NJ} \mid \text{post}] - E[Y^0_\text{NJ} \mid \text{pre}] \right) - \left( E[Y^0_\text{PA} \mid \text{post}] - E[Y^0_\text{PA} \mid \text{pre}] \right) \right]}_{\text{Bias due to non-parallel trends in 2x2}}
+\]</span></p>
+<p>Usando la switching equation (asumiendo que el efecto y el tiempo son fijos), podriamos estimar el efecto del salario minimo en el empleo (<span class="math inline">\(Y\)</span>) como una regresión lineal en donde:</p>
+<p><span class="math display">\[
+Y=\alpha+\gamma NJ_s+ \lambda D_t+\delta(NJxD)_\text{st}+ \epsilon
+\]</span></p>
+<p>Vamos a explicar esta fórmula, aquí NJ es una variable dummy (1 si es NJ y 0 si es PA) y D es una dummy del tiempo (1 si es post y 0 si es pre). Entonces las medidas adoptarian la siguiente forma dependiendo si las dummies son 0 o no.</p>
+<ul>
+<li><p>PA pre = <span class="math inline">\(\alpha\)</span></p></li>
+<li><p>PA post = <span class="math inline">\(\alpha +\lambda\)</span></p></li>
+<li><p>NJ pre = <span class="math inline">\(\alpha + \gamma\)</span></p></li>
+<li><p>NJ post= $ + ++ $</p></li>
+</ul>
+<p>Graficarlo visualmente sería algo así:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/DiD_Mesa%20de%20trabajo%201.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Si miramos cuidadosamente el parametro <span class="math inline">\(\delta\)</span> podemos ver como no es otro más que el ATT ya que es la distancia entre el valor que adopta NJ en el post tratamiento (en la linea solida) con respecto al valor contrafactico que hubiera adoptado sin tratamiento (la linea punteada) ya que si volvemos a nuestra ecuacion esto sería asi:</p>
+<p>$$</p>
+<p>= E[Y^1_ ] - E[Y^0_]</p>
+<p>$$ Donde el primer termino es observado (porque <span class="math inline">\(Y=Y^1\)</span>, es decir la medida post tratamiento de NJ que recibio el tratamiento) y el segundo termino no por la misma razon</p>
+<p>Ahora viene lo importante, una regresión lineal escrita a partir del diseño 2x2DiD siempre estimará la línea punteada, incluso si la pendiente contrafactual hubiera sido otra. Esto ocurre porque la regresion lineal utiliza el cambio en el tiempo de Pensilvania para proyectar un punto a partir del valor previo al tratamiento de Nueva Jersey. Una vez que se ha llenado ese valor faltante, el estimador del parámetro es igual a la diferencia entre el valor observado tras el tratamiento y el valor proyectado, calculado según la pendiente de Pensilvania, sin importar si esa pendiente de Pensilvania era o no el referente correcto para medir la pendiente contrafactual de Nueva Jersey. En resumen, esta regresión siempre estima un tamaño de efecto usando la pendiente del grupo no tratado como contrafactual, sin importar si esa pendiente es realmente la adecuada.</p>
+<p>Pero, si la pendiente de Pensilvania es igual a la pendiente contrafactual de Nueva Jersey: en ese caso, la pendiente de Pensilvania utilizada en la regresión estimará mecánicamente el ATT.</p>
+<p>Ahora como venimos viendo, este analisis asume que la pendiente del contrafactico del grupo tratamiento es paralela a la pendiente del grupo control. Si esto no ocurriera exactamente así el escenario sería este.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/DiD-02.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>En la figura vemos entonces que la regresión estimo un punto contrafactico basado en la pendiente de PA (el grupo control), que podemos ver en azul en ese caso lo cual un estima un parametro <span class="math inline">\(\hat{\delta}^\text{RL}\)</span> que es distinto del verdadero efecto causal dado por el estimador del ATT (nuestro parametro <span class="math inline">\(\hat{\delta}^\text{ATT}\)</span>) que es la distancia entre la observacion de NJ y el contractico real de NJ si no hubiera recibido el tratamiento.</p>
+<p>Aquí vemos la importancia del <strong>supuesto de tendencias paralelas</strong>. La única situación en la que la estimación de la regresión es igual al ATT es cuando el contrafactual de Nueva Jersey coincide por casualidad con la línea punteada de la regresión, que es una línea paralela a la pendiente de Pensilvania. Y aquí es donde surge el escepticismo comprensible de muchos observadores: ¿por qué deberíamos basar la estimación en esta creencia en una coincidencia? Al fin y al cabo, estamos hablando de una tendencia contrafactual, y por lo tanto no observable, dado que nunca ocurrió. Tal vez el contrafactual habría seguido la línea de la regresión, o tal vez habría sido alguna otra línea desconocida. Podría haber sido cualquier cosa —simplemente no lo sabemos.</p>
+<p>Por eso se puede decir que el <strong>supuesto de tendencias paralelas</strong> es, en realidad, simplemente otra forma de expresar el <strong>supuesto de exogeneidad estricta</strong></p>
+<div class="callout callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>El supuesto de exogeneidad estricta establece que los errorers (o términos no observados) del modelo no están correlacionados con las variables explicativas (regresores), y en el caso especial de las DiD, en ningún período de tiempo.</p>
+</div>
+</div>
+</div>
+<p>Al decidir optar por un diseño DiD debemos asumir esta condición, porque no tenemos forma de deducir cuanto esta de lejos un contrafactual (el que determina la regresión) del contrafactico real. Basicamente porque ambos son conrafacticos y no medibles. Lo que decimos al apelar a las tendencias paralelas es que hemos encontrado un grupo de control que aproxima la trayectoria que habría seguido el grupo tratado, y que el tratamiento no es endógeno (es decir que el tratamiento no es producto de las condiciones internas del grupo). Si el tratamiento es endógeno, entonces las tendencias paralelas se violan siempre, porque en el contrafactual el grupo tratado habría divergido de todos modos, independientemente del tratamiento.</p>
+<p>Como dijimos esta situacion es inmedible, es una asuncion, es decir necesita un <em>salto de fe</em> y creer que la pendiente del grupo control es igual (o muy aproximada) a la pendiente del grupo tratamiento si no hubiera recibido el tratamiento (el contrafactico real). Pero como todo salto de fe, bueno este puede tener un poco o nada de evidencia a su favor. Veamos como podemos abordar este problema</p>
+<section id="evidencia-a-favor-del-supuesto-de-pendientes-paralelas" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="evidencia-a-favor-del-supuesto-de-pendientes-paralelas"><span class="header-section-number">7.4.1</span> Evidencia a favor del supuesto de pendientes paralelas</h3>
+<p>Dada la importancia crítica del supuesto de tendencias paralelas para identificar efectos causales con el diseño de diferencias en diferencias (DiD), y dado que una de las observaciones necesarias para evaluar dicho supuesto no está disponible para el investigador, uno podría rendirse y tirar la toalla. Sin embargo hay un par de metodos para <em>agregar evidencia razonable</em> acerca del supuesto. Vamos a ver dos:</p>
+<ul>
+<li><p>Estudio de eventos</p></li>
+<li><p>Chequeo del balance pretratamiento entre grupos</p></li>
+</ul>
+<section id="estudio-de-eventos-previos" class="level4" data-number="7.4.1.1">
+<h4 data-number="7.4.1.1" class="anchored" data-anchor-id="estudio-de-eventos-previos"><span class="header-section-number">7.4.1.1</span> Estudio de eventos previos</h4>
+<p>Volvamos a rescribirla formula de nuestro diseño</p>
+<p><span class="math display">\[
+\hat{\delta}^{\text{2x2}}_{\text{kU}} =
+\underbrace{\left( E[Y^1_k \mid \text{post}] - E[Y^0_k \mid \text{post}] \right)}_{\text{ATT}} +
+\underbrace{\left[ \left( E[Y^0_k \mid \text{post}] - E[Y^0_k \mid \text{pre}] \right) - \left( E[Y^0_U \mid \text{post}] - E[Y^0_U \mid \text{pre}] \right) \right]}_{\text{Bias due to non-parallel trends in 2x2}}
+\]</span></p>
+<p>Nos interesa el primer término, el ATT, pero este se ve contaminado por sesgo de selección cuando el segundo término no es igual a cero. Como evaluar el segundo término requiere el contrafactual, $ E[Y0∣post,D=1]−E[Y0∣pre,D=1]E[Y0∣post,D=1]−E[Y0∣pre,D=1]$, no podemos hacerlo directamente. Lo que que si se puede hacer, en cambio, es comparar coeficientes placebo de DD en los períodos previos al tratamiento. Si los coeficientes DD en esos períodos pretratamiento son estadísticamente iguales a cero, entonces las diferencias en diferencias entre el grupo tratado y el de control siguieron una tendencia similar antes del tratamiento.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/DiD-04.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Y aquí aparece el arte retórico del diseño: si fueron similares antes, ¿por qué no habrían de continuar siéndolo después del tratamiento?</p>
+<p>Pero esta retórica es una especie de prueba por afirmación. Que hayan sido similares antes no implica lógicamente que deban serlo después. Asumir que el futuro será como el pasado es una forma de la falacia del jugador conocida como la “posición inversa”. Que una moneda haya salido cara tres veces seguidas no significa que deba salir cara la cuarta vez, al menos no sin otros supuestos adicionales. De la misma forma, no estamos obligados a creer que las tendencias contrafactuales serían iguales tras el tratamiento solo porque lo fueron antes, salvo que hagamos más supuestos sobre el poder predictivo de las tendencias previas. Pero hacer tales supuestos es, nuevamente, hacer supuestos no comprobables, y así volvemos al punto de partida.</p>
+<p>Un caso en el que las tendencias paralelas se violarían de forma evidente es cuando el tratamiento es endógeno. En ese escenario, la asignación al tratamiento dependería directamente de los resultados potenciales y, en ausencia del tratamiento, esos resultados habrían cambiado de todas formas. Tal endogeneidad tradicional requiere más que simples visualizaciones “perezosas” de las tendencias previas. Aunque la prueba de placebo es importante, técnicamente las similitudes pretratamiento no son necesarias ni suficientes para garantizar tendencias contrafactuales paralelas (Kahn-Lang y Lang 2019). El supuesto no se prueba tan fácilmente. Nunca se puede dejar de ser riguroso al intentar determinar si los grupos se seleccionaron endógenamente al tratamiento, si hay sesgos por variables omitidas, distintas fuentes de sesgo de selección o caminos de retroceso abiertos. Cuando el término de error estructural en un modelo de regresión dinámica no está correlacionado con la variable de tratamiento, se tiene exogeneidad estricta, y eso es lo que proporciona las tendencias paralelas y permite hacer afirmaciones significativas sobre las estimaciones.</p>
+</section>
+<section id="mostrar-el-balance-pretratamiento-de-ambos-grupos" class="level4" data-number="7.4.1.2">
+<h4 data-number="7.4.1.2" class="anchored" data-anchor-id="mostrar-el-balance-pretratamiento-de-ambos-grupos"><span class="header-section-number">7.4.1.2</span> Mostrar el balance pretratamiento de ambos grupos</h4>
+<p>Recien mencionamos que estudiar los eventos previos es una forma (indirecta) de juntar evidencia a favor de este supuesto de tendencias paralelas (para que el salto de fe no sea tan alto) El problema es que como analizamos eso?, bueno hay varios enfoques que podemos tomar, en conjunto se los suele llamar <em>event study plots</em> Una forma simple de conducir esto es graficar los datos pretratamiento (como en en la figura anterior), sin embargo esto requiere que tengamos mucha suerte y los datos se hayan tomado en forma fija en otros eventos. Estos datos que provienen de observaicones rara vez suelen comportarse asi</p>
+<p>Un escenario mucho más común es la existencia de un <em>timing diferencial</em>, en el que los grupos de unidades adoptan el tratamiento en distintos momentos. Entonces el concepto de “pretratamiento” se vuelve complejo. En nuestro ejemplo para el caso, Nueva Jersey aumentó su salario mínimo en 1992 y Nueva York lo hizo en 1994, pero Pensilvania nunca aumentó su salario mínimo, el período previo al tratamiento se define para Nueva Jersey (1991) y para Nueva York (1993), pero no para Pensilvania. Entonces, ¿cómo probamos las diferencias previas al tratamiento en ese caso? La gente lo ha hecho de varias maneras.</p>
+<p>Una posibilidad es graficar los datos brutos, año por año, y simplemente observar a ojo. Compararías el grupo tratado con el nunca tratado, por ejemplo, lo que podría requerir muchos gráficos y ser visualmente incómodo.La ventaja es que muestra de forma transparente los datos crudos sin ajustes. Sin trucos. Las desventajas son varias. Primero, puede ser engorroso cuando el número de grupos tratados es grande, volviéndolo prácticamente imposible. Segundo, puede que no sea visualmente atractivo. Y tercero, este enfoque asume necesariamente que el único grupo de control es el nunca tratado, lo que en realidad no es cierto. Cualquier DiD es una combinación de una comparación entre tratados y nunca tratados, tratados tempranos (a los que llamaremos <strong>leads</strong>) frente a tratados tardíos (a los que llamaremos <strong>lags</strong>) y tratados tardíos frente a tratados tempranos. Por lo tanto, mostrar solo la comparación con los nunca tratados es en realidad una presentación engañosa del mecanismo de identificación subyacente en un modelo de efectos fijos bidireccionales con timing diferencial.</p>
+<p>La forma actual en que se evalúan las dinámicas previas al tratamiento entre un grupo tratado y uno de control con timing diferencial es estimar un modelo de regresión que incluya <em>leads</em> y <em>lags</em> del tratamiento. Un ejemplo de eso puede ser graficar los leads previos al tratamiento en lugar de graficar tratamiento y control y tras la estimacion graficar los intervalos de regresion en cada unidad de leads/lags. Los modelos como estos suelen seguir una forma asi:</p>
+<p><span class="math display">\[
+Y_{its} = \gamma_s + \lambda_t + \sum_{\tau=-q}^{-1} \gamma_{\tau} D_{s\tau} + \sum_{\tau=0}^{m} \delta_{\tau} D_{s\tau} + x_{ist} + \varepsilon_{ist}
+\]</span> El tratamiento ocurre en el año 0. Se incluyen <span class="math inline">\(q\)</span> leads o efectos anticipatorios, y <span class="math inline">\(m\)</span> lags o efectos posteriores al tratamiento. Ete tipo de enfoques permite al al lector comprobar tanto el grado en que los efectos del tratamiento post-tratamiento fueron dinámicos, como si los dos grupos eran comparables en sus dinámicas del resultado antes del tratamiento.</p>
+</section>
+</section>
+</section>
+<section id="la-importancia-delplacebo" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="la-importancia-delplacebo"><span class="header-section-number">7.5</span> La importancia delplacebo</h2>
+<p>Existen varias pruebas para evaluar la validez de una estrategia de difference-in-differences (DD). Ya he mencionado una: la comparabilidad entre los grupos de tratamiento y control en las dinámicas observables antes del tratamiento. Ahora hablaré de otras formas creíbles de evaluar si los efectos causales estimados son fiables, destacando el uso de falsificación mediante placebos.</p>
+<p>La idea de la falsificación con placebos es sencilla. Supongamos que encuentras un efecto negativo del salario mínimo sobre el empleo de los trabajadores con salarios bajos. ¿Es verdadera la hipótesis si encontramos evidencia a favor? Quizás sí, quizás no. Lo que realmente podría ayudar sería tener en mente una hipótesis alternativa e intentar ponerla a prueba. Si no puedes rechazar la hipótesis nula en esa hipótesis alternativa, eso aporta credibilidad a tu análisis original. Por ejemplo, puede que estés captando algo espurio, como factores cíclicos u otros no observables que no se capturan fácilmente con efectos fijos de tiempo o de estado. Entonces, ¿qué puedes hacer?</p>
+<p>Un candidato para la falsificación con placebo podría ser simplemente usar datos de un tipo alternativo de trabajador cuyos salarios no se vean afectados por el salario mínimo vinculante. Por ejemplo, los salarios mínimos afectan el empleo y las ganancias de los trabajadores con salarios bajos, ya que estos son los trabajadores contratados literalmente con base en el salario de mercado. Sin un serio equilibrio general de por medio, el salario mínimo no debería afectar el empleo de los trabajadores con salarios altos, porque el salario mínimo no es vinculante para ellos. Dado que los trabajadores de salarios altos y bajos suelen estar empleados en sectores muy distintos, es poco probable que sean sustitutos. Este razonamiento podría llevarnos a considerar que los trabajadores con salarios altos funcionen como un placebo.</p>
+<p>Hay dos formas de incorporar esta idea en nuestro análisis. A muchos les gusta ser directos y simplemente ajustar el mismo diseño DD usando como variable de resultado el empleo de los trabajadores con salarios altos. Si el coeficiente del salario mínimo es cero cuando usamos el empleo de trabajadores con salarios altos como resultado, pero el coeficiente del salario mínimo para los trabajadores con salarios bajos es negativo, entonces habremos aportado una evidencia más sólida que complementa el análisis previo de los trabajadores con salarios bajos. Pero hay otro método que utiliza el placebo dentro del estado para la identificación, llamado difference-in-differences-in-differences (o “triple differences”), que no abordaremos aqui</p>
 
 
 </section>
@@ -610,33 +659,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -705,15 +727,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -730,9 +750,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -740,15 +758,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -756,74 +771,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiado");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copiado");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
+    button.setAttribute("title", "Copiada");
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -833,17 +792,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -855,292 +805,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./matching.html" class="pagination-link" aria-label="Subclasificación y *matching*">
+      <a href="./matching.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./reg_discontinua.html" class="pagination-link" aria-label="Regresión discontinua">
+      <a href="./reg_discontinua.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1148,18 +844,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
-</div>
+    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
+    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 

@@ -49,7 +49,7 @@ Para entender por qué la subclasificación corrige esto, podemos representar el
 
 ```{r}
 #| echo: false
-#| fig-cap: "DAG que representa la relación entre D e Y teniendo a A como confusor."
+#| fig-cap: "DAG que representa la relación entre D e Y teniendo a X como confusor."
 #| fig-width: 4
 #| fig-align: center
 
@@ -74,9 +74,9 @@ Al condicionar en $X$ (es decir, subclasificar o estratificar por región), cerr
 
 ¿Cómo aplicamos esta idea de la subclasificación a un ejemplo real? Bueno, empecemos con un ejemplo "real". 
 
-Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuento que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste(compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
+Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuento que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste  (compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
 
-Como todas las simulaciones que hicimos a lo largo del libro (si es que a esto se le puede llamar libro) conocemos el tamaño del efecto que queremos estimar y tiene como valor medio \$$300$. Otra cosa a la que vamos a poder ecceder es a ambos *potential outcomes*, es decir, tanto al observado como al contrafáctico (si es que a esto se le puede llamar contrafáctico). Estos son lujos que nos podemos dar (si es que a esto se le puede llamar un lujo). Veamos $5$ filas al azar de los datos simulados.
+Como todas las simulaciones que hicimos a lo largo del libro (si es que a esto se le puede llamar libro) conocemos el tamaño del efecto que queremos estimar y tiene como valor medio \$$300$. Otra cosa a la que vamos a poder acceder es a ambos *potential outcomes*, es decir, tanto al observado como al contrafáctico (si es que a esto se le puede llamar contrafáctico). Estos son lujos que nos podemos dar (si es que a esto se le puede llamar un lujo). Veamos $5$ filas al azar de los datos simulados.
 
 ```{r}
 # Simulación de los datos ####
@@ -146,7 +146,7 @@ o, en lenguaje computacional:
 
 `SDO <- mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0])`.
 
-Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es negativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegurar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso al asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
+Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es negativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegurar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso la asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
 
 Veamos ahora las ventas para grupo tratamiento y control pero por región.
 
@@ -241,7 +241,7 @@ ggplot(customers_4_plot) +
   
 ```
 
-*Et voilá*, acá la cosa cambia. Que significa esto, que si bien el problema no tiene independencia, sí podemos obtener la independencia condicional controlando por región ($D \perp (Y_0,Y_1) | Grupo$).
+*Et voilà*, acá la cosa cambia. Que significa esto, que si bien el problema no tiene independencia, sí podemos obtener la independencia condicional controlando por región ($D \perp (Y_0,Y_1) | Grupo$).
 
 Todo esto es muy lindo, pero que pasa si en lugar de tener grupos tenemos que esta dependencia en la asignación depende de una variable continua o, peor aún, de varias. Tranquilos amigos, *matching* es el camino.
 
@@ -368,7 +368,7 @@ trainees_df %>%
   theme(legend.position = "top")
 ```
 
-Al parecer, la gente de más edad (y que naturalemte tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran **red flag** metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos *exact matching* para emparejar a los participantes tratados con controles que tengan la misma edad y estimemos el **ATT**.
+Al parecer, la gente de más edad (y que naturalmente tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran **red flag** metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos *exact matching* para emparejar a los participantes tratados con controles que tengan la misma edad y estimemos el **ATT**.
 
 Escribamos una función a mano para calcular el **ATT**[^ATT_estimator]:
 
@@ -639,9 +639,9 @@ Ahora sí el más cercano es el empleado $9$.
 
 Otra opción es la distancia de **Mahalanobis**, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí. Es decir, si las variables están correlacionadas, la distancia de Mahalanobis las considera más cercanas que la distancia euclidiana [^mahala_no_eq].
 
-[^mahala_no_eq]: NSi tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo [este video](https://www.youtube.com/watch?v=eutzTEGgLpE&t=139s).
+[^mahala_no_eq]: Si tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo [este video](https://www.youtube.com/watch?v=eutzTEGgLpE&t=139s).
 
-Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclideana (es fácil de demostrar si tienen ganas y, claro, tiempo). 
+Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclidiana (es fácil de demostrar si tienen ganas y, claro, tiempo). 
 
 Una última aclaración, en esta distancia no es necesario estandarizar las covariables porque la distancia de Mahalanobis ya lo hace por nosotros. Entonces, si tenemos dos puntos $(edad_1, salario_1)$ y $(edad_2, salario_2)$, la distancia de Mahalanobis sería:
 
@@ -653,7 +653,7 @@ Donde $S$ es la matriz de covarianzas de las variables $edad$ y $salario$. Esta 
 
 Dejemos un poquito las comparaciones entre métricas de distancia para más adelante y veamos cómo podemos usar estas distancias para hacer *matching*.
 
-En este caso vamos a analizar un ejemplo en el que queremos evaluar la efectividad en la recuperación de una determinada medicina. En este caso (supongamos que hicimos el **DAG**, identificamos los *backdoors*, etc.) queremos controlar por tres variables: Edad, Sexo y Severidad (el famoso vector $X$). Veamos $5$ datos la azar.
+En este caso vamos a analizar un ejemplo en el que queremos evaluar la efectividad en la recuperación de una determinada medicina. En este caso (supongamos que hicimos el **DAG**, identificamos los *backdoors*, etc.) queremos controlar por tres variables: Edad, Sexo y Severidad (el famoso vector $X$). Veamos $5$ datos al azar.
 
 ```{r}
 medicine_impact_recovery <- 
@@ -703,7 +703,7 @@ medicine_impact_recovery |>
 
 Y aquí vemos dos cosas. Que en sexo $0$ la mayoría son controles y en sexo $1$ no es tan así. Y que, en general hay más controles que tratados[^tratados].
 
-[^tratados]: Algo que va a hacer que sea más fácil encontrarle controles *matcheados* a los tratados y no viceverse.
+[^tratados]: Algo que va a hacer que sea más fácil encontrarle controles *matcheados* a los tratados y no viceversa.
 
 Vamos a estimar el **ATT** utilizando la función `matchit` del paquete `MatchIt`[^matchit]. Esta función nos permite hacer *matching* de forma sencilla y rápida. Vamos a usar la distancia de Mahalanobis para emparejar los tratados con los controles.
 
@@ -764,7 +764,7 @@ Pero, ¿de qué hablamos cuando hablamos de soporte común? Básicamente, nos re
 
 ### Euclideana vs. Mahalanobis, la batalla final
 
-En mi experiencia, entender claramente la diferencia entre estas dos distancia no es cosa sencilla y, si bien no es vital para entender **matching**, es una excelente excusa pensar un poco en qué significa **ser parecido**. Vamos al lio.
+En mi experiencia, entender claramente la diferencia entre estas dos distancia no es cosa sencilla y, si bien no es vital para entender **matching**, es una excelente excusa pensar un poco en qué significa **ser parecido**. Vamos al lío.
 
 Supongamos que queremos estudiar el efecto de la entrega de un bono en la satisfacción con la empresa. Para esto identificamos dos confusores y vamos a *matchear* a los sujetos del grupo tratamiento (recibieron un bono) con sus controles correspondientes (no recibieron bono). Los confusores que identificamos son la edad y el salario de los empleados. Vamos a generar una base de datos con $200$ empleados, $100$ del grupo tratamiento y $100$ del grupo control y ver algunos datos tomados al azar.
 
@@ -865,7 +865,7 @@ empleados_tbl |> ggplot(aes(x = Edad,
 
 ¿Cuál dirían que es el más cercano? ¿El punto rojo o el punto azul? Bueno, si calculamos la distancia euclídea efectivamente el punto más cercano es el rojo, pero si lo hacemos utilizando la distancia de Mahalanobis, el más cercano es el azul. ¿Por qué? Bueno, en este caso, la distancia de Mahalanobis considera que el punto azul está más cerca porque tiene en cuenta que la edad y el salario están correlacionados. Es decir son más "parecidas" dos personas con una relación entre edad y salario similar.
 
-Dicho esto, vuelvo sobre la idea de que siempre conviene utilizar la distancia de Mahalanobis para hacer *matching* porque es la que mejor refleja las relaciones entre las covariables. Además, en el caso de que no tengamon correlación entre las covariables, la distancia de Mahalanobis se reduce a la distancia euclídea.
+Dicho esto, vuelvo sobre la idea de que siempre conviene utilizar la distancia de Mahalanobis para hacer *matching* porque es la que mejor refleja las relaciones entre las covariables. Además, en el caso de que no tengamos correlación entre las covariables, la distancia de Mahalanobis se reduce a la distancia euclídea.
 
 ## *Matching* vs. regresión[^fuente] {#sec-matching_vs_reg}
 
@@ -940,7 +940,7 @@ modelsummary(list("Regresión"= linear_model1,
 
 ```
 
-Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de $0.220$, mientras que el *matching* nos da un estimador de $0.992$. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento[^tamanio_muestra]. 
+Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de `r round(linear_model1$coefficients[2], 3)`, mientras que el *matching* nos da un estimador de `r round(matching_model1$coefficients[2], 3)`. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento[^tamanio_muestra]. 
 
 [^tamanio_muestra]: Otra cosa interesante que podemos observar, es que al estimar el efecto con *matching*, el tamaño de la muestra efectivo es menor que al estimar con regresión lineal. Esto se debe a que el *matching* elimina las unidades que no tienen un par cercano en el grupo de control, lo que reduce el tamaño de la muestra efectiva.
 
@@ -1068,7 +1068,7 @@ modelsummary(list("Regresión"= reg_wo_common_support,
                     font_weight = "bold")
 ```
 
-Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de soporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, $1.022$. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es $0.02$, es decir, un efecto casi nulo. 
+Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de soporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, `r round(reg_wo_common_support$coefficients[2], 3)`. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es `r round(mathing_wo_common_support$coefficients[2], 3)`, es decir, un efecto casi nulo. 
 
 Volvamos a ver las cosas gráficamente a ver si esto nos echa un poco de luz sobre lo que está ocurriendo. Primero veamos la regresión lineal ajustada:
 
@@ -1194,6 +1194,6 @@ plot_matching_wo_cs <-
 plot_matching_wo_cs
 ```
 
-Podemos ver que para los valores de $x$ donde no hay soporte común, el *matching* hace una estimaciones que están muy lejos del valor real del parámetro poblacional, $1$. Esto se debe a que el *matching* no puede extrapolar y, por lo tanto, no puede estimar el efecto del tratamiento en esos valores de $x$ donde no hay unidades tratadas.
+Podemos ver que para los valores de $x$ donde no hay soporte común, el *matching* hace unas estimaciones que están muy lejos del valor real del parámetro poblacional, $1$. Esto se debe a que el *matching* no puede extrapolar y, por lo tanto, no puede estimar el efecto del tratamiento en esos valores de $x$ donde no hay unidades tratadas.
 
 En resumen, la regresión lineal puede ser una herramienta conveniente para obtener la independencia condicional, pero si la relación entre las covariables y el *outcome* no es lineal (y no la conocemos)  , el estimador del efecto del tratamiento puede estar sesgado. En cambio, el *matching* no asume una relación lineal y puede ser más robusto en estos casos, pero requiere soporte común para poder extrapolar. Si no hay soporte común, el *matching* no puede estimar el efecto del tratamiento en esos valores de las covariables donde no hay unidades tratadas.

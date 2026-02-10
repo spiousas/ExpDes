@@ -13,9 +13,9 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-En esta seccion vamos a hablar de uno de los diseños quasiexperimentales más populares. Este tipo de diseño, si bien ha sido definido formalmente en tiempos mas modernos, ha existido en formas rudimentaria como una aproximacion intuitiva en las investigaciones observacionales que se han hecho en los ultimos 300 años.
+En esta capítulo vamos a hablar de uno de los diseños cuasiexperimentales más populares. Este tipo de diseño, si bien ha sido definido formalmente en tiempos más modernos, ha existido en formas rudimentarias como una aproximación intuitiva en las investigaciones observacionales que se han hecho en los últimos 300 años.
 
-Debido a su caracter tan intuitivo vamos a tratar de arrimarnos a su concepcion a través de un enfoque historico.
+Debido a su carácter tan intuitivo vamos a tratar de arrimarnos a su concepción a través de un enfoque histórico.
 
 ## Barcos, naranjas y chocolates `r emo::ji("tangerine")`
 

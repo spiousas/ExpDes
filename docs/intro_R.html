@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; R y el tidyverse – Diseños experimentales y cuasiexperimentales</title>
+<title>Diseños experimentales y cuasiexperimentales - 1&nbsp; R y el tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,12 +17,11 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -47,20 +46,48 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
-.hanging-indent div.csl-entry {
+.hanging div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -74,7 +101,8 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}</style>
+}
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -103,59 +131,24 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "Sín resultados",
     "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la búsqueda",
-    "search-hide-matches-text": "Ocultar resultados adicionales",
-    "search-more-match-text": "resultado adicional en este documento",
-    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
     "search-clear-button-title": "Borrar",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Buscar"
+    "search-submit-button-title": "Eviar"
   }
 }</script>
+
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -163,16 +156,11 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_R.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -180,13 +168,13 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -194,77 +182,66 @@ window.Quarto = {
 </div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Buscar"></div>
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Prefacio</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefacio</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_R.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dags.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
+  <a href="./dags.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
+  <a href="./matching.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">Referencias</a>
   </div>
 </li>
     </ul>
@@ -273,28 +250,27 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link active" data-scroll-target="#tidy-data"><span class="header-section-number">1.1</span> Tidy data</a></li>
-  <li><a href="#introducción-al-tidyverse" id="toc-introducción-al-tidyverse" class="nav-link" data-scroll-target="#introducción-al-tidyverse"><span class="header-section-number">1.2</span> Introducción al Tidyverse</a>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link active" data-scroll-target="#tidy-data"><span class="toc-section-number">1.1</span>  Tidy data</a></li>
+  <li><a href="#introducción-al-tidyverse" id="toc-introducción-al-tidyverse" class="nav-link" data-scroll-target="#introducción-al-tidyverse"><span class="toc-section-number">1.2</span>  Introducción al Tidyverse</a>
   <ul class="collapse">
-  <li><a href="#cargando-datos-con-readr" id="toc-cargando-datos-con-readr" class="nav-link" data-scroll-target="#cargando-datos-con-readr"><span class="header-section-number">1.2.1</span> Cargando datos con <em>readr</em></a></li>
-  <li><a href="#el-operador-pipe-del-paquete-magrittr" id="toc-el-operador-pipe-del-paquete-magrittr" class="nav-link" data-scroll-target="#el-operador-pipe-del-paquete-magrittr"><span class="header-section-number">1.2.2</span> El operador <em>pipe</em> (|&gt;) del paquete <em>{magrittr}</em></a></li>
-  <li><a href="#dplyr-y-sus-verbos" id="toc-dplyr-y-sus-verbos" class="nav-link" data-scroll-target="#dplyr-y-sus-verbos"><span class="header-section-number">1.2.3</span> <em>{dplyr}</em> y sus verbos</a></li>
-  <li><a href="#tidyr-el-paquete-para-ordenar-tus-datos" id="toc-tidyr-el-paquete-para-ordenar-tus-datos" class="nav-link" data-scroll-target="#tidyr-el-paquete-para-ordenar-tus-datos"><span class="header-section-number">1.2.4</span> <em>{tidyR}</em>, el paquete para ordenar tus datos</a></li>
+  <li><a href="#cargando-datos-con-readr" id="toc-cargando-datos-con-readr" class="nav-link" data-scroll-target="#cargando-datos-con-readr"><span class="toc-section-number">1.2.1</span>  Cargando datos con <em>readr</em></a></li>
+  <li><a href="#el-operador-pipe-del-paquete-magrittr" id="toc-el-operador-pipe-del-paquete-magrittr" class="nav-link" data-scroll-target="#el-operador-pipe-del-paquete-magrittr"><span class="toc-section-number">1.2.2</span>  El operador <em>pipe</em> (|&gt;) del paquete <em>{magrittr}</em></a></li>
+  <li><a href="#dplyr-y-sus-verbos" id="toc-dplyr-y-sus-verbos" class="nav-link" data-scroll-target="#dplyr-y-sus-verbos"><span class="toc-section-number">1.2.3</span>  <em>{dplyr}</em> y sus verbos</a></li>
+  <li><a href="#tidyr-el-paquete-para-ordenar-tus-datos" id="toc-tidyr-el-paquete-para-ordenar-tus-datos" class="nav-link" data-scroll-target="#tidyr-el-paquete-para-ordenar-tus-datos"><span class="toc-section-number">1.2.4</span>  <em>{tidyR}</em>, el paquete para ordenar tus datos</a></li>
   </ul></li>
-  <li><a href="#algunas-palabras-finales" id="toc-algunas-palabras-finales" class="nav-link" data-scroll-target="#algunas-palabras-finales"><span class="header-section-number">1.3</span> Algunas palabras finales</a></li>
+  <li><a href="#algunas-palabras-finales" id="toc-algunas-palabras-finales" class="nav-link" data-scroll-target="#algunas-palabras-finales"><span class="toc-section-number">1.3</span>  Algunas palabras finales</a></li>
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-intro_R" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></h1>
+<h1 class="title"><span id="sec-intro_R" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></h1>
 </div>
 
 
@@ -302,24 +278,24 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
 
-
 </header>
 
+<div class="cell">
 
+</div>
 <p>En la gran mayoría de las ejemplos y ejercicios de este libro vamos a usar una computadora (te quiero mucho Skynet ♥️). Con ella nos vamos a comunicar utilizando un lenguaje de programación muy popular en el campo de la estadística: R<span class="citation" data-cites="R2023">(<a href="references.html#ref-R2023" role="doc-biblioref">R Core Team 2023</a>)</span>. Por eso mi recomendación es que lo que primero tenés que hacer es instalar R y RStudio. RStudio es una interfaz <strong>muy</strong> popular utilizada para, mayormente, programar en R. En el recuadro siguiente van a encontrar información de cómo instalar ambas cosas.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-R2023" class="csl-entry" role="listitem">
+<div class="no-row-height column-margin column-container"><div id="ref-R2023" class="csl-entry" role="doc-biblioentry">
 R Core Team. 2023. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
-</div></div><div class="callout callout-style-default callout-tip callout-titled">
+</div></div><div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 Instalación de R y RStudio
 </div>
 </div>
@@ -328,113 +304,91 @@ Instalación de R y RStudio
 <p>Pueden bajar la versión gratuita de RStudio del siguiente <a href="https://www.rstudio.com/products/rstudio/download/#download">link</a>. En caso de que el link no haya detectado correctamente el sistema operativo, en la sección <em>All Installers</em> pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.</p>
 </div>
 </div>
-<p>Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la propuesta es utilizar los paquetes y funciones del <em>tidyverse</em>. El <em>tidyverse</em> es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span>. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Es decir, sin tener que cargar ningún paquete de funciones adicional.</p></div></div><section id="tidy-data" class="level2 page-columns page-full" data-number="1.1">
+<div class="page-columns page-full"><p>Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la propuesta es utilizar los paquetes y funciones del <em>tidyverse</em>. El <em>tidyverse</em> es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span>. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Es decir, sin tener que cargar ningún paquete de funciones adicional.</p></li></div></div>
+<section id="tidy-data" class="level2 page-columns page-full" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">1.1</span> Tidy data</h2>
-<p>Lo primero que tenemos que pensar cuando trabajamos con el <em>tidyverse</em> es que nuestros datos estén en formato <em>tidy</em>. ¿Qué significa esto? Cuando un <em>dataset</em> está en formato <em>tidy</em>, cada columna corresponde a una variable y cada fila a una única observación<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Veamos un ejemplo. Tenemos tres sujetos a los cuales les medimos el tiempo de respuesta en una tarea. Cada sujeto realiza dos repeticiones de esta medición, el <em>trial 1</em> y el <em>trial 2</em>. En la tabla <a href="#tbl-ejemplo" class="quarto-xref">Tabla&nbsp;<span>1.1</span></a> podemos ver las dos formas de organizar esta información.</p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;El caso contrario sería en el que una fila contiene varios mediciones para distintos niveles de una variable. Este formato se conoce como <em>wide</em>.</p></div></div><div id="tbl-ejemplo" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejemplo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
-</figcaption>
-<div aria-describedby="tbl-ejemplo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-ejemplo" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-ejemplo-1" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 14px; margin-left: auto; margin-right: auto;">
-<figure class="quarto-float quarto-subfloat-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-ejemplo-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Tidy
-</figcaption>
-<div aria-describedby="tbl-ejemplo-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-ejemplo-1" class="table do-not-create-environment caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">sujeto</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">trial</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">tiempo_respuesta</th>
-</tr>
-</thead>
+<div class="page-columns page-full"><p>Lo primero que tenemos que pensar cuando trabajamos con el <em>tidyverse</em> es que nuestros datos estén en formato <em>tidy</em>. ¿Qué significa esto? Cuando un <em>dataset</em> está en formato <em>tidy</em>, cada columna corresponde a una variable y cada fila a una única observación<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Veamos un ejemplo. Tenemos tres sujetos a los cuales les medimos el tiempo de respuesta en una tarea. Cada sujeto realiza dos repeticiones de esta medición, el <em>trial 1</em> y el <em>trial 2</em>. En la tabla <a href="#tbl-ejemplo">Tabla&nbsp;<span>1.1</span></a> podemos ver las dos formas de organizar esta información.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;El caso contrario sería en el que una fila contiene varios mediciones para distintos niveles de una variable. Este formato se conoce como <em>wide</em>.</p></li></div></div>
+<div id="tbl-ejemplo" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-ejemplo-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-ejemplo" style="flex-basis: 50.0%;justify-content: center;">
+
+<table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"><caption>(a) Tidy </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> sujeto </th>
+   <th style="text-align:right;"> trial </th>
+   <th style="text-align:right;"> tiempo_respuesta </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Jerry</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.0807501</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Jerry</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0.8343330</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Elaine</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.6007609</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Elaine</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0.1572084</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">George</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.0073994</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">George</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0.4663935</td>
-</tr>
+  <tr>
+   <td style="text-align:left;"> Jerry </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.0807501 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jerry </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.8343330 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Elaine </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.6007609 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Elaine </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.1572084 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> George </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.0073994 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> George </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.4663935 </td>
+  </tr>
 </tbody>
 </table>
-</div>
-</figure>
-</div>
-
 
 </div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-ejemplo" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-ejemplo-2" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 14px; margin-left: auto; margin-right: auto;">
-<figure class="quarto-float quarto-subfloat-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-ejemplo-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Wide
-</figcaption>
-<div aria-describedby="tbl-ejemplo-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-ejemplo-2" class="table do-not-create-environment caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">sujeto</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">trial_1</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">trial_2</th>
-</tr>
-</thead>
+<div id="tbl-ejemplo-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-ejemplo" style="flex-basis: 50.0%;justify-content: center;">
+
+<table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"><caption>(b) Wide </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> sujeto </th>
+   <th style="text-align:right;"> trial_1 </th>
+   <th style="text-align:right;"> trial_2 </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Jerry</td>
-<td style="text-align: right;">0.4977774</td>
-<td style="text-align: right;">0.7725215</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Elaine</td>
-<td style="text-align: right;">0.2897672</td>
-<td style="text-align: right;">0.8746007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">George</td>
-<td style="text-align: right;">0.7328820</td>
-<td style="text-align: right;">0.1749406</td>
-</tr>
+  <tr>
+   <td style="text-align:left;"> Jerry </td>
+   <td style="text-align:right;"> 0.4977774 </td>
+   <td style="text-align:right;"> 0.7725215 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Elaine </td>
+   <td style="text-align:right;"> 0.2897672 </td>
+   <td style="text-align:right;"> 0.8746007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> George </td>
+   <td style="text-align:right;"> 0.7328820 </td>
+   <td style="text-align:right;"> 0.1749406 </td>
+  </tr>
 </tbody>
 </table>
-</div>
-</figure>
-</div>
-
 
 </div>
 </div>
-</div>
-</figure>
 </div>
 <p>A lo largo de este capítulo iremos viendo los beneficios de almacenar los datos en formato <em>tidy</em>. Por supuesto que estas ventajas tienen su precio, principalemente que las bases de datos crecen mucho en tamaño si tenemos muchas medidas repetidas con distintos valores de las variables.</p>
 </section>
@@ -446,14 +400,14 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <p>Una de las cosas que vamos a hacer más a menudo en este libro es cargar algún dataset. Para esto vamos a usar varias de las funcionalidades del paquete <em>{readr}</em>.</p>
 <p>El caso más simple al que nos vamos a enfrentar es la carga de una base de datos organizada en columnas y separadas por comas en un archivo de extensión <em>.csv</em>. En este caso lo que tenemos que hacer es bastante simple, usar la función <em>read_csv()</em> como a continuación:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>summer <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/summer.csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Podemos ver que al cargar los datos <code>read_csv</code> nos dice que hay ocho columnas <code>chr</code> (o sea de texto) y una <code>dbl</code> (o sea, un número). Si usamos la función <code>summary</code> podemos ver un detalle de cada avriable con su tipo y alguna descripción<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Existen alternativas para visualizar rápidamente un conjunto de datos como <code>str</code> o <code>glimpse</code> o la función <code>skim</code> del paquete <em>{skimr}</em>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Podemos ver que al cargar los datos <code>read_csv</code> nos dice que hay ocho columnas <code>chr</code> (o sea de texto) y una <code>dbl</code> (o sea, un número). Si usamos la función <code>summary</code> podemos ver un detalle de cada avriable con su tipo y alguna descripción<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Existen alternativas para visualizar rápidamente un conjunto de datos como <code>str</code> o <code>glimpse</code> o la función <code>skim</code> del paquete <em>{skimr}</em>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(summer)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Year          City              Sport            Discipline       </span></span>
@@ -481,7 +435,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Los datos adentro de <code>summer.csv</code> son los ganadores de medallas en los juegos olímpicos de verano. Podemos ver algunas filas de muestra:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 9</span></span>
@@ -502,7 +456,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="el-operador-pipe-del-paquete-magrittr"><span class="header-section-number">1.2.2</span> El operador <em>pipe</em> (|&gt;) del paquete <em>{magrittr}</em></h3>
 <p>El operador pipe nos permite concatenar funciones que utilizan como entrada los mismos datos. El principio de operación es el siguiente, supongan que nosotros queremos cargar un dataset y aplicarle la función summary. Esto lo podemos hacer simplemente cargando el dataset en una lìnea de código y ejecutanco la función summary() en la siguiente.</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/summer.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
@@ -531,7 +485,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Pero, también podemos aprovechar el operador pipe y hacer todo en una única línea de código.</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"../data/summer.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Year          City              Sport            Discipline       </span></span>
@@ -562,12 +516,12 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </section>
 <section id="dplyr-y-sus-verbos" class="level3 page-columns page-full" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="dplyr-y-sus-verbos"><span class="header-section-number">1.2.3</span> <em>{dplyr}</em> y sus verbos</h3>
-<p>Una de las cosas más útiles del <em>tidyverse</em> para el tipo de procesamiento de datos que vamos a llevar a cabo en este libro son los verbos de dplyr. Estas funciones no permiten agregar columnas, resumir la información, filtrar filas, seleccionar columnas, etc<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Y todas estas acciones las podemos hacer en la base de datos completa o en una parte de ella agrupada de acuerdo a algún criterio. Vayamos de a poco.</p>
-<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Para más detalles sobre los verbos disponibles en el paquete <em>{dplyr}</em> pueden visital este la <a href="https://dplyr.tidyverse.org/">página de referencia</a>.</p></div></div><section id="el-verbo-filter" class="level4 page-columns page-full" data-number="1.2.3.1">
+<div class="page-columns page-full"><p>Una de las cosas más útiles del <em>tidyverse</em> para el tipo de procesamiento de datos que vamos a llevar a cabo en este libro son los verbos de dplyr. Estas funciones no permiten agregar columnas, resumir la información, filtrar filas, seleccionar columnas, etc<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Y todas estas acciones las podemos hacer en la base de datos completa o en una parte de ella agrupada de acuerdo a algún criterio. Vayamos de a poco.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Para más detalles sobre los verbos disponibles en el paquete <em>{dplyr}</em> pueden visital este la <a href="https://dplyr.tidyverse.org/">página de referencia</a>.</p></li></div></div>
+<section id="el-verbo-filter" class="level4 page-columns page-full" data-number="1.2.3.1">
 <h4 data-number="1.2.3.1" class="anchored" data-anchor-id="el-verbo-filter"><span class="header-section-number">1.2.3.1</span> El verbo <code>filter</code></h4>
-<p>Volvamos a los datos de los JJOO de verano. Supongamos que nos queremos quedar sólo con las medallas de Argentina. Para este tipo de filtrado de filas (o casos, o mediciones) <em>{dplyr}</em> tiene un verbo que se llama <code>filter</code> y funciona de la siguiente forma<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Se preguntarán por qué antes de la función <code>filter</code> aparece un <code>::dplyr</code>. Esto es simplemente una forma de decirle a R que la función <code>filter</code> que debe utilizar es la del paquete <em>{dplyr}</em>. Esta es una práctica recomendable sobre todo para funciones con nombres comunes como <code>filter</code> o <code>select</code>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Volvamos a los datos de los JJOO de verano. Supongamos que nos queremos quedar sólo con las medallas de Argentina. Para este tipo de filtrado de filas (o casos, o mediciones) <em>{dplyr}</em> tiene un verbo que se llama <code>filter</code> y funciona de la siguiente forma<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Se preguntarán por qué antes de la función <code>filter</code> aparece un <code>::dplyr</code>. Esto es simplemente una forma de decirle a R que la función <code>filter</code> que debe utilizar es la del paquete <em>{dplyr}</em>. Esta es una práctica recomendable sobre todo para funciones con nombres comunes como <code>filter</code> o <code>select</code>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 9</span></span>
@@ -586,7 +540,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <p>Noten que estamos utilizando el operador <code>|&gt;</code> para concatenar las acciones: Con los datos de <code>summer</code> hacemos el filtrado y, luego, mostramos las primeras diez filas de esos datos ya filtrados.</p>
 <p>También podríamos quere quedarnos con las medallas de Argenitna en los JJOO de Atenas 2004, para esto debemos el operador lógico “y”, cuyo símbolo en R es <code>&amp;</code>:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span> <span class="sc">&amp;</span> Year <span class="sc">==</span> <span class="dv">2004</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 9</span></span>
@@ -602,7 +556,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Que linda esa Generación Dorada🏅, ¿No?.Por otro lado, si nos queremos quedar con las medallas de Argentina o Brasil debemos utilizar el operador lógico “o”, cuyo símbolo en R es <code>|</code>:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span> <span class="sc">|</span> Country <span class="sc">==</span> <span class="st">"BRA"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 9</span></span>
@@ -620,7 +574,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Aunque, una alternativa muy útil cuando tenemos los valores de una variable que queremos filtrar en un <em>array</em> es:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ARG"</span>, <span class="st">"BRA"</span>)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 9</span></span>
@@ -638,7 +592,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Finalmente, si tenemos una variable numérica, podemos filtrar con condiciones como mayor o menor:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Year <span class="sc">&gt;</span> <span class="dv">2010</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 9</span></span>
@@ -657,7 +611,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <h4 data-number="1.2.3.2" class="anchored" data-anchor-id="el-verbo-select"><span class="header-section-number">1.2.3.2</span> El verbo <code>select</code></h4>
 <p>El verbo <code>select</code> es similar a <code>filter</code> pero nos permite filtrar no casos sino variables. Por ejemplo, ¿Qué pasa si solo nos interesa el año, la ciudad y el nombre del atleta?:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(Year, City, Athlete)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
@@ -675,7 +629,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <h4 data-number="1.2.3.3" class="anchored" data-anchor-id="el-verbo-mutate"><span class="header-section-number">1.2.3.3</span> El verbo <code>mutate</code></h4>
 <p>Ahora las cosas se complican un poco. <code>mutate</code> es un verbo que nos permite crear nuevas columnas ya sea con datos nuevos o en función de los datos existentes. Por ejemplo, creemos una columna nueva que tenga un <em>chr</em> con el país, un guión y el nombre del atleta y llamémosla <code>nationality_athlete</code>. Nos vamos a quedar sólo con el año, la medalla que ganó y el nuevo nombre combinado con la nacionalidad:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">nationality_athlete =</span> <span class="fu">paste</span>(Country, <span class="st">"-"</span>, Athlete)) <span class="sc">|&gt;</span> </span>
@@ -691,9 +645,9 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1896 Silver GRE - CHASAPIS, Spiridon</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>O, por ejemplo, podemos querer crear una variable que nos ponga un <span class="math inline">\(1\)</span> si es griego y un <span class="math inline">\(0\)</span> si no<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Para más detalles sobre la función <code>if_else</code> pueden ver el siguiente <a href="https://dplyr.tidyverse.org/reference/if_else.html">link</a>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>O, por ejemplo, podemos querer crear una variable que nos ponga un <span class="math inline">\(1\)</span> si es griego y un <span class="math inline">\(0\)</span> si no<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Para más detalles sobre la función <code>if_else</code> pueden ver el siguiente <a href="https://dplyr.tidyverse.org/reference/if_else.html">link</a>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">is_greek =</span> <span class="fu">if_else</span>(Country <span class="sc">==</span> <span class="st">"GRE"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
@@ -711,7 +665,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Ahora vamos a aprender algo muy importante y <em>cool</em> 🆒: A agrupar los casos de acuerdo a una variable. Por ejemplo, si queremos agregar una columna que contenga la cantidad total de medallas ganadas por un país a cada atleta de ese país podemos hacer lo siguiente:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span></span>
@@ -733,9 +687,9 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </section>
 <section id="el-verbo-summarise" class="level4 page-columns page-full" data-number="1.2.3.4">
 <h4 data-number="1.2.3.4" class="anchored" data-anchor-id="el-verbo-summarise"><span class="header-section-number">1.2.3.4</span> El verbo <code>summarise</code></h4>
-<p>Por último, el verbo <code>summarise</code> nos permite sacar medidas resumen de nuestros datos. Empecemos con algo obvio: ¿Cuántas medallas de oro ganó cada país en la historia de los juegos olímpicos?. Podemos hacer algo parecido a lo último que hicimos con <code>mutate</code> pero el resultados será ligeramente diferente<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;La función <code>arrange</code> nos ordena los datos de acuerdo a la variable que le enviemos como parámetro de menos a mayor. Si queremos que ordene de mayor a menor debemos agregar la función <code>desc</code> en el argumento. Más detalles <a href="https://dplyr.tidyverse.org/reference/arrange.html">acá</a>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Por último, el verbo <code>summarise</code> nos permite sacar medidas resumen de nuestros datos. Empecemos con algo obvio: ¿Cuántas medallas de oro ganó cada país en la historia de los juegos olímpicos?. Podemos hacer algo parecido a lo último que hicimos con <code>mutate</code> pero el resultados será ligeramente diferente<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;La función <code>arrange</code> nos ordena los datos de acuerdo a la variable que le enviemos como parámetro de menos a mayor. Si queremos que ordene de mayor a menor debemos agregar la función <code>desc</code> en el argumento. Más detalles <a href="https://dplyr.tidyverse.org/reference/arrange.html">acá</a>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Medal <span class="sc">==</span> <span class="st">"Gold"</span>) <span class="sc">|&gt;</span></span>
@@ -755,9 +709,9 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Hay algo raro, ¿No? Bueno, sí, de esta forma estamos contando a todos los atletas que tuvieron la misma medalla (por ejemplo, si la medalla fue por fútbol estamos contando cerca de 30 medallas). Para resolver esto nos podemos sacar de encima los casos duplicados por año, deporte, disciplina, evento y género<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;La función <code>distinct</code> nos conserva una sola realización de cada caso que es igual de acuerdo a las variables que le pasemos como parámetros. Más detalles <a href="https://dplyr.tidyverse.org/reference/distinct.html">acá</a>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Hay algo raro, ¿No? Bueno, sí, de esta forma estamos contando a todos los atletas que tuvieron la misma medalla (por ejemplo, si la medalla fue por fútbol estamos contando cerca de 30 medallas). Para resolver esto nos podemos sacar de encima los casos duplicados por año, deporte, disciplina, evento y género<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;La función <code>distinct</code> nos conserva una sola realización de cada caso que es igual de acuerdo a las variables que le pasemos como parámetros. Más detalles <a href="https://dplyr.tidyverse.org/reference/distinct.html">acá</a>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Year, Sport, Discipline, Event, Gender, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
@@ -778,7 +732,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </div>
 <p>Vayamos con lo último, calculemos la media y la desviación estándar de las medallas de Argentina por JJOO combinando todo lo que vimos.</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Year, Sport, Discipline, Event, Medal, Gender, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
@@ -799,12 +753,12 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </section>
 <section id="tidyr-el-paquete-para-ordenar-tus-datos" class="level3 page-columns page-full" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="tidyr-el-paquete-para-ordenar-tus-datos"><span class="header-section-number">1.2.4</span> <em>{tidyR}</em>, el paquete para ordenar tus datos</h3>
-<p>El paquete <em>{tidyR}</em> tiene muchas herramientas de manejo de tablas como reformatear, expandir tablas, manejar valores faltantes, dividir celdas, anidar datos, etc<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Sin embargo, en esta breve introducción sólo vamos a presentar muy brevemente las herramientas que nos permiten convertir una tabla <em>wide</em> en <em>tidy</em> (o <em>long</em>) y viceverse.</p>
-<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;Para más información ver el <a href="https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf">cheatsheet</a>.</p></div></div><section id="la-función-pivot_longer" class="level4 page-columns page-full" data-number="1.2.4.1">
+<div class="page-columns page-full"><p>El paquete <em>{tidyR}</em> tiene muchas herramientas de manejo de tablas como reformatear, expandir tablas, manejar valores faltantes, dividir celdas, anidar datos, etc<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Sin embargo, en esta breve introducción sólo vamos a presentar muy brevemente las herramientas que nos permiten convertir una tabla <em>wide</em> en <em>tidy</em> (o <em>long</em>) y viceverse.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Para más información ver el <a href="https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf">cheatsheet</a>.</p></li></div></div>
+<section id="la-función-pivot_longer" class="level4 page-columns page-full" data-number="1.2.4.1">
 <h4 data-number="1.2.4.1" class="anchored" data-anchor-id="la-función-pivot_longer"><span class="header-section-number">1.2.4.1</span> La función <code>pivot_longer</code></h4>
 <p>Volvamos a la tabla iniicial que teníamos en formato wide:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tabla_wide <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sujeto  =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Jerry"</span>, <span class="st">"Elaine"</span>, <span class="st">"George"</span>)),</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trial_1 =</span> <span class="fu">runif</span>(<span class="dv">3</span>),</span>
@@ -819,9 +773,9 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George   0.196  0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Si nosotros quisiñeramos transformar esta tabla en una tabla en formato <em>tidy</em> podemos utilizar la función <code>pivot_longer</code><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Veamos como funciona y después la desmenuzamos:</p>
-<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">acá</a>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Si nosotros quisiñeramos transformar esta tabla en una tabla en formato <em>tidy</em> podemos utilizar la función <code>pivot_longer</code><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Veamos como funciona y después la desmenuzamos:</p><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">acá</a>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
@@ -839,9 +793,9 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </details>
 </div>
 <p>Los argumentos son los siguientes: <code>data</code> es la tabla a la que le vamos a realizar el cambio de formato; <code>cols</code> son las columnas que vamos a cambiar, en este caso desde <code>trial_1</code> a <code>trial_2</code>; en <code>names_to</code> indicamos la variable a la que vamos a mandar los nombres de las columnas actuales; y <code>values_to</code> la variables a la que vamos a mandar los valores.</p>
-<p>Algo ligeramente raro es que la columna trial no es numérica y, sólo por completitud, lo vamos a solucionar usando a nuestro gran amigo <code>|&gt;</code> y al verbo <code>mutate</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Y la función <a href="https://readr.tidyverse.org/reference/parse_number.html"><code>parse_number</code></a> del paquete <em>{readr}</em>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Algo ligeramente raro es que la columna trial no es numérica y, sólo por completitud, lo vamos a solucionar usando a nuestro gran amigo <code>|&gt;</code> y al verbo <code>mutate</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Y la función <a href="https://readr.tidyverse.org/reference/parse_number.html"><code>parse_number</code></a> del paquete <em>{readr}</em>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
@@ -864,7 +818,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <h4 data-number="1.2.4.2" class="anchored" data-anchor-id="la-función-pivot_wider"><span class="header-section-number">1.2.4.2</span> La función <code>pivot_wider</code></h4>
 <p>Ahora vamos con el caso contrario en el que tenemos una tabla en formato <em>long</em> y la queremos convertir en <em>wide</em>:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tabla_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
@@ -884,9 +838,9 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George     2           0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Para esto vamos a hechar mano a la función <code>pivot_wider</code><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> que tiene una sintáxis parecida a su prima <code>pivot_longer</code>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">acá</a>.</p></div></div><div class="cell">
-<details open="" class="code-fold">
+<div class="page-columns page-full"><p>Para esto vamos a hechar mano a la función <code>pivot_wider</code><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> que tiene una sintáxis parecida a su prima <code>pivot_longer</code>:</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">acá</a>.</p></li></div></div>
+<div class="cell">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> tabla_long, </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> trial, </span>
@@ -902,7 +856,7 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <p><em>Et Voilà!</em>, ya tenemos nuestra tabla en formato wide. En este caso le dijimos de que variable tomar los nombres de las nuevas columnas en <code>names_from</code> y de que variable tomar los valores en <code>values_from</code>.</p>
 <p>Finalmente, y sólo para alimnetar nuestra obsesión, vamos a corregir los nombres de las columnas agregando el prefijo <code>trial_</code> utilizando el parámetro de la función <code>names_prefix</code>:</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details>
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> tabla_long, </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> trial, </span>
@@ -922,14 +876,14 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </section>
 <section id="algunas-palabras-finales" class="level2 page-columns page-full" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="algunas-palabras-finales"><span class="header-section-number">1.3</span> Algunas palabras finales</h2>
-<p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro <span class="citation" data-cites="wickham2023r">(<a href="references.html#ref-wickham2023r" role="doc-biblioref">Wickham, Çetinkaya-Rundel, y Grolemund 2023</a>)</span><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p>
+<div class="page-columns page-full"><p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [<span class="citation" data-cites="wickham2023r">Wickham, Çetinkaya-Rundel, y Grolemund (<a href="references.html#ref-wickham2023r" role="doc-biblioref">2023</a>)</span>]<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Disponible gratis online en <a href="https://r4ds.had.co.nz/">acá</a>.</p></li></div></div>
 
 
-<div class="no-row-height column-margin column-container"><div id="ref-wickham2019welcome" class="csl-entry" role="listitem">
+<div class="no-row-height column-margin column-container"><div id="ref-wickham2019welcome" class="csl-entry" role="doc-biblioentry">
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et&nbsp;al. 2019. <span>«Welcome to the Tidyverse»</span>. <em>Journal of open source software</em> 4 (43): 1686.
-</div><div id="ref-wickham2023r" class="csl-entry" role="listitem">
+</div><div id="ref-wickham2023r" class="csl-entry" role="doc-biblioentry">
 Wickham, Hadley, Mine Çetinkaya-Rundel, y Garrett Grolemund. 2023. <em>R for data science</em>. " O’Reilly Media, Inc.".
-</div><div id="fn13"><p><sup>13</sup>&nbsp;Disponible gratis online en <a href="https://r4ds.had.co.nz/">acá</a>.</p></div></div>
+</div></div>
 </section>
 
 
@@ -975,33 +929,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -1070,15 +997,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1095,9 +1020,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1105,15 +1028,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1121,74 +1041,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiado");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copiado");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
+    button.setAttribute("title", "Copiada");
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1198,17 +1062,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1220,292 +1075,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Prefacio">
+      <a href="./index.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefacio</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_stat.html" class="pagination-link" aria-label="Repaso de probabilidad y estadística">
+      <a href="./intro_stat.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1513,18 +1114,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
-</div>
+    <div class="nav-footer-left">Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</div>   
+    <div class="nav-footer-right">Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 

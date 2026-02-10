@@ -257,6 +257,7 @@ div.csl-indent {
   <li><a href="#el-operador-pipe-del-paquete-magrittr" id="toc-el-operador-pipe-del-paquete-magrittr" class="nav-link" data-scroll-target="#el-operador-pipe-del-paquete-magrittr"><span class="toc-section-number">1.2.2</span>  El operador <em>pipe</em> (|&gt;) del paquete <em>{magrittr}</em></a></li>
   <li><a href="#dplyr-y-sus-verbos" id="toc-dplyr-y-sus-verbos" class="nav-link" data-scroll-target="#dplyr-y-sus-verbos"><span class="toc-section-number">1.2.3</span>  <em>{dplyr}</em> y sus verbos</a></li>
   <li><a href="#tidyr-el-paquete-para-ordenar-tus-datos" id="toc-tidyr-el-paquete-para-ordenar-tus-datos" class="nav-link" data-scroll-target="#tidyr-el-paquete-para-ordenar-tus-datos"><span class="toc-section-number">1.2.4</span>  <em>{tidyR}</em>, el paquete para ordenar tus datos</a></li>
+  <li><a href="#ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" id="toc-ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="nav-link" data-scroll-target="#ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="toc-section-number">1.2.5</span>  <em>{ggplot2}</em> o cómo hacer figuras que sean la envidia de tu compañero de escritorio</a></li>
   </ul></li>
   <li><a href="#algunas-palabras-finales" id="toc-algunas-palabras-finales" class="nav-link" data-scroll-target="#algunas-palabras-finales"><span class="toc-section-number">1.3</span>  Algunas palabras finales</a></li>
   </ul>
@@ -287,7 +288,7 @@ div.csl-indent {
 <div class="cell">
 
 </div>
-<p>En la gran mayoría de las ejemplos y ejercicios de este libro vamos a usar una computadora (te quiero mucho Skynet ♥️). Con ella nos vamos a comunicar utilizando un lenguaje de programación muy popular en el campo de la estadística: R<span class="citation" data-cites="R2023">(<a href="references.html#ref-R2023" role="doc-biblioref">R Core Team 2023</a>)</span>. Por eso mi recomendación es que lo que primero tenés que hacer es instalar R y RStudio. RStudio es una interfaz <strong>muy</strong> popular utilizada para, mayormente, programar en R. En el recuadro siguiente van a encontrar información de cómo instalar ambas cosas.</p>
+<div class="page-columns page-full"><p>En la gran mayoría de las ejemplos y ejercicios de este libro vamos a usar una computadora (te quiero mucho Skynet ♥️). Con ella nos vamos a comunicar utilizando un lenguaje de programación muy popular en el campo de la estadística: <strong>R</strong><span class="citation" data-cites="R2023">(<a href="references.html#ref-R2023" role="doc-biblioref">R Core Team 2023</a>)</span>. Por eso mi recomendación es que lo que primero tenés que hacer es instalar R y RStudio. RStudio es una interfaz <strong>muy</strong> popular utilizada para, mayormente, programar en R<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. En el recuadro siguiente van a encontrar información de cómo instalar ambas cosas.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Sin embargo, recientemente <em>Posit</em>, la compañía que desarrolla y mantiene RStudio, presentó una nueva interfaz multilenguaje (R, Python y Julia) llamada Positron que si están familiarizados con <em>Visual Studio Code</em> les recomiendo que prueben.</p></li></div></div>
 <div class="no-row-height column-margin column-container"><div id="ref-R2023" class="csl-entry" role="doc-biblioentry">
 R Core Team. 2023. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div></div><div class="callout-tip callout callout-style-default callout-captioned">
@@ -304,10 +305,25 @@ Instalación de R y RStudio
 <p>Pueden bajar la versión gratuita de RStudio del siguiente <a href="https://www.rstudio.com/products/rstudio/download/#download">link</a>. En caso de que el link no haya detectado correctamente el sistema operativo, en la sección <em>All Installers</em> pueden seleccionarlo manualmente. Una vez descargado el instalador sólo hay que seguir los pasos de la intalación.</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>Si bien la mayoría de las cosas que vamos a ahcer en este libro se pueden hacer con funciones de R base<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la propuesta es utilizar los paquetes y funciones del <em>tidyverse</em>. El <em>tidyverse</em> es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span>. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Es decir, sin tener que cargar ningún paquete de funciones adicional.</p></li></div></div>
+<div class="page-columns page-full"><p>Si bien la mayoría de las cosas que vamos a hacer en este libro se pueden hacer con funciones de R base<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, la propuesta es utilizar los paquetes y funciones del <em>tidyverse</em>. El <em>tidyverse</em> es una colección de paquetes diseñados para el campo de la ciencia de datos y que comparten una filosofía de diseño subyacente, una gramática y una estructura de datos<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span>. Tranquilos que en la sección siguiente se va a ir aclarando la cosa.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Es decir, sin tener que cargar ningún paquete de funciones adicional.</p></li></div></div>
+<div class="callout-warning callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Unas palabras sobre el uso de modelos de lenguaje (ChatGPT, bah)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No estamos acá para discutir el poder y las capacidades de los grandes modelos de lenguaje (por si no quedó claro, te quiero mucho Skynet ♥️). Pero permítannos recomendarles algo: no dejen que la herramienta piense por ustedes antes de que ustedes aprendan a pensar.</p>
+<p>El riesgo principal de apoyarse demasiado en la <em>IA</em> cuando uno está dando sus primeros pasos en R (o cualquier lenguaje) es lo que los expertos llaman la “ilusión de competencia”. Es esa sensación engañosa de que entendés lo que está pasando porque el código “funciona”, cuando en realidad solo sos un espectador del proceso de resolución.</p>
+<p>Nuestra sugerencia: Usen a los modelos de lenguaje como un tutor, no como un reemplazo. Pregúntenle “¿Por qué este código no funciona?” o “¿Me explicás qué hace esta función de <em>tidyverse</em>?” en lugar de pedirle directamente “Ajustame un modelo lineal con estas variables”.</p>
+</div>
+</div>
 <section id="tidy-data" class="level2 page-columns page-full" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">1.1</span> Tidy data</h2>
-<div class="page-columns page-full"><p>Lo primero que tenemos que pensar cuando trabajamos con el <em>tidyverse</em> es que nuestros datos estén en formato <em>tidy</em>. ¿Qué significa esto? Cuando un <em>dataset</em> está en formato <em>tidy</em>, cada columna corresponde a una variable y cada fila a una única observación<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Veamos un ejemplo. Tenemos tres sujetos a los cuales les medimos el tiempo de respuesta en una tarea. Cada sujeto realiza dos repeticiones de esta medición, el <em>trial 1</em> y el <em>trial 2</em>. En la tabla <a href="#tbl-ejemplo">Tabla&nbsp;<span>1.1</span></a> podemos ver las dos formas de organizar esta información.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;El caso contrario sería en el que una fila contiene varios mediciones para distintos niveles de una variable. Este formato se conoce como <em>wide</em>.</p></li></div></div>
+<div class="page-columns page-full"><p>Lo primero que tenemos que pensar cuando trabajamos con el <em>tidyverse</em> es que nuestros datos estén en formato <em>tidy</em>. ¿Qué significa esto? Cuando un <em>dataset</em> está en formato <em>tidy</em>, cada columna corresponde a una variable y cada fila a una única observación<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Veamos un ejemplo. Tenemos tres sujetos a los cuales les medimos el tiempo de respuesta en una tarea. Cada sujeto realiza dos repeticiones de esta medición, el <em>trial 1</em> y el <em>trial 2</em>. En la tabla <a href="#tbl-ejemplo">Tabla&nbsp;<span>1.1</span></a> podemos ver las dos formas de organizar esta información.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;El caso contrario sería en el que una fila contiene varios mediciones para distintos niveles de una variable. Este formato se conoce como <em>wide</em>.</p></li></div></div>
 <div id="tbl-ejemplo" class="cell tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
 <p>Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.</p>
@@ -394,21 +410,16 @@ Instalación de R y RStudio
 </section>
 <section id="introducción-al-tidyverse" class="level2 page-columns page-full" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="introducción-al-tidyverse"><span class="header-section-number">1.2</span> Introducción al Tidyverse</h2>
-<p>Como contamos más arriba, el <em>tidyverse</em> es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo del libro. Estas son funciones para leer datos del paquete <em>{readr}</em>, los verbos de <em>{dplyr}</em> para manipularlos, las funciones de <em>{tidyR}</em> para acomodarlos y el poderosísimo <em>{ggplot2}</em> para visualizarlos.</p>
+<p>Como contamos más arriba, el <em>tidyverse</em> es una colección cerca de 25 paquetes, todos relacionados con la carga, manejo, modificación y visualización de datos. La idea de este libro no es profundizar en todas sus capacidades pero consideramos importante presentar algunas de las funciones que más vamos a utilizar a lo largo de los capítulos. Estas son funciones para leer datos del paquete <em>{readr}</em>, los verbos de <em>{dplyr}</em> para manipularlos, las funciones de <em>{tidyR}</em> para acomodarlos y el poderosísimo <em>{ggplot2}</em> para visualizarlos.</p>
 <section id="cargando-datos-con-readr" class="level3 page-columns page-full" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="cargando-datos-con-readr"><span class="header-section-number">1.2.1</span> Cargando datos con <em>readr</em></h3>
 <p>Una de las cosas que vamos a hacer más a menudo en este libro es cargar algún dataset. Para esto vamos a usar varias de las funcionalidades del paquete <em>{readr}</em>.</p>
 <p>El caso más simple al que nos vamos a enfrentar es la carga de una base de datos organizada en columnas y separadas por comas en un archivo de extensión <em>.csv</em>. En este caso lo que tenemos que hacer es bastante simple, usar la función <em>read_csv()</em> como a continuación:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>summer <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/summer.csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="page-columns page-full"><p>Podemos ver que al cargar los datos <code>read_csv</code> nos dice que hay ocho columnas <code>chr</code> (o sea de texto) y una <code>dbl</code> (o sea, un número). Si usamos la función <code>summary</code> podemos ver un detalle de cada avriable con su tipo y alguna descripción<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Existen alternativas para visualizar rápidamente un conjunto de datos como <code>str</code> o <code>glimpse</code> o la función <code>skim</code> del paquete <em>{skimr}</em>.</p></li></div></div>
+<div class="page-columns page-full"><p>Podemos ver que al cargar los datos <code>read_csv</code> nos dice que hay ocho columnas <code>chr</code> (o sea de texto) y una <code>dbl</code> (o sea, un número). Si usamos la función <code>summary</code> podemos ver un detalle de cada variable con su tipo y alguna descripción<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Existen alternativas para visualizar rápidamente un conjunto de datos como <code>str</code> o <code>glimpse</code> o la función <code>skim</code> del paquete <em>{skimr}</em>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(summer)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Year          City              Sport            Discipline       </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Min.   :1896   Length:31165       Length:31165       Length:31165      </span></span>
@@ -431,12 +442,9 @@ Instalación de R y RStudio
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Los datos adentro de <code>summer.csv</code> son los ganadores de medallas en los juegos olímpicos de verano. Podemos ver algunas filas de muestra:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 9</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City   Sport    Discipline Athlete               Country Gender</span></span>
@@ -448,16 +456,13 @@ Instalación de R y RStudio
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1896 Athens Aquatics Swimming   CHASAPIS, Spiridon    GRE     Men   </span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  1896 Athens Aquatics Swimming   CHOROPHAS, Efstathios GRE     Men   </span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>El formato en el que <code>read_csv</code> almacena los datos se llama <em>tibble</em> y es el formato por excelencia del <em>tidyverse</em>. De momento lo único que nos importa es que es un formato que almacena los casos en filas y las variables en columnas (cada variable tiene un formato). Para más información sobre las cualidades de este formato, les recomiendo revisar la <a href="https://tibble.tidyverse.org/">documentación</a>.</p>
+<p>El formato en el que <code>read_csv</code> almacena los datos se llama <em>tibble</em> y es el formato por excelencia del <em>tidyverse</em>. De momento lo único que nos importa es que es un formato que almacena los casos en filas y las variables en columnas (cada variable tiene un formato). Para más información sobre las cualidades de este formato, les recomiendo revisar la <a href="https://tibble.tidyverse.org/">documentación</a> del paquete <em>{tibble}</em>.</p>
 </section>
 <section id="el-operador-pipe-del-paquete-magrittr" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="el-operador-pipe-del-paquete-magrittr"><span class="header-section-number">1.2.2</span> El operador <em>pipe</em> (|&gt;) del paquete <em>{magrittr}</em></h3>
-<p>El operador pipe nos permite concatenar funciones que utilizan como entrada los mismos datos. El principio de operación es el siguiente, supongan que nosotros queremos cargar un dataset y aplicarle la función summary. Esto lo podemos hacer simplemente cargando el dataset en una lìnea de código y ejecutanco la función summary() en la siguiente.</p>
+<p>El operador pipe nos permite concatenar funciones que utilizan como entrada los mismos datos. El principio de operación es el siguiente, supongan que nosotros queremos cargar un dataset y aplicarle la función summary. Esto lo podemos hacer simplemente cargando el dataset en una lìnea de código y ejecutanco la función <code>summary()</code> en la siguiente.</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/summer.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Year          City              Sport            Discipline       </span></span>
@@ -481,12 +486,9 @@ Instalación de R y RStudio
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Pero, también podemos aprovechar el operador pipe y hacer todo en una única línea de código.</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"../data/summer.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Year          City              Sport            Discipline       </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Min.   :1896   Length:31165       Length:31165       Length:31165      </span></span>
@@ -509,20 +511,17 @@ Instalación de R y RStudio
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    </span></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>Al dejar vacío el paréntesis de la función summary(), la misma va a tomar como variable de entrada a la que está antes del operador pipe, es decir, a la que antes llamamos <code>data</code>. En el caso que la función summary() tuviera más de una variable de entrada, lo que viene antes del <em>pipe</em> tomaría el lugar de la primera de ellas.</p>
+<p>Al dejar vacío el paréntesis de la función <code>summary()</code>, la misma va a tomar como variable de entrada a la que está antes del operador pipe, es decir, a la que antes llamamos <code>data</code>. En el caso que la función <code>summary()</code> tuviera más de una variable de entrada, lo que viene antes del <em>pipe</em> tomaría el lugar de la primera de ellas.</p>
 <p>Si bien esta funcionalidad parece algo que complica las cosas y que no trae demasiados beneficios con un ejemplo tan simple, más adelante veremos que puede ser de gran utilidad, ayudando a disminuir la cantidad de línes de código y de variables intermedias.</p>
 </section>
 <section id="dplyr-y-sus-verbos" class="level3 page-columns page-full" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="dplyr-y-sus-verbos"><span class="header-section-number">1.2.3</span> <em>{dplyr}</em> y sus verbos</h3>
-<div class="page-columns page-full"><p>Una de las cosas más útiles del <em>tidyverse</em> para el tipo de procesamiento de datos que vamos a llevar a cabo en este libro son los verbos de dplyr. Estas funciones no permiten agregar columnas, resumir la información, filtrar filas, seleccionar columnas, etc<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Y todas estas acciones las podemos hacer en la base de datos completa o en una parte de ella agrupada de acuerdo a algún criterio. Vayamos de a poco.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Para más detalles sobre los verbos disponibles en el paquete <em>{dplyr}</em> pueden visital este la <a href="https://dplyr.tidyverse.org/">página de referencia</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Una de las cosas más útiles del <em>tidyverse</em> para el tipo de procesamiento de datos que vamos a llevar a cabo en este libro son los verbos de <em>{dplyr}</em> Estas funciones no permiten agregar columnas, resumir la información, filtrar filas, seleccionar columnas, etc<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Y todas estas acciones las podemos hacer en la base de datos completa o en una parte de ella agrupada de acuerdo a algún criterio. Vayamos de a poco.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Para más detalles sobre los verbos disponibles en el paquete <em>{dplyr}</em> pueden visital este la <a href="https://dplyr.tidyverse.org/">página de referencia</a>.</p></li></div></div>
 <section id="el-verbo-filter" class="level4 page-columns page-full" data-number="1.2.3.1">
 <h4 data-number="1.2.3.1" class="anchored" data-anchor-id="el-verbo-filter"><span class="header-section-number">1.2.3.1</span> El verbo <code>filter</code></h4>
-<div class="page-columns page-full"><p>Volvamos a los datos de los JJOO de verano. Supongamos que nos queremos quedar sólo con las medallas de Argentina. Para este tipo de filtrado de filas (o casos, o mediciones) <em>{dplyr}</em> tiene un verbo que se llama <code>filter</code> y funciona de la siguiente forma<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Se preguntarán por qué antes de la función <code>filter</code> aparece un <code>::dplyr</code>. Esto es simplemente una forma de decirle a R que la función <code>filter</code> que debe utilizar es la del paquete <em>{dplyr}</em>. Esta es una práctica recomendable sobre todo para funciones con nombres comunes como <code>filter</code> o <code>select</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>Volvamos a los datos de los JJOO de verano. Supongamos que nos queremos quedar sólo con las medallas de Argentina. Para este tipo de filtrado de filas (o casos, o mediciones) <em>{dplyr}</em> tiene un verbo que se llama <code>filter</code> y funciona de la siguiente forma<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Se preguntarán por qué antes de la función <code>filter</code> aparece un <code>dplyr::</code>. Esto es simplemente una forma de decirle a R que la función <code>filter</code> que debe utilizar es la del paquete <em>{dplyr}</em>. Esta es una práctica recomendable sobre todo para funciones con nombres comunes como <code>filter</code> o <code>select</code>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 9</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City  Sport     Discipline Athlete          Country Gender</span></span>
@@ -535,13 +534,10 @@ Instalación de R y RStudio
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  1924 Paris Polo      Polo       KENNY, Arturo    ARG     Men   </span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Noten que estamos utilizando el operador <code>|&gt;</code> para concatenar las acciones: Con los datos de <code>summer</code> hacemos el filtrado y, luego, mostramos las primeras diez filas de esos datos ya filtrados.</p>
-<p>También podríamos quere quedarnos con las medallas de Argenitna en los JJOO de Atenas 2004, para esto debemos el operador lógico “y”, cuyo símbolo en R es <code>&amp;</code>:</p>
+<p>También podríamos querer quedarnos con las medallas de Argenitna en los JJOO de Atenas 2004, para esto debemos el operador lógico “y”, cuyo símbolo en R es <code>&amp;</code>:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span> <span class="sc">&amp;</span> Year <span class="sc">==</span> <span class="dv">2004</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 9</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City   Sport      Discipline Athlete                   Country Gender</span></span>
@@ -552,12 +548,9 @@ Instalación de R y RStudio
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2004 Athens Basketball Basketball GINOBILI, Emanuel David   ARG     Men   </span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2004 Athens Basketball Basketball GUTIERREZ, Leonardo Mart… ARG     Men   </span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>Que linda esa Generación Dorada🏅, ¿No?.Por otro lado, si nos queremos quedar con las medallas de Argentina o Brasil debemos utilizar el operador lógico “o”, cuyo símbolo en R es <code>|</code>:</p>
+<p>Que linda esa Generación Dorada🏅, ¿no?. Por otro lado, si nos queremos quedar con las medallas de Argentina o Brasil debemos utilizar el operador lógico “o”, cuyo símbolo en R es <code>|</code>:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span> <span class="sc">|</span> Country <span class="sc">==</span> <span class="st">"BRA"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 9</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City    Sport    Discipline Athlete                   Country Gender</span></span>
@@ -570,12 +563,9 @@ Instalación de R y RStudio
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  1920 Antwerp Shooting Shooting   WOLF, Sebastiao           BRA     Men   </span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Aunque, una alternativa muy útil cuando tenemos los valores de una variable que queremos filtrar en un <em>array</em> es:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ARG"</span>, <span class="st">"BRA"</span>)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 9</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City    Sport    Discipline Athlete                   Country Gender</span></span>
@@ -588,12 +578,9 @@ Instalación de R y RStudio
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  1920 Antwerp Shooting Shooting   WOLF, Sebastiao           BRA     Men   </span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Finalmente, si tenemos una variable numérica, podemos filtrar con condiciones como mayor o menor:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Year <span class="sc">&gt;</span> <span class="dv">2010</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 9</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City   Sport    Discipline Athlete          Country Gender</span></span>
@@ -604,15 +591,12 @@ Instalación de R y RStudio
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2012 London Aquatics Diving     CHEN, Ruolin     CHN     Women </span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  2012 London Aquatics Diving     BROBEN, Brittany AUS     Women </span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: Event &lt;chr&gt;, Medal &lt;chr&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="el-verbo-select" class="level4" data-number="1.2.3.2">
 <h4 data-number="1.2.3.2" class="anchored" data-anchor-id="el-verbo-select"><span class="header-section-number">1.2.3.2</span> El verbo <code>select</code></h4>
-<p>El verbo <code>select</code> es similar a <code>filter</code> pero nos permite filtrar no casos sino variables. Por ejemplo, ¿Qué pasa si solo nos interesa el año, la ciudad y el nombre del atleta?:</p>
+<p>El verbo <code>select</code> es similar a <code>filter</code> pero nos permite filtrar variables (o xolumnas) en lugar de casos (o filas). Por ejemplo, ¿Qué pasa si sólo nos interesa el año, la ciudad y el nombre del atleta?:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(Year, City, Athlete)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Year City   Athlete           </span></span>
@@ -622,15 +606,12 @@ Instalación de R y RStudio
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  1896 Athens DRIVAS, Dimitrios </span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  1896 Athens MALOKINIS, Ioannis</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1896 Athens CHASAPIS, Spiridon</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="el-verbo-mutate" class="level4 page-columns page-full" data-number="1.2.3.3">
 <h4 data-number="1.2.3.3" class="anchored" data-anchor-id="el-verbo-mutate"><span class="header-section-number">1.2.3.3</span> El verbo <code>mutate</code></h4>
-<p>Ahora las cosas se complican un poco. <code>mutate</code> es un verbo que nos permite crear nuevas columnas ya sea con datos nuevos o en función de los datos existentes. Por ejemplo, creemos una columna nueva que tenga un <em>chr</em> con el país, un guión y el nombre del atleta y llamémosla <code>nationality_athlete</code>. Nos vamos a quedar sólo con el año, la medalla que ganó y el nuevo nombre combinado con la nacionalidad:</p>
+<div class="page-columns page-full"><p>Ahora las cosas se complican un poco. <code>mutate</code> es un verbo que nos permite crear nuevas columnas ya sea con datos nuevos o en función de los datos existentes. Por ejemplo, creemos una columna nueva que tenga una variable de tipo <em>chr</em><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> con el país, un guión y el nombre del atleta y llamémosla <code>nationality_athlete</code>. Nos vamos a quedar sólo con el año, la medalla que ganó y el nuevo nombre combinado con la nacionalidad<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;Es decir, una cadena de caracteres, es decir, un texto.</p></li><li id="fn8"><p><sup>8</sup>&nbsp;Para más detalles sobre la función <code>paste</code> pueden ver el siguiente: <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/paste">link</a>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">nationality_athlete =</span> <span class="fu">paste</span>(Country, <span class="st">"-"</span>, Athlete)) <span class="sc">|&gt;</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(Year, Medal, nationality_athlete)) <span class="sc">|&gt;</span></span>
@@ -643,12 +624,9 @@ Instalación de R y RStudio
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  1896 Bronze GRE - DRIVAS, Dimitrios </span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  1896 Gold   GRE - MALOKINIS, Ioannis</span></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1896 Silver GRE - CHASAPIS, Spiridon</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="page-columns page-full"><p>O, por ejemplo, podemos querer crear una variable que nos ponga un <span class="math inline">\(1\)</span> si es griego y un <span class="math inline">\(0\)</span> si no<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Para más detalles sobre la función <code>if_else</code> pueden ver el siguiente <a href="https://dplyr.tidyverse.org/reference/if_else.html">link</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>O, por ejemplo, podemos querer crear una variable que nos ponga un <span class="math inline">\(1\)</span> si es griego y un <span class="math inline">\(0\)</span> si no<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Para más detalles sobre la función <code>if_else</code> pueden ver el siguiente <a href="https://dplyr.tidyverse.org/reference/if_else.html">link</a>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">is_greek =</span> <span class="fu">if_else</span>(Country <span class="sc">==</span> <span class="st">"GRE"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(Year, Medal, Country, is_greek)) <span class="sc">|&gt;</span></span>
@@ -661,12 +639,9 @@ Instalación de R y RStudio
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  1896 Bronze GRE            1</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  1896 Gold   GRE            1</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1896 Silver GRE            1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>Ahora vamos a aprender algo muy importante y <em>cool</em> 🆒: A agrupar los casos de acuerdo a una variable. Por ejemplo, si queremos agregar una columna que contenga la cantidad total de medallas ganadas por un país a cada atleta de ese país podemos hacer lo siguiente:</p>
+<p>Ahora vamos a aprender algo muy importante y <em>cool</em> 🆒: A agrupar los casos de acuerdo a una variable. Por ejemplo, si queremos agregar una columna que contenga la cantidad total de medallas ganadas por un país a cada fila de ese país:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">num_medals =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
@@ -681,16 +656,13 @@ Instalación de R y RStudio
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 GRE      1896 Bronze DRIVAS, Dimitrios         148</span></span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 GRE      1896 Gold   MALOKINIS, Ioannis        148</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 GRE      1896 Silver CHASAPIS, Spiridon        148</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>¿Perdidos? Tomensé su tiepo para tratar de entender qué pasó y prueben distintas alternativas en sus computadoras.</p>
 </section>
 <section id="el-verbo-summarise" class="level4 page-columns page-full" data-number="1.2.3.4">
 <h4 data-number="1.2.3.4" class="anchored" data-anchor-id="el-verbo-summarise"><span class="header-section-number">1.2.3.4</span> El verbo <code>summarise</code></h4>
-<div class="page-columns page-full"><p>Por último, el verbo <code>summarise</code> nos permite sacar medidas resumen de nuestros datos. Empecemos con algo obvio: ¿Cuántas medallas de oro ganó cada país en la historia de los juegos olímpicos?. Podemos hacer algo parecido a lo último que hicimos con <code>mutate</code> pero el resultados será ligeramente diferente<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;La función <code>arrange</code> nos ordena los datos de acuerdo a la variable que le enviemos como parámetro de menos a mayor. Si queremos que ordene de mayor a menor debemos agregar la función <code>desc</code> en el argumento. Más detalles <a href="https://dplyr.tidyverse.org/reference/arrange.html">acá</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Por último, el verbo <code>summarise</code> nos permite sacar medidas resumen de nuestros datos. Empecemos con algo obvio: ¿Cuántas medallas de oro ganó cada país en la historia de los juegos olímpicos?. Podemos hacer algo parecido a lo último que hicimos con <code>mutate</code> pero el resultados será ligeramente diferente<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;La función <code>arrange</code> nos ordena los datos de acuerdo a la variable que le enviemos como parámetro de menos a mayor. Si queremos que ordene de mayor a menor debemos agregar la función <code>desc</code> en el argumento. Más detalles <a href="https://dplyr.tidyverse.org/reference/arrange.html">acá</a>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Medal <span class="sc">==</span> <span class="st">"Gold"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span></span>
@@ -707,12 +679,9 @@ Instalación de R y RStudio
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 GER            452</span></span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 HUN            412</span></span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="page-columns page-full"><p>Hay algo raro, ¿No? Bueno, sí, de esta forma estamos contando a todos los atletas que tuvieron la misma medalla (por ejemplo, si la medalla fue por fútbol estamos contando cerca de 30 medallas). Para resolver esto nos podemos sacar de encima los casos duplicados por año, deporte, disciplina, evento y género<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;La función <code>distinct</code> nos conserva una sola realización de cada caso que es igual de acuerdo a las variables que le pasemos como parámetros. Más detalles <a href="https://dplyr.tidyverse.org/reference/distinct.html">acá</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Hay algo raro, ¿No? Bueno, sí, de esta forma estamos contando a todos los atletas que tuvieron la misma medalla (por ejemplo, si la medalla fue por fútbol estamos contando cerca de 30 medallas). Para resolver esto nos podemos sacar de encima los casos duplicados por año, deporte, disciplina, evento y género<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;La función <code>distinct</code> nos conserva una sola realización de cada caso que es igual de acuerdo a las variables que le pasemos como parámetros. Más detalles <a href="https://dplyr.tidyverse.org/reference/distinct.html">acá</a>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Year, Sport, Discipline, Event, Gender, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Medal <span class="sc">==</span> <span class="st">"Gold"</span>) <span class="sc">|&gt;</span></span>
@@ -728,12 +697,9 @@ Instalación de R y RStudio
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 CHN             40</span></span>
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 RUS             22</span></span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 GER             19</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Vayamos con lo último, calculemos la media y la desviación estándar de las medallas de Argentina por JJOO combinando todo lo que vimos.</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>summer <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Year, Sport, Discipline, Event, Medal, Gender, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"ARG"</span>) <span class="sc">|&gt;</span></span>
@@ -746,20 +712,17 @@ Instalación de R y RStudio
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   media desvio</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  3.83   2.28</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Digieran esto tranquilos.</p>
 </section>
 </section>
 <section id="tidyr-el-paquete-para-ordenar-tus-datos" class="level3 page-columns page-full" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="tidyr-el-paquete-para-ordenar-tus-datos"><span class="header-section-number">1.2.4</span> <em>{tidyR}</em>, el paquete para ordenar tus datos</h3>
-<div class="page-columns page-full"><p>El paquete <em>{tidyR}</em> tiene muchas herramientas de manejo de tablas como reformatear, expandir tablas, manejar valores faltantes, dividir celdas, anidar datos, etc<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Sin embargo, en esta breve introducción sólo vamos a presentar muy brevemente las herramientas que nos permiten convertir una tabla <em>wide</em> en <em>tidy</em> (o <em>long</em>) y viceverse.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;Para más información ver el <a href="https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf">cheatsheet</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>El paquete <em>{tidyR}</em> tiene muchas herramientas de manejo de tablas como reformatear, expandir tablas, manejar valores faltantes, dividir celdas, anidar datos, etc<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. Sin embargo, en esta breve introducción sólo vamos a presentar muy brevemente las herramientas que nos permiten convertir una tabla <em>wide</em> en <em>tidy</em> (o <em>long</em>) y viceverse.</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Para más información ver el <a href="https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf">cheatsheet</a>.</p></li></div></div>
 <section id="la-función-pivot_longer" class="level4 page-columns page-full" data-number="1.2.4.1">
 <h4 data-number="1.2.4.1" class="anchored" data-anchor-id="la-función-pivot_longer"><span class="header-section-number">1.2.4.1</span> La función <code>pivot_longer</code></h4>
-<p>Volvamos a la tabla iniicial que teníamos en formato wide:</p>
+<p>Volvamos a la tabla inicial que teníamos en formato <em>wide</em>:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tabla_wide <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sujeto  =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Jerry"</span>, <span class="st">"Elaine"</span>, <span class="st">"George"</span>)),</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trial_1 =</span> <span class="fu">runif</span>(<span class="dv">3</span>),</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trial_2 =</span> <span class="fu">runif</span>(<span class="dv">3</span>)) </span>
@@ -771,12 +734,9 @@ Instalación de R y RStudio
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry    0.320  0.404 </span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Elaine   0.402  0.0637</span></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George   0.196  0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="page-columns page-full"><p>Si nosotros quisiñeramos transformar esta tabla en una tabla en formato <em>tidy</em> podemos utilizar la función <code>pivot_longer</code><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Veamos como funciona y después la desmenuzamos:</p><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">acá</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Si nosotros quisiñeramos transformar esta tabla en una tabla en formato <em>tidy</em> podemos utilizar la función <code>pivot_longer</code><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Veamos como funciona y después la desmenuzamos:</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">acá</a>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">"trial"</span>,</span>
@@ -790,13 +750,10 @@ Instalación de R y RStudio
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Elaine trial_2           0.0637</span></span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 George trial_1           0.196 </span></span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George trial_2           0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Los argumentos son los siguientes: <code>data</code> es la tabla a la que le vamos a realizar el cambio de formato; <code>cols</code> son las columnas que vamos a cambiar, en este caso desde <code>trial_1</code> a <code>trial_2</code>; en <code>names_to</code> indicamos la variable a la que vamos a mandar los nombres de las columnas actuales; y <code>values_to</code> la variables a la que vamos a mandar los valores.</p>
-<div class="page-columns page-full"><p>Algo ligeramente raro es que la columna trial no es numérica y, sólo por completitud, lo vamos a solucionar usando a nuestro gran amigo <code>|&gt;</code> y al verbo <code>mutate</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;Y la función <a href="https://readr.tidyverse.org/reference/parse_number.html"><code>parse_number</code></a> del paquete <em>{readr}</em>.</p></li></div></div>
+<div class="page-columns page-full"><p>Algo ligeramente raro es que la columna trial no es numérica y, sólo por completitud, lo vamos a solucionar usando a nuestro gran amigo <code>|&gt;</code> y al verbo <code>mutate</code><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn14"><p><sup>14</sup>&nbsp;Y la función <a href="https://readr.tidyverse.org/reference/parse_number.html"><code>parse_number</code></a> del paquete <em>{readr}</em>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">"trial"</span>,</span>
@@ -811,15 +768,12 @@ Instalación de R y RStudio
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Elaine     2           0.0637</span></span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 George     1           0.196 </span></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George     2           0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="la-función-pivot_wider" class="level4 page-columns page-full" data-number="1.2.4.2">
 <h4 data-number="1.2.4.2" class="anchored" data-anchor-id="la-función-pivot_wider"><span class="header-section-number">1.2.4.2</span> La función <code>pivot_wider</code></h4>
 <p>Ahora vamos con el caso contrario en el que tenemos una tabla en formato <em>long</em> y la queremos convertir en <em>wide</em>:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tabla_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> tabla_wide, </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cols =</span> trial_1<span class="sc">:</span>trial_2, </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">names_to =</span> <span class="st">"trial"</span>,</span>
@@ -836,12 +790,9 @@ Instalación de R y RStudio
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Elaine     2           0.0637</span></span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 George     1           0.196 </span></span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 George     2           0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="page-columns page-full"><p>Para esto vamos a hechar mano a la función <code>pivot_wider</code><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> que tiene una sintáxis parecida a su prima <code>pivot_longer</code>:</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">acá</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Para esto vamos a hechar mano a la función <code>pivot_wider</code><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> que tiene una sintáxis parecida a su prima <code>pivot_longer</code>:</p><div class="no-row-height column-margin column-container"><li id="fn15"><p><sup>15</sup>&nbsp;Más información <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">acá</a>.</p></li></div></div>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> tabla_long, </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> trial, </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> tiempo_respuesta)</span>
@@ -851,13 +802,10 @@ Instalación de R y RStudio
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry  0.320 0.404 </span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Elaine 0.402 0.0637</span></span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George 0.196 0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p><em>Et Voilà!</em>, ya tenemos nuestra tabla en formato wide. En este caso le dijimos de que variable tomar los nombres de las nuevas columnas en <code>names_from</code> y de que variable tomar los valores en <code>values_from</code>.</p>
 <p>Finalmente, y sólo para alimnetar nuestra obsesión, vamos a corregir los nombres de las columnas agregando el prefijo <code>trial_</code> utilizando el parámetro de la función <code>names_prefix</code>:</p>
 <div class="cell">
-<details>
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> tabla_long, </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> trial, </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_prefix =</span> <span class="st">"trial_"</span>,</span>
@@ -868,15 +816,29 @@ Instalación de R y RStudio
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jerry    0.320  0.404 </span></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Elaine   0.402  0.0637</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 George   0.196  0.389</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<!-- ### *{ggplot2}* o cómo hacer figuras que sean la envidia de tu compañero de escritorio -->
 </section>
+</section>
+<section id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="header-section-number">1.2.5</span> <em>{ggplot2}</em> o cómo hacer figuras que sean la envidia de tu compañero de escritorio</h3>
+<div class="callout-warning callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🚧 EN CONSTRUCCIÓN 🚧
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta sección se encuentra en construcción 🏗.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="algunas-palabras-finales" class="level2 page-columns page-full" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="algunas-palabras-finales"><span class="header-section-number">1.3</span> Algunas palabras finales</h2>
-<div class="page-columns page-full"><p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [<span class="citation" data-cites="wickham2023r">Wickham, Çetinkaya-Rundel, y Grolemund (<a href="references.html#ref-wickham2023r" role="doc-biblioref">2023</a>)</span>]<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Disponible gratis online en <a href="https://r4ds.had.co.nz/">acá</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Como vimos brevemente en este capítulo, los paquetes del <em>tidyverse</em> son una herramineta importantísima para el análisis de datos utilizando R. Para más detalles sobre estas funcionalidades les recomendamos la guía de Hadley Wickham<span class="citation" data-cites="wickham2019welcome">(<a href="references.html#ref-wickham2019welcome" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span> o, si ya se quieren sumergir de lleno en el mundo del análisis de datos con R, este fantástico libro [<span class="citation" data-cites="wickham2023r">Wickham, Çetinkaya-Rundel, y Grolemund (<a href="references.html#ref-wickham2023r" role="doc-biblioref">2023</a>)</span>]<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>. Es decir, sin tener que cargar ningún paquete de funciones adicional..</p><div class="no-row-height column-margin column-container"><li id="fn16"><p><sup>16</sup>&nbsp;Disponible gratis online en <a href="https://r4ds.had.co.nz/">acá</a>.</p></li></div></div>
 
 
 <div class="no-row-height column-margin column-container"><div id="ref-wickham2019welcome" class="csl-entry" role="doc-biblioentry">

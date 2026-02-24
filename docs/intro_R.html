@@ -867,46 +867,43 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 </section>
 <section id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio" class="level3" data-number="1.2.5">
 <h3 data-number="1.2.5" class="anchored" data-anchor-id="ggplot2-o-cómo-hacer-figuras-que-sean-la-envidia-de-tu-compañero-de-escritorio"><span class="header-section-number">1.2.5</span> <em>{ggplot2}</em> o cómo hacer figuras que sean la envidia de tu compañero de escritorio</h3>
-<p>Tradicionalmente, R incluye funciones gráficas básicas (como <code>plot()</code>, <code>hist()</code> o <code>boxplot()</code>), estas funciones generan gráficos simples pero muy útiles cuando queremos dar una mirada nuestros datos durante el trabajo. Pero <em>ggplot</em> es una opción superadora ya que nos permite crear gráficos complejos, es extremadamente flexible y nos permite reutilizar gran parte del código creado. La idea central de ggplot es introducir una forma nueva de escribir gráficos, la <strong>grammar of graphics</strong></p>
+<p>Tradicionalmente, R incluye funciones gráficas básicas (como <code>plot()</code>, <code>hist()</code> o <code>boxplot()</code>), estas funciones generan gráficos simples pero muy útiles cuando queremos dar una mirada rápida a nuestros datos durante el trabajo. Sin embargo, el paquete <em>{ggplot2}</em> es una opción superadora ya que nos permite crear gráficos complejos, es extremadamente flexible y nos permite reutilizar gran parte del código creado. La idea central de <em>{ggplot2}</em> es introducir una forma nueva de pensar, definir y programar gráficos, la <strong>grammar of graphics</strong></p>
 <section id="grammar-of-graphics-o-el-idioma-de-ggplot" class="level4" data-number="1.2.5.1">
 <h4 data-number="1.2.5.1" class="anchored" data-anchor-id="grammar-of-graphics-o-el-idioma-de-ggplot"><span class="header-section-number">1.2.5.1</span> Grammar of Graphics o el idioma de ggplot</h4>
-<p>El concepto detrás de ggplot2 es que cualquier gráfico puede descomponerse en elementos fundamentales:</p>
+<p>El concepto detrás de <em>{ggplot2}</em> es que cualquier gráfico puede descomponerse en elementos fundamentales:</p>
 <ul>
 <li><p>Datos.</p></li>
-<li><p>Aestethics o mapeos estéticos.</p></li>
-<li><p>Geoms o geometrías .</p></li>
+<li><p><em>Aestethics</em> o mapeos estéticos.</p></li>
+<li><p><em>Geoms</em> o geometrías .</p></li>
 <li><p>Escalas.</p></li>
 <li><p>Facetas.</p></li>
 <li><p>Temas.</p></li>
 </ul>
 <p>Sin embargo, el aspecto más importante para entender este sistema es que estos elementos se agregan de manera modular y en capas. Como se agregan, el conector que une cada capa es un <code>+</code>.</p>
 <p>Cada elemento se superpone al que sigue en el orden que los escribimos, es decir que, si por ejemplo en nuestra instrucción primero pedimos un boxplot, y después un gráfico de puntos, vamos a ver los puntos sobre el boxplot. Si los escribiéramos al revés, puede pasar que nuestro boxplot oculte algunos puntos. En otras palabras, un gráfico no es una única instrucción, sino una construcción progresiva, que podemos superponer geometrías, veamos que queremos decir con esto.</p>
-<p>Acá hay un código y su grafico resultante.</p>
+<p>Acá hay un código de ejemplo utilizando el dataset <code>mtcars</code> que ya viene con <strong>R</strong> y tiene datos de autos. También podemos ver su gráfica resultante.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mtcars,                         <span class="co"># 1. DATOS</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mtcars, <span class="co"># 1. DATOS de autos que ya vienen con R</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> wt,                              <span class="co"># 2. MAPEO ESTÉTICO</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> wt, <span class="co"># 2. MAPEO ESTÉTICO</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> mpg,</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">factor</span>(cyl),</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> hp</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>               <span class="co"># 3. GEOMETRÍA</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span><span class="co"># Otra GEOMETRIA  COMO capa adicional</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> <span class="co"># 3. GEOMETRÍA</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># Otra GEOMETRIA  COMO capa adicional</span></span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span> <span class="co"># 4. ESCALAS</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gear) <span class="sc">+</span>                    <span class="co"># 5. FACETAS</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(                                   <span class="co"># etiquetas</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gear) <span class="sc">+</span> <span class="co"># 5. FACETAS</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="co"># Etiquetas de los ejes y las escalas</span></span>
 <span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ejemplo de Grammar of Graphics"</span>,</span>
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Peso del auto"</span>,</span>
 <span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Consumo (mpg)"</span>,</span>
 <span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cilindros"</span>,</span>
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"Potencia"</span></span>
 <span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                         <span class="co"># 6. TEMA</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co">#6. TEMA</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -918,26 +915,22 @@ Tabla&nbsp;1.1: Ejemplo de tablas tidy y wide.
 <p>Como ven este gráfico tiene dos <em>geometrías</em> (los puntos y la linea de tendencia), una escala de colores personalizada, <em>facetas</em> por cantidad de engranajes y un <em>tema</em> minimalista. Todo esto se puede lograr con un código relativamente simple y modular. Vamos a descomponer esta estructura para entenderla mejor.</p>
 <section id="datos-y-mapeo-estético" class="level5" data-number="1.2.5.1.1">
 <h5 data-number="1.2.5.1.1" class="anchored" data-anchor-id="datos-y-mapeo-estético"><span class="header-section-number">1.2.5.1.1</span> Datos y mapeo estético</h5>
-<p>Estos dos componentes son la cimientos de cualquier gráfico de ggplot, sin ellos no puede existir en un gráfico y se delimitan en la primera línea de nuestro gráfico detro de la función ggplot. <strong>Datos</strong> Todo gráfico comienza con un conjunto de datos. En ggplot2, estos se especifican con la función <code>ggplot()</code> así:</p>
+<p>Estos dos componentes son la cimientos de cualquier gráfico de ggplot, sin ellos no puede existir en un gráfico y se delimitan en la primera línea de nuestro gráfico detro de la función ggplot. <strong>Datos</strong> Todo gráfico comienza con un conjunto de datos. En <em>{ggplot2}</em>, estos se especifican con la función <code>ggplot()</code> así:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#donde datos es el nombre de nuestro dataset</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>Aquí no se genera aún ningún gráfico. Solo se define la base sobre la cual se construirán las capas. Esto refleja un principio clave: <em>ggplot separa la definición del gráfico de su representación visual</em>.</p>
-<p><strong>Aestethic o mapeos estéticos</strong></p>
-<p>Los mapeos estéticos (aesthetics, muy palermitano todo) definen cómo las <em>variables del dataset</em> se traducen en propiedades visuales, es decir como usará valores dentro del dataset para graficar algo como:</p>
+<p>Aquí no se genera aún ningún gráfico. Solo se define la base sobre la cual se construirán las capas. Esto refleja un principio clave: <em>{ggplot} separa la definición del gráfico de su representación visual</em>.</p>
+<p>Por otro lado, los mapeos estéticos (o, en palermitano, <em>aesthetics</em>) definen cómo las <em>variables del dataset</em> se traducen en propiedades visuales, es decir como usará valores dentro del dataset para graficar algo como:</p>
 <ul>
-<li><p>posiciones en el Eje X</p></li>
-<li><p>posiciones en el Eje Y</p></li>
-<li><p>Color (se puede asignar colores a categorias o escalas de colores a variables continuas)</p></li>
-<li><p>Tamaño, podemos tener objetos mas grandes o mas chicos en funcion de una variable numérica en nuestro dataset</p></li>
-<li><p>Forma</p></li>
-<li><p>Transparencia</p></li>
+<li><p>Posiciones en el eje X.</p></li>
+<li><p>Posiciones en el eje Y.</p></li>
+<li><p>Colores (se puede asignar colores a categorias o escalas de colores a variables continuas).</p></li>
+<li><p>Tamaños, podemos tener objetos mas grandes o mas chicos en funcion de una variable numérica en nuestro dataset.</p></li>
+<li><p>Formas.</p></li>
+<li><p>Niveles de transparencia.</p></li>
 </ul>
-<p>Y se colocan dentro del argumento <code>aes()</code> dentro de la función <code>ggplot()</code>. Por ejemplo,</p>
+<p>Estos mapeos se colocan dentro del argumento <code>aes()</code> dentro de la función <code>ggplot()</code>. Por ejemplo,</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Ver el código</summary>
@@ -957,32 +950,27 @@ Mapeo estético vs parámetros fijos
 </div>
 <div class="callout-body-container callout-body">
 <p>Es importante distinguir entre:</p>
-<p>Mapeo estético: cuando el color o tamaño dependen de una variable, se fijan en la primera línea y la información la va a buscar en el dataset, si cambia en un sujeto esa variable, en el gráfico tendrá distinto tamaño o color</p>
+<p><strong>Mapeo estético</strong>: cuando el color o tamaño dependen de una variable, se fijan en la primera línea y la información la va a buscar en el dataset, si cambia en un sujeto esa variable, en el gráfico tendrá distinto tamaño o color</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">x =</span> edad, <span class="at">y =</span> memoria, <span class="at">color=</span>genero))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#cuando en el dataset un sujeto tenga por ejemplo genero masculino, tendra un color, y femenino otro</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>Parámetros fijos: cuando el color o tamaño son constantes, ya no estan asociados a una variable simplemente el usuario lo determino, siempre va a ser el mismo.</p>
+<p><strong>Parámetros fijos</strong>: cuando el color o tamaño son constantes, ya no estan asociados a una variable simplemente el usuario lo determino, siempre va a ser el mismo.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">x =</span> edad, <span class="at">y =</span> memoria, <span class="at">color=</span><span class="st">"#FF0000"</span>))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#todo lo que grafiquemos va a tener el mismo color, en este caso rojo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </div>
 </div>
 </section>
 <section id="geoms-o-geometría" class="level5" data-number="1.2.5.1.2">
-<h5 data-number="1.2.5.1.2" class="anchored" data-anchor-id="geoms-o-geometría"><span class="header-section-number">1.2.5.1.2</span> Geoms o geometría</h5>
-<p>Las geometrías (geoms) son los elementos visuales que representan los datos en el gráfico. Son las capas que se superponen sobre la base definida por los datos y los mapeos estéticos. Hasta que no coloquemos esta capa, no veremos un gráfico (porque la primera línea, son los cimientos escenciales pero que no se ven) Hay muchas geometrías disponibles en ggplot2, cada una diseñada para representar diferentes tipos de datos y relaciones. Vamos por ejemplo algunas:</p>
+<h5 data-number="1.2.5.1.2" class="anchored" data-anchor-id="geoms-o-geometría"><span class="header-section-number">1.2.5.1.2</span> <em>Geoms</em> o geometría</h5>
+<p>Las geometrías (<em>geoms</em>) son los elementos visuales que representan los datos en el gráfico. Son las capas que se superponen sobre la base definida por los datos y los mapeos estéticos. Hasta que no coloquemos esta capa, no veremos un gráfico (porque la primera línea, son los cimientos esenciales pero que no se ven). Hay muchas geometrías disponibles en <em>{ggplot2}</em>, cada una diseñada para representar diferentes tipos de datos y relaciones.</p>
+<p>Vamos por ejemplo algunas:</p>
 <p><img src="imgs/ggplot.jpg" class="img-fluid"></p>
 <p>Dos cosas a destacar son que (como dijimos antes) ggplot no va a graficar nada si no le decimos donde estan los datos ni los mapeamos (la primera linea) y si no tiene una geometría. Como ven aquí entonces cada geomatría depende de que esten disponibles cierto tipo de datos en el mapeo estético. Por ejemplo no puede crear una línea de tendencia si x e y son categorías.</p>
-<p>Hay muchísimas geometrías, los invito a que las exploren y busquen cuales son las que pueden funcionar mejor para cada uno de sus datos, un lugar para empezar es la galería de gráficos de R: <a href="https://r-graph-gallery.com/">link</a>.</p>
-<p>Habrán notado que cada capa de una geometría es una función, cada una con sus propios argumentos, generalmente estos argumentos nos permiten modificar la estética de esa geometría. Por ejemplo, en el caso de <code>geom_point</code> podemos modificar el tamaño de los puntos con el argumento <code>size</code>, la transparencia con <code>alpha</code> o la forma con <code>shape</code>. En el caso de <code>geom_smooth</code> podemos elegir el método de ajuste (por ejemplo, una línea de tendencia lineal) con el argumento <code>method</code> o si queremos mostrar o no el intervalo de confianza con <code>se</code>. Cada geom tiene sus propios argumentos, pero también hay argumentos comunes a todas las geometrías como <code>color</code>, <code>fill</code>, <code>size</code>, etc.</p>
+<p>Hay muchísimas geometrías, los invito a que las exploren y busquen cuales son las que pueden funcionar mejor para cada uno de sus datos. Un buen lugar para comenzar esta búsqueda es la <a href="https://r-graph-gallery.com/">galería de gráficos de R</a>.</p>
+<p>Habrán notado que cada capa de una geometría es una función, cada una con sus propios argumentos, generalmente estos argumentos nos permiten modificar la estética de esa geometría. Por ejemplo, en el caso de <code>geom_point</code> podemos modificar el tamaño de los puntos con el argumento <code>size</code>, la transparencia con <code>alpha</code> o la forma con <code>shape</code>. En el caso de <code>geom_smooth</code> podemos elegir el método de ajuste (por ejemplo, una línea de tendencia lineal) con el argumento <code>method</code> o si queremos mostrar o no el intervalo de confianza con <code>se</code>. Cada geometría tiene sus propios argumentos, pero también hay argumentos comunes a todas las geometrías como <code>color</code>, <code>fill</code>, <code>size</code>, etc.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -996,18 +984,14 @@ Mapeos en las geometrías
 <p>Habrán notado que <code>size</code> , <code>shape</code> o <code>alpha</code> (la transparencia), son argumentos que mencionamos en la capa de mapeo estético. Tambien dijimos que pueden ser mapeos o parametros fijos. Bueno, el mapeo estético no es una función exclusiva de la primera capa, puede ser un argumento dentro de una geometría, pero tenemos que saber que <strong>solamente</strong> va a ser usada para esa geometría y no va a afectar a las otras</p>
 <p>Veamos un ejemplo.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mtcars,                         <span class="co"># 1. DATOS</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> wt,                              <span class="co"># 2. MAPEO ESTÉTICO</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> mpg,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>               </span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                         </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mtcars, <span class="co"># 1. DATOS</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="co"># 2. MAPEO ESTÉTICO</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> mpg,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> <span class="co"># 3. GEOMETRÍAS                </span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                         </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1022,13 +1006,12 @@ Mapeos en las geometrías
 <summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mtcars,                         <span class="co"># 1. DATOS</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> wt,                              <span class="co"># 2. MAPEO ESTÉTICO</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span>           </span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                         </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mtcars,<span class="co"># 1. DATOS</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="co"># 2. MAPEO ESTÉTICO</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span> <span class="co"># 3. GEOMETRÍAS           </span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                         </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1038,39 +1021,30 @@ Mapeos en las geometrías
 </div>
 </div>
 </div>
-<p>En esta versión en cambio el mapeo estético de color se encuentra dentro de geom_point (afecta solo a esta) dando lugar así a una única línea en geom_smooth (porque esa capa no tiene indicado un mapeo de color).</p>
-<p>Como ven, hay otros argumentos dentro de la geometría como <code>size</code>dentro de geom_point que son parámetros fijos del temeño de los puntos y no estan ligados a ninguna variable</p>
+<p>En esta versión en cambio el mapeo estético de color se encuentra dentro de <code>geom_point</code> (afecta solo a esta) dando lugar así a una única línea en <code>geom_smooth</code> (porque esa capa no tiene indicado un mapeo de color).</p>
+<p>Como ven, hay otros argumentos dentro de la geometría como <code>size</code> dentro de + que son parámetros fijos del temeño de los puntos y no estan ligados a ninguna variable</p>
 </div>
 </div>
 </section>
 <section id="capas-adicionales" class="level5" data-number="1.2.5.1.3">
 <h5 data-number="1.2.5.1.3" class="anchored" data-anchor-id="capas-adicionales"><span class="header-section-number">1.2.5.1.3</span> Capas adicionales</h5>
-<p>Una vez que hemos dominado la estructura de cimientos (data y mapeo estético) y las capas de geometrías estamos en condiciones de generar la gran mayoría de gráficos que necesitamos, pero las posibilidades de ggplot son mucho mas amplias, hablaremos de capaz adicionales que pueden mejorar mucho los resultados o enriquecen la visualización.</p>
+<p>Una vez que hemos dominado la estructura de cimientos (data y mapeo estético) y las capas de geometrías estamos en condiciones de generar la gran mayoría de gráficos que necesitamos, pero las posibilidades de <em>{ggplot2}</em> son mucho mas amplias, hablaremos de capaz adicionales que pueden mejorar mucho los resultados o enriquecen la visualización.</p>
 <p><strong>Escalas</strong> Las escalas controlan cómo los valores se traducen en colores, tamaños o transformaciones.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_continuous</span>()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#controla qué colores se usan para representar una variable numérica cuando esta está mapeada al color en el gráfico.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Controla qué colores se usan para representar una variable numérica cuando esta está mapeada al color en el gráfico.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>También pueden transformar los ejes:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_log10</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Esto permite representar relaciones no lineales de forma más clara.</p>
 <p><strong>Facetas</strong></p>
 <p>Las facetas permiten dividir el gráfico en subgráficos según una variable. Esto facilita comparar grupos.</p>
-<p>Ejemplo:</p>
+<p>Por ejemplo:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_wrap</span>(<span class="sc">~</span> sexo)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#divide el gráfico inicial en uno para cada sexo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Divide el gráfico inicial en uno para cada sexo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Temas</strong></p>
 <p>Los temas controlan la apariencia general:</p>
@@ -1080,10 +1054,9 @@ Mapeos en las geometrías
 <li><p>Líneas.</p></li>
 <li><p>Grilla</p></li>
 </ul>
-<p>Se pueden usar temas predefinidos como <code>theme_minimal()</code> o <code>theme_classic()</code>, o personalizar cada elemento, utilizando la funcion <code>theme()</code>. Esta última permite controlar casi todos los aspectos visuales del gráfico, desde el tamaño y estilo de las fuentes hasta el color de fondo y las líneas de la grilla. Por ejemplo, podríamos querer modificar el título del gráfico, los títulos de los ejes, el color de los valores de los ejes, las líneas principales de la grilla, etc. Veamos un ejemplo</p>
+<p>Se pueden usar temas predefinidos como <code>theme_minimal()</code> o <code>theme_classic()</code>, o personalizar cada elemento, utilizando la funcion <code>theme()</code>. Esta última permite controlar casi todos los aspectos visuales del gráfico, desde el tamaño y estilo de las fuentes hasta el color de fondo y las líneas de la grilla.Por ejemplo, podríamos querer modificar el título del gráfico, los títulos de los ejes, el color de los valores de los ejes, las líneas principales de la grilla, etc.</p>
+<p>Veamos un ejemplo:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Modifica el título del gráfico</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
@@ -1118,8 +1091,8 @@ Mapeos en las geometrías
 <span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cambia el fondo general del gráfico</span></span>
 <span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(</span>
 <span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"gray95"</span>     <span class="co"># Color de fondo externo</span></span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1140,8 +1113,7 @@ Capas adicionales y la grammar of graphics
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"darkred"</span>   <span class="co"># Color de los valores de los ejes</span></span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    ))<span class="sc">+</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>En este caso el tema minimalista se va a superponer al tema personalizado qen que cambiamos el color del texto del eje, por lo que el resultado final va a ser un gráfico cminimalista sin cambio en el color de los valores de los ejes. Si queremos que el tema minimalista sea la base y luego personalizarlo con nuestro tema personalizado, el orden de las capas debe ser el opuesto.</p>
@@ -1151,7 +1123,8 @@ Capas adicionales y la grammar of graphics
 </section>
 <section id="instrucciones-finales-de-ggplot" class="level4" data-number="1.2.5.2">
 <h4 data-number="1.2.5.2" class="anchored" data-anchor-id="instrucciones-finales-de-ggplot"><span class="header-section-number">1.2.5.2</span> Instrucciones finales de ggplot</h4>
-<p>ggplot es una herramienta muy versátil y poderosa para la visualización de datos. La combinación de su estructura modular, la amplia variedad de geometrías y la capacidad de personalización lo convierten en una opción ideal para crear gráficos informativos y atractivos. A medida que te familiarices con sus componentes y funciones, podrás aprovechar al máximo su potencial para comunicar tus hallazgos de manera efectiva. Sólo algunas recomendaciones antes de crear tus propios gráficos. Recuerda: - Define claramente tus datos y mapeos estéticos. - Elige la geometría adecuada para tu tipo de datos y mensaje. - Personaliza tu gráfico con escalas, facetas y temas para mejorar la claridad y la estética. - <strong>No olvides la lógica de capas</strong>: el orden en que agregas las capas puede afectar el resultado final. Es fundamental pensar en términos de construcción progresiva. - <strong>No confundas mapeos y parámetros</strong>: Asegúrate de entender la diferencia entre mapeos estéticos (que dependen de las variables) y parámetros fijos (que son constantes). Esto es crucial para evitar confusiones en la interpretación de tus gráficos. - <strong>Asegurate que tus datos estén limpios y el tipo de variable bien definido</strong>: ggplot2 es muy poderoso pero también es sensible a la calidad de los datos. Asegúrate de que tus datos estén limpios, sin valores faltantes o errores, y que las variables estén correctamente definidas (por ejemplo, factores para categorías). Esto facilitará que el mapeo estético y el gráfico final funcionen bien.</p>
+<p>El paquete <em>{ggplot2}</em> es una herramienta muy versátil y poderosa para la visualización de datos. La combinación de su estructura modular, la amplia variedad de geometrías y la capacidad de personalización lo convierten en una opción ideal para crear gráficos informativos y atractivos. A medida que te familiarices con sus componentes y funciones, vas a poder aprovechar al máximo su potencial para comunicar tus datos y tus <em>insights</em> de manera efectiva.</p>
+<p>Sólo algunas recomendaciones antes de crear tus propios gráficos: Recordá: - Definí claramente tus datos y mapeos estéticos. - Elegí la geometría adecuada para tu tipo de datos y mensaje. - Personalizá tu gráfico con escalas, facetas y temas para mejorar la claridad y la estética. - <strong>No te olvides de la lógica de capas</strong>: el orden en que agregas las capas puede afectar el resultado final. Es fundamental pensar en términos de construcción progresiva. - <strong>No confundas mapeos y parámetros</strong>: Asegúrate de entender la diferencia entre mapeos estéticos (que dependen de las variables) y parámetros fijos (que son constantes). Esto es crucial para evitar confusiones en la interpretación de tus gráficos. - <strong>Asegurate que tus datos estén limpios y el tipo de variable bien definido</strong>: <em>{ggplot2}</em> es muy poderoso pero también es sensible a la calidad de los datos. Asegúrate de que tus datos estén limpios, sin valores faltantes o errores, y que las variables estén correctamente definidas (por ejemplo, factores para categorías). Esto va a facilitar que el mapeo estético y el gráfico final funcionen bien.</p>
 </section>
 </section>
 </section>

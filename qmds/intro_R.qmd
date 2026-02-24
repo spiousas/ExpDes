@@ -434,19 +434,17 @@ pivot_wider(data = tabla_long,
 
 ### *{ggplot2}* o cómo hacer figuras que sean la envidia de tu compañero de escritorio
 
-Tradicionalmente, R incluye funciones gráficas básicas (como `plot()`, `hist()` o `boxplot()`), estas funciones generan gráficos simples pero muy útiles cuando queremos dar una mirada nuestros datos durante el trabajo.
-Pero *ggplot* es una opción superadora ya que nos permite crear gráficos complejos, es extremadamente flexible y nos permite reutilizar gran parte del código creado.
-La idea central de ggplot es introducir una forma nueva de escribir gráficos, la **grammar of graphics**
+Tradicionalmente, R incluye funciones gráficas básicas (como `plot()`, `hist()` o `boxplot()`), estas funciones generan gráficos simples pero muy útiles cuando queremos dar una mirada rápida a nuestros datos durante el trabajo. Sin embargo, el paquete *{ggplot2}* es una opción superadora ya que nos permite crear gráficos complejos, es extremadamente flexible y nos permite reutilizar gran parte del código creado. La idea central de *{ggplot2}* es introducir una forma nueva de pensar, definir y programar gráficos, la **grammar of graphics**
 
 #### Grammar of Graphics o el idioma de ggplot
 
-El concepto detrás de ggplot2 es que cualquier gráfico puede descomponerse en elementos fundamentales:
+El concepto detrás de *{ggplot2}* es que cualquier gráfico puede descomponerse en elementos fundamentales:
 
 -   Datos.
 
--   Aestethics o mapeos estéticos.
+-   *Aestethics* o mapeos estéticos.
 
--   Geoms o geometrías .
+-   *Geoms* o geometrías .
 
 -   Escalas.
 
@@ -454,84 +452,71 @@ El concepto detrás de ggplot2 es que cualquier gráfico puede descomponerse en 
 
 -   Temas.
 
-Sin embargo, el aspecto más importante para entender este sistema es que estos elementos se agregan de manera modular y en capas.
-Como se agregan, el conector que une cada capa es un `+`.
+Sin embargo, el aspecto más importante para entender este sistema es que estos elementos se agregan de manera modular y en capas. Como se agregan, el conector que une cada capa es un `+`.
 
-Cada elemento se superpone al que sigue en el orden que los escribimos, es decir que, si por ejemplo en nuestra instrucción primero pedimos un boxplot, y después un gráfico de puntos, vamos a ver los puntos sobre el boxplot.
-Si los escribiéramos al revés, puede pasar que nuestro boxplot oculte algunos puntos.
-En otras palabras, un gráfico no es una única instrucción, sino una construcción progresiva, que podemos superponer geometrías, veamos que queremos decir con esto.
+Cada elemento se superpone al que sigue en el orden que los escribimos, es decir que, si por ejemplo en nuestra instrucción primero pedimos un boxplot, y después un gráfico de puntos, vamos a ver los puntos sobre el boxplot. Si los escribiéramos al revés, puede pasar que nuestro boxplot oculte algunos puntos. En otras palabras, un gráfico no es una única instrucción, sino una construcción progresiva, que podemos superponer geometrías, veamos que queremos decir con esto.
 
-Acá hay un código y su grafico resultante.
+Acá hay un código de ejemplo utilizando el dataset `mtcars` que ya viene con **R** y tiene datos de autos. También podemos ver su gráfica resultante.
 
 ```{r}
 #| echo: true
 #| message: false
 #| warning: false
-
+#| code-fold: false
 ggplot(
-  data = mtcars,                         # 1. DATOS
+  data = mtcars, # 1. DATOS de autos que ya vienen con R
   aes(
-    x = wt,                              # 2. MAPEO ESTÉTICO
+    x = wt, # 2. MAPEO ESTÉTICO
     y = mpg,
     color = factor(cyl),
     size = hp
   )
 ) +
-  geom_point(alpha = 0.7) +               # 3. GEOMETRÍA
-  geom_smooth(method = "lm", se = FALSE) +# Otra GEOMETRIA  COMO capa adicional
+  geom_point(alpha = 0.7) + # 3. GEOMETRÍA
+  geom_smooth(method = "lm", se = FALSE) + # Otra GEOMETRIA  COMO capa adicional
   scale_color_brewer(palette = "Dark2") + # 4. ESCALAS
-  facet_wrap(~ gear) +                    # 5. FACETAS
-  labs(                                   # etiquetas
+  facet_wrap(~ gear) + # 5. FACETAS
+  labs( # Etiquetas de los ejes y las escalas
     title = "Ejemplo de Grammar of Graphics",
     x = "Peso del auto",
     y = "Consumo (mpg)",
     color = "Cilindros",
     size = "Potencia"
   ) +
-  theme_minimal()                         # 6. TEMA
-
-
+  theme_minimal() #6. TEMA
 ```
 
-Como ven este gráfico tiene dos *geometrías* (los puntos y la linea de tendencia), una escala de colores personalizada, *facetas* por cantidad de engranajes y un *tema* minimalista.
-Todo esto se puede lograr con un código relativamente simple y modular.
-Vamos a descomponer esta estructura para entenderla mejor.
+Como ven este gráfico tiene dos *geometrías* (los puntos y la linea de tendencia), una escala de colores personalizada, *facetas* por cantidad de engranajes y un *tema* minimalista. Todo esto se puede lograr con un código relativamente simple y modular. Vamos a descomponer esta estructura para entenderla mejor.
 
 ##### Datos y mapeo estético
 
-Estos dos componentes son la cimientos de cualquier gráfico de ggplot, sin ellos no puede existir en un gráfico y se delimitan en la primera línea de nuestro gráfico detro de la función ggplot.
-**Datos** Todo gráfico comienza con un conjunto de datos.
-En ggplot2, estos se especifican con la función `ggplot()` así:
+Estos dos componentes son la cimientos de cualquier gráfico de ggplot, sin ellos no puede existir en un gráfico y se delimitan en la primera línea de nuestro gráfico detro de la función ggplot. **Datos** Todo gráfico comienza con un conjunto de datos. En *{ggplot2}*, estos se especifican con la función `ggplot()` así:
 
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
 ggplot(data = datos)
 #donde datos es el nombre de nuestro dataset
 ```
 
-Aquí no se genera aún ningún gráfico.
-Solo se define la base sobre la cual se construirán las capas.
-Esto refleja un principio clave: *ggplot separa la definición del gráfico de su representación visual*.
+Aquí no se genera aún ningún gráfico. Solo se define la base sobre la cual se construirán las capas. Esto refleja un principio clave: *{ggplot} separa la definición del gráfico de su representación visual*.
 
-**Aestethic o mapeos estéticos**
+Por otro lado, los mapeos estéticos (o, en palermitano, *aesthetics*) definen cómo las *variables del dataset* se traducen en propiedades visuales, es decir como usará valores dentro del dataset para graficar algo como:
 
-Los mapeos estéticos (aesthetics, muy palermitano todo) definen cómo las *variables del dataset* se traducen en propiedades visuales, es decir como usará valores dentro del dataset para graficar algo como:
+-   Posiciones en el eje X.
 
--   posiciones en el Eje X
+-   Posiciones en el eje Y.
 
--   posiciones en el Eje Y
+-   Colores (se puede asignar colores a categorias o escalas de colores a variables continuas).
 
--   Color (se puede asignar colores a categorias o escalas de colores a variables continuas)
+-   Tamaños, podemos tener objetos mas grandes o mas chicos en funcion de una variable numérica en nuestro dataset.
 
--   Tamaño, podemos tener objetos mas grandes o mas chicos en funcion de una variable numérica en nuestro dataset
+-   Formas.
 
--   Forma
+-   Niveles de transparencia.
 
--   Transparencia
-
-Y se colocan dentro del argumento `aes()` dentro de la función `ggplot()`.
-Por ejemplo,
+Estos mapeos se  colocan dentro del argumento `aes()` dentro de la función `ggplot()`. Por ejemplo,
 
 ```{r}
 #| message: false
@@ -540,59 +525,52 @@ ggplot(data = datos, aes(x = edad, y = memoria))
 #le estamos diciendo que en datos hay una variable edad que queremos mapear al eje x y una variable memoria que queremos mapear al eje y
 ```
 
-En este punto, todavía no hay una representación gráfica (aún estamos en la primera línea).
-Sólo se establece cómo se relacionan las variables con los ejes.
+En este punto, todavía no hay una representación gráfica (aún estamos en la primera línea). Sólo se establece cómo se relacionan las variables con los ejes.
 
 ::: callout-tip
 ## Mapeo estético vs parámetros fijos
 
 Es importante distinguir entre:
 
-Mapeo estético: cuando el color o tamaño dependen de una variable, se fijan en la primera línea y la información la va a buscar en el dataset, si cambia en un sujeto esa variable, en el gráfico tendrá distinto tamaño o color
+**Mapeo estético**: cuando el color o tamaño dependen de una variable, se fijan en la primera línea y la información la va a buscar en el dataset, si cambia en un sujeto esa variable, en el gráfico tendrá distinto tamaño o color
 
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
 ggplot(data = datos, aes(x = edad, y = memoria, color=genero))
 #cuando en el dataset un sujeto tenga por ejemplo genero masculino, tendra un color, y femenino otro
 ```
 
-Parámetros fijos: cuando el color o tamaño son constantes, ya no estan asociados a una variable simplemente el usuario lo determino, siempre va a ser el mismo.
+**Parámetros fijos**: cuando el color o tamaño son constantes, ya no estan asociados a una variable simplemente el usuario lo determino, siempre va a ser el mismo.
 
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
 ggplot(data = datos, aes(x = edad, y = memoria, color="#FF0000"))
 #todo lo que grafiquemos va a tener el mismo color, en este caso rojo
 ```
 :::
 
-##### Geoms o geometría
+##### *Geoms* o geometría
 
-Las geometrías (geoms) son los elementos visuales que representan los datos en el gráfico.
-Son las capas que se superponen sobre la base definida por los datos y los mapeos estéticos.
-Hasta que no coloquemos esta capa, no veremos un gráfico (porque la primera línea, son los cimientos escenciales pero que no se ven) Hay muchas geometrías disponibles en ggplot2, cada una diseñada para representar diferentes tipos de datos y relaciones.
+Las geometrías (*geoms*) son los elementos visuales que representan los datos en el gráfico. Son las capas que se superponen sobre la base definida por los datos y los mapeos estéticos. Hasta que no coloquemos esta capa, no veremos un gráfico (porque la primera línea, son los cimientos esenciales pero que no se ven). Hay muchas geometrías disponibles en *{ggplot2}*, cada una diseñada para representar diferentes tipos de datos y relaciones.
+
 Vamos por ejemplo algunas:
 
 ![](imgs/ggplot.jpg)
 
-Dos cosas a destacar son que (como dijimos antes) ggplot no va a graficar nada si no le decimos donde estan los datos ni los mapeamos (la primera linea) y si no tiene una geometría.
-Como ven aquí entonces cada geomatría depende de que esten disponibles cierto tipo de datos en el mapeo estético.
-Por ejemplo no puede crear una línea de tendencia si x e y son categorías.
+Dos cosas a destacar son que (como dijimos antes) ggplot no va a graficar nada si no le decimos donde estan los datos ni los mapeamos (la primera linea) y si no tiene una geometría. Como ven aquí entonces cada geomatría depende de que esten disponibles cierto tipo de datos en el mapeo estético. Por ejemplo no puede crear una línea de tendencia si x e y son categorías.
 
-Hay muchísimas geometrías, los invito a que las exploren y busquen cuales son las que pueden funcionar mejor para cada uno de sus datos, un lugar para empezar es la galería de gráficos de R: [link](https://r-graph-gallery.com/).
+Hay muchísimas geometrías, los invito a que las exploren y busquen cuales son las que pueden funcionar mejor para cada uno de sus datos. Un buen lugar para comenzar esta búsqueda es la [galería de gráficos de R](https://r-graph-gallery.com/).
 
-Habrán notado que cada capa de una geometría es una función, cada una con sus propios argumentos, generalmente estos argumentos nos permiten modificar la estética de esa geometría.
-Por ejemplo, en el caso de `geom_point` podemos modificar el tamaño de los puntos con el argumento `size`, la transparencia con `alpha` o la forma con `shape`.
-En el caso de `geom_smooth` podemos elegir el método de ajuste (por ejemplo, una línea de tendencia lineal) con el argumento `method` o si queremos mostrar o no el intervalo de confianza con `se`.
-Cada geom tiene sus propios argumentos, pero también hay argumentos comunes a todas las geometrías como `color`, `fill`, `size`, etc.
+Habrán notado que cada capa de una geometría es una función, cada una con sus propios argumentos, generalmente estos argumentos nos permiten modificar la estética de esa geometría. Por ejemplo, en el caso de `geom_point` podemos modificar el tamaño de los puntos con el argumento `size`, la transparencia con `alpha` o la forma con `shape`. En el caso de `geom_smooth` podemos elegir el método de ajuste (por ejemplo, una línea de tendencia lineal) con el argumento `method` o si queremos mostrar o no el intervalo de confianza con `se`. Cada geometría tiene sus propios argumentos, pero también hay argumentos comunes a todas las geometrías como `color`, `fill`, `size`, etc.
 
 ::: callout-tip
 ## Mapeos en las geometrías
 
-Habrán notado que `size` , `shape` o `alpha` (la transparencia), son argumentos que mencionamos en la capa de mapeo estético.
-Tambien dijimos que pueden ser mapeos o parametros fijos.
-Bueno, el mapeo estético no es una función exclusiva de la primera capa, puede ser un argumento dentro de una geometría, pero tenemos que saber que **solamente** va a ser usada para esa geometría y no va a afectar a las otras
+Habrán notado que `size` , `shape` o `alpha` (la transparencia), son argumentos que mencionamos en la capa de mapeo estético. Tambien dijimos que pueden ser mapeos o parametros fijos. Bueno, el mapeo estético no es una función exclusiva de la primera capa, puede ser un argumento dentro de una geometría, pero tenemos que saber que **solamente** va a ser usada para esa geometría y no va a afectar a las otras
 
 Veamos un ejemplo.
 
@@ -600,16 +578,15 @@ Veamos un ejemplo.
 #| echo: true
 #| message: false
 #| warning: false
+#| code-fold: false
 ggplot(
-  data = mtcars,                         # 1. DATOS
-  aes(
-    x = wt,                              # 2. MAPEO ESTÉTICO
-    y = mpg,
-    color = factor(cyl))) +
-  geom_point(alpha = 0.7) +               
+  data = mtcars, # 1. DATOS
+  aes(x = wt, # 2. MAPEO ESTÉTICO
+      y = mpg,
+      color = factor(cyl))) +
+  geom_point(alpha = 0.7) + # 3. GEOMETRÍAS                
   geom_smooth(method = "lm", se = FALSE) +
   theme_minimal()                         
-
 ```
 
 En este caso, el mapeo estético de `color` está en la primera línea por lo que afecta a la primera capa de geometrías `geom_point` y a la segunda `geom_smooth` creando una línea de tendencia por cada tipo de cilindrada a la que asigno un color
@@ -620,32 +597,31 @@ En este caso, el mapeo estético de `color` está en la primera línea por lo qu
 #| warning: false
 library(ggplot2)
 ggplot(
-  data = mtcars,                         # 1. DATOS
-  aes(
-    x = wt,                              # 2. MAPEO ESTÉTICO
-    y = mpg)) +
-  geom_point(alpha = 0.7, aes(color = factor(cyl))) +           
+  data = mtcars,# 1. DATOS
+  aes(x = wt, # 2. MAPEO ESTÉTICO
+      y = mpg)) +
+  geom_point(alpha = 0.7, aes(color = factor(cyl))) + # 3. GEOMETRÍAS           
   geom_smooth(method = "lm", se = FALSE) +
   theme_minimal()                         
-
 ```
 
-En esta versión en cambio el mapeo estético de color se encuentra dentro de geom_point (afecta solo a esta) dando lugar así a una única línea en geom_smooth (porque esa capa no tiene indicado un mapeo de color).
+En esta versión en cambio el mapeo estético de color se encuentra dentro de `geom_point` (afecta solo a esta) dando lugar así a una única línea en `geom_smooth` (porque esa capa no tiene indicado un mapeo de color).
 
-Como ven, hay otros argumentos dentro de la geometría como `size`dentro de geom_point que son parámetros fijos del temeño de los puntos y no estan ligados a ninguna variable
+Como ven, hay otros argumentos dentro de la geometría como `size` dentro de + que son parámetros fijos del temeño de los puntos y no estan ligados a ninguna variable
 :::
 
 ##### Capas adicionales
 
-Una vez que hemos dominado la estructura de cimientos (data y mapeo estético) y las capas de geometrías estamos en condiciones de generar la gran mayoría de gráficos que necesitamos, pero las posibilidades de ggplot son mucho mas amplias, hablaremos de capaz adicionales que pueden mejorar mucho los resultados o enriquecen la visualización.
+Una vez que hemos dominado la estructura de cimientos (data y mapeo estético) y las capas de geometrías estamos en condiciones de generar la gran mayoría de gráficos que necesitamos, pero las posibilidades de *{ggplot2}* son mucho mas amplias, hablaremos de capaz adicionales que pueden mejorar mucho los resultados o enriquecen la visualización.
 
 **Escalas** Las escalas controlan cómo los valores se traducen en colores, tamaños o transformaciones.
 
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
 scale_color_continuous()
-#controla qué colores se usan para representar una variable numérica cuando esta está mapeada al color en el gráfico.
+# Controla qué colores se usan para representar una variable numérica cuando esta está mapeada al color en el gráfico.
 ```
 
 También pueden transformar los ejes:
@@ -653,6 +629,7 @@ También pueden transformar los ejes:
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
 scale_x_log10()
 ```
 
@@ -660,16 +637,16 @@ Esto permite representar relaciones no lineales de forma más clara.
 
 **Facetas**
 
-Las facetas permiten dividir el gráfico en subgráficos según una variable.
-Esto facilita comparar grupos.
+Las facetas permiten dividir el gráfico en subgráficos según una variable. Esto facilita comparar grupos.
 
-Ejemplo:
+Por ejemplo:
 
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
 facet_wrap(~ sexo)
-#divide el gráfico inicial en uno para cada sexo
+# Divide el gráfico inicial en uno para cada sexo
 ```
 
 **Temas**
@@ -685,13 +662,14 @@ Los temas controlan la apariencia general:
 -   Grilla
 
 Se pueden usar temas predefinidos como `theme_minimal()` o `theme_classic()`, o personalizar cada elemento, utilizando la funcion `theme()`.
-Esta última permite controlar casi todos los aspectos visuales del gráfico, desde el tamaño y estilo de las fuentes hasta el color de fondo y las líneas de la grilla.
-Por ejemplo, podríamos querer modificar el título del gráfico, los títulos de los ejes, el color de los valores de los ejes, las líneas principales de la grilla, etc.
-Veamos un ejemplo
+Esta última permite controlar casi todos los aspectos visuales del gráfico, desde el tamaño y estilo de las fuentes hasta el color de fondo y las líneas de la grilla.Por ejemplo, podríamos querer modificar el título del gráfico, los títulos de los ejes, el color de los valores de los ejes, las líneas principales de la grilla, etc. 
+
+Veamos un ejemplo:
 
 ```{r}
 #| message: false
 #| eval: false
+#| code-fold: false
   theme(
     # Modifica el título del gráfico
     plot.title = element_text(
@@ -727,8 +705,7 @@ Veamos un ejemplo
     plot.background = element_rect(
       fill = "gray95"     # Color de fondo externo
     )
-
-
+  )
 ```
 
 ::: callout-tip
@@ -745,30 +722,23 @@ No esta de mas recordar que la grammar of graphics rige para todas estas funcion
       color = "darkred"   # Color de los valores de los ejes
     ))+
     theme_minimal()
-    
-
 ```
 
-En este caso el tema minimalista se va a superponer al tema personalizado qen que cambiamos el color del texto del eje, por lo que el resultado final va a ser un gráfico cminimalista sin cambio en el color de los valores de los ejes.
-Si queremos que el tema minimalista sea la base y luego personalizarlo con nuestro tema personalizado, el orden de las capas debe ser el opuesto.
+En este caso el tema minimalista se va a superponer al tema personalizado qen que cambiamos el color del texto del eje, por lo que el resultado final va a ser un gráfico cminimalista sin cambio en el color de los valores de los ejes. Si queremos que el tema minimalista sea la base y luego personalizarlo con nuestro tema personalizado, el orden de las capas debe ser el opuesto.
 :::
 
 #### Instrucciones finales de ggplot
 
-ggplot es una herramienta muy versátil y poderosa para la visualización de datos.
-La combinación de su estructura modular, la amplia variedad de geometrías y la capacidad de personalización lo convierten en una opción ideal para crear gráficos informativos y atractivos.
-A medida que te familiarices con sus componentes y funciones, podrás aprovechar al máximo su potencial para comunicar tus hallazgos de manera efectiva.
-Sólo algunas recomendaciones antes de crear tus propios gráficos.
-Recuerda: - Define claramente tus datos y mapeos estéticos.
-- Elige la geometría adecuada para tu tipo de datos y mensaje.
-- Personaliza tu gráfico con escalas, facetas y temas para mejorar la claridad y la estética.
-- **No olvides la lógica de capas**: el orden en que agregas las capas puede afectar el resultado final.
-Es fundamental pensar en términos de construcción progresiva.
-- **No confundas mapeos y parámetros**: Asegúrate de entender la diferencia entre mapeos estéticos (que dependen de las variables) y parámetros fijos (que son constantes).
-Esto es crucial para evitar confusiones en la interpretación de tus gráficos.
-- **Asegurate que tus datos estén limpios y el tipo de variable bien definido**: ggplot2 es muy poderoso pero también es sensible a la calidad de los datos.
-Asegúrate de que tus datos estén limpios, sin valores faltantes o errores, y que las variables estén correctamente definidas (por ejemplo, factores para categorías).
-Esto facilitará que el mapeo estético y el gráfico final funcionen bien.
+El paquete *{ggplot2}* es una herramienta muy versátil y poderosa para la visualización de datos. La combinación de su estructura modular, la amplia variedad de geometrías y la capacidad de personalización lo convierten en una opción ideal para crear gráficos informativos y atractivos. A medida que te familiarices con sus componentes y funciones, vas a poder aprovechar al máximo su potencial para comunicar tus datos y tus *insights* de manera efectiva.
+
+Sólo algunas recomendaciones antes de crear tus propios gráficos:
+Recordá: 
+- Definí claramente tus datos y mapeos estéticos.
+- Elegí la geometría adecuada para tu tipo de datos y mensaje.
+- Personalizá tu gráfico con escalas, facetas y temas para mejorar la claridad y la estética.
+- **No te olvides de la lógica de capas**: el orden en que agregas las capas puede afectar el resultado final. Es fundamental pensar en términos de construcción progresiva.
+- **No confundas mapeos y parámetros**: Asegúrate de entender la diferencia entre mapeos estéticos (que dependen de las variables) y parámetros fijos (que son constantes). Esto es crucial para evitar confusiones en la interpretación de tus gráficos.
+- **Asegurate que tus datos estén limpios y el tipo de variable bien definido**: *{ggplot2}* es muy poderoso pero también es sensible a la calidad de los datos. Asegúrate de que tus datos estén limpios, sin valores faltantes o errores, y que las variables estén correctamente definidas (por ejemplo, factores para categorías). Esto va a facilitar que el mapeo estético y el gráfico final funcionen bien.
 
 ## Algunas palabras finales
 

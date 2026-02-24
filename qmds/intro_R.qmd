@@ -456,9 +456,11 @@ El concepto detrás de ggplot2 es que cualquier gráfico puede descomponerse en 
 
 Sin embargo, el aspecto más importante para entender este sistema es que estos elementos se agregan de manera modular y en capas.
 Como se agregan, el conector que une cada capa es un `+`.
+
 Cada elemento se superpone al que sigue en el orden que los escribimos, es decir que, si por ejemplo en nuestra instrucción primero pedimos un boxplot, y después un gráfico de puntos, vamos a ver los puntos sobre el boxplot.
 Si los escribiéramos al revés, puede pasar que nuestro boxplot oculte algunos puntos.
 En otras palabras, un gráfico no es una única instrucción, sino una construcción progresiva, que podemos superponer geometrías, veamos que queremos decir con esto.
+
 Acá hay un código y su grafico resultante.
 
 ```{r}
@@ -572,7 +574,7 @@ Son las capas que se superponen sobre la base definida por los datos y los mapeo
 Hasta que no coloquemos esta capa, no veremos un gráfico (porque la primera línea, son los cimientos escenciales pero que no se ven) Hay muchas geometrías disponibles en ggplot2, cada una diseñada para representar diferentes tipos de datos y relaciones.
 Vamos por ejemplo algunas:
 
-![](images/ggplot.jpg)
+![](imgs/ggplot.jpg)
 
 Dos cosas a destacar son que (como dijimos antes) ggplot no va a graficar nada si no le decimos donde estan los datos ni los mapeamos (la primera linea) y si no tiene una geometría.
 Como ven aquí entonces cada geomatría depende de que esten disponibles cierto tipo de datos en el mapeo estético.

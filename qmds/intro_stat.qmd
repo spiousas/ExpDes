@@ -419,13 +419,13 @@ Supongamos que tenemos una página web de noticias y queremos probar una nueva *
 
 [^abtest]: Probabilemente lo más correcto para responder esta pregunta sea un *A/B test*, pero ya hablaremos de eso más adelante.
 
-Primero definamos nuestra variable aleatoria: $X$:"La diferencia de tiempo en *ms* entre después y antes del cambio". Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si $E(X)$ es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que $X \sim \mathcal{N}(\mu, \sigma^2)$. Esta suposición no es tan loca ya que mucho procesos naturales se distribuyen de forma normal[^normal_2]. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la $\sigma^2$ de $X$. 
+Primero definamos nuestra variable aleatoria: $X$:"La diferencia de tiempo en *ms* entre después y antes del cambio". Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si $E(X)$ es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que $X \sim \mathcal{N}(\mu, \sigma^2)$. Esta suposición no es tan loca ya que muchos [procesos naturales se distribuyen de forma normal](https://www.youtube.com/watch?v=JX_UyidsQNg&list=PLDcUM9US4XdNOlqSyhe38US8mFgmqzI14&index=10) [^normal_2]. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la $\sigma^2$ de $X$. 
 
 [^normal_2]: Además, como vamos a ver más adelante, cuando el $n$ es lo suficientemente grande, esta condición deja de importar tanto.
 
-Como dijimos en el recuedro, si bien nuestro objetivo es probar si $\mu$ es diferente de $0$, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de $\mu$: $\hat{\mu}=\bar{X}$, es decir, el promedio muestral. Ahora supongamos que el promedio nos da $0.5$: ¿Es distinto de cero? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.
+Como dijimos en el recuadro, si bien nuestro objetivo es probar si $\mu$ es diferente de $0$, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de $\mu$: $\hat{\mu}=\bar{X}$, es decir, el promedio muestral. Ahora supongamos que el promedio nos da $0.5$: ¿Es distinto de cero? Es natural pensar que para afirmar eso tenemos que conocer algo de su variabilidad, ¿no? Por ejemplo, no es lo mismo $0.5$ con $20$ mediciones que con $2000$, ¿no? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.
 
-Definamos primero las hipótesis:
+Escribamos las hipótesis que ya mencionamos de forma matemática:
 
 $$
 \begin{array}
@@ -436,25 +436,32 @@ $${#eq-test}
 
 Lo que vamos a querer hacer es rechazar $H_0$ con cierto grado de confianza. Para esto vamos a comparar nuestra medición $\bar{x}_{obs}$ con la distribución de los $\bar{X}$ bajo $H_0$.
 
-Recordemos que si $X \sim \mathcal{N}(\mu, \sigma^2)$ entonces $\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)$[^n], donde $n$ es la cantidad de realizaciones con las que yo calculo mi $\bar{X}$. Entonces si mi $\bar{x}_{obs}$ medida está lo suficientemente lejos de $0$ podemos decir que que $\mu$ es diferente de cero. Pero: ¿Qué es suficientemente lejos?
+Recordemos que si la variable se distribuye así $X \sim \mathcal{N}(\mu, \sigma^2)$ entonces sus medias se distribuyen así[^cuenta] $\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)$[^n], donde $n$ es la cantidad de realizaciones con las que yo calculo mi $\bar{X}$. Entonces si mi $\bar{x}_{obs}$ medida está lo suficientemente lejos de $0$ podemos decir que que $\mu$ es diferente de cero. Pero: ¿Qué es suficientemente lejos?
 
-[^n]: La $n$ en $\bar{X}_n$ es simplemente para enfatizar que es el promedio de una seciencia de $n$ realizaciones.
+[^n]: La $n$ en $\bar{X}_n$ es simplemente para enfatizar que es el promedio de una secuencia de $n$ realizaciones.
+[^cuenta]: Es una cuenta que aparece en cualquier manual de estadística (procede a preguntarle a ChatGPT).
 
-Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que $\mu$ es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos cometer el error de decir que $\mu$ no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.
+Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Por ejemplo, podemos decir que $\mu$ es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos decir que $\mu$ no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). El razonamiento tradicional del testeo de hipótesis nulas (NHST[^NHST]) es acotar el error de tipo I.
 
-Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado del cero que $\bar{x}_{obs}$ dado que $H_0$ es verdadera. Es decir, $P(|\bar{X}|>\bar{x}_{obs}|H_0)$. Esta magnitud es lo que se conoce como el viejo y querido p-valor o *p-value* (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando $\bar{X}$ de la siguiente forma:
+[^NHST]: Del inglés *Null Hypothesis Significance Testing*.
+
+Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado[^modulo] del cero que $\bar{x}_{obs}$ dado que $H_0$ es verdadera. Es decir, $P(|\bar{X}|>\bar{x}_{obs}|H_0)$. Esta magnitud es lo que se conoce como el viejo y querido p-valor o *p-value* (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando $\bar{X}$ de la siguiente forma:
+
+[^modulo]: Como pueden observar, el "más alejado" se traduce matemáticamente en un módulo.
 
 $$
 Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 $${#eq-test}
 
-Que bajo $H_0$ es:
+Que bajo $H_0$, como $\mu=0$, se convierte en:
 
 $$
 Z_{H_0} = \frac{\bar{X}}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 $${#eq-test}
 
-Entonces, si consideramos a $z_{\bar{x}}$ como la versión estandarizada de $\bar{x}_{obs}$, podemos calcular el p-valor como:
+Entonces, si consideramos a $z_{\bar{x}}$ como la versión estandarizada de $\bar{x}_{obs}$[^zbar], podemos calcular el p-valor como:
+
+[^zbar]: $z_{\bar{x}} = \frac{\bar{x}_{obs}}{\sqrt{\sigma^2/n}}$.
 
 $$
 \begin{array}
@@ -470,16 +477,19 @@ $$
 p_{valor} = 2 \phi(-|z_{\bar{x}}|)
 $${#eq-test}
 
-Y ahora que tenemos esta probabilidad qué hacemos. Bueno, lo que podemos hacer es decir: Si los datos vienen de $H_0$ podemos calcular que tan "raros" son, entonces pongamos una cota en esa probabilidad y de esa forma estaremos acotando el error de tipo I en el largo plazo[^frecuentista]. Así es que surge el famoso $\alpha$ que normalmente hacemos valer $0.05$[^alpha]. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el $5%$ de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación "práctica" del p-valor (si se quedan con las ganas pueden ir a leer [esto](https://lakens.github.io/statistical_inferences/01-pvalue.html)).
+Y ahora que tenemos esta probabilidad ¿qué hacemos? Bueno, lo que podemos hacer es decir: Si el dato que tomamos viene de un mundo donde $H_0$ es verdadera (también conocido como mundo-$H_0$) podemos calcular que tan "raro" es. Entonces, pongamos una cota en esa probabilidad  de encontrar esos datos y de esa forma estaremos acotando el error de tipo I en el largo plazo[^frecuentista]. Así es que surge el famoso $\alpha$ que normalmente hacemos valer $0.05$[^alpha]. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el $5%$ de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación "práctica" del p-valor (si se quedan con las ganas pueden ir a leer [esto](https://lakens.github.io/statistical_inferences/01-pvalue.html)).
 
 [^frecuentista]: El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.
 [^alpha]: Para una discusión más profunda sobre el tema de la selección de $\alpha$ en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens [@maier2022justify].
 
 Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que $\alpha$ podemos decir que $H_0$ es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.
 
-Simulemos un experimento para $n=50$ en el que nosotros conocemos tanto $\sigma^2$ como $\mu$:
+Simulemos un experimento para $n=50$ en el que nosotros conocemos tanto $\sigma^2$ como $\mu$[^simulacion]:
+
+[^simulacion]: En este caso vamos a simular un experimento en el que $H_0$ es falsa, es decir, que $\mu$ es diferente de cero y, de hecho, $\mu=0.5$. 
 
 ```{r}
+#| code-fold: false
 set.seed(123)
 n <- 50
 mu <- .5
@@ -491,11 +501,11 @@ cat(paste("El promedio muestral es:", round(mean(X), 3)))
 cat(paste("El promedio muestral estandarizado es:", round(mean(X)/sqrt(sigma^2/n), 3)))
 ```
 
-Acá vemos que, efectivamente, $H_0$ es falsa ya que $\mu=0.5$ (el verdadero parámetro poblacional). La media observada vale `r round(mean(X), 3)` y la media estandarizada ($z_{\bar{x}}$) vale `r round(mean(X)/sqrt(sigma^2/n), 3)`. Miremos ccomo queda $z_{\bar{x}}$ dentro de la distribución de los $Z_{H_0}$ (los $\bar{X}$ bajo $H_0$ estandarizados):
+La media observada vale `r round(mean(X), 3)` y la media estandarizada ($z_{\bar{x}}$) vale `r round(mean(X)/sqrt(sigma^2/n), 3)`. Miremos como queda $z_{\bar{x}}$ dentro de la distribución de los $Z_{H_0}$ que dijimos arriba (los $\bar{X}$ bajo $H_0$ estandarizados):
 
 ```{r echo=FALSE}
 #| fig-align: center
-#| fig-cap: "Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)"
+#| fig-cap: "Función de densidad de probabilidad de las medias estandarizadas en el mundo en el que la hipótesis nula es verdadera"
 #| fig-asp: .5
 lims <- tibble(x = qnorm(p = 0.025, mu, sigma), y = c(0.005), 
                xend = qnorm(p = 0.975, mu, sigma), yend = c(0.005))
@@ -503,7 +513,7 @@ ggplot() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "steelblue", linewidth = 2) +
   geom_vline(xintercept = 0, linewidth = .3, linetype = "dashed", color = "gray") +
   geom_hline(yintercept = 0, linewidth = .3, linetype = "dashed", color = "gray") +
-  geom_vline(xintercept = qnorm(p = c(0.025, 0.975), 0, 1), color = "darkorange4", size = .7) +
+  geom_vline(xintercept = qnorm(p = c(0.025, 0.975), 0, 1), color = "darkorange4", linewidth = .7) +
   geom_vline(xintercept = mean(X)/sqrt(sigma^2/n), linewidth = .7, linetype = "dashed" , color = "darkgreen") +
   geom_point(aes(x = mean(X)/sqrt(sigma^2/n), y=0), size = 3, color = "darkgreen") +
   xlim(c(-3,3)) +
@@ -521,14 +531,15 @@ $${#eq-test}
 Que en R lo podemos calcular como:
 
 ```{r}
+#| code-fold: false
 cat(paste("El p-valor es:", round(2*pnorm(-mean(X)/sqrt(sigma^2/n)),3)))
 ```
 
 Que como es menor que $0.05$ nos permite rechazar $H_0$.
 
 Para resolver este ejemplo hicimos dos consideraciones que les pueden hacer ruido:
-1. Asumimos que conocíamos la desviación estándar de X.
-2. Asumimos que X tiene distribución normal.
+1. Asumimos que conocíamos la desviación estándar de $X$.
+2. Asumimos que $X$ tiene distribución normal.
 
 ### ¿Qué pasa si no conozco $\sigma$?
 
@@ -536,35 +547,38 @@ Con respecto a **1**, es natural que les haga ruido ya que en la mayoría de los
 
 $$
 S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
-$${#eq-test}
+$${#eq-S2}
 
 Para nuestro ejemplo vale:
 
 ```{r}
+#| code-fold: false
 cat(paste("la estimación de sigma es:", round(sd(X), 3)))
 ```
 
 Bastante cercana al valor poblacional $2$.
 
-Ahora, no es cuestión de normalizar con este nuevo $S^2$ y seguir como si nada. La cosa cambia y la distribución de $\bar(X)$ estandarizado bajo $H_0$ ya no tiene una distribución normal sino una distribución t de student con $n-1$ grados de libertad. O sea:
+Ahora, no es cuestión de normalizar con este nuevo $S^2$ y seguir como si nada. La cosa cambia y la distribución de $\bar{X}$ estandarizado bajo $H_0$ ya no tiene una distribución normal sino una distribución t de student con $n-1$ grados de libertad. O sea:
 
 $$
 \frac{\bar{X} - \mu}{\sqrt{S^2/n}} \sim t_{n-1}
-$${#eq-test}
+$${#eq-Z}
 
 Esto se deduce a partir de que:
+
 $$
 \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
-$$
-Y:
+$${#eq-Z_dist}
+
+Y el estimador $S^2$ se distribuye tiene una distribución $\chi^2$ con $n-1$ grados de libertad[^chi]:
+
+[^chi]: Para entender esto hay que recordar que $S^2$ es una función de las $n$ realizaciones de $X$ y que la distribución $\chi^2$ se define como la suma de los cuadrados de $n$ variables aleatorias independientes distribuidas normalmente. Entonces, como $S^2$ es una función de las $n$ realizaciones de $X$, y cada una de estas realizaciones se distribuye normalmente, entonces $S^2$ se distribuye como una $\chi^2$ con $n-1$ grados de libertad.
 
 $$
 (n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
-$${#eq-test}
+$${#eq-chi}
 
-Y la definición de $t_{n-1}$ es[^t]:
-
-[^t]: Hay que hacer un poco de cuentita pero sale en un segundo.
+Y la definición de $t_{n-1}$ es:
 
 $$
 \begin{array}
@@ -574,35 +588,37 @@ V &\sim& \chi^2_{n} \\
 \end{array}
 $${#eq-test}
 
-Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la $\sigma$ poblacional[^t]:
+Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la $\sigma$ poblacional[^pt]:
 
-[^t]: Dentro de la función `pt` ahora se agrega el parámetro `df` que representa los grados de libertad.
+[^pt]: Dentro de la función `pt` ahora se agrega el parámetro `df` que representa los grados de libertad.
 
 ```{r}
+#| code-fold: false
 cat(paste("El p-valor es:", round(2*pt(-mean(X)/sqrt(sd(X)^2/n), df = n-1),4)))
 ```
 
 Una buena noticia es que este p valor se puede calcular directamente con la función `t.test(X)` de la siguiente forma:
 
 ```{r}
+#| code-fold: false
 t.test(X)
 ```
 
-Para cerrar, vale la pena mencionar que los parámetros $\beta$ de un modelo lineal también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.
+Para cerrar, vale la pena mencionar que los parámetros $\beta$ de un modelo lineal son variables aleatorias y también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.
 
 ### ¿Qué pasa si $X$ no se distribuye normalmente?
 
-Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos $X$ nos interesa la de sus medias $\bar(X)$ (si estiman algún parámetro de interés, claro). Y acá viene al rescate el teorema central del límite:
+Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos $X$ nos interesa la de sus medias $\bar(X)$ (si estiman algún parámetro de interés, claro). Y acá viene al rescate [el teorema central del límite](https://www.youtube.com/watch?v=zeJD6dqJ5lo):
 
 $$
 \frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}  \xrightarrow{\mathcal{D}} \mathcal{N}(0,1)
-$${#eq-test}
+$${#eq-CTL}
 
-El mismo nos dice que distribución de la media estandarizada converge endistribución a una $\mathcal{N}(0,1)$ sin importar la distribución de $X$. Esto significa que si el $n$ es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca[^TCL].
+El mismo nos dice que distribución de la media estandarizada converge en distribución a una $\mathcal{N}(0,1)$ sin importar la distribución de $X$. Esto significa que si el $n$ es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca[^TCL].
 
 [^TCL]: Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).
 
-Supongamos que hay una variable aleatoria $V \sim \mathcal{E}(\lambda=1)$ tal que $E(V) = \lambda$. Si tomamos una muestra de $n=100$ de $V$, el histograma de la misma se ve algo así:
+Supongamos que hay una variable aleatoria con distribución exponencial $V \sim \mathcal{E}(\lambda=1)$ tal que $E(V) = \lambda$. Si tomamos una muestra de $n=100$ de $V$, el histograma de la misma se ve algo así:
 
 ```{r echo=FALSE}
 #| fig-align: center
@@ -625,7 +641,7 @@ Xs %>% ggplot() +
   labs(x = "V", y = "Fx(X)")
 ```
 
-Donde en azul vemos el histograma y en negro la función de densidad para $\mathcal{E}(\lambda=1)$. Ahora, qué pasa si tomamos $1000$ muestras y hacemos el histograma de sus medias:
+Donde en azul vemos el histograma y en negro la función de densidad para $\mathcal{E}(\lambda=1)$. Ahora, qué pasa si tomamos $1000$ muestras y hacemos el histograma de sus $1000$ medias:
 
 ```{r}
 #| fig-align: center
@@ -691,7 +707,7 @@ pot_tbl %>% ggplot(aes(x = mu,
   theme_bw()
 ```
 
-Como es de esperarse, la potencia también depende del $\alpha$:
+Como es de esperarse, la potencia también depende del $\alpha$ ya que cuanto menos estrictos nos ponemos para decir que hay un efecto menos probabilidades de cometer un error de tipo II tenemos (pero más de tipo I pues `r emo::ji("keycap_hash")`**MantaCorta**).
 
 ```{r}
 #| fig-align: center
@@ -706,8 +722,6 @@ pot_tbl %>% ggplot(aes(x = alpha,
   labs(title = "Potencia en función de alfa") +
   theme_bw()
 ```
-
-Con valores de potencia mayores para valores más garndes de $\alpha$. Nuevamente esto tiene sentido ya que ser más restictivo con el rechazo de $H_0$ (o sea, que tenga que observar un valor más extremo) lleva a una disminución de $\alpha$, a un aumento de los errores tipo II y con ello a una disminución de la potencia.
 
 Finalmente, la potencia también depende del $n$:
 
@@ -727,18 +741,25 @@ pot_tbl %>% ggplot(aes(x = n,
 
 Con valores de potencia más altos para $n$ más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores[^fina]. Esta última dependencia es muy importante.
 
-Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar cambios pequeños sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El $\alpha$ lo decidimos cuando acotamos el error de tipo I, a $\mu$ no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el $n$. 
+[^fina]: Las distribuciones de $H_0$ y $H_1$ se hacen más finas ya que la varianza de la distribución de las medias se divide por $n$ y hay menos solapamiento. 
 
-[^fina]: Las distribuciones de $H_0$ y $H_1$ se hacen más finas y hay menos solapamiento, recuerden que en ambas la varianza disminuye con $1/n$. 
+Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar diferencias pequeñas sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El $\alpha$ lo decidimos cuando acotamos el error de tipo I, a $\mu$ no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el $n$. 
 
-El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:
+El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento[^power]. El procedimiento es el siguiente:
+
+[^power]: Algo que se conoce normalmente como *a-priori power analysis*.
 
 1. Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.
 2. Determinamos el mínimo tamaño de efecto de interés (*SESOI*[^sesoi]). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaño de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.
-3. Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo $0.9$) y un $\alpha$ dado (por ejemplo $0.05$).
+3. Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo $0.9$) y un $\alpha$ dado (por ejemplo $0.05$) [^potencia_cuenta].
+
+[^sesoi]: Del inglés *smallest effect size of interest*.
+[^potencia_cuenta]: Por supuesto que acá hay que hacer una cuenta, pero excede el alcance de este libro.
 
 No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente $n$, pero la forma de pensar el problema es siempre similar.
 
-Para más detalles sobre los procedimientos para justificar el temaño de muestra ver [@lakens2022sample].
+Para más detalles sobre los procedimientos para justificar el tamaño de muestra ver [@lakens2022sample] o su [versión en OSF](https://osf.io/preprints/psyarxiv/9d3yf_v1) que está actualizada con algunas cositas nuevas.
 
-[^sesoi]: Del inglés *smallest effect size of interest*.
+## *Farewell*
+
+Con estos conceptos dejamos cerrado este breve pero jugoso repaso de probabilidad y estadística. Ya estamos listos para empezar a pensar en experimentos, relaciones causales y cuasiexperimentos. Nos vemos en el próximo capítulo.

@@ -287,6 +287,7 @@ window.Quarto = {
   <li><a href="#qué-pasa-si-x-no-se-distribuye-normalmente" id="toc-qué-pasa-si-x-no-se-distribuye-normalmente" class="nav-link" data-scroll-target="#qué-pasa-si-x-no-se-distribuye-normalmente"><span class="header-section-number">2.11.2</span> ¿Qué pasa si <span class="math inline">\(X\)</span> no se distribuye normalmente?</a></li>
   </ul></li>
   <li><a href="#potencia-estadística" id="toc-potencia-estadística" class="nav-link" data-scroll-target="#potencia-estadística"><span class="header-section-number">2.12</span> Potencia estadística</a></li>
+  <li><a href="#farewell" id="toc-farewell" class="nav-link" data-scroll-target="#farewell"><span class="header-section-number">2.13</span> <em>Farewell</em></a></li>
   </ul>
 </nav>
 </nav>
@@ -637,9 +638,9 @@ El ejemplo de inferencia
 <p>Supongamos que tenemos una página web de noticias y queremos probar una nueva <em>feature</em> con la que queremos aumentar el tiempo de retención de los usuarios. Para esto le vamos a presentar a los usuarios la versión nueva de la página y vamos a medir el tiempo que se mantienen en la página en <em>ms</em><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>.</p>
 </div>
 </div>
-<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Probabilemente lo más correcto para responder esta pregunta sea un <em>A/B test</em>, pero ya hablaremos de eso más adelante.</p></div><div id="fn16"><p><sup>16</sup>&nbsp;Además, como vamos a ver más adelante, cuando el <span class="math inline">\(n\)</span> es lo suficientemente grande, esta condición deja de importar tanto.</p></div></div><p>Primero definamos nuestra variable aleatoria: <span class="math inline">\(X\)</span>:“La diferencia de tiempo en <em>ms</em> entre después y antes del cambio”. Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si <span class="math inline">\(E(X)\)</span> es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>. Esta suposición no es tan loca ya que mucho procesos naturales se distribuyen de forma normal<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la <span class="math inline">\(\sigma^2\)</span> de <span class="math inline">\(X\)</span>.</p>
-<p>Como dijimos en el recuedro, si bien nuestro objetivo es probar si <span class="math inline">\(\mu\)</span> es diferente de <span class="math inline">\(0\)</span>, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\hat{\mu}=\bar{X}\)</span>, es decir, el promedio muestral. Ahora supongamos que el promedio nos da <span class="math inline">\(0.5\)</span>: ¿Es distinto de cero? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.</p>
-<p>Definamos primero las hipótesis:</p>
+<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Probabilemente lo más correcto para responder esta pregunta sea un <em>A/B test</em>, pero ya hablaremos de eso más adelante.</p></div><div id="fn16"><p><sup>16</sup>&nbsp;Además, como vamos a ver más adelante, cuando el <span class="math inline">\(n\)</span> es lo suficientemente grande, esta condición deja de importar tanto.</p></div></div><p>Primero definamos nuestra variable aleatoria: <span class="math inline">\(X\)</span>:“La diferencia de tiempo en <em>ms</em> entre después y antes del cambio”. Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si <span class="math inline">\(E(X)\)</span> es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>. Esta suposición no es tan loca ya que muchos <a href="https://www.youtube.com/watch?v=JX_UyidsQNg&amp;list=PLDcUM9US4XdNOlqSyhe38US8mFgmqzI14&amp;index=10">procesos naturales se distribuyen de forma normal</a> <a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la <span class="math inline">\(\sigma^2\)</span> de <span class="math inline">\(X\)</span>.</p>
+<p>Como dijimos en el recuadro, si bien nuestro objetivo es probar si <span class="math inline">\(\mu\)</span> es diferente de <span class="math inline">\(0\)</span>, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\hat{\mu}=\bar{X}\)</span>, es decir, el promedio muestral. Ahora supongamos que el promedio nos da <span class="math inline">\(0.5\)</span>: ¿Es distinto de cero? Es natural pensar que para afirmar eso tenemos que conocer algo de su variabilidad, ¿no? Por ejemplo, no es lo mismo <span class="math inline">\(0.5\)</span> con <span class="math inline">\(20\)</span> mediciones que con <span class="math inline">\(2000\)</span>, ¿no? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.</p>
+<p>Escribamos las hipótesis que ya mencionamos de forma matemática:</p>
 <p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _H_0 &amp;:&amp; \mu = 0 \\
@@ -647,18 +648,18 @@ H_1 &amp;:&amp; \mu \neq 0
 \end{array}
 \tag{2.26}\]</span></span></p>
 <p>Lo que vamos a querer hacer es rechazar <span class="math inline">\(H_0\)</span> con cierto grado de confianza. Para esto vamos a comparar nuestra medición <span class="math inline">\(\bar{x}_{obs}\)</span> con la distribución de los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span>.</p>
-<p>Recordemos que si <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span> entonces <span class="math inline">\(\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)\)</span><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>, donde <span class="math inline">\(n\)</span> es la cantidad de realizaciones con las que yo calculo mi <span class="math inline">\(\bar{X}\)</span>. Entonces si mi <span class="math inline">\(\bar{x}_{obs}\)</span> medida está lo suficientemente lejos de <span class="math inline">\(0\)</span> podemos decir que que <span class="math inline">\(\mu\)</span> es diferente de cero. Pero: ¿Qué es suficientemente lejos?</p>
-<div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una seciencia de <span class="math inline">\(n\)</span> realizaciones.</p></div></div><p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos cometer el error de decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.</p>
-<p>Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado del cero que <span class="math inline">\(\bar{x}_{obs}\)</span> dado que <span class="math inline">\(H_0\)</span> es verdadera. Es decir, <span class="math inline">\(P(|\bar{X}|&gt;\bar{x}_{obs}|H_0)\)</span>. Esta magnitud es lo que se conoce como el viejo y querido p-valor o <em>p-value</em> (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando <span class="math inline">\(\bar{X}\)</span> de la siguiente forma:</p>
-<p><span id="eq-test"><span class="math display">\[
+<p>Recordemos que si la variable se distribuye así <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span> entonces sus medias se distribuyen así<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> <span class="math inline">\(\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)\)</span><a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>, donde <span class="math inline">\(n\)</span> es la cantidad de realizaciones con las que yo calculo mi <span class="math inline">\(\bar{X}\)</span>. Entonces si mi <span class="math inline">\(\bar{x}_{obs}\)</span> medida está lo suficientemente lejos de <span class="math inline">\(0\)</span> podemos decir que que <span class="math inline">\(\mu\)</span> es diferente de cero. Pero: ¿Qué es suficientemente lejos?</p>
+<div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;Es una cuenta que aparece en cualquier manual de estadística (procede a preguntarle a ChatGPT).</p></div><div id="fn18"><p><sup>18</sup>&nbsp;La <span class="math inline">\(n\)</span> en <span class="math inline">\(\bar{X}_n\)</span> es simplemente para enfatizar que es el promedio de una secuencia de <span class="math inline">\(n\)</span> realizaciones.</p></div><div id="fn19"><p><sup>19</sup>&nbsp;Del inglés <em>Null Hypothesis Significance Testing</em>.</p></div></div><p>Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Por ejemplo, podemos decir que <span class="math inline">\(\mu\)</span> es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos decir que <span class="math inline">\(\mu\)</span> no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). El razonamiento tradicional del testeo de hipótesis nulas (NHST<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>) es acotar el error de tipo I.</p>
+<p>Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> del cero que <span class="math inline">\(\bar{x}_{obs}\)</span> dado que <span class="math inline">\(H_0\)</span> es verdadera. Es decir, <span class="math inline">\(P(|\bar{X}|&gt;\bar{x}_{obs}|H_0)\)</span>. Esta magnitud es lo que se conoce como el viejo y querido p-valor o <em>p-value</em> (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando <span class="math inline">\(\bar{X}\)</span> de la siguiente forma:</p>
+<div class="no-row-height column-margin column-container"><div id="fn20"><p><sup>20</sup>&nbsp;Como pueden observar, el “más alejado” se traduce matemáticamente en un módulo.</p></div></div><p><span id="eq-test"><span class="math display">\[
 Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 \tag{2.27}\]</span></span></p>
-<p>Que bajo <span class="math inline">\(H_0\)</span> es:</p>
+<p>Que bajo <span class="math inline">\(H_0\)</span>, como <span class="math inline">\(\mu=0\)</span>, se convierte en:</p>
 <p><span id="eq-test"><span class="math display">\[
 Z_{H_0} = \frac{\bar{X}}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 \tag{2.28}\]</span></span></p>
-<p>Entonces, si consideramos a <span class="math inline">\(z_{\bar{x}}\)</span> como la versión estandarizada de <span class="math inline">\(\bar{x}_{obs}\)</span>, podemos calcular el p-valor como:</p>
-<p><span id="eq-test"><span class="math display">\[
+<p>Entonces, si consideramos a <span class="math inline">\(z_{\bar{x}}\)</span> como la versión estandarizada de <span class="math inline">\(\bar{x}_{obs}\)</span><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>, podemos calcular el p-valor como:</p>
+<div class="no-row-height column-margin column-container"><div id="fn21"><p><sup>21</sup>&nbsp;<span class="math inline">\(z_{\bar{x}} = \frac{\bar{x}_{obs}}{\sqrt{\sigma^2/n}}\)</span>.</p></div></div><p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _p_{valor} &amp;=&amp; P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
 &amp;=&amp; P(Z \geq |z_{\bar{x}}| \: \: |H_0) + P(Z \leq -|z_{\bar{x}}| \: \: |H_0) \\
@@ -669,14 +670,12 @@ _p_{valor} &amp;=&amp; P(|Z| \geq |z_{\bar{x}}| \: \: |H_0) \\
 <p><span id="eq-test"><span class="math display">\[
 p_{valor} = 2 \phi(-|z_{\bar{x}}|)
 \tag{2.30}\]</span></span></p>
-<p>Y ahora que tenemos esta probabilidad qué hacemos. Bueno, lo que podemos hacer es decir: Si los datos vienen de <span class="math inline">\(H_0\)</span> podemos calcular que tan “raros” son, entonces pongamos una cota en esa probabilidad y de esa forma estaremos acotando el error de tipo I en el largo plazo<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>. Así es que surge el famoso <span class="math inline">\(\alpha\)</span> que normalmente hacemos valer <span class="math inline">\(0.05\)</span><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el <span class="math inline">\(5%\)</span> de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación “práctica” del p-valor (si se quedan con las ganas pueden ir a leer <a href="https://lakens.github.io/statistical_inferences/01-pvalue.html">esto</a>).</p>
-<div class="no-row-height column-margin column-container"><div id="fn18"><p><sup>18</sup>&nbsp;El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.</p></div><div id="fn19"><p><sup>19</sup>&nbsp;Para una discusión más profunda sobre el tema de la selección de <span class="math inline">\(\alpha\)</span> en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens <span class="citation" data-cites="maier2022justify">(<a href="references.html#ref-maier2022justify" role="doc-biblioref">Maier y Lakens 2022</a>)</span>.</p><div id="ref-maier2022justify" class="csl-entry" role="listitem">
+<p>Y ahora que tenemos esta probabilidad ¿qué hacemos? Bueno, lo que podemos hacer es decir: Si el dato que tomamos viene de un mundo donde <span class="math inline">\(H_0\)</span> es verdadera (también conocido como mundo-<span class="math inline">\(H_0\)</span>) podemos calcular que tan “raro” es. Entonces, pongamos una cota en esa probabilidad de encontrar esos datos y de esa forma estaremos acotando el error de tipo I en el largo plazo<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>. Así es que surge el famoso <span class="math inline">\(\alpha\)</span> que normalmente hacemos valer <span class="math inline">\(0.05\)</span><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el <span class="math inline">\(5%\)</span> de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación “práctica” del p-valor (si se quedan con las ganas pueden ir a leer <a href="https://lakens.github.io/statistical_inferences/01-pvalue.html">esto</a>).</p>
+<div class="no-row-height column-margin column-container"><div id="fn22"><p><sup>22</sup>&nbsp;El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.</p></div><div id="fn23"><p><sup>23</sup>&nbsp;Para una discusión más profunda sobre el tema de la selección de <span class="math inline">\(\alpha\)</span> en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens <span class="citation" data-cites="maier2022justify">(<a href="references.html#ref-maier2022justify" role="doc-biblioref">Maier y Lakens 2022</a>)</span>.</p><div id="ref-maier2022justify" class="csl-entry" role="listitem">
 Maier, Maximilian, y Daniël Lakens. 2022. <span>«Justify your alpha: A primer on two practical approaches»</span>. <em>Advances in Methods and Practices in Psychological Science</em> 5 (2): 25152459221080396.
 </div></div></div><p>Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que <span class="math inline">\(\alpha\)</span> podemos decir que <span class="math inline">\(H_0\)</span> es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.</p>
-<p>Simulemos un experimento para <span class="math inline">\(n=50\)</span> en el que nosotros conocemos tanto <span class="math inline">\(\sigma^2\)</span> como <span class="math inline">\(\mu\)</span>:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
+<p>Simulemos un experimento para <span class="math inline">\(n=50\)</span> en el que nosotros conocemos tanto <span class="math inline">\(\sigma^2\)</span> como <span class="math inline">\(\mu\)</span><a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn24"><p><sup>24</sup>&nbsp;En este caso vamos a simular un experimento en el que <span class="math inline">\(H_0\)</span> es falsa, es decir, que <span class="math inline">\(\mu\)</span> es diferente de cero y, de hecho, <span class="math inline">\(\mu=0.5\)</span>.</p></div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
@@ -688,17 +687,14 @@ Maier, Maximilian, y Daniël Lakens. 2022. <span>«Justify your alpha: A primer 
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El promedio muestral es: 0.569</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El promedio muestral estandarizado es:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="dv">3</span>)))</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El promedio muestral estandarizado es: 2.011</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<p>Acá vemos que, efectivamente, <span class="math inline">\(H_0\)</span> es falsa ya que <span class="math inline">\(\mu=0.5\)</span> (el verdadero parámetro poblacional). La media observada vale 0.569 y la media estandarizada (<span class="math inline">\(z_{\bar{x}}\)</span>) vale 2.011. Miremos ccomo queda <span class="math inline">\(z_{\bar{x}}\)</span> dentro de la distribución de los <span class="math inline">\(Z_{H_0}\)</span> (los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span> estandarizados):</p>
+<p>La media observada vale 0.569 y la media estandarizada (<span class="math inline">\(z_{\bar{x}}\)</span>) vale 2.011. Miremos como queda <span class="math inline">\(z_{\bar{x}}\)</span> dentro de la distribución de los <span class="math inline">\(Z_{H_0}\)</span> que dijimos arriba (los <span class="math inline">\(\bar{X}\)</span> bajo <span class="math inline">\(H_0\)</span> estandarizados):</p>
 <div class="cell" data-layout-align="center">
-<pre><code>#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#&gt; ℹ Please use `linewidth` instead.</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro_stat_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
-<figcaption>Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)</figcaption>
+<figcaption>Función de densidad de probabilidad de las medias estandarizadas en el mundo en el que la hipótesis nula es verdadera</figcaption>
 </figure>
 </div>
 </div>
@@ -710,83 +706,73 @@ p_{valor} = 2 \phi(-|z_{\bar{x}}|) = 2 \phi(-2.011)
 \tag{2.31}\]</span></span></p>
 <p>Que en R lo podemos calcular como:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)),<span class="dv">3</span>)))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.044</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)),<span class="dv">3</span>)))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.044</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Que como es menor que <span class="math inline">\(0.05\)</span> nos permite rechazar <span class="math inline">\(H_0\)</span>.</p>
-<p>Para resolver este ejemplo hicimos dos consideraciones que les pueden hacer ruido: 1. Asumimos que conocíamos la desviación estándar de X. 2. Asumimos que X tiene distribución normal.</p>
+<p>Para resolver este ejemplo hicimos dos consideraciones que les pueden hacer ruido: 1. Asumimos que conocíamos la desviación estándar de <span class="math inline">\(X\)</span>. 2. Asumimos que <span class="math inline">\(X\)</span> tiene distribución normal.</p>
 <section id="qué-pasa-si-no-conozco-sigma" class="level3 page-columns page-full" data-number="2.11.1">
 <h3 data-number="2.11.1" class="anchored" data-anchor-id="qué-pasa-si-no-conozco-sigma"><span class="header-section-number">2.11.1</span> ¿Qué pasa si no conozco <span class="math inline">\(\sigma\)</span>?</h3>
 <p>Con respecto a <strong>1</strong>, es natural que les haga ruido ya que en la mayoría de los casos no conocemos al <span class="math inline">\(\sigma\)</span> poblacional sino que lo vamos a estimar. Y ¿Cómo lo vamos a estimar? Echando mano del estimador insesgado de la desviación estándar <span class="math inline">\(S\)</span>. El mismo se define como:</p>
-<p><span id="eq-test"><span class="math display">\[
+<p><span id="eq-S2"><span class="math display">\[
 S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
 \tag{2.32}\]</span></span></p>
 <p>Para nuestro ejemplo vale:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"la estimación de sigma es:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(X), <span class="dv">3</span>)))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; la estimación de sigma es: 1.852</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"la estimación de sigma es:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(X), <span class="dv">3</span>)))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; la estimación de sigma es: 1.852</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Bastante cercana al valor poblacional <span class="math inline">\(2\)</span>.</p>
-<p>Ahora, no es cuestión de normalizar con este nuevo <span class="math inline">\(S^2\)</span> y seguir como si nada. La cosa cambia y la distribución de <span class="math inline">\(\bar(X)\)</span> estandarizado bajo <span class="math inline">\(H_0\)</span> ya no tiene una distribución normal sino una distribución t de student con <span class="math inline">\(n-1\)</span> grados de libertad. O sea:</p>
-<p><span id="eq-test"><span class="math display">\[
+<p>Ahora, no es cuestión de normalizar con este nuevo <span class="math inline">\(S^2\)</span> y seguir como si nada. La cosa cambia y la distribución de <span class="math inline">\(\bar{X}\)</span> estandarizado bajo <span class="math inline">\(H_0\)</span> ya no tiene una distribución normal sino una distribución t de student con <span class="math inline">\(n-1\)</span> grados de libertad. O sea:</p>
+<p><span id="eq-Z"><span class="math display">\[
 \frac{\bar{X} - \mu}{\sqrt{S^2/n}} \sim t_{n-1}
 \tag{2.33}\]</span></span></p>
-<p>Esto se deduce a partir de que: <span class="math display">\[
+<p>Esto se deduce a partir de que:</p>
+<p><span id="eq-Z_dist"><span class="math display">\[
 \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
-\]</span> Y:</p>
-<p><span id="eq-test"><span class="math display">\[
-(n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
 \tag{2.34}\]</span></span></p>
-<p>Y la definición de <span class="math inline">\(t_{n-1}\)</span> es<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn20"><p><sup>20</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></div></div><p><span id="eq-test"><span class="math display">\[
+<p>Y el estimador <span class="math inline">\(S^2\)</span> se distribuye tiene una distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn25"><p><sup>25</sup>&nbsp;Para entender esto hay que recordar que <span class="math inline">\(S^2\)</span> es una función de las <span class="math inline">\(n\)</span> realizaciones de <span class="math inline">\(X\)</span> y que la distribución <span class="math inline">\(\chi^2\)</span> se define como la suma de los cuadrados de <span class="math inline">\(n\)</span> variables aleatorias independientes distribuidas normalmente. Entonces, como <span class="math inline">\(S^2\)</span> es una función de las <span class="math inline">\(n\)</span> realizaciones de <span class="math inline">\(X\)</span>, y cada una de estas realizaciones se distribuye normalmente, entonces <span class="math inline">\(S^2\)</span> se distribuye como una <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad.</p></div></div><p><span id="eq-chi"><span class="math display">\[
+(n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
+\tag{2.35}\]</span></span></p>
+<p>Y la definición de <span class="math inline">\(t_{n-1}\)</span> es:</p>
+<p><span id="eq-test"><span class="math display">\[
 \begin{array}
 _U &amp;\sim&amp; \mathcal{N}(0,1) \\
 V &amp;\sim&amp; \chi^2_{n} \\
 \frac{U}{\sqrt{V/n}} &amp;\sim&amp; t_{n}
 \end{array}
-\tag{2.35}\]</span></span></p>
-<p>Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la <span class="math inline">\(\sigma\)</span> poblacional<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn21"><p><sup>21</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(X)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="at">df =</span> n<span class="dv">-1</span>),<span class="dv">4</span>)))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.0347</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+\tag{2.36}\]</span></span></p>
+<p>Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la <span class="math inline">\(\sigma\)</span> poblacional<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn26"><p><sup>26</sup>&nbsp;Dentro de la función <code>pt</code> ahora se agrega el parámetro <code>df</code> que representa los grados de libertad.</p></div></div><div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"El p-valor es:"</span>, <span class="fu">round</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">mean</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(X)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n), <span class="at">df =</span> n<span class="dv">-1</span>),<span class="dv">4</span>)))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; El p-valor es: 0.0347</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Una buena noticia es que este p valor se puede calcular directamente con la función <code>t.test(X)</code> de la siguiente forma:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  One Sample t-test</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  X</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 2.1721, df = 49, p-value = 0.03472</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.04254842 1.09506577</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.5688071</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  One Sample t-test</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  X</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 2.1721, df = 49, p-value = 0.03472</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.04254842 1.09506577</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.5688071</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Para cerrar, vale la pena mencionar que los parámetros <span class="math inline">\(\beta\)</span> de un modelo lineal también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.</p>
+<p>Para cerrar, vale la pena mencionar que los parámetros <span class="math inline">\(\beta\)</span> de un modelo lineal son variables aleatorias y también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.</p>
 </section>
 <section id="qué-pasa-si-x-no-se-distribuye-normalmente" class="level3 page-columns page-full" data-number="2.11.2">
 <h3 data-number="2.11.2" class="anchored" data-anchor-id="qué-pasa-si-x-no-se-distribuye-normalmente"><span class="header-section-number">2.11.2</span> ¿Qué pasa si <span class="math inline">\(X\)</span> no se distribuye normalmente?</h3>
-<p>Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos <span class="math inline">\(X\)</span> nos interesa la de sus medias <span class="math inline">\(\bar(X)\)</span> (si estiman algún parámetro de interés, claro). Y acá viene al rescate el teorema central del límite:</p>
-<p><span id="eq-test"><span class="math display">\[
+<p>Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos <span class="math inline">\(X\)</span> nos interesa la de sus medias <span class="math inline">\(\bar(X)\)</span> (si estiman algún parámetro de interés, claro). Y acá viene al rescate <a href="https://www.youtube.com/watch?v=zeJD6dqJ5lo">el teorema central del límite</a>:</p>
+<p><span id="eq-CTL"><span class="math display">\[
 \frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}  \xrightarrow{\mathcal{D}} \mathcal{N}(0,1)
-\tag{2.36}\]</span></span></p>
-<p>El mismo nos dice que distribución de la media estandarizada converge endistribución a una <span class="math inline">\(\mathcal{N}(0,1)\)</span> sin importar la distribución de <span class="math inline">\(X\)</span>. Esto significa que si el <span class="math inline">\(n\)</span> es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn22"><p><sup>22</sup>&nbsp;Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).</p></div></div><p>Supongamos que hay una variable aleatoria <span class="math inline">\(V \sim \mathcal{E}(\lambda=1)\)</span> tal que <span class="math inline">\(E(V) = \lambda\)</span>. Si tomamos una muestra de <span class="math inline">\(n=100\)</span> de <span class="math inline">\(V\)</span>, el histograma de la misma se ve algo así:</p>
+\tag{2.37}\]</span></span></p>
+<p>El mismo nos dice que distribución de la media estandarizada converge en distribución a una <span class="math inline">\(\mathcal{N}(0,1)\)</span> sin importar la distribución de <span class="math inline">\(X\)</span>. Esto significa que si el <span class="math inline">\(n\)</span> es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn27"><p><sup>27</sup>&nbsp;Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).</p></div></div><p>Supongamos que hay una variable aleatoria con distribución exponencial <span class="math inline">\(V \sim \mathcal{E}(\lambda=1)\)</span> tal que <span class="math inline">\(E(V) = \lambda\)</span>. Si tomamos una muestra de <span class="math inline">\(n=100\)</span> de <span class="math inline">\(V\)</span>, el histograma de la misma se ve algo así:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -797,29 +783,29 @@ V &amp;\sim&amp; \chi^2_{n} \\
 </div>
 </div>
 </div>
-<p>Donde en azul vemos el histograma y en negro la función de densidad para <span class="math inline">\(\mathcal{E}(\lambda=1)\)</span>. Ahora, qué pasa si tomamos <span class="math inline">\(1000\)</span> muestras y hacemos el histograma de sus medias:</p>
+<p>Donde en azul vemos el histograma y en negro la función de densidad para <span class="math inline">\(\mathcal{E}(\lambda=1)\)</span>. Ahora, qué pasa si tomamos <span class="math inline">\(1000\)</span> muestras y hacemos el histograma de sus <span class="math inline">\(1000\)</span> medias:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Zs <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="dv">1</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  Zs <span class="ot">&lt;-</span> <span class="fu">c</span>(Zs, (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(x)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Z_means <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Zs)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Z_means <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Zs, <span class="at">y =</span> ..density..), <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"n = "</span>, n), <span class="at">x =</span> <span class="st">"Medias de v"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>) <span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>))</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 2 rows containing non-finite outside the scale range</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`stat_bin()`).</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`geom_bar()`).</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Zs <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  Zs <span class="ot">&lt;-</span> <span class="fu">c</span>(Zs, (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sd</span>(x)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>Z_means <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Zs)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>Z_means <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Zs, <span class="at">y =</span> ..density..), <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"n = "</span>, n), <span class="at">x =</span> <span class="st">"Medias de v"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 2 rows containing non-finite outside the scale range</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`stat_bin()`).</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (`geom_bar()`).</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -839,7 +825,7 @@ V &amp;\sim&amp; \chi^2_{n} \\
 <p>Empecemos definiendo a la potencia estadística, la misma se define como <span class="math inline">\(1-\beta\)</span>, es decir, cuanto más acotado este el error de tipo II más alta será la potencia. Una definición formal podría ser:</p>
 <p><span id="eq-test"><span class="math display">\[
 potencia = P(rechazar \, H_0 | H_0 \, falsa)
-\tag{2.37}\]</span></span></p>
+\tag{2.38}\]</span></span></p>
 <p>Que, para el ejemplo anterior la podríamos reescribir como:</p>
 <p><span class="math display">\[
 \begin{array}
@@ -852,17 +838,17 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>potencia <span class="ot">&lt;-</span> <span class="cf">function</span>(sigma, mu, n, alpha) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,.<span class="dv">1</span>),<span class="dv">20</span>,<span class="fl">0.05</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">mu =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,.<span class="dv">1</span>), <span class="at">potencia =</span> pot)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mu,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>potencia <span class="ot">&lt;-</span> <span class="cf">function</span>(sigma, mu, n, alpha) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n))) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">/</span>(<span class="fu">sqrt</span>(sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n)))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,.<span class="dv">1</span>),<span class="dv">20</span>,<span class="fl">0.05</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">mu =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,.<span class="dv">1</span>), <span class="at">potencia =</span> pot)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mu,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -873,17 +859,17 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 </div>
 </div>
 </div>
-<p>Como es de esperarse, la potencia también depende del <span class="math inline">\(\alpha\)</span>:</p>
+<p>Como es de esperarse, la potencia también depende del <span class="math inline">\(\alpha\)</span> ya que cuanto menos estrictos nos ponemos para decir que hay un efecto menos probabilidades de cometer un error de tipo II tenemos (pero más de tipo I pues #️⃣<strong>MantaCorta</strong>).</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">20</span>,<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>), <span class="at">potencia =</span> pot)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Potencia en función de alfa"</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">20</span>,<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.001</span>), <span class="at">potencia =</span> pot)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Potencia en función de alfa"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -894,18 +880,17 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 </div>
 </div>
 </div>
-<p>Con valores de potencia mayores para valores más garndes de <span class="math inline">\(\alpha\)</span>. Nuevamente esto tiene sentido ya que ser más restictivo con el rechazo de <span class="math inline">\(H_0\)</span> (o sea, que tenga que observar un valor más extremo) lleva a una disminución de <span class="math inline">\(\alpha\)</span>, a un aumento de los errores tipo II y con ello a una disminución de la potencia.</p>
 <p>Finalmente, la potencia también depende del <span class="math inline">\(n\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>),<span class="fl">0.05</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">n =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>), <span class="at">potencia =</span> pot)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Potencia en función de n"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pot <span class="ot">&lt;-</span> <span class="fu">potencia</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>),<span class="fl">0.05</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">n =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">200</span>), <span class="at">potencia =</span> pot)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pot_tbl <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> potencia)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Potencia en función de n"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -916,21 +901,25 @@ _potencia &amp;=&amp; P(rechazar \, H_0 | H_1) \\
 </div>
 </div>
 </div>
-<p>Con valores de potencia más altos para <span class="math inline">\(n\)</span> más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>. Esta última dependencia es muy importante.</p>
-<div class="no-row-height column-margin column-container"><div id="fn23"><p><sup>23</sup>&nbsp;Las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se hacen más finas y hay menos solapamiento, recuerden que en ambas la varianza disminuye con <span class="math inline">\(1/n\)</span>.</p></div></div><p>Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar cambios pequeños sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El <span class="math inline">\(\alpha\)</span> lo decidimos cuando acotamos el error de tipo I, a <span class="math inline">\(\mu\)</span> no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el <span class="math inline">\(n\)</span>.</p>
-<p>El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:</p>
-<ol type="1">
+<p>Con valores de potencia más altos para <span class="math inline">\(n\)</span> más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>. Esta última dependencia es muy importante.</p>
+<div class="no-row-height column-margin column-container"><div id="fn28"><p><sup>28</sup>&nbsp;Las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se hacen más finas ya que la varianza de la distribución de las medias se divide por <span class="math inline">\(n\)</span> y hay menos solapamiento.</p></div></div><p>Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar diferencias pequeñas sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El <span class="math inline">\(\alpha\)</span> lo decidimos cuando acotamos el error de tipo I, a <span class="math inline">\(\mu\)</span> no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el <span class="math inline">\(n\)</span>.</p>
+<p>El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a>. El procedimiento es el siguiente:</p>
+<div class="no-row-height column-margin column-container"><div id="fn29"><p><sup>29</sup>&nbsp;Algo que se conoce normalmente como <em>a-priori power analysis</em>.</p></div></div><ol type="1">
 <li>Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.</li>
-<li>Determinamos el mínimo tamaño de efecto de interés (<em>SESOI</em><a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaño de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.</li>
-<li>Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo <span class="math inline">\(0.9\)</span>) y un <span class="math inline">\(\alpha\)</span> dado (por ejemplo <span class="math inline">\(0.05\)</span>).</li>
+<li>Determinamos el mínimo tamaño de efecto de interés (<em>SESOI</em><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaño de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.</li>
+<li>Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo <span class="math inline">\(0.9\)</span>) y un <span class="math inline">\(\alpha\)</span> dado (por ejemplo <span class="math inline">\(0.05\)</span>) <a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>.</li>
 </ol>
-<div class="no-row-height column-margin column-container"><div id="fn24"><p><sup>24</sup>&nbsp;Del inglés <em>smallest effect size of interest</em>.</p></div></div><p>No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente <span class="math inline">\(n\)</span>, pero la forma de pensar el problema es siempre similar.</p>
-<p>Para más detalles sobre los procedimientos para justificar el temaño de muestra ver <span class="citation" data-cites="lakens2022sample">(<a href="references.html#ref-lakens2022sample" role="doc-biblioref">Lakens 2022</a>)</span>.</p>
-
-
+<div class="no-row-height column-margin column-container"><div id="fn30"><p><sup>30</sup>&nbsp;Del inglés <em>smallest effect size of interest</em>.</p></div><div id="fn31"><p><sup>31</sup>&nbsp;Por supuesto que acá hay que hacer una cuenta, pero excede el alcance de este libro.</p></div></div><p>No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente <span class="math inline">\(n\)</span>, pero la forma de pensar el problema es siempre similar.</p>
+<p>Para más detalles sobre los procedimientos para justificar el tamaño de muestra ver <span class="citation" data-cites="lakens2022sample">(<a href="references.html#ref-lakens2022sample" role="doc-biblioref">Lakens 2022</a>)</span> o su <a href="https://osf.io/preprints/psyarxiv/9d3yf_v1">versión en OSF</a> que está actualizada con algunas cositas nuevas.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-lakens2022sample" class="csl-entry" role="listitem">
 Lakens, Daniel. 2022. <span>«Sample size justification»</span>. <em>Collabra: psychology</em> 8 (1): 33267.
-</div></div>
+</div></div></section>
+<section id="farewell" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="farewell"><span class="header-section-number">2.13</span> <em>Farewell</em></h2>
+<p>Con estos conceptos dejamos cerrado este breve pero jugoso repaso de probabilidad y estadística. Ya estamos listos para empezar a pensar en experimentos, relaciones causales y cuasiexperimentos. Nos vemos en el próximo capítulo.</p>
+
+
+
 </section>
 
 

@@ -25,12 +25,11 @@ En el marco de los *potential outcomes* de Rubin[@rubin1974estimating], un contr
 
 En pocas palabras:
 
-* **Para alguien que recibió el tratamiento, el contrafactual es lo que habría sucedido si no hubiera recibido el tratamiento**. Por ejemplo, si un paciente recibió un nuevo medicamento y se recuperó, el resultado contrafactual es su estado de salud si no hubiera recibido el medicamento. Esto nos ayuda a aislar el efecto del medicamento.
+-   **Para alguien que recibió el tratamiento, el contrafactual es lo que habría sucedido si no hubiera recibido el tratamiento**. Por ejemplo, si un paciente recibió un nuevo medicamento y se recuperó, el resultado contrafactual es su estado de salud si no hubiera recibido el medicamento. Esto nos ayuda a aislar el efecto del medicamento.
 
-* **Para alguien que no recibió el tratamiento, el contrafactual es lo que habría sucedido si hubiera recibido el tratamiento**. Por ejemplo, si un estudiante no asistió a un programa de tutoría y reprobó un examen, el contrafactual es su calificación hipotética si hubiera asistido al programa.
+-   **Para alguien que no recibió el tratamiento, el contrafactual es lo que habría sucedido si hubiera recibido el tratamiento**. Por ejemplo, si un estudiante no asistió a un programa de tutoría y reprobó un examen, el contrafactual es su calificación hipotética si hubiera asistido al programa.
 
 Dado que cada unidad recibe solo un tratamiento, solo podemos observar un resultado (el resultado real). El resultado contrafactual es, por definición, inobservable. Esto se conoce a menudo como el **problema fundamental de la inferencia causal**. Debido a que no podemos observar simultáneamente ambos resultados potenciales para el mismo individuo, vamos a usar métodos y suposiciones estadísticas para estimar los efectos promedio del tratamiento en grupos de individuos. Más de esto en los próximos capítulos.
-
 :::
 
 ¿Para qué sirve entonces construir contrafácticos, imaginar cosas que no ocurrieron y que nunca ocurrirán? Veamos otra historia.
@@ -71,20 +70,19 @@ $$
 Y_i = D_i Y_i^1 + (1-D_i) Y_i^0 
 $$ {#eq-switching}
 
-Donde $D_i$ vale $1$ si la unidad *i* recibió el tratamiento (entonces $Y_i=Y_i^1$) y $0$ si no (entonces $Y_i=Y_i^0$). Vale la pena notar que $Y_i$, el *outcome* observable, no tiene ningún supraíndice ya que no es más potencial.
+Donde $D_i$ vale $1$ si la unidad *i* recibió el tratamiento (entonces $Y_i=Y_i^1$) y $0$ si no (entonces $Y_i=Y_i^0$). Vale la pena notar que $Y_i$, el *outcome* observable, no tiene ningún supraíndice ya que no es más potencial. Esto tambien es una forma de hacer explicito el problema del *outcome observable*, porque dependiendo el valor que adopte $D_i$ uno de los términos se vuelve cero. Si $D_i=0$, $Y_i=Y_i^0$ ya que el término $D_i Y_i^1$ vale 0. Si por el contrario $D_i=1$, $Y_i=Y_i^1$ porque el término $(1-D_i) Y_i^0$ vale cero. Esta es una forma sofisticada de decir que el outcome observable sólo es posible en una de las dos formas de $D_i$.
 
-Usando esta notación definimos el efecto causal del tratamiento para una unidad $i$ como: 
-$$
+Usando esta notación definimos el efecto causal del tratamiento para una unidad $i$ como: $$
 \delta_i = Y_i^1 - Y_i^0 
 $$ {#eq-deltai}
 
-Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los *potential outcomes* debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal:  Para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar (los contrafácticos)[@rubin1974estimating].
+Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los *potential outcomes* debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal: Para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar (los contrafácticos)[@rubin1974estimating].
 
 ## Efecto promedio del tratamiento
 
-Al igual que los *potential outcomes*, el efecto para la unidad $i$ ($\delta_i$) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (**ATE**[^ATE]). El **ATE** va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. El mismo se define de la siguiente forma:
+Al igual que los *potential outcomes*, el efecto para la unidad $i$ ($\delta_i$) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (**ATE**[^potential_outcomes-2]). El **ATE** va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. El mismo se define de la siguiente forma:
 
-[^ATE]: Del inglés *Average treatment effect*.
+[^potential_outcomes-2]: Del inglés *Average treatment effect*.
 
 $$
 \begin{array}
@@ -92,7 +90,7 @@ _ATE &=& E[\delta_i] \\
 &=& E[Y_i^1 - Y_i^0] \\
 &=& E[Y_i^1] - E[Y_i^0] 
 \end{array}
-$${#eq-ATE}
+$$ {#eq-ATE}
 
 Ahora vamos a definir el efecto promedio, pero para el grupo tratado (es decir, los participantes asignados al grupo tratamiento, con $D_i=1$):
 
@@ -102,12 +100,13 @@ _ATT &=& E[\delta_i|D_i=1] \\
 &=& E[Y_i^1 - Y_i^0|D_i=1] \\
 &=& E[Y_i^1|D_i=1] - E[Y_i^0|D_i=1] 
 \end{array}
-$${#eq-ATT}
+$$ {#eq-ATT}
 
-Esta magnitud se llama **ATT**[^ATT] y se calcula de la misma forma que el **ATE** pero condicionando los $\delta_i$ al valor de $D_i$ igual a 1. De manera análoga definimos el efecto promedio pero para el grupo no tratado[^ATU]($D_i=0$)
+Esta magnitud se llama **ATT**[^potential_outcomes-3] y se calcula de la misma forma que el **ATE** pero condicionando los $\delta_i$ al valor de $D_i$ igual a 1. De manera análoga definimos el efecto promedio pero para el grupo no tratado[^potential_outcomes-4]($D_i=0$)
 
-[^ATT]: Del inglés *Average treatment effect for the treated*.
-[^ATU]: Del inglés *Average treatment effect for the untreated*.
+[^potential_outcomes-3]: Del inglés *Average treatment effect for the treated*.
+
+[^potential_outcomes-4]: Del inglés *Average treatment effect for the untreated*.
 
 $$
 \begin{array}
@@ -115,24 +114,28 @@ _ATU &=& E[\delta_i|D_i=0] \\
 &=& E[Y_i^1 - Y_i^0|D_i=0] \\
 &=& E[Y_i^1|D_i=0] - E[Y_i^0|D_i=0] 
 \end{array}
-$${#eq-ATU}
+$$ {#eq-ATU}
 
-Ojo con confundir estos tres conceptos. Creo que el **ATE** es autoexplicativo, pero se suele confundir **ATT** y **ATU**. En el primer caso, estamos calculando la esperanza de los $\delta_i$ para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus $Y^1_i$ como sus $Y^0_i$. Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el **ATE** no se pueden calcular en la práctica. En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones[^indep], podemos estimar el **ATE** a partir de los *outcomes* observables.
+Ojo con confundir estos tres conceptos. Creo que el **ATE** es autoexplicativo, pero se suele confundir **ATT** y **ATU**. En el primer caso, el **ATT** es como su nombre lo indica el *efecto promedio del tratamiento para el grupo de tratamiento*. Estamos calculando la esperanza de los $\delta_i$ para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus $Y^1_i$ como sus $Y^0_i$. En el segundo caso, el **ATU** es el *efecto promedio del tratamiento para el grupo de no tratamiento*, es decir, la esperanza de los $\delta_i$ para los individuos pertenecientes al grupo control.
 
-[^indep]: Spoiler: Asignación aleatoria de las unidades experimentales a los grupos.
+Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el **ATE** no se pueden calcular en la práctica.
+
+En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones[^potential_outcomes-5], podemos estimar el **ATE** a partir de los *outcomes* observables.
+
+[^potential_outcomes-5]: Spoiler: Asignación aleatoria de las unidades experimentales a los grupos.
 
 ## Diferencia de medias simple
 
-¿Qué es lo que sí podemos observar? Una magnitud que a priori podríamos creer que va  aestar relacionada con el **ATE** y que podemos observar es la diferencia de medias entre los *outcomes* observados del grupo tratamiento y el grupo control. La vamos a llamar **SDO**[^SDO] y se calcula de la siguiente forma:
+¿Qué es lo que sí podemos observar? Una magnitud que a priori podríamos creer que va aestar relacionada con el **ATE** y que podemos observar es la diferencia de medias entre los *outcomes* observados del grupo tratamiento y el grupo control. La vamos a llamar **SDO**[^potential_outcomes-6] y se calcula de la siguiente forma:
 
-[^SDO]: Del inglés *simple difference in outcomes*.
+[^potential_outcomes-6]: Del inglés *simple difference in outcomes*.
 
 $$
 \begin{array}
 _SDO &=& E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] \\
 &=& \frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=1}^{N_C} (y_i|d_i=0)
 \end{array}
-$${#eq-SDO}
+$$ {#eq-SDO}
 
 Donde $N_T$ y $N_C$ son la cantidad de individuos en el grupo tratamiento y control respectivamente (y $N_T + N_C = n$). Todo muy lindo, pero operemos un poquito para ver hasta que punto el **SDO** es un estimador insesgado del **ATE**. Empecemos escribiendo el **ATE** como una suma pesada del **ATT** y el **ATU**:
 
@@ -144,13 +147,13 @@ _ATE &=& \pi ATT + (1-\pi) ATU \\
 &=& \bigl\{ \pi E[Y_i^1|D_i=1] + (1-\pi) E[Y_i^1|D_i=0] \bigl\} - \\
 & & \bigl\{ \pi E[Y_i^0|D_i=1] + (1-\pi) E[Y_i^0|D_i=0] \bigl\}
 \end{array}
-$${#eq-sesgos}
+$$ {#eq-sesgos}
 
-Con $\pi = N_T/n$ y $1 - \pi = N_C/n$.
+Con $\pi = N_T/n$ y $1 - \pi = N_C/n$. Es decir $\pi$ es la proporción de individuos tratados y $1 - \pi$ es la proporción de individuos no tratados.
 
-Operando con la @eq-sesgos podemos despejar la diferencia entre los *outcomes* observables (**SDO**) y ver cómo esta se realciona con el resto de las magnitudes definidas[^potential_outcomes-2].
+Operando con la @eq-sesgos podemos despejar la diferencia entre los *outcomes* observables (**SDO**) y ver cómo esta se realciona con el resto de las magnitudes definidas[^potential_outcomes-7].
 
-[^potential_outcomes-2]: Pueden ver el despeje numérico en detalle en el capítulo 4 de [@cunningham2021causal].
+[^potential_outcomes-7]: Pueden ver el despeje numérico en detalle en el capítulo 4 de [@cunningham2021causal].
 
 $$
 \begin{array}
@@ -158,7 +161,7 @@ _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &=& ATE \\
 &+& ( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] ) \\
 &+& (1-\pi) (ATT - ATU)
 \end{array}
-$${#eq-sesgos}
+$$
 
 Que podemos reescribir como:
 
@@ -171,6 +174,18 @@ _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=
 $$ {#eq-SDOdecomp}
 
 Lo que puede verse en @eq-SDOdecomp es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el **SDO** sería un buen estimador del **ATE** que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.
+
+O sea que la clave del diseño experimental va a ser encontrar la forma de asegurar que esos sesgos sean nulos.Veamos mejor que representan para poder entender como minimizarlos.
+
+### Sesgo de seleccion
+
+Miremos con detenimiento la formula a la que llamamos sesgo de selección $E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0]$. Si la definimos a partir de esta ecuacion representa la diferencia entre los dos grupos si nunca había habido un tratamiento en primer lugar.O sea que son las diferencias inherentes entre los dos grupos si no condujeramos el experimento. Estas diferencias aparecen al **seleccionar** individuos en un grupo y no en el otro, por eso lo llamamos sesgo de selección. Por el contrario, mientras mas se parezcan en el outcome $Y_i^0$ los individuos asignados a uno u otro grupo $D$, mas cercano a cero será el sesgo de selección. Entonces sería ideal medir el sesgo de selección ya que es una medida de cuan lejos está el estimador del **ATE** (el **SDO**) del verdadero valor. Sin embargo el primer término de la ecuación es un contrafáctico. No nos queda otra alternativa que buscar una condición en donde (aunque no podamos medirlo) el sesgo de selección tienda a 0.
+
+### Sesgo de tratamiento heterogéneo
+
+Este tercer componente es un poco más difícil de explicar, miremoslo bien: $(1-\pi) (ATT - ATU)$. Así definido se puede decir que es la diferencia entre el efecto promedio del tratamiento para el grupo de tratamiento (el **ATT**) y la misma para el grupo control (el **ATU**) multiplicado por la proporción de sujetos que está en el grupo control. Se diferencia del sesgo de selección porque habiamos definido al primero como la respuesta de los individuos de ambos grupos si no se les hubiera aplicado la intervencion. Aqui, en cambio, es la la diferencias de la respuesta promedio si se les hubiera o no aplicado la intervencion tanto al grupo control (el **ATU**) como al grupo tratamiento (el **ATT**). Por supuesto de nuevo este sesgo no se puede medir pero se puede buscar una condicion en donde sea cero.
+
+Tenemos asi la necesidad de buscar una condición en donde ambos sesgos sean 0 para que el SDO sea finalmente un buen estimador del ATE, esa condicion es la independencia.
 
 ## Independencia
 
@@ -191,9 +206,9 @@ E[Y^0|D=1] - E[Y^0|D=0] &=& 0
 \end{array}
 $$ {#eq-independencia}
 
-Es decir, que la esperanza de los *outcomes* para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en "mundo tratamiento"[^potential_outcomes-3]. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el "mundo control"\[\^indep\]. Ojo que esto no implica que la esperanza del *outcome* para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles ($E[Y^1|D=1] - E[Y^0|D=0] = 0$) ni igual a la esperanza no tratamiento de los tratados ($E[Y^1|D=1] - E[Y^0|D=1] = 0$).
+Es decir, que la esperanza de los *outcomes* para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en "mundo tratamiento"[^potential_outcomes-8]. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el "mundo control"\[\^indep\]. Ojo que esto no implica que la esperanza del *outcome* para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles ($E[Y^1|D=1] - E[Y^0|D=0] = 0$) ni igual a la esperanza no tratamiento de los tratados ($E[Y^1|D=1] - E[Y^0|D=1] = 0$).
 
-[^potential_outcomes-3]: Tengamos en cuenta que $E[Y^1|D=0]$ es un contrafáctico, ya que es el *outcome* habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con $D=0$)
+[^potential_outcomes-8]: Tengamos en cuenta que $E[Y^1|D=0]$ es un contrafáctico, ya que es el *outcome* habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con $D=0$)
 
 ¿Qué implicancias tiene las igualdades presentadas en @eq-independencia en los sesgos que vimos en la ecuación @eq-sesgos? Empecemos por el sesgo de selección ($E[Y^0|D=1] + E[Y^0|D=0]$). Vemos que, deacuerdo a la primera línea de @eq-independencia ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo *outcome* lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.
 
@@ -218,3 +233,25 @@ $$ {#eq-sesgohet}
 Reescrito de esta forma podemos ver los dos primero términos de @eq-sesgohet se hacen cero por la rpimero línea de @eq-independencia, y los últimos dos se hacen cero por la segunda.
 
 Finalmente, demostramos que si hay independencia en la asignación de los grupos, la diferencia de las medias entre el grupo tratado y el control es un buen estimador del **ATE**.
+
+
+## SUTVA
+
+En este capítulo hemos creado un marco teórico para definir un efecto causal, le dimos un nombre a ese efecto causal, lo llamamos **ATE** y vimos que es imposible calcularlo por la existencia de contrafácticos pero que podemos estimarlo por una medida observable, la **SDO**. También vimos que **SDO** contiene al **ATE** y a un par de sesgos, sesgos que deberían hacerse cero si el supuesto de independencia se cumple. 
+
+¿Podría pasar que un efecto causal no pueda ser estimado con este marco teórico? Sí, hay un límite a este marco en donde todas estos cáclulos (medibles o no) son posibles.Si vamos al corazón mismo de todos los cálculos la condición que debe cumplirse para que todo sea posible es que las $Y_i$ sean restables, en otras palabras que representen lo mismo. A este supuesto se lo llama **SUTVA** que es la abreviatura de **stable unit treatment value assumption**. Vamos a reformularlo, **SUTVA** implica que cada unidad $i$  recibe la misma dosis de tratamiento.
+
+Cuando el SUTVA se cumple: cuando se expone un individuo a un tratamiento, su respuesta será la misma: 1) Sin importar cómo el participante fue asignado al tratamiento y 2) Sin importar los tratamientos recibidos por las otras unidades.
+
+Sin embargo, en la práctica estos supuestos pueden fallar. En particular, la segunda condición —la ausencia de interferencia entre unidades— puede violarse por fenómenos sociales, conductuales o institucionales que modifican la respuesta de los individuos en función de lo que ocurre con otros. Algunos ejemplos clásicos de estas violaciones son la rivalidad compensatoria, la desmoralización resentida, la difusión o imitación de tratamientos y la ecualización compensatoria de tratamientos.
+
+La rivalidad compensatoria ocurre cuando los individuos del grupo control, al saber (o sospechar) que no están recibiendo el tratamiento, reaccionan esforzándose más para “compensar” esa desventaja. Por ejemplo, en un estudio educativo, los estudiantes que no reciben una nueva intervención pedagógica podrían estudiar más por su cuenta para no quedar atrás. Esto genera que sus resultados mejoren artificialmente, reduciendo la diferencia observada entre tratamiento y control, y por lo tanto subestimando el efecto causal real. En notación de *potential outcomes*, esto se traduce en que el resultado observable ($Y_i^0|D_i=0$) tiene agregado un efecto "compensatorio" que lo hace más grande que su contrafáctico ($Y_i^0|D_i=1$) o sea la respuesta al no-tratamiento en el grupo tratamiento.
+
+En contraste, la desmoralización resentida aparece cuando los individuos del grupo control, al percibirse en desventaja, se desmotivan o reducen su esfuerzo. Siguiendo el mismo ejemplo, estudiantes que no reciben la intervención podrían perder interés o sentirse injustamente tratados, empeorando su desempeño. En este caso, la diferencia entre los grupos se amplifica, lo que puede llevar a sobreestimar el efecto del tratamiento.
+
+La difusión o imitación de tratamientos (también conocida como spillover) ocurre cuando el tratamiento asignado al grupo tratado se filtra hacia el grupo control. Esto puede suceder, por ejemplo, si los participantes comparten información, prácticas o recursos. Como resultado, algunos individuos del grupo control terminan recibiendo, total o parcialmente, el tratamiento, lo que reduce la diferencia entre grupos y tiende a sesgar la estimación hacia cero. En este escenario vuelve a pasar que $Y_i^0|D_i=0$ tiene un efecto agregado (el tratamiento que se derramo en el sujeto) que lo aleja del contrafáctico $Y_i^0|D_i=1$
+
+Finalmente, la ecualización compensatoria de tratamientos se da cuando quienes administran el estudio (docentes, médicos, coordinadores, etc.) otorgan recursos adicionales al grupo control para compensar la falta de tratamiento. Por ejemplo, un docente podría dedicar más tiempo o atención a los estudiantes del grupo control para “equilibrar” la situación. Esto también reduce artificialmente las diferencias entre grupos y dificulta identificar el efecto causal puro del tratamiento.
+
+Todos estos fenómenos violan SUTVA porque los resultados de una unidad ya no dependen únicamente de su propio tratamiento, sino también de lo que reciben o hacen otros, o incluso de cómo los administradores reaccionan a la asignación. En otras palabras, los resultados potenciales dejan de ser “estables” y comparables, comprometiendo la validez de nuestras estimaciones causales.
+

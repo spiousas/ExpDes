@@ -740,6 +740,8 @@ Recordá:
 - **No confundas mapeos y parámetros**: Asegúrate de entender la diferencia entre mapeos estéticos (que dependen de las variables) y parámetros fijos (que son constantes). Esto es crucial para evitar confusiones en la interpretación de tus gráficos.
 - **Asegurate que tus datos estén limpios y el tipo de variable bien definido**: *{ggplot2}* es muy poderoso pero también es sensible a la calidad de los datos. Asegúrate de que tus datos estén limpios, sin valores faltantes o errores, y que las variables estén correctamente definidas (por ejemplo, factores para categorías). Esto va a facilitar que el mapeo estético y el gráfico final funcionen bien.
 
+Si quieren saber más de *{ggplot2}* les recomiendo [este hermoso tutorial](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) de uno de los gurúes de la visualización de datos con *{ggplot2}*, Cedric Scherer.
+
 ## Algunas palabras finales
 
 Como vimos brevemente en este capítulo, los paquetes del *tidyverse* son una herramineta importantísima para el análisis de datos utilizando R.

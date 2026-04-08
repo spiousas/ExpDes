@@ -6,14 +6,6 @@
 source("../R/_common.R")
 ```
 
-Hola y bienvenidos a este repaso de probabilidad y estadística. En esta sección vamos a repasar algunos conceptos básicos de probabilidad y estadística que nos van a ser de vital importancia para lo que sigue. No vamos a entrar en detalle[^profundizar] ni vamos a hacer demostraciones, sino que vamos a tratar de entender los conceptos de forma intuitiva y práctica. 
-
-[^profundizar]: Repetimos la recomendación. Si quieren profundizar en alguno de los temas pueden ir a leer el capítulo 1 de [@wasserman2004all] o el repaso de probabilidad de [@cunningham2021causal] (disponible online).
-
-## Eventos aleatorias
-
-Un evento aleatorio es un resultado posible de un experimento aleatorio. Por ejemplo, si tiramos una moneda al aire, los eventos aleatorios posibles son "cara" y "ceca". Si tiramos dos monedas, los eventos aleatorios posibles son "cara-cara", "cara-ceca", "ceca-cara" y "ceca-ceca". En general, el conjunto de todos los eventos aleatorios posibles se llama espacio de eventos y se lo nombra con la letra $\Omega$.
-
 ## Variables aleatorias
 
 Wasserman[@wasserman2004all] nos dice que una variable aleatoria es un mapeo entre el espacio de eventos y los números reales ($X:\Omega \rightarrow \mathbb{R}$). Momento cerebrito ¿Esto que quiere decir? En términos prácticos, lo que implica esta definición es que una variable aleatoria nos da un número para cada evento del posible espacio de eventos aleatorios.
@@ -25,19 +17,9 @@ Vamos con un ejemplo que nos aclare un poco la cosa. Supongan que tiramos una mo
 
 En el ejemplo anterior $X$ es lo que se denomina una variable aleatoria discreta, es decir, que sólo puede tomar algunos valores posibles (en este caso $X = \{ 0, 1, 1, 2\}$). Pero es importante recordar que también existen variables aleatorias continuas como por ejemplo la altura de una nueva persona que nace o la temperatura de Buenos Aires en un día de enero `r emo::ji("hot_face")`.
 
-Una pregunta que nos podemos hacer es: ¿para que nos interesa definir una variable aleatoria si lo que queremos estudiar son los eventos aleatorios? Bueno, porque traducir esos eventos (que pueden ser dos tiradas de monedas o algo mucho más complejo, como tener o no tener una enfermedad) en un número tiene grandes ventajas al momento de modelizar la distribución de probabilidades.
-
 ## Probabilidad
 
-El concepto de probabilidad es algo complejo, pero, como esto no es un curso de probabilidad, vamos a confiar en que ustedes ya lo traen claro. Si tienen coraje puede ir a leer el capítulo 1 de [@wasserman2004all] y si quiere algo más terrenal pueden ir a ver el repaso de probabilidad de [@cunningham2021causal] (disponible online). Pero de forma general podemos decir que la probabilidad es una medida numérica de la incertidumbre o la certeza de que un evento aleatorio ocurra [^freqbay].
-
-[^freqbay]: Existen dos grandes interpretaciones de la probabilidad, la frecuentista y la bayesiana. La primera define a la probabilidad como la frecuencia relativa de un evento en una serie de experimentos repetidos, mientras que la segunda la define como una medida subjetiva de la creencia o confianza en que un evento ocurra. Si quieren bucear en las profundas aguas de este debate pueden empezar por [acá](https://www.youtube.com/watch?v=GEFxFVESQXc).
-
-Como dijimos que tenemos una moneda justa, es razonable pensar que todos los eventos aleatorios en este espacio de eventos $\Omega = \{ TT, TH, HT, HH \}$ son equiprobables, es decir, que cada uno de ellos tiene la misma probabilidad de ocurrir, ¿no? Entonces, la probabilidad de ocurrencia de cada evento será de $1/4$ [^frecuentista]. ¿Pero podemos decir lo mismo de los posibles valores de $X$? ¿Tiene la misma probabilidad de valer $0$ que de valer $1$?
-
-[^frecuentista]: Esto en términos de la intepretación frecuentista significa que si hacemos dos tiradas de monedas infinitas veces, la proporción de veces que saldrá cada una de las combinación es exactamente $1/4$. Y en términos de la interpretación bayesiana... estemmm... bueno... le pueden preguntar a ChatGPT.
-
-Como confío que son gente inteligente (y un poco ansiosa) ya deben haber chusmeado esta tabla y se habrán dado cuenta que no:
+Para una variable como la definida en el ejemplo anterior podemos definir fácilmente su probabilidad de ocurrencia. Debido que la moneda es justa, todos los eventos de $\Omega$ son equiprobables, y es por eso que podemos definir:
 
 | $\omega$ | $X(\omega)$ | $P({\omega})$ |
 |:--------:|:-----------:|:-------------:|
@@ -46,40 +28,23 @@ Como confío que son gente inteligente (y un poco ansiosa) ya deben haber chusme
 |    HT    |      1      |      1/4      |
 |    HH    |      2      |      1/4      |
 
+Sin embargo, el concepto de probabilidad es algo complejo, pero, como esto no es un curso de probabilidad, vamos a confiar en que ustedes ya lo traen claro. Si tienen coraje puede ir a leer el capítulo 1 de [@wasserman2004all] y si quiere algo más terrenal pueden ir a ver el repaso de probabilidad de [@cunningham2021causal] (disponible online).
 
-Lo que vemos es que hay dos eventos aleatorios ($TH$ y $HT$) que se "mapean" al mismo valor de $X$ (en este caso $1$) y esto hace que la probabilidad de que $X$ tome el valor de $1$ no sea de $1/4$ sino de $1/2$. 
-
-Este bello y simplísimo ejemplo tiene el único objetivo de pensar un poco para qué sirve una variable aleatoria y cómo es diferente de un evento aleatorios. No vamos a entrar en más detalle.
-
-Cuando las variables aleatorias son continuas la cosa se complica un poco más ya que $P(X=c)$, es decir, la probabilidad de que una variable tome un valor dado, es cero. Esto lo vamos a repensar un poco en la siguiente sección, cuando definamos lo que nos importa para este libro: Las funciónes de densidad y de distribución.
+Cuando las variables aleatorias son continuas la cosa se complica un poco más ya que $P(X=c)$, es decir, la probabilida de que una variable tome un valor dado, es cero. Esto lo vamos a repensar un poco en la siguiente sección, cuando definamos lo que nos importa para este libro: Las funciónes de densidad y de distribución.
 
 ## Probabilidad condicional
 
-La probabilidad condicional es la probabilidad de que ocurra un evento A dado que ocurrió un evento B y se escribe como $P(A|B)$. $P(A|B)$ puede calcularse como:
-
-$$
-P(A|B) = \frac{P(A \cap B)}{P(B)}
-$${#eq-test}
-
-donde $P(A \cap B)$ es la probabilidad de que $A$ y $B$ ocurran juntos. Esta fórmula se puede entender fácilmente a partir de la definición de probabilidad como frecuencia relativa. Si tenemos una serie de experimentos repetidos, la probabilidad de que ocurra $A$ dado que ocurrió $B$ es simplemente la proporción de veces que ambos eventos ocurrieron juntos ($P(A \cap B)$) sobre la proporción de veces que ocurrió $B$ ($P(B)$). 
-
-Pensemos en el ejemplo de tirar dos monedas justas. Supongamos que queremos saber la probabilidad de que salga exactamente una cara ($A$) dado que salió al menos una cara ($B$). En este caso, $P(A \cap B)$ es la probabilidad de que salga exactamente una cara y al menos una cara, lo cual es simplemente la probabilidad de que salga exactamente una cara ($P(X=1)$), es decir, $P(A \cap B) = P(HT) + P(TH) =1/2$. Por otro lado, $P(B)$ es la probabilidad de que salga al menos una cara ($P(X=1) + P(X=2)$), lo cual es igual a $P(B)1 = P(HT) + P(TH) + P(HH) = 3/4$. Entonces, reemplazando en la fórmula tenemos que:
-
-$$
-P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{1/2}{3/4} = \frac{2}{3}
-$${#eq-cond_1}
-
-Por ahora quedémonos con esta definición simple que será de vital importancia para lo que sigue.
+La probabilidad condicional es la probabilidad de que ocurra un evento A dado que ocurrió un evento B y se escribe como $P(A|B)$. Por ahora quedémonos con esta definición simple que será de vital importancia para lo que sigue.
 
 ## Probabilidad total
 
-Ahora imaginemos que pasa si queremos calcular la probabilidad de que ocurra B ($P(B)$) a partir de su relación condicional con la ocurrencia de A. Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió A y junto con la probabilidad de B dado que NO ocurrió A. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto se llama la probabilidad total y se escribe de la siguiente forma[^neg]:
+Ahora imaginemos que pasa si queremos calcular la probabilidad de B ($P(B)$). Bueno, para esto tendríamos que considerar la probabilidad de que ocurra B dado que ocurrió S y junto con la probabilidad de B dado que NO ocurrió S. A su vez, cada una de estas probabilidades deberíamos pesarlas por la probabilidad de que ocurra o no A. Esto sería[^neg]:
 
 [^neg]: Recordemos que $\neg$ es el símbolo lógico de la negación.
 
 $$
 P(B) = P(B|A) \times P(A) +  P(B|\neg A) \times P(\neg A)
-$${#eq-tot_1}
+$${#eq-test}
 
 Pensemos un ejemplo. Imaginemos que una persona tiene que completar un trabajo de jardinería (evento B) en un día. La probabilidad de que termine este trabajo si llueve (evento A) es $0.35$ y la probabilidad de que lo termine si no llueve es de $0.95$. Si la probabilidad de que llueva es $P(A)=0.4$ ¿Cuál es la probabilidad ($P(B)$) de que el trabajo se complete en un día? Echemos mano a la fórmula de probabilidad total:
 
@@ -96,64 +61,26 @@ Entonces, la probabilidad de completar el trabajo en un día es $P(B)=0.71$.
 Por último, cuando tenemos muchas condiciones, podemos definir de forma general a la probabilidad total como:
 
 $$
-P(B) = \sum_{j=1}^n P(B|A_j) P(A_j)
-$${#eq-tot_2}
-
-`r emo::ji("top_hat")`¡Matemagia!`r emo::ji("top_hat")`
-
-Ya que estamos cancheros, supongamo que tenemos el evento $A_1$ y queremos calcular su probabilidad condicional dado que ocurrió el evento $B$. Recordemos la definción de probabilidad condicional:
-
-$$
-P(A_1|B) = \frac{P(A_1 \cap B)}{P(B)}
-$${#eq-bay_1}
-
-Pero también $P(B|A_1)$ se puede escribir como:
-
-$$
-P(B|A_1) = \frac{P(B \cap A_1)}{P(A_1)}
-$${#eq-bay_2}
-
-Y como las intersecciones son iguales ($P(A_1 \cap B) = P(B \cap A_1)$), podemos despejar de la @eq-bay_2 a $P(A_1 \cap B) = P(B|A_1) P(A_1) $ y reemplazarlo en la fórmula de probabilidad condicional:
-
-$$
-P(A_1|B) = \frac{P(A_1 \cap B)}{P(B)} = \frac{P(B|A_1) P(A_1)}{P(B)}
-$${#eq-bay_3}
-
-Pero si recordamos la fórmula de probabilidad total (@eq-tot_2), $P(B)$ se puede reemplazar como:
-
-$$
-P(A_1|B) = \frac{P(B|A_1) P(A_1)}{\sum_{i=1}^n P(B|A_i) P(A_i)}
-$${#eq-bay_4}
-
-Y de forma general:
-
-$$
-P(A_i|B) = \frac{P(B|A_i) P(A_i)}{\sum_{j=1}^n P(B|A_j) P(A_j)}
-$${#eq-bay_5}
-
-Esto que acabamos de deducir es nada más ni nada menos que la fórmula de Bayes, una de las fórmulas más importantes de la probabilidad y la estadística. La fórmula de Bayes nos permite invertir la condicionalidad de una probabilidad, es decir, calcular $P(A|B)$ a partir de $P(B|A)$.
+P(B) = \sum_n P(B|A_n) P(A_n)
+$${#eq-test}
 
 ## Teorema de Bayes
 
-Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total y condicional podemos tomar prestado un ejemplo de [@herzog2019understanding] para entender el valor de las reverendas ideas del Reverendo Thomas Bayes. 
+Ahora que ya llegamos a la fórmula de Bayes a partir de las definiciones de probabilidad total podemos tomar prestado un ejemplo de [@herzog2019understanding]: Tenemos un test para identificar si somos portadores de un virus (llamémoslo IKV). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus ($P(T^+|IKV)$) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus ($P(T^-|\neg IKV)$). Sabemos también que la incidencia del virus IKV es de 1 en 10000.
 
-Tenemos un test para identificar si somos portadores de un virus (llamémoslo [IKV](https://www.youtube.com/watch?v=3QH3I1z4Gec)). Este test tiene una sensibilidad de 99.99% y una especificidad de 99.99%. Es decir, la probabilidad de que el test de positivo, dado que tenemos el virus ($P(T^+|IKV)$) es de 0.9999, y lo mismo ocurre para la probabilidad de que el test de negativo en caso de que NO tengamos el virus ($P(T^-|\neg IKV)$). Sabemos también que la incidencia del virus IKV es de 1 en 10000.
-
-Supongamos que somos elegidos aleatoriamente para realizarnos el test y este da positivo ¿Qué probabilidad de ser portadores del virus tenemos ($P(IKV|T^+)$)? La primera respuesta que se nos viene es 0.9999, ¿verdad? Pero, si estuvimos prestando atención, ya a esta altura debemos saber que para invertir la condicionalidad de una probabilidad, de la sensibilidad $P(T^+|IKV)$ a la que nos interesa $P(IKV|T^+)$, tenemos que acudir al bueno de Bayes. O sea:
+Supongamos que somos elegidos aleatoriamente para realizarnos el test y este da positivo ¿Qué probabilidad de ser portadores del virus tenemos ($P(IKV|T^+)$)? La primera respuesta que se nos viene es 0.9999 ¿Verdad? Pero, si estuvimos prestando atención, ya a esta altura debemos saber que para invertir la condicionalidad de una probabilidad tenemos que acudir al bueno de Bayes. O sea:
 
 $$
 P(IKV|T^+) = \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}
-$${#eq-bayes_ikv_1}
+$${#eq-test}
 
 donde $P(T^+|IKV) = 0.9999$ y $P(IKV) = 1/10000 = 0.0001$. Además, echando mano a la definición de probabilidad total podemos calcular $P(T+)$ como:
 
 $$
 P(T+) = P(T^+|IKV) \times P(IKV) + P(T^+|\neg IKV) \times P(\neg IKV)
-$${#eq-bayes_ikv_2}
+$${#eq-test}
 
-donde $P(T^+|\neg IKV) = 1-0.9999$[^prob_neg] y $P(\neg IKV) = 1-0.0001$. Reemplazando todos los valores tenemos que:
-
-[^prob_neg]: No lo dijimos, pero la probabilidad de que **NO** suceda A ($P(\neg A)$) es simplemente $1-P(A)$.
+donde $P(T^+|\neg IKV) = 1-0.9999$ y $P(\neg IKV) = 1-0.0001$. Reemplazando todos los valores tenemos que:
 
 $$
 \begin{array}
@@ -163,7 +90,7 @@ _P(IKV|T^+) &=& \frac{P(T^+|IKV) \times P(IKV)}{P(T+)}\\
 &=& \frac{0.9999 \times 0.0001}{0.9999 \times 0.0001 + 0.0001 \times 0.9999} \\
 &=& 0.5
 \end{array}
-$${#eq-bayes_ikv_3}
+$${#eq-test}
 
 ¿Qué? ¿Esto significa que si el test me da positivo solo tengo un 0.5 de probabilidad de tener el virus? ¿Esto quiere decir que los tests no sirven para nada? Momento, analicemos un poco al resultado al que llegamos. Lo que nos dice esta cuenta es que, una vez que el test nos da positivo, a pesar de lo sensible del test y por lo "raro" de la portación del virus, nuestra probabilidad de ser portadores es de 0.5. Pero, ¿Y nuestra probabilidad de ser portadores si el test nos da negativos? Hagamos la cuenta:
 
@@ -176,37 +103,31 @@ _P(IKV|T^-) &=& \frac{P(T^-|IKV) \times P(IKV)}{P(T-)}\\
 \end{array}
 $${#eq-test}
 
-OK, ahora la cosa tiene más sentido. O sea, el test es bastante bueno para decirnos cuando no somos portadores, el problema es cuando da positivo. En este caso tenemos que preocuparnos, pero, como vimos anteriormente, la probabilidad de ser portadores es de apenas 0.5.
+OK, ahora la cosa tiene más sentido. O sea, el test es bastante bueno para decirnos cuando no somos portadores y dando negativo, el problema es cuando da positivo. En este caso tenemos que preocuparnos, pero, como vimos anteriormente, la probabilidad de ser portadores es de apenas 0.5.
 
-Hay una solución más simple para esto y es la que deben estar pensando ustedes: ¿Y si me hacen un segundo test? ¡BINGO`r emo::ji("confetti_ball")`! Calculemos rápidamente la probabilidad de estar infectados si nos testean por segunda vez:
+Hay una solución más simple para esto y es la que deben estar pensando ustedes: ¿Y si me hacen un segundo test? ¡BINGO! Calculemos rápidamente la probabilidad de estar infectados si nos testean por segunda vez:
 
 $$
-P(IKV|T^{2+}) = \frac{0.9999^2 \times 0.0001} {0.9999^2 \times 0.0001 + 0.0001^2 \times 0.9999} = 0.9999
+P(IKV|T^{2+}) = \frac{0.9999^2 \times 0.0001}{0.9999^2 \times 0.0001 + 0.0001^2 \times 0.9999} = 0.9999
 $${#eq-test}
-
 Ahora sí, si somos testeados por segunda vez, la probabilidad de ser portadores dado que tenemos dos resultados positivos trepa a 0.9999. Nos podemos quedar tranquilos.
 
 Para cerrar, me gustaría que pensemos un poco en una palabra MUY importante que se dijo en el enunciado del problema: Aleatoriamente. En muchos de los casos en los que nos testeamos para ver si somos portadores de un virus, lo hacemos porque tenemos algún tipo de presunción de que podemos serlo (por ejemplo, tenemos síntomas). ¿Cuál creen que sería la probabilidad que se modifica en la fórmula? Exacto, $P(IKV)$, ya que sería más bien $P(IKV|síntomas)$.
 
-Ahora metamos un volantazo y hablemos un poco de las variables aleatorias y cómo medirlas y caracterizarlas.
-
 ## Esperanza
 
-La esperanza de una variable aleatoria $X$, a veces también llamada media poblacional, es simplemente la suma pesada de todos sus valores posibles. No debemos confundir la esperanza con el promedio muestral, aunque, como veremos en breve, para algunos casos este último es un estimador insesgado de la esperanza.
+La esperanza de una variable aleatoria $X$, a veces también llamada media poblacional, es simplemente la suma pesada de todos sus valores posibles. No debemos confundir la esperanza con el promedio muestral, aunque, como veremos en breve, para algunos casos el primero es un estimador insesgado del segundo.
 
 La esperanza de una variable aleatoria discreta se define como:
 
 $$
 E(X) = \sum_{1}^\infty x_i p(x_i)
-$${#eq-esp_1}
-
-En este caso es muy claro la naturaleza de promedio pesado, ya que a cada valor posible de $X$ lo estamos pesando por su probabilidad. Sin embargo, para una variable aleatoria continua, en la que no tenemos definida una probabilidad puntual $p(x_i)$ sino una función de densidad $f(x)$[^dens], la definición es la siguiente:
-
-[^dens]: La función de densidad $f(x)$ es una función que describe la distribución de probabilidad de una variable aleatoria continua. La probabilidad de que la variable tome un valor dentro de un intervalo se calcula integrando la función de densidad sobre ese intervalo.
+$${#eq-test}
+En este caso es muy claro la naturaleza de promedio pesado, ya que a cada valor posible de $X$ lo estamos pesando por su probabilidad. Sin embargo, para una variable aleatoria continua, en la que no tenemos definida una probabilidad puntual $p(x_i)$ sino una función de densidad $f(x)$, la definición es la siguiente:
 
 $$
 E(X) = \int_{-\infty}^\infty x f(x) dx
-$${#eq-esp_2}
+$${#eq-test}
 
 Como resulta esperable, la suma se transforma en una integral y la probabilidad puntual se reemplaza por $f(x)$.
 
@@ -223,40 +144,38 @@ Por último y a modo de aviso, advertencia y amenaza, recordemos que $E(X)^2 \ne
 
 ## Varianza y covarianza
 
-La varianza nos da una idea de la variabilidad de los procesos aleatorios que generan una variable aleatoria[^varianza]. La varianza de la variable aleatoria $X$ se define como:
+La varianza nos da una idea de la variabilidad de los procesos aleatorios que generan una variable aleatorio[^varianza]. La varianza de la variable aleatoria $X$ se define como:
 
 [^varianza]: Dato que será de vital importancia para sentar las bases de la inferencia estadística.
 
 $$
 V(X) = \sigma^2 = E \left[ (X - E(X))^2 \right]
-$${#eq-var_1} 
+$${#eq-test} 
 
 Y se puede demostrar que:
 
 $$
 V(X) = E(X^2) - E^2(X)
-$${#eq-var_2}
+$${#eq-test}
 
-Por otro lado, la covarianza mide la cantidad de dependencia lineal entre dos variables aleatorias. La misma se define como:
+Por otro lado, la covarianza mide la cantidad de dependencia lineal entre dos variables aleatorias. La misma se define como 
 
 $$
 Cov(X,Y) = E(XY) - E(X)E(Y)
-$${#eq-cov}
+$${#eq-test}
 
 Si $Cov(X,Y)>0$, esto indica que las dos variables se mueven en la misma dirección, mientras que si $Cov(X,Y)<0$ esto indica que ambas variables se mueven en direcciones opuestas. 
 
 ## Correlación
 
-Ahora una pregunta: ¿Podemos comparar la covarianza de dos pares de variables? Por ejemplo, si $Cov(X,Y) = 14.988$ y $Cov(W,Z) = 0.001$, ¿Podemos decir que $X$ e $Y$ están más relacionadas que $W$ y $Z$? La respuesta es no, ya que la covarianza depende de la varianza de cada una de las variables, es decir, de la escala en la que se midan. Esto hace que la covarianza no sea una medida muy informativa para comparar la relación entre dos pares de variables. Para poder hacer esta comparación vamos a tomar el camino de la parsimonia y vamos a hacer lo que cualquier ser humano con Estadística II aprobada haría: normalizar la covraianza dividiéndola por las varianzas de cada una de las variables. Esto se llama la correlación y nos dice cuánto covarían dos variables independizándose de la varianza de cada una de ellas, es decir, normalizando. Esto la convierte en una medida muy relevante e informativa. 
-
-Si tenemos dos variables aleatorias $X$ e $Y$, la correlación de se define como la covarianza es sus versiones estandarizadas:
+La correlación es la versión más amigable de la covarianza. ¿Por qué? Porque nos dice cuánto covarían dos variables independizándose de la varianza de cada una de ellas, es decir, normalizando. Esto la convierte en una medida muy relevante e informativa. Si tenemos dos variables aleatorias $X$ e $Y$, la correlación de se define como la covarianza es sus versiones estandarizadas:
 
 $$
 \begin{array}
 _W &=& \frac{X-E(X)}{\sqrt{V(X)}} \\
 Z &=& \frac{Y-E(Y)}{\sqrt{V(Y)}}
 \end{array}
-$${#eq-cor_1}
+$${#eq-test}
 
 De la siguiente forma:
 
@@ -267,13 +186,13 @@ _Corr(X,Y) &=& Cov(W,Z) \\
 &=&  \frac{1}{\sqrt{V(X)}} \frac{1}{\sqrt{V(Y)}}  Cov(X-E(X),Y-E(Y)) \\
 &=&  \frac{Cov(X,Y)}{\sqrt{V(X) V(Y)}}
 \end{array}
-$${#eq-cor_2}
+$${#eq-test}
 
 Usamos la propiedad de la covarianza que dice que:
 
 $$
 Cov(X+a, Y+b) = Cov(X,Y) + Cov(X,b) + Cov(a,Y) + Cov(a,b)
-$${#eq-cor_3}
+$${#eq-test}
 
 Y como $a$ y $b$ son constantes (en nuestro caso esperanzas), el único término que sobrevive es $Cov(X,Y)$. Esta magnitud es también conocida como el coeficiente de correlación $\rho$.
 
@@ -303,6 +222,7 @@ tibble(x,y) |>
 
 Es muy importante tener en cuenta que el coeficiente de correlación nos dice cuán **linealmente** relacionadas están las variables. Veamos esto con un ejemplito:
 
+
 ```{r}
 set.seed(1234)
 x = runif(1000, -1, 1)
@@ -323,21 +243,15 @@ tibble(x,y) |>
 
 En este caso vemos que claramente hay uan relación entre **X** e **Y** (no son una nube de puntos sin estructura) pero como esta relación no es lineal (cuadrática en nuestro caso), el coeficiente de correlación es cercano a cero.
 
-Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre $-1$ y $1$. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra). Cuanto más cerca esté el coeficiente de $1$ o $-1$, más fuerte es la relación lineal.
+Finalmente, tengamos en cuenta que el coeficiente de correlación puede tomar valores entre $-1$ y $1$. Una correlación positiva indica que las variables varían de la misma manera (si aumenta una aumenta la otra) y lo contrario ocurre con una correlación negativa (si aumenta una disminuye la otra). Cuanto más cerca esté el coeficiente de $1$ o, más fuerte es la relación lineal.
 
 ## Población y muestra
 
-Veamos la siguiente figura. En ella podemos ver cómo hay una "población"[^poblacion] de la que queremos saber algo. La teoría de probabilidad nos ayuda a "modelar" esta población, es decir, a definir una función de densidad que nos permita describir la generación de los datos. La inferencia estadística, por otro lado, nos ayuda a estimar los parámetros de esta función de densidad a partir de una muestra de datos. Por supuesto que en estas estimaciones hay aleatoriedad, y si tomamos distintas muestras los resultados van a ser diferentes, pero ahí es donde entra la inferencia estadística, para ayudarnos a medir (o estimar) esta variabilidad y así poder cuantificar la confianza que tenemos en las conclusiones sobre la población a partir de la muestra.
+Acá usar una versión de la figurita de All of statistics que pone la generación de los datos en el dominio de la probabilidad y la estimación de estos parámetros en el dominio de la estadística. Me parece una forma ideal de empezar a hablar de qué queremos hacer con la estadística.
 
-[^poblacion]: Si bien podemos pensar en la población como el conjunto completo de individuos (u objetos o eventos) sobre los cuales se desea obtener información, creo que pensar en el proceso de generación de datos es una forma un poco más completa. Hagamos un pequeño ejercicio mental: si yo les preguntara cuál es el talle de zapatillas promedio de un estudiante de la Universidad de San Andrés. ¿Ustedes creen que la respuesta "poblacional" es medir el pie de todos los estudiantes que están este año en la universidad y calcular el promedio?
-
-![](imgs/probabilidad_e_inferencia.png){fig-align="center"}
-
-Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina (o sea, conocemos el proceso de generación de datos[^nunca]). No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal[^normal] con media en cm. de $\mu_{varones} = 175$ y una desviación estándar $\sigma_{varones} = 7$, o, como ya aprendimos a decir: $H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)$[^intro_stat-2]. A continuación podemos ver la función de densidad:
+Vamos con un ejemplo que nos puede ayudar a entender de qué hablamos cuando hablamos de estimación. Supongamos que conocemos distribución de la altura de la población de varones en Argentina. No estamos hablando de calcular el promedio de la altura de los varones sino de que conocemos la función de densidad de la cual la altura de cada varón es una muestra. Si no queda del todo claro respiren hondo y esperen un poco que ya se va a ir aclarando. Entonces, la altura de los varones de Argentina tiene una distribución normal con media en cm. de $\mu_{varones} = 175$ y una desviación estándar $\sigma_{varones} = 7$, o, como ya aprendimos a decir: $H_{varones} \sim \mathcal{N}(\mu_{varones},\sigma^2_{varones}) = \mathcal{N}(175, 49)$[^intro_stat-2]. A continuación podemos ver la función de densidad:
 
 [^intro_stat-2]: **h** del inglés *height*.
-[^nunca]: Está de más decir que NUNCA vamos a conocer esto, o que si lo conociéramos no estaríamos pensando en hacer inferencia ni estimar nada.
-[^normal]: Como dijimos anteriormente, este no es un libro de probabilidad, así que si no saben lo que es la distribución normal pueden ir a leerlo a sus apuntes de estadística (procede a preguntarle a ChatGPT "¿Qué es la distribución normal?").
 
 ```{r echo=FALSE}
 #| fig-align: center
@@ -362,9 +276,9 @@ ggplot() +
   labs(x = "Altura (cm)", y = 'fX(x)')
 ```
 
-Ahora bien, en la figura podemos ver la función $f_X(x)$ junto con una línea vertical que nos indica la media y dos líneas que nos indican los percentiles $2.5$ y $97.5$, es decir, que contienen el 95% de la masa de probabilidad. Todo esto es muy lindo pero estamos jugando a ser dios (o el Doctor Manhattan, o en lo que ustedes crean). Es imposible conocer los parámetros de esta distribución pero lo que sí podemos hacer en la práctica es estimarlos. Estimar los parámetros de un modelo es el *pan y manteca* de la inferencia estadística y el *data mining*. Como vimos en la hermosa figura que da comienzo a esta sección, la teoría de probabilidad nos ayuda a definir modelos para la generación de datos y la inferencia estadística nos ayuda a estimar estos parámetros.
+Ahora bien, en la figura podemos ver la función $f_X(x)$ junto con una línea vertical que nos indica la media y dos líneas que nos indican los percentiles $2.5$ y $97.5$, es decir, que contienen el 95% de la masa de probabilidad. Todo esto es muy lindo pero estamos jugando a ser dios (o el Doctor Manhattan, o en lo que ustedes crean). Es imposible conocer los parámetros de esta distribución pero lo que sí podemos hacer en la práctica es estimarlos. Estimar los parámetros de un modelo es el *pan y manteca* de la inferencia estadística y el *data mining*. Como podemos ver en esta hermosa figura de Wasserman[@wasserman2004all], la teoría de probabilidad nos ayuda a definir modelos para la generación de datos y la inferencia estadística nos ayuda a estimar estos parámetros.
 
-Hay diversas formas de encontrar estimadores para los parámetros de un modelo (por ejemplo, método de los momentos, máxima verosimilitud, etc.) pero entendemos que eso excede los contenidos de este curso. Sin embargo, todos conocemos los estimadores de los parámetros poblacionales $\mu$ y $\sigma^2$. Claro, el promedio $\bar{x}$ y el desvío muestral $\hat{S}^2$:
+Hay diversas formas de encontrar estimadores para los parámetros de un modelo (por ejemplo, método de los momentos, máxima verosimilitud, etc.) pero entenemos que eso excede los contenidos de este curso. Sin embargo, para estimar todos conocemos los estimadores de los parámetros poblacionales $\mu$ y $\sigma^2$. Claro, el promedio $\bar{x}$ y el desvío muestral $\hat{S}^2$:
 
 $$
 \begin{array}
@@ -419,13 +333,13 @@ Supongamos que tenemos una página web de noticias y queremos probar una nueva *
 
 [^abtest]: Probabilemente lo más correcto para responder esta pregunta sea un *A/B test*, pero ya hablaremos de eso más adelante.
 
-Primero definamos nuestra variable aleatoria: $X$:"La diferencia de tiempo en *ms* entre después y antes del cambio". Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si $E(X)$ es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que $X \sim \mathcal{N}(\mu, \sigma^2)$. Esta suposición no es tan loca ya que muchos [procesos naturales se distribuyen de forma normal](https://www.youtube.com/watch?v=JX_UyidsQNg&list=PLDcUM9US4XdNOlqSyhe38US8mFgmqzI14&index=10) [^normal_2]. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la $\sigma^2$ de $X$. 
+Primero definamos nuestra variable aleatoria: $X$:"La diferencia de tiempo en *ms* entre después y antes del cambio". Nuestro objetivo entonces es poder afirmar con cierto grado de seguridad si $E(X)$ es igual a cero o distinto (nos importa tanto si aumenta como si disminuye). Empecemos con lo más sencillo, supongamos que $X \sim \mathcal{N}(\mu, \sigma^2)$. Esta suposición no es tan loca ya que mucho procesos naturales se distribuyen de forma normal[^normal]. Supongamos también por un momento (más adelante vamos a relajar esta condición) que, ya sea por un experimento previo o porque somos magos, conocemos la $\sigma^2$ de $X$. 
 
-[^normal_2]: Además, como vamos a ver más adelante, cuando el $n$ es lo suficientemente grande, esta condición deja de importar tanto.
+[^normal]: Además, como vamos a ver más adelante, cuando el $n$ es lo suficientemente grande, esta condición deja de importar tanto.
 
-Como dijimos en el recuadro, si bien nuestro objetivo es probar si $\mu$ es diferente de $0$, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de $\mu$: $\hat{\mu}=\bar{X}$, es decir, el promedio muestral. Ahora supongamos que el promedio nos da $0.5$: ¿Es distinto de cero? Es natural pensar que para afirmar eso tenemos que conocer algo de su variabilidad, ¿no? Por ejemplo, no es lo mismo $0.5$ con $20$ mediciones que con $2000$, ¿no? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.
+Como dijimos en el recuedro, si bien nuestro objetivo es probar si $\mu$ es diferente de $0$, esto lo vamos a hacer a partir de un experimento. Una vez que hagamos el experimento y midamos vamos a tener al clásico estimador de $\mu$: $\hat{\mu}=\bar{X}$, es decir, el promedio muestral. Ahora supongamos que el promedio nos da $0.5$: ¿Es distinto de cero? Para responder esa pregunta es que vamos a utilizar las herramientas de la inferencia estadística.
 
-Escribamos las hipótesis que ya mencionamos de forma matemática:
+Definamos primero las hipótesis:
 
 $$
 \begin{array}
@@ -436,32 +350,25 @@ $${#eq-test}
 
 Lo que vamos a querer hacer es rechazar $H_0$ con cierto grado de confianza. Para esto vamos a comparar nuestra medición $\bar{x}_{obs}$ con la distribución de los $\bar{X}$ bajo $H_0$.
 
-Recordemos que si la variable se distribuye así $X \sim \mathcal{N}(\mu, \sigma^2)$ entonces sus medias se distribuyen así[^cuenta] $\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)$[^n], donde $n$ es la cantidad de realizaciones con las que yo calculo mi $\bar{X}$. Entonces si mi $\bar{x}_{obs}$ medida está lo suficientemente lejos de $0$ podemos decir que que $\mu$ es diferente de cero. Pero: ¿Qué es suficientemente lejos?
+Recordemos que si $X \sim \mathcal{N}(\mu, \sigma^2)$ entonces $\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)$[^n], donde $n$ es la cantidad de realizaciones con las que yo calculo mi $\bar{X}$. Entonces si mi $\bar{x}_{obs}$ medida está lo suficientemente lejos de $0$ podemos decir que que $\mu$ es diferente de cero. Pero: ¿Qué es suficientemente lejos?
 
-[^n]: La $n$ en $\bar{X}_n$ es simplemente para enfatizar que es el promedio de una secuencia de $n$ realizaciones.
-[^cuenta]: Es una cuenta que aparece en cualquier manual de estadística (procede a preguntarle a ChatGPT).
+[^n]: La $n$ en $\bar{X}_n$ es simplemente para enfatizar que es el promedio de una seciencia de $n$ realizaciones.
 
-Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Por ejemplo, podemos decir que $\mu$ es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos decir que $\mu$ no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). El razonamiento tradicional del testeo de hipótesis nulas (NHST[^NHST]) es acotar el error de tipo I.
+Bueno, para responder esa pregunta vamos a tener que primero definir los errores que podemos cometer. Podemos cometer el error de decir que $\mu$ es diferente de cero cuando no lo es (Error tipo I o falso positivo) o podemos cometer el error de decir que $\mu$ no es diferente de cero cuando sí lo es (Error tipo II o falso negativo). Nuestro razonamiento va a ser empezar acotando el error de tipo I.
 
-[^NHST]: Del inglés *Null Hypothesis Significance Testing*.
-
-Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado[^modulo] del cero que $\bar{x}_{obs}$ dado que $H_0$ es verdadera. Es decir, $P(|\bar{X}|>\bar{x}_{obs}|H_0)$. Esta magnitud es lo que se conoce como el viejo y querido p-valor o *p-value* (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando $\bar{X}$ de la siguiente forma:
-
-[^modulo]: Como pueden observar, el "más alejado" se traduce matemáticamente en un módulo.
+Para esto vamos a calcular qué tan probable es observar un valor igual o más alejado del cero que $\bar{x}_{obs}$ dado que $H_0$ es verdadera. Es decir, $P(|\bar{X}|>\bar{x}_{obs}|H_0)$. Esta magnitud es lo que se conoce como el viejo y querido p-valor o *p-value* (si te gusta hacerte el canchero). En nuestro caso lo podemos calcular explícitamente. Empecemos estandarizando $\bar{X}$ de la siguiente forma:
 
 $$
 Z = \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 $${#eq-test}
 
-Que bajo $H_0$, como $\mu=0$, se convierte en:
+Que bajo $H_0$ es:
 
 $$
 Z_{H_0} = \frac{\bar{X}}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
 $${#eq-test}
 
-Entonces, si consideramos a $z_{\bar{x}}$ como la versión estandarizada de $\bar{x}_{obs}$[^zbar], podemos calcular el p-valor como:
-
-[^zbar]: $z_{\bar{x}} = \frac{\bar{x}_{obs}}{\sqrt{\sigma^2/n}}$.
+Entonces, si consideramos a $z_{\bar{x}}$ como la versión estandarizada de $\bar{x}_{obs}$, podemos calcular el p-valor como:
 
 $$
 \begin{array}
@@ -477,19 +384,16 @@ $$
 p_{valor} = 2 \phi(-|z_{\bar{x}}|)
 $${#eq-test}
 
-Y ahora que tenemos esta probabilidad ¿qué hacemos? Bueno, lo que podemos hacer es decir: Si el dato que tomamos viene de un mundo donde $H_0$ es verdadera (también conocido como mundo-$H_0$) podemos calcular que tan "raro" es. Entonces, pongamos una cota en esa probabilidad  de encontrar esos datos y de esa forma estaremos acotando el error de tipo I en el largo plazo[^frecuentista]. Así es que surge el famoso $\alpha$ que normalmente hacemos valer $0.05$[^alpha]. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el $5%$ de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación "práctica" del p-valor (si se quedan con las ganas pueden ir a leer [esto](https://lakens.github.io/statistical_inferences/01-pvalue.html)).
+Y ahora que tenemos esta probabilidad qué hacemos. Bueno, lo que podemos hacer es decir: Si los datos vienen de $H_0$ podemos calcular que tan "raros" son, entonces pongamos una cota en esa probabilidad y de esa forma estaremos acotando el error de tipo I en el largo plazo[^frecuentista]. Así es que surge el famoso $\alpha$ que normalmente hacemos valer $0.05$[^alpha]. ¿Qué significa eso? Bueno, significa que, si la hipótesis nula fuera verdaera diríamos euivocadamente que hay un efecto cuando no lo hay el $5%$ de las veces. Este párrafo se podría extender al infinito, pero por ahora quedémonos con esta interpretación "práctica" del p-valor (si se quedan con las ganas pueden ir a leer [esto](https://lakens.github.io/statistical_inferences/01-pvalue.html)).
 
 [^frecuentista]: El enfoque frecuentista de la estadística justamente se basa en controlar los errores dada una repetición infinita de mi experimento.
 [^alpha]: Para una discusión más profunda sobre el tema de la selección de $\alpha$ en la psicología experimental les recomiendo este hermoso artículo de Maier y Lakens [@maier2022justify].
 
 Entonces el camino es el siguiente: Tomamos las medidas, calculamos el promedio, calculamos el p-valor y si este es menor que $\alpha$ podemos decir que $H_0$ es falsa. Todo muy lindo, pero siempre tengamos en mente que no sabemos exactamente si para esa realización estamos comentiendo un error de tipo I o no, y ese es uno de las limitaciones de la estadística frecuentista.
 
-Simulemos un experimento para $n=50$ en el que nosotros conocemos tanto $\sigma^2$ como $\mu$[^simulacion]:
-
-[^simulacion]: En este caso vamos a simular un experimento en el que $H_0$ es falsa, es decir, que $\mu$ es diferente de cero y, de hecho, $\mu=0.5$. 
+Simulemos un experimento para $n=50$ en el que nosotros conocemos tanto $\sigma^2$ como $\mu$:
 
 ```{r}
-#| code-fold: false
 set.seed(123)
 n <- 50
 mu <- .5
@@ -501,11 +405,11 @@ cat(paste("El promedio muestral es:", round(mean(X), 3)))
 cat(paste("El promedio muestral estandarizado es:", round(mean(X)/sqrt(sigma^2/n), 3)))
 ```
 
-La media observada vale `r round(mean(X), 3)` y la media estandarizada ($z_{\bar{x}}$) vale `r round(mean(X)/sqrt(sigma^2/n), 3)`. Miremos como queda $z_{\bar{x}}$ dentro de la distribución de los $Z_{H_0}$ que dijimos arriba (los $\bar{X}$ bajo $H_0$ estandarizados):
+Acá vemos que, efectivamente, $H_0$ es falsa ya que $\mu=0.5$ (el verdadero parámetro poblacional). La media observada vale `r round(mean(X), 3)` y la media estandarizada ($z_{\bar{x}}$) vale `r round(mean(X)/sqrt(sigma^2/n), 3)`. Miremos ccomo queda $z_{\bar{x}}$ dentro de la distribución de los $Z_{H_0}$ (los $\bar{X}$ bajo $H_0$ estandarizados):
 
 ```{r echo=FALSE}
 #| fig-align: center
-#| fig-cap: "Función de densidad de probabilidad de las medias estandarizadas en el mundo en el que la hipótesis nula es verdadera"
+#| fig-cap: "Función de densidad de probabilidad de la variabla aleatoria H (altura de los varones)"
 #| fig-asp: .5
 lims <- tibble(x = qnorm(p = 0.025, mu, sigma), y = c(0.005), 
                xend = qnorm(p = 0.975, mu, sigma), yend = c(0.005))
@@ -513,7 +417,7 @@ ggplot() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "steelblue", linewidth = 2) +
   geom_vline(xintercept = 0, linewidth = .3, linetype = "dashed", color = "gray") +
   geom_hline(yintercept = 0, linewidth = .3, linetype = "dashed", color = "gray") +
-  geom_vline(xintercept = qnorm(p = c(0.025, 0.975), 0, 1), color = "darkorange4", linewidth = .7) +
+  geom_vline(xintercept = qnorm(p = c(0.025, 0.975), 0, 1), color = "darkorange4", size = .7) +
   geom_vline(xintercept = mean(X)/sqrt(sigma^2/n), linewidth = .7, linetype = "dashed" , color = "darkgreen") +
   geom_point(aes(x = mean(X)/sqrt(sigma^2/n), y=0), size = 3, color = "darkgreen") +
   xlim(c(-3,3)) +
@@ -531,15 +435,14 @@ $${#eq-test}
 Que en R lo podemos calcular como:
 
 ```{r}
-#| code-fold: false
 cat(paste("El p-valor es:", round(2*pnorm(-mean(X)/sqrt(sigma^2/n)),3)))
 ```
 
 Que como es menor que $0.05$ nos permite rechazar $H_0$.
 
 Para resolver este ejemplo hicimos dos consideraciones que les pueden hacer ruido:
-1. Asumimos que conocíamos la desviación estándar de $X$.
-2. Asumimos que $X$ tiene distribución normal.
+1. Asumimos que conocíamos la desviación estándar de X.
+2. Asumimos que X tiene distribución normal.
 
 ### ¿Qué pasa si no conozco $\sigma$?
 
@@ -547,38 +450,35 @@ Con respecto a **1**, es natural que les haga ruido ya que en la mayoría de los
 
 $$
 S^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
-$${#eq-S2}
+$${#eq-test}
 
 Para nuestro ejemplo vale:
 
 ```{r}
-#| code-fold: false
 cat(paste("la estimación de sigma es:", round(sd(X), 3)))
 ```
 
 Bastante cercana al valor poblacional $2$.
 
-Ahora, no es cuestión de normalizar con este nuevo $S^2$ y seguir como si nada. La cosa cambia y la distribución de $\bar{X}$ estandarizado bajo $H_0$ ya no tiene una distribución normal sino una distribución t de student con $n-1$ grados de libertad. O sea:
+Ahora, no es cuestión de normalizar con este nuevo $S^2$ y seguir como si nada. La cosa cambia y la distribución de $\bar(X)$ estandarizado bajo $H_0$ ya no tiene una distribución normal sino una distribución t de student con $n-1$ grados de libertad. O sea:
 
 $$
 \frac{\bar{X} - \mu}{\sqrt{S^2/n}} \sim t_{n-1}
-$${#eq-Z}
+$${#eq-test}
 
 Esto se deduce a partir de que:
-
 $$
 \frac{\bar{X} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}(0,1)
-$${#eq-Z_dist}
-
-Y el estimador $S^2$ se distribuye tiene una distribución $\chi^2$ con $n-1$ grados de libertad[^chi]:
-
-[^chi]: Para entender esto hay que recordar que $S^2$ es una función de las $n$ realizaciones de $X$ y que la distribución $\chi^2$ se define como la suma de los cuadrados de $n$ variables aleatorias independientes distribuidas normalmente. Entonces, como $S^2$ es una función de las $n$ realizaciones de $X$, y cada una de estas realizaciones se distribuye normalmente, entonces $S^2$ se distribuye como una $\chi^2$ con $n-1$ grados de libertad.
+$$
+Y:
 
 $$
 (n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
-$${#eq-chi}
+$${#eq-test}
 
-Y la definición de $t_{n-1}$ es:
+Y la definición de $t_{n-1}$ es[^t]:
+
+[^t]: Hay que hacer un poco de cuentita pero sale en un segundo.
 
 $$
 \begin{array}
@@ -588,37 +488,35 @@ V &\sim& \chi^2_{n} \\
 \end{array}
 $${#eq-test}
 
-Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la $\sigma$ poblacional[^pt]:
+Calculemos el p-valor de nuestro ejemplo, pero ahora como si no conociéramos la $\sigma$ poblacional[^t]:
 
-[^pt]: Dentro de la función `pt` ahora se agrega el parámetro `df` que representa los grados de libertad.
+[^t]: Dentro de la función `pt` ahora se agrega el parámetro `df` que representa los grados de libertad.
 
 ```{r}
-#| code-fold: false
 cat(paste("El p-valor es:", round(2*pt(-mean(X)/sqrt(sd(X)^2/n), df = n-1),4)))
 ```
 
 Una buena noticia es que este p valor se puede calcular directamente con la función `t.test(X)` de la siguiente forma:
 
 ```{r}
-#| code-fold: false
 t.test(X)
 ```
 
-Para cerrar, vale la pena mencionar que los parámetros $\beta$ de un modelo lineal son variables aleatorias y también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.
+Para cerrar, vale la pena mencionar que los parámetros $\beta$ de un modelo lineal también tienen distribución t (los grados de libertad son más complejos). O sea que todo lo que vimos hasta acá de errores tipo I, tipo II, p-valor, etc. vale también para ellos.
 
 ### ¿Qué pasa si $X$ no se distribuye normalmente?
 
-Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos $X$ nos interesa la de sus medias $\bar(X)$ (si estiman algún parámetro de interés, claro). Y acá viene al rescate [el teorema central del límite](https://www.youtube.com/watch?v=zeJD6dqJ5lo):
+Ahora que ya vimos que estamos haciendo cuando hacemos inferencia sobre la media, nos damos cuenta que más que interesarnos la distribución de los datos $X$ nos interesa la de sus medias $\bar(X)$ (si estiman algún parámetro de interés, claro). Y acá viene al rescate el teorema central del límite:
 
 $$
 \frac{\bar{X}-\mu}{\sqrt{\sigma^2/n}}  \xrightarrow{\mathcal{D}} \mathcal{N}(0,1)
-$${#eq-CTL}
+$${#eq-test}
 
-El mismo nos dice que distribución de la media estandarizada converge en distribución a una $\mathcal{N}(0,1)$ sin importar la distribución de $X$. Esto significa que si el $n$ es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca[^TCL].
+El mismo nos dice que distribución de la media estandarizada converge endistribución a una $\mathcal{N}(0,1)$ sin importar la distribución de $X$. Esto significa que si el $n$ es lo suficientemente grande podemos estar tranquilos de que no es una asunción tan loca[^TCL].
 
 [^TCL]: Cuando las cosas no se pueden aproximar así hay solución, existen otros tests o simplemente tests que no asumen ninguna distribución (no paramétricos).
 
-Supongamos que hay una variable aleatoria con distribución exponencial $V \sim \mathcal{E}(\lambda=1)$ tal que $E(V) = \lambda$. Si tomamos una muestra de $n=100$ de $V$, el histograma de la misma se ve algo así:
+Supongamos que hay una variable aleatoria $V \sim \mathcal{E}(\lambda=1)$ tal que $E(V) = \lambda$. Si tomamos una muestra de $n=100$ de $V$, el histograma de la misma se ve algo así:
 
 ```{r echo=FALSE}
 #| fig-align: center
@@ -641,7 +539,7 @@ Xs %>% ggplot() +
   labs(x = "V", y = "Fx(X)")
 ```
 
-Donde en azul vemos el histograma y en negro la función de densidad para $\mathcal{E}(\lambda=1)$. Ahora, qué pasa si tomamos $1000$ muestras y hacemos el histograma de sus $1000$ medias:
+Donde en azul vemos el histograma y en negro la función de densidad para $\mathcal{E}(\lambda=1)$. Ahora, qué pasa si tomamos $1000$ muestras y hacemos el histograma de sus medias:
 
 ```{r}
 #| fig-align: center
@@ -707,7 +605,7 @@ pot_tbl %>% ggplot(aes(x = mu,
   theme_bw()
 ```
 
-Como es de esperarse, la potencia también depende del $\alpha$ ya que cuanto menos estrictos nos ponemos para decir que hay un efecto menos probabilidades de cometer un error de tipo II tenemos (pero más de tipo I pues `r emo::ji("keycap_hash")`**MantaCorta**).
+Como es de esperarse, la potencia también depende del $\alpha$:
 
 ```{r}
 #| fig-align: center
@@ -722,6 +620,8 @@ pot_tbl %>% ggplot(aes(x = alpha,
   labs(title = "Potencia en función de alfa") +
   theme_bw()
 ```
+
+Con valores de potencia mayores para valores más garndes de $\alpha$. Nuevamente esto tiene sentido ya que ser más restictivo con el rechazo de $H_0$ (o sea, que tenga que observar un valor más extremo) lleva a una disminución de $\alpha$, a un aumento de los errores tipo II y con ello a una disminución de la potencia.
 
 Finalmente, la potencia también depende del $n$:
 
@@ -741,25 +641,18 @@ pot_tbl %>% ggplot(aes(x = n,
 
 Con valores de potencia más altos para $n$ más grande. Es decir, si tengo una muestra más grande voy a cometer menos errores[^fina]. Esta última dependencia es muy importante.
 
-[^fina]: Las distribuciones de $H_0$ y $H_1$ se hacen más finas ya que la varianza de la distribución de las medias se divide por $n$ y hay menos solapamiento. 
+Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar cambios pequeños sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El $\alpha$ lo decidimos cuando acotamos el error de tipo I, a $\mu$ no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el $n$. 
 
-Hay una interpretación que me gusta que es la siguiente, la potencia estadística es la lupa con la que miramos el problema. Es decir, si tenemos una potencia alta vamos a poder detectar diferencias pequeñas sin cometer demasiados errores. Supongamos que queremos diseñar un experimento con una dada potencia. El $\alpha$ lo decidimos cuando acotamos el error de tipo I, a $\mu$ no lo conocemos (algo vamos a hacer), entonces, lo que más a mano nos queda para tener un experimento más potente es aumentar el $n$. 
+[^fina]: Las distribuciones de $H_0$ y $H_1$ se hacen más finas y hay menos solapamiento, recuerden que en ambas la varianza disminuye con $1/n$. 
 
-El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento[^power]. El procedimiento es el siguiente:
-
-[^power]: Algo que se conoce normalmente como *a-priori power analysis*.
+El uso que se le da normalmente a esta herramienta es para determinar el mínimo tamaño de muestra necesario para un experimento. El procedimiento es el siguiente:
 
 1. Estimamos la variabilidad de nuestro experimento de alguna forma. Lo más usual es hacer un piloto pero también puede ser un dato que salga de la bibliografía, o de experimentos anteriores que hayamos realizado.
 2. Determinamos el mínimo tamaño de efecto de interés (*SESOI*[^sesoi]). Esta no es una determinación estadística sino que de dominio, tenemos que conocer el problema y pensar en cuál sería el mínimo tamaño de efecto que consideraría relevante (relevante, no significativo). Esto a veces puede ser un poco confuso pero también nos obliga a pensar qué consideramos relevante en nuestro experimento.
-3. Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo $0.9$) y un $\alpha$ dado (por ejemplo $0.05$) [^potencia_cuenta].
-
-[^sesoi]: Del inglés *smallest effect size of interest*.
-[^potencia_cuenta]: Por supuesto que acá hay que hacer una cuenta, pero excede el alcance de este libro.
+3. Una vez que tenemos estas dos magnitudes calculamos el tamaño de muestra para una potencia dada (por ejemplo $0.9$) y un $\alpha$ dado (por ejemplo $0.05$).
 
 No siempre resulta tan directo como en nuestro ejemplo, en el que podemos despejar explícitamente $n$, pero la forma de pensar el problema es siempre similar.
 
-Para más detalles sobre los procedimientos para justificar el tamaño de muestra ver [@lakens2022sample] o su [versión en OSF](https://osf.io/preprints/psyarxiv/9d3yf_v1) que está actualizada con algunas cositas nuevas.
+Para más detalles sobre los procedimientos para justificar el temaño de muestra ver [@lakens2022sample].
 
-## *Farewell*
-
-Con estos conceptos dejamos cerrado este breve pero jugoso repaso de probabilidad y estadística. Ya estamos listos para empezar a pensar en experimentos, relaciones causales y cuasiexperimentos. Nos vemos en el próximo capítulo.
+[^sesoi]: Del inglés *smallest effect size of interest*.

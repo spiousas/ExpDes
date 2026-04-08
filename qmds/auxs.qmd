@@ -731,5 +731,8 @@ $$
 
 
 $$
-
+\begin{array}
+H_0: \beta_{Chinstrap} = \beta_{Gentoo} = 0 \\
+H_1: \text{Al menos una de las betas es distinta de cero}
+\end{array}
 $$

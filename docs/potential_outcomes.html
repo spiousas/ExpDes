@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -52,17 +52,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./dags.html" rel="next">
 <link href="./intro_stat.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2a10dd4849c59e75046403e541f8daee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-8587d4cd0de1fd06175633e285ffa193.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2a10dd4849c59e75046403e541f8daee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,7 +81,7 @@ div.csl-indent {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "No se han encontrado resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -105,7 +109,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -123,7 +127,169 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating slimcontent">
+<body class="nav-sidebar floating slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -145,7 +311,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
@@ -228,7 +396,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referencias</span></a>
   </div>
 </li>
     </ul>
@@ -240,8 +408,13 @@ window.Quarto = {
   <li><a href="#guerra-fría-manos-y-contrafácticos." id="toc-guerra-fría-manos-y-contrafácticos." class="nav-link active" data-scroll-target="#guerra-fría-manos-y-contrafácticos."><span class="header-section-number">3.1</span> Guerra fría, manos y contrafácticos.</a></li>
   <li><a href="#potential-outcomes" id="toc-potential-outcomes" class="nav-link" data-scroll-target="#potential-outcomes"><span class="header-section-number">3.2</span> <em>Potential outcomes</em></a></li>
   <li><a href="#efecto-promedio-del-tratamiento" id="toc-efecto-promedio-del-tratamiento" class="nav-link" data-scroll-target="#efecto-promedio-del-tratamiento"><span class="header-section-number">3.3</span> Efecto promedio del tratamiento</a></li>
-  <li><a href="#diferencia-de-medias-simple" id="toc-diferencia-de-medias-simple" class="nav-link" data-scroll-target="#diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</a></li>
+  <li><a href="#diferencia-de-medias-simple" id="toc-diferencia-de-medias-simple" class="nav-link" data-scroll-target="#diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</a>
+  <ul class="collapse">
+  <li><a href="#sesgo-de-seleccion" id="toc-sesgo-de-seleccion" class="nav-link" data-scroll-target="#sesgo-de-seleccion"><span class="header-section-number">3.4.1</span> Sesgo de seleccion</a></li>
+  <li><a href="#sesgo-de-tratamiento-heterogéneo" id="toc-sesgo-de-tratamiento-heterogéneo" class="nav-link" data-scroll-target="#sesgo-de-tratamiento-heterogéneo"><span class="header-section-number">3.4.2</span> Sesgo de tratamiento heterogéneo</a></li>
+  </ul></li>
   <li><a href="#independencia" id="toc-independencia" class="nav-link" data-scroll-target="#independencia"><span class="header-section-number">3.5</span> Independencia</a></li>
+  <li><a href="#sutva" id="toc-sutva" class="nav-link" data-scroll-target="#sutva"><span class="header-section-number">3.6</span> SUTVA</a></li>
   </ul>
 </nav>
 </nav>
@@ -251,6 +424,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -288,7 +462,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-De qué hablamos cuando hablamos de contrafactuales
+<span class="screen-reader-only">Tip</span>De qué hablamos cuando hablamos de contrafactuales
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -327,7 +501,7 @@ De qué hablamos cuando hablamos de contrafactuales
 <p><span id="eq-switching"><span class="math display">\[
 Y_i = D_i Y_i^1 + (1-D_i) Y_i^0
 \tag{3.1}\]</span></span></p>
-<p>Donde <span class="math inline">\(D_i\)</span> vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibió el tratamiento (entonces <span class="math inline">\(Y_i=Y_i^1\)</span>) y <span class="math inline">\(0\)</span> si no (entonces <span class="math inline">\(Y_i=Y_i^0\)</span>). Vale la pena notar que <span class="math inline">\(Y_i\)</span>, el <em>outcome</em> observable, no tiene ningún supraíndice ya que no es más potencial.</p>
+<p>Donde <span class="math inline">\(D_i\)</span> vale <span class="math inline">\(1\)</span> si la unidad <em>i</em> recibió el tratamiento (entonces <span class="math inline">\(Y_i=Y_i^1\)</span>) y <span class="math inline">\(0\)</span> si no (entonces <span class="math inline">\(Y_i=Y_i^0\)</span>). Vale la pena notar que <span class="math inline">\(Y_i\)</span>, el <em>outcome</em> observable, no tiene ningún supraíndice ya que no es más potencial. Esto tambien es una forma de hacer explicito el problema del <em>outcome observable</em>, porque dependiendo el valor que adopte <span class="math inline">\(D_i\)</span> uno de los términos se vuelve cero. Si <span class="math inline">\(D_i=0\)</span>, <span class="math inline">\(Y_i=Y_i^0\)</span> ya que el término <span class="math inline">\(D_i Y_i^1\)</span> vale 0. Si por el contrario <span class="math inline">\(D_i=1\)</span>, <span class="math inline">\(Y_i=Y_i^1\)</span> porque el término <span class="math inline">\((1-D_i) Y_i^0\)</span> vale cero. Esta es una forma sofisticada de decir que el outcome observable sólo es posible en una de las dos formas de <span class="math inline">\(D_i\)</span>.</p>
 <p>Usando esta notación definimos el efecto causal del tratamiento para una unidad <span class="math inline">\(i\)</span> como: <span id="eq-deltai"><span class="math display">\[
 \delta_i = Y_i^1 - Y_i^0
 \tag{3.2}\]</span></span></p>
@@ -361,7 +535,9 @@ _ATU &amp;=&amp; E[\delta_i|D_i=0] \\
 &amp;=&amp; E[Y_i^1|D_i=0] - E[Y_i^0|D_i=0]
 \end{array}
 \tag{3.5}\]</span></span></p>
-<p>Ojo con confundir estos tres conceptos. Creo que el <strong>ATE</strong> es autoexplicativo, pero se suele confundir <strong>ATT</strong> y <strong>ATU</strong>. En el primer caso, estamos calculando la esperanza de los <span class="math inline">\(\delta_i\)</span> para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus <span class="math inline">\(Y^1_i\)</span> como sus <span class="math inline">\(Y^0_i\)</span>. Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el <strong>ATE</strong> no se pueden calcular en la práctica. En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, podemos estimar el <strong>ATE</strong> a partir de los <em>outcomes</em> observables.</p>
+<p>Ojo con confundir estos tres conceptos. Creo que el <strong>ATE</strong> es autoexplicativo, pero se suele confundir <strong>ATT</strong> y <strong>ATU</strong>. En el primer caso, el <strong>ATT</strong> es como su nombre lo indica el <em>efecto promedio del tratamiento para el grupo de tratamiento</em>. Estamos calculando la esperanza de los <span class="math inline">\(\delta_i\)</span> para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus <span class="math inline">\(Y^1_i\)</span> como sus <span class="math inline">\(Y^0_i\)</span>. En el segundo caso, el <strong>ATU</strong> es el <em>efecto promedio del tratamiento para el grupo de no tratamiento</em>, es decir, la esperanza de los <span class="math inline">\(\delta_i\)</span> para los individuos pertenecientes al grupo control.</p>
+<p>Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el <strong>ATE</strong> no se pueden calcular en la práctica.</p>
+<p>En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, podemos estimar el <strong>ATE</strong> a partir de los <em>outcomes</em> observables.</p>
 <div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Spoiler: Asignación aleatoria de las unidades experimentales a los grupos.</p></div></div></section>
 <section id="diferencia-de-medias-simple" class="level2 page-columns page-full" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="diferencia-de-medias-simple"><span class="header-section-number">3.4</span> Diferencia de medias simple</h2>
@@ -382,17 +558,17 @@ _ATE &amp;=&amp; \pi ATT + (1-\pi) ATU \\
 &amp; &amp; \bigl\{ \pi E[Y_i^0|D_i=1] + (1-\pi) E[Y_i^0|D_i=0] \bigl\}
 \end{array}
 \tag{3.7}\]</span></span></p>
-<p>Con <span class="math inline">\(\pi = N_T/n\)</span> y <span class="math inline">\(1 - \pi = N_C/n\)</span>.</p>
-<p>Operando con la <a href="#eq-sesgos" class="quarto-xref">Ecuación&nbsp;<span>3.8</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<p>Con <span class="math inline">\(\pi = N_T/n\)</span> y <span class="math inline">\(1 - \pi = N_C/n\)</span>. Es decir <span class="math inline">\(\pi\)</span> es la proporción de individuos tratados y <span class="math inline">\(1 - \pi\)</span> es la proporción de individuos no tratados.</p>
+<p>Operando con la <a href="#eq-sesgos" class="quarto-xref">Ecuación&nbsp;<span>3.7</span></a> podemos despejar la diferencia entre los <em>outcomes</em> observables (<strong>SDO</strong>) y ver cómo esta se realciona con el resto de las magnitudes definidas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Pueden ver el despeje numérico en detalle en el capítulo 4 de <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span>.</p><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
 Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
-</div></div></div><p><span id="eq-sesgos"><span class="math display">\[
+</div></div></div><p><span class="math display">\[
 \begin{array}
 _E[Y_i^1|D_i=1] - E[Y_i^0|D_i=0] &amp;=&amp; ATE \\
 &amp;+&amp; ( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] ) \\
 &amp;+&amp; (1-\pi) (ATT - ATU)
 \end{array}
-\tag{3.8}\]</span></span></p>
+\]</span></p>
 <p>Que podemos reescribir como:</p>
 <p><span id="eq-SDOdecomp"><span class="math display">\[
 \begin{array}
@@ -400,8 +576,18 @@ _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=
 &amp;+&amp; \underbrace{( E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] )}_\text{Sesgo de selección} \\
 &amp;+&amp; \underbrace{(1-\pi) (ATT - ATU)}_\text{Sesgo de efecto heterogéneo}
 \end{array}
-\tag{3.9}\]</span></span></p>
-<p>Lo que puede verse en <a href="#eq-SDOdecomp" class="quarto-xref">Ecuación&nbsp;<span>3.9</span></a> es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el <strong>SDO</strong> sería un buen estimador del <strong>ATE</strong> que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.</p>
+\tag{3.8}\]</span></span></p>
+<p>Lo que puede verse en <a href="#eq-SDOdecomp" class="quarto-xref">Ecuación&nbsp;<span>3.8</span></a> es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el <strong>SDO</strong> sería un buen estimador del <strong>ATE</strong> que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.</p>
+<p>O sea que la clave del diseño experimental va a ser encontrar la forma de asegurar que esos sesgos sean nulos.Veamos mejor que representan para poder entender como minimizarlos.</p>
+<section id="sesgo-de-seleccion" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="sesgo-de-seleccion"><span class="header-section-number">3.4.1</span> Sesgo de seleccion</h3>
+<p>Miremos con detenimiento la formula a la que llamamos sesgo de selección <span class="math inline">\(E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0]\)</span>. Si la definimos a partir de esta ecuacion representa la diferencia entre los dos grupos si nunca había habido un tratamiento en primer lugar.O sea que son las diferencias inherentes entre los dos grupos si no condujeramos el experimento. Estas diferencias aparecen al <strong>seleccionar</strong> individuos en un grupo y no en el otro, por eso lo llamamos sesgo de selección. Por el contrario, mientras mas se parezcan en el outcome <span class="math inline">\(Y_i^0\)</span> los individuos asignados a uno u otro grupo <span class="math inline">\(D\)</span>, mas cercano a cero será el sesgo de selección. Entonces sería ideal medir el sesgo de selección ya que es una medida de cuan lejos está el estimador del <strong>ATE</strong> (el <strong>SDO</strong>) del verdadero valor. Sin embargo el primer término de la ecuación es un contrafáctico. No nos queda otra alternativa que buscar una condición en donde (aunque no podamos medirlo) el sesgo de selección tienda a 0.</p>
+</section>
+<section id="sesgo-de-tratamiento-heterogéneo" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="sesgo-de-tratamiento-heterogéneo"><span class="header-section-number">3.4.2</span> Sesgo de tratamiento heterogéneo</h3>
+<p>Este tercer componente es un poco más difícil de explicar, miremoslo bien: <span class="math inline">\((1-\pi) (ATT - ATU)\)</span>. Así definido se puede decir que es la diferencia entre el efecto promedio del tratamiento para el grupo de tratamiento (el <strong>ATT</strong>) y la misma para el grupo control (el <strong>ATU</strong>) multiplicado por la proporción de sujetos que está en el grupo control. Se diferencia del sesgo de selección porque habiamos definido al primero como la respuesta de los individuos de ambos grupos si no se les hubiera aplicado la intervencion. Aqui, en cambio, es la la diferencias de la respuesta promedio si se les hubiera o no aplicado la intervencion tanto al grupo control (el <strong>ATU</strong>) como al grupo tratamiento (el <strong>ATT</strong>). Por supuesto de nuevo este sesgo no se puede medir pero se puede buscar una condicion en donde sea cero.</p>
+<p>Tenemos asi la necesidad de buscar una condición en donde ambos sesgos sean 0 para que el SDO sea finalmente un buen estimador del ATE, esa condicion es la independencia.</p>
+</section>
 </section>
 <section id="independencia" class="level2 page-columns page-full" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="independencia"><span class="header-section-number">3.5</span> Independencia</h2>
@@ -416,9 +602,9 @@ _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=
 _E[Y^1|D=1] - E[Y^1|D=0] &amp;=&amp; 0 \\
 E[Y^0|D=1] - E[Y^0|D=0] &amp;=&amp; 0
 \end{array}
-\tag{3.10}\]</span></span></p>
+\tag{3.9}\]</span></span></p>
 <p>Es decir, que la esperanza de los <em>outcomes</em> para los participantes que fueron asignados al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en “mundo tratamiento”<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Y lo mismo pasaría si pudiéramos medirlos a ambos grupos en el “mundo control”[^indep]. Ojo que esto no implica que la esperanza del <em>outcome</em> para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=0] = 0\)</span>) ni igual a la esperanza no tratamiento de los tratados (<span class="math inline">\(E[Y^1|D=1] - E[Y^0|D=1] = 0\)</span>).</p>
-<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Tengamos en cuenta que <span class="math inline">\(E[Y^1|D=0]\)</span> es un contrafáctico, ya que es el <em>outcome</em> habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con <span class="math inline">\(D=0\)</span>)</p></div></div><p>¿Qué implicancias tiene las igualdades presentadas en <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a> en los sesgos que vimos en la ecuación <a href="#eq-sesgos" class="quarto-xref">Ecuación&nbsp;<span>3.8</span></a>? Empecemos por el sesgo de selección (<span class="math inline">\(E[Y^0|D=1] + E[Y^0|D=0]\)</span>). Vemos que, deacuerdo a la primera línea de <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a> ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo <em>outcome</em> lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Tengamos en cuenta que <span class="math inline">\(E[Y^1|D=0]\)</span> es un contrafáctico, ya que es el <em>outcome</em> habiendo sido expuesto al tratamiento pero de los individuos en el grupo control (de ahí la condicionalidad con <span class="math inline">\(D=0\)</span>)</p></div></div><p>¿Qué implicancias tiene las igualdades presentadas en <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.9</span></a> en los sesgos que vimos en la ecuación <a href="#eq-sesgos" class="quarto-xref">Ecuación&nbsp;<span>3.7</span></a>? Empecemos por el sesgo de selección (<span class="math inline">\(E[Y^0|D=1] + E[Y^0|D=0]\)</span>). Vemos que, deacuerdo a la primera línea de <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.9</span></a> ya nos dice que, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo <em>outcome</em> lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.</p>
 <p>La relación del sesgo de efecto heterogéneo (<span class="math inline">\((1-\pi) (ATT - ATU)\)</span>) con la independencia es un poquito más difícil de demostrar. Olvidémonos del <span class="math inline">\((1-\pi)\)</span> de momento. Reescribamos los efectos <strong>ATT</strong> y <strong>ATU</strong>:</p>
 <p><span class="math display">\[
 \begin{array}
@@ -432,9 +618,21 @@ ATU &amp;=&amp; E[Y^1|D=0] - E[Y^0|D=0]
 _ATT - ATU &amp;=&amp; E[Y^1|D=1] - E[Y^0|D=1] - ( E[Y^1|D=0] - E[Y^0|D=0] )\\
 &amp;=&amp; \bigl\{ E[Y^1|D=1] - E[Y^1|D=0] \bigl\} + \bigl\{ E[Y^0|D=0] - E[Y^0|D=1] \bigl\}
 \end{array}
-\tag{3.11}\]</span></span></p>
-<p>Reescrito de esta forma podemos ver los dos primero términos de <a href="#eq-sesgohet" class="quarto-xref">Ecuación&nbsp;<span>3.11</span></a> se hacen cero por la rpimero línea de <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a>, y los últimos dos se hacen cero por la segunda.</p>
+\tag{3.10}\]</span></span></p>
+<p>Reescrito de esta forma podemos ver los dos primero términos de <a href="#eq-sesgohet" class="quarto-xref">Ecuación&nbsp;<span>3.10</span></a> se hacen cero por la rpimero línea de <a href="#eq-independencia" class="quarto-xref">Ecuación&nbsp;<span>3.9</span></a>, y los últimos dos se hacen cero por la segunda.</p>
 <p>Finalmente, demostramos que si hay independencia en la asignación de los grupos, la diferencia de las medias entre el grupo tratado y el control es un buen estimador del <strong>ATE</strong>.</p>
+</section>
+<section id="sutva" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sutva"><span class="header-section-number">3.6</span> SUTVA</h2>
+<p>En este capítulo hemos creado un marco teórico para definir un efecto causal, le dimos un nombre a ese efecto causal, lo llamamos <strong>ATE</strong> y vimos que es imposible calcularlo por la existencia de contrafácticos pero que podemos estimarlo por una medida observable, la <strong>SDO</strong>. También vimos que <strong>SDO</strong> contiene al <strong>ATE</strong> y a un par de sesgos, sesgos que deberían hacerse cero si el supuesto de independencia se cumple.</p>
+<p>¿Podría pasar que un efecto causal no pueda ser estimado con este marco teórico? Sí, hay un límite a este marco en donde todas estos cáclulos (medibles o no) son posibles.Si vamos al corazón mismo de todos los cálculos la condición que debe cumplirse para que todo sea posible es que las <span class="math inline">\(Y_i\)</span> sean restables, en otras palabras que representen lo mismo. A este supuesto se lo llama <strong>SUTVA</strong> que es la abreviatura de <strong>stable unit treatment value assumption</strong>. Vamos a reformularlo, <strong>SUTVA</strong> implica que cada unidad <span class="math inline">\(i\)</span> recibe la misma dosis de tratamiento.</p>
+<p>Cuando el SUTVA se cumple: cuando se expone un individuo a un tratamiento, su respuesta será la misma: 1) Sin importar cómo el participante fue asignado al tratamiento y 2) Sin importar los tratamientos recibidos por las otras unidades.</p>
+<p>Sin embargo, en la práctica estos supuestos pueden fallar. En particular, la segunda condición —la ausencia de interferencia entre unidades— puede violarse por fenómenos sociales, conductuales o institucionales que modifican la respuesta de los individuos en función de lo que ocurre con otros. Algunos ejemplos clásicos de estas violaciones son la rivalidad compensatoria, la desmoralización resentida, la difusión o imitación de tratamientos y la ecualización compensatoria de tratamientos.</p>
+<p>La rivalidad compensatoria ocurre cuando los individuos del grupo control, al saber (o sospechar) que no están recibiendo el tratamiento, reaccionan esforzándose más para “compensar” esa desventaja. Por ejemplo, en un estudio educativo, los estudiantes que no reciben una nueva intervención pedagógica podrían estudiar más por su cuenta para no quedar atrás. Esto genera que sus resultados mejoren artificialmente, reduciendo la diferencia observada entre tratamiento y control, y por lo tanto subestimando el efecto causal real. En notación de <em>potential outcomes</em>, esto se traduce en que el resultado observable (<span class="math inline">\(Y_i^0|D_i=0\)</span>) tiene agregado un efecto “compensatorio” que lo hace más grande que su contrafáctico (<span class="math inline">\(Y_i^0|D_i=1\)</span>) o sea la respuesta al no-tratamiento en el grupo tratamiento.</p>
+<p>En contraste, la desmoralización resentida aparece cuando los individuos del grupo control, al percibirse en desventaja, se desmotivan o reducen su esfuerzo. Siguiendo el mismo ejemplo, estudiantes que no reciben la intervención podrían perder interés o sentirse injustamente tratados, empeorando su desempeño. En este caso, la diferencia entre los grupos se amplifica, lo que puede llevar a sobreestimar el efecto del tratamiento.</p>
+<p>La difusión o imitación de tratamientos (también conocida como spillover) ocurre cuando el tratamiento asignado al grupo tratado se filtra hacia el grupo control. Esto puede suceder, por ejemplo, si los participantes comparten información, prácticas o recursos. Como resultado, algunos individuos del grupo control terminan recibiendo, total o parcialmente, el tratamiento, lo que reduce la diferencia entre grupos y tiende a sesgar la estimación hacia cero. En este escenario vuelve a pasar que <span class="math inline">\(Y_i^0|D_i=0\)</span> tiene un efecto agregado (el tratamiento que se derramo en el sujeto) que lo aleja del contrafáctico <span class="math inline">\(Y_i^0|D_i=1\)</span></p>
+<p>Finalmente, la ecualización compensatoria de tratamientos se da cuando quienes administran el estudio (docentes, médicos, coordinadores, etc.) otorgan recursos adicionales al grupo control para compensar la falta de tratamiento. Por ejemplo, un docente podría dedicar más tiempo o atención a los estudiantes del grupo control para “equilibrar” la situación. Esto también reduce artificialmente las diferencias entre grupos y dificulta identificar el efecto causal puro del tratamiento.</p>
+<p>Todos estos fenómenos violan SUTVA porque los resultados de una unidad ya no dependen únicamente de su propio tratamiento, sino también de lo que reciben o hacen otros, o incluso de cómo los administradores reaccionan a la asignación. En otras palabras, los resultados potenciales dejan de ser “estables” y comparables, comprometiendo la validez de nuestras estimaciones causales.</p>
 
 
 
@@ -443,383 +641,256 @@ _ATT - ATU &amp;=&amp; E[Y^1|D=1] - E[Y^0|D=1] - ( E[Y^1|D=0] - E[Y^0|D=0] )\\
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiado");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copiado");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -827,185 +898,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./intro_stat.html" class="pagination-link" aria-label="Repaso de probabilidad y estadística">

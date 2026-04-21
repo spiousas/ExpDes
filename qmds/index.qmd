@@ -1,16 +1,16 @@
 # Prefacio {.unnumbered}
 
-Este libro *online* surge con la intención de acompañar a los estudiantes de la materia Diseños Experimentales y Cuasiexperimentales de la carrera de Licenciatura en Ciencias del Comportamiento de la [Universidad de San Andrés](https://udesa.edu.ar/) (Victoria, Argentina). Sin embargo,  no contiene todo los materiales de la materia, sino que es más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.
+Este libro *online* surge con la intención de acompañar a los estudiantes de la materia Diseños Experimentales y Cuasiexperimentales de la Licenciatura en Ciencias del Comportamiento de la [Universidad de San Andrés](https://udesa.edu.ar/) (Victoria, Argentina). Sin embargo,  no contiene todo los materiales de la materia, sino que es más bien es una guía que nos permite comprender conceptos básicos e identificar lo importante en cada tema. De forma complementaria, en cada capítulo se brindará una lista de bibliografía recomendada.
 
 ## Lo que vas a aprender en este libro
 
-El objetivo de este libro es acercar a los lectores y lectoras los conceptos básicos del diseño experimental y cuasiexperimental para que de esta manera sean capaces de diseñar sus propios experimentos para expresar y verificar efectivamente hipótesis científicas. Asimismo se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.
+El objetivo de este libro es introducir a los lectores y lectoras a los conceptos básicos del diseño experimental y cuasiexperimental para que sean capaces de diseñar sus propios experimentos paraponer a prueba hipótesis científicas. Asimismo, se busca generar intuiciones que les permitan evaluar diseños experimentales con los que se puedan encontrar tanto en la literatura científica como en cualquier dato obtenido experimentalmente que se les presente al momento de tomar una decisión.
 
-En particular, gran parte de la discusión tendrá que ver con cómo identificar los efectos causales de un *tratamiento*[^tartamiento] en alguna variable observada. Empezando por el tan estimado experimento aleatorizado para luego entrar en las tumultuosas aguas de los diseños cuasiexperiemntales. 
+En particular, gran parte de la discusión tendrá que ver con **cómo identificar los efectos causales de un tratamiento**[^tratamiento] en alguna variable observada. Se comenzará por el tan estimado experimento aleatorizado para luego entrar en las tumultuosas aguas de los diseños cuasiexperimentales. 
 
-[^tartamiento]: La palabra *tratamiento* no se refiere únicamente a un tratamiento, por ejemplo, médico, sino que más bien es un término que se utiliza frecuentemente en el diseño experimental, sobre todo en medicina, para referirnos a la causa.
+[^tratamiento]: La palabra *tratamiento* no se refiere únicamente a un tratamiento, por ejemplo, médico, sino que más bien es un término que se utiliza frecuentemente en el diseño experimental, sobre todo en medicina, para referirnos a la causa.
 
-Se espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de los mismos de manera clara, concisa y "apta para todo público". Asímismo, un concepto transversal es que no siempre es posible implementar un diseño experimental "ideal" (si este existiera) y que tomar decisiones informadas sobre los mismos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.
+Se espera que los lectores y lectoras sean capaces de comunicar los diseños experimentales, sus resultados y las implicancias de estos de manera clara, concisa y "apta para todo público". Asimismo, un concepto transversal es que no siempre es posible implementar un diseño experimental "ideal" (si este existiera) y que tomar decisiones informadas sobre estos (modelos estadísticos, métricas, diseños, etc.) es una parte importante de nuestra labor como generadores de evidencia o tomadores de decisión basada en evidencia.
 
 ::: {.callout-tip icon="false"}
 ## SIGA SIGA...
@@ -20,27 +20,27 @@ Si bien los ejemplos que se presentan en el libro están orientados a las cienci
 
 ## ¿Qué es este libro?
 
-En este libro no vas a encontrar grandes desarrollos teóricos ni ejemplos complejos. Es simplemente una guía de lectura que tiene como objetivo ser la puerta de entrada para algunos conceptos clave del diseño experimental y la inferencia causal. Para esto vamos a chapotear en **R** y *tidyverse*, mojar las patas en la estadística, aguantar un poco la respiración en inferencia y *potential outcomes*, bucear en diseños aleatorizados (experimentos) para finalmente sumergirnos (con la idea de volver a salir a flote) en las profundas aguas del diseño cuasiexperimental y la inferencia causal.
+En este libro no vas a encontrar grandes desarrollos teóricos ni ejemplos complejos. Es simplemente una guía de lectura que tiene como objetivo ser la puerta de entrada para algunos conceptos clave del diseño experimental y la inferencia causal. Para esto vamos a chapotear en **R** y *tidyverse*, mojar las patas en la estadística, aguantar un poco la respiración en inferencia y *potential outcomes*, bucear en diseños aleatorizados (experimentos), para finalmente sumergirnos (con la idea de volver a salir a flote) en las profundas aguas del diseño cuasiexperimental y la inferencia causal.
 
 ## Lo que NO vas a aprender en este libro
 
-Este libro no es un libro de inferencia estadística y no vamos a hablar de *tests* estadísticos sino en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro **NO** es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.
+Este libro no es un libro de inferencia estadística y no vamos a hablar de *tests* estadísticos, más que en el contexto de una hipótesis científica y de un diseño experimental en particular. Es decir, este libro **NO** es un manual de estadística. Existen cientos de libros que desarrollan en detalle esos contenidos y para nada este libro pretende cubrir esos contenidos.
 
-Este libro tampoco es un manual de programación ni de análisis de datos en **R**. Si bien en la primera sección del libro haremos una presentación de algunas de las funcionalidades de la colección de paquetes para análisis de datos que es el *tidyverse*, no vamos a repasar ninguna de las bases de **R** ni de **Rstudio**. Existen infinidad de recursos increíbles para aprender esto y sentimos que no hay necesidad de sumarle a eso uno mediocre.
+Este libro tampoco es un manual de programación ni de análisis de datos en **R**. Si bien en la primera sección del libro haremos una presentación de algunas de las funcionalidades de la colección de paquetes para análisis de datos con *tidyverse*, no vamos a repasar ninguna de las bases de **R** ni de **Rstudio**. Existen infinidad de recursos increíbles para aprender esto y sentimos que no hay necesidad de sumarle a eso uno mediocre.
 
 ## Prerequisitos
 
-Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.
+Para sacarle el jugo a los contenidos de este libro hace falta tener conocimientos básicos de probabilidad y estadística, así como estar familiarizado con la programación en R. Ninguno de estos son obstáculos hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las que el lector puede consultar previo o durante la lectura de este libro.
 
 ::: {.callout-warning icon="false"}
 ## DON'T PANIC
 
-El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística y presenta los comandos básicos para correr códigos en R.
+El libro comienza con un breve repaso de conceptos básicos de probabilidad y estadística, y presenta los comandos básicos para correr códigos en **R**.
 :::
 
 ## Agradecimientos
 
-Agradecemos profundamente a **Magdalena Cobb**, **Gabriel Alejandro Diaz**, **Juan Cruz Menutti**, **Teresa Laszeki**, **Gabriela Belén Snachez** y **Francisco Strejilevich**, tutores y alumnos asistentes de las clases 2025 y 2026, por su colaboración en la revisión de los contenidos y la edición del libro. También a los alumnos de la clase 2024 y 2025 por sus comentarios y sugerencias durante el desarrollo del libro.
+Agradecemos profundamente a **Magdalena Cobb**, **Mora Dal Lago Carabajal**, **Gabriel Alejandro Díaz**, **Juan Cruz Menutti**, **Teresa Laszeski**, **Gabriela Belén Sanchez** y **Francisco Strejilevich**, tutores y alumnos asistentes de las clases 2025 y 2026, por su colaboración en la revisión de los contenidos y la edición del libro. También a los alumnos de la clase 2024 y 2025 por sus comentarios y sugerencias durante el desarrollo del libro.
 
 ## Contacto
 

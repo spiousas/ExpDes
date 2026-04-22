@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,18 +89,19 @@ div.csl-indent {
 <link href="./potential_outcomes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-7a339148c3b2635d23d0fec43941109e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2a10dd4849c59e75046403e541f8daee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-8587d4cd0de1fd06175633e285ffa193.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2a10dd4849c59e75046403e541f8daee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,7 +116,7 @@ div.csl-indent {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Sin resultados",
+    "search-no-results-text": "No se han encontrado resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -345,7 +346,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Diseños experimentales y cuasiexperimentales</a> 
         <div class="sidebar-tools-main">
@@ -441,6 +444,8 @@ window.Quarto = {
   <li><a href="#el-criterio-de-las-puertas-de-atrás" id="toc-el-criterio-de-las-puertas-de-atrás" class="nav-link" data-scroll-target="#el-criterio-de-las-puertas-de-atrás"><span class="header-section-number">4.2</span> El criterio de las puertas de atrás</a></li>
   <li><a href="#colliders" id="toc-colliders" class="nav-link" data-scroll-target="#colliders"><span class="header-section-number">4.3</span> <em>Colliders</em></a></li>
   <li><a href="#un-ejemplo" id="toc-un-ejemplo" class="nav-link" data-scroll-target="#un-ejemplo"><span class="header-section-number">4.4</span> Un ejemplo</a></li>
+  <li><a href="#preguntas-de-repaso" id="toc-preguntas-de-repaso" class="nav-link" data-scroll-target="#preguntas-de-repaso"><span class="header-section-number">4.5</span> Preguntas de repaso</a></li>
+  <li><a href="#dos-casos-aplicados-para-pensar" id="toc-dos-casos-aplicados-para-pensar" class="nav-link" data-scroll-target="#dos-casos-aplicados-para-pensar"><span class="header-section-number">4.6</span> Dos casos aplicados para pensar</a></li>
   </ul>
 </nav>
 </nav>
@@ -471,10 +476,10 @@ window.Quarto = {
 </header>
 
 
-<p>Los grafos acíclicos dirigidos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos. Los mismos nos permiten poner en una representación gráfica el conocimiento que tenemos de las variables aleatorias involucradas en un proceso que queremos estudiar y las relaciones causales entre ellas. Además, existen herramientas que, a partir de características de los DAGS, nos permiten decidir cuál es el modelo estadístico cuyo parámetro será una estimación del efecto causal que queremos estudiar.</p>
+<p>Los grafos acíclicos dirigidos<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> son una herramienta para representar visualmente las relaciones causales presentes en nuestro diseño experimental, ni más ni menos. Estos nos permiten representar gráficamente las variables aleatorias involucradas en un proceso que queremos estudiar y las relaciones causales entre ellas. Además, existen herramientas que, a partir de características de los DAGS, nos permiten decidir cuál es el modelo estadístico cuyo parámetro será una estimación del efecto causal que queremos estudiar.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;A partir de ahora DAGS, del inglés <em>Directed acyclic graphs</em>.</p></div></div><section id="definiciones-características-y-ejemplos" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="definiciones-características-y-ejemplos"><span class="header-section-number">4.1</span> Definiciones, características y ejemplos</h2>
-<p>Un DAG es una representación gráfica de una cadena de efectos causales. Los nodos (los circulitos o cuadraditos que vamos a ver más adelante) representan variables aleatorias y las flechas que los unen representan la relación causal que se mueve de una variable a la otra en la dirección intuitiva de la flecha. Por ejemplo, pensemos que queremos estudiar el efecto de tomar una aspirina en la intensidad de nuestro dolor de cabeza cuando nos duele la cabeza. Tenemos dos variables Aspirina (<strong>A</strong>) e Intensidad del dolor (<strong>I</strong>). Esta relación la podemos expresar en el siguiente DAG:</p>
+<p>Un DAG es una representación gráfica de una cadena de efectos causales. Los nodos -los circulitos o cuadraditos que vamos a ver más adelante- representan variables aleatorias y las flechas que los unen indican la dirección de la relación causal entre ellas. Por ejemplo, pensemos que queremos estudiar el efecto de tomar una aspirina en la intensidad de nuestro dolor de cabeza cuando nos duele la cabeza. Tenemos dos variables: Aspirina (<strong>A</strong>) e Intensidad del dolor (<strong>I</strong>). Esta relación la podemos expresar en el siguiente DAG:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -491,14 +496,14 @@ window.Quarto = {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-DAGS en R
+<span class="screen-reader-only">Advertencia</span>DAGS en R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Para realizar los DAGS que aparecen en este capítulo utilizamos la librería <em>{ggdag}</em>. Para esto primero debemos hacer un esquema de nuestro DAG en <a href="https://www.dagitty.net/dags.html#">Daggity</a> y luego copiar parte de lo generado en la definición de nuestro DAG en <strong>R</strong>. En el desarrollo del capítulo utilizaremos algunas de las herramientas de <em>{ggdag}</em>, varias de las cuales pueden encontrar en <a href="https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1">este tutorial</a>. Sin embargo, para una revisión pormenorizada de sus funciones recomiendo repasar la <a href="https://r-causal.github.io/ggdag/">documentación del mismo</a>.</p>
+<p>Para realizar los DAGS que aparecen en este capítulo utilizamos la librería <em>{ggdag}</em>. Para esto, primero debemos hacer un esquema de nuestro DAG en <a href="https://www.dagitty.net/dags.html#">Daggity</a> y luego copiar parte del código en la definición de nuestro DAG en <strong>R</strong>. En el desarrollo del capítulo utilizaremos algunas de las herramientas de <em>{ggdag}</em>, varias de las cuales pueden encontrar en <a href="https://ggdagcand3.netlify.app/?panelset1=using-dagitty.net2#1">este tutorial</a>. Sin embargo, para una revisión pormenorizada de sus funciones recomendamos repasar la <a href="https://r-causal.github.io/ggdag/">documentación de este mismo</a>.</p>
 </div>
 </div>
-<p>¿Así de simple? Sí y no ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra “correlación no implica causalidad” la relación entre venta de helados (<strong>Hel</strong>) y accidentes por mordidas de tiburón en Australia(<strong>Sh</strong>). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿No?. Entonces, ¿Qué está pasando? ¿Qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación en este caso lo que tenemos es una causa común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (<strong>T</strong>). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:</p>
+<p>¿Así de simple? Sí y no. ¿Qué pasa cuando las cosas se empiezan a complicar? Pensemos en el clásico ejemplo del mantra “correlación no implica causalidad”: la relación entre venta de helados (<strong>Hel</strong>) y accidentes por mordidas de tiburón en Australia(<strong>Sh</strong>). Si nosotros planteáramos que el aumento de la venta de helados causa el aumento de los accidentes no tendría mucho sentido, ¿no? Entonces, ¿qué está pasando? ¿qué pinta tiene el DAG? Bueno, como ya comentamos cuando hablamos de correlación, en este caso lo que tenemos es una causa común a ambos fenómenos que, a modo de simplificar, la podríamos resumir como la temperatura (<strong>T</strong>). Entonces, cuando sube la temperatura sube la venta de helados, pero también los accidentes por mordidas de tiburón. Una posible relación causal entre ambas variables podría ser esta:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -509,43 +514,43 @@ DAGS en R
 </div>
 </div>
 </div>
-<p>Todo muy lindo, pero ¿Para qué?</p>
+<p>Todo muy lindo, pero ¿para qué?</p>
 </section>
 <section id="el-criterio-de-las-puertas-de-atrás" class="level2 page-columns page-full" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="el-criterio-de-las-puertas-de-atrás"><span class="header-section-number">4.2</span> El criterio de las puertas de atrás</h2>
-<p>Una de las principales ventajas de plantear un DAg para estudiar una relación causal es que nos permite ajustar un modelo a partir del cual, lo que estamos estimando en uno de sus parámetros es un estimador de la relación causal que queremos estudiar. Empecemos planteando los caminos posibles para llegar desde <strong>Hel</strong> a <strong>Sh</strong>. En este caso serían dos:</p>
+<p>Una de las principales ventajas de plantear un DAG para estudiar una relación causal es que nos permite ajustar un modelo en el cual uno de sus parámetros es un estimador de la relación causal que queremos estudiar. Empecemos planteando los caminos posibles para llegar desde <strong>Hel</strong> a <strong>Sh</strong>. En este caso serían dos:</p>
 <p><span class="math display">\[
 \begin{array}
 _Hel    \longrightarrow Sh \\
 Hel \longleftarrow T \longrightarrow Sh
 \end{array}
 \]</span></p>
-<p>El primero es lo que se llama un <em>camino directo</em> y es lo relación causal que queremos estudiar. Por otro lado, el segundo (<span class="math inline">\(Hel \leftarrow T \rightarrow Sh\)</span>) es lo que se llama una <em>puerta de atrás</em> y lo identíficamos porque, al menos en alguna de sus relaciones causales, la flechita va para la izquierda. Identificar estos caminos <em>puerta de atrás</em> es una parte fundamental de controlar la variabilidad espúrea en nuestras relaciones causales. En particular en este ejemplo, tenemos un claro confusor y lo que queremos es controlar por <strong>T</strong>.</p>
-<p>Simulemos esta relación y veamos que pasa.</p>
+<p>El primero es lo que se llama un <em>camino directo</em> y es la relación causal que queremos estudiar. Por otro lado, el segundo (<span class="math inline">\(Hel \leftarrow T \rightarrow Sh\)</span>) es lo que se llama una <em>puerta de atrás</em> y lo identificamos porque, al menos en alguna de sus relaciones causales, la flechita va para la izquierda. Identificar estos caminos <em>puerta de atrás</em> es una parte fundamental de controlar la variabilidad espúrea en nuestras relaciones causales. En particular, en este ejemplo tenemos un claro confusor y lo que queremos es controlar por <strong>T</strong>.</p>
+<p>Simulemos esta relación y veamos que pasa:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1414</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1414</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>helados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Temperatura =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">20</span>, <span class="dv">5</span>),</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Helados     =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>Temperatura <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>),</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Ataques     =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>Temperatura <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>Helados <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Veamos que <strong>Temperatura</strong> es una variable aleatoria con distribución normal con media <span class="math inline">\(20\)</span> y desviación estándar <span class="math inline">\(5\)</span>. Tomamos <span class="math inline">\(1000\)</span> muestras de la misma y después generamos las variables <strong>Helados</strong> y <strong>Ataques</strong> como una combinación lineal de <strong>Temperatura</strong> más un error aleatorio de media <span class="math inline">\(0\)</span> y desviación estándar <span class="math inline">\(1\)</span>. En la definición de <strong>Ataques</strong> podemos ver explícitamente que la influencia de Helados en <strong>Ataques</strong> es <span class="math inline">\(0\)</span>. Sin embargo, miremos la relación que existe entre ambas variables:</p>
+<p>Veamos qué <strong>Temperatura</strong> es una variable aleatoria con distribución normal con media <span class="math inline">\(20\)</span> y desviación estándar <span class="math inline">\(5\)</span>. Tomamos <span class="math inline">\(1000\)</span> muestras de esta y después generamos las variables <strong>Helados</strong> y <strong>Ataques</strong> como una combinación lineal de <strong>Temperatura</strong> más un error aleatorio de media <span class="math inline">\(0\)</span> y desviación estándar <span class="math inline">\(1\)</span>. En la definición de <strong>Ataques</strong> podemos ver explícitamente que la influencia de <strong>Helados</strong> en <strong>Ataques</strong> es <span class="math inline">\(0\)</span>. Sin embargo, miremos la relación que existe entre ambas variables:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dags_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-<figcaption>DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temnperatura (T) en las playas de Australia.</figcaption>
+<figcaption>DAG que representa la relación entre las ventas de helados (Hel), los accidentes por mordida de tiburón (Sh) y la temperatura (T) en las playas de Australia.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Vemos que ambas variables están altamente correlacionadas, de hecho, su <em>r</em> de Pearson vale 0.977. Sin embargo, nosotros sabemos que esa correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón y que algo tenemos que hacer. Hemos escuchado muchas veces que lo que tenemos que hacer es “controlar” por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agergar <strong>Temperatura</strong> como una covariable. Ajustemos dos modelos de regresión, uno con la <strong>Temperatura</strong> como covariable y uno sin y comparemos las estimaciones de los efectos causales (<span class="math inline">\(\hat\beta_H\)</span>)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> :</p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Recuerden que el diagrama causal no es un problema estadístico sino más bien se plantea previo a cualquier consideración estadística, usando como insumo el conocimiento del dominio que tenemos.</p></div></div><p><span class="math display">\[
+<p>Vemos que ambas variables están altamente correlacionadas, de hecho, su <em>r</em> de Pearson vale 0.977. Sin embargo, nosotros sabemos que esta correlación es espúrea, que no hay una relación causal entre ventas de helados y ataques de tiburón, y que algo tenemos que hacer. Seguramente habrán escuchado muchas veces que lo que tenemos que hacer es “controlar” por la temperatura, lo que en el contexto de la regresión lineal no significa otra cosa que agregar <strong>Temperatura</strong> como una covariable. Ajustemos dos modelos de regresión, uno con la <strong>Temperatura</strong> como covariable y otro sin ella, y comparemos las estimaciones de los efectos causales (<span class="math inline">\(\hat\beta_H\)</span>)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> :</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Donde <span class="math inline">\(\epsilon_i\)</span> y <span class="math inline">\(\tau_i\)</span> son los términos de error i.i.d. distribuidos normalmente con <span class="math inline">\(\mu=0\)</span> y <span class="math inline">\(\sigma=1\)</span>.</p></div></div><p><span class="math display">\[
 \begin{array}
 _lm_1&amp;:&amp; Ataques_i = \alpha + \beta_{H} Helados_i + \epsilon_i \\
 lm_2&amp;:&amp; Ataques_i = \alpha + \beta_{H} Helados_i +  \beta_{T} Temperatura_i + \tau_i
@@ -766,53 +771,54 @@ F Statistic
 </div>
 </figure>
 </div>
-<p>Como podemos ver, si no controlamos por <strong>Temperatura</strong> , la estimación de <span class="math inline">\(\hat\beta_H\)</span> tiene un valor cercano a <span class="math inline">\(1\)</span>, mientras que si controlamos por <strong>Temperatura</strong> tiene un valor cercano a <span class="math inline">\(0\)</span> lo que sabemos es el valor “real” del parámetro <span class="math inline">\(\beta_H\)</span>. Todo muy lindo pero, ¿Qué tiene que ver esto con los DAGS? Bueno, cuando planteamos un DAG existe algo que se llama <em>el criterio de las puertas traseras</em> que dice que para estimar el efecto causal que nos interesa debemos “cerrar” todas las puertas traseras que conectan la causa y elefecto. Y “cerrar” en este contexto es simplemente controlar por la variabilidad de alguna de las variables presentes en la <em>puerta trasera</em>. En este caso, controlando por <strong>Temperatura</strong> estamos cerrando la única puerta trasera, por lo tanto, estamos estimando el verdadero efecto causal que nos interesa.</p>
+<p>Como podemos ver, si no controlamos por <strong>Temperatura</strong> la estimación de <span class="math inline">\(\hat\beta_H\)</span> tiene un valor cercano a <span class="math inline">\(1\)</span>, mientras que si controlamos por <strong>Temperatura</strong> tiene un valor cercano a <span class="math inline">\(0\)</span>, que es el valor “real” del parámetro <span class="math inline">\(\beta_H\)</span>. Todo muy lindo pero, ¿qué tiene que ver esto con los DAGS? Bueno, cuando planteamos un DAG existe algo que se llama <em>el criterio de las puertas traseras</em> que dice que para estimar el efecto causal que nos interesa debemos “cerrar” todas las puertas traseras que conectan la causa y elefecto. Y “cerrar”, en este contexto, es simplemente controlar por la variabilidad de alguna de las variables presentes en la <em>puerta trasera</em>. En este caso, al controlar por <strong>Temperatura</strong> cerramos la única puerta trasera y, por lo tanto, estimamos el verdadero efecto causal que nos interesa.</p>
 <!-- ## Causalidad sin correlación -->
 <!-- Muchas veces escuchamos que "correlación no implica causalidad" pero ¿Causalidad implica correlación? Respondamos esta pregunta con un ejemplo. Supongamos que hay una relación causal entre el ingreso (**I**) y la satisfacción (**S**), a más ingreso más satisfacción.  -->
 </section>
 <section id="colliders" class="level2 page-columns page-full" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="colliders"><span class="header-section-number">4.3</span> <em>Colliders</em></h2>
-<p>Hasta ahora tuvimos que lidiar casi únicamente con <em>confusores</em> pero existe otro tipo de variables en el contexto de un camino causal que se denomina <em>collider</em>. Vemos un ejemplo y apliquemos <em>el criterio de las puertas traseras</em>. Pensemos el siguiente ejemplo. Supongamos que queremos estudiar el efecto del factor de riesgo edad (<strong>Age</strong>) en la infección de COVID-19 (<strong>Cov</strong>), pero lo hacemos a través de datos voluntarios recavados por una aplicación móvil (<strong>App</strong>). Un DAG muy simplicado que podríamos plantear es el siguiente:</p>
+<p>Hasta ahora tuvimos que lidiar casi únicamente con <em>confusores</em>, pero existe otro tipo de variables en el contexto de un camino causal que se denomina <em>collider</em>. Veamos un ejemplo y apliquemos <em>el criterio de las puertas traseras</em>. Pensemos el siguiente ejemplo. Supongamos que queremos estudiar el efecto del factor de riesgo edad (<strong>Age</strong>) en la infección de COVID-19 (<strong>Cov</strong>), pero lo hacemos a través de datos voluntarios recabados por una aplicación móvil (<strong>App</strong>). Un DAG muy simplicado que podríamos plantear es el siguiente:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="dags_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
 <figcaption>DAG que representa la relación entre la edad (Age), la infección por COVID-19 (Cov) y el uso de la aplicación móvil de autoreporte (App).</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Ya que sabemos que la edad tienen un efecto en el uso de aplicaciones móviles y, podemos suponer, que la gente que se infecta de COVID-19 tiende a reportar más sus datos en la aplicación. Ahora veamos los caminos:</p>
+<p>Ya que sabemos que la edad tiene un efecto en el uso de aplicaciones móviles y, podemos suponer, que las personas que se infectan de COVID-19 tienden a reportar más sus datos en la aplicación. Ahora veamos los caminos:</p>
 <p><span class="math display">\[
 \begin{array}
 _Age    \longrightarrow Cov \\
 Age \longrightarrow App \longleftarrow Cov
 \end{array}
-\]</span> Repitamos el ejercicio de simulación que utilizamos en el ejemplo de los confusores, sólo que esta vez Covid es una variable dicotómica y, por lo tanto, debemos muestrarla de una distribución Bernoulli<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></div></div><div class="cell">
+\]</span></p>
+<p>Repitamos el ejercicio de simulación que utilizamos en el ejemplo de los confusores, solo que esta vez <strong>Cov</strong> es una variable dicotómica y, por lo tanto, debemos muestrearla de una distribución Bernoulli<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Para más detalles sobre como simular una variiable con distribución Bernoulli (binomial con <span class="math inline">\(n=1\)</span>) podemos ver el siguiente <a href="https://library.virginia.edu/data/articles/simulating-a-logistic-regression-model">link</a>.</p></div></div><div class="cell">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age   =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">40</span>, <span class="dv">10</span>),</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Covid =</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="at">prob =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="dv">10</span><span class="fl">-.25</span><span class="sc">*</span>Age))),</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">App   =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>Age <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>Covid <span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Puede verse que la verdadera relación entre Covid y Age (en términos de parámetros de una regresión logística) es <span class="math inline">\(0.25\)</span>. Veamos como se ve la edad de los infectados y no infectados:</p>
+<p>Puede verse que la verdadera relación entre <strong>Cov</strong> y <strong>Age</strong>, en términos de parámetros de una regresión logística, es <span class="math inline">\(0.25\)</span>. Veamos como se ve la edad de los infectados y no infectados:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="dags_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
 <figcaption>Infectados y no infectados de COVID-19 en función de la edad.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Según el <em>criterio de las puertas traseras</em> deberíamos controlar por <strong>App</strong> para así cerrar ese camino. Ajustemos estos dos regresiones logísticas y veamos sus estimaciones de los parámetros:</p>
+<p>Según el <em>criterio de las puertas traseras</em> deberíamos controlar por <strong>App</strong> para así cerrar ese camino. Ajustemos estas dos regresiones logísticas y veamos sus estimaciones de los parámetros:</p>
 <p><span class="math display">\[
 \begin{array}
 _glm_1&amp;:&amp; logit(Covid_i) = \alpha + \beta_{Age} Age_i + \epsilon_i \\
@@ -1013,28 +1019,28 @@ Akaike Inf. Crit.
 </div>
 </figure>
 </div>
-<p>La estimación del efecto correcta sería la del modelos sin controlar pero ¿Por qué pasa esto? Cuando tenemos un <em>collider</em> podemos considerar ese camino como <em>cerrado por defecto</em> y al controlar por él, ese camino se abre. Entonces, en si bien teníamos dos posibles caminos causales, sólo uno estaba abierto y no necesitábamos controlar por <strong>App</strong>. Esto se debe a que, al <strong>App</strong> no causar ninguna de mis otras dos variables, ese camino causal está cerrado. Para reflexionar un poco en por qué ese camino se abre al controlar por un <em>collider</em> recomiendo las reflexiones del capítulo 8 de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p>
+<p>La estimación del efecto correcta sería la del modelo sin controlar, pero ¿por qué pasa esto? Cuando tenemos un <em>collider</em> podemos considerar ese camino como <em>cerrado por defecto</em> y, al controlar por él, ese camino se abre. Entonces, si bien teníamos dos posibles caminos causales, solo uno estaba abierto y no necesitábamos controlar por <strong>App</strong> Esto se debe a <strong>App</strong>, App al no causar ninguna de mis otras dos variables, ese camino causal está cerrado. Para reflexionar un poco en por qué ese camino se abre al controlar por un <em>collider</em> les recomendamos las reflexiones del capítulo 8 de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"></div><div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-El criterio de las puertas traseras
+<span class="screen-reader-only">Tip</span>El criterio de las puertas traseras
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En resumen, el <strong>criterio de las puertas traseras</strong> nos dice que para estimar la relación causal principal debemos cerrar todas las <em>puertas traseras</em> (caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, agragándola como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un <em>collider</em> el camino está cerrado y al controlar por él lo abrimos.</p>
+<p>En resumen, el <strong>criterio de las puertas traseras</strong> nos dice que para estimar la relación causal principal debemos cerrar todas las <em>puertas traseras</em> (en otras palabras, todos los caminos causales entre la causa y el efecto que queremos estudiar que tienen alguna flecha hacia atrás). Recordemos que para cerrar esos caminos debemos controlar por alguna de las variables que lo componen, lo que en la práctica significa agregarla como covariable a nuestro modelo estadístico. Por último, recordemos que cuando tenemos un <em>collider</em> el camino está cerrado y al controlar por él lo abrimos.</p>
 </div>
 </div>
 </section>
 <section id="un-ejemplo" class="level2 page-columns page-full" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="un-ejemplo"><span class="header-section-number">4.4</span> Un ejemplo</h2>
-<p>Analicemos un ejemplo que tiene un poquito de todo. En el mismo queremos estudiar la el efecto de las vitaminas (<strong>Vits</strong>) en los defectos de nacimiento (<strong>BD</strong>). Además de esta relación, podemos identificar otras variables que podrían influir en ellas: La dificultad para concebir un embarazo (<strong>DC</strong>); El cuidado pre-natal (<strong>PNC</strong>); el status socioeconómico (<strong>SES</strong>); y aspectos genéticos (<strong>Gen</strong>). El flujo de causalidad propuesto entre las variables puede verse representado en el siguiente DAG<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
-<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Recuerden que el diagrama causal no es un problema estadístico sino más bien se plantea previo a cualquier consideración estadística, usando como insumo el conocimiento del dominio que tenemos.</p></div></div><div class="cell" data-layout-align="center">
+<p>Analicemos un ejemplo que tiene un poquito de todo. En este queremos estudiar el efecto de las vitaminas (<strong>Vits</strong>) en los defectos de nacimiento (<strong>BD</strong>). Además de esta relación, podemos identificar otras variables que podrían influir en ellas: la dificultad para concebir un embarazo (<strong>DC</strong>); el cuidado pre-natal (<strong>PNC</strong>); el status socioeconómico (<strong>SES</strong>); y aspectos genéticos (<strong>Gen</strong>). El flujo de causalidad propuesto entre las variables puede verse representado en el siguiente DAG<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Recuerden que el diagrama causal no es un problema estadístico, sino que se plantea previo a cualquier consideración estadística, a partir del conocimiento del dominio que tenemos.</p></div></div><div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="ot">&lt;-</span> dagitty<span class="sc">::</span><span class="fu">dagitty</span>(<span class="st">'dag {</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="ot">&lt;-</span> dagitty<span class="sc">::</span><span class="fu">dagitty</span>(<span class="st">'dag {</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">                          BD [outcome,pos="0.109,0.631"]</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">                          DC [pos="0.117,-1.517"]</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">                          Gen [pos="0.850,-0.411"]</span></span>
@@ -1053,12 +1059,12 @@ El criterio de las puertas traseras
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>tidy_dag <span class="ot">&lt;-</span> <span class="fu">tidy_dagitty</span>(dag_Vit)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdag</span>(tidy_dag) <span class="sc">+</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="dags_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
 <figcaption>DAG que representa la relación causal entre las vitaminas y los defectos de nacimiento.</figcaption>
 </figure>
 </div>
@@ -1068,14 +1074,14 @@ El criterio de las puertas traseras
 <div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Esto resulta especialmente útil cuando los DAGS se empiezan a complicar.</p></div></div><div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="dags_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="576"></p>
 <figcaption>Usando ggdag_collider para identificar colliders en nuestro DAG.</figcaption>
 </figure>
 </div>
@@ -1090,37 +1096,37 @@ Vits \longleftarrow PNC \longleftarrow DC \longleftarrow Gen \longrightarrow BD 
 Vits \longleftarrow SES \longrightarrow PNC \longrightarrow BD
 \end{array}
 \]</span></p>
-<p>Pero ¿Por qué no está abierto el camino <span class="math inline">\(Vits \leftarrow SES \rightarrow PNC \leftarrow DC \leftarrow Gen \rightarrow BD\)</span>? ¡Exacto! Está cerrado, porque para ese camino <strong>PNC</strong> es un <em>collider</em>, ya que está causada tanto por <strong>SES</strong> como por <strong>DC</strong>. Resulta importante notar que una variable es un <em>collider</em> o no en el contexto de un camino de causalidad y no lo es siempre. De hecho, podemos ver que <strong>PNC</strong> actúa como un confusor en el camino <span class="math inline">\(Vits \leftarrow PNC \rightarrow BD\)</span>. La función <code>ggdag_collider</code> también nos puede ayudar a identificar un <em>collider</em>.</p>
+<p>Pero ¿por qué no está abierto el camino <span class="math inline">\(Vits \leftarrow SES \rightarrow PNC \leftarrow DC \leftarrow Gen \rightarrow BD\)</span>? ¡Exacto! Está cerrado porque, en este camino, <strong>PNC</strong> es un <em>collider</em>, ya que está causada tanto por <strong>SES</strong> como por <strong>DC</strong>. Resulta importante notar que una variable puede ser un collider en el contexto de un camino causal particular, sin que esto implique que lo sea en todos los caminos. De hecho, podemos ver que <strong>PNC</strong> actúa como un confusor en el camino <span class="math inline">\(Vits \leftarrow PNC \rightarrow BD\)</span>. La función <code>ggdag_collider</code> también nos puede ayudar a identificar un <em>collider</em>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_collider</span>() <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_collider</span>() <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
-<figcaption>Usando ggdag_collider para identificar colliders en nuestro DAG.</figcaption>
+<p><img src="dags_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption>Uso de ggdag_collider para identificar colliders en nuestro DAG.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Entonces tenemos cuatro caminos abiertos, el que queremos estudiar y tres <em>puertas de atrás</em>. Sin embargo, todo indica que tenemos que controlar por <strong>PNC</strong> y listo ¿No? Apliquemos esto agregando el parámetro <code>adjust_for = "PNC"</code> a la función <code>ggdag_paths</code>:</p>
+<p>Entonces, tenemos cuatro caminos abiertos: el que queremos estudiar y tres <em>puertas de atrás</em>. Sin embargo, todo indica que tenemos que controlar por <strong>PNC</strong> y listo, ¿no? Apliquemos esto agregando el parámetro <code>adjust_for = "PNC"</code> a la función <code>ggdag_paths</code>:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="st">"PNC"</span>, <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">hue =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="dags_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Caminos causales abiertos luego de controlar por PNC.</figcaption>
 </figure>
 </div>
@@ -1137,16 +1143,16 @@ Vits \leftarrow SES \rightarrow PNC \leftarrow DC \leftarrow Gen \rightarrow BD
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Ver el código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dag_Vit <span class="sc">%&gt;%</span> <span class="fu">ggdag_paths</span>(<span class="at">from =</span> <span class="st">"Vits"</span>, <span class="at">to =</span> <span class="st">"BD"</span>,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">adjust_for =</span> <span class="fu">c</span>(<span class="st">"PNC"</span>, <span class="st">"DC"</span>), <span class="at">shadow =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">hue =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dags_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="dags_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Caminos causales abiertos luego de controlar por Diab y Smok.</figcaption>
 </figure>
 </div>
@@ -1158,13 +1164,88 @@ BD_i = \alpha + \beta_{Vits} Vits_i + \beta_{PNC} PNC_i + \beta_{DC} DC_i + \eps
 \]</span></p>
 <p>Donde <span class="math inline">\(\beta_{Vits}\)</span> es un estimador del efecto causal que queremos estudiar.</p>
 <p>Para más ejemplos y detalles sobre los DAGS pueden consultar <span class="citation" data-cites="cunningham2021causal">(<a href="references.html#ref-cunningham2021causal" role="doc-biblioref">Cunningham 2021</a>)</span> o <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>. El canal de <a href="https://www.youtube.com/@NickHuntingtonKlein">YouTube de Nick Huntington-Klein</a> también es un excelente recurso para profundizar sobre estos temas<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
-
-
 <div class="no-row-height column-margin column-container"><div id="ref-cunningham2021causal" class="csl-entry" role="listitem">
 Cunningham, Scott. 2021. <em>Causal inference: The mixtape</em>. Yale university press.
 </div><div id="fn6"><p><sup>6</sup>&nbsp;Nick es el autor de <span class="citation" data-cites="huntington2021effect">(<a href="references.html#ref-huntington2021effect" role="doc-biblioref">Huntington-Klein 2021</a>)</span>.</p><div id="ref-huntington2021effect" class="csl-entry" role="listitem">
 Huntington-Klein, Nick. 2021. <em>The effect: An introduction to research design and causality</em>. Chapman; Hall/CRC.
-</div></div></div>
+</div></div></div></section>
+<section id="preguntas-de-repaso" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="preguntas-de-repaso"><span class="header-section-number">4.5</span> Preguntas de repaso</h2>
+<ol type="1">
+<li><p>¿Qué es un DAG? ¿Qué representan los nodos y qué representan las flechas?</p></li>
+<li><p>¿Qué es un confusor en el contexto de un DAG? ¿Qué problema genera para la estimación del efecto causal? ¿Cómo se lo identifica en el DAG?</p></li>
+<li><p>¿Qué es una puerta de atrás? ¿Cómo se la identifica en un DAG? ¿Qué implica su existencia para la estimación del efecto causal de interés?</p></li>
+<li><p>Explica el criterio de las puertas traseras. ¿Qué significa “cerrar” una puerta de atrás? ¿Cómo se hace en la práctica en un modelo de regresión?</p></li>
+<li><p>¿Qué es un collider? ¿Por qué un camino que contiene un collider está cerrado por defecto? ¿Qué sucede cuando controlamos por este?</p></li>
+<li><p>¿Qué es un mediador? ¿Se controla por este?</p></li>
+<li><p>Una variable puede ser <em>collider</em> en un camino y confusor en otro. ¿Cómo puede ocurrir esto? ¿Qué implica para la decisión de controlar o no por esa variable?</p></li>
+<li><p>¿Cuál es la diferencia entre correlación y causalidad en el contexto de los DAGs? ¿Por qué una correlación observada entre dos variables no implica necesariamente que existe una flecha entre ellas en el DAG?</p></li>
+</ol>
+</section>
+<section id="dos-casos-aplicados-para-pensar" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="dos-casos-aplicados-para-pensar"><span class="header-section-number">4.6</span> Dos casos aplicados para pensar</h2>
+<ol type="1">
+<li><p>Estás estudiando el efecto del uso frecuente de herramientas de inteligencia artificial para redactar textos, sobre la performance en una tarea de redacción para la materia escritura y oratoria.</p>
+<p>Tenés información sobre las siguientes variables:</p>
+<ul>
+<li><strong>Uso de AI</strong>: Uso frecuente de IA para redactar (binaria: sí/no)</li>
+<li><strong>Score</strong>: Puntaje obtenido en la tarea de redacción</li>
+<li><strong>Habilidad Previa</strong>: Nivel de habilidad previa en escritura</li>
+<li><strong>Motivación</strong>: Nivel de motivación del estudiante</li>
+<li><strong>Tiempo Dedicado</strong>: Tiempo que dedicó a la tarea</li>
+<li><strong>Años de educación</strong>: Nivel educativo del estudiante</li>
+<li><strong>Dislexia</strong>: Presencia de dislexia u otras dificultades del lenguaje (binaria)</li>
+<li><strong>Estilo Texto</strong>: Estilo del texto redactado</li>
+<li><strong>Rendimiento Académico</strong>: Rendimiento académico general en la materia</li>
+<li><strong>Feedback</strong>: el feedback que recibe de la tarea de redacción</li>
+</ul>
+<p>Las relaciones causales entre variables son las siguientes:</p>
+<ul>
+<li>Los años de educación influyen en la habilidad previa en escritura.</li>
+<li>La habilidad previa en escritura afecta el puntaje en la tarea, la probabilidad de usar IA y el estilo del texto.</li>
+<li>La presencia de dislexia afecta negativamente el puntaje y aumenta la probabilidad de usar IA.</li>
+<li>La motivación influye en el uso de IA y en el tiempo dedicado a la tarea.</li>
+<li>El uso de IA afecta el tiempo dedicado a la tarea, el estilo del texto, y el puntaje.</li>
+<li>El tiempo dedicado a la tarea influye en el puntaje.</li>
+<li>El estilo del texto afecta el puntaje.</li>
+<li>El puntaje influye en el rendimiento académico.</li>
+<li>El uso de IA también influye en el rendimiento académico.</li>
+<li>El feedback depende del estilo del texto y del tiempo dedicado a la tarea</li>
+<li>Años de educación afecta al puntaje</li>
+</ul>
+<ol type="a">
+<li>Usando las relaciones descritas, armar el DAG</li>
+<li>Identifica todos los caminos causales, y menciona cuales están abiertos y cuáles están cerrados</li>
+<li>Clasifica las variables según confusoras, mediadoras o colliders y explica que pasa cuando ajustas por ellas.</li>
+<li>Según la clasificación y los caminos causales, propone el modelo que ajustarías</li>
+</ol></li>
+<li><p>El gobierno de Neuquén implementó un programa que incorpora profesionales de salud mental (psicólogos y trabajadores sociales) en escuelas secundarias públicas de zonas vulnerables. El objetivo es evaluar si la presencia de estos profesionales mejora el rendimiento académico, medido como el promedio de notas al final del año de la escuela. Las escuelas fueron seleccionadas para participar del programa en base al nivel socioeconómico del barrio en el que se encuentran: aquellas ubicadas en barrios de menor NSE fueron las seleccionadas.</p>
+<p>Un equipo de investigación identificó las siguientes variables relevantes, todas medidas a nivel escuela:</p>
+<ul>
+<li><strong>SM</strong>: presencia del programa de salud mental en la escuela (tratamiento, variable binaria)</li>
+<li><strong>RA</strong>: promedio de notas de los estudiantes al final del año (outcome)</li>
+<li><strong>NSE</strong>: índice socioeconómico del barrio donde se ubica la escuela, construido a partir de datos censales (ingreso promedio del hogar, nivel educativo de los padres, hacinamiento)</li>
+<li><strong>B</strong>: índice de bienestar estudiantil promedio de la escuela, medido al inicio del año con una encuesta a estudiantes que incluye dimensiones de salud mental, vínculos con pares y sentido de pertenencia</li>
+<li><strong>Aus</strong>: tasa de ausentismo promedio de los estudiantes durante el año, medida como porcentaje de días de clase con inasistencia</li>
+</ul>
+<p>El equipo propone el siguiente DAG, basado en evidencia de la literatura:</p>
+<p>Con este DAG, respondé las siguientes preguntas:</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/DAG_ejemplo_2.png" class="img-fluid figure-img" alt="*Praying Hands* de Albrecht Durero." width="400"></p>
+<figcaption>DAG propuesto.</figcaption>
+</figure>
+</div>
+<pre><code>  a. Describí el DAG completo. Identificá cuál es el camino directo entre SM y RA, y cuáles son las puertas traseras. ¿Cuáles de esas puertas están abiertas?
+  b. Identificá todos los caminos causales entre SM y RA, en donde indiques para cada uno si está abierto o cerrado y por qué.
+  c. ¿Hay algún *collider* en este DAG? Identificalo y explicá por qué es un *collider* en el contexto de al menos un camino específico. ¿Qué pasaría si el equipo controlara por esa variable?
+  d. Aplicando el criterio de las puertas traseras, ¿por qué variables habría que controlar para estimar correctamente el efecto causal de SM sobre RA? Justificá cada decisión.
+  e. Escribí el modelo de regresión que deberías ajustar para estimar el efecto causal de interés, según lo que determinaste en la pregunta anterior.
+  f. El equipo propone controlar por Aus porque "es una variable importante que afecta el rendimiento". ¿Estás de acuerdo?</code></pre>
+
+
+
 </section>
 
 
@@ -1233,13 +1314,14 @@ Huntington-Klein, Nick. 2021. <em>The effect: An introduction to research design
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

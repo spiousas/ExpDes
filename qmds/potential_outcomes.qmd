@@ -260,3 +260,69 @@ Finalmente, la ecualización compensatoria de tratamientos se da cuando quienes 
 
 Todos estos fenómenos violan **SUTVA** porque los resultados de una unidad ya no dependen únicamente de su propio tratamiento, sino también de lo que reciben o hacen otros, o incluso de cómo los administradores reaccionan a la asignación. En otras palabras, los resultados potenciales dejan de ser “estables” y comparables, comprometiendo la validez de nuestras estimaciones causales.
 
+## Preguntas de repaso
+
+1. Explicá con tus palaras qué es un contrafáctico. 
+
+2. Definí el efecto causal individual ($\delta_i$) con el marco teórico de los *potential outcomes*. ¿Por qué este efecto es, en la práctica, imposible de calcular? ¿Cómo se suele llamar a este problema?
+
+3. Una persona recibe un tratamiento para la osteoporosis y observás que mejora. ¿Qué datos tendrías que comparar para saber el efecto real del tratamiento en esa persona? ¿Por qué es un problema?
+
+4. Explicá la *switching equation*. ¿Qué representa cada término? ¿Por qué es útil esta notación para hacer explícito el problema de la inferencia causal?
+
+5. ¿Qué es el **ATE**? ¿Qué es el **ATT**? ¿Qué es el **ATU**? ¿En qué se diferencian? ¿Pueden calcularse directamente a partir de los datos observados?
+
+6. ¿Qué es el **SDO**? ¿Bajo que condiciones es un buen estimador del **ATE**? Recordá la descomposicón del **SDO** en sus tres componentes y explicá qué representa cada uno.
+
+7. Estás estudiando el efecto de un dispositivo para la hipoacusia sobre la audición. Sabes que en general las personas con menos síntomas tienden a usar menos el dispositivo. Además, observás que en promedio las personas que no usan el dispositivo tienen mejores resultados que los que sí lo usan. 
+
+    a. ¿Qué estás calculando al comparar los promedios observados entre quienes usan y no usan el dispositivo?
+    b. ¿Eso coincide necesariamente con el ATE?¿Por qué?
+    c. A partir de esta información, ¿Podés concluir que el dispositivo empeora la audición?¿Por qué?
+
+8. ¿Qué es el sesgo de selección? ¿De dónde surge? ¿Bajo que condiciones podemos decir que vale cero?
+
+9. ¿Qué es el sesgo de efecto heterogéneo? ¿Se te ocurre un ejemplo donde podría haber sesgo de efectoi heterogéneo?
+
+10. ¿Qué significa que la asignación al tratamiento sea **independiente** de los *potential outcomes*? Escribí formalmente la condición de independencia y explicá sus implicancias para los sesgos del **SDO**.
+
+11. ¿Cómo la independencia garantiza que el **SDO** sea un estimador insesgado del **ATE**? Explicá el argumento tanto para el sesgo de selección como para el sesgo de efecto heterogéneo.
+
+12. ¿Qué es el **SUTVA**? ¿Cuáles son sus dos condiciones? ¿Por qué es necesario que se cumpla para que el marco de *potential outcomes* funcione?
+
+13. ¿Cuál es la diferencia entre un *crossover* y un *spillover*? ¿Cuál de los dos viola el **SUTVA**? ¿Por qué?
+
+14. Estás estudiado el efecto de una intervención para aumentar la seguridad psicológica en un equipo específico de una empresa. Sabes que muchos de los empleados hablan regularmente con los empleados de otro equipo, el cual estas usando como grupo control. Sabes que pueden pasar los siguientes tres casos:
+
+    i. Los empleados del otro equipo control empiezan a imitar a los de el equipo en el cual estás empleando la intervención
+    ii. Los empleados del equipo control ven que están en desventaja y se desmotivan
+    iii. Los empleados del equipo control se esfuerzan más en aumentar la seguridad psicológica. 
+
+Para cada caso: **a)** Explica qué es lo que está ocurriendo y como se llama el fenómeno. **b)** Explica cómo esto puede afectar la estimación del efecto de la intervención
+
+## Un caso aplicado para pensar
+
+El Ministerio de Educación lanzó un programa de tutorías individuales para estudiantes de primer año de secundaria identificados como "en riesgo de abandono" según su desempeño en el último trimestre de primaria. El programa consiste en sesiones semanales con un tutor durante todo el año. Al finalizar el año, se mide el outcome principal: si el estudiante aprobó todas las materias o no (variable binaria, 1=aprobo todas las materias, 0=no aprobó todas las materias).
+
+El programa no fue asignado aleatoriamente: los directores de cada escuela seleccionaron a los estudiantes que consideraron más necesitados, en donde se priorizo a aquellos con peores notas y mayor ausentismo.
+
+Se observa lo siguiente en los datos:
+
+- Los estudiantes que participaron del programa tienen una tasa de aprobación del 61%.
+
+- Los estudiantes que no participaron tienen una tasa de aprobación del 74%.
+
+- Un análisis más detallado muestra que los estudiantes seleccionados para el programa tenían, en promedio, $3.2$ inasistencias más por mes que los no seleccionados, antes de que el programa comenzara.
+
+Con estos datos, respondé las siguientes preguntas:
+
+1. Un funcionario concluye: "el programa no funciona, los que participaron aprueban menos que los que no participaron." ¿Qué magnitud está calculando el funcionario? ¿Es eso el **ATE**? ¿Por qué sí o por qué no?
+
+2. Para cada estudiante que participó del programa, ¿cuál sería su resultado contrafactual? ¿Por qué es imposible calcularlo directamente? ¿Cómo se llama este problema?
+
+3. Identificá y explicá los sesgos presentes en la comparación que hace el funcionario. ¿Qué dice el dato de las $3.2$ inasistencias al respecto?
+
+4. Un colega propone usar como grupo control a los estudiantes de otra escuela del mismo barrio que no tiene el programa. Otro colega propone tirar una moneda para asignar quién entra al programa. ¿Cuál de las dos propuestas resolvería mejor el problema identificado en la pregunta anterior? ¿Por qué? Usá el concepto de independencia en tu respuesta.
+
+5. En la escuela donde se implementa el programa, varios tutores comentan que los estudiantes del grupo control (los que no entraron al programa) empezaron a juntarse con los que sí participan y a recibir consejos de ellos. ¿Qué supuesto del marco de potential outcomes se estaría violando? ¿Cómo afecta esto a la estimación del efecto?
+

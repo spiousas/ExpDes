@@ -10,11 +10,11 @@ source("../R/_common.R")
 
 Son las 3 de la mañana del 26 de septiembre de 1983. Con una taza de café en mano, Stanislav Petrov vigila las alarmas de una estación de monitoreo de ataques nucleares a las afueras de Moscú. De pronto, los paneles se iluminan con un rojo furioso: tres misiles intercontinentales están en camino a la cúpula del Kremlin... o, quizás, el sistema tiene un error y se trata de una falsa alarma.
 
-Stanislav no duda. Sigue el protocolo y llama al Kremlin. En menos de tres minutos, Rusia lanza un ataque nuclear contra las principales ciudades de EE. UU. La contrarespuesta estadounidense borra Leningrado y Stalingrado unos 40 minutos después. Además de millones de muertos, los ataques levantan tal cantidad de polvo en la atmósfera que el mundo se sume en un invierno nuclear durante 30 años, provocando hambruna en gran parte del hemisferio norte. Menos afectada por los ataques, la economía africana mejora lentamente y se convierte en el principal proveedor de alimentos del mundo. Para 2025, el Imperio Panafricano es la principal potencia económica global.
+Stanislav no duda. Sigue el protocolo y llama al Kremlin. En menos de tres minutos, Rusia lanza un ataque nuclear contra las principales ciudades de EE. UU. La contrarespuesta estadounidense borra Leningrado y Stalingrado unos 40 minutos después. Además de millones de muertos, los ataques levantan tal cantidad de polvo en la atmósfera que el mundo se sume en un invierno nuclear durante 30 años, lo que provoca hambruna en gran parte del hemisferio norte. Menos afectada por los ataques, la economía africana mejora lentamente y se convierte en el principal proveedor de alimentos del mundo. Para 2025, el Imperio Panafricano será la principal potencia económica global.
 
 Todos sabemos que esto nunca ocurrió. Lo que realmente pasó fue que Stanislav Petrov pensó que se trataba de un error y nunca avisó a nadie (pueden ver la historia [aquí](https://www.bbc.com/mundo/noticias/2013/09/130926_internacional_ruso_detuvo_ataque_nuclear_jrg)).
 
-Este mundo posnuclear es un mundo donde los hechos ocurrieron de manera completamente distinta: un mundo alternativo, un *what if*, un escenario contrafáctico. Podemos especular sobre lo que habría sucedido si los eventos se hubieran desarrollado de otra forma, pero la realidad es que nunca ocurrieron. Por lo tanto, un contrafáctico, aunque posible, es siempre especulativo.
+Este mundo posnuclear es un mundo donde los hechos ocurrieron de manera completamente distinta: un mundo alternativo, un *what if*, un escenario contrafáctico. Podemos especular sobre lo que habría sucedido si los eventos se hubieran desarrollado de otra forma, pero la realidad es que nunca ocurrieron. Por lo tanto, un contrafáctico -aunque posible- es siempre especulativo.
 
 ![](imgs/fig-01.png){fig-align="center"}
 
@@ -25,14 +25,14 @@ Utilizando el marco conceptual de los *potential outcomes* de Rubin[@rubin1974es
 
 En pocas palabras:
 
--   **Para alguien que recibió el tratamiento, el contrafactual es lo que habría sucedido si no hubiera recibido el tratamiento**. Por ejemplo, si un paciente recibió un nuevo medicamento y se recuperó, el resultado contrafactual es su estado de salud si no hubiera recibido el medicamento. Esto nos ayuda a aislar el efecto del medicamento.
+-   **para alguien que recibió el tratamiento, el contrafactual es lo que habría sucedido si no hubiera recibido el tratamiento**. Por ejemplo, si un paciente recibió un nuevo medicamento y se recuperó, el resultado contrafactual es su estado de salud si no hubiera recibido el medicamento. Esto nos ayuda a aislar el efecto del medicamento;
 
--   **Para alguien que no recibió el tratamiento, el contrafactual es lo que hubiera sucedido si hubiera recibido el tratamiento**. Por ejemplo, si un estudiante no asistió a un programa de tutoría y reprobó un examen, el contrafactual es su calificación hipotética si hubiera asistido al programa.
+-   **para alguien que no recibió el tratamiento, el contrafactual es lo que hubiera sucedido si hubiera recibido el tratamiento**. Por ejemplo, si un estudiante no asistió a un programa de tutoría y reprobó un examen, el contrafactual es su calificación hipotética si hubiera asistido al programa.
 
-Dado que cada unidad recibe solo un tratamiento, solo podemos observar un resultado: el resultado real. El resultado contrafactual es, por definición, inobservable. Esto se conoce a menudo como el **problema fundamental de la inferencia causal**. Debido a que no podemos observar simultáneamente ambos resultados potenciales para el mismo individuo, vamos a usar métodos y suposiciones estadísticas para estimar los efectos promedio del tratamiento en grupos de individuos. Más de esto en los próximos capítulos.
+Dado que cada unidad recibe solo un tratamiento, solo podemos observar un resultado: el resultado real. El resultado contrafactual es, por definición, **inobservable**. Esto se conoce a menudo como el **problema fundamental de la inferencia causal**. Debido a que no podemos observar simultáneamente ambos resultados potenciales para el mismo individuo, vamos a usar métodos y suposiciones estadísticas para estimar los efectos promedio del tratamiento en grupos de individuos. Más de esto en los próximos capítulos.
 :::
 
-¿Para qué sirve entonces construir contrafácticos, imaginar cosas que no ocurrieron y que nunca ocurrirán? Veamos otra historia.
+¿Para qué sirve, entonces, construir contrafácticos, imaginar cosas que no ocurrieron y que nunca ocurrirán? Veamos otra historia.
 
 Este cuadro que se ve a continuación se llama *Praying Hands* y fue pintado por Albrecht Durero. Es una de las obras más importantes de su siglo.
 
@@ -40,27 +40,27 @@ Este cuadro que se ve a continuación se llama *Praying Hands* y fue pintado por
 
 Los Durero eran una familia de mineros pobres del sur de Alemania. Dos de sus hijos, Albrecht y Joseph, tenían talento para el dibujo y decidieron hacer un pacto: uno estudiaría en Núremberg durante cuatro años mientras el otro trabajaría en las minas para pagar su educación. Decidirían quién haría qué cosa lanzando una moneda al aire. Pasado ese tiempo, intercambiarían lugares.
 
-El azar favoreció a Albrecht. Durante esos cuatro años, se convirtió en un pintor famoso y regresó a casa para cumplir su parte del acuerdo. Sin embargo, al llegar, Joseph lo recibió con una triste noticia: era demasiado tarde. El arduo trabajo en la mina le había provocado una artritis severa, impidiéndole sostener un pincel. Como único tributo a su sacrificio, Albrecht decidió pintar sus manos.
+El azar favoreció a Albrecht. Durante esos cuatro años, se convirtió en un pintor famoso y regresó a casa para cumplir su parte del acuerdo. Sin embargo, al llegar, Joseph lo recibió con una triste noticia: era demasiado tarde. El arduo trabajo en la mina le había provocado una artritis severa, lo que le impedía sostener un pincel. Como único tributo a su sacrificio, Albrecht decidió pintar sus manos.
 
-Ahora tenemos dos escenarios contrafacticos, lo que le hubiera sucedido a Albretch si se quedaba en la mina, y lo que le hubiera sucedido a Joseph si se iba a estudiar a Nuremberg. De modo que el escenario seria asi.
+Ahora tenemos dos escenarios contrafácticos: lo que le hubiera sucedido a Albretch si se quedaba en la mina y lo que le hubiera sucedido a Joseph si se iba a estudiar a Núremberg. De modo que el escenario sería así:
 
 ![](imgs/fig-02.png)
 
-Ambos son hermanos, y uno podría creer que, entre otra cosas, comparten cierto talento y sensibilidad artística. Asimismo, uno podria suponer que el destino de Joseph podría servir para suponer con mayor precisión lo que le paso "le hubiera pasado a Albretch de no ir a Nuremberg" (escenario contrafactico) y el destino de Albetch "lo que le hubiera pasado a Joseph si hubiera podido ir a Nuremberg" (escenario contrafáctico). Entonces imaginar escenarios contrafácticos nos permiten estimar el efecto de ir a Nuremberg o de quedarse. 
+Ambos son hermanos, y uno podría creer que, entre otra cosas, comparten cierto talento y sensibilidad artística. Asimismo, uno podría suponer que el destino de Joseph serviría para suponer con mayor precisión lo que "le hubiera pasado a Albretch de no ir a Núremberg" (escenario contrafactico). De forma inversa, el destino de Albretch representaría "lo que le hubiera pasado a Joseph si hubiera podido ir a Núremberg" (escenario contrafáctico). Entonces imaginar escenarios contrafácticos nos permiten estimar el efecto de ir a Núremberg o de quedarse. 
 
-Ahora bien, es Joseph lo mismo que Albrecth, si la moneda hubiera favorecido a Joseph, ¿habría un Durero pintor famoso? Bueno no estamos seguros de eso, lo que si podemos estar seguros es que pese a parecidos, ellos no son exactamente la misma persona y quizás había diferencias en talentos o en suceptibilidad a la artritis lo que hace que el destino de uno funcione como un símil o proxy de su destino contrafáctico pero no el destino en si mismo. Con estas ideas podemos armar un marco teóprico donde esos efectos se puedan estimar. 
+Ahora bien, ¿es Joseph lo mismo que Albrecth? Si la moneda hubiera favorecido a Joseph, ¿habría un Durero pintor famoso? Bueno, no estamos seguros de eso. Sobre lo que si podemos estar seguros es que -pese a parecidos- ellos no son exactamente la misma persona y quizás había diferencias en talentos o en suceptibilidad a la artritis lo que hace que el destino de uno funcione como un símil o proxy de su destino contrafáctico pero no el destino en sí mismo. Con estas ideas podemos armar un marco teóprico donde esos efectos se puedan estimar. 
 
-Supongamos que quiero evaluar la efectividad de la aspirina para mitigar el dolor de cabeza. Me duele la cabeza y lo quiero es saber el efecto diferencial entre tomar y no tomar esa aspirina. Es decir, en el tiempo 0 estoy yo con dolor de cabeza y en el tiempo 1 debería haber dos versiones mías (como si una no fuera suficiente), la que tomó la aspirina y la que no. A cada una de ellas les tendría que preguntar cuánto les duele la cabeza, el *outcome* de mi comparación. No hace falta ser demasiado astuto para darse cuenta que esto es imposible ya que sólo nos será posible obsevar una de esas versiones mientras que la otra será un contrafáctico.
+Supongamos que quiero evaluar la efectividad de la aspirina para mitigar el dolor de cabeza. Me duele la cabeza y lo que quiero es saber el efecto diferencial entre tomar y no tomar esa aspirina. Es decir, en el tiempo 0 estoy con dolor de cabeza y en el tiempo 1 debería haber dos versiones mías (como si una no fuera suficiente): la que tomó la aspirina y la que no. A cada una de ellas les tendría que preguntar cuánto les duele la cabeza (esto es el *outcome* de mi comparación). No hace falta ser demasiado astuto para darse cuenta que esto es imposible ya que solo nos será posible observar una de esas versiones, mientras que la otra será un contrafáctico.
 
 De esto vamos a hablar en este capítulo, utilizando como marco teórico a los *potential outcomes*. Estas ideas terminan de tomar forma en la versión que conocemos en las ciencias sociales propuestas por Rubin[@rubin1974estimating].
 
 ## *Potential outcomes*
 
-Lo que nos proponen los *potential outcomes* es la definición del efecto causal como la comparación de dos estados del mundo. En una versión del mundo, la "actual" (u obsevada), me tomo una aspirina y a las dos horas registro la severidad de mi dolor de cabeza mientras que en la otra versión del mundo, la "contrafactual", no me la tomo y las dos horas registro la severidad del dolor. A partir de esto, la tradición de los *potential outcomes* define al efecto causal de tomar una aspirina en el dolor de cabeza como la diferencia entre esas dos mediciones.
+Lo que nos proponen los *potential outcomes* es la definición del efecto causal como la comparación de dos estados del mundo. En una versión del mundo, la "actual" (u obsevada), me tomo una aspirina y a las dos horas registro la severidad de mi dolor de cabeza. En cambio, en la otra versión del mundo, la "contrafactual", no me tomo la aspirina y a las dos horas registro la severidad del dolor. A partir de esto, la tradición de los *potential outcomes* define al efecto causal de tomar una aspirina en el dolor de cabeza como la diferencia entre esas dos mediciones.
 
-Todo muy lindo, pero como ya estarán sospechando es imposible calcular un efecto que está expresado en función de un contrafactual, ya que este contrafactual no lo podemos observar. Pero no se preocupen que le vamos a encontrar la vuelta.
+Todo muy lindo, pero como ya estarán sospechando es imposible calcular un efecto que está expresado en función de un contrafactual, ya que no lo podemos observar. Pero no se preocupen que le vamos a encontrar la vuelta.
 
-Empecemos con un poco de notación que nos va a ayudar a acomodar las ideas. Por simplicidad vamos a asumir una variable binaria para la asignación del grupo experimental (por ejemplo, tratamiento y control). Esta variable vale $1$ si la unidad *i* recibe el tratamiento y $0$ si no, o sea, si pertenece al grupo control. Cada unidad $i$ va a tener dos *potential outcomes*: $Y_i^1$ si la unidad recibió el tratamiento y $Y_i^0$ si no. Esto significa que una unidad experimental en el mismo momento del tiempo va a recibir y no recibir el tratamiento, o sea, alguno de estos va a ser contrafactual[^potential_outcomes-1].
+Empecemos con un poco de notación que nos va a ayudar a acomodar las ideas. Por simplicidad, vamos a asumir una variable binaria para la asignación del grupo experimental (por ejemplo, tratamiento y control). Esta variable vale $1$ si la unidad *i* recibe el tratamiento y $0$ si no, o sea, si pertenece al grupo control. Cada unidad $i$ va a tener dos *potential outcomes*: $Y_i^1$ si la unidad recibió el tratamiento y $Y_i^0$ si no. Esto significa que una unidad experimental en el mismo momento del tiempo va a recibir y no recibir el tratamiento, o sea, alguno de estos va a ser contrafactual[^potential_outcomes-1].
 
 [^potential_outcomes-1]: De ahí el nombre de *potential*, porque se trata de posibles estados del mundo. Un estado en el que la unidad $i$ recibe el tratamiento y uno en el que no.
 
@@ -70,7 +70,7 @@ $$
 Y_i = D_i Y_i^1 + (1-D_i) Y_i^0 
 $$ {#eq-switching}
 
-Donde $D_i$ vale $1$ si la unidad *i* recibió el tratamiento (entonces $Y_i=Y_i^1$) y $0$ si no (entonces $Y_i=Y_i^0$). Vale la pena notar que $Y_i$, el *outcome* observable, no tiene ningún supraíndice ya que no es más potencial. Esto tambien es una forma de hacer explicito el problema del *outcome observable*, porque dependiendo el valor que adopte $D_i$ uno de los términos se vuelve cero. Si $D_i=0$, $Y_i=Y_i^0$ ya que el término $D_i Y_i^1$ vale 0. Si por el contrario $D_i=1$, $Y_i=Y_i^1$ porque el término $(1-D_i) Y_i^0$ vale cero. Esta es una forma sofisticada de decir que el outcome observable sólo es posible en una de las dos formas de $D_i$.
+Donde $D_i$ vale $1$ si la unidad *i* recibió el tratamiento (entonces $Y_i=Y_i^1$) y $0$ si no (entonces $Y_i=Y_i^0$). Vale la pena notar que $Y_i$, el *outcome* observable, no tiene ningún supraíndice ya que no es más potencial. Esto también es una forma de hacer explícito el problema del *outcome observable* porque, dependiendo el valor que adopte $D_i$ uno de los términos se vuelve cero. Si $D_i=0 \rightarrow Y_i=Y_i^0$ ya que el término $D_i Y_i^1$ vale 0. Si por el contrario $D_i=1 \rightarrow Y_i=Y_i^1$ porque el término $(1-D_i) Y_i^0$ vale cero. Esta es una forma sofisticada de decir que el outcome observable sólo es posible en una de las dos formas de $D_i$.
 
 Usando esta notación definimos el efecto causal del tratamiento para una unidad $i$ como: 
 
@@ -78,11 +78,11 @@ $$
 \delta_i = Y_i^1 - Y_i^0 
 $$ {#eq-deltai}
 
-Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los *potential outcomes* debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aqui yace el problema funcamental de la inferencia causal: Para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar: los contrafácticos[@rubin1974estimating].
+Donde queda claro que para estimar el efecto causal de acuerdo a la tradición de los *potential outcomes* debemos conocer dos estados del mundo a los que es imposible acceder simultáneamente. Y aquí yace el **problema fundamental de la inferencia causal**: para calcular el efecto causal se requiere acceso a datos que siempre nos van a faltar: los contrafácticos[@rubin1974estimating].
 
 ## Efecto promedio del tratamiento
 
-Al igual que los *potential outcomes*, el efecto para la unidad $i$ ($\delta_i$) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (**ATE**[^potential_outcomes-2]). El **ATE** va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. El mismo se define de la siguiente forma:
+Al igual que los *potential outcomes*, el efecto para la unidad $i$ ($\delta_i$) también es una variable aleatoria, y su esperanza es lo que vamos a llamar el efecto promedio del tratamiento (**ATE**[^potential_outcomes-2]). El **ATE** va a ser la magnitud de interés en nuestros experimentos, el efecto promedio de mi tratamiento. Este se define de la siguiente forma:
 
 [^potential_outcomes-2]: Del inglés *Average treatment effect*.
 
@@ -104,7 +104,7 @@ _ATT &=& E[\delta_i|D_i=1] \\
 \end{array}
 $$ {#eq-ATT}
 
-Esta magnitud se llama **ATT**[^potential_outcomes-3] y se calcula de la misma forma que el **ATE** pero condicionando los $\delta_i$ al valor de $D_i$ igual a 1. De manera análoga, definimos el efecto promedio pero para el grupo no tratado[^potential_outcomes-4]($D_i=0$)
+Esta magnitud se llama **ATT**[^potential_outcomes-3] y se calcula de la misma forma que el **ATE**, pero condicionando los $\delta_i$ al valor de $D_i$ igual a 1. De manera análoga, definimos el efecto promedio pero para el grupo no tratado[^potential_outcomes-4]($D_i=0$)
 
 [^potential_outcomes-3]: Del inglés *Average treatment effect for the treated*.
 
@@ -118,9 +118,9 @@ _ATU &=& E[\delta_i|D_i=0] \\
 \end{array}
 $$ {#eq-ATU}
 
-Ojo con confundir estos tres conceptos. Creo que el **ATE** es autoexplicativo, pero se suele confundir **ATT** y **ATU**. En el primer caso, el **ATT** e,s como su nombre lo indica, el *efecto promedio del tratamiento para el grupo de tratamiento*. Estamos calculando la esperanza de los $\delta_i$ para los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus $Y^1_i$ como sus $Y^0_i$. En el segundo caso, el **ATU** es el *efecto promedio del tratamiento para el grupo de no tratamiento*, es decir, la esperanza de los $\delta_i$ para los individuos pertenecientes al grupo control.
+Ojo con confundir estos tres conceptos. Creo que el **ATE** es autoexplicativo, pero se suele confundir **ATT** y **ATU**. En el primer caso, el **ATT** es, como su nombre lo indica, el *efecto promedio del tratamiento para el grupo de tratamiento*. Estamos calculando la esperanza de los $\delta_i$ de los individuos pertenecientes al grupo tratamiento. Esto involucra tanto sus $Y^1_i$ como sus $Y^0_i$. En el segundo caso, el **ATU** es el *efecto promedio del tratamiento para el grupo de no tratamiento*, es decir, la esperanza de los $\delta_i$ para los individuos pertenecientes al grupo control.
 
-Es una confusión común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como el **ATE** no se pueden calcular en la práctica.
+Es un error común confundir estos efectos promedios con magnitudes no potenciales pero, como se observa de sus fórmulas, tanto estos últimos dos como **el ATE no se pueden calcular en la práctica**.
 
 En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones[^potential_outcomes-5], podemos estimar el **ATE** a partir de los *outcomes* observables.
 
@@ -128,7 +128,7 @@ En las secciones siguientes vamos a ver como, cumpliendo ciertas condiciones[^po
 
 ## Diferencia de medias simple
 
-¿Qué es lo que sí podemos observar? Una magnitud que a priori podríamos creer que va a estar relacionada con el **ATE** y que podemos observar es la diferencia de medias entre los *outcomes* observados del grupo tratamiento y el grupo control. La vamos a llamar **SDO**[^potential_outcomes-6] y se calcula de la siguiente forma:
+¿Qué es lo que sí podemos observar? Una magnitud que, a priori, podríamos creer que va a estar relacionada con el **ATE**: la diferencia de medias entre los *outcomes* observados del grupo tratamiento y el grupo control. La vamos a llamar **SDO**[^potential_outcomes-6] y se calcula de la siguiente forma:
 
 [^potential_outcomes-6]: Del inglés *simple difference in outcomes*.
 
@@ -175,23 +175,23 @@ _\underbrace{\frac{1}{N_T} \sum_{i=1}^{N_T} (y_i|d_i=1) - \frac{1}{N_C} \sum_{i=
 \end{array}
 $$ {#eq-SDOdecomp}
 
-Lo que puede verse en @eq-SDOdecomp es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el **SDO** sería un buen estimador del **ATE** que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.
+Lo que puede verse en la @eq-SDOdecomp es que si pudiéramos asegurar de alguna forma que los sesgos de selección y de efecto heterogéneo fueran cero, el **SDO** sería un buen estimador del **ATE** que es, al fin y al cabo, el efecto causal promedio que nos interesa en nuestro experimento.
 
-O sea que la clave del diseño experimental va a ser encontrar la forma de asegurar que esos sesgos sean nulos. Veamos mejor que representan para poder entender como minimizarlos.
+O sea que la clave del diseño experimental va a ser encontrar la forma de asegurar que esos sesgos sean nulos. Veamos mejor que representan para poder entender cómo minimizarlos.
 
-### Sesgo de seleccion
+### Sesgo de selección
 
-Miremos con detenimiento la formula a la que llamamos sesgo de selección $E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0]$. Si la definimos a partir de esta ecuacion representa la diferencia entre los dos grupos si nunca hubiera habido un tratamiento en primer lugar. Es decir, son las diferencias inherentes entre los dos grupos. Estas diferencias aparecen al **seleccionar** individuos en un grupo y no en el otro, por eso lo llamamos sesgo de selección. Por el contrario, mientras mas se parezcan en el outcome $Y_i^0$ los individuos asignados a uno u otro grupo $D$, mas cercano a cero será el sesgo de selección. Entonces, sería ideal medir el sesgo de selección ya que es una medida de cuan lejos está el estimador del **ATE** (el **SDO**) del verdadero valor. Sin embargo el primer término de la ecuación es un contrafáctico. No nos queda otra alternativa que buscar una condición en donde, aunque no podamos medirlo, podamos confiar en que el sesgo de selección tiene esperanza igual a cero.
+Miremos con detenimiento la fórmula a la que llamamos sesgo de selección $E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0]$. Si la definimos a partir de esta ecuación representa la diferencia entre los dos grupos si nunca hubiese habido un tratamiento en primer lugar. Es decir, son las diferencias inherentes entre los dos grupos. Estas diferencias aparecen al **seleccionar** individuos en un grupo y no en el otro, por eso lo llamamos sesgo de selección. Por el contrario, mientras más se parezcan en el outcome $Y_i^0$ los individuos asignados a uno u otro grupo $D$, más cercano a cero será el sesgo de selección. Entonces, sería ideal medir el sesgo de selección ya que es una medida de cuán lejos está el estimador del **ATE** (el **SDO**) del verdadero valor. Sin embargo, el primer término de la ecuación es un contrafáctico. No nos queda otra alternativa que buscar una condición en donde, aunque no podamos medirlo, podamos confiar en que el sesgo de selección tiene esperanza igual a cero.
 
 ### Sesgo de tratamiento heterogéneo
 
-Esta tercera componente es un poco más difícil de interpretar, miremoslo bien: $(1-\pi) (ATT - ATU)$. Así definido se puede decir que es la diferencia entre el efecto promedio del tratamiento para el grupo  tratamiento (el **ATT**) y la misma para el grupo control (el **ATU**) multiplicado por la proporción de sujetos que está en el grupo control. A diferencia del sesgo de selección, en este caso no se trata de una diferencia entre los dos grupos si no hubiera habido tratamiento, sino que es la diferencia entre el efecto del tratamiento para el grupo tratado y el efecto del tratamiento para el grupo control. En otras palabras, este sesgo cuantifica las diferencias en *sensibilidad* al tratamiento por cada uno de los grupo. Por ejemplo, si estamos testeando una droga para mejorar la resistencia aeróbica y en nuestro grupo tratamiento tenemos a 90% de asmáticos/as mientras que en el grupo control sólo a un 10%, es esperable que los efectos del tratamiento en cada uno de estos grupos sean distintos. Pero ojo, recordamos que ni el **ATT** y el **ATU** pueden ser medidos porque incluyen contrafácticos en su definición.
+Esta tercera componente, $(1-\pi) (ATT - ATU)$, es un poco más difícil de explicar. Así definido se puede decir que es la diferencia entre el efecto promedio del tratamiento para el grupo  tratamiento (el **ATT**) y la misma para el grupo control (el **ATU**) multiplicada por la proporción de sujetos que está en el grupo control. A diferencia del sesgo de selección, en este caso no se trata de una diferencia entre los dos grupos si no hubiera habido tratamiento, sino que es la diferencia entre el efecto del tratamiento para el grupo tratado y el efecto del tratamiento para el grupo control. En otras palabras, este sesgo cuantifica las diferencias en *sensibilidad* al tratamiento por cada uno de los grupo. Por ejemplo, si estamos testeando una droga para mejorar la resistencia aeróbica y en nuestro grupo tratamiento tenemos a 90% de asmáticos/as mientras que en el grupo control sólo a un 10%, es esperable que los efectos del tratamiento en cada uno de estos grupos sean distintos. Pero ojo, recordamos que ni el **ATT** y el **ATU** pueden ser medidos porque incluyen contrafácticos en su definición.
 
-Ahora que entendemos qué representa cada sesgo, podemos buscar una condición en donde la esperanza de ambos sesgos sea igual a 0 para que, de esta forma, el SDO sea finalmente un estimador insesgado del ATE. Esa condicion es la independencia.
+Ahora que entendemos qué representa cada sesgo, podemos buscar una condición en donde la esperanza de ambos sesgos sea igual a 0 para que, de esta forma, el SDO sea finalmente un estimador insesgado del ATE. Esa condición es la independencia.
 
 ## Independencia
 
-La definición de independencia en el contexto de los *potential outcomes* es la siguiente:
+La definición de independencia en el contexto de los *potential outcomes*, es la siguiente:
 
 $$
 (Y^0, Y^1) \perp D
@@ -201,7 +201,7 @@ Momento cerebrito, pensemos una poco qué quiere decir. Esto significa que la as
 
 [^perp]: El símbolo de perpendicularidad quiere simbolizar eso, que no hay relación entre los *outcomes* potenciales y la asignación a los grupos.
 
-Vamos a pensarlo con un ejemplo concreto. Imaginen que tenemos una grupo de participantes para poner a prueba una cirugía experimental como altenativa a un tratamiento médico establecido no quirúrgico. Si la asingación de individuos al grupo tratamiento la hace un médico en base a lo que cree que va a ser conveniente para él, por ejemplo, no asignando a pacientes de edad avanzada al grupo tratamiento por el riesgo asociado a una cirugía, o asignando a pacientes cuyo pronóstico con el método tradicional vea poco favorable al grupo control. En este caso, la asignación a un grupo **sí** depende de los posibles resultados, por lo tanto, no hay independencia. Si en lugar de eso tiráramos una moneda antes de recibir a cada paciente, podríamos de esa forma asegurar la independencia.
+Vamos a pensarlo con un ejemplo concreto. Imaginen que tenemos un grupo de participantes para poner a prueba una cirugía experimental como alternativa a un tratamiento médico no quirúrgico, que es el tratamiento establecido. Si la asingación de individuos a uno u otro grupo la hace un médico según su criterio -por ejemplo, no asignando a pacientes de edad avanzada al grupo tratamiento por el riesgo asociado a una cirugía, o asignando a pacientes cuyo pronóstico con el método tradicional vea poco favorable al grupo control- entonces la asignación depende de los posibles resultados y, por lo tanto, no hay independencia. Si en cambio tiráramos una moneda antes de recibir a cada paciente, podríamos asegurar la independencia.
 
 La independencia implica que se cumpla:
 
@@ -212,11 +212,11 @@ E[Y^0|D=1] - E[Y^0|D=0] &=& 0
 \end{array}
 $$ {#eq-independencia}
 
-Es decir, que la esperanza de los *outcomes* para los participantes que fueron asignados tanto al grupo tratamiento como al grupo control serían iguales si pudieramos medirlos a ambos en *mundo tratamiento* o en *mundao control*[^potential_outcomes-8]. Ojo que esto no implica que la esperanza del *outcome* para tratamiento en los tratados sea igual a la esperanza para no tratamiento en los controles ($E[Y^1|D=1] - E[Y^0|D=0] = 0$) ni igual a la esperanza no tratamiento de los tratados ($E[Y^1|D=1] - E[Y^0|D=1] = 0$).
+Es decir, que la esperanza de los *outcomes* para los participantes que fueron asignados tanto al grupo tratamiento y al grupo control serían iguales si pudiéramos medir a ambos en *mundo tratamiento* o en *mundao control*[^potential_outcomes-8]. Ojo que esto no implica que la esperanza del *outcome* para tratamiento en los tratados sea igual a la esperanza de no tratamiento en los controles ($E[Y^1|D=1] - E[Y^0|D=0] = 0$), ni igual a la esperanza de no tratamiento de los tratados ($E[Y^1|D=1] - E[Y^0|D=1] = 0$).
 
 [^potential_outcomes-8]: Tengamos en cuenta que tanto $E[Y^1|D=0]$ como $E[Y^0|D=1]$ son escenarios contrafácticos.
 
-¿Qué implicancias tiene las igualdades presentadas en @eq-independencia en los sesgos que vimos en la ecuación @eq-sesgos? Empecemos por el sesgo de selección ($E[Y^0|D=1] + E[Y^0|D=0]$). Vemos que, de acuerdo a la primera línea de @eq-independencia, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. Lo que nos está diciendo la condición de independencia es que si ambos grupos fueran no tratados, ambos tendrían el mismo *outcome* lo que pareciera indicarnos que es razonable considerar nulo al sesgo de selección.
+¿Qué implicancias tiene las igualdades presentadas en @eq-independencia en los sesgos que vimos en la ecuación @eq-sesgos? Empecemos por el sesgo de selección ($E[Y^0|D=1] + E[Y^0|D=0]$). Vemos que, de acuerdo a la primera línea de @eq-independencia, de ser independiente la asignación del grupo experimental, este sesgo sería cero. Pensemos un poco. La condición de independencia nos dice que, si ninguno de los dos grupos fueran no tratados, ambos tendrían el mismo *outcome*, lo que sugiere que es razonable considerar nulo el sesgo de selección.
 
 La relación del sesgo de efecto heterogéneo ($(1-\pi) (ATT - ATU)$) con la independencia es un poquito más difícil de demostrar. Olvidémonos del $(1-\pi)$ por un momento. Reescribamos los efectos **ATT** y **ATU**:
 
@@ -236,21 +236,21 @@ _ATT - ATU &=& E[Y^1|D=1] - E[Y^0|D=1] - ( E[Y^1|D=0] - E[Y^0|D=0] )\\
 \end{array}
 $$ {#eq-sesgohet}
 
-Reescrito de esta forma podemos ver los dos primero términos de @eq-sesgohet se hacen cero por la primera línea de @eq-independencia, y los últimos dos se hacen cero por la segunda.
+Reescrito de esta forma podemos ver que los dos primero términos de @eq-sesgohet se hacen cero por la primera línea de la @eq-independencia, y los últimos dos se hacen cero por la segunda.
 
 Finalmente, demostramos que si hay independencia en la asignación de los grupos, la diferencia de las medias simple (**SDO**) entre el grupo tratado y el grupo control es un estimador insesgado del **ATE**.
 
 ## SUTVA
 
-En este capítulo hemos presentado un marco teórico para definir un efecto causal. A ese efecto causal lo llamamos **ATE** y vimos que es imposible calcularlo por la existencia de contrafácticos pero que puede ser estimado por una medida observable, la **SDO**. También vimos que **SDO** contiene al **ATE** y a un par de sesgos, sesgos que deberían hacerse cero si el supuesto de independencia se cumple. 
+En este capítulo hemos presentado un marco teórico para definir un efecto causal. A ese efecto causal lo llamamos **ATE** y vimos que es imposible calcularlo por la existencia de contrafácticos, pero que puede ser estimado por una medida observable: la **SDO**. También vimos que **SDO** contiene al **ATE** y a un par de sesgos. Estos sesgos deberían hacerse cero si el supuesto de independencia se cumple. 
 
-¿Podría pasar que un efecto causal no pueda ser estimado con este marco teórico? Sí, hay un límite a este marco en donde todas estos cáclulos (medibles o no) son posibles. Si vamos al corazón mismo de todos los cálculos la condición que debe cumplirse para que todo sea posible es que las $Y_i$ sean *restables*, en otras palabras que representen lo mismo. A este supuesto se lo llama **SUTVA** que es la abreviatura de **stable unit treatment value assumption**. Vamos a reformularlo, **SUTVA** implica que cada unidad $i$ recibe la misma dosis de tratamiento.
+¿Podría pasar que un efecto causal no pueda ser estimado con este marco teórico? Sí, hay un límite en este marco en donde todas estos cáclulos (medibles o no) no son posibles. Si vamos al corazón mismo de todos estos cálculos la condición que debe cumplirse para que todo sea posible es que las $Y_i$ sean *restables* (o, dicho de otra forma, que representen lo mismo). A este supuesto se lo llama **SUTVA** que es la abreviatura de **stable unit treatment value assumption**. Vamos a reformularlo. **SUTVA** implica que cada unidad $i$ recibe la misma dosis de tratamiento.
 
-El **SUTVA** se cumple siempre que cuando se expone un individuo a un tratamiento; su respuesta sea la misma: 1) Sin importar cómo el participante fue asignado al tratamiento y 2) Sin importar los tratamientos recibidos por las otras unidades.
+El **SUTVA** se cumple,  la respuesta de un individuo expuesto a tratamiento será la misma: *1)* sin importar cómo el participante fue asignado al tratamiento, y *2)* sin importar los tratamientos recibidos por las otras unidades.
 
 Sin embargo, en la práctica estos supuestos pueden fallar. En particular, la segunda condición —la ausencia de interferencia entre unidades— puede violarse por fenómenos sociales, conductuales o institucionales que modifican la respuesta de los individuos en función de lo que ocurre con otros. Algunos ejemplos clásicos de estas violaciones son la rivalidad compensatoria, la desmoralización resentida, la difusión o imitación de tratamientos y la ecualización compensatoria de tratamientos.
 
-La rivalidad compensatoria ocurre cuando los individuos del grupo control, al saber (o sospechar) que no están recibiendo el tratamiento, reaccionan esforzándose más para “compensar” esa desventaja. Por ejemplo, en un estudio educativo, los estudiantes que no reciben una nueva intervención pedagógica podrían estudiar más por su cuenta para no quedar atrás. Esto genera que sus resultados mejoren artificialmente, reduciendo la diferencia observada entre tratamiento y control, y por lo tanto subestimando el efecto causal real. En notación de *potential outcomes*, esto se traduce en que el resultado observable ($Y_i^0|D_i=0$) tiene agregado un efecto "compensatorio" que lo hace más grande que su contrafáctico ($Y_i^0|D_i=1$), o sea, la respuesta al no-tratamiento en el grupo tratamiento.
+La rivalidad compensatoria ocurre cuando los individuos del grupo control, al saber (o sospechar) que no están recibiendo el tratamiento, reaccionan esforzándose más para “compensar” esa desventaja. Por ejemplo, en un estudio educativo, los estudiantes que no reciben una nueva intervención pedagógica podrían estudiar más por su cuenta para no quedar atrás. Esto genera que sus resultados mejoren artificialmente, lo que reduce la diferencia observada entre tratamiento y control y, por lo tanto, subestima el efecto causal real. En notación de *potential outcomes*, esto se traduce en que el resultado observable ($Y_i^0|D_i=0$) tiene agregado un efecto "compensatorio" que lo hace más grande que su contrafáctico ($Y_i^0|D_i=1$), o sea, la respuesta al no-tratamiento en el grupo tratamiento.
 
 En contraste, la desmoralización resentida aparece cuando los individuos del grupo control, al percibirse en desventaja, se desmotivan o reducen su esfuerzo. Siguiendo el mismo ejemplo, estudiantes que no reciben la intervención podrían perder interés o sentirse injustamente tratados, empeorando su desempeño. En este caso, la diferencia entre los grupos se amplifica, lo que puede llevar a sobreestimar el efecto del tratamiento.
 

@@ -98,12 +98,34 @@ nearest_control <- matchit(medication ~ sex + age + severity,
                            method = "nearest", 
                            distance = "mahalanobis",
                            replace = T,
-                           ratio = 1)
+                           ratio = 1,
+                           caliper = c(severity = 1))
+
 nearest_control
 summary(nearest_control, un = F)
 plot(summary(nearest_control))
 
 match_medicine <- match.data(nearest_control)
+
+medicine_impact_recovery %>% 
+  group_by(medication) %>% 
+  summarise(mean_age = mean(age),
+            n_male = sum(sex == 0),
+            mean_severity = mean(severity),
+            n = n())
+
+match_medicine %>% 
+  group_by(medication) %>% 
+  summarise(mean_age = mean(age),
+            n_male = sum(sex == 0),
+            mean_severity = mean(severity),
+            n = n())
+
+mathing_model1 <- lm(recovery ~ medication + sex + age + severity, 
+                     data = match_medicine)
+
+model_parameters(mathing_model1)
+
 
 # install.packages("marginaleffects")
 library("marginaleffects")

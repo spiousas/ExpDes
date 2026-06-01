@@ -31,14 +31,15 @@ linear_model1 <- lm(outcome ~ d + x, data = df)
 library(parameters)
 model_parameters(linear_model1)
 
-# Con matching ####
+# Con MatchIt ####
 library(MatchIt)
 nearest_control <- matchit(d ~ x, 
                            data = df,
                            method = "nearest", 
                            distance = "mahalanobis",
                            replace = T,
-                           ratio = 1)
+                           ratio = 5,
+                           caliper = c(x = 1))
 
 match_df <- match.data(nearest_control)
 
@@ -47,6 +48,17 @@ mathing_model1 <- lm(outcome ~ d + x,
                      weights = weights)
 
 model_parameters(mathing_model1)
+
+# Con Matching ####
+library(Matching)
+mathing_model2 <- Match(df$outcome, 
+                        df$d, 
+                        df$x, 
+                        replace = T,
+                        M = 5, 
+                        Weight = 2, # Mahalanobis
+                        caliper = 0.05)
+summary(mathing_model2)
 
 # Veamos los ajustes graficamente ####
 #install.packages("FNN")

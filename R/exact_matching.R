@@ -9,6 +9,12 @@ trainees_df <- read_csv("https://github.com/matheusfacure/python-causality-handb
 
 trainees_df
 
+trainees_df %>% 
+  group_by(trainee) %>% 
+  summarise(mean_earnings = mean(earnings),
+            mean_age = mean(age),
+            n = n())
+
 # Vemos las distribuciones marginales
 trainees_df %>% 
   mutate(treatment_status = factor(trainee,
@@ -52,8 +58,7 @@ trainees_df %>%
 # El estimador exact matching del ATT ####
 # Renombro la columna como outcome
 trainees_df <- trainees_df %>%
-  rename(outcome := earnings) %>% 
-  mutate(id = 1:n())
+  rename(outcome := earnings)
 
 # Creo un dataset sólo con las unidades tratadas
 treated_df <- trainees_df %>% 
@@ -66,7 +71,13 @@ control_df <- trainees_df %>%
 # Matcheo las tratadas y no tratadas para iguales valores de age
 treated_matched <- treated_df %>% 
   left_join(control_df, by = "age",
-            suffix = c("_i", "_j"))
+            suffix = c("_treated", "_matched_control"))
+
+mean(treated_matched$outcome_treated)
+mean(treated_matched$outcome_matched_control)
+
+# Plot them as a table in the viewer
+kable(treated_matched) %>% kableExtra::kable_styling()
 
 # El estimador
 estimate_att <- 

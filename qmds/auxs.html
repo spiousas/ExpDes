@@ -185,7 +185,7 @@ window.Quarto = {
 <!--   Age   = rnorm(1000, 40, 10), -->
 <!--   Covid = rbinom(1000, 1, prob = exp(-10+.25*Age)/(1+exp(-10+.25*Age))) -->
 <!-- ) -->
-<!-- covid  %>%  -->
+<!-- covid  %>% -->
 <!--   ggplot(aes(x = Age, y = Covid)) + -->
 <!--   geom_point(alpha = .2, width =.2) + -->
 <!--   geom_smooth(se = F) + -->
@@ -200,7 +200,7 @@ window.Quarto = {
 <!--   Age   = seq(min(covid$Age), max(covid$Age), .1), -->
 <!--   Covid = exp(glm_1$coefficients[1]+glm_1$coefficients[2]*Age)/(1+exp(glm_1$coefficients[1]+glm_1$coefficients[2]*Age)) -->
 <!-- ) -->
-<!-- covid  %>%  -->
+<!-- covid  %>% -->
 <!--   ggplot(aes(x = Age, y = Covid)) + -->
 <!--   geom_point(alpha = .2, width =.2) + -->
 <!--   geom_line(data = fit, aes(x = Age, y = Covid), linewidth = 1) + -->
@@ -276,15 +276,20 @@ window.Quarto = {
 <!-- $$ -->
 <!-- \hat{ATT} = E[Y_1(1)-Y_0(1)|D=1] -->
 <!-- $$ -->
-<!-- $$ -->
-<!-- \hat{ATT} = E[Y_1(1)|D=1] - E[Y_1(0)|D=1] = 41.05 -->
-<!-- $$ -->
+<p><span class="math display">\[
+\hat{ATT} = E[Y_1(1)|D=1] - E[Y_0(0)|D=1] = 41.05
+\]</span></p>
 <!-- $$ -->
 <!-- E[Y_0(1)|D=1] = E[Y_0(0)|D=1] -->
 <!-- $$ -->
 <!-- $$ -->
 <!-- \hat{ATT} = E[Y(1)|D=1] - E[Y(1)|D=0] = -119.1 -->
 <!-- $$ -->
+<p><span class="math display">\[
+\hat{ATT} = E[Y_1(1)|D=1] - E[Y_0(1)|D=0] = -119.1
+\]</span> <span class="math display">\[
+Y_D(T)
+\]</span></p>
 <!-- $$ -->
 <!-- E[Y_0(1)|D=0] = E[Y_0(1)|D=1] -->
 <!-- $$ -->
@@ -313,7 +318,7 @@ window.Quarto = {
 <!-- Y_i = \beta_0 + \beta_1 POA_i + \beta_2 Jul_i + \beta_3 POA_i*Jul_i + e_i -->
 <!-- $$ -->
 <!-- $$ -->
-<!-- \hat{Y_{FL}^{jun}} =\hat \beta_0 + \hat\beta_1 0 + \hat\beta_2 0 + \hat\beta_3 0*0 = \hat\beta_0  -->
+<!-- \hat{Y_{FL}^{jun}} =\hat \beta_0 + \hat\beta_1 0 + \hat\beta_2 0 + \hat\beta_3 0*0 = \hat\beta_0 -->
 <!-- $$ -->
 <!-- $$ -->
 <!-- \hat{Y_{FL}^{jul}} = \hat\beta_0 + \hat\beta_1 0 + \hat\beta_2 1 + \hat\beta_3 0*1 = \hat\beta_0 + \hat\beta_2 -->
@@ -378,19 +383,19 @@ window.Quarto = {
 <!--    \begin{cases} 1 -->
 <!--        \text{ if } & X_i\geq{c_0} -->
 <!--        \\ 0 -->
-<!--        \text{ if } & X_i < c_0     -->
+<!--        \text{ if } & X_i < c_0 -->
 <!--    \end{cases} -->
 <!-- $$ -->
 <!-- $$ -->
 <!-- \begin{align} -->
 <!--    Y_i^0 & = \alpha + \beta X_i -->
 <!--    \\ -->
-<!--    Y^1_i & = Y_i^0 + \delta      -->
+<!--    Y^1_i & = Y_i^0 + \delta -->
 <!-- \end{align} -->
 <!-- $$ -->
 <!-- $$ -->
 <!-- \begin{align} -->
-<!--    Y_i & =Y_i^0 + (Y_i^1 - Y_i^0) D_i                    -->
+<!--    Y_i & =Y_i^0 + (Y_i^1 - Y_i^0) D_i -->
 <!--    \\ -->
 <!--    Y_i & =\alpha+\beta X_i + \delta D_i + \varepsilon_i -->
 <!-- \end{align} -->
@@ -426,7 +431,7 @@ window.Quarto = {
 <!-- $$ -->
 <!-- \color{#FF851B}{\text{Salario}_i} \color{#111111}{= \beta_0 + \beta_1} \color{#0074D9}{\text{Educación}_i} \color{#111111}{+} \color{#FF4136}{\varepsilon_i} -->
 <!-- $$ -->
-<!-- $$  -->
+<!-- $$ -->
 <!-- \begin{aligned} -->
 <!-- \color{#FF851B}{\text{Salario}_i} =& \beta_0 + \beta_1 \color{#B10DC9}{\text{Educación}_i} \color{#111111}{+ \varepsilon_i} \\ -->
 <!-- & \beta_0 + \beta_1 (\color{#0074D9}{\text{Educación}_i^\text{exog.}} \color{#111111}{+} \color{#FF4136}{\text{Educación}_i^\text{endog.}}) \color{#111111}{+ \varepsilon_i} \\ -->
@@ -588,7 +593,7 @@ window.Quarto = {
 <!-- \begin{array} -->
 <!-- _\mu_{\bar{u}_{n=2000}} &=& 0.1 \\ -->
 <!-- \sigma^2_{\bar{u}_{n=2000}} &=& \sigma^2/n \\ -->
-<!-- &=& 9/2000 \\  -->
+<!-- &=& 9/2000 \\ -->
 <!-- &=& 0.0045 -->
 <!-- \end{array} -->
 <!-- $$ -->
@@ -596,7 +601,7 @@ window.Quarto = {
 <!-- \begin{array} -->
 <!-- _\mu_{\bar{u}_{n=100}} &=& 0.1 \\ -->
 <!-- \sigma^2_{\bar{u}_{n=100}} &=& \sigma^2/n \\ -->
-<!-- &=& 9/100 \\  -->
+<!-- &=& 9/100 \\ -->
 <!-- &=& 0.09 -->
 <!-- \end{array} -->
 <!-- $$ -->
@@ -641,8 +646,8 @@ window.Quarto = {
 <!--   theme_bw() -->
 <!-- lm_1 <- lm(Y ~ X, tb) -->
 <!-- lm_2 <- lm(Y ~ X + C, tb) -->
-<!-- stargazer(lm_1,lm_2, type = "text",  -->
-<!--           column.labels = c("Sin controlar",  -->
+<!-- stargazer(lm_1,lm_2, type = "text", -->
+<!--           column.labels = c("Sin controlar", -->
 <!--                             "Controlando por C")) %>% -->
 <!--   knitr::kable() -->
 <!-- ``` -->
@@ -670,12 +675,12 @@ window.Quarto = {
 <!-- H_1: \text{Al menos una de las betas es distinta de cero} -->
 <!-- \end{array} -->
 <!-- $$ -->
-<p><span class="math display">\[
-\text{subclas\_estimator} = \text{SDO}_{\text{east}} \left( \frac{n_{\text{east}}}{n_{\text{total}}} \right) + \text{SDO}_{\text{north}} \left( \frac{n_{\text{north}}}{n_{\text{total}}} \right) + \text{SDO}_{\text{west}} \left( \frac{n_{\text{west}}}{n_{\text{total}}} \right)
-\]</span></p>
-<p><span class="math display">\[
-\widehat{\tau}_{\text{subclass}} = \sum_{g \in \mathcal{G}} \text{SDO}_g \left( \frac{n_g}{n_{\text{total}}} \right)
-\]</span></p>
+<!-- $$ -->
+<!-- \text{subclas\_estimator} = \text{SDO}_{\text{east}} \left( \frac{n_{\text{east}}}{n_{\text{total}}} \right) + \text{SDO}_{\text{north}} \left( \frac{n_{\text{north}}}{n_{\text{total}}} \right) + \text{SDO}_{\text{west}} \left( \frac{n_{\text{west}}}{n_{\text{total}}} \right) -->
+<!-- $$ -->
+<!-- $$ -->
+<!-- \widehat{\tau}_{\text{subclass}} = \sum_{g \in \mathcal{G}} \text{SDO}_g \left( \frac{n_g}{n_{\text{total}}} \right) -->
+<!-- $$ -->
 
 </main>
 <!-- /main column -->

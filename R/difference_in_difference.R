@@ -2,7 +2,11 @@ library(dplyr)
 library(readr)
 library(ggplot2)
 library(here)
-#install.packages("forcats")
+library(tidyverse)
+library(modelsummary)
+library(fixest)
+library(causaldata)
+library(broom)
 library(forcats)
 
 data <- read_csv(here("data/billboard_impact.csv"))
@@ -100,13 +104,6 @@ diff_in_diff_model <- lm(data = data,
 model_parameters(diff_in_diff_model)
 
 # Organ donation
-library(tidyverse)
-#install.packages("modelsummary")
-library(modelsummary)
-#install.packages("fixest")
-library(fixest)
-#install.packages("causaldata")
-library(causaldata)
 od <- causaldata::organ_donations
 od
 
@@ -179,7 +176,7 @@ clfe2 <- feols(Rate ~ FakeTreat2 | State + Quarter,
 
 msummary(list(clfe1,clfe2), stars = c('*' = .1, '**' = .05, '***' = .01))
 
-# En el tiempo
+# En el tiempo  
 od <- causaldata::organ_donations
 
 # Treatment variable
@@ -205,4 +202,3 @@ tidy(clfe) |>
   geom_vline(xintercept = 3.5, linetype = "dashed", linewidth = 1) +
   labs(x = "Quarter", y = "Parámetro estimado") +
   theme_bw()
-    

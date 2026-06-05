@@ -39,7 +39,7 @@ nearest_control <- matchit(d ~ x,
                            distance = "mahalanobis",
                            replace = T,
                            ratio = 5,
-                           caliper = c(x = 1))
+                           caliper = c(x = .05))
 
 match_df <- match.data(nearest_control)
 

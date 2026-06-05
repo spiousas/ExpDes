@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Cuando las asignaciones no son aleatorias – Diseños experimentales y cuasiexperimentales</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./matching.html" rel="next">
+<link href="./exp_aleatorios.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b9e11ad5a37ead2aabff839d95ae3857.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pseudoexperimentos.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><em>Cuando las asignaciones no son aleatorias</em></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Diseños experimentales y cuasiexperimentales</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R y el tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de probabilidad y estadística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./potential_outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><em>Potential outcomes</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Grafos acíclicos dirigidos (DAGS)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exp_aleatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pseudoexperimentos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><em>Cuando las asignaciones no son aleatorias</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Diferencias en diferencias</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reg_discontinua.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regresión discontinua</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./var_instrumentales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Variables instrumentales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#el-diseño-experimental-en-tiempos-de-cólera" id="toc-el-diseño-experimental-en-tiempos-de-cólera" class="nav-link active" data-scroll-target="#el-diseño-experimental-en-tiempos-de-cólera"><span class="header-section-number">6.1</span> El diseño experimental en tiempos de cólera…</a></li>
+  <li><a href="#la-promesa-que-se-rompe" id="toc-la-promesa-que-se-rompe" class="nav-link" data-scroll-target="#la-promesa-que-se-rompe"><span class="header-section-number">6.2</span> La promesa que se rompe</a></li>
+  <li><a href="#por-qué-a-veces-no-se-puede-aleatorizar" id="toc-por-qué-a-veces-no-se-puede-aleatorizar" class="nav-link" data-scroll-target="#por-qué-a-veces-no-se-puede-aleatorizar"><span class="header-section-number">6.3</span> ¿Por qué a veces no se puede aleatorizar?</a></li>
+  <li><a href="#qué-es-un-cuasi-experimento-entonces" id="toc-qué-es-un-cuasi-experimento-entonces" class="nav-link" data-scroll-target="#qué-es-un-cuasi-experimento-entonces"><span class="header-section-number">6.4</span> ¿Qué es un cuasi-experimento entonces?</a></li>
+  <li><a href="#las-cuatro-validez" id="toc-las-cuatro-validez" class="nav-link" data-scroll-target="#las-cuatro-validez"><span class="header-section-number">6.5</span> Las cuatro validez</a>
+  <ul class="collapse">
+  <li><a href="#validez-estadística" id="toc-validez-estadística" class="nav-link" data-scroll-target="#validez-estadística"><span class="header-section-number">6.5.1</span> Validez estadística</a></li>
+  <li><a href="#validez-interna" id="toc-validez-interna" class="nav-link" data-scroll-target="#validez-interna"><span class="header-section-number">6.5.2</span> Validez interna</a></li>
+  <li><a href="#validez-de-constructo" id="toc-validez-de-constructo" class="nav-link" data-scroll-target="#validez-de-constructo"><span class="header-section-number">6.5.3</span> Validez de constructo</a></li>
+  <li><a href="#validez-externa" id="toc-validez-externa" class="nav-link" data-scroll-target="#validez-externa"><span class="header-section-number">6.5.4</span> Validez externa</a></li>
+  <li><a href="#jerarquía-de-la-validez" id="toc-jerarquía-de-la-validez" class="nav-link" data-scroll-target="#jerarquía-de-la-validez"><span class="header-section-number">6.5.5</span> Jerarquía de la validez</a></li>
+  </ul></li>
+  <li><a href="#amenazas-a-la-validez-interna" id="toc-amenazas-a-la-validez-interna" class="nav-link" data-scroll-target="#amenazas-a-la-validez-interna"><span class="header-section-number">6.6</span> Amenazas a la validez interna</a>
+  <ul class="collapse">
+  <li><a href="#historia-y-maduración" id="toc-historia-y-maduración" class="nav-link" data-scroll-target="#historia-y-maduración"><span class="header-section-number">6.6.1</span> Historia y maduración</a></li>
+  <li><a href="#testing-e-instrumentación" id="toc-testing-e-instrumentación" class="nav-link" data-scroll-target="#testing-e-instrumentación"><span class="header-section-number">6.6.2</span> Testing e instrumentación</a></li>
+  <li><a href="#regresión-a-la-media" id="toc-regresión-a-la-media" class="nav-link" data-scroll-target="#regresión-a-la-media"><span class="header-section-number">6.6.3</span> Regresión a la media</a></li>
+  <li><a href="#sesgo-de-selección-y-no-adherencia" id="toc-sesgo-de-selección-y-no-adherencia" class="nav-link" data-scroll-target="#sesgo-de-selección-y-no-adherencia"><span class="header-section-number">6.6.4</span> Sesgo de selección y no-adherencia</a></li>
+  <li><a href="#difusión-compensación-y-otros-fenómenos-sociales" id="toc-difusión-compensación-y-otros-fenómenos-sociales" class="nav-link" data-scroll-target="#difusión-compensación-y-otros-fenómenos-sociales"><span class="header-section-number">6.6.5</span> Difusión, compensación y otros fenómenos sociales</a></li>
+  </ul></li>
+  <li><a href="#no-todo-es-color-de-rosa-la-advertencia-de-lalonde" id="toc-no-todo-es-color-de-rosa-la-advertencia-de-lalonde" class="nav-link" data-scroll-target="#no-todo-es-color-de-rosa-la-advertencia-de-lalonde"><span class="header-section-number">6.7</span> No todo es color de rosa: la advertencia de Lalonde</a></li>
+  <li><a href="#y-ahora-qué-un-mapa-hacia-lo-que-viene" id="toc-y-ahora-qué-un-mapa-hacia-lo-que-viene" class="nav-link" data-scroll-target="#y-ahora-qué-un-mapa-hacia-lo-que-viene"><span class="header-section-number">6.8</span> ¿Y ahora qué? Un mapa hacia lo que viene</a></li>
+  <li><a href="#para-llevar" id="toc-para-llevar" class="nav-link" data-scroll-target="#para-llevar"><span class="header-section-number">6.9</span> Para llevar</a></li>
+  <li><a href="#preguntas-de-repaso" id="toc-preguntas-de-repaso" class="nav-link" data-scroll-target="#preguntas-de-repaso"><span class="header-section-number">6.10</span> Preguntas de repaso</a></li>
+  <li><a href="#un-caso-aplicado-para-pensar" id="toc-un-caso-aplicado-para-pensar" class="nav-link" data-scroll-target="#un-caso-aplicado-para-pensar"><span class="header-section-number">6.11</span> Un caso aplicado para pensar</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><em>Cuando las asignaciones no son aleatorias</em></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="el-diseño-experimental-en-tiempos-de-cólera" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="el-diseño-experimental-en-tiempos-de-cólera"><span class="header-section-number">6.1</span> El diseño experimental en tiempos de cólera…</h2>
+<p>En agosto de 1854 un brote de cólera mataba a una persona cada pocos minutos en el barrio de Soho, en el centro de Londres. La teoría médica dominante de la época culpaba a los <em>miasmas</em>, una suerte de aire viciado que se desprendía de la materia en descomposición (spoiler: hoy sabemos que es una bacteria que proviene de la materia fecal de los seres humanos y puede contaminar el agua y los alimentos). Mientras el resto de los médicos de la ciudad se esforzaban en tratar los casos (con poco éxito), uno de ellos llamado John Snow se propuso atacar el problema de raíz.Tenía una hipótesis: el cólera se transmitía por el agua. Para defenderla necesitaba algo más que su intuición. Necesitaba evidencia.</p>
+<p>Snow tomó un mapa de la ciudad y empezó a registrar el domicilio de las víctimas. Abajo pueden ver una versión moderna en donde el tamaño de las burbujas representa la cantidad de víctimas en ese punto. La imagen es contundente, el mapa mostraba claramente que las muertes se concentraban alrededor de una fuente de agua pública en Broad Street. Efectivamente el agua de esa bomba estaba contaminada, las autoridades la clausuraron y la epidemia cesó. Una observación salvó miles de vidas.</p>
+<p><img src="imgs/cholera_map.png" class="img-fluid quarto-figure quarto-figure-center"> Aunque efectiva, ¿alcanzaba la evidencia de Snow para derrocar la teoría de los miasmas? No.&nbsp;La asociación entre la bomba de Broad Street y las muertes podía explicarse por otras cosas: que el barrio era más pobre, que tenía más hacinamiento, que compraban alimentos en el mismo mercado o incluso que compartían la misma intensidad del famoso miasma. Esto es porque pese a su efectividad, el estudio de Snow era un estudio <strong>observacional</strong> y carecen de poder explicativo causal. El lector de este libro se imaginará que la solución es obvia, Snow necesitaba un <strong>experimento aleatorizado</strong> para convencer a sus colegas.Esta simple solución se da de cabeza contra <em>“cosillas”</em> como la ética, uno no puede andar repartiendo aleatoriamente agua que cree contaminada con una enfermedad mortal, que la hace imposible.</p>
+<p>La cosa no quedó así, en 1855 cuando una nueva epidemia de cólera estalla (con la bomba de Broad St aún cerrada) Snow advirtió una situación externa que solucionar el problema de la causalidad. Dos compañías de agua, <em>Southwark &amp; Vauxhall</em> y <em>Lambeth</em>, abastecían las mismas calles del sur de Londres (vean el mapa).</p>
+<p><img src="imgs/cholera_map_water.png" class="img-fluid quarto-figure quarto-figure-center"> En 1852, tres años antes del brote, Lambeth había mudado su toma de agua río arriba, lejos de las cloacas londinenses. Southwark &amp; Vauxhall seguía sacando agua del Támesis contaminado. Casas vecinas, en la misma cuadra, recibían agua de una u otra compañía según contratos viejos que sus dueños ni recordaban haber firmado. Los habitantes no podían elegir. Al vivir en el mismo barrio, e incluso en la misma cuadra, los que bebían agua de una compañía o la otra eran igual de pobres, con más o menos el mismo hacinamiento, compraban alimentos en el mismo mercado e incluso respiraban iguales cantidades del <em>hipotético</em> miasma.</p>
+<p>Snow contó muertes y armó esta tabla.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Compañía</th>
+<th>Casas suministradas</th>
+<th>Muertes por cólera</th>
+<th>Tasa por 10.000 casas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Southwark &amp; Vauxhall</td>
+<td>40.046</td>
+<td>1.263</td>
+<td>315</td>
+</tr>
+<tr class="even">
+<td>Lambeth</td>
+<td>26.107</td>
+<td>98</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td>Resto de Londres</td>
+<td>256.423</td>
+<td>1.422</td>
+<td>59</td>
+</tr>
+</tbody>
+</table>
+<p>En las casas servidas por Southwark &amp; Vauxhall murieron 315 personas por cada 10 000 viviendas. En las servidas por Lambeth, 37. Una diferencia de casi nueve veces, en barrios idénticos, con el mismo clima, las mismas casas, las mismas miserias. El único factor que distinguía sistemáticamente a un grupo del otro era el agua.</p>
+<p>Snow no aleatorizó. Pero la naturaleza, las cloacas y los viejos contratos comerciales habían hecho algo parecido por él.</p>
+<p>Este estudio es quizás el primer <strong>pseudoexperimento</strong> de la historia, y es de lo que va lo que resta de este libro: <em>estimar efectos causales sin asignación aleatoria.</em></p>
+<p>Este capítulo es la puerta de entrada. Hasta acá venimos hablando de experimentos donde el investigador asigna los tratamientos por azar y de ahí se sigue, casi gratis, la posibilidad de identificar efectos causales. Eso se terminó. A partir de ahora vamos a meternos en el barro: estudios donde la asignación no es aleatoria, donde el sesgo de selección no es una posibilidad sino la regla, y donde la identificación causal hay que defenderla con argumentos, supuestos y diseño.</p>
+</section>
+<section id="la-promesa-que-se-rompe" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="la-promesa-que-se-rompe"><span class="header-section-number">6.2</span> La promesa que se rompe</h2>
+<p>Repasemos brevemente por qué la aleatorización es tan poderosa. En el capítulo de <em>potential outcomes</em> vimos que el problema fundamental de la inferencia causal es que para cada unidad solo observamos uno de sus dos resultados potenciales. El otro queda contrafáctico. Y la diferencia simple de medias entre tratados y no tratados —el <strong>SDO</strong>— solo es un estimador insesgado del <strong>ATE</strong> si los grupos son comparables: si el sesgo de selección y el sesgo de tratamiento heterogéneo se anulan en esperanza.</p>
+<p>La aleatorización resuelve eso de un saque. Cuando asignás el tratamiento <span class="math inline">\(D\)</span> por azar, <span class="math inline">\(D\)</span> se vuelve independiente de los resultados potenciales:</p>
+<p><span class="math display">\[
+(Y^0, Y^1) \perp D
+\]</span></p>
+<p>Esa independencia garantiza que los dos grupos son intercambiables en expectativa, y por lo tanto <span class="math inline">\(E[Y|D=1] - E[Y|D=0]\)</span> estima el <strong>ATE</strong> sin trampa. La gracia es que la aleatorización balancea no solo las variables que medimos, sino también las que no medimos: la motivación, la severidad subclínica, el contexto familiar, el humor del día. Por eso es tan barata: no hace falta modelar el mundo.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lo que pierdo cuando pierdo la aleatorización">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lo que pierdo cuando pierdo la aleatorización
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando la asignación no es aleatoria, se rompen tres cosas a la vez:</p>
+<ol type="1">
+<li><strong>Los grupos dejan de ser comparables</strong>: tratados y no tratados pueden diferir sistemáticamente en cosas que también afectan al <em>outcome</em>.</li>
+<li><strong>Dependemos de supuestos</strong>: ya no alcanza con el diseño; hay que defender por qué creemos que la comparación es justa y acordar concesiones.</li>
+<li><strong>La inferencia estadística depende del modelo</strong>: ya no hay una distribución del estimador “gratis” garantizada por el sorteo.</li>
+</ol>
+<p>Las tres se atacan con distintas herramientas. Este libro las recorre una por una en los próximos capítulos.</p>
+</div>
+</div>
+<p>La pregunta natural es: ¿por qué no aleatorizamos siempre, entonces?</p>
+</section>
+<section id="por-qué-a-veces-no-se-puede-aleatorizar" class="level2 page-columns page-full" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="por-qué-a-veces-no-se-puede-aleatorizar"><span class="header-section-number">6.3</span> ¿Por qué a veces no se puede aleatorizar?</h2>
+<p>Las razones para no aleatorizar son varias, y cada una de ellas motiva una familia distinta de diseños cuasi-experimentales (o pseudoexperimentales, son sinónimos).</p>
+<p>La razón más obvia es <strong>ética</strong>. No podés asignar al azar a la gente a fumar, a sufrir abuso infantil, a divorciarse, a pasar por una guerra. Cualquier pregunta causal sobre las consecuencias de esas experiencias está vedada al experimento aleatorizado. Si querés estudiar el efecto del tabaquismo sobre el cáncer de pulmón, no vas a poder aleatorizar la exposición. Doll y Hill, en 1950, no aleatorizaron a nadie a fumar: usaron un estudio de casos y controles, observacional, y tuvieron que defender su inferencia causal contra las críticas de Fisher mismo, que sostenía que la asociación entre tabaco y cáncer podía deberse a confusores no medidos. <span class="citation" data-cites="white1990">(<a href="references.html#ref-white1990" role="doc-biblioref">White 1990</a>)</span></p>
+<div class="no-row-height column-margin column-container"><div id="ref-white1990" class="csl-entry" role="listitem">
+White, C. 1990. <span>«<a href="https://www.ncbi.nlm.nih.gov/pubmed/2192501">Research on smoking and lung cancer: a landmark in the history of chronic disease epidemiology</a>»</span>. <em>Yale Journal of Biology and Medicine</em> 63 (1): 29-46.
+</div></div><p>La segunda razón es la <strong>factibilidad</strong>. No podés aleatorizar políticas nacionales. El salario mínimo, una reforma migratoria, una ley de tránsito, un cambio en el sistema previsional: todas son intervenciones que se aplican a poblaciones enteras, no a individuos. Tampoco podés aleatorizar terremotos, recesiones o pandemias. La geografía, el clima y la historia también escapan del control del investigador.</p>
+<p>Una tercera razón es la <strong>retrospectividad</strong>. Muchas veces la pregunta surge después de que el “tratamiento” ya ocurrió. ¿La pandemia de 2020 aumentó la prevalencia de depresión? La pandemia ya pasó. No hay forma de aleatorizar el COVID <em>post hoc</em>.</p>
+<p>A las que ya nombramos se suman dos más, un poco menos dramáticas pero igual de habituales. El <strong>costo y la escala</strong> vuelven prohibitivos algunos experimentos que en teoría serían posibles: muestras enormes, seguimientos de treinta años, múltiples países simultáneamente. Y el <strong>cumplimiento</strong>: aun cuando lograste aleatorizar, los participantes eligen. El asignado a tratamiento puede no recibirlo, el asignado a control puede conseguirlo por afuera. El estimador <em>intention-to-treat</em> sigue siendo causal, pero deja sin contestar la pregunta clínica de fondo, que es qué le pasa al que efectivamente recibe el tratamiento.</p>
+<p>Una última razón, más sutil, es la <strong>validez externa</strong>. Un ensayo aleatorizado puede funcionar perfecto en un hospital terciario con voluntarios sanos y bien adheridos, y no decir nada útil sobre la población real, donde los pacientes son más viejos, tienen comorbilidades y abandonan los tratamientos por la mitad. A veces el cuasi-experimento, paradójicamente, gana en validez externa lo que pierde en validez interna respecto al <strong>RCT</strong>.</p>
+</section>
+<section id="qué-es-un-cuasi-experimento-entonces" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="qué-es-un-cuasi-experimento-entonces"><span class="header-section-number">6.4</span> ¿Qué es un cuasi-experimento entonces?</h2>
+<p>Acá conviene poner palabras precisas.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Un <strong>cuasi-experimento</strong> (o pseudoexperimento, dependiendo del autor que leas) es un estudio que busca estimar el efecto causal de un tratamiento sin asignación aleatoria, pero recurriendo a otros recursos (de diseño y de análisis) para aproximar la comparabilidad que el experimento aleatorizado produciría por construcción.</p>
+</div>
+</div>
+</div>
+<p>La frase importante de esa definición es <em>“otros recursos de diseño y análisis”</em>. Un cuasi-experimento no es un estudio observacional al que después le pegamos una regresión cualquiera. Es un diseño en el que pensamos activamente, antes de mirar los datos, cómo elegir el grupo de comparación, qué variación explotar, qué momento aprovechar. La inferencia causal en un cuasi-experimento se defiende con el diseño primero y con el modelo después.</p>
+<p>Es útil distinguir tres tipos de estudio que a veces se confunden:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Experimento, cuasi-experimento, observacional">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Experimento, cuasi-experimento, observacional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Experimento aleatorizado</strong>: el investigador controla la asignación al tratamiento y la aleatoriza. La identificación causal sale del diseño. La amenaza principal es el cumplimiento y la validez externa.</p></li>
+<li><p><strong>Cuasi-experimento</strong>: hay una intervención y un grupo de comparación, pero la asignación no es aleatoria. La identificación causal sale del diseño <em>más</em> supuestos. La amenaza principal es la selección sobre variables no observadas.</p></li>
+<li><p><strong>Estudio observacional puro</strong>: ni siquiera hay una intervención clara; la “exposición” surge de la vida misma. La identificación causal depende casi enteramente de supuestos. Las amenazas son la confusión y la selección por todos lados.</p></li>
+</ul>
+<p>Las tres familias pueden usar datos parecidos. Lo que las distingue no es el tipo de dato, es de dónde sale la identificación.</p>
+</div>
+</div>
+<p>Cuando lean un paper, esta clasificación les sirve para diagnosticar de entrada qué nivel de evidencia están viendo. Un ensayo aleatorizado bien hecho descansa sobre el diseño. Un estudio retrospectivo con regresión múltiple descansa, casi enteramente, sobre la fe en que los confusores fueron medidos.</p>
+</section>
+<section id="las-cuatro-validez" class="level2 page-columns page-full" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="las-cuatro-validez"><span class="header-section-number">6.5</span> Las cuatro validez</h2>
+<p>Al hablar de las diferencias entre diseños introdujimos casualmente los términos de validez y amenaza a esta. Pero, ¿de que se trata? Shadish, Cook y Campbell usaron el término <strong>validez</strong> para denotar en qué medida una inferencia (sobre un efecto, una medición o una generalización) es correcta <span class="citation" data-cites="shadish2002">(<a href="references.html#ref-shadish2002" role="doc-biblioref">Shadish, Cook, y Campbell 2002</a>)</span>. Estos autores reconocen entonces que hay ciertos niveles de esa “corrección”. No hay una sola validez sino cuatro variedades clásicas. Las cuatro hacen preguntas distintas sobre el mismo estudio, y un trabajo serio tiene que defenderse en las cuatro.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-shadish2002" class="csl-entry" role="listitem">
+Shadish, William R., Thomas D. Cook, y Donald T. Campbell. 2002. <em>Experimental and Quasi-Experimental Designs for Generalized Causal Inference</em>. Boston, MA: Houghton Mifflin.
+</div></div><section id="validez-estadística" class="level3 page-columns page-full" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="validez-estadística"><span class="header-section-number">6.5.1</span> Validez estadística</h3>
+<p>La <strong>validez estadística</strong> pregunta si la covariación que observamos es real o si es ruido. ¿Tenés potencia suficiente para detectar el efecto que esperás? ¿Estás corrigiendo por comparaciones múltiples? ¿La distribución de los datos cumple con los supuestos del test que elegiste? ¿Estás reportando todos los análisis que corriste o solo los que dieron bien?</p>
+<p>La neurociencia cognitiva vivió una crisis pública en torno a esto. Bennett y colegas <span class="citation" data-cites="bennett2011">(<a href="references.html#ref-bennett2011" role="doc-biblioref">Bennett et&nbsp;al. 2011</a>)</span>, en 2009, le hicieron una resonancia magnética funcional a un salmón muerto mientras le mostraban fotos de personas con distintas emociones. Sin corrección por comparaciones múltiples, encontraron “activación” significativa en el cerebro del pez. El punto era didáctico: con 130.000 vóxeles y un umbral de significancia de <span class="math inline">\(p&lt;0{,}001\)</span>, los falsos positivos son matemáticamente inevitables. Una conclusión causal apoyada en validez estadística mala no es causal: es un artefacto.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-bennett2011" class="csl-entry" role="listitem">
+Bennett, Craig M., Abigail A. Baird, Michael B. Miller, y George L. Wolford. 2011. <span>«Neural Correlates of Interspecies Perspective Taking in the Post-Mortem Atlantic Salmon: An Argument For Multiple Comparisons Correction»</span>. <em>Journal of Serendipitous and Unexpected Results</em> 1 (1): 1-5.
+</div></div></section>
+<section id="validez-interna" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="validez-interna"><span class="header-section-number">6.5.2</span> Validez interna</h3>
+<p>La <strong>validez interna</strong> pregunta si esa covariación, dado que es real, es causal. ¿Hay un mecanismo confiable que vaya del tratamiento al <em>outcome</em>, o lo que veo podría explicarse por otra cosa? Es el corazón del libro y se la juega contra la lista de amenazas que vemos en la sección siguiente.</p>
+<p>Pensá en los estudios pre-post de estimulación magnética transcraneal en depresión resistente sin grupo control: muestran mejorías reales, claramente significativas. Pero la depresión también mejora sola con el tiempo, los pacientes consultan en el pico del episodio y regresan a la media, y la expectativa del tratamiento activo se suma al efecto. La covariación es real; la inferencia causal, en cambio, está armada con palitos.</p>
+</section>
+<section id="validez-de-constructo" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="validez-de-constructo"><span class="header-section-number">6.5.3</span> Validez de constructo</h3>
+<p>La <strong>validez de constructo</strong> pregunta si lo que medimos representa el constructo teórico que dijimos estar midiendo. Es la más fácil de pasar por alto, porque vive en el límite entre la psicometría y la teoría.</p>
+<p>En neurociencia cognitiva el problema es endémico. “Memoria de trabajo” medida con por ejemplo un test <em>n-back</em> de dos no es lo mismo que medida con span de dígitos: las dos tareas correlacionan modestamente y reclutan circuitos parcialmente distintos en el cerebro. Si tu estudio dice “el tratamiento mejora la memoria de trabajo” y solo medís <em>n-back</em>, estás haciendo una afirmación más amplia que la que sostienen tus datos. Pasa lo mismo con “atención”: test como Stroop, CPT y búsqueda visual miden cosas emparentadas pero no idénticas. En economía vale el paralelo con el desempleo: si el indicador oficial no incluye a los desalentados que dejaron de buscar trabajo, lo que medís deja afuera justo el margen donde más cambian las cosas. La validez de constructo no es un problema de medición sucia: es un problema de definir qué estás midiendo.</p>
+</section>
+<section id="validez-externa" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="validez-externa"><span class="header-section-number">6.5.4</span> Validez externa</h3>
+<p>La <strong>validez externa</strong> pregunta si lo que encontramos generaliza a otras personas, otros lugares, otros tiempos, otras dosis. En neurociencia cognitiva la pregunta clásica es si una tarea de laboratorio —con el sujeto inmóvil dentro de un resonador o frente a una pantalla en una habitación oscura— mide algo que se parezca al uso de la atención, la memoria o el control inhibitorio en la vida cotidiana. La crítica de Henrich, Heine y Norenzayan sobre las muestras <em>WEIRD</em> (occidentales, educadas, industrializadas, ricas y democráticas) golpea acá: si la evidencia que sostiene una afirmación general se generó con estudiantes universitarios norteamericanos, la generalización a otras poblaciones está sin testear.</p>
+<p>En economía experimental la versión equivalente es la del laboratorio. Los participantes —estudiantes, otra vez— juegan con sumas pequeñas, en una computadora, sabiendo que están en un experimento. Las preferencias por el riesgo, la cooperación o la honestidad medidas ahí a veces predicen bien el comportamiento real y a veces no. Cuando no lo hacen, no es que el experimento estaba mal: es que la generalización requiere supuestos que conviene explicitar.</p>
+</section>
+<section id="jerarquía-de-la-validez" class="level3" data-number="6.5.5">
+<h3 data-number="6.5.5" class="anchored" data-anchor-id="jerarquía-de-la-validez"><span class="header-section-number">6.5.5</span> Jerarquía de la validez</h3>
+<p>Si bien las cuatro importan, hay una jerarquía operativa. En cualquier diseño es lógico pensar en este orden: Primero si la covariación es real (validez estadística), después, si esta señal es causal (validez interna), después si esto que dije que era realmente lo es (validez de constructo), y recién al final se discute si generaliza (validez externa). Si se falló en alguno de los tres primeros, la discusión sobre validez externa es prematura.</p>
+<p>La validez interna es el principal desafío del diseño experimental. La razón está bien resumida en una frase de Reichardt: si la covariación que observamos no es causal, generalizar no-causalidad a otros contextos no tiene sentido. Si fallamos en identificar el efecto causal <em>acá</em>, no nos interesa demasiado si “generalizaría” a otra población. Estaríamos generalizando un artefacto. Esto no quiere decir que la validez externa no importe, importa muchísimo en políticas públicas y en clínica, sino que hay un orden.</p>
+</section>
+</section>
+<section id="amenazas-a-la-validez-interna" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="amenazas-a-la-validez-interna"><span class="header-section-number">6.6</span> Amenazas a la validez interna</h2>
+<p>Si es tan importante, la cuestión operativa que sigue es: ¿cómo se evalúa la validez interna? La respuesta breve es que no hay un test. Hay una lista de <strong>amenazas</strong>, cada una con su lógica, y para cada amenaza hay defensas específicas.</p>
+<p>Vamos a las más frecuentes.</p>
+<section id="historia-y-maduración" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="historia-y-maduración"><span class="header-section-number">6.6.1</span> Historia y maduración</h3>
+<p>Son las dos amenazas más básicas y, por lo mismo, las más subestimadas. La <strong>historia</strong> es cualquier evento externo al tratamiento que ocurre entre la medición pre y post. Por ejemplo, si estás midiendo el efecto de un programa de intervención sobre depresión, y a mitad del seguimiento entra una cuarentena nacional. ¿El cambio observado se debe al programa o a la cuarentena? Sin grupo control, no podés separarlos.</p>
+<p>La <strong>maduración</strong> es más sutil. Los participantes cambian con el tiempo sin que nadie haga nada. Un niño con trastorno del lenguaje mejora con seis meses de fonoaudiología, pero también mejora con seis meses sin fonoaudiología, porque maduró. Si comparás antes y después en el grupo tratado y no tenés un grupo control que envejezca al mismo ritmo, no podés separar el efecto del tratamiento de la trayectoria del desarrollo.</p>
+<p>Las dos amenazas tienen la misma cura: un grupo de comparación expuesto a la historia y a la maduración pero no al tratamiento. Esa es, no por casualidad, la lógica de varios de los métodos que vienen.</p>
+</section>
+<section id="testing-e-instrumentación" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="testing-e-instrumentación"><span class="header-section-number">6.6.2</span> Testing e instrumentación</h3>
+<p>El efecto de <strong>testing</strong> aparece cuando tomar un test cambia el resultado de la siguiente toma. Un ejemplo clásico, en cualquier evaluación cognitiva hay test con efecto de aprendizaje (sobretodo en los test de memoria), entonces el participante mejora la segunda vez simplemente porque ya conoce el formato. Si comparás pre-post sin grupo control, no estás midiendo recuperación cognitiva; estás midiendo cuánto se aprende a hacer el test.</p>
+<p>La <strong>instrumentación</strong> es el problema espejo: lo que cambia no es el sujeto sino el instrumento o quien lo aplica. En la medición <em>pre</em> evalúa, por ejemplo, un residente de primer año, al llegar al tiempo <em>post</em> el evaluador ya es un el médico de planta y su evaluación es más estricta. También puede ocurrir que cambia el aparato, o el formulario u otro elemento de captura de los datos. Cualquier cambio en <em>cómo</em> medimos puede confundirse con un cambio real.</p>
+</section>
+<section id="regresión-a-la-media" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="regresión-a-la-media"><span class="header-section-number">6.6.3</span> Regresión a la media</h3>
+<p>Esta es probablemente la amenaza más sutil y la más frecuentemente ignorada. Cuando seleccionás a los participantes por valores extremos, las mediciones siguientes tienden a estar más cerca de la media, <em>aun sin intervención</em>. Es estadística pura: si una observación es muy alta, una parte de esa altura es señal y otra parte es ruido. El ruido no se repite, así que la siguiente medición, si los sujetos no recibieron nada, tiende a ser un poco más baja.</p>
+<p>La regresión a la media engaña muy bien. Si reclutás al 10% más deprimido de una población clínica y los seguís en el tiempo, sus puntajes promedio van a bajar de <em>tiempo 0</em> a <em>tiempo 1</em>, de <em>tiempo 1</em> a <em>tiempo 2</em>. Si en el medio les diste un tratamiento, no podés saber qué parte de la mejora se debe al mismo (a lo mejor absolutamente nada) y qué parte es regresión a la media.</p>
+<p>Veamos esto con un ejemplo simulado. Generamos 1000 personas con un puntaje base (un constructo estable, digamos un <em>score de depresión</em> donde más alto es peor) y una medición ruidosa de ese constructo en dos momentos. Después seleccionamos al 10% con <em>peor</em> medición en t0 —los más deprimidos— y vemos qué les pasa en t1, sin intervención de ningún tipo.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver el código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1000 personas con un rasgo estable + ruido en dos mediciones</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rasgo =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_t0  =</span> rasgo <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_t1  =</span> rasgo <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccionamos al 10% con peor puntaje (mayor) en t0</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>umbral <span class="ot">&lt;-</span> <span class="fu">quantile</span>(datos<span class="sc">$</span>y_t0, <span class="fl">0.90</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>seleccion <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span> <span class="fu">filter</span>(y_t0 <span class="sc">&gt;=</span> umbral)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparamos promedios pre y post en el grupo seleccionado</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>seleccion <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_t0 =</span> <span class="fu">mean</span>(y_t0),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">media_t1 =</span> <span class="fu">mean</span>(y_t1),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">mejora   =</span> media_t0 <span class="sc">-</span> media_t1)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   media_t0 media_t1 mejora</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     2.44     1.25   1.19</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>El grupo seleccionado “mejora” entre t0 y t1, su puntaje baja en promedio más de un punto, aunque no hicimos nada. La diferencia viene de la regresión a la media: en t0 fueron seleccionados por valores altos, y parte de esos valores altos era ruido que no se repitió.</p>
+<p>En efecto, si un estudio recluta a pacientes severos y los miden pre-post sin grupo control concurrente, vas a ver una mejoría aún si el tratamiento es agua tibia. Necesitan un control seleccionado con el mismo criterio para descontar este efecto.</p>
+</section>
+<section id="sesgo-de-selección-y-no-adherencia" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="sesgo-de-selección-y-no-adherencia"><span class="header-section-number">6.6.4</span> Sesgo de selección y no-adherencia</h3>
+<p>Llegamos al corazón del problema en los cuasi-experimentos. El <strong>sesgo de selección</strong> es el grado en que difieren sistemáticamente los individuos que terminan siendo tratados de quienes no, en cosas que también afectan el <em>outcome</em>. Por ejemplo, si el criterio de asignacion a un tratamiento como la cirugía bariátrica (una cirugía para adelgazar) es la preferencia de los pacientes. Puede ocurrir que los pacientes que eligen una cirugía bariátrica difieran del grupo placebo porque están más motivados, tienen mejor adherencia, mejor red social y probablemente mejor estatus socioeconómico. Si comparás sus desenlaces con los de quienes no se operaron, estás mezclando el efecto de la cirugía con el efecto de todo lo demás que distingue a los dos grupos.</p>
+<p>Acuerdense que lo formalizamos en el capítulo de potential outcomes de la siguiente forma.</p>
+<p><span id="eq-selection_bias"><span class="math display">\[
+\begin{array}
+\underbrace{E[Y_i^0|D_i=1] - E[Y_i^0|D_i=0] }
+\end{array}
+\tag{6.1}\]</span></span></p>
+<p>En el capítulo anterior lo presentamos como un término en una descomposición algebraica. Acá lo presentamos como una pregunta de investigación: ¿quiénes eligieron meterse en el grupo tratado, y por qué? La respuesta, casi siempre, es que eligieron por razones que no son ajenas al <em>outcome</em>.</p>
+<p>Otra amenaza ya conocida es la <strong>no adherencia</strong>. Vista en este marco, la no-adherencia funciona como un sesgo de selección post-aleatorización (o post-asignación del tratamiento). La razón por la que funciona similar al sesgo de selección es que los que abandonan no son aleatorios, frecuentemente lo hacen por razones sistemáticas ligadas al outcome. Esto último crea diferencias sistemáticas en los grupos que persisten en el tratamiento asignado.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Casi todos los métodos que vas a ver en los próximos capítulos —matching, variables instrumentales, diferencias en diferencias, regresión discontinua— son, en el fondo, estrategias distintas para atacar el problema de selección.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="difusión-compensación-y-otros-fenómenos-sociales" class="level3" data-number="6.6.5">
+<h3 data-number="6.6.5" class="anchored" data-anchor-id="difusión-compensación-y-otros-fenómenos-sociales"><span class="header-section-number">6.6.5</span> Difusión, compensación y otros fenómenos sociales</h3>
+<p>Algunas amenazas son específicas de las evaluaciones de programas y de las intervenciones en contextos sociales o institucionales. Estas ya las vimos brevemente en el capítulo de <em>potential outcomes</em> como violaciones del <strong>SUTVA</strong>, pero conviene tenerlas presentes acá también, porque aparecen todo el tiempo en cuasi-experimentos.</p>
+<p>La <strong>difusión</strong> o <strong>spillover</strong> ocurre cuando el grupo control adopta partes del tratamiento. En un ensayo comunitario de prevención, una campaña de información puede “contagiar” al barrio control. La <strong>rivalidad compensatoria</strong> es el caso en que el grupo control, al saberse desventajado, se esfuerza más para no quedar atrás, lo que reduce la diferencia observada. La <strong>desmoralización resentida</strong> es el opuesto: los del control se desmotivan al percibirse injustamente tratados, y la diferencia con los tratados se infla artificialmente.</p>
+<p>Estas amenazas no son exóticas. En cualquier intervención escolar, hospitalaria o comunitaria donde los grupos están en contacto y se enteran de su asignación, alguna de las tres está probablemente operando.</p>
+</section>
+</section>
+<section id="no-todo-es-color-de-rosa-la-advertencia-de-lalonde" class="level2 page-columns page-full" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="no-todo-es-color-de-rosa-la-advertencia-de-lalonde"><span class="header-section-number">6.7</span> No todo es color de rosa: la advertencia de Lalonde</h2>
+<p>Si Snow nos inspira con la posibilidad de hacer causalidad sin laboratorio, Robert Lalonde, <span class="citation" data-cites="lalonde1986">(<a href="references.html#ref-lalonde1986" role="doc-biblioref">LaLonde 1986</a>)</span> en 1986, nos advierte cuán fácil es engañarse en el camino.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-lalonde1986" class="csl-entry" role="listitem">
+LaLonde, Robert J. 1986. <span>«Evaluating the Econometric Evaluations of Training Programs with Experimental Data»</span>. <em>The American Economic Review</em> 76 (4): 604-20. <a href="https://www.jstor.org/stable/1806062">https://www.jstor.org/stable/1806062</a>.
+</div></div><p>Lalonde realizó la siguiente demostración. Utilizó datos de un programa de empleo asistido en Estados Unidos, el <em>National Supported Work Demonstration</em>, que había sido evaluado mediante un experimento aleatorizado. La pregunta que planteó fue contrafáctica y elegante: si no hubiéramos contado con el experimento con asignación aleatoria y el programa simplemente se hubiera implementado, la única alternativa para estimar su efecto habría sido comparar a los participantes del programa con un grupo de control construido a partir de encuestas nacionales en las que el programa no se había aplicado. En esas condiciones, ¿habríamos llegado al mismo resultado?</p>
+<p>La respuesta corta es que no. El experimento aleatorio estimaba un aumento promedio de unos 886 dólares en los ingresos anuales de los participantes. Las comparaciones contra controles observacionales, ajustadas con las técnicas habituales de regresión, daban estimaciones que variaban en miles de dólares y a veces tenían el signo contrario. Es decir: si hubieras hecho el estudio con datos observacionales y los hubieras analizado con buena fe, habrías concluido que el programa empeoraba dramáticamente los ingresos de los participantes. Lo opuesto a la verdad.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="La moraleja de Lalonde">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+La moraleja de Lalonde
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hay una lección importante en todo esto. El sesgo de selección no es un error de redondeo. Sin un buen diseño, incluso una regresión observacional cuidadosa, con todos los controles que se te ocurran, puede dar la respuesta equivocada <em>con intervalo de confianza estrecho</em> y todo. La estadística no te avisa cuando estás equivocado: te da un número y un margen de de incertidumbre alrededor del número, pero este puede contener una interpretación causal equivocada.</p>
+<p>La lección: la confianza en una estimación cuasi-experimental no debería venir del <em>output</em> del modelo, (ni hablar de su <span class="math inline">\(R^2\)</span>, o cualquier métrica de performance del modelo) sino del argumento de identificación que se sostiene detrás. Si ese argumento es flojo, ninguna sofisticación econométrica lo salva.</p>
+</div>
+</div>
+<p>Lalonde se volvió la motivación canónica de toda la literatura posterior de <em>matching</em>, <em>propensity score</em> y métodos cuasi-experimentales en general. La discusión sigue abierta, la invitación de este libro es que nos sumemos de la mejor manera a ella.</p>
+</section>
+<section id="y-ahora-qué-un-mapa-hacia-lo-que-viene" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="y-ahora-qué-un-mapa-hacia-lo-que-viene"><span class="header-section-number">6.8</span> ¿Y ahora qué? Un mapa hacia lo que viene</h2>
+<p>A esta altura es razonable preguntarse cómo se sale de este laberinto. La respuesta es que existen varias familias de métodos cuasi-experimentales, cada una pensada para una situación distinta. No son intercambiables. Cada una identifica un efecto definido, bajo supuestos distintos, sobre una población distinta. Vamos a recorrerlas a lo largo de los próximos capítulos, pero conviene cerrar este con un mapa rápido para que sepas adónde vamos.</p>
+<p>La estrategia de <strong>subclasificación y matching</strong> (capítulo siguiente) ataca el sesgo de selección emparejando tratados con no tratados que sean “gemelos” en un conjunto <span class="math inline">\(X\)</span> de variables observadas. Funciona si podemos defender que, dada esa <span class="math inline">\(X\)</span>, el tratamiento es como si fuera aleatorio. Es razonable cuando los confusores plausibles son medibles, y fracasa cuando hay confusión por variables que no medimos.</p>
+<p>La estrategia de <strong>diferencias en diferencias</strong> compara cambios pre-post entre un grupo tratado y un grupo control que evolucionaban en paralelo antes de la intervención. Su talón de Aquiles es el supuesto de tendencias paralelas: si el grupo control no captura bien la trayectoria contrafáctica del tratado, la inferencia se cae.</p>
+<p>La estrategia de <strong>regresión discontinua</strong> explota una regla de asignación que depende de un umbral en una variable continua. POr ejemplo, una beca se da a quienes sacaron más de 7.5; el programa nutricional, a familias con ingresos por debajo de una línea. Sujetos justo arriba y justo abajo del corte son casi idénticos en todo lo demás, así que la diferencia en el <em>outcome</em> se atribuye al tratamiento.</p>
+<p>La estrategia de <strong>variables instrumentales</strong> busca una tercera variable <span class="math inline">\(Z\)</span> que mueva el tratamiento pero no afecte el <em>outcome</em> por otra vía.</p>
+<p>Cada uno de estos métodos tiene su capítulo. No te preocupes ahora por los detalles técnicos: lo que importa es que tengas en la cabeza dos cosas. Primero, que la elección del método no la dictan los datos, sino el diseño y los supuestos que estás dispuesto a defender. Segundo, que ningún método salva una mala identificación: si la pregunta causal no se puede atacar con ninguna de estas estrategias, lo más honesto suele ser declarar la asociación y dejar la causalidad para otro estudio.</p>
+</section>
+<section id="para-llevar" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="para-llevar"><span class="header-section-number">6.9</span> Para llevar</h2>
+<p>Antes de pasar al primer método, vale la pena dejar fijos cuatro mensajes.</p>
+<p>Primero: sin aleatorización la causalidad no desaparece, pero desaparece la garantía. La pregunta causal sigue siendo legítima; lo que perdemos es el camino corto para contestarla. Un cuasi-experimento intenta recuperar esa garantía con diseño y supuestos. No es magia: es trabajo de identificación.</p>
+<p>Segundo: la validez interna se evalúa amenaza por amenaza. No hay un test que te diga “este diseño es válido”. Hay una lista de cosas que pueden estar pasando, y para cada una hay defensas específicas.</p>
+<p>Tercero: el sesgo de selección es la regla, no la excepción, en datos observacionales. Casi siempre la gente que termina tratada difiere de la gente que no en cosas que afectan el <em>outcome</em>. Negarlo o ignorarlo es la fuente más común de inferencias causales falsas.</p>
+<p>Cuarto: Aprendimos dos lecciones de la historia, Snow nos muestra que con buen diseño se puede inferir causalidad sin laboratorio. Lalonde nos muestra cuán fácil es engañarse en el camino. Los dos mensajes conviven en este libro y conviene tenerlos a mano en partes iguales.</p>
+</section>
+<section id="preguntas-de-repaso" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="preguntas-de-repaso"><span class="header-section-number">6.10</span> Preguntas de repaso</h2>
+<ol type="1">
+<li><p>Enumerá tres razones por las cuales no es posible aleatorizar la asignación al tratamiento. Para cada una, dá un ejemplo de tu propia área.</p></li>
+<li><p>¿Qué diferencia hay entre un experimento aleatorizado, un cuasi-experimento y un estudio observacional puro? ¿Qué tipo de identificación causal usa cada uno?</p></li>
+<li><p>En tus propias palabras, ¿qué significa que un estudio tenga buena validez interna? ¿Por qué decimos que en los cuasi-experimentos la validez interna es prioritaria respecto a la externa?</p></li>
+<li><p>Para cada una de las siguientes amenazas, dá un ejemplo y explicá cómo se podría mitigar: historia, maduración, <em>testing</em>, instrumentación, regresión a la media, atrición.</p></li>
+<li><p>Una clínica reporta que los pacientes con depresión severa tratados con un nuevo protocolo mejoran un 30% en promedio en seis meses. No hay grupo control. ¿Qué amenazas a la validez interna te preocuparían más antes de creerle al resultado?</p></li>
+<li><p>Releé el caso de John Snow. Identificá tres supuestos que Snow tuvo que defender para que su inferencia causal fuera válida. ¿Cuál te parece el más débil?</p></li>
+<li><p>¿Qué nos enseñó el estudio de Lalonde sobre los controles observacionales? ¿En qué consiste, exactamente, “el sesgo de selección no es un error de redondeo”?</p></li>
+<li><p>Para cada uno de los siguientes diseños, decidí cuál de las estrategias del mapa (matching, <em>DiD</em>, <em>RDD</em>, <em>IV</em>) parece la más natural y por qué:</p>
+<ol type="a">
+<li>Evaluar el efecto de una beca que se asigna a estudiantes con promedio mayor a 8,5.</li>
+<li>Evaluar el efecto de una reforma educativa que se aplicó en una provincia y no en otra.</li>
+<li>Evaluar el efecto del servicio militar sobre los ingresos, sabiendo que hubo una lotería de asignación.</li>
+<li>Evaluar el efecto de un tratamiento médico que los pacientes eligen libremente, en un registro hospitalario con muchas variables clínicas medidas.</li>
+</ol></li>
+</ol>
+</section>
+<section id="un-caso-aplicado-para-pensar" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="un-caso-aplicado-para-pensar"><span class="header-section-number">6.11</span> Un caso aplicado para pensar</h2>
+<p>Una organización implementó un programa de mentoreo para mujeres jóvenes en barrios vulnerables del conurbano. El programa consiste en sesiones quincenales con una mentora durante dos años, además de talleres mensuales. La organización quiere evaluar si el programa aumenta la probabilidad de terminar el secundario.</p>
+<p>El programa no se asignó aleatoriamente. Las mentoras visitaron escuelas y centros comunitarios, y las jóvenes que mostraron interés se anotaron voluntariamente. Hay datos de 800 participantes y, gracias a un acuerdo con el Ministerio, datos de 4500 jóvenes del mismo barrio y la misma franja etaria que no entraron al programa.</p>
+<p>Los resultados crudos muestran que el 67% de las participantes terminó el secundario, contra el 49% de las no participantes. La directora de la organización le presenta estos números a la prensa como evidencia de que el programa funciona.</p>
+<p>Trabajá con estas preguntas:</p>
+<ol type="1">
+<li><p>¿Qué magnitud está calculando la directora? ¿Por qué no es razonable interpretarla directamente como el efecto causal del programa?</p></li>
+<li><p>Identificá al menos cuatro amenazas a la validez interna específicas para este diseño. Para cada una, explicá brevemente cómo podría estar inflando (o reduciendo) la diferencia observada.</p></li>
+<li><p>Una colega propone usar matching: emparejar a cada participante con una no participante de las mismas características observadas (edad, escuela de origen, situación familiar, nivel educativo de los padres). ¿Qué supuesto crítico tendría que cumplirse para que esa estrategia identifique el efecto causal? ¿Te parece plausible en este caso?</p></li>
+<li><p>Otra colega propone esperar al año siguiente, y aleatorizar entre las jóvenes que se anoten qué mitad recibe el programa y qué mitad queda en lista de espera. ¿Qué problema resolvería esto que el matching no resuelve? ¿Qué nuevas amenazas aparecerían?</p></li>
+<li><p>Si tuvieras que reescribir el comunicado de prensa para que fuera honesto con la evidencia disponible, ¿cómo lo redactarías?</p></li>
+</ol>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./exp_aleatorios.html" class="pagination-link" aria-label="Experimentos aleatorios">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Experimentos aleatorios</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./matching.html" class="pagination-link" aria-label="Subclasificación y *matching*">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Subclasificación y <em>matching</em></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Diseños experimentales y cuasiexperimentales - Ignacio Spiousas.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Este libro fue creado con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

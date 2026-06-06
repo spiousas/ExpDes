@@ -1420,7 +1420,7 @@ Sin ajuste, los tratados tienen un $X_1$ mucho más alto que los controles. Dent
 El teorema dice *"si vale CIA dado X, entonces..."*. Es un condicional. Si hay un confusor no medido, el PS calculado con las $X$ observadas no lo arregla. El PS es una herramienta de dimensionalidad y eficiencia, no de identificación causal. La CIA la traen los datos y el diseño del estudio, no el método estadístico.
 :::
 
-### 6.4.3 Un ejemplo: rehabilitación post-ACV
+### Un ejemplo: rehabilitación post-ACV
 
 Para ver el PS en acción, necesitamos datos con un problema de confusión real. Vamos a simular un estudio observacional sobre rehabilitación post-ACV.
 
@@ -1512,7 +1512,7 @@ cat("SDO observado =", round(SDO, 2), "\n")
 cat("Sesgo de selección =", round(sesgo, 2), "\n")
 ```
 
-### 6.4.4 Estimando $e(X)$
+### Estimando $e(X)$
 
 El *propensity score* verdadero no lo conocemos — lo tenemos que estimar. Lo habitual es ajustar una **regresión logística** de $D$ sobre $X$:
 
@@ -1558,7 +1558,7 @@ Hay tratados y controles a lo largo de casi todo el rango de $e(X)$: buena seña
 El supuesto de positividad exige que $0 < e(X) < 1$ para todo valor de $X$. En cada región del espacio de covariables tiene que haber tanto tratados como controles. Sin solapamiento no hay contrafactual: no hay con quién comparar.
 :::
 
-### 6.4.5 Tres formas de usar el PS
+### Tres formas de usar el PS
 
 Con el *propensity score* en mano, hay tres formas principales de usarlo para estimar un efecto causal: *matching*, estratificación e IPTW. Hay una cuarta — meter $e(X)$ como covariable en una regresión — que mencionamos al final.
 
@@ -1753,7 +1753,7 @@ lm(mejora ~ tratamiento + ps, data = datos)
 
 Es lo más rápido... pero lo menos transparente. Asume una forma funcional para cómo $e(X)$ entra en el *outcome*. No muestra el balance: no sabés sobre qué unidades estás comparando realmente. Preferimos *matching*, estratificación e IPTW porque son explícitos sobre qué se compara con qué. La transparencia vale.
 
-### 6.4.6 Chequeando el balance: el *love plot*
+### Chequeando el balance: el *love plot*
 
 Con cualquiera de los tres métodos, antes de creerle al estimador hay que verificar que el ajuste haya funcionado. La regla de oro: **no se evalúa un método mirando el resultado — se evalúa mirando si balanceó las covariables**.
 
@@ -1796,7 +1796,7 @@ love.plot(W,
 
 La severidad pasó de un desbalance grande (SMD ≈ 0.86) a prácticamente cero tras el ajuste por IPTW. El love plot es la firma visual de que el *propensity score* hizo lo que tenía que hacer.
 
-### 6.4.7 Lo que el PS no puede hacer
+### Lo que el PS no puede hacer
 
 El *propensity score* es una herramienta poderosa, pero tiene un límite que no negocia: depende completamente de la CIA. Si hay un confusor que no mediste — un factor que afecta tanto quién recibe el tratamiento como el *outcome*, y que no está en tu $X$ — el PS calculado con lo que tenés no lo arregla. Simplemente no lo ve.
 

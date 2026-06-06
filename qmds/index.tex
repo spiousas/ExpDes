@@ -270,7 +270,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, interior hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, enhanced, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, sharp corners, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Índice}
 {
@@ -326,7 +326,7 @@ informadas sobre estos (modelos estadísticos, métricas, diseños, etc.)
 es una parte importante de nuestra labor como generadores de evidencia o
 tomadores de decisión basada en evidencia.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={SIGA SIGA\ldots{}}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={SIGA SIGA\ldots{}}]
 Si bien los ejemplos que se presentan en el libro están orientados a las
 ciencias del comportamiento, su contenido puede ser adaptado a cualquier
 ciencia experimental, desde la biología hasta la economía.
@@ -376,7 +376,7 @@ familiarizado con la programación en R. Ninguno de estos son obstáculos
 hoy en día ya que hay cientos de fuentes (libros, cursos, etc.) a las
 que el lector puede consultar previo o durante la lectura de este libro.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={DON'T PANIC}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={DON'T PANIC}]
 El libro comienza con un breve repaso de conceptos básicos de
 probabilidad y estadística, y presenta los comandos básicos para correr
 códigos en \textbf{R}.
@@ -431,7 +431,7 @@ utilizada para, mayormente, programar en \textbf{R}\sidenote{\footnotesize Sin
 recuadro siguiente van a encontrar información sobre cómo instalar ambas
 cosas.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Instalación de R y RStudio}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Instalación de R y RStudio}]
 Lo primero que hay que hacer para poder correr scripts de R es, como
 resulta evidente, instalar R. Lo pueden hacer seleccionando su sistema
 operativo en este \href{http://mirror.fcaglp.unlp.edu.ar/CRAN/}{link} y
@@ -459,8 +459,8 @@ D'Agostino McGowan, Romain François, Garrett Grolemund, et~al. 2019.
 (43): 1686.\vspace{2mm}\par\end{footnotesize}}.
 Tranquilos que en la sección siguiente se va a ir aclarando la cosa.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={Unas palabras sobre el uso de modelos de lenguaje (ChatGPT, Claude,
-Gemini o el que les guste)}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={Unas palabras sobre el uso de modelos de lenguaje (ChatGPT, Claude,
+Gemini o el que les guste)}]
 No estamos acá para discutir el poder y las capacidades de los grandes
 modelos de lenguaje (por si no quedó claro, te quiero mucho Skynet ♥️).
 Pero permítannos recomendarles algo: no dejen que la herramienta piense
@@ -1378,7 +1378,7 @@ En este punto, todavía no hay una representación gráfica (aún estamos en
 la primera línea). Sólo se establece cómo se relacionan las variables
 con los ejes.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Mapeo estético vs parámetros fijos}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Mapeo estético vs parámetros fijos}]
 
 Es importante distinguir entre:
 
@@ -1447,7 +1447,7 @@ confianza con \texttt{se}. Cada geometría tiene sus propios argumentos,
 pero también hay argumentos comunes a todas las geometrías como
 \texttt{color}, \texttt{fill}, \texttt{size}, etc.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Mapeos en las geometrías}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Mapeos en las geometrías}]
 Habrán notado que \texttt{size} , \texttt{shape} o \texttt{alpha} (la
 transparencia), son argumentos que mencionamos en la capa de mapeo
 estético. También dijimos que pueden ser mapeos o parámetros fijos.
@@ -1630,7 +1630,7 @@ Veamos un ejemplo:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Capas adicionales y la grammar of graphics}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Capas adicionales y la grammar of graphics}]
 No está de más recordar que la \emph{grammar of graphics} rige para
 todas estas funciones y las reglas de adición son las mismas. Por
 ejemplo:
@@ -2464,7 +2464,7 @@ mente cuando hablamos de estimadores y estimaciones.
 Vamos a hacer un breve paseo por los conceptos clave de la inferencia
 estadística de la mano de un ejemplo.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{El ejemplo de inferencia}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{El ejemplo de inferencia}]
 Supongamos que tenemos una página web de noticias y queremos probar una
 nueva \emph{feature} con la que queremos aumentar el tiempo de retención
 de los usuarios. Para esto le vamos a presentar a los usuarios la
@@ -3191,7 +3191,7 @@ es siempre especulativo.
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{De qué hablamos cuando hablamos de contrafactuales}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{De qué hablamos cuando hablamos de contrafactuales}]
 Utilizando el marco conceptual de los \emph{potential outcomes} de
 Rubin(Rubin
 1974)\marginpar{\begin{footnotesize}\leavevmode\vadjust pre{\protect\hypertarget{ref-rubin1974estimating}{}}%
@@ -3946,7 +3946,7 @@ la intensidad del dolor (I).}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={DAGS en R}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={DAGS en R}]
 Para realizar los DAGS que aparecen en este capítulo utilizamos la
 librería \emph{\{ggdag\}}. Para esto, primero debemos hacer un esquema
 de nuestro DAG en \href{https://www.dagitty.net/dags.html\#}{Daggity} y
@@ -7445,7 +7445,7 @@ reflexionar un poco en por qué ese camino se abre al controlar por un
 Huntington-Klein, Nick. 2021. \emph{The effect: An introduction to
 research design and causality}. Chapman; Hall/CRC.\vspace{2mm}\par\end{footnotesize}}.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={El criterio de las puertas traseras}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={El criterio de las puertas traseras}]
 En resumen, el \textbf{criterio de las puertas traseras} nos dice que
 para estimar la relación causal principal debemos cerrar todas las
 \emph{puertas traseras} (en otras palabras, todos los caminos causales
@@ -7871,7 +7871,7 @@ participantes, independientemente de si fueron seleccionados de una
 población más amplia o no, son asignados al azar a diferentes
 condiciones experimentales.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={Sobre la aleatoridad de las computadoras}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={Sobre la aleatoridad de las computadoras}]
 Cuando hablamos de un evento aleatorio, hablamos de una entidad
 abstracta cuyo resultado no se puede predecir exactamente. Para poner
 este tipo de eventos en el mundo real solemos echar mano de ejemplos
@@ -8241,7 +8241,7 @@ experimental bajo ciertas condiciones:
   influyendo en el tratamiento.
 \end{itemize}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={Advertencia}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={Advertencia}]
 Si prestaron atención a las secciones anteriores sospecharan que muchos
 de estos sesgos de causalidad inversa puedan evitarse aplicando analisis
 ITT y asegurandonos un blinded adecuado, es así
@@ -8251,7 +8251,7 @@ ITT y asegurandonos un blinded adecuado, es así
 \section{\texorpdfstring{Experimentos \emph{between
 groups}}{Experimentos between groups}}\label{experimentos-between-groups}}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={Hablemos un poco de la nomenclatura}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={Hablemos un poco de la nomenclatura}]
 
 \end{tcolorbox}
 
@@ -9342,7 +9342,7 @@ Hay dos tipos de no-adherencia:
   \includegraphics{./imgs/no-adherence-03.jpg}
 \end{itemize}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title={Crossovers vs spillovers}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={Crossovers vs spillovers}]
 
 En este punto es probable que esten confundiendo estos dos términos.
 Clarifiquemos. La diferencia puede parecer sutil pero en el
@@ -9718,7 +9718,7 @@ solo las variables que medimos, sino también las que no medimos: la
 motivación, la severidad subclínica, el contexto familiar, el humor del
 día. Por eso es tan barata: no hace falta modelar el mundo.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}]
 Cuando la asignación no es aleatoria, se rompen tres cosas a la vez:
 
 \begin{enumerate}
@@ -9806,7 +9806,7 @@ entonces?}\label{quuxe9-es-un-cuasi-experimento-entonces}}
 
 Acá conviene poner palabras precisas.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-color-frame, toprule=.15mm, opacityback=0, breakable, arc=.35mm, rightrule=.15mm, colback=white, leftrule=.75mm, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, rightrule=.15mm, opacityback=0, colframe=quarto-callout-color-frame, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, arc=.35mm]
 Un \textbf{cuasi-experimento} (o pseudoexperimento, dependiendo del
 autor que leas) es un estudio que busca estimar el efecto causal de un
 tratamiento sin asignación aleatoria, pero recurriendo a otros recursos
@@ -9824,7 +9824,7 @@ el diseño primero y con el modelo después.
 
 Es útil distinguir tres tipos de estudio que a veces se confunden:
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}]
 
 \begin{itemize}
 \item
@@ -10137,7 +10137,7 @@ son aleatorios, frecuentemente lo hacen por razones sistemáticas ligadas
 al outcome. Esto último crea diferencias sistemáticas en los grupos que
 persisten en el tratamiento asignado.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-color-frame, toprule=.15mm, opacityback=0, breakable, arc=.35mm, rightrule=.15mm, colback=white, leftrule=.75mm, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, rightrule=.15mm, opacityback=0, colframe=quarto-callout-color-frame, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, arc=.35mm]
 Casi todos los métodos que vas a ver en los próximos capítulos
 ---matching, variables instrumentales, diferencias en diferencias,
 regresión discontinua--- son, en el fondo, estrategias distintas para
@@ -10201,7 +10201,7 @@ hubieras analizado con buena fe, habrías concluido que el programa
 empeoraba dramáticamente los ingresos de los participantes. Lo opuesto a
 la verdad.
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Advertencia}, coltitle=black, colframe=quarto-callout-warning-color-frame, opacityback=0, breakable, arc=.35mm, titlerule=0mm, colback=white, leftrule=.75mm, toptitle=1mm, colbacktitle=quarto-callout-warning-color!10!white, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Advertencia}]
 Hay una lección importante en todo esto. El sesgo de selección no es un
 error de redondeo. Sin un buen diseño, incluso una regresión
 observacional cuidadosa, con todos los controles que se te ocurran,
@@ -10657,8 +10657,6 @@ región.
 \CommentTok{\#\textgreater{} Warning in stat\_summary(color = "black", width = 0.4): Ignoring unknown}
 \CommentTok{\#\textgreater{} parameters: \textasciigrave{}width\textasciigrave{}}
 \CommentTok{\#\textgreater{} No summary function supplied, defaulting to \textasciigrave{}mean\_se()\textasciigrave{}}
-\CommentTok{\#\textgreater{} No summary function supplied, defaulting to \textasciigrave{}mean\_se()\textasciigrave{}}
-\CommentTok{\#\textgreater{} No summary function supplied, defaulting to \textasciigrave{}mean\_se()\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11017,6 +11015,10 @@ edad, el salario y la capacitación? ¿Podemos ver si hay algún confusor?
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{color =} \StringTok{"Capacitación"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"Capacitación"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Warning: Using \textasciigrave{}size\textasciigrave{} aesthetic for lines was deprecated in ggplot2 3.4.0.}
+\CommentTok{\#\textgreater{} i Please use \textasciigrave{}linewidth\textasciigrave{} instead.}
+\CommentTok{\#\textgreater{} i The deprecated feature was likely used in the ggside package.}
+\CommentTok{\#\textgreater{}   Please report the issue at \textless{}https://github.com/jtlandis/ggside/issues\textgreater{}.}
 \CommentTok{\#\textgreater{} Warning: \textasciigrave{}is.ggproto()\textasciigrave{} was deprecated in ggplot2 3.5.2.}
 \CommentTok{\#\textgreater{} i Please use \textasciigrave{}is\_ggproto()\textasciigrave{} instead.}
 \end{Highlighting}
@@ -12081,8 +12083,6 @@ Veamos qué forma tiene el modelo lineal ajustado con estos datos:
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{color =} \StringTok{"Estado del tratamiento"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{)}
-\CommentTok{\#\textgreater{} Warning: Using \textasciigrave{}size\textasciigrave{} aesthetic for lines was deprecated in ggplot2 3.4.0.}
-\CommentTok{\#\textgreater{} i Please use \textasciigrave{}linewidth\textasciigrave{} instead.}
 \NormalTok{plot\_linear}
 \end{Highlighting}
 \end{Shaded}
@@ -12441,6 +12441,965 @@ hay soporte común, el \emph{matching} no puede estimar el efecto del
 tratamiento en esos valores de las covariables donde no hay unidades
 tratadas.
 
+\hypertarget{propensity-score}{%
+\section{\texorpdfstring{\emph{Propensity
+score}}{Propensity score}}\label{propensity-score}}
+
+\hypertarget{la-maldiciuxf3n-de-la-dimensionalidad}{%
+\subsection{La maldición de la
+dimensionalidad}\label{la-maldiciuxf3n-de-la-dimensionalidad}}
+
+Hasta ahora vimos que tanto la subclasificación como el \emph{matching}
+funcionan bien cuando las covariables son pocas. Con dos o tres
+confusores, encontrar unidades similares es manejable. También vimos que
+el supuesto sobre el que se basa esta técnica es que esas covariables
+captan la totalidad (o la mayoría) de las diferencias entre los grupos.
+Sin embargo el escenario más realista es que esas diferencias se
+explican por un número considerable de variables.
+
+Pensemos en un estudio observacional realista que evalúe el efecto de un
+tratamiento médico: tenemos edad, sexo, severidad de la enfermedad,
+comorbilidades, nivel socioeconómico, acceso al sistema de salud\ldots{}
+Cada covariable nueva multiplica el espacio de búsqueda del control
+matcheado. Con suficientes dimensiones, cada unidad queda sola en su
+rincón del espacio y no encontrás pares razonables para nadie, incluso
+si admitimos cierta variabilidad al no hacer exact matching. A este
+fenómeno se lo llama la \textbf{maldición de la dimensionalidad}: la
+densidad de datos cae exponencialmente a medida que agregás covariables.
+
+Veamos el problema con números concretos. Supongamos que tenemos un
+estudio con \(n = 2000\) pacientes y queremos hacer \emph{exact
+matching} con covariables binarias (la situación más simple posible). Si
+tenemos \(K\) covariables binarias, el número de celdas posibles es
+\(2^K\). Es decir con una covariable binaria (\(K = 1\)) hay \(2\)
+celdas y podríamos encontrar \(1000\) pacientes por celda en promedio.
+Perfecto, generalicemos el problema: con \(K = 10\) hay \(1024\) celdas:
+apenas \(\approx 2\) pacientes por celda. Con \(K = 15\) hay \(32768\)
+celdas: la gran mayoría estará vacía.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#\textgreater{} {-}{-} Attaching core tidyverse packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} tidyverse 2.0.0 {-}{-}}
+\CommentTok{\#\textgreater{} v lubridate 1.9.3     v stringr   1.5.1}
+\CommentTok{\#\textgreater{} v purrr     1.0.2     }
+\CommentTok{\#\textgreater{} {-}{-} Conflicts {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} tidyverse\_conflicts() {-}{-}}
+\CommentTok{\#\textgreater{} x Matrix::expand()         masks tidyr::expand()}
+\CommentTok{\#\textgreater{} x ggdag::filter()          masks dplyr::filter(), stats::filter()}
+\CommentTok{\#\textgreater{} x kableExtra::group\_rows() masks dplyr::group\_rows()}
+\CommentTok{\#\textgreater{} x dplyr::lag()             masks stats::lag()}
+\CommentTok{\#\textgreater{} x Matrix::pack()           masks tidyr::pack()}
+\CommentTok{\#\textgreater{} x Matrix::unpack()         masks tidyr::unpack()}
+\CommentTok{\#\textgreater{} i Use the conflicted package (\textless{}http://conflicted.r{-}lib.org/\textgreater{}) to force all conflicts to become errors}
+
+\NormalTok{n\_pacientes }\OtherTok{\textless{}{-}} \DecValTok{2000}
+
+\FunctionTok{tibble}\NormalTok{(}\AttributeTok{K =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{celdas          =} \DecValTok{2}\SpecialCharTok{\^{}}\NormalTok{K,}
+    \AttributeTok{pacientes\_celda =}\NormalTok{ n\_pacientes }\SpecialCharTok{/}\NormalTok{ celdas,}
+    \AttributeTok{celdas\_vacias   =} \FunctionTok{pmax}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ n\_pacientes }\SpecialCharTok{/}\NormalTok{ celdas)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ K)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{pmin}\NormalTok{(pacientes\_celda, }\DecValTok{100}\NormalTok{)),}
+           \AttributeTok{fill =} \StringTok{"\#1B9E77"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{1}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#D95F02"}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{16}\NormalTok{, }\AttributeTok{y =} \FloatTok{2.5}\NormalTok{, }\AttributeTok{label =} \StringTok{"1 paciente por celda"}\NormalTok{,}
+           \AttributeTok{color =} \StringTok{"\#D95F02"}\NormalTok{, }\AttributeTok{size =} \FloatTok{3.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Número de covariables binarias (K)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Pacientes por celda (promedio)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=18.75in,height=\textheight]{./matching_files/figure-pdf/fig-maldicion-1.pdf}
+
+}
+
+\caption{\label{fig-maldicion}La maldición de la dimensionalidad:
+crecimiento exponencial de celdas vs.~tamaño de muestra fijo. A partir
+de unos pocos confusores, la muestra se diluye y el \emph{exact
+matching} se vuelve imposible.}
+
+\end{figure}
+
+El gráfico lo dice todo: con \(K = 11\) ya estamos por debajo de un
+paciente por celda en promedio, es imposible hacer matching. Y eso con
+covariables binarias. Si las covariables son continuas, la situación es
+peor todavía: en lugar de contar celdas, hay que buscar vecinos dentro
+de un caliper en \(K\) dimensiones, y la fracción del espacio que cae
+dentro del caliper cae a la \(K\)-ésima potencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tibble}\NormalTok{(}\AttributeTok{K =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{15}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{fraccion =} \FloatTok{0.1}\SpecialCharTok{\^{}}\NormalTok{K) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ K, }\AttributeTok{y =}\NormalTok{ fraccion)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#D95F02"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#D95F02"}\NormalTok{, }\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_log10}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{label\_percent}\NormalTok{()) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{15}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Número de covariables continuas (K)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Fracción del espacio dentro del caliper (escala log)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=18.75in,height=\textheight]{./matching_files/figure-pdf/fig-maldicion-continua-1.pdf}
+
+}
+
+\caption{\label{fig-maldicion-continua}Fracción del espacio cubierta por
+un caliper del 10\% en cada dimensión. Con 10 covariables continuas,
+solo el 0.000001\% del espacio queda dentro del radio de búsqueda.}
+
+\end{figure}
+
+La pregunta lógica es si necesitamos tantas covariables, la respuesta se
+contesta sola a partir del supuesto de matching, necesitamos todas las
+covariables que capten la diferencia entre los grupos, y lamentablemente
+a veces son muchas. Llegado a este punto el investigador esta en una
+encrucijada, reducir el número de covariables (e incrementar el sesgo de
+selección) o no encontrar sujetos \emph{matcheables} y abandonar este
+enfoque.
+
+Hay una salida elegante a este problema, comprimir toda la información
+de las covariables en una sola dimensión, esa dimensión es el
+\textbf{propensity score}.
+
+\hypertarget{el-propensity-score}{%
+\subsection{\texorpdfstring{El \emph{propensity
+score}}{El propensity score}}\label{el-propensity-score}}
+
+Vamos a empezar definiendo para poder explicar esta solución. El
+\textbf{propensity score} \(e(X)\) es la probabilidad de que una unidad
+reciba el tratamiento, dadas sus covariables observables:
+
+\[e(X) = P(D = 1 \mid X)\] Esta probabilidad esta presente en cualquier
+tipo de diseño. Por ejemplo, en un experimento aleatorio ideal,la
+asignación es por definición aleatoria e independiente de las
+covariables \(X\), entonces es constante para todos los individuos. Si
+son sólo dos grupos (tratamiento y control), entonces \(e(X)=0.5\).\\
+En un estudio cuasi-experimental, \(e(X)\) varía con \(X\), y adopta un
+valor para cada individuo. Esa variación es exactamente la confusión que
+queremos modelar. Si lo pensamos de otra manera la probabilidad de ser
+asignado al grupo tratamiento en función de las covariables no está
+haciendo más que captar las diferencias sistemáticas entre el grupo
+control y el tratamiento.
+
+\hypertarget{la-independencia-condicional-en-ex}{%
+\subsection{La independencia condicional en
+e(X)}\label{la-independencia-condicional-en-ex}}
+
+Una idea clave es que este propensity score funciona como un
+``suficiente estadístico'' para las covariables \(X\). Y hereda la
+propiedad de la independencia condicional, es decir, si condicionamos en
+\(e(X)\), entonces el tratamiento \(D\) es independiente de las
+covariables \(X\). Esta propiedad es conocida como el \textbf{Teorema
+del propensity score} y fue desarrollada por Rosenbaum y Rubin en 1983
+(1983)\marginpar{\begin{footnotesize}\leavevmode\vadjust pre{\protect\hypertarget{ref-rosenbaum1983central}{}}%
+Rosenbaum, Paul R., y Donald B. Rubin. 1983. {«The central role of the
+propensity score in observational studies for causal effects»}.
+\emph{Biometrika} 70 (1): 41-55.
+\url{https://doi.org/10.1093/biomet/70.1.41}.\vspace{2mm}\par\end{footnotesize}}
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title={Teorema del propensity score}]
+Este teorema plantea que si vale la CIA dado \(X\), entonces también
+vale dado \(e(X)\). Formalizando:
+
+Si \((Y^0, Y^1) \perp D \mid X\), entonces también vale:
+\[(Y^0, Y^1) \perp D \mid e(X)\] Reducimos \(K\) dimensiones a un
+escalar sin perder la propiedad que nos importa para que el matching
+siga siendo funcional.
+
+¿Por qué un solo número puede reemplazar a todas las covariables? La
+demostración se apoya en dos lemas. El primero establece que el PS
+balancea las covariables. El segundo usa ese balanceo para heredar la
+CIA.
+
+\hypertarget{lema-1-el-ps-es-un-balancing-score-d-perp-x-mid-ex}{%
+\subsubsection{\texorpdfstring{Lema 1: el PS es un \emph{balancing
+score} ---
+\(D \perp X \mid e(X)\)}{Lema 1: el PS es un balancing score --- D \textbackslash perp X \textbackslash mid e(X)}}\label{lema-1-el-ps-es-un-balancing-score-d-perp-x-mid-ex}}
+
+Queremos mostrar que, dentro de cualquier nivel de \(e(X)\), el
+tratamiento \(D\) no depende de las covariables \(X\). Basta con probar
+que:
+
+\[P(D = 1 \mid X,\, e(X)) = P(D = 1 \mid e(X))\] La igualdad de la
+izquierda es inmediata: como \(e(X)\) es una función determinista de
+\(X\), condicionar en ambos es equivalente a condicionar solo en \(X\):
+
+\[P(D = 1 \mid X,\, e(X)) = P(D = 1 \mid X) = e(X)\] Para la igualdad de
+la derecha usamos la \textbf{ley de esperanzas iteradas} (también
+llamada ley de la expectativa total): \(E[Z] = E[E[Z \mid W]]\). En su
+forma condicional: \(E[Z \mid f(W)] = E[E[Z \mid W] \mid f(W)]\).
+
+\[P(D = 1 \mid e(X)) = E\bigl[D \mid e(X)\bigr] = E\bigl[\,E[D \mid X]\,\mid e(X)\bigr] = E\bigl[e(X) \mid e(X)\bigr] = e(X)\]
+El tercer paso usa que \(E[D \mid X] = P(D = 1 \mid X) = e(X)\) por
+definición del PS. El cuarto paso es trivial: el valor esperado de una
+constante (dado que \(e(X)\) está fijo) es esa misma constante.
+
+Entonces \(P(D = 1 \mid X,\, e(X)) = e(X) = P(D = 1 \mid e(X))\), lo que
+implica \(D \perp X \mid e(X)\). \(\square\)
+
+En palabras: entre las unidades con el mismo \(e(X)\), saber el valor
+exacto de \(X\) no te da información adicional sobre quién fue tratado.
+La asignación al tratamiento, dentro de ese grupo, es como un sorteo con
+probabilidad \(e(X)\) para todos.
+
+\hypertarget{lema-2-cia-dado-x-implica-cia-dado-ex}{%
+\subsubsection{\texorpdfstring{Lema 2: CIA dado \(X\) implica CIA dado
+\(e(X)\)}{Lema 2: CIA dado X implica CIA dado e(X)}}\label{lema-2-cia-dado-x-implica-cia-dado-ex}}
+
+Ahora usamos el Lema 1 para el paso que nos importa. Partimos de la CIA
+dado \(X\):
+
+\[(Y^0, Y^1) \perp D \mid X \quad \Longleftrightarrow \quad P(Y^0 \leq y,\, D = 1 \mid X) = P(Y^0 \leq y \mid X) \cdot P(D = 1 \mid X)\]
+Queremos demostrar que la misma factorización vale dado \(e(X)\).
+Calculamos \(P(Y^0 \leq y,\, D = 1 \mid e(X))\) y mostramos que
+factoriza.
+
+\[P(Y^0 \leq y,\, D = 1 \mid e(X))\]
+\[= E\bigl[\mathbf{1}(Y^0 \leq y) \cdot D \mid e(X)\bigr]\]
+
+\[\overset{(1)}{=} E\Bigl[\,E\bigl[\mathbf{1}(Y^0 \leq y) \cdot D \mid X\bigr]\,\Big|\, e(X)\Bigr]\]
+\[\overset{(2)}{=} E\Bigl[\,E\bigl[\mathbf{1}(Y^0 \leq y) \mid X\bigr] \cdot E\bigl[D \mid X\bigr]\,\Big|\, e(X)\Bigr]\]
+
+\[\overset{(3)}{=} E\Bigl[P(Y^0 \leq y \mid X) \cdot e(X)\,\Big|\, e(X)\Bigr]\]
+\[\overset{(4)}{=} e(X) \cdot E\Bigl[P(Y^0 \leq y \mid X)\,\Big|\, e(X)\Bigr]\]
+
+\[\overset{(5)}{=} P(D = 1 \mid e(X)) \cdot P(Y^0 \leq y \mid e(X))\]
+
+Cada paso tiene su justificación:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{(1)} Ley de esperanzas iteradas:
+  \(E[Z \mid e(X)] = E[E[Z \mid X] \mid e(X)]\).
+\item
+  \textbf{(2)} CIA dado \(X\): como \((Y^0, Y^1) \perp D \mid X\), el
+  indicador \(\mathbf{1}(Y^0 \leq y)\) y \(D\) son independientes dentro
+  de cada valor de \(X\), por lo que la esperanza del producto factoriza
+  en el producto de esperanzas.
+\item
+  \textbf{(3)} Reemplazamos
+  \(E[\mathbf{1}(Y^0 \leq y) \mid X] = P(Y^0 \leq y \mid X)\) y
+  \(E[D \mid X] = e(X)\).
+\item
+  \textbf{(4)} Como \(e(X)\) está fijo dado \(e(X)\), sale del operador
+  de esperanza.
+\item
+  \textbf{(5)} Por el Lema 1, \(e(X) = P(D = 1 \mid e(X))\). Por la ley
+  de esperanzas iteradas,
+  \(E[P(Y^0 \leq y \mid X) \mid e(X)] = P(Y^0 \leq y \mid e(X))\).
+\end{itemize}
+
+Esto prueba que
+\(P(Y^0 \leq y,\, D = 1 \mid e(X)) = P(D = 1 \mid e(X)) \cdot P(Y^0 \leq y \mid e(X))\),
+es decir, \(Y^0 \perp D \mid e(X)\). El mismo argumento aplica para
+\(Y^1\), y por lo tanto:
+
+\[(Y^0, Y^1) \perp D \mid e(X) \quad \square\]
+\end{tcolorbox}
+
+\hypertarget{quuxe9-hicimos-exactamente}{%
+\subsubsection{¿Qué hicimos
+exactamente?}\label{quuxe9-hicimos-exactamente}}
+
+Vale la pena detenerse a entender por qué funcionó. El corazón del
+argumento es el Lema 1: el PS es la probabilidad de tratamiento dado
+\(X\), así que condicionar en \(e(X)\) captura toda la información de
+\(X\) que es relevante para predecir \(D\). Una vez fijado \(e(X)\), las
+covariables \(X\) ya no tienen poder predictivo sobre \(D\). Eso es
+exactamente lo que necesita la CIA para funcionar: que, dentro de cada
+grupo definido por \(e(X)\), el tratamiento sea como aleatorio.
+
+La ley de esperanzas iteradas hace el trabajo pesado en los dos lemas.
+La usamos para ``bajar'' la independencia desde el nivel de \(X\) (donde
+la CIA la garantiza por supuesto) hasta el nivel de \(e(X)\) (donde
+queremos que opere).
+
+Lo que el teorema \emph{no} dice: que \(e(X)\) crea la independencia
+condicional. La CIA la tiene que traer el diseño del estudio y las
+covariables que mediste. El PS es un compresor --- toma la CIA que ya
+tenés y la expresa en una dimensión en lugar de \(K\).
+
+\hypertarget{una-verificaciuxf3n-empuxedrica-del-balanceo}{%
+\subsubsection{Una verificación empírica del
+balanceo}\label{una-verificaciuxf3n-empuxedrica-del-balanceo}}
+
+El balanceo ---que la distribución de \(X\) sea igual en tratados y
+controles dado \(e(X)\)--- no es solo una propiedad teórica. Podemos
+verificarlo en una simulación.
+
+Generamos datos donde el tratamiento depende de dos covariables, \(X_1\)
+y \(X_2\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{7}\NormalTok{)}
+\NormalTok{n\_demo }\OtherTok{\textless{}{-}} \DecValTok{5000}
+
+\NormalTok{demo }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{x1 =} \FunctionTok{rnorm}\NormalTok{(n\_demo),}
+  \AttributeTok{x2 =} \FunctionTok{rnorm}\NormalTok{(n\_demo)}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \CommentTok{\# El tratamiento depende de ambas covariables}
+    \AttributeTok{logit\_d =} \FloatTok{0.8} \SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+} \FloatTok{0.6} \SpecialCharTok{*}\NormalTok{ x2,}
+    \AttributeTok{ps      =} \FunctionTok{plogis}\NormalTok{(logit\_d),}
+    \AttributeTok{d       =} \FunctionTok{rbinom}\NormalTok{(n\_demo, }\DecValTok{1}\NormalTok{, ps),}
+    \CommentTok{\# Quintil del PS verdadero}
+    \AttributeTok{quintil =} \FunctionTok{ntile}\NormalTok{(ps, }\DecValTok{5}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+En la muestra completa, los grupos están desbalanceados: los tratados
+tienen valores más altos de \(X_1\) y \(X_2\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{demo }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(d) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{media\_x1 =} \FunctionTok{mean}\NormalTok{(x1) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+    \AttributeTok{media\_x2 =} \FunctionTok{mean}\NormalTok{(x2) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{  )}
+\CommentTok{\#\textgreater{} \# A tibble: 2 x 3}
+\CommentTok{\#\textgreater{}       d media\_x1 media\_x2}
+\CommentTok{\#\textgreater{}   \textless{}int\textgreater{}    \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1     0    {-}0.32    {-}0.26}
+\CommentTok{\#\textgreater{} 2     1     0.32     0.25}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora miramos lo que pasa dentro de cada quintil del PS. Si el Lema 1
+está en lo correcto, la diferencia en \(X_1\) y \(X_2\) entre tratados y
+controles debería desaparecer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Diferencia global}
+\NormalTok{dif\_global }\OtherTok{\textless{}{-}}\NormalTok{ demo }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(d) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{media\_x1 =} \FunctionTok{mean}\NormalTok{(x1)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{dif =} \FunctionTok{diff}\NormalTok{(media\_x1)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pull}\NormalTok{(dif)}
+
+\CommentTok{\# Diferencia dentro de cada quintil}
+\NormalTok{difs\_quintil }\OtherTok{\textless{}{-}}\NormalTok{ demo }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(quintil, d) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{media\_x1 =} \FunctionTok{mean}\NormalTok{(x1), }\AttributeTok{.groups =} \StringTok{"drop"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ d, }\AttributeTok{values\_from =}\NormalTok{ media\_x1,}
+              \AttributeTok{names\_prefix =} \StringTok{"d"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dif =}\NormalTok{ d1 }\SpecialCharTok{{-}}\NormalTok{ d0)}
+
+\FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{tibble}\NormalTok{(}\AttributeTok{grupo =} \StringTok{"Sin ajuste"}\NormalTok{, }\AttributeTok{quintil =} \ConstantTok{NA}\NormalTok{, }\AttributeTok{dif =}\NormalTok{ dif\_global),}
+\NormalTok{  difs\_quintil }\SpecialCharTok{|\textgreater{}} \FunctionTok{transmute}\NormalTok{(}\AttributeTok{grupo =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"Quintil "}\NormalTok{, quintil), dif)}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{grupo =} \FunctionTok{fct\_inorder}\NormalTok{(grupo)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ grupo, }\AttributeTok{y =}\NormalTok{ dif,}
+             \AttributeTok{fill =}\NormalTok{ grupo }\SpecialCharTok{==} \StringTok{"Sin ajuste"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.85}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#1B9E77"}\NormalTok{, }\StringTok{"\#D95F02"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{y =} \StringTok{"Diferencia media de X₁ (tratados − controles)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{15}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=18.75in,height=\textheight]{./matching_files/figure-pdf/fig-balanceo-demo-1.pdf}
+
+}
+
+\caption{\label{fig-balanceo-demo}Diferencia en \(X_1\) entre tratados y
+controles, antes del ajuste y dentro de cada quintil del PS. Dentro de
+cada quintil, el PS igualó los grupos aunque \(X_1\) no apareciera
+explícitamente.}
+
+\end{figure}
+
+Sin ajuste, los tratados tienen un \(X_1\) mucho más alto que los
+controles. Dentro de cada quintil del PS, la diferencia colapsa a cero.
+Es el Lema 1 en acción: el PS igualó los grupos en \(X_1\) sin que
+\(X_1\) apareciera explícitamente en ningún paso del ajuste.
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Lo que el \emph{propensity score} no es}]
+El teorema dice \emph{``si vale CIA dado X, entonces\ldots{}''}. Es un
+condicional. Si hay un confusor no medido, el PS calculado con las \(X\)
+observadas no lo arregla. El PS es una herramienta de dimensionalidad y
+eficiencia, no de identificación causal. La CIA la traen los datos y el
+diseño del estudio, no el método estadístico.
+\end{tcolorbox}
+
+\hypertarget{un-ejemplo-rehabilitaciuxf3n-post-acv}{%
+\subsection{Un ejemplo: rehabilitación
+post-ACV}\label{un-ejemplo-rehabilitaciuxf3n-post-acv}}
+
+Para ver el PS en acción, necesitamos datos con un problema de confusión
+real. Vamos a simular un estudio observacional sobre rehabilitación
+post-ACV.
+
+La pregunta: ¿un programa de rehabilitación intensiva mejora la
+recuperación funcional a 6 meses en pacientes post-ACV? El
+\emph{outcome} es el cambio en el índice de Barthel (escala de
+funcionalidad: 0-100). Los tres confusores son edad, severidad
+neurológica (NIHSS basal) y número de comorbilidades.
+
+El problema clínico que genera la confusión es conocido: los pacientes
+más severos tienden a derivarse más a rehabilitación intensiva. Pero los
+más severos también recuperan menos, hagan lo que hagan. Sin ajuste, eso
+tapa el efecto real del tratamiento.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{4000}
+
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \CommentTok{\# Covariables (confusores)}
+  \AttributeTok{edad        =} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{65}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{),}
+  \AttributeTok{severidad   =} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{8}\NormalTok{,  }\AttributeTok{sd =} \DecValTok{4}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{pmax}\NormalTok{(}\DecValTok{0}\NormalTok{),   }\CommentTok{\# NIHSS: no negativo}
+  \AttributeTok{comorbilidad =} \FunctionTok{rpois}\NormalTok{(n, }\AttributeTok{lambda =} \DecValTok{3}\NormalTok{)}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \CommentTok{\# Probabilidad de tratamiento: los más severos van más a rehab intensiva}
+    \AttributeTok{logit\_ps    =} \SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \FloatTok{0.042} \SpecialCharTok{*}\NormalTok{ edad }\SpecialCharTok{+} \FloatTok{0.213} \SpecialCharTok{*}\NormalTok{ severidad }\SpecialCharTok{+} \FloatTok{0.186} \SpecialCharTok{*}\NormalTok{ comorbilidad,}
+    \AttributeTok{ps\_verdadero =} \FunctionTok{plogis}\NormalTok{(logit\_ps),}
+    \AttributeTok{tratamiento =} \FunctionTok{rbinom}\NormalTok{(n, }\DecValTok{1}\NormalTok{, ps\_verdadero),}
+    \CommentTok{\# Outcomes potenciales: y0 cae con severidad y edad; efecto causal = 8 para todos}
+    \AttributeTok{y0 =} \DecValTok{20} \SpecialCharTok{+} \FloatTok{0.3} \SpecialCharTok{*}\NormalTok{ (}\DecValTok{80} \SpecialCharTok{{-}}\NormalTok{ edad) }\SpecialCharTok{{-}} \FloatTok{1.5} \SpecialCharTok{*}\NormalTok{ severidad }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{sd =} \DecValTok{5}\NormalTok{),}
+    \AttributeTok{y1 =}\NormalTok{ y0 }\SpecialCharTok{+} \DecValTok{8}\NormalTok{,}
+    \CommentTok{\# Outcome observado}
+    \AttributeTok{mejora =} \FunctionTok{if\_else}\NormalTok{(tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, y1, y0)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Miremos cómo arrancan los grupos antes de cualquier ajuste:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(tratamiento) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n              =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{edad\_media     =} \FunctionTok{mean}\NormalTok{(edad)        }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{1}\NormalTok{),}
+    \AttributeTok{severidad\_media =} \FunctionTok{mean}\NormalTok{(severidad)  }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{1}\NormalTok{),}
+    \AttributeTok{comorbilidad\_media =} \FunctionTok{mean}\NormalTok{(comorbilidad) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tratamiento =} \FunctionTok{if\_else}\NormalTok{(tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{,}
+                               \StringTok{"Rehab intensiva"}\NormalTok{, }\StringTok{"Rehab estándar"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{Grupo =}\NormalTok{ tratamiento,}
+         \StringTok{\textasciigrave{}}\AttributeTok{n}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ n,}
+         \StringTok{\textasciigrave{}}\AttributeTok{Edad (años)}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ edad\_media,}
+         \StringTok{\textasciigrave{}}\AttributeTok{Severidad (NIHSS)}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ severidad\_media,}
+         \StringTok{\textasciigrave{}}\AttributeTok{Comorbilidad}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ comorbilidad\_media) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{  gt}\SpecialCharTok{::}\FunctionTok{gt}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+\NormalTok{  gt}\SpecialCharTok{::}\FunctionTok{tab\_header}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Características basales por grupo de tratamiento"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\caption*{
+{\large Características basales por grupo de tratamiento}
+} 
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr}
+\toprule
+Grupo & n & Edad (años) & Severidad (NIHSS) & Comorbilidad \\ 
+\midrule\addlinespace[2.5pt]
+Rehab estándar & 301 & 60.6 & 5.2 & 2.5 \\ 
+Rehab intensiva & 3699 & 65.2 & 8.2 & 3.0 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Los grupos no son comparables: los tratados son más viejos, más severos
+y con más comorbilidades. ¿Qué dirá la diferencia cruda de medias?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SDO }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}}
+       \FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"SDO ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(SDO, }\DecValTok{2}\NormalTok{), }\StringTok{"puntos de Barthel}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} SDO = 1.63 puntos de Barthel}
+\end{Highlighting}
+\end{Shaded}
+
+El SDO ronda \(+0.04\): casi cero. Como el estudio es simulado, podemos
+espiar la verdad: el ATE real es \(+8\) puntos (lo fijamos nosotros al
+generar los datos), y el sesgo de selección es de casi \(-8\) puntos. El
+efecto verdadero quedó perfectamente tapado.
+
+Descompongámoslo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ATE\_real    }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{y1 }\SpecialCharTok{{-}}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{y0)}
+\NormalTok{sesgo       }\OtherTok{\textless{}{-}}\NormalTok{ SDO }\SpecialCharTok{{-}}\NormalTok{ ATE\_real}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"ATE real ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(ATE\_real, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} ATE real = 8}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"SDO observado ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(SDO, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} SDO observado = 1.63}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Sesgo de selección ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(sesgo, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Sesgo de selección = {-}6.37}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{estimando-ex}{%
+\subsection{\texorpdfstring{Estimando
+\(e(X)\)}{Estimando e(X)}}\label{estimando-ex}}
+
+El \emph{propensity score} verdadero no lo conocemos --- lo tenemos que
+estimar. Lo habitual es ajustar una \textbf{regresión logística} de
+\(D\) sobre \(X\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modelamos la probabilidad de tratamiento dado X}
+\NormalTok{modelo\_ps }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(tratamiento }\SpecialCharTok{\textasciitilde{}}\NormalTok{ edad }\SpecialCharTok{+}\NormalTok{ severidad }\SpecialCharTok{+}\NormalTok{ comorbilidad,}
+                 \AttributeTok{data   =}\NormalTok{ datos,}
+                 \AttributeTok{family =}\NormalTok{ binomial)}
+
+\CommentTok{\# El PS estimado es la probabilidad predicha para cada paciente}
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{ps =} \FunctionTok{predict}\NormalTok{(modelo\_ps, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Los coeficientes (en log-odds) confirman la confusión por indicación:
+severidad y comorbilidad empujan con fuerza la probabilidad de ir a
+rehab intensiva. Con el PS calculado, ya podemos mirar el solapamiento
+entre grupos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Grupo =} \FunctionTok{if\_else}\NormalTok{(tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\StringTok{"Rehab intensiva"}\NormalTok{, }\StringTok{"Rehab estándar"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ps, }\AttributeTok{fill =}\NormalTok{ Grupo, }\AttributeTok{color =}\NormalTok{ Grupo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.4}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette  =} \StringTok{"Dark2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Propensity score estimado e(X)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Densidad"}\NormalTok{,}
+       \AttributeTok{fill =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{color =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=18.75in,height=\textheight]{./matching_files/figure-pdf/fig-solapamiento-1.pdf}
+
+}
+
+\caption{\label{fig-solapamiento}Distribución del \emph{propensity
+score} en tratados y controles. El solapamiento es condición necesaria
+para cualquier ajuste.}
+
+\end{figure}
+
+Hay tratados y controles a lo largo de casi todo el rango de \(e(X)\):
+buena señal de solapamiento. Si hubiera regiones donde solo aparece un
+grupo, tendríamos un problema de positividad y ningún método de ajuste
+podría salvarnos.
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Positividad (\emph{overlap})}]
+El supuesto de positividad exige que \(0 < e(X) < 1\) para todo valor de
+\(X\). En cada región del espacio de covariables tiene que haber tanto
+tratados como controles. Sin solapamiento no hay contrafactual: no hay
+con quién comparar.
+\end{tcolorbox}
+
+\hypertarget{tres-formas-de-usar-el-ps}{%
+\subsection{Tres formas de usar el PS}\label{tres-formas-de-usar-el-ps}}
+
+Con el \emph{propensity score} en mano, hay tres formas principales de
+usarlo para estimar un efecto causal: \emph{matching}, estratificación e
+IPTW. Hay una cuarta --- meter \(e(X)\) como covariable en una regresión
+--- que mencionamos al final.
+
+\hypertarget{matching-sobre-el-ps}{%
+\subsubsection{\texorpdfstring{\emph{Matching} sobre el
+PS}{Matching sobre el PS}}\label{matching-sobre-el-ps}}
+
+La lógica es la misma que en la sección 6.2, pero ahora matcheamos en
+una sola dimensión en lugar de en \(K\). Para cada unidad tratada,
+buscamos el control con el \(e(X)\) más cercano y comparamos sus
+\emph{outcomes}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MatchIt)}
+
+\CommentTok{\# Matching más cercano sobre el PS, con reposición}
+\NormalTok{match\_ps }\OtherTok{\textless{}{-}} \FunctionTok{matchit}\NormalTok{(tratamiento }\SpecialCharTok{\textasciitilde{}}\NormalTok{ edad }\SpecialCharTok{+}\NormalTok{ severidad }\SpecialCharTok{+}\NormalTok{ comorbilidad,}
+                    \AttributeTok{data     =}\NormalTok{ datos,}
+                    \AttributeTok{method   =} \StringTok{"nearest"}\NormalTok{,}
+                    \AttributeTok{distance =} \StringTok{"glm"}\NormalTok{,   }\CommentTok{\# usa el PS logístico}
+                    \AttributeTok{replace  =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{datos\_matcheados }\OtherTok{\textless{}{-}} \FunctionTok{match.data}\NormalTok{(match\_ps)}
+
+\NormalTok{att\_psm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(mejora }\SpecialCharTok{\textasciitilde{}}\NormalTok{ tratamiento }\SpecialCharTok{+}\NormalTok{ edad }\SpecialCharTok{+}\NormalTok{ severidad }\SpecialCharTok{+}\NormalTok{ comorbilidad,}
+              \AttributeTok{data    =}\NormalTok{ datos\_matcheados,}
+              \AttributeTok{weights =}\NormalTok{ weights)}
+
+\FunctionTok{coef}\NormalTok{(att\_psm)[}\StringTok{"tratamiento"}\NormalTok{] }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\CommentTok{\#\textgreater{} tratamiento }
+\CommentTok{\#\textgreater{}        7.11}
+\end{Highlighting}
+\end{Shaded}
+
+Como matcheamos cada tratado con un control, lo que estimamos es el ATT
+---el efecto del tratamiento en los que efectivamente fueron tratados,
+no en toda la población.
+
+El resultado ronda \(+8.2\): recuperamos el efecto que el SDO había
+hecho desaparecer. Y el trade-off entre \texttt{replace\ =\ TRUE} y
+\texttt{replace\ =\ FALSE} que vimos en la sección 6.2 aplica aquí
+igual: sin reposición, los tratados con PS alto no encuentran buenos
+controles y el estimador se sesga. Con datos mal solapados, conviene
+siempre usar reposición.
+
+\hypertarget{estratificaciuxf3n-por-quintiles-del-ps}{%
+\subsubsection{Estratificación por quintiles del
+PS}\label{estratificaciuxf3n-por-quintiles-del-ps}}
+
+Una alternativa al \emph{matching} es dividir la muestra en estratos
+según el PS y calcular el SDO dentro de cada uno. Es la misma idea de la
+sección 6.1, pero los estratos ya no son celdas de \(X\) --- son
+quintiles de \(e(X)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dividimos en quintiles del PS}
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estrato =} \FunctionTok{ntile}\NormalTok{(ps, }\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# SDO dentro de cada quintil}
+\NormalTok{estratos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(estrato) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{sdo\_k   =} \FunctionTok{mean}\NormalTok{(mejora[tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(mejora[tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{]),}
+    \AttributeTok{n\_k     =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_trat  =} \FunctionTok{sum}\NormalTok{(tratamiento)}
+\NormalTok{  )}
+
+\CommentTok{\# ATE: cada estrato pesa por su tamaño}
+\NormalTok{ate\_estratificado }\OtherTok{\textless{}{-}} \FunctionTok{weighted.mean}\NormalTok{(estratos}\SpecialCharTok{$}\NormalTok{sdo\_k, estratos}\SpecialCharTok{$}\NormalTok{n\_k)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"ATE estratificado ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(ate\_estratificado, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} ATE estratificado = 6.94}
+\end{Highlighting}
+\end{Shaded}
+
+El resultado ronda \(+7.4\): vuelve a rondar el efecto real. Con cinco
+estratos queda un resto de sesgo porque dentro de cada quintil todavía
+hay variación en \(e(X)\). Con más estratos ese sesgo cae, pero también
+la muestra dentro de cada celda.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estratos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estrato =} \FunctionTok{factor}\NormalTok{(estrato)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ estrato, }\AttributeTok{y =}\NormalTok{ sdo\_k)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =} \StringTok{"\#1B9E77"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{8}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{color =} \StringTok{"gray40"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{5.4}\NormalTok{, }\AttributeTok{y =} \FloatTok{8.2}\NormalTok{, }\AttributeTok{label =} \StringTok{"ATE real = 8"}\NormalTok{,}
+           \AttributeTok{color =} \StringTok{"gray40"}\NormalTok{, }\AttributeTok{size =} \FloatTok{3.5}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Quintil del propensity score"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"SDO del estrato"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=18.75in,height=\textheight]{./matching_files/figure-pdf/fig-estratos-1.pdf}
+
+}
+
+\caption{\label{fig-estratos}SDO por quintil de \emph{propensity score}.
+Dentro de cada estrato los grupos son más comparables que en la muestra
+completa.}
+
+\end{figure}
+
+\hypertarget{iptw-ponderaciuxf3n-por-el-inverso-de-la-probabilidad-de-tratamiento}{%
+\subsubsection{IPTW: ponderación por el inverso de la probabilidad de
+tratamiento}\label{iptw-ponderaciuxf3n-por-el-inverso-de-la-probabilidad-de-tratamiento}}
+
+\emph{Matching} y estratificación descartan o agrupan unidades. El
+\textbf{IPTW} (\emph{Inverse Probability of Treatment Weighting}) usa
+todas las unidades, pero le asigna a cada una un peso que depende de qué
+tan ``rara'' fue su asignación al tratamiento que efectivamente recibió:
+
+\[w_i = \frac{1}{P(D_i = d_i \mid X_i)}\]
+
+Para las unidades tratadas, \(w = 1/e(X)\); para las controles,
+\(w = 1/(1-e(X))\). El resultado es una \textbf{pseudopoblación} donde
+el tratamiento ya no depende de \(X\). En esa pseudopoblación, la
+diferencia de medias ponderada estima el ATE.
+
+¿Por qué el inverso? Un paciente tratado con \(e(X)\) muy bajo era raro
+que lo trataran. Ese paciente representa a muchos similares que
+\emph{no} recibieron tratamiento, así que hay que darle más peso. Uno
+con \(e(X)\) alto era casi seguro que lo trataban, así que pesa poco.
+Cada unidad se hace cargo de representar a sus semejantes del grupo
+opuesto --- y así se reconstruye la población completa.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pesos para el ATE}
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{w\_ate =} \FunctionTok{if\_else}\NormalTok{(tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1} \SpecialCharTok{/}\NormalTok{ ps, }\DecValTok{1} \SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ ps))}
+\NormalTok{  )}
+
+\NormalTok{ate\_iptw }\OtherTok{\textless{}{-}}
+  \FunctionTok{weighted.mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{],}
+\NormalTok{                datos}\SpecialCharTok{$}\NormalTok{w\_ate[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}}
+  \FunctionTok{weighted.mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{],}
+\NormalTok{                datos}\SpecialCharTok{$}\NormalTok{w\_ate[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"IPTW (ATE) ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(ate\_iptw, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} IPTW (ATE) = 8.18}
+\end{Highlighting}
+\end{Shaded}
+
+El resultado ronda \(+8.2\): prácticamente el ATE real.
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, arc=.35mm, titlerule=0mm, left=2mm, toprule=.15mm, leftrule=.75mm, colback=white, opacitybacktitle=0.6, opacityback=0, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, coltitle=black, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Estimador de Hájek vs.~Horvitz-Thompson}]
+Hay dos variantes del estimador ponderado. El estimador de
+\textbf{Horvitz-Thompson} divide por \(n\); el de \textbf{Hájek}
+(normalizado) divide por la suma de los pesos. El de Hájek es más
+estable con pesos extremos y es el que usa \texttt{weighted.mean()} ---
+es el que preferimos.
+\end{tcolorbox}
+
+\textbf{El talón de Aquiles: pesos extremos.} Si \(e(X) \approx 0\) para
+un tratado (o \(e(X) \approx 1\) para un control), el peso \(1/e(X)\)
+explota. Una sola unidad puede dominar la estimación entera y la
+varianza se dispara.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Peso máximo:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{max}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate), }\DecValTok{1}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Peso máximo: 212.2}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Unidades con peso \textgreater{} 10:"}\NormalTok{, }\FunctionTok{sum}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Unidades con peso \textgreater{} 10: 135}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Tamaño de muestra efectivo:"}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)), }\StringTok{"de"}\NormalTok{, n, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Tamaño de muestra efectivo: 372 de 4000}
+\end{Highlighting}
+\end{Shaded}
+
+Una forma de mitigar esto sin descartar unidades son los \textbf{pesos
+estabilizados}: reemplazamos el numerador \(1\) por la probabilidad
+marginal de tratamiento.
+
+\[w_i^{\text{estab}} = \frac{P(D = d_i)}{P(D = d_i \mid X_i)}\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_trat }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{tratamiento)}
+
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{w\_ate\_estab =} \FunctionTok{if\_else}\NormalTok{(tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{,}
+\NormalTok{                          p\_trat       }\SpecialCharTok{/}\NormalTok{ ps,}
+\NormalTok{                          (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p\_trat) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ ps))}
+\NormalTok{  )}
+
+\NormalTok{ate\_iptw\_estab }\OtherTok{\textless{}{-}}
+  \FunctionTok{weighted.mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{],}
+\NormalTok{                datos}\SpecialCharTok{$}\NormalTok{w\_ate\_estab[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}}
+  \FunctionTok{weighted.mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{],}
+\NormalTok{                datos}\SpecialCharTok{$}\NormalTok{w\_ate\_estab[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Rango de pesos sin estabilizar: ["}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(}\FunctionTok{min}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate), }\DecValTok{1}\NormalTok{), }\StringTok{","}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(}\FunctionTok{max}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate), }\DecValTok{1}\NormalTok{), }\StringTok{"]}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Rango de pesos sin estabilizar: [ 1 , 212.2 ]}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Rango de pesos estabilizados:   ["}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(}\FunctionTok{min}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate\_estab), }\DecValTok{1}\NormalTok{), }\StringTok{","}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(}\FunctionTok{max}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{w\_ate\_estab), }\DecValTok{1}\NormalTok{), }\StringTok{"]}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Rango de pesos estabilizados:   [ 0.2 , 16 ]}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"IPTW estabilizado (ATE) ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(ate\_iptw\_estab, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} IPTW estabilizado (ATE) = 8.18}
+\end{Highlighting}
+\end{Shaded}
+
+Con el estimador de Hájek (normalizado), estabilizar los pesos reduce el
+rango sin cambiar el punto estimado --- baja la varianza, no toca el
+sesgo.
+
+Otra opción es \textbf{truncar} los pesos extremos en algún percentil
+(por ejemplo, el p99). Esto reduce la varianza pero introduce sesgo: no
+es gratis. Usala cuando los pesos extremos vienen de una mala
+positividad real, no por costumbre. Un peso enorme es el dato avisándote
+que en esa región del espacio de covariables no tenés con quién
+comparar.\sidenote{\footnotesize Para una discusión detallada de la estabilización y
+  el truncado, ver el Capítulo 5 del Mixtape de Cunningham
+  (2021).\linebreak\linebreak\leavevmode\vadjust pre{\protect\hypertarget{ref-cunningham2021causal}{}}%
+Cunningham, Scott. 2021. \emph{Causal inference: The mixtape}. Yale
+university press.\linebreak}
+
+\textbf{ATE vs.~ATT.} Los pesos anteriores estiman el ATE. Para el ATT
+usamos pesos distintos: los tratados pesan \(1\) (se quedan como están)
+y los controles pesan \(e(X)/(1-e(X))\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{w\_att =} \FunctionTok{if\_else}\NormalTok{(tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, ps }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ ps))}
+\NormalTok{  )}
+
+\NormalTok{att\_iptw }\OtherTok{\textless{}{-}}
+  \FunctionTok{weighted.mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{],}
+\NormalTok{                datos}\SpecialCharTok{$}\NormalTok{w\_att[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}}
+  \FunctionTok{weighted.mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{mejora[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{],}
+\NormalTok{                datos}\SpecialCharTok{$}\NormalTok{w\_att[datos}\SpecialCharTok{$}\NormalTok{tratamiento }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"IPTW (ATT) ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(att\_iptw, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#\textgreater{} IPTW (ATT) = 8.22}
+\end{Highlighting}
+\end{Shaded}
+
+En este ejemplo con efectos constantes ATE y ATT coinciden. Con efectos
+heterogéneos (cuando el tratamiento beneficia más a ciertos subgrupos)
+pueden diferir sustancialmente, y hay que decidir de antemano qué se
+quiere estimar.
+
+\hypertarget{el-ps-como-covariable-en-regresiuxf3n}{%
+\subsubsection{El PS como covariable en
+regresión}\label{el-ps-como-covariable-en-regresiuxf3n}}
+
+Hay una cuarta opción: meter \(e(X)\) directamente como regresor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(mejora }\SpecialCharTok{\textasciitilde{}}\NormalTok{ tratamiento }\SpecialCharTok{+}\NormalTok{ ps, }\AttributeTok{data =}\NormalTok{ datos)}
+\end{Highlighting}
+\end{Shaded}
+
+Es lo más rápido\ldots{} pero lo menos transparente. Asume una forma
+funcional para cómo \(e(X)\) entra en el \emph{outcome}. No muestra el
+balance: no sabés sobre qué unidades estás comparando realmente.
+Preferimos \emph{matching}, estratificación e IPTW porque son explícitos
+sobre qué se compara con qué. La transparencia vale.
+
+\hypertarget{chequeando-el-balance-el-love-plot}{%
+\subsection{\texorpdfstring{Chequeando el balance: el \emph{love
+plot}}{Chequeando el balance: el love plot}}\label{chequeando-el-balance-el-love-plot}}
+
+Con cualquiera de los tres métodos, antes de creerle al estimador hay
+que verificar que el ajuste haya funcionado. La regla de oro: \textbf{no
+se evalúa un método mirando el resultado --- se evalúa mirando si
+balanceó las covariables}.
+
+La métrica estándar es la diferencia de medias estandarizada
+(\textbf{SMD}):
+
+\[\text{SMD} = \frac{\bar{X}_{\text{tratados}} - \bar{X}_{\text{controles}}}{\text{SD combinada}}\]
+
+La regla de pulgar habitual: \(|\text{SMD}| < 0.1\) indica una
+covariable balanceada. El \textbf{love plot} grafica el SMD de cada
+covariable antes y después del ajuste --- de un vistazo vemos si el
+método hizo su trabajo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(cobalt)}
+
+\CommentTok{\# love.plot acepta el objeto weightit o los pesos directamente}
+\NormalTok{W }\OtherTok{\textless{}{-}}\NormalTok{ WeightIt}\SpecialCharTok{::}\FunctionTok{weightit}\NormalTok{(}
+\NormalTok{  tratamiento }\SpecialCharTok{\textasciitilde{}}\NormalTok{ edad }\SpecialCharTok{+}\NormalTok{ severidad }\SpecialCharTok{+}\NormalTok{ comorbilidad,}
+  \AttributeTok{data      =}\NormalTok{ datos,}
+  \AttributeTok{method    =} \StringTok{"glm"}\NormalTok{,}
+  \AttributeTok{estimand  =} \StringTok{"ATE"}
+\NormalTok{)}
+
+\FunctionTok{love.plot}\NormalTok{(W,}
+          \AttributeTok{binary    =} \StringTok{"std"}\NormalTok{,}
+          \AttributeTok{thresholds =} \FunctionTok{c}\NormalTok{(}\AttributeTok{m =} \FloatTok{0.1}\NormalTok{),}
+          \AttributeTok{abs       =} \ConstantTok{TRUE}\NormalTok{,}
+          \AttributeTok{colors    =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#D95F02"}\NormalTok{, }\StringTok{"\#1B9E77"}\NormalTok{),}
+          \AttributeTok{shapes    =} \FunctionTok{c}\NormalTok{(}\StringTok{"circle"}\NormalTok{, }\StringTok{"triangle"}\NormalTok{),}
+          \AttributeTok{size      =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title  =} \ConstantTok{NULL}\NormalTok{,}
+       \AttributeTok{x      =} \StringTok{"Diferencia de medias estandarizada (SMD)"}\NormalTok{,}
+       \AttributeTok{color  =} \ConstantTok{NULL}\NormalTok{,}
+       \AttributeTok{shape  =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=18.75in,height=\textheight]{./matching_files/figure-pdf/fig-loveplot-1.pdf}
+
+}
+
+\caption{\label{fig-loveplot}Love plot: diferencia de medias
+estandarizada (SMD) antes y después del ajuste por IPTW. Las covariables
+con \textbar SMD\textbar{} \textless{} 0.1 están balanceadas.}
+
+\end{figure}
+
+La severidad pasó de un desbalance grande (SMD ≈ 0.86) a prácticamente
+cero tras el ajuste por IPTW. El love plot es la firma visual de que el
+\emph{propensity score} hizo lo que tenía que hacer.
+
+\hypertarget{lo-que-el-ps-no-puede-hacer}{%
+\subsection{Lo que el PS no puede
+hacer}\label{lo-que-el-ps-no-puede-hacer}}
+
+El \emph{propensity score} es una herramienta poderosa, pero tiene un
+límite que no negocia: depende completamente de la CIA. Si hay un
+confusor que no mediste --- un factor que afecta tanto quién recibe el
+tratamiento como el \emph{outcome}, y que no está en tu \(X\) --- el PS
+calculado con lo que tenés no lo arregla. Simplemente no lo ve.
+
+La CIA no la crea el método estadístico. La trae el diseño del estudio y
+el conocimiento del dominio: el DAG que dibujaste en el Capítulo 4, los
+confusores que decidiste medir, las puertas traseras que lograste
+cerrar. El PS es una herramienta de dimensionalidad y de eficiencia
+estadística; la identificación causal es tu responsabilidad antes de
+llegar a la computadora.
+
+Dicho esto, cuando las covariables observadas son suficientes para la
+CIA --- y eso lo decidís vos con tu conocimiento del problema ---, el
+\emph{propensity score} te da tres formas distintas de llegar al mismo
+lugar: \emph{matching}, estratificación e IPTW. Cada una con sus
+ventajas: el \emph{matching} es intuitivo y no extrapola; la
+estratificación es transparente sobre en qué región del PS estás
+estimando; el IPTW usa toda la muestra y es el más eficiente cuando los
+pesos son razonables.
+
 \bookmarksetup{startatroot}
 
 \hypertarget{sec-did}{%
@@ -12628,7 +13587,7 @@ Aquí aparece un problema clave: el término ( M - E ) representa una
 diferencia estructural entre barcos ---y puede interpretarse como un
 \textbf{sesgo de selección}.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-color-frame, toprule=.15mm, opacityback=0, breakable, arc=.35mm, rightrule=.15mm, colback=white, leftrule=.75mm, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, rightrule=.15mm, opacityback=0, colframe=quarto-callout-color-frame, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, arc=.35mm]
 Si nos queda dudas de si esto es el sesgo de seleccion, podemos
 redefinir los efectos fijos en términos de resultados potenciales así:
 
@@ -13077,7 +14036,7 @@ Por eso se puede decir que el \textbf{supuesto de tendencias paralelas}
 es, en realidad, simplemente otra forma de expresar el \textbf{supuesto
 de exogeneidad estricta}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-color-frame, toprule=.15mm, opacityback=0, breakable, arc=.35mm, rightrule=.15mm, colback=white, leftrule=.75mm, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, rightrule=.15mm, opacityback=0, colframe=quarto-callout-color-frame, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, arc=.35mm]
 El supuesto de exogeneidad estricta establece que los errorers (o
 términos no observados) del modelo no están correlacionados con las
 variables explicativas (regresores), y en el caso especial de las DiD,
@@ -13863,6 +14822,8 @@ variable} centrada igual a 0)\sidenote{\footnotesize Para detalles del ajuste pu
   \CommentTok{\# Theme sin fondo gris}
   \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Ignoring unknown labels:}
+\CommentTok{\#\textgreater{} * fill : "Participó en la tutoría"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -14725,7 +15686,7 @@ Es razonable decir que no hay manipulación ¿no?
 \hypertarget{sec-var-inst}{%
 \chapter{Variables instrumentales}\label{sec-var-inst}}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-warning-color-frame, toprule=.15mm, opacityback=0, breakable, arc=.35mm, rightrule=.15mm, colback=white, leftrule=.75mm, bottomrule=.15mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colback=white, rightrule=.15mm, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, arc=.35mm]
 \begin{minipage}[t]{5.5mm}
 \textcolor{quarto-callout-warning-color}{\faExclamationTriangle}
 \end{minipage}%

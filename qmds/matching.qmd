@@ -17,7 +17,7 @@ source("../R/_common.R")
 
 ### ¿Por qué subclasificar? Motivación y objetivo
 
-En estudios observacionales la asignación al “tratamiento” muchas veces ocurre de forma completamente no aleatoria. Por ejemplo, supongamos que queremos medir el efecto de ofrecer un descuento en la cantidad de ventas de tiendas, pero el descuento se aplicó principalmente en aquellas regiones donde las ventas siempre fueron más bajas. 
+En estudios observacionales la asignación al “tratamiento” muchas veces ocurre de forma completamente no aleatoria. Por ejemplo, supongamos que queremos medir el efecto de ofrecer un descuento en la cantidad de ventas de tiendas, pero el descuento se aplicó principalmente en aquellas regiones donde las ventas siempre fueron más bajas.
 
 Si sólo comparamos el promedio de ventas de tiendas con descuento frente a las que no lo recibieron, el resultado estará sesgado, porque la asignación del “tratamiento” (el descuento) no fue aleatoria. Es decir, el efecto reflejará tanto el descuento como las características de la región.
 
@@ -33,13 +33,13 @@ $$
 
 Es decir, la decisión de asignar a tratamiento o no (D) es independiente de los potential outcomes, y por lo tanto la diferencia de medias entre tratados y controles ofrece una estimación válida del ATE.
 
-Sin embargo, en muchos cuasiexperimentos la “aleatorización” sólo ocurre **condicional** a alguna característica observable X. Esto nos lleva a la **asunción de independencia condicional** (CIA[^cia]), que podemos escribir como:
+Sin embargo, en muchos cuasiexperimentos la “aleatorización” sólo ocurre **condicional** a alguna característica observable X. Esto nos lleva a la **asunción de independencia condicional** (CIA[^matching-1]), que podemos escribir como:
+
+[^matching-1]: Del inglés *Conditional Independence Assumption*.
 
 $$
 D \perp (Y_0,Y_1) | X
 $$
-
-[^cia]: Del inglés *Conditional Independence Assumption*.
 
 O sea, **una vez que fijamos X**, la asignación al tratamiento se comporta como si fuera aleatoria.
 
@@ -72,9 +72,9 @@ Al condicionar en $X$ (es decir, subclasificar o estratificar por región), cerr
 
 ### El estimador de subclasificación: Un ejemplo con descuento
 
-¿Cómo aplicamos esta idea de la subclasificación a un ejemplo real? Bueno, empecemos con un ejemplo "real". 
+¿Cómo aplicamos esta idea de la subclasificación a un ejemplo real? Bueno, empecemos con un ejemplo "real".
 
-Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuento que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste  (compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
+Supongamos que tenemos una distribuidora de gaseosas en el Gran Buenos Aires. Queremos medir el efecto de ofrecer un descuento a los clientes en las ventas. Este es un descuento que se le da sólo a algunos clientes, pero sabemos que la asignación del descuento es aleatoria, pero sólo dentro de cada región. Esto pasó porque el jefe, muy astutamente dijo "¿Y si les ofrecemos más descuentos a la región que menos compra?". Los clientes que menos compran son los del oeste (compra promedio \$$2000$), y por eso tienen una $p=0.8$ de recibir el descuento. Los del norte (compra promedio \$$3500$) tienen una $p=0.2$ y los del este (compra promedio \$$3000$) una $p=0.5$. También es relevante para el problema que algunas zonas tienen más clientes que otras, por ejemplo, el oeste tiene $220$ clientes, el norte $500$ y el este sólo $130$.
 
 Como todas las simulaciones que hicimos a lo largo del libro (si es que a esto se le puede llamar libro) conocemos el tamaño del efecto que queremos estimar y tiene como valor medio \$$300$. Otra cosa a la que vamos a poder acceder es a ambos *potential outcomes*, es decir, tanto al observado como al contrafáctico (si es que a esto se le puede llamar contrafáctico). Estos son lujos que nos podemos dar (si es que a esto se le puede llamar un lujo). Veamos $5$ filas al azar de los datos simulados.
 
@@ -146,7 +146,7 @@ o, en lenguaje computacional:
 
 `SDO <- mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0])`.
 
-Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es negativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo [#sec-pot-outcomes], cuando las asignaciones **NO** son aleatorias, no podemos asegurar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso la asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
+Si lo calculamos nos da efectivamente \$`r round(mean(customers$y[customers$d==1]) - mean(customers$y[customers$d==0]))`. Es decir, no sólo no vale \$$300$ sino que su valor es negativo, o sea, ofrecer un descuento disminuye las ventas. ¿Alguna sospecha de qué está pasando? Como vimos en el capítulo \[#sec-pot-outcomes\], cuando las asignaciones **NO** son aleatorias, no podemos asegurar que el **SDO** sea un buen estimador del **ATE**. En este caso no tenemos sesgo de efecto heterogéneo (lo sabemos porque simulamos los datos) pero qué opinan del sesgo de selección. ¿Depende acaso la asignación al grupo tratamiento de alguno de los *outcome* potenciales? La respuesta es un rotundo **SÍ**, ya que el genio del jefe, que se ve que no sabe nada de inferencia causal, decidió condicionar la asignación justamente a las ventas esperadas.
 
 Veamos ahora las ventas para grupo tratamiento y control pero por región.
 
@@ -191,9 +191,7 @@ $$
 
 donde $k$ es un índice que codifica al grupo, $K$ es la cantidad total de grupos, $SDO_k$ la diferencia de medias para el grupo $k$, $N_k$ la cantidad de individuos del grupo $k$ y $N_t$ la cantidad total de individuos. Un promedio pesado, bah. En lenguaje de **R** sería algo como:
 
-`subclas_estimator <- SDO_este * (n_este/n_total) +
-  SDO_norte * (n_norte/n_total) +
-  SDO_oeste * (n_oeste/n_total)`
+`subclas_estimator <- SDO_este * (n_este/n_total) +   SDO_norte * (n_norte/n_total) +   SDO_oeste * (n_oeste/n_total)`
 
 En nuestro caso el estimador vale \$`r round(SDO_este * (n_este/n_total) + SDO_norte * (n_norte/n_total) + SDO_oeste * (n_oeste/n_total))`. Bastante bien, ¿no?
 
@@ -255,7 +253,7 @@ Esto nos permite construir un estimador que sea más creíble. Es intuitivo: **s
 
 Para esto, vamos a poder usar *exact matching* o *approximate matching*, dependiendo de cada caso.
 
-Pensemos en un caso simple en el que tenemos sólo una confusora observable $X$. 
+Pensemos en un caso simple en el que tenemos sólo una confusora observable $X$.
 
 Pero, ¿por qué antes comparábamos *cada unidad tratada con el promedio de todas las unidades no tratadas*?
 
@@ -263,23 +261,21 @@ Para entenderlo, recordemos que en el anterior enfoque cada unidad tratada compa
 
 $$
 \widehat{\delta}_i = Y_i - Y_{j(i)}
-$$
-donde $Y_i$ es el resultado observado de la unidad tratada $i$, y $Y_{j(i)}$ es una unidad control $j$ que comparte el mismo valor de $X$ que la $i$ (representada por el índice $j(i)$).
+$$ donde $Y_i$ es el resultado observado de la unidad tratada $i$, y $Y_{j(i)}$ es una unidad control $j$ que comparte el mismo valor de $X$ que la $i$ (representada por el índice $j(i)$).
 
 Pero luego, promediamos esas diferencias individuales, y llegamos al efecto total.
 
 ### *Exact Matching*
 
-Hablamos de emparejar o *matchear* unidades tratadas con controles lo más parecidos posibles. Lo primero que uno piensa es: Si quiero comparar el efecto de una política pública en las apuestas online y la edad es un confusor, es razonable comparar el monto que apostó una persona de $25$ años que estuvo expuesta a esa política con el monto que apostó otra persona de $25$ años que no estuvo expuesta. Cuando buscamos una unidad control que tenga exactamente el mismo nivel de la variable confusora hablamos de *exact matching*. Entonces, el *exact matching* consiste en emparejar unidades tratadas y no tratadas que compartan exactamente los mismos valores de ciertas covariables, supongamos $X$. 
+Hablamos de emparejar o *matchear* unidades tratadas con controles lo más parecidos posibles. Lo primero que uno piensa es: Si quiero comparar el efecto de una política pública en las apuestas online y la edad es un confusor, es razonable comparar el monto que apostó una persona de $25$ años que estuvo expuesta a esa política con el monto que apostó otra persona de $25$ años que no estuvo expuesta. Cuando buscamos una unidad control que tenga exactamente el mismo nivel de la variable confusora hablamos de *exact matching*. Entonces, el *exact matching* consiste en emparejar unidades tratadas y no tratadas que compartan exactamente los mismos valores de ciertas covariables, supongamos $X$.
 
 En este caso, podemos decir que el efecto en la unidad tratada $i$ es la diferencia entre su resultado observado $Y_i$ y el resultado contrafactual de la unidad control $Y_{j(i)}$ que comparte el mismo valor de $X_i$:
 
 $$
 \widehat{\delta}_i = Y_i(D_i=1) - Y_{j(i)}
-$$
-Entonces, podríamos decir que el efecto promedio de las unidades tratadas [^ATT] sería lo siguiente:
+$$ Entonces, podríamos decir que el efecto promedio de las unidades tratadas \[\^ATT\] sería lo siguiente:
 
-[^ATT] Que se llama **ATT**, ¿se acuerdan?
+\[\^ATT\] Que se llama **ATT**, ¿se acuerdan?
 
 $$
 \widehat{\delta}_{ATT} = \dfrac{1}{N_T} \sum_{i=1}^{N_T}(Y_i(D_i=1) - Y_{j(i)})
@@ -370,9 +366,9 @@ trainees_df %>%
 
 Al parecer, la gente de más edad (y que naturalmente tiene más salario) tiende a estar mayormente en el grupo que recibió la capacitación. Esto es una gran **red flag** metodológica, ¿no?. Bueno, lo que parece sugerir es que la edad es un confusor en la relación causal entre la capacitación y el salario. Entonces, bajo la suposición casi ridícula pero útil de que el único confusor en nuestro problema es la edad. Usemos *exact matching* para emparejar a los participantes tratados con controles que tengan la misma edad y estimemos el **ATT**.
 
-Escribamos una función a mano para calcular el **ATT**[^ATT_estimator]:
+Escribamos una función a mano para calcular el **ATT**[^matching-2]:
 
-[^ATT_estimator]: Básicamente es una función que busca los puntos iguales en la covariable, calcula el promedio, los efectos individuales y el promedio final. Es decir, lo que aparece en la @eq-att_estim.
+[^matching-2]: Básicamente es una función que busca los puntos iguales en la covariable, calcula el promedio, los efectos individuales y el promedio final. Es decir, lo que aparece en la @eq-att_estim.
 
 ```{r}
 # Función para estimar el ATT con matching ####
@@ -444,11 +440,11 @@ tibble(Método = c("SDO", "Exact Matching"),
   )
 ```
 
-Vemos que utilizar sólo la diferencia de las medias no sólo era una estimación sesgada sino que sugería una dirección del efecto contraria a la obtenida con **Exact Matching**. 
+Vemos que utilizar sólo la diferencia de las medias no sólo era una estimación sesgada sino que sugería una dirección del efecto contraria a la obtenida con **Exact Matching**.
 
-Vamos a aventurarnos a calcular el **ATE**. Para esto vamos a buscar controles matcheados para cada unidad tratada, y unidades tratadas matcheadas para cada control. Es decir, vamos a hacer un *exact matching* en ambos sentidos. Luego, vamos a calcular el efecto individual de cada unidad y vamos a calcular el promedio[^no_eq]. Primero definimos la función para calcular el **ATE**:
+Vamos a aventurarnos a calcular el **ATE**. Para esto vamos a buscar controles matcheados para cada unidad tratada, y unidades tratadas matcheadas para cada control. Es decir, vamos a hacer un *exact matching* en ambos sentidos. Luego, vamos a calcular el efecto individual de cada unidad y vamos a calcular el promedio[^matching-3]. Primero definimos la función para calcular el **ATE**:
 
-[^no_eq]: Ni me gasto en poner ecuaciones porque nos vamos a confundir más de lo que ya estamos pero si quieren la pueden ver en [el libro de Cunningham](https://mixtape.scunning.com/05-matching_and_subclassification#exact-matching).
+[^matching-3]: Ni me gasto en poner ecuaciones porque nos vamos a confundir más de lo que ya estamos pero si quieren la pueden ver en [el libro de Cunningham](https://mixtape.scunning.com/05-matching_and_subclassification#exact-matching).
 
 ```{r}
 # Función para estimar el ATE con matching ####
@@ -530,7 +526,6 @@ tibble(Método = c("SDO", "Exact Matching ATT", "Exact Matching ATE"),
   )
 ```
 
-
 Pero el **ATE** nos da `NA`. ¿Por qué? Bueno, porque no hay controles que coincidan exactamente con los tratados. En este caso, el **ATE** no se puede estimar con *exact matching* porque no hay suficientes controles que compartan el mismo valor de la covariable $X$ (en este caso, la edad) que las unidades tratadas. Es por eso que de acá en adelante vamos a hablar más del **ATT** que del **ATE**. No sólo porque es más fácil de estimar sino porque es lo que se calcula en la mayoría de los casos. Recuerden que si tenemos motivos razonables para creer que no existen sesgos de efecto heterogéneo, el **ATT** y el **ATE** son iguales.
 
 La ventaja del *exact matching* es que asegura que las comparaciones se hagan entre unidades idénticas en las covariables $X$. Sin embargo, cuando queremos emparejar según muchas características al mismo tiempo, encontrar controles con valores idénticos se vuelve muy difícil. Por ejemplo, si emparejamos solo por edad hay pocas categorías y es fácil encontrar controles; pero si agregamos otras variables como región, nivel de ingreso o tamaño de la tienda, las combinaciones posibles crecen exponencialmente. A esto último se lo conoce como la maldición de la dimensionalidad y tiene que ver con el hecho que los datos se vuelven más dispersos a medida que aumentamos el número de dimensiones (o covariables) en nuestro espacio de análisis. Imaginen que tenemos 5 datos en una línea de largo $10$. Bueno, ¿qué pasa si los pasamos a un cuadrado de $10$ x $10$? ¿Y a un cubo de $10$ x $10$ x $10$? Los datos empiezan a estar más lejos. Es por eso que para encontrar controles iguales deberíamos aumentar mucho el tamaño de nuestra muestra.
@@ -539,13 +534,13 @@ Algo que se deben estar preguntando es ¿y si en lugar de buscar un control de $
 
 ### *Approximate Matching*
 
-Como dijimos en la sección anterior, cuando no encontramos controles que coincidan exactamente en todas las covariables $X$[^Xvector], recurrimos al *approximate matching*. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de $X$ sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.
+Como dijimos en la sección anterior, cuando no encontramos controles que coincidan exactamente en todas las covariables $X$[^matching-4], recurrimos al *approximate matching*. En lugar de exigir valores idénticos, buscamos en el grupo de control al individuo cuyos valores de $X$ sean más parecidos a la de cada unidad tratada, y usamos su resultado como contrafactual.
 
-[^Xvector]: Cuando hablamos de $X$ nos referimos a un vector de covariables por las que queremos controlar, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector $X$ podría ser algo así como: $X = (región, edad)$.
+[^matching-4]: Cuando hablamos de $X$ nos referimos a un vector de covariables por las que queremos controlar, que puede incluir variables categóricas y continuas. Por ejemplo, si tenemos una variable categórica como “región” y una continua como “edad”, el vector $X$ podría ser algo así como: $X = (región, edad)$.
 
-Pero, ¿qué significa “parecida”? Si tenemos una sola covariable será la más cercana en número, pero como discutimos, el espacio de covariables puede ser (y normalmente es) de más de una dimensión. En este caso, para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio[^euclidea]. Por ejemplo, si tenemos que que las covariables son edad y salario, la distancia euclidiana entre dos puntos $(edad_1, salario_1)$ y $(edad_2, salario_2)$ sería:
+Pero, ¿qué significa “parecida”? Si tenemos una sola covariable será la más cercana en número, pero como discutimos, el espacio de covariables puede ser (y normalmente es) de más de una dimensión. En este caso, para cuantificar la similitud entre dos unidades definimos una distancia en el espacio de covariables. Una opción es usar la distancia euclidiana, esta medida suma las diferencias al cuadrado en cada dimensión y luego toma raíz, indicando qué tan “lejos” están los dos puntos en el espacio[^matching-5]. Por ejemplo, si tenemos que que las covariables son edad y salario, la distancia euclidiana entre dos puntos $(edad_1, salario_1)$ y $(edad_2, salario_2)$ sería:
 
-[^euclidea]: Básicamente el módulo del vector que une los dos puntos en el espacio de covariables (ahre). 
+[^matching-5]: Básicamente el módulo del vector que une los dos puntos en el espacio de covariables (ahre).
 
 $$
 distancimatch_medicine <- match.data(nearest_control)a_{euclidea} = \sqrt{(edad_1 - edad_2)^2 + (salario_1 - salario_2)^2}
@@ -596,9 +591,9 @@ tibble(Empleado = c("9", "10"),
 
 Esto dice que el más cercano es el $9$, pero si lo miramos en el gráfico, claramente el $10$ es el más cercano. ¿Por qué pasa esto? Bueno, porque las covariables no tienen la misma escala. La edad está en un rango de $20$ a $50$ y el salario en un rango de $10,000$ a $100,000$. Entonces, la distancia euclidiana está siendo dominada por la variable salario. Es decir, que si bien el el empleado $10$ está más cerca en general, el empleado $9$ está más cerca en términos de salario, que es una magnitud con un rango más amplio.
 
-¿Cómo resolvemos esto? Pues estandarizando las covariables[^estandar]. Veamos la misma figura pero estandarizada:
+¿Cómo resolvemos esto? Pues estandarizando las covariables[^matching-6]. Veamos la misma figura pero estandarizada:
 
-[^estandar]: Es decir, le restamos la media y dividimos por la desviación estándar.
+[^matching-6]: Es decir, le restamos la media y dividimos por la desviación estándar.
 
 ```{r}
 # Estandarizamos las covariables
@@ -637,11 +632,11 @@ tibble(Empleado = c("9", "10"),
 
 Ahora sí el más cercano es el empleado $9$.
 
-Otra opción es la distancia de **Mahalanobis**, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí. Es decir, si las variables están correlacionadas, la distancia de Mahalanobis las considera más cercanas que la distancia euclidiana [^mahala_no_eq].
+Otra opción es la distancia de **Mahalanobis**, además de ver “qué tan lejos” están dos puntos en cada variable, también ajusta por la forma en que esas variables se relacionan entre sí. Es decir, si las variables están correlacionadas, la distancia de Mahalanobis las considera más cercanas que la distancia euclidiana [^matching-7].
 
-[^mahala_no_eq]: Si tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo [este video](https://www.youtube.com/watch?v=eutzTEGgLpE&t=139s).
+[^matching-7]: Si tienen interés en entender un poco más profundamente qué es la distancia de Mahalanobis les recomiendo [este video](https://www.youtube.com/watch?v=eutzTEGgLpE&t=139s).
 
-Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclidiana (es fácil de demostrar si tienen ganas y, claro, tiempo). 
+Siempre que podamos vamos a usar la distancia de **Mahalanobis**, porque es la que refleja mejor las relaciones entre las dimensiones y, en caso de que no haya correlación, va a terminar siendo la distancia euclidiana (es fácil de demostrar si tienen ganas y, claro, tiempo).
 
 Una última aclaración, en esta distancia no es necesario estandarizar las covariables porque la distancia de Mahalanobis ya lo hace por nosotros. Entonces, si tenemos dos puntos $(edad_1, salario_1)$ y $(edad_2, salario_2)$, la distancia de Mahalanobis sería:
 
@@ -689,6 +684,7 @@ medicine_impact_recovery |>
   theme_bw() +
   theme(legend.position = "top")
 ```
+
 Vemos que claramente calcular el **SDO** no es una buena idea porque la asignación al tratamiento no es aleatoria (igual dejemos anotado que vale `r round(mean(medicine_impact_recovery$Recuperación[medicine_impact_recovery$Medicina==1]) - mean(medicine_impact_recovery$Recuperación[medicine_impact_recovery$Medicina==0]), 2)`). También podemos ver qué pasa con el sexo.
 
 ```{r}
@@ -701,13 +697,13 @@ medicine_impact_recovery |>
   gt()
 ```
 
-Y aquí vemos dos cosas. Que en sexo $0$ la mayoría son controles y en sexo $1$ no es tan así. Y que, en general hay más controles que tratados[^tratados].
+Y aquí vemos dos cosas. Que en sexo $0$ la mayoría son controles y en sexo $1$ no es tan así. Y que, en general hay más controles que tratados[^matching-8].
 
-[^tratados]: Algo que va a hacer que sea más fácil encontrarle controles *matcheados* a los tratados y no viceversa.
+[^matching-8]: Algo que va a hacer que sea más fácil encontrarle controles *matcheados* a los tratados y no viceversa.
 
-Vamos a estimar el **ATT** utilizando la función `matchit` del paquete `MatchIt`[^matchit]. Esta función nos permite hacer *matching* de forma sencilla y rápida. Vamos a usar la distancia de Mahalanobis para emparejar los tratados con los controles.
+Vamos a estimar el **ATT** utilizando la función `matchit` del paquete `MatchIt`[^matching-9]. Esta función nos permite hacer *matching* de forma sencilla y rápida. Vamos a usar la distancia de Mahalanobis para emparejar los tratados con los controles.
 
-[^matchit]: Para más detalles de cómo funciona el paquete `MatchIt` pueden ver la [documentación oficial](https://cran.r-project.org/web/packages/MatchIt/vignettes/MatchIt.html).
+[^matching-9]: Para más detalles de cómo funciona el paquete `MatchIt` pueden ver la [documentación oficial](https://cran.r-project.org/web/packages/MatchIt/vignettes/MatchIt.html).
 
 ```{r}
 #| code-fold: false
@@ -760,7 +756,7 @@ Recordemos que la estimación de *approximate matching* en este caso es una esti
 
 En la sección anterior vimos cómo hacer *matching* con la distancia de Mahalanobis y cómo calcular el **ATT**. Pero, ¿qué pasa si queremos hacer *matching* con más de una covariable? Como adelantamos cuando mencionamos la maldición de la dimensionalidad, la cosa se puede complicar, y mucho. Es por eso que una de las condiciones necesarias para hacer *matching* es que los datos tengan **soporte común**.
 
-Pero, ¿de qué hablamos cuando hablamos de soporte común? Básicamente, nos referimos a que las covariables $X$ deben tener valores que se superpongan entre los grupos de tratamiento y control. Es decir, que debe haber sujetos tratados y no tratados con valores similares en las covariables que estamos usando para emparejar. Suena a algo básico, pero no siempre es el caso (en la sección @#sec-matching_vs_reg discutimos un poquito esto).
+Pero, ¿de qué hablamos cuando hablamos de soporte común? Básicamente, nos referimos a que las covariables $X$ deben tener valores que se superpongan entre los grupos de tratamiento y control. Es decir, que debe haber sujetos tratados y no tratados con valores similares en las covariables que estamos usando para emparejar. Suena a algo básico, pero no siempre es el caso (en la sección \@#sec-matching_vs_reg discutimos un poquito esto).
 
 ### Euclideana vs. Mahalanobis, la batalla final
 
@@ -867,9 +863,9 @@ empleados_tbl |> ggplot(aes(x = Edad,
 
 Dicho esto, vuelvo sobre la idea de que siempre conviene utilizar la distancia de Mahalanobis para hacer *matching* porque es la que mejor refleja las relaciones entre las covariables. Además, en el caso de que no tengamos correlación entre las covariables, la distancia de Mahalanobis se reduce a la distancia euclídea.
 
-## *Matching* vs. regresión[^fuente] {#sec-matching_vs_reg}
+## *Matching* vs. regresión[^matching-10] {#sec-matching_vs_reg}
 
-[^fuente]: Toda esta sección está fuertemente "inspirada" en [este](https://www.franciscoyira.com/post/matching-in-r-2-differences-regression/) *blogpost* que uso y recomiendo
+[^matching-10]: Toda esta sección está fuertemente "inspirada" en [este](https://www.franciscoyira.com/post/matching-in-r-2-differences-regression/) *blogpost* que uso y recomiendo
 
 En el ejemplo anterior, vimos cómo el *matching* busca emparejar unidades tratadas y no tratadas basándose en sus características observables. Pero, ¿qué pasa si en lugar de emparejar, simplemente ajustamos un modelo de regresión que incluya esas mismas covariables? ¿No era la forma en la que controlábamos por los confusores antes de este capítulo? Bueno, sí y no. La regresión y el *matching* son dos enfoques diferentes para obtener la tan ansiada independencia condicional, pero cada uno tiene sus propias ventajas y desventajas. Vamos con un ejemplo paradigmático para que podamos entender un poquito más de que estamos hablando.
 
@@ -905,7 +901,7 @@ ggplot(df,
 
 De estos datos podemos ver dos cosas claras: 1) $x$ es claramente un confusor, ya que el valor de $x$ no solo afecta al *outcome* sino también a la probabilidad de recibir el tratamiento (los sujetos del medio son más "No tratados"), y 2) la relación entre $x$ y el *outcome* es no lineal. El efecto del tratamiento es homogéneo y vale $1$, y esto lo sabemos porque generamos los datos nosotros mismos.
 
-Ahora probemos dos cosas: Estimar el efecto del tratamiento usando una regresión lineal y luego usando *matching* aproximado con la librería `MatchIt`(para detalles pueden ver el código).  A continuación tenemos los efectos estimados con los dos métodos:
+Ahora probemos dos cosas: Estimar el efecto del tratamiento usando una regresión lineal y luego usando *matching* aproximado con la librería `MatchIt`(para detalles pueden ver el código). A continuación tenemos los efectos estimados con los dos métodos:
 
 ```{r}
 #| fig-cap: "Estimaciones del efecto del tratamiento utilizando regresión y matching."
@@ -940,9 +936,9 @@ modelsummary(list("Regresión"= linear_model1,
 
 ```
 
-Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de `r round(linear_model1$coefficients[2], 3)`, mientras que el *matching* nos da un estimador de `r round(matching_model1$coefficients[2], 3)`. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento[^tamanio_muestra]. 
+Como era de esperarse, la regresión lineal nos da un estimador del efecto del tratamiento de `r round(linear_model1$coefficients[2], 3)`, mientras que el *matching* nos da un estimador de `r round(matching_model1$coefficients[2], 3)`. Pero ¿Por qué era esperable? La regresión lineal asume una relación lineal entre $x$ y el *outcome*, lo que no es cierto en nuestros datos. Por lo tanto, el modelo no captura correctamente la relación entre $x$ y el *outcome*, lo que sesga el estimador del efecto del tratamiento[^matching-11].
 
-[^tamanio_muestra]: Otra cosa interesante que podemos observar, es que al estimar el efecto con *matching*, el tamaño de la muestra efectivo es menor que al estimar con regresión lineal. Esto se debe a que el *matching* elimina las unidades que no tienen un par cercano en el grupo de control, lo que reduce el tamaño de la muestra efectiva.
+[^matching-11]: Otra cosa interesante que podemos observar, es que al estimar el efecto con *matching*, el tamaño de la muestra efectivo es menor que al estimar con regresión lineal. Esto se debe a que el *matching* elimina las unidades que no tienen un par cercano en el grupo de control, lo que reduce el tamaño de la muestra efectiva.
 
 Veamos qué forma tiene el modelo lineal ajustado con estos datos:
 
@@ -1033,9 +1029,9 @@ $$
 Y_i = \beta_{0i} + \beta_{di} D + \beta_{xi} \sin(X) + \epsilon_i
 $$
 
-Es decir, estamos asumiendo que la relación entre $x$ y el *outcome* es una función seno, y no lineal[^es_lineal]. Vamos a ver qué pasa.
+Es decir, estamos asumiendo que la relación entre $x$ y el *outcome* es una función seno, y no lineal[^matching-12]. Vamos a ver qué pasa.
 
-[^es_lineal]: Recordemos que, a pesar de que aparece $\sin(X)$, la regresión lineal sigue siendo lineal en los parámetros, por lo que no estamos violando ningún supuesto de la regresión lineal. 
+[^matching-12]: Recordemos que, a pesar de que aparece $\sin(X)$, la regresión lineal sigue siendo lineal en los parámetros, por lo que no estamos violando ningún supuesto de la regresión lineal.
 
 ```{r}
 #| fig-cap: "Estimaciones del efecto del tratamiento utilizando regresión y matching para los datos sin soporte común."
@@ -1068,7 +1064,7 @@ modelsummary(list("Regresión"= reg_wo_common_support,
                     font_weight = "bold")
 ```
 
-Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de soporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, `r round(reg_wo_common_support$coefficients[2], 3)`. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es `r round(mathing_wo_common_support$coefficients[2], 3)`, es decir, un efecto casi nulo. 
+Lo que pasa ahora es que, gracias a la capacidad de extrapolar de la regresión lineal, la falta de soporte común no es un problema y el estimador del efecto del tratamiento es bastante bueno, `r round(reg_wo_common_support$coefficients[2], 3)`. En cambio, el *matching* no puede extrapolar y, por lo tanto, el estimador del efecto del tratamiento es `r round(mathing_wo_common_support$coefficients[2], 3)`, es decir, un efecto casi nulo.
 
 Volvamos a ver las cosas gráficamente a ver si esto nos echa un poco de luz sobre lo que está ocurriendo. Primero veamos la regresión lineal ajustada:
 
@@ -1196,4 +1192,614 @@ plot_matching_wo_cs
 
 Podemos ver que para los valores de $x$ donde no hay soporte común, el *matching* hace unas estimaciones que están muy lejos del valor real del parámetro poblacional, $1$. Esto se debe a que el *matching* no puede extrapolar y, por lo tanto, no puede estimar el efecto del tratamiento en esos valores de $x$ donde no hay unidades tratadas.
 
-En resumen, la regresión lineal puede ser una herramienta conveniente para obtener la independencia condicional, pero si la relación entre las covariables y el *outcome* no es lineal (y no la conocemos)  , el estimador del efecto del tratamiento puede estar sesgado. En cambio, el *matching* no asume una relación lineal y puede ser más robusto en estos casos, pero requiere soporte común para poder extrapolar. Si no hay soporte común, el *matching* no puede estimar el efecto del tratamiento en esos valores de las covariables donde no hay unidades tratadas.
+En resumen, la regresión lineal puede ser una herramienta conveniente para obtener la independencia condicional, pero si la relación entre las covariables y el *outcome* no es lineal (y no la conocemos) , el estimador del efecto del tratamiento puede estar sesgado. En cambio, el *matching* no asume una relación lineal y puede ser más robusto en estos casos, pero requiere soporte común para poder extrapolar. Si no hay soporte común, el *matching* no puede estimar el efecto del tratamiento en esos valores de las covariables donde no hay unidades tratadas.
+
+## *Propensity score*
+
+### La maldición de la dimensionalidad
+
+Hasta ahora vimos que tanto la subclasificación como el *matching* funcionan bien cuando las covariables son pocas. Con dos o tres confusores, encontrar unidades similares es manejable. También vimos que el supuesto sobre el que se basa esta técnica es que esas covariables captan la totalidad (o la mayoría) de las diferencias entre los grupos. Sin embargo el escenario más realista es que esas diferencias se explican por un número considerable de variables.
+
+Pensemos en un estudio observacional realista que evalúe el efecto de un tratamiento médico: tenemos edad, sexo, severidad de la enfermedad, comorbilidades, nivel socioeconómico, acceso al sistema de salud... Cada covariable nueva multiplica el espacio de búsqueda del control matcheado. Con suficientes dimensiones, cada unidad queda sola en su rincón del espacio y no encontrás pares razonables para nadie, incluso si admitimos cierta variabilidad al no hacer exact matching. A este fenómeno se lo llama la **maldición de la dimensionalidad**: la densidad de datos cae exponencialmente a medida que agregás covariables.
+
+Veamos el problema con números concretos. Supongamos que tenemos un estudio con $n = 2000$ pacientes y queremos hacer *exact matching* con covariables binarias (la situación más simple posible). Si tenemos $K$ covariables binarias, el número de celdas posibles es $2^K$. Es decir con una covariable binaria ($K = 1$) hay $2$ celdas y podríamos encontrar $1000$ pacientes por celda en promedio. Perfecto, generalicemos el problema: con $K = 10$ hay $1024$ celdas: apenas $\approx 2$ pacientes por celda. Con $K = 15$ hay $32768$ celdas: la gran mayoría estará vacía.
+
+```{r}
+#| label: fig-maldicion
+#| fig-cap: "La maldición de la dimensionalidad: crecimiento exponencial de celdas vs. tamaño de muestra fijo. A partir de unos pocos confusores, la muestra se diluye y el *exact matching* se vuelve imposible."
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+library(tidyverse)
+
+n_pacientes <- 2000
+
+tibble(K = 1:20) |>
+  mutate(
+    celdas          = 2^K,
+    pacientes_celda = n_pacientes / celdas,
+    celdas_vacias   = pmax(0, 1 - n_pacientes / celdas)
+  ) |>
+  ggplot(aes(x = K)) +
+  geom_col(aes(y = pmin(pacientes_celda, 100)),
+           fill = "#1B9E77", alpha = 0.8) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "#D95F02", linewidth = 0.8) +
+  annotate("text", x = 16, y = 2.5, label = "1 paciente por celda",
+           color = "#D95F02", size = 3.2) +
+  scale_x_continuous(breaks = seq(2, 20, 2)) +
+  labs(x = "Número de covariables binarias (K)",
+       y = "Pacientes por celda (promedio)") +
+  theme_minimal()
+```
+
+El gráfico lo dice todo: con $K = 11$ ya estamos por debajo de un paciente por celda en promedio, es imposible hacer matching. Y eso con covariables binarias. Si las covariables son continuas, la situación es peor todavía: en lugar de contar celdas, hay que buscar vecinos dentro de un caliper en $K$ dimensiones, y la fracción del espacio que cae dentro del caliper cae a la $K$-ésima potencia.
+
+```{r}
+#| label: fig-maldicion-continua
+#| fig-cap: "Fracción del espacio cubierta por un caliper del 10% en cada dimensión. Con 10 covariables continuas, solo el 0.000001% del espacio queda dentro del radio de búsqueda."
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+tibble(K = 1:15) |>
+  mutate(fraccion = 0.1^K) |>
+  ggplot(aes(x = K, y = fraccion)) +
+  geom_line(color = "#D95F02", linewidth = 1) +
+  geom_point(color = "#D95F02", size = 2) +
+  scale_y_log10(labels = scales::label_percent()) +
+  scale_x_continuous(breaks = 1:15) +
+  labs(x = "Número de covariables continuas (K)",
+       y = "Fracción del espacio dentro del caliper (escala log)") +
+  theme_minimal()
+```
+
+La pregunta lógica es si necesitamos tantas covariables, la respuesta se contesta sola a partir del supuesto de matching, necesitamos todas las covariables que capten la diferencia entre los grupos, y lamentablemente a veces son muchas. Llegado a este punto el investigador esta en una encrucijada, reducir el número de covariables (e incrementar el sesgo de selección) o no encontrar sujetos *matcheables* y abandonar este enfoque.
+
+Hay una salida elegante a este problema, comprimir toda la información de las covariables en una sola dimensión, esa dimensión es el **propensity score**.
+
+### El *propensity score*
+
+Vamos a empezar definiendo para poder explicar esta solución. El **propensity score** $e(X)$ es la probabilidad de que una unidad reciba el tratamiento, dadas sus covariables observables:
+
+$$e(X) = P(D = 1 \mid X)$$ Esta probabilidad esta presente en cualquier tipo de diseño. Por ejemplo, en un experimento aleatorio ideal,la asignación es por definición aleatoria e independiente de las covariables $X$, entonces es constante para todos los individuos. Si son sólo dos grupos (tratamiento y control), entonces $e(X)=0.5$.\
+En un estudio cuasi-experimental, $e(X)$ varía con $X$, y adopta un valor para cada individuo. Esa variación es exactamente la confusión que queremos modelar. Si lo pensamos de otra manera la probabilidad de ser asignado al grupo tratamiento en función de las covariables no está haciendo más que captar las diferencias sistemáticas entre el grupo control y el tratamiento.
+
+### La independencia condicional en e(X)
+
+Una idea clave es que este propensity score funciona como un "suficiente estadístico" para las covariables $X$. Y hereda la propiedad de la independencia condicional, es decir, si condicionamos en $e(X)$, entonces el tratamiento $D$ es independiente de las covariables $X$. Esta propiedad es conocida como el **Teorema del propensity score** y fue desarrollada por Rosenbaum y Rubin en 1983 [-@rosenbaum1983central]
+
+::: {.callout-warning icon="false"}
+## Teorema del propensity score
+
+Este teorema plantea que si vale la CIA dado $X$, entonces también vale dado $e(X)$.
+Formalizando:
+
+Si $(Y^0, Y^1) \perp D \mid X$, 
+entonces también vale:
+$$(Y^0, Y^1) \perp D \mid e(X)$$
+Reducimos $K$ dimensiones a un escalar sin perder la propiedad que nos importa para que el matching siga siendo funcional.
+
+¿Por qué un solo número puede reemplazar a todas las covariables? La demostración se apoya en dos lemas. El primero establece que el PS balancea las covariables. El segundo usa ese balanceo para heredar la CIA.
+
+#### Lema 1: el PS es un *balancing score* — $D \perp X \mid e(X)$
+
+Queremos mostrar que, dentro de cualquier nivel de $e(X)$, el tratamiento $D$ no depende de las covariables $X$. Basta con probar que:
+
+$$P(D = 1 \mid X,\, e(X)) = P(D = 1 \mid e(X))$$
+La igualdad de la izquierda es inmediata: como $e(X)$ es una función determinista de $X$, condicionar en ambos es equivalente a condicionar solo en $X$:
+
+$$P(D = 1 \mid X,\, e(X)) = P(D = 1 \mid X) = e(X)$$
+Para la igualdad de la derecha usamos la **ley de esperanzas iteradas** (también llamada ley de la expectativa total): $E[Z] = E[E[Z \mid W]]$. En su forma condicional: $E[Z \mid f(W)] = E[E[Z \mid W] \mid f(W)]$.
+
+$$P(D = 1 \mid e(X)) = E\bigl[D \mid e(X)\bigr] = E\bigl[\,E[D \mid X]\,\mid e(X)\bigr] = E\bigl[e(X) \mid e(X)\bigr] = e(X)$$
+El tercer paso usa que $E[D \mid X] = P(D = 1 \mid X) = e(X)$ por definición del PS. El cuarto paso es trivial: el valor esperado de una constante (dado que $e(X)$ está fijo) es esa misma constante.
+
+Entonces $P(D = 1 \mid X,\, e(X)) = e(X) = P(D = 1 \mid e(X))$, lo que implica $D \perp X \mid e(X)$. $\square$
+
+En palabras: entre las unidades con el mismo $e(X)$, saber el valor exacto de $X$ no te da información adicional sobre quién fue tratado. La asignación al tratamiento, dentro de ese grupo, es como un sorteo con probabilidad $e(X)$ para todos.
+
+#### Lema 2: CIA dado $X$ implica CIA dado $e(X)$
+
+Ahora usamos el Lema 1 para el paso que nos importa. Partimos de la CIA dado $X$:
+
+$$(Y^0, Y^1) \perp D \mid X \quad \Longleftrightarrow \quad P(Y^0 \leq y,\, D = 1 \mid X) = P(Y^0 \leq y \mid X) \cdot P(D = 1 \mid X)$$
+Queremos demostrar que la misma factorización vale dado $e(X)$. Calculamos $P(Y^0 \leq y,\, D = 1 \mid e(X))$ y mostramos que factoriza.
+
+$$P(Y^0 \leq y,\, D = 1 \mid e(X))$$
+$$= E\bigl[\mathbf{1}(Y^0 \leq y) \cdot D \mid e(X)\bigr]$$
+
+$$\overset{(1)}{=} E\Bigl[\,E\bigl[\mathbf{1}(Y^0 \leq y) \cdot D \mid X\bigr]\,\Big|\, e(X)\Bigr]$$
+$$\overset{(2)}{=} E\Bigl[\,E\bigl[\mathbf{1}(Y^0 \leq y) \mid X\bigr] \cdot E\bigl[D \mid X\bigr]\,\Big|\, e(X)\Bigr]$$
+
+$$\overset{(3)}{=} E\Bigl[P(Y^0 \leq y \mid X) \cdot e(X)\,\Big|\, e(X)\Bigr]$$
+$$\overset{(4)}{=} e(X) \cdot E\Bigl[P(Y^0 \leq y \mid X)\,\Big|\, e(X)\Bigr]$$
+
+$$\overset{(5)}{=} P(D = 1 \mid e(X)) \cdot P(Y^0 \leq y \mid e(X))$$
+
+Cada paso tiene su justificación:
+
+- **(1)** Ley de esperanzas iteradas: $E[Z \mid e(X)] = E[E[Z \mid X] \mid e(X)]$.
+- **(2)** CIA dado $X$: como $(Y^0, Y^1) \perp D \mid X$, el indicador $\mathbf{1}(Y^0 \leq y)$ y $D$ son independientes dentro de cada valor de $X$, por lo que la esperanza del producto factoriza en el producto de esperanzas.
+- **(3)** Reemplazamos $E[\mathbf{1}(Y^0 \leq y) \mid X] = P(Y^0 \leq y \mid X)$ y $E[D \mid X] = e(X)$.
+- **(4)** Como $e(X)$ está fijo dado $e(X)$, sale del operador de esperanza.
+- **(5)** Por el Lema 1, $e(X) = P(D = 1 \mid e(X))$. Por la ley de esperanzas iteradas, $E[P(Y^0 \leq y \mid X) \mid e(X)] = P(Y^0 \leq y \mid e(X))$.
+
+Esto prueba que $P(Y^0 \leq y,\, D = 1 \mid e(X)) = P(D = 1 \mid e(X)) \cdot P(Y^0 \leq y \mid e(X))$, es decir, $Y^0 \perp D \mid e(X)$. El mismo argumento aplica para $Y^1$, y por lo tanto:
+
+$$(Y^0, Y^1) \perp D \mid e(X) \quad \square$$
+:::
+
+#### ¿Qué hicimos exactamente?
+
+Vale la pena detenerse a entender por qué funcionó. El corazón del argumento es el Lema 1: el PS es la probabilidad de tratamiento dado $X$, así que condicionar en $e(X)$ captura toda la información de $X$ que es relevante para predecir $D$. Una vez fijado $e(X)$, las covariables $X$ ya no tienen poder predictivo sobre $D$. Eso es exactamente lo que necesita la CIA para funcionar: que, dentro de cada grupo definido por $e(X)$, el tratamiento sea como aleatorio.
+
+La ley de esperanzas iteradas hace el trabajo pesado en los dos lemas. La usamos para "bajar" la independencia desde el nivel de $X$ (donde la CIA la garantiza por supuesto) hasta el nivel de $e(X)$ (donde queremos que opere).
+
+Lo que el teorema *no* dice: que $e(X)$ crea la independencia condicional. La CIA la tiene que traer el diseño del estudio y las covariables que mediste. El PS es un compresor — toma la CIA que ya tenés y la expresa en una dimensión en lugar de $K$.
+
+#### Una verificación empírica del balanceo
+
+El balanceo —que la distribución de $X$ sea igual en tratados y controles dado $e(X)$— no es solo una propiedad teórica. Podemos verificarlo en una simulación.
+
+Generamos datos donde el tratamiento depende de dos covariables, $X_1$ y $X_2$:
+
+```{r}
+#| label: demo-balanceo
+
+set.seed(7)
+n_demo <- 5000
+
+demo <- tibble(
+  x1 = rnorm(n_demo),
+  x2 = rnorm(n_demo)
+) |>
+  mutate(
+    # El tratamiento depende de ambas covariables
+    logit_d = 0.8 * x1 + 0.6 * x2,
+    ps      = plogis(logit_d),
+    d       = rbinom(n_demo, 1, ps),
+    # Quintil del PS verdadero
+    quintil = ntile(ps, 5)
+  )
+```
+
+En la muestra completa, los grupos están desbalanceados: los tratados tienen valores más altos de $X_1$ y $X_2$.
+
+```{r}
+#| label: desbalance-demo
+demo |>
+  group_by(d) |>
+  summarise(
+    media_x1 = mean(x1) |> round(2),
+    media_x2 = mean(x2) |> round(2)
+  )
+```
+
+Ahora miramos lo que pasa dentro de cada quintil del PS. Si el Lema 1 está en lo correcto, la diferencia en $X_1$ y $X_2$ entre tratados y controles debería desaparecer.
+
+```{r}
+#| label: fig-balanceo-demo
+#| fig-cap: "Diferencia en $X_1$ entre tratados y controles, antes del ajuste y dentro de cada quintil del PS. Dentro de cada quintil, el PS igualó los grupos aunque $X_1$ no apareciera explícitamente."
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+# Diferencia global
+dif_global <- demo |>
+  group_by(d) |>
+  summarise(media_x1 = mean(x1)) |>
+  summarise(dif = diff(media_x1)) |>
+  pull(dif)
+
+# Diferencia dentro de cada quintil
+difs_quintil <- demo |>
+  group_by(quintil, d) |>
+  summarise(media_x1 = mean(x1), .groups = "drop") |>
+  pivot_wider(names_from = d, values_from = media_x1,
+              names_prefix = "d") |>
+  mutate(dif = d1 - d0)
+
+bind_rows(
+  tibble(grupo = "Sin ajuste", quintil = NA, dif = dif_global),
+  difs_quintil |> transmute(grupo = paste0("Quintil ", quintil), dif)
+) |>
+  mutate(grupo = fct_inorder(grupo)) |>
+  ggplot(aes(x = grupo, y = dif,
+             fill = grupo == "Sin ajuste")) +
+  geom_col(show.legend = FALSE, alpha = 0.85) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  scale_fill_manual(values = c("#1B9E77", "#D95F02")) +
+  labs(x = NULL, y = "Diferencia media de X₁ (tratados − controles)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 15, hjust = 1))
+```
+
+Sin ajuste, los tratados tienen un $X_1$ mucho más alto que los controles. Dentro de cada quintil del PS, la diferencia colapsa a cero. Es el Lema 1 en acción: el PS igualó los grupos en $X_1$ sin que $X_1$ apareciera explícitamente en ningún paso del ajuste.
+
+::: {.callout-warning}
+## Lo que el *propensity score* no es
+
+El teorema dice *"si vale CIA dado X, entonces..."*. Es un condicional. Si hay un confusor no medido, el PS calculado con las $X$ observadas no lo arregla. El PS es una herramienta de dimensionalidad y eficiencia, no de identificación causal. La CIA la traen los datos y el diseño del estudio, no el método estadístico.
+:::
+
+### 6.4.3 Un ejemplo: rehabilitación post-ACV
+
+Para ver el PS en acción, necesitamos datos con un problema de confusión real. Vamos a simular un estudio observacional sobre rehabilitación post-ACV.
+
+La pregunta: ¿un programa de rehabilitación intensiva mejora la recuperación funcional a 6 meses en pacientes post-ACV? El *outcome* es el cambio en el índice de Barthel (escala de funcionalidad: 0-100). Los tres confusores son edad, severidad neurológica (NIHSS basal) y número de comorbilidades.
+
+El problema clínico que genera la confusión es conocido: los pacientes más severos tienden a derivarse más a rehabilitación intensiva. Pero los más severos también recuperan menos, hagan lo que hagan. Sin ajuste, eso tapa el efecto real del tratamiento.
+
+```{r}
+#| label: sim-acv
+#| code-fold: true
+#| code-summary: "Ver el código de simulación"
+
+library(tidyverse)
+
+set.seed(42)
+n <- 4000
+
+datos <- tibble(
+  # Covariables (confusores)
+  edad        = rnorm(n, mean = 65, sd = 10),
+  severidad   = rnorm(n, mean = 8,  sd = 4) |> pmax(0),   # NIHSS: no negativo
+  comorbilidad = rpois(n, lambda = 3)
+) |>
+  mutate(
+    # Probabilidad de tratamiento: los más severos van más a rehab intensiva
+    logit_ps    = -2 + 0.042 * edad + 0.213 * severidad + 0.186 * comorbilidad,
+    ps_verdadero = plogis(logit_ps),
+    tratamiento = rbinom(n, 1, ps_verdadero),
+    # Outcomes potenciales: y0 cae con severidad y edad; efecto causal = 8 para todos
+    y0 = 20 + 0.3 * (80 - edad) - 1.5 * severidad + rnorm(n, sd = 5),
+    y1 = y0 + 8,
+    # Outcome observado
+    mejora = if_else(tratamiento == 1, y1, y0)
+  )
+```
+
+Miremos cómo arrancan los grupos antes de cualquier ajuste:
+
+```{r}
+#| label: tabla-desbalance
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+datos |>
+  group_by(tratamiento) |>
+  summarise(
+    n              = n(),
+    edad_media     = mean(edad)        |> round(1),
+    severidad_media = mean(severidad)  |> round(1),
+    comorbilidad_media = mean(comorbilidad) |> round(1)
+  ) |>
+  mutate(tratamiento = if_else(tratamiento == 1,
+                               "Rehab intensiva", "Rehab estándar")) |>
+  rename(Grupo = tratamiento,
+         `n` = n,
+         `Edad (años)` = edad_media,
+         `Severidad (NIHSS)` = severidad_media,
+         `Comorbilidad` = comorbilidad_media) |>
+  gt::gt() |>
+  gt::tab_header(
+    title = "Características basales por grupo de tratamiento"
+  )
+```
+
+Los grupos no son comparables: los tratados son más viejos, más severos y con más comorbilidades. ¿Qué dirá la diferencia cruda de medias?
+
+```{r}
+#| label: sdo
+SDO <- mean(datos$mejora[datos$tratamiento == 1]) -
+       mean(datos$mejora[datos$tratamiento == 0])
+
+cat("SDO =", round(SDO, 2), "puntos de Barthel\n")
+```
+
+El SDO ronda $+0.04$: casi cero. Como el estudio es simulado, podemos espiar la verdad: el ATE real es $+8$ puntos (lo fijamos nosotros al generar los datos), y el sesgo de selección es de casi $-8$ puntos. El efecto verdadero quedó perfectamente tapado.
+
+Descompongámoslo:
+
+```{r}
+#| label: descomposicion
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+ATE_real    <- mean(datos$y1 - datos$y0)
+sesgo       <- SDO - ATE_real
+
+cat("ATE real =", round(ATE_real, 2), "\n")
+cat("SDO observado =", round(SDO, 2), "\n")
+cat("Sesgo de selección =", round(sesgo, 2), "\n")
+```
+
+### 6.4.4 Estimando $e(X)$
+
+El *propensity score* verdadero no lo conocemos — lo tenemos que estimar. Lo habitual es ajustar una **regresión logística** de $D$ sobre $X$:
+
+```{r}
+#| label: modelo-ps
+
+# Modelamos la probabilidad de tratamiento dado X
+modelo_ps <- glm(tratamiento ~ edad + severidad + comorbilidad,
+                 data   = datos,
+                 family = binomial)
+
+# El PS estimado es la probabilidad predicha para cada paciente
+datos <- datos |>
+  mutate(ps = predict(modelo_ps, type = "response"))
+```
+
+Los coeficientes (en log-odds) confirman la confusión por indicación: severidad y comorbilidad empujan con fuerza la probabilidad de ir a rehab intensiva. Con el PS calculado, ya podemos mirar el solapamiento entre grupos.
+
+```{r}
+#| label: fig-solapamiento
+#| fig-cap: "Distribución del *propensity score* en tratados y controles. El solapamiento es condición necesaria para cualquier ajuste."
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+datos |>
+  mutate(Grupo = if_else(tratamiento == 1, "Rehab intensiva", "Rehab estándar")) |>
+  ggplot(aes(x = ps, fill = Grupo, color = Grupo)) +
+  geom_density(alpha = 0.4) +
+  scale_fill_brewer(palette  = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = "Propensity score estimado e(X)",
+       y = "Densidad",
+       fill = NULL, color = NULL) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+Hay tratados y controles a lo largo de casi todo el rango de $e(X)$: buena señal de solapamiento. Si hubiera regiones donde solo aparece un grupo, tendríamos un problema de positividad y ningún método de ajuste podría salvarnos.
+
+::: {.callout-note}
+## Positividad (*overlap*)
+
+El supuesto de positividad exige que $0 < e(X) < 1$ para todo valor de $X$. En cada región del espacio de covariables tiene que haber tanto tratados como controles. Sin solapamiento no hay contrafactual: no hay con quién comparar.
+:::
+
+### 6.4.5 Tres formas de usar el PS
+
+Con el *propensity score* en mano, hay tres formas principales de usarlo para estimar un efecto causal: *matching*, estratificación e IPTW. Hay una cuarta — meter $e(X)$ como covariable en una regresión — que mencionamos al final.
+
+#### *Matching* sobre el PS
+
+La lógica es la misma que en la sección 6.2, pero ahora matcheamos en una sola dimensión en lugar de en $K$. Para cada unidad tratada, buscamos el control con el $e(X)$ más cercano y comparamos sus *outcomes*.
+
+```{r}
+#| label: ps-matching
+#| message: false
+
+library(MatchIt)
+
+# Matching más cercano sobre el PS, con reposición
+match_ps <- matchit(tratamiento ~ edad + severidad + comorbilidad,
+                    data     = datos,
+                    method   = "nearest",
+                    distance = "glm",   # usa el PS logístico
+                    replace  = TRUE)
+
+datos_matcheados <- match.data(match_ps)
+
+att_psm <- lm(mejora ~ tratamiento + edad + severidad + comorbilidad,
+              data    = datos_matcheados,
+              weights = weights)
+
+coef(att_psm)["tratamiento"] |> round(2)
+```
+
+Como matcheamos cada tratado con un control, lo que estimamos es el ATT —el efecto del tratamiento en los que efectivamente fueron tratados, no en toda la población.
+
+El resultado ronda $+8.2$: recuperamos el efecto que el SDO había hecho desaparecer. Y el trade-off entre `replace = TRUE` y `replace = FALSE` que vimos en la sección 6.2 aplica aquí igual: sin reposición, los tratados con PS alto no encuentran buenos controles y el estimador se sesga. Con datos mal solapados, conviene siempre usar reposición.
+
+#### Estratificación por quintiles del PS
+
+Una alternativa al *matching* es dividir la muestra en estratos según el PS y calcular el SDO dentro de cada uno. Es la misma idea de la sección 6.1, pero los estratos ya no son celdas de $X$ — son quintiles de $e(X)$.
+
+```{r}
+#| label: estratificacion
+
+# Dividimos en quintiles del PS
+datos <- datos |>
+  mutate(estrato = ntile(ps, 5))
+
+# SDO dentro de cada quintil
+estratos <- datos |>
+  group_by(estrato) |>
+  summarise(
+    sdo_k   = mean(mejora[tratamiento == 1]) - mean(mejora[tratamiento == 0]),
+    n_k     = n(),
+    n_trat  = sum(tratamiento)
+  )
+
+# ATE: cada estrato pesa por su tamaño
+ate_estratificado <- weighted.mean(estratos$sdo_k, estratos$n_k)
+
+cat("ATE estratificado =", round(ate_estratificado, 2), "\n")
+```
+
+El resultado ronda $+7.4$: vuelve a rondar el efecto real. Con cinco estratos queda un resto de sesgo porque dentro de cada quintil todavía hay variación en $e(X)$. Con más estratos ese sesgo cae, pero también la muestra dentro de cada celda.
+
+```{r}
+#| label: fig-estratos
+#| fig-cap: "SDO por quintil de *propensity score*. Dentro de cada estrato los grupos son más comparables que en la muestra completa."
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+estratos |>
+  mutate(estrato = factor(estrato)) |>
+  ggplot(aes(x = estrato, y = sdo_k)) +
+  geom_col(fill = "#1B9E77", alpha = 0.8) +
+  geom_hline(yintercept = 8, linetype = "dashed", color = "gray40") +
+  annotate("text", x = 5.4, y = 8.2, label = "ATE real = 8",
+           color = "gray40", size = 3.5, hjust = 1) +
+  labs(x = "Quintil del propensity score",
+       y = "SDO del estrato") +
+  theme_minimal()
+```
+#### IPTW: ponderación por el inverso de la probabilidad de tratamiento
+
+*Matching* y estratificación descartan o agrupan unidades. El **IPTW** (*Inverse Probability of Treatment Weighting*) usa todas las unidades, pero le asigna a cada una un peso que depende de qué tan "rara" fue su asignación al tratamiento que efectivamente recibió:
+
+$$w_i = \frac{1}{P(D_i = d_i \mid X_i)}$$
+
+Para las unidades tratadas, $w = 1/e(X)$; para las controles, $w = 1/(1-e(X))$. El resultado es una **pseudopoblación** donde el tratamiento ya no depende de $X$. En esa pseudopoblación, la diferencia de medias ponderada estima el ATE.
+
+¿Por qué el inverso? Un paciente tratado con $e(X)$ muy bajo era raro que lo trataran. Ese paciente representa a muchos similares que *no* recibieron tratamiento, así que hay que darle más peso. Uno con $e(X)$ alto era casi seguro que lo trataban, así que pesa poco. Cada unidad se hace cargo de representar a sus semejantes del grupo opuesto — y así se reconstruye la población completa.
+
+```{r}
+#| label: iptw
+
+# Pesos para el ATE
+datos <- datos |>
+  mutate(
+    w_ate = if_else(tratamiento == 1, 1 / ps, 1 / (1 - ps))
+  )
+
+ate_iptw <-
+  weighted.mean(datos$mejora[datos$tratamiento == 1],
+                datos$w_ate[datos$tratamiento == 1]) -
+  weighted.mean(datos$mejora[datos$tratamiento == 0],
+                datos$w_ate[datos$tratamiento == 0])
+
+cat("IPTW (ATE) =", round(ate_iptw, 2), "\n")
+```
+
+El resultado ronda $+8.2$: prácticamente el ATE real.
+
+::: {.callout-note}
+## Estimador de Hájek vs. Horvitz-Thompson
+
+Hay dos variantes del estimador ponderado. El estimador de **Horvitz-Thompson** divide por $n$; el de **Hájek** (normalizado) divide por la suma de los pesos. El de Hájek es más estable con pesos extremos y es el que usa `weighted.mean()` — es el que preferimos.
+:::
+
+**El talón de Aquiles: pesos extremos.** Si $e(X) \approx 0$ para un tratado (o $e(X) \approx 1$ para un control), el peso $1/e(X)$ explota. Una sola unidad puede dominar la estimación entera y la varianza se dispara.
+
+```{r}
+#| label: pesos-extremos
+
+cat("Peso máximo:", round(max(datos$w_ate), 1), "\n")
+cat("Unidades con peso > 10:", sum(datos$w_ate > 10), "\n")
+cat("Tamaño de muestra efectivo:",
+    round(sum(datos$w_ate)^2 / sum(datos$w_ate^2)), "de", n, "\n")
+```
+
+Una forma de mitigar esto sin descartar unidades son los **pesos estabilizados**: reemplazamos el numerador $1$ por la probabilidad marginal de tratamiento.
+
+$$w_i^{\text{estab}} = \frac{P(D = d_i)}{P(D = d_i \mid X_i)}$$
+
+```{r}
+#| label: pesos-estabilizados
+
+p_trat <- mean(datos$tratamiento)
+
+datos <- datos |>
+  mutate(
+    w_ate_estab = if_else(tratamiento == 1,
+                          p_trat       / ps,
+                          (1 - p_trat) / (1 - ps))
+  )
+
+ate_iptw_estab <-
+  weighted.mean(datos$mejora[datos$tratamiento == 1],
+                datos$w_ate_estab[datos$tratamiento == 1]) -
+  weighted.mean(datos$mejora[datos$tratamiento == 0],
+                datos$w_ate_estab[datos$tratamiento == 0])
+
+cat("Rango de pesos sin estabilizar: [",
+    round(min(datos$w_ate), 1), ",",
+    round(max(datos$w_ate), 1), "]\n")
+cat("Rango de pesos estabilizados:   [",
+    round(min(datos$w_ate_estab), 1), ",",
+    round(max(datos$w_ate_estab), 1), "]\n")
+cat("IPTW estabilizado (ATE) =", round(ate_iptw_estab, 2), "\n")
+```
+
+Con el estimador de Hájek (normalizado), estabilizar los pesos reduce el rango sin cambiar el punto estimado — baja la varianza, no toca el sesgo.
+
+Otra opción es **truncar** los pesos extremos en algún percentil (por ejemplo, el p99). Esto reduce la varianza pero introduce sesgo: no es gratis. Usala cuando los pesos extremos vienen de una mala positividad real, no por costumbre. Un peso enorme es el dato avisándote que en esa región del espacio de covariables no tenés con quién comparar.^[Para una discusión detallada de la estabilización y el truncado, ver el Capítulo 5 del Mixtape de Cunningham [-@cunningham2021causal].]
+
+**ATE vs. ATT.** Los pesos anteriores estiman el ATE. Para el ATT usamos pesos distintos: los tratados pesan $1$ (se quedan como están) y los controles pesan $e(X)/(1-e(X))$.
+
+```{r}
+#| label: att-iptw
+
+datos <- datos |>
+  mutate(
+    w_att = if_else(tratamiento == 1, 1, ps / (1 - ps))
+  )
+
+att_iptw <-
+  weighted.mean(datos$mejora[datos$tratamiento == 1],
+                datos$w_att[datos$tratamiento == 1]) -
+  weighted.mean(datos$mejora[datos$tratamiento == 0],
+                datos$w_att[datos$tratamiento == 0])
+
+cat("IPTW (ATT) =", round(att_iptw, 2), "\n")
+```
+
+En este ejemplo con efectos constantes ATE y ATT coinciden. Con efectos heterogéneos (cuando el tratamiento beneficia más a ciertos subgrupos) pueden diferir sustancialmente, y hay que decidir de antemano qué se quiere estimar.
+
+#### El PS como covariable en regresión
+
+Hay una cuarta opción: meter $e(X)$ directamente como regresor.
+
+```{r}
+#| label: ps-regresion
+#| eval: false
+
+lm(mejora ~ tratamiento + ps, data = datos)
+```
+
+Es lo más rápido... pero lo menos transparente. Asume una forma funcional para cómo $e(X)$ entra en el *outcome*. No muestra el balance: no sabés sobre qué unidades estás comparando realmente. Preferimos *matching*, estratificación e IPTW porque son explícitos sobre qué se compara con qué. La transparencia vale.
+
+### 6.4.6 Chequeando el balance: el *love plot*
+
+Con cualquiera de los tres métodos, antes de creerle al estimador hay que verificar que el ajuste haya funcionado. La regla de oro: **no se evalúa un método mirando el resultado — se evalúa mirando si balanceó las covariables**.
+
+La métrica estándar es la diferencia de medias estandarizada (**SMD**):
+
+$$\text{SMD} = \frac{\bar{X}_{\text{tratados}} - \bar{X}_{\text{controles}}}{\text{SD combinada}}$$
+
+La regla de pulgar habitual: $|\text{SMD}| < 0.1$ indica una covariable balanceada. El **love plot** grafica el SMD de cada covariable antes y después del ajuste — de un vistazo vemos si el método hizo su trabajo.
+
+```{r}
+#| label: fig-loveplot
+#| fig-cap: "Love plot: diferencia de medias estandarizada (SMD) antes y después del ajuste por IPTW. Las covariables con |SMD| < 0.1 están balanceadas."
+#| code-fold: true
+#| code-summary: "Ver el código"
+
+library(cobalt)
+
+# love.plot acepta el objeto weightit o los pesos directamente
+W <- WeightIt::weightit(
+  tratamiento ~ edad + severidad + comorbilidad,
+  data      = datos,
+  method    = "glm",
+  estimand  = "ATE"
+)
+
+love.plot(W,
+          binary    = "std",
+          thresholds = c(m = 0.1),
+          abs       = TRUE,
+          colors    = c("#D95F02", "#1B9E77"),
+          shapes    = c("circle", "triangle"),
+          size      = 3) +
+  labs(title  = NULL,
+       x      = "Diferencia de medias estandarizada (SMD)",
+       color  = NULL,
+       shape  = NULL) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+La severidad pasó de un desbalance grande (SMD ≈ 0.86) a prácticamente cero tras el ajuste por IPTW. El love plot es la firma visual de que el *propensity score* hizo lo que tenía que hacer.
+
+### 6.4.7 Lo que el PS no puede hacer
+
+El *propensity score* es una herramienta poderosa, pero tiene un límite que no negocia: depende completamente de la CIA. Si hay un confusor que no mediste — un factor que afecta tanto quién recibe el tratamiento como el *outcome*, y que no está en tu $X$ — el PS calculado con lo que tenés no lo arregla. Simplemente no lo ve.
+
+La CIA no la crea el método estadístico. La trae el diseño del estudio y el conocimiento del dominio: el DAG que dibujaste en el Capítulo 4, los confusores que decidiste medir, las puertas traseras que lograste cerrar. El PS es una herramienta de dimensionalidad y de eficiencia estadística; la identificación causal es tu responsabilidad antes de llegar a la computadora.
+
+Dicho esto, cuando las covariables observadas son suficientes para la CIA — y eso lo decidís vos con tu conocimiento del problema —, el *propensity score* te da tres formas distintas de llegar al mismo lugar: *matching*, estratificación e IPTW. Cada una con sus ventajas: el *matching* es intuitivo y no extrapola; la estratificación es transparente sobre en qué región del PS estás estimando; el IPTW usa toda la muestra y es el más eficiente cuando los pesos son razonables.

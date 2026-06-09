@@ -13,18 +13,6 @@ ggplot2::update_geom_defaults("smooth", list(color = "#ED6A5A"))
 source("../R/_common.R")
 ```
 
-```{r}
-#| echo: false
-library(tidyverse)
-library(broom)
-library(estimatr)
-library(gt)
-library(patchwork)
-library(ggdag)
-library(dagitty)
-library(estimatr)
-```
-
 Veamos un escenario clásico de los estudios pseudoexperimentales. ¿Ir a la universidad te hace ganar más dinero? A primera vista parece una pregunta con respuesta obvia. Pero pensalo un segundo: las personas que acumulan más años de educación también tienden a ser más hábiles, más disciplinadas, provenientes de familias con más recursos. Si ganan más, ¿es por la educación, o por todo lo demás que viene con ella? Estamos ante el problema clásico de diferencias basales entre los grupos. Desde ya es obvio que no podemos aleatorizar la educación. Nadie sortea quién va a la universidad. Entonces, si queremos estimar el efecto causal de la educación sobre el salario, estamos en problemas: el tratamiento que nos interesa está contaminado por variables que no podemos controlar, y muchas veces, ni siquiera medir. Y si no podemos medir tampoco podemos recurrir a muchas de las tecnicas que vimos previamente como el matching. 
 
 La estrategia que veremos en este capítulo, las **variables instrumentales** son una forma de salir de ese problema. La idea central es simple: en lugar de usar toda la variación que existe en el tratamiento, vamos a usar únicamente la parte que podemos garantizar que es exógena. Para eso necesitamos encontrar algo, un *instrumento*, que mueva el tratamiento de forma cuasi-aleatoria, sin afectar el resultado por ningún otro camino. Pero que queremos decir con exógeno y endógeno.
